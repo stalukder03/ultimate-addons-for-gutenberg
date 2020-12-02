@@ -140,6 +140,9 @@ const attributes = {
 	subHeadLoadGoogleFonts: {
 		type: "boolean",
 		default: false	
+	},
+	animationfield: {
+		type: "string",
 	}
 }
 

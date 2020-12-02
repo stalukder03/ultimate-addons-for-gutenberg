@@ -18,6 +18,7 @@ const coverAdvancedControls = wp.compose.createHigherOrderComponent((BlockEdit) 
 		const { Fragment } = wp.element;
 		const { InspectorAdvancedControls } = wp.blockEditor;
 		const { attributes, setAttributes, isSelected } = props;
+
 		return (
 			<Fragment>
 				<BlockEdit {...props} />
