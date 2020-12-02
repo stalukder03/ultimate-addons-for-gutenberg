@@ -4,30 +4,56 @@
  * CSS for both Frontend+Backend.
  */
 
-.wp-block-uagb-advanced-heading  {
-	padding: 0;
-	margin: 0 auto;
+ @keyframes uag-animation-push {
+    50% {
+        transform: scale(0.8)
+    }
 
-	.uagb-heading-text {
-		margin: 0;
-		text-align : center;
-	}
+    100% {
+        transform: scale(1)
+    }
+}
+@keyframes uag-animation-pulse {
+    25% {
+        transform: scale(1.1)
+    }
 
-	.uagb-separator-wrap {
-		font-size: 0;
-		text-align : center;
-	}
+    75% {
+        transform: scale(0.9)
+    }
+}
 
-	.uagb-separator {
-	    border-top-style: solid;
-	    display: inline-block;
-	    border-top-width: 2px;
-	    width: 5%;
-	    margin: 0px 0px 10px 0px;
-	}
+.uag-animation-pulse {
+    animation-name: uag-animation-pulse;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite
+}
 
-	.uagb-desc-text {
-		margin: 0;
-		text-align : center;
-	}
+.uag-animation-push {
+    animation-name: uag-animation-push;
+    animation-duration: .3s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1
+}
+.uag-animation-bounce {
+    transition-duration: .5s
+}
+
+.uag-animation-bounce {
+    transform: scale(1.2);
+    transition-timing-function: cubic-bezier(0.47,2.02,.31,-.36)
+}
+
+@keyframes uag-animation-pop {
+    50% {
+        transform: scale(1.2)
+    }
+}
+
+.uag-animation-pop {
+    animation-name: uag-animation-pop;
+    animation-duration: .3s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1
 }
