@@ -250,6 +250,12 @@ const attributes = {
 		type: "number",
 		default: 5,
 	},
+	animationfield: {
+		type: "string",
+	},
+	animationhoverfield: {
+		type: "string",
+	}
 }
 
 export default attributes

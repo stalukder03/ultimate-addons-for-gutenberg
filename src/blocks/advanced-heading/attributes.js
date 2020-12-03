@@ -143,6 +143,9 @@ const attributes = {
 	},
 	animationfield: {
 		type: "string",
+	},
+	animationhoverfield: {
+		type: "string",
 	}
 }
 

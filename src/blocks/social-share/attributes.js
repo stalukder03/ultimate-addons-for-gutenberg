@@ -91,6 +91,12 @@ const attributes = {
 	stack: {
 		type: "string",
 		default: "none"
+	},
+	animationfield: {
+		type: "string",
+	},
+	animationhoverfield: {
+		type: "string",
 	}
 }
 

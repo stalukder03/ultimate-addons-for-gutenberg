@@ -36,7 +36,13 @@ const attributes = {
 	},
 	icon_bg_hover_color: {
 		type: "string"
-	},	
+	},
+	animationfield: {
+		type: "string",
+	},
+	animationhoverfield: {
+		type: "string",
+	}	
 }
 
 export default attributes

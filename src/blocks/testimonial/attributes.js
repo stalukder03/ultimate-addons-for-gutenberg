@@ -345,6 +345,12 @@ const attributes = {
 	stack: {
 		type: "string",
 		default: "tablet"
+	},
+	animationfield: {
+		type: "string",
+	},
+	animationhoverfield: {
+		type: "string",
 	}
 }
 

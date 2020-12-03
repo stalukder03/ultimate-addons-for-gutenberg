@@ -1,13 +1,5 @@
 const {
-	PanelBody,
-	SelectControl,
-	RangeControl,
-	Button,
-	ToggleControl,
-	Placeholder,
-	Spinner,
-	ButtonGroup,
-	TabPanel
+	SelectControl
 } = wp.components
 
 const { __ } = wp.i18n
@@ -18,19 +10,51 @@ const coverAdvancedControls = wp.compose.createHigherOrderComponent((BlockEdit) 
 		const { Fragment } = wp.element;
 		const { InspectorAdvancedControls } = wp.blockEditor;
 		const { attributes, setAttributes, isSelected } = props;
+		const blocks_name = props.name;
 
 		return (
 			<Fragment>
 				<BlockEdit {...props} />
-				{isSelected &&  
+				{isSelected &&  ( blocks_name.substr(0, 5) === 'uagb/' ) &&
 					<InspectorAdvancedControls>
 						<SelectControl
 							label={ __( "Animation" ) }
 							value={ attributes.animationfield }
 							onChange={ ( value ) => setAttributes( { animationfield: value } ) }
 							options={ [
-								{ value: "box", label: __( "Box" ) },
-								{ value: "underline", label: __( "Underline" ) },							
+								{ value: " ", label: __( "None" ) },
+								{ value: "fadeInDown", label: __( "fadeInDown" ) },
+								{ value: "fadeInUp", label: __( "fadeInUp" ) },
+								{ value: "fadeIn", label: __( "fadeIn" ) },
+								{ value: "fadeInLeft", label: __( "fadeInLeft" ) },
+								{ value: "fadeInRight", label: __( "fadeInRight" ) },
+								{ value: "lightSpeedIn", label: __( "lightSpeedIn" ) },
+								{ value: "slideInDown", label: __( "slideInDown" ) },
+								{ value: "slideInLeft", label: __( "slideInLeft" ) },
+								{ value: "slideInRight", label: __( "slideInRight" ) },
+								{ value: "slideInUp", label: __( "slideInUp" ) },
+								{ value: "bounceIn", label: __( "bounceIn" ) },
+								{ value: "bounceDown", label: __( "bounceDown" ) },
+								{ value: "bounceLeft", label: __( "bounceLeft" ) },
+								{ value: "bounceInRight", label: __( "bounceInRight" ) },
+								{ value: "bounceInUp", label: __( "bounceInUp" ) },
+								{ value: "rotateIn", label: __( "rotateIn" ) },
+								{ value: "rotateInDownLeft", label: __( "rotateInDownLeft" ) },							
+							] } 
+						/>
+						<SelectControl
+							label={ __( "Hover Animation" ) }
+							value={ attributes.animationhoverfield }
+							onChange={ ( value ) => setAttributes( { animationhoverfield: value } ) }
+							options={ [
+								{ value: " ", label: __( "None" ) },
+								{ value: "push", label: __( "Push" ) },
+								{ value: "pulse", label: __( "Pulse" ) },
+								{ value: "bounce", label: __( "Bounce" ) },
+								{ value: "pop", label: __( "Pop" ) },
+								{ value: "grow", label: __( "Grow" ) },
+								{ value: "pulse-grow", label: __( "Pulse-grow" ) },
+								{ value: "pulse-shrink", label: __( "Pulse-shrink" ) },							
 							] }
 						/>
 					</InspectorAdvancedControls>
@@ -46,30 +70,27 @@ wp.hooks.addFilter(
 	coverAdvancedControls
 );
 
-function coverApplyExtraClass(extraProps, blockType, attributes) {
+function ApplyAnimateClass(extraProps, blockType, attributes) {
 	
 	const { 
-		animationfield
+		animationfield,
+		animationhoverfield
 	 } = attributes;
-
-	if ( typeof animationfield !== 'undefined' && animationfield) {
-		
-		classes = extraProps.className.split(" ");
- 
-		for( let i=0; i<classes.length; i++ ) {
-			
-			if ( 'uag-adv-animation__' === classes[i].substr( 0, 19 ) ) {
-				delete classes[i];
-			}		 
-		}
-
-		extraProps.className = 	`${classes.join(' ')}uag-adv-animation__${animationfield}`;
+	
+	if ( typeof animationfield !== 'undefined' && animationfield) {	
+		extraProps.className = extraProps.className + ' uag-animation-' + animationfield;
+		extraProps.className = extraProps.className + '  uag-animation-speed';
 	}
+	
+	if ( typeof animationhoverfield !== 'undefined' && animationhoverfield) {	
+		extraProps.className = extraProps.className + ' uag-hover-animation-' + animationhoverfield;
+	}
+
 	return extraProps;
 }
 
 wp.hooks.addFilter(
 	'blocks.getSaveContent.extraProps',
 	'uagb/apply-animation-class',
-	coverApplyExtraClass,
+	ApplyAnimateClass,
 );

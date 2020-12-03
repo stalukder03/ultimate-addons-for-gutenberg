@@ -138,6 +138,12 @@ const attributes = {
 		type: "number",
 		default : 8
 	},
+	animationfield: {
+		type: "string",
+	},
+	animationhoverfield: {
+		type: "string",
+	}
 }
 
 export default attributes

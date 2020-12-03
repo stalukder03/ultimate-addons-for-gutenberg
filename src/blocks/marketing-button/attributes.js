@@ -279,6 +279,12 @@ const attributes = {
 	iconFontSizeMobile: {
 		type: "number",
 		default: 20
+	},
+	animationfield: {
+		type: "string",
+	},
+	animationhoverfield: {
+		type: "string",
 	}
 }
 

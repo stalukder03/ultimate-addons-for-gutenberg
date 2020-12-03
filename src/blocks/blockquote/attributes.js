@@ -331,7 +331,13 @@ const attributes = {
 	},
 	borderHoverColor: {
 		type: "string",
-	},			
+	},
+	animationfield: {
+		type: "string",
+	},
+	animationhoverfield: {
+		type: "string",
+	}			
 }
 
 export default attributes

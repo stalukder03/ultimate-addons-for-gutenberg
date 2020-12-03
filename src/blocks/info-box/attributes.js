@@ -401,6 +401,12 @@ const attributes = {
 		type: "boolean",
 		default: true,
 	},
+	animationfield: {
+		type: "string",
+	},
+	animationhoverfield: {
+		type: "string",
+	}
 }
 
 export default attributes
