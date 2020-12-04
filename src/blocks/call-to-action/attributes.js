@@ -249,12 +249,6 @@ const attributes = {
 	ctaRightSpace :{
 		type: "number",
 		default: 5,
-	},
-	animationfield: {
-		type: "string",
-	},
-	animationhoverfield: {
-		type: "string",
 	}
 }
 

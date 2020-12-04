@@ -330,12 +330,6 @@ const attributes = {
 	headingAlignment: {
 		type: "string",
 		default: "left"
-	},
-	animationfield: {
-		type: "string",
-	},
-	animationhoverfield: {
-		type: "string",
 	}	
 }
 

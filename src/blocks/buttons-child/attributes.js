@@ -137,12 +137,6 @@ const attributes = {
 	iconSpace :{
 		type: "number",
 		default : 8
-	},
-	animationfield: {
-		type: "string",
-	},
-	animationhoverfield: {
-		type: "string",
 	}
 }
 

@@ -167,12 +167,6 @@
 	highlightWidth: {
 		type: "number",
 		default : 10
-	},
-	animationfield: {
-		type: "string",
-	},
-	animationhoverfield: {
-		type: "string",
 	}
 }
 

@@ -141,12 +141,6 @@ const attributes = {
 		type: "boolean",
 		default: false	
 	},
-	animationfield: {
-		type: "string",
-	},
-	animationhoverfield: {
-		type: "string",
-	}
 }
 
 export default attributes

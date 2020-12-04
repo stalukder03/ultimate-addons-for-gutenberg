@@ -304,12 +304,6 @@ const attributes = {
 	},
 	timeInYears: {
 		type: "number",		
-	},
-	animationfield: {
-		type: "string",
-	},
-	animationhoverfield: {
-		type: "string",
 	}
 }
 

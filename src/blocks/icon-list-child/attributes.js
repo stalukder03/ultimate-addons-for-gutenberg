@@ -62,12 +62,6 @@ const attributes = {
 	disableLink: {
 		type: "boolean",
 		default: true
-	},
-	animationfield: {
-		type: "string",
-	},
-	animationhoverfield: {
-		type: "string",
 	}
 }
 

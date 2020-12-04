@@ -303,14 +303,7 @@ const attributes = {
 	gradientValue: {
 		type: "string",
 		default:"",
-	},
-	animationfield: {
-		type: "string",
-	},
-	animationhoverfield: {
-		type: "string",
 	}
-
 }
 
 export default attributes

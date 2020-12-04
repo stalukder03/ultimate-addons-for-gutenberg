@@ -215,12 +215,6 @@ const attributes = {
 	inputSizeType : {
 		type:"string",
 		default: "%"
-	},
-	animationfield: {
-		type: "string",
-	},
-	animationhoverfield: {
-		type: "string",
 	}
 }
 

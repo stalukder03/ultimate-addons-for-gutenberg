@@ -400,12 +400,6 @@ const attributes = {
 	showDesc: {
 		type: "boolean",
 		default: true,
-	},
-	animationfield: {
-		type: "string",
-	},
-	animationhoverfield: {
-		type: "string",
 	}
 }
 

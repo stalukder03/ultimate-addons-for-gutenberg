@@ -5,7 +5,7 @@ const {
 const { __ } = wp.i18n
 
 const coverAdvancedControls = wp.compose.createHigherOrderComponent((BlockEdit) => {
-
+	
 	return (props) => {
 		const { Fragment } = wp.element;
 		const { InspectorAdvancedControls } = wp.blockEditor;

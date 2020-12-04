@@ -8,6 +8,7 @@
  * All blocks should be included here since this is the file that
  * Webpack is compiling as the input file.
  */
+import "./blocks/advanced-animation/attributes.js"
 import "./blocks/advanced-heading/block.js"
 import "./blocks/post/block.js"
 import "./blocks/section/block.js"

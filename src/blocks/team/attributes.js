@@ -278,12 +278,6 @@ const attributes = {
 	descLoadGoogleFonts: {
 		type: "boolean",
 		default: false	
-	},
-	animationfield: {
-		type: "string",
-	},
-	animationhoverfield: {
-		type: "string",
 	}
 }
 
