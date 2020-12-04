@@ -247,7 +247,7 @@ const attributes = {
 	gradientValue: {
 		type: "string",
 		default: "",
-	}
+	},
 }
 
 export default attributes

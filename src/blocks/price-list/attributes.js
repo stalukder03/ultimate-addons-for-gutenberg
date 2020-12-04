@@ -273,7 +273,7 @@ const attributes = {
 	stack: {
 		type: "string",
 		default: "tablet"
-	}
+	},
 }
 
 export default attributes

@@ -400,7 +400,7 @@ const attributes = {
 	showDesc: {
 		type: "boolean",
 		default: true,
-	}
+	},
 }
 
 export default attributes

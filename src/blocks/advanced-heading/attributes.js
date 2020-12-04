@@ -140,7 +140,7 @@ const attributes = {
 	subHeadLoadGoogleFonts: {
 		type: "boolean",
 		default: false	
-	},
+	}
 }
 
 export default attributes

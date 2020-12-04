@@ -137,7 +137,7 @@ const attributes = {
 	iconSpace :{
 		type: "number",
 		default : 8
-	}
+	},
 }
 
 export default attributes

@@ -330,7 +330,7 @@ const attributes = {
 	headingAlignment: {
 		type: "string",
 		default: "left"
-	}	
+	},	
 }
 
 export default attributes

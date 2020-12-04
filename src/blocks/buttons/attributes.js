@@ -78,7 +78,7 @@ const attributes = {
 	},
 	fontSubset: {
 		type: "string",
-	}
+	},
 }
 
 export default attributes

@@ -249,7 +249,7 @@ const attributes = {
 	ctaRightSpace :{
 		type: "number",
 		default: 5,
-	}
+	},
 }
 
 export default attributes
