@@ -40,7 +40,8 @@ const coverAdvancedControls = wp.compose.createHigherOrderComponent((BlockEdit) 
 								{ value: "bounceInUp", label: __( "bounceInUp" ) },
 								{ value: "rotateIn", label: __( "rotateIn" ) },
 								{ value: "rotateInDownLeft", label: __( "rotateInDownLeft" ) },							
-							] } 
+							] }
+							help={ __( "This settings will only take effect once you are on the live page, and not while you're editing in Gutenberg." ) } 
 						/>
 						<SelectControl
 							label={ __( "Hover Animation" ) }
@@ -56,6 +57,7 @@ const coverAdvancedControls = wp.compose.createHigherOrderComponent((BlockEdit) 
 								{ value: "pulse-grow", label: __( "Pulse-grow" ) },
 								{ value: "pulse-shrink", label: __( "Pulse-shrink" ) },							
 							] }
+							help={ __( "This settings will only take effect once you are on the live page, and not while you're editing in Gutenberg." ) }
 						/>
 					</InspectorAdvancedControls>
 				}
