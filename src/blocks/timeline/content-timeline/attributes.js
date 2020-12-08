@@ -17,7 +17,7 @@ for (var i = 1; i <= 5; i++) {
 	)
 
 	var j = i - 1
-	var today = new Date( "1/1/2019" )
+	var today = new Date( )
 	var dd = today.getDate()
 	var mm = today.getMonth()+1 //January is 0!
 	var yyyy = today.getFullYear()-j
@@ -30,7 +30,9 @@ for (var i = 1; i <= 5; i++) {
 		mm = "0" + mm
 	}
 
-	today = mm + "/" + dd + "/" + yyyy
+	// today = mm + "-" + dd + "-" + yyyy
+	today = yyyy + "-" + mm + "-" + dd
+
 	var p = { "title" : today }
 
 	date_arr.push(

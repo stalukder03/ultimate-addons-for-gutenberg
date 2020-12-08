@@ -122,7 +122,13 @@ class UAGBcontentTimeline extends Component {
 	saveDate( value, index ) {
 		const { attributes, setAttributes } = this.props
 		const { t_date } = attributes
+		var date_regex = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+		console.log("yes");
+		if (!(date_regex.test(value.title))) {
+			console.log("here");
+			return false;
 
+		}
 		const newItems = t_date.map( ( item, thisIndex ) => {
 			if ( index === thisIndex ) {
 				item = { ...item, ...value }
@@ -130,10 +136,11 @@ class UAGBcontentTimeline extends Component {
 
 			return item
 		} )
+		console.log(item);
 
-		setAttributes( {
-			t_date: newItems,
-		} )
+		// setAttributes( {
+		// 	t_date: newItems,
+		// } )
 	}
 
 	render() {
@@ -840,8 +847,8 @@ class UAGBcontentTimeline extends Component {
 							var icon_class = "uagb-timeline__icon-new uagb-timeline__out-view-icon "
 							var post_date = t_date[index].title
 							if ( 'custom' != dateFormat ) {
-
-								post_date = dateI18n( dateFormat, t_date[index].title )
+								console.log(dateI18n( dateFormat, t_date[index].title ));
+								// post_date = dateI18n( dateFormat, t_date[index].title )
 								if( post_date === "Invalid date" ){
 									post_date = t_date[index].title
 								}
