@@ -4,7 +4,7 @@ const {
 
 const { __ } = wp.i18n
 
-const coverAdvancedControls = wp.compose.createHigherOrderComponent((BlockEdit) => {
+const AdvancedAnimationControls = wp.compose.createHigherOrderComponent((BlockEdit) => {
 	
 	return (props) => {
 		const { Fragment } = wp.element;
@@ -64,12 +64,12 @@ const coverAdvancedControls = wp.compose.createHigherOrderComponent((BlockEdit) 
 			</Fragment>
 		);
 	};
-}, 'coverAdvancedControls');
+}, 'AdvancedAnimationControls');
  
 wp.hooks.addFilter(
 	'editor.BlockEdit',
-	'uagb/cover-advanced-control',
-	coverAdvancedControls
+	'uagb/advanced-animation-control',
+	AdvancedAnimationControls
 );
 
 function ApplyAnimateClass(extraProps, blockType, attributes) {
