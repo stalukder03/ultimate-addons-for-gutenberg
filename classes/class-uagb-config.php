@@ -2345,6 +2345,13 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 							'listDisplayStyle'      => 'list',
 						),
 					),
+					'uagb/advanced-tab-animation'          => array(
+						'slug'        => '',
+						'title'       => __( 'Advanced Tab Animation', 'ultimate-addons-for-gutenberg' ),
+						'description' => __( 'This block helps you add a Animation field in the Advanced Tab.', 'ultimate-addons-for-gutenberg' ),
+						'default'     => true,
+						'attributes'  => array(),
+					),
 				);
 			}
 			return self::$block_attributes;
