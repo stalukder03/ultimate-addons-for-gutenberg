@@ -11,18 +11,19 @@ const AdvancedAnimationControls = wp.compose.createHigherOrderComponent((BlockEd
 		const { InspectorAdvancedControls } = wp.blockEditor;
 		const { attributes, setAttributes, isSelected } = props;
 		const blocks_name = props.name;
+		const block_type = ['uagb/buttons-child','uagb/faq-child', 'uagb/icon-list-child', 'uagb/social-share-child' ];
 
 		return (
 			<Fragment>
 				<BlockEdit {...props} />
-				{isSelected &&  ( blocks_name.substr(0, 5) === 'uagb/' ) &&
+				{isSelected &&  ! block_type.includes(blocks_name) &&
 					<InspectorAdvancedControls>
 						<SelectControl
 							label={ __( "Animation" ) }
 							value={ attributes.animationfield }
 							onChange={ ( value ) => setAttributes( { animationfield: value } ) }
 							options={ [
-								{ value: " ", label: __( "None" ) },
+								{ value: "none", label: __( "None" ) },
 								{ value: "fadeInDown", label: __( "fadeInDown" ) },
 								{ value: "fadeInUp", label: __( "fadeInUp" ) },
 								{ value: "fadeIn", label: __( "fadeIn" ) },
@@ -48,7 +49,7 @@ const AdvancedAnimationControls = wp.compose.createHigherOrderComponent((BlockEd
 							value={ attributes.animationhoverfield }
 							onChange={ ( value ) => setAttributes( { animationhoverfield: value } ) }
 							options={ [
-								{ value: " ", label: __( "None" ) },
+								{ value: "none", label: __( "None" ) },
 								{ value: "push", label: __( "Push" ) },
 								{ value: "pulse", label: __( "Pulse" ) },
 								{ value: "bounce", label: __( "Bounce" ) },
@@ -79,12 +80,12 @@ function ApplyAnimateClass(extraProps, blockType, attributes) {
 		animationhoverfield
 	 } = attributes;
 	
-	if ( typeof animationfield !== 'undefined' && animationfield) {	
+	if ( typeof animationfield !== 'undefined' && 'none' !== animationfield) {	
 		extraProps.className = extraProps.className + ' uag-animation-' + animationfield;
 		extraProps.className = extraProps.className + '  uag-animation-speed';
 	}
 	
-	if ( typeof animationhoverfield !== 'undefined' && animationhoverfield) {	
+	if ( typeof animationhoverfield !== 'undefined' && 'none' !== animationhoverfield) {	
 		extraProps.className = extraProps.className + ' uag-hover-animation-' + animationhoverfield;
 	}
 
