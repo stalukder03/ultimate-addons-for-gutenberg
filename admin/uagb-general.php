@@ -86,9 +86,14 @@ $has_read_write_perms   = UAGB_Helper::has_read_write_permissions();
 									'faq-child',
 								);
 
+								if ( array_key_exists( 'extension', $info ) && $info['extension'] ) {
+									continue;
+								}
+
 								if ( in_array( $addon, $child_blocks, true ) ) {
 									continue;
 								}
+
 								$title_url     = ( isset( $info['title_url'] ) && ! empty( $info['title_url'] ) ) ? 'href="' . esc_url( $info['title_url'] ) . '"' : '';
 								$anchor_target = ( isset( $info['title_url'] ) && ! empty( $info['title_url'] ) ) ? "target='_blank' rel='noopener'" : '';
 
