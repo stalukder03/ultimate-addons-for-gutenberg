@@ -8,7 +8,7 @@
  */
 function addAttributes( settings ) {
 
-	if ( typeof settings.attributes !== 'undefined' ) {
+	if ( settings.attributes ) {
 		settings.attributes = Object.assign( settings.attributes, {
 			animationfield: {
 				type: 'string',

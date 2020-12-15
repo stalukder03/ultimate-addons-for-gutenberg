@@ -94,14 +94,6 @@
     animation-iteration-count: infinite;
     animation-direction: alternate
 }
-.uag-hover-animation-bounce-in {
-    transition-duration: .5s
-}
-
-.uag-hover-animation-bounce-in:hover {
-    transform: scale(1.2);
-    transition-timing-function: cubic-bezier(0.47,2.02,.31,-.36)
-}
 
 @keyframes fadeInDown {
     from {

@@ -80,12 +80,12 @@ function ApplyAnimateClass(extraProps, blockType, attributes) {
 		animationhoverfield
 	 } = attributes;
 	
-	if ( typeof animationfield !== 'undefined' && 'none' !== animationfield) {	
+	if ( animationfield && 'none' !== animationfield) {	
 		extraProps.className = extraProps.className + ' uag-animation-' + animationfield;
 		extraProps.className = extraProps.className + '  uag-animation-speed';
 	}
 	
-	if ( typeof animationhoverfield !== 'undefined' && 'none' !== animationhoverfield) {	
+	if ( animationhoverfield && 'none' !== animationhoverfield) {	
 		extraProps.className = extraProps.className + ' uag-hover-animation-' + animationhoverfield;
 	}
 
