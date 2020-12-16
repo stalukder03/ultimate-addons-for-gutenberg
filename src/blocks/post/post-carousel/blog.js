@@ -28,9 +28,10 @@ class Blog extends React.Component {
 			arrowBorderRadius,
 			arrowColor,
 			arrowDots,
-			equalHeight
+			equalHeight,
+			animationfield
 		} = attributes
-
+		console.log( animationfield );
 		// Removing posts from display should be instant.
 		const displayPosts = latestPosts.length > postsToShow ?
 			latestPosts.slice( 0, postsToShow ) :
