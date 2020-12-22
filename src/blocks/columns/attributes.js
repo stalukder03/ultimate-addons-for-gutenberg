@@ -14,6 +14,14 @@ const attributes = {
 		type: "number",
 		default: 2
 	},
+	columnsTablet: {
+		type: "number",
+		default: 2
+	},
+	columnsMobile: {
+		type: "number",
+		default: 2
+	},
 	align: {
 		type: "string"
 	},

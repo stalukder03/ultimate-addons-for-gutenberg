@@ -57,6 +57,8 @@ registerBlockType( "uagb/columns", {
 			backgroundVideo,
 			align,
 			columns,
+			columnsTablet,
+			columnsMobile,
 			stack,
 			vAlign,
 			columnGap,
@@ -134,7 +136,9 @@ registerBlockType( "uagb/columns", {
 				}
 				<div className={ classnames(
 					"uagb-columns__inner-wrap",
-					`uagb-columns__columns-${columns}`
+					`uagb-columns__columns-${columns}`,
+					`uagb-columns__columns-tab-${columnsTablet}`,
+					`uagb-columns__columns-mob-${columnsMobile}`
 				) }>
 					<InnerBlocks.Content />
 				</div>
