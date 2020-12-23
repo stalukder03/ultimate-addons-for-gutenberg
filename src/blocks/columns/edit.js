@@ -547,7 +547,11 @@ class UAGBColumns extends Component {
 
 		const reverse_tablet = ( reverseTablet ) ? "uagb-columns__reverse-tablet" : ""
 
-		const reverse_mobile = ( reverseMobile ) ? "uagb-columns__reverse-mobile" : ""			
+		const reverse_mobile = ( reverseMobile ) ? "uagb-columns__reverse-mobile" : ""
+		
+		const col_tablet = ( columnsTablet ) ? `uagb-columns__columns-tab-${columnsTablet}` : ""
+
+		const col_mobile = ( columnsMobile ) ? `uagb-columns__columns-mob-${columnsMobile}` : ""
 		
 		if ( ! hasInnerBlocks ) {
 			return (
@@ -1285,7 +1289,7 @@ class UAGBColumns extends Component {
 					}
 					<div className={ classnames(
 						"uagb-columns__inner-wrap",
-						`uagb-columns__columns-${columns}`, `uagb-columns__columns-tab-${columnsTablet}`, `uagb-columns__columns-mob-${columnsMobile}`
+						`uagb-columns__columns-${columns}`, col_tablet, col_mobile
 					) }>
 						<InnerBlocks
 							template={ getColumnsTemplate( columns ) }

@@ -107,6 +107,10 @@ registerBlockType( "uagb/columns", {
 
 		const reverse_mobile = ( reverseMobile ) ? "uagb-columns__reverse-mobile" : ""
 
+		const col_tablet = ( columnsTablet ) ? `uagb-columns__columns-tab-${columnsTablet}` : ""
+
+		const col_mobile = ( columnsMobile ) ? `uagb-columns__columns-mob-${columnsMobile}` : ""
+
 		return (
 			<CustomTag
 				className={ classnames(
@@ -137,8 +141,8 @@ registerBlockType( "uagb/columns", {
 				<div className={ classnames(
 					"uagb-columns__inner-wrap",
 					`uagb-columns__columns-${columns}`,
-					`uagb-columns__columns-tab-${columnsTablet}`,
-					`uagb-columns__columns-mob-${columnsMobile}`
+					col_tablet,
+					col_mobile
 				) }>
 					<InnerBlocks.Content />
 				</div>

@@ -15,12 +15,10 @@ const attributes = {
 		default: 2
 	},
 	columnsTablet: {
-		type: "number",
-		default: 2
+		type: "number"
 	},
 	columnsMobile: {
-		type: "number",
-		default: 2
+		type: "number"
 	},
 	align: {
 		type: "string"
