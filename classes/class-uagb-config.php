@@ -1921,6 +1921,7 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 						'description' => __( 'This block allows you to add attractive Price List.', 'ultimate-addons-for-gutenberg' ),
 						'default'     => true,
 						'extension'   => false,
+						'is_child'    => true,
 						'attributes'  => array(
 							'classMigrate'     => false,
 							'childMigrate'     => false,

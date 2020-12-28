@@ -18,6 +18,9 @@ const AdvancedAnimationControls = wp.compose.createHigherOrderComponent((BlockEd
 				<BlockEdit {...props} />
 				{isSelected &&  ! block_type.includes(blocks_name) &&
 					<InspectorAdvancedControls>
+						<span className="components-base-control__help">
+							{ __( "This settings will only take effect once you are on the live page, and not while you're editing in Gutenberg." ) }
+						</span>
 						<SelectControl
 							label={ __( "Animation" ) }
 							value={ attributes.animationfield }
@@ -41,8 +44,7 @@ const AdvancedAnimationControls = wp.compose.createHigherOrderComponent((BlockEd
 								{ value: "bounceInUp", label: __( "Bounce In Up" ) },
 								{ value: "rotateIn", label: __( "Rotate In" ) },
 								{ value: "rotateInDownLeft", label: __( "Rotate In Down Left" ) },
-							] }
-							help={ __( "This settings will only take effect once you are on the live page, and not while you're editing in Gutenberg." ) } 
+							] } 
 						/>
 						<SelectControl
 							label={ __( "Hover Animation" ) }
@@ -58,7 +60,6 @@ const AdvancedAnimationControls = wp.compose.createHigherOrderComponent((BlockEd
 								{ value: "pulse-grow", label: __( "Pulse Grow" ) },
 								{ value: "pulse-shrink", label: __( "Pulse Shrink" ) },
 							] }
-							help={ __( "This settings will only take effect once you are on the live page, and not while you're editing in Gutenberg." ) }
 						/>
 					</InspectorAdvancedControls>
 				}
