@@ -2569,6 +2569,10 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 						'dep'        => array( 'jquery', 'uagb-cookie-lib' ),
 						'skipEditor' => true,
 					),
+					'uagb-advanced-tab-animation-js'           => array(
+						'src' => UAGB_URL . 'assets/js/advanced-tab-animation.js',
+						'dep' => array(),
+					),
 				);
 			}
 			return self::$block_assets;
