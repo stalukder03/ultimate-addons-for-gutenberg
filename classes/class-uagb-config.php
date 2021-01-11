@@ -2509,6 +2509,7 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 						'default'     => true,
 						'extension'   => true,
 						'attributes'  => array(),
+						'js_assets'   => array( 'uagb-advanced-tab-animation-js' ),
 					),
 				);
 			}
@@ -2526,52 +2527,53 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 
 			if ( null === self::$block_assets ) {
 				self::$block_assets = array(
-					'uagb-timeline-js'       => array(
+					'uagb-timeline-js'               => array(
 						'src' => UAGB_URL . 'assets/js/timeline.js',
 						'dep' => array( 'jquery' ),
 					),
-					'uagb-masonry'           => array(
+					'uagb-masonry'                   => array(
 						'src' => UAGB_URL . 'assets/js/isotope.min.js',
 						'dep' => array( 'jquery' ),
 					),
-					'uagb-imagesloaded'      => array(
+					'uagb-imagesloaded'              => array(
 						'src' => UAGB_URL . 'assets/js/imagesloaded.min.js',
 						'dep' => array( 'jquery' ),
 					),
-					'uagb-table-of-contents' => array(
+					'uagb-table-of-contents'         => array(
 						'src' => UAGB_URL . 'assets/js/table-of-contents.js',
 						'dep' => array( 'jquery' ),
 					),
-					'uagb-slick-js'          => array(
+					'uagb-slick-js'                  => array(
 						'src' => UAGB_URL . 'assets/js/slick.min.js',
 						'dep' => array( 'jquery' ),
 					),
-					'uagb-slick-css'         => array(
+					'uagb-slick-css'                 => array(
 						'src' => UAGB_URL . 'assets/css/slick.css',
 						'dep' => array(),
 					),
-					'uagb-post-js'           => array(
+					'uagb-post-js'                   => array(
 						'src' => UAGB_URL . 'assets/js/post.js',
 						'dep' => array( 'jquery', 'uagb-slick-js' ),
 					),
-					'uagb-faq-js'            => array(
+					'uagb-faq-js'                    => array(
 						'src'        => UAGB_URL . 'assets/js/faq.js',
 						'dep'        => array(),
 						'skipEditor' => true,
 					),
-					'uagb-cookie-lib'        => array(
+					'uagb-cookie-lib'                => array(
 						'src'        => UAGB_URL . 'assets/js/js_cookie.js',
 						'dep'        => array( 'jquery' ),
 						'skipEditor' => true,
 					),
-					'uagb-inline-notice-js'  => array(
+					'uagb-inline-notice-js'          => array(
 						'src'        => UAGB_URL . 'assets/js/inline-notice.js',
 						'dep'        => array( 'jquery', 'uagb-cookie-lib' ),
 						'skipEditor' => true,
 					),
-					'uagb-advanced-tab-animation-js'           => array(
-						'src' => UAGB_URL . 'assets/js/advanced-tab-animation.js',
-						'dep' => array(),
+					'uagb-advanced-tab-animation-js' => array(
+						'src'        => UAGB_URL . 'assets/js/advanced-tab-animation.js',
+						'dep'        => array(),
+						'skipEditor' => true,
 					),
 				);
 			}

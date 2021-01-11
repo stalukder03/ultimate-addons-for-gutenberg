@@ -107,7 +107,7 @@
     }
 }
 
-.uag-animation-fadeInDown {
+.uag-tab-animation.uag-animation-fadeInDown {
     animation-name: fadeInDown
 }
 
@@ -126,7 +126,7 @@
     }
 }
 
-.uag-animation-fadeIn {
+.uag-tab-animation.uag-animation-fadeIn {
     animation-name: fadeIn
 }
 
@@ -141,9 +141,10 @@
     }
 }
 
-.uag-animation-fadeInLeft {
+.uag-tab-animation.uag-animation-fadeInLeft {
     animation-name: fadeInLeft
 }
+
 @keyframes fadeInRight {
     from {
         opacity: 0;
@@ -156,7 +157,7 @@
     }
 }
 
-.uag-animation-fadeInRight {
+.uag-tab-animation.uag-animation-fadeInRight {
     animation-name: fadeInRight
 }
 
@@ -172,7 +173,7 @@
     }
 }
 
-.uag-animation-fadeInUp {
+.uag-tab-animation.uag-animation-fadeInUp {
     animation-name: fadeInUp
 }
 
@@ -198,7 +199,7 @@
     }
 }
 
-.uag-animation-lightSpeedIn {
+.uag-tab-animation.uag-animation-lightSpeedIn {
     animation-name: lightSpeedIn;
     animation-timing-function: ease-out
 }
@@ -214,7 +215,7 @@
     }
 }
 
-.uag-animation-slideInDown {
+.uag-tab-animation.uag-animation-slideInDown {
     animation-name: slideInDown
 }
 
@@ -229,7 +230,7 @@
     }
 }
 
-.uag-animation-slideInLeft {
+.uag-tab-animation.uag-animation-slideInLeft {
     animation-name: slideInLeft
 }
 
@@ -244,7 +245,7 @@
     }
 }
 
-.uag-animation-slideInRight {
+.uag-tab-animation.uag-animation-slideInRight {
     animation-name: slideInRight
 }
 
@@ -259,7 +260,7 @@
     }
 }
 
-.uag-animation-slideInUp {
+.uag-tab-animation.uag-animation-slideInUp {
     animation-name: slideInUp
 }
 
@@ -296,7 +297,7 @@
     }
 }
 
-.uag-animation-bounceIn {
+.uag-tab-animation.uag-animation-bounceIn {
     animation-name: bounceIn
 }
 
@@ -328,7 +329,7 @@
     }
 }
 
-.uag-animation-bounceInDown {
+.uag-tab-animation.uag-animation-bounceInDown {
     animation-name: bounceInDown
 }
 
@@ -360,7 +361,7 @@
     }
 }
 
-.uag-animation-bounceInLeft {
+.uag-tab-animation.uag-animation-bounceInLeft {
     animation-name: bounceInLeft
 }
 
@@ -392,7 +393,7 @@
     }
 }
 
-.uag-animation-bounceInRight {
+.uag-tab-animation.uag-animation-bounceInRight {
     animation-name: bounceInRight
 }
 
@@ -424,7 +425,7 @@
     }
 }
 
-.uag-animation-bounceInUp {
+.uag-tab-animation.uag-animation-bounceInUp {
     animation-name: bounceInUp
 }
 @keyframes rotateIn {
@@ -441,7 +442,7 @@
     }
 }
 
-.uag-animation-rotateIn {
+.uag-tab-animation.uag-animation-rotateIn {
     animation-name: rotateIn
 }
 
@@ -459,7 +460,7 @@
     }
 }
 
-.uag-animation-rotateInDownLeft {
+.uag-tab-animation.uag-animation-rotateInDownLeft {
     animation-name: rotateInDownLeft
 }
 
@@ -477,7 +478,7 @@
     }
 }
 
-.uag-animation-rotateInDownRight {
+.uag-tab-animation.uag-animation-rotateInDownRight {
     animation-name: rotateInDownRight
 }
 
@@ -495,7 +496,7 @@
     }
 }
 
-.uag-animation-rotateInUpLeft {
+.uag-tab-animation.uag-animation-rotateInUpLeft {
     animation-name: rotateInUpLeft
 }
 
@@ -513,6 +514,6 @@
     }
 }
 
-.uag-animation-rotateInUpRight {
+.uag-tab-animation.uag-animation-rotateInUpRight {
     animation-name: rotateInUpRight
 }
