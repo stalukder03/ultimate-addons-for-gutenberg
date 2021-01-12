@@ -85,6 +85,7 @@ $has_read_write_perms   = UAGB_Helper::has_read_write_permissions();
 									'buttons-child',
 									'faq-child',
 									'restaurant-menu-child',
+									'content-timeline-child',
 								);
 
 								if ( array_key_exists( 'extension', $info ) && $info['extension'] ) {
