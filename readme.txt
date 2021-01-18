@@ -165,9 +165,11 @@ The awesome React FontIconPicker is developed by [Alessandro Benoit](http://code
 
 == Changelog ==
 
+= 1.21.0 =
+* Improvement: Advanced Columns - Added responsive columns options for mobile and tablet.
+
 = 1.20.0 =
 * New: Lottie Block.
-* Improvement: Advanced Columns - Added responsive columns options for mobile and tablet.
 * Improvement: Post Layout: Added EditMode to shuffle the Post elements i.e Post Title, Post Meta, Post Content, Featured Image, CTA Button etc.
 * Improvement: Better options for delete/edit/duplicate action of each content in Content timeline blocks.
 * Fix: Price List - CSS issue on mobile.
