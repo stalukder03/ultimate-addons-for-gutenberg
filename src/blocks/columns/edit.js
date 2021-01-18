@@ -1292,6 +1292,7 @@ class UAGBColumns extends Component {
 						`uagb-columns__columns-${columns}`, col_tablet, col_mobile
 					) }>
 						<InnerBlocks
+							key={ columns }
 							template={ getColumnsTemplate( columns ) }
 							templateLock="all"
 							allowedBlocks={ ALLOWED_BLOCKS }
