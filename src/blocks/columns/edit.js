@@ -21,7 +21,8 @@ const { __ } = wp.i18n
 const {
 	withSelect,
 	useDispatch,
-	withDispatch
+	withDispatch,
+	select
 } = wp.data
 const {
 	compose,
@@ -78,6 +79,9 @@ class UAGBColumns extends Component {
 		this.onSelectImage = this.onSelectImage.bind( this )
 		this.onSelectVideo = this.onSelectVideo.bind( this )
 		this.blockVariationPickerOnSelect = this.blockVariationPickerOnSelect.bind( this )
+		this.setColumns = this.setColumns.bind( this );
+		this.setColumnsTab = this.setColumnsTab.bind( this );
+		this.setColumnsMob = this.setColumnsMob.bind( this );
 	}
 
 	componentDidMount() {
@@ -157,6 +161,55 @@ class UAGBColumns extends Component {
 		setAttributes( { backgroundVideo: media } )
 	}
 
+	setColumns(value) {
+		
+		const { setAttributes } = this.props
+
+		if ( 0 !== value ) {
+			let widthcount = 100 / value;
+
+			const getChildBlocks = select('core/block-editor').getBlocks( this.props.clientId );
+
+			getChildBlocks.forEach((columnChild, key) => {
+				columnChild.attributes.colWidth = widthcount;
+			});
+		}
+
+		setAttributes( { columns: value } );
+	}
+	setColumnsTab(value) {
+		
+		const { setAttributes } = this.props
+
+		if ( 0 !== value ) {
+
+			let widthcountTab = 100 / value;
+
+			const getChildBlocks = select('core/block-editor').getBlocks( this.props.clientId );
+
+			getChildBlocks.forEach((columnChild, key) => {
+				columnChild.attributes.colWidthTablet = widthcountTab;
+			});
+		}
+		setAttributes( { columnsTablet: value } );
+	}
+	setColumnsMob(value) {
+		
+		const { setAttributes } = this.props
+
+		if ( 0 !== value ) {
+
+			let widthcount = 100 / value;
+
+			const getChildBlocks = select('core/block-editor').getBlocks( this.props.clientId );
+
+			getChildBlocks.forEach((columnChild, key) => {
+				columnChild.attributes.colWidthMobile = widthcount;
+			});
+		}
+		setAttributes( { columnsMobile: value } );
+	}
+	
 	blockVariationPickerOnSelect ( nextVariation = this.props.defaultVariation ) {
 			
 		if ( nextVariation.attributes ) {
@@ -618,7 +671,7 @@ class UAGBColumns extends Component {
 												value={ columnsMobile }
 												min={ 0 }
 												max={ 6 }
-												onChange={ ( value ) => setAttributes( { columnsMobile: value } ) }
+												onChange={ this.setColumnsMob}
 											/>
 										)
 									} else if ( "tablet" === tab.name ) {
@@ -628,7 +681,7 @@ class UAGBColumns extends Component {
 												value={ columnsTablet }
 												min={ 0 }
 												max={ 6 }
-												onChange={ ( value ) => setAttributes( { columnsTablet: value } ) }
+												onChange={ this.setColumnsTab }
 											/>
 										)
 									} else {
@@ -638,7 +691,7 @@ class UAGBColumns extends Component {
 												value={ columns }
 												min={ 0 }
 												max={ 6 }
-												onChange={ ( value ) => setAttributes( { columns: value } ) }
+												onChange={ this.setColumns }
 											/>
 										)
 									}
