@@ -120,7 +120,7 @@ function styling( props ) {
 			"margin-right": generateCSSUnit( rightMarginMobile, mobileMarginType ),
 		}
 	}
-
+	
 	if ( colWidth != "" && colWidth != 0 ) {
 		selectors[".block-editor-block-list__block"] = { "width" : colWidth + "%" }
 	}
