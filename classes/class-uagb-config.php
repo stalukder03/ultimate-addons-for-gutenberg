@@ -2584,6 +2584,12 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 							'playOn'           => 'none',
 						),
 					),
+					'uagb/post-title-block'  => array(
+						'slug'        => '',
+						'title'       => __( 'Post Title', 'ultimate-addons-for-gutenberg' ),
+						'description' => __( 'This block helps you add posts title.', 'ultimate-addons-for-gutenberg' ),
+						'default'     => true,
+					),
 				);
 			}
 			return self::$block_attributes;
