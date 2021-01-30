@@ -10,6 +10,9 @@ import TypographyControl from "../../components/typography"
 // Import Web font loader for google fonts.
 import WebfontLoader from "../../components/typography/fontloader"
 
+// Import block dependencies and components.
+import classnames from "classnames"
+
 const {
 	PanelBody,
 	SelectControl,
@@ -44,6 +47,7 @@ class UAGBPostTitleEdit extends Component {
 	render() {
 		// Setup the attributes
 		const {
+			className,
 			attributes,
 			setAttributes,
 			attributes: {
@@ -66,8 +70,10 @@ class UAGBPostTitleEdit extends Component {
 		} = this.props
 
 		const title = select("core/editor").getEditedPostAttribute( 'title' );
+		
+		var Tag = titleTag;
 
-		let loadtitleGoogleFonts;
+		let loadTitleGoogleFonts;
 
 		if( titleLoadGoogleFonts == true ) {
 			
@@ -77,7 +83,7 @@ class UAGBPostTitleEdit extends Component {
 				},
 			};
 
-			loadtitleGoogleFonts = (
+			loadTitleGoogleFonts = (
 				<WebfontLoader config={ hconfig }>
 				</WebfontLoader>
 			)
@@ -133,6 +139,19 @@ class UAGBPostTitleEdit extends Component {
 						/>
 					</PanelBody>
 				</InspectorControls>
+				<div
+					className={ classnames(
+						className,
+						`uagb-block-${this.props.clientId.substr( 0, 8 )}`,					
+					) }
+				>
+					<div className="uagb-post-title__wrap">
+						<Tag className="uagb-post-title">
+							{ title }
+						</Tag>
+					</div>
+				</div>
+				{ loadTitleGoogleFonts }
 			</Fragment>
 		);
 	}
