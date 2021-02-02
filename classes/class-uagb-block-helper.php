@@ -4281,6 +4281,16 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			return UAGB_Helper::generate_all_css( $combined_selectors, '.uagb-block-' . $id );
 		}
 
+				/**
+		 * Get Marketing Button Block CSS
+		 *
+		 * @since 1.11.0
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 * @return array The Widget List.
+		 */
+		public static function get_post_title_css( $attr, $id ) {
+		}
 		/**
 		 * Get Marketing Button Block CSS
 		 *

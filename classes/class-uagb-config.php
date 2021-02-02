@@ -1293,6 +1293,12 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 							'iconFontSizeMobile'     => 20,
 						),
 					),
+					'uagb/post-featuredimage'       => array(
+						'slug'        => '',
+						'title'       => __( 'Post Title', 'ultimate-addons-for-gutenberg' ),
+						'description' => __( 'This block allows you to place a post title.', 'ultimate-addons-for-gutenberg' ),
+						'default'     => true,
+					),
 					'uagb/buttons'                => array(
 						'slug'        => '',
 						'title'       => __( 'Multi Buttons', 'ultimate-addons-for-gutenberg' ),

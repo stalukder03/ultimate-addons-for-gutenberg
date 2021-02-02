@@ -556,6 +556,7 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 					UAGB_Block_JS::blocks_marketing_btn_gfont( $blockattr );
 					break;
 
+					
 				case 'uagb/gf-styler':
 					$css += UAGB_Block_Helper::get_gf_styler_css( $blockattr, $block_id );
 					UAGB_Block_JS::blocks_gf_styler_gfont( $blockattr );
