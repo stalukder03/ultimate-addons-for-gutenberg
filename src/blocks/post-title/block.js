@@ -1,6 +1,7 @@
 import UAGB_Block_Icons from "../../../dist/blocks/uagb-controls/block-icons"
 import attributes from "./attributes"
 import edit from "./edit"
+import save from "./save"
 
 const { __ } = wp.i18n
 
@@ -19,5 +20,6 @@ registerBlockType( "uagb/post-title-block", {
 		__( "uag" ),
 	],
 	attributes,
-	edit
+	edit,
+	save
 } )

@@ -13,6 +13,8 @@ import WebfontLoader from "../../components/typography/fontloader"
 // Import block dependencies and components.
 import classnames from "classnames"
 
+import styling from "./styling"
+
 const {
 	PanelBody,
 	SelectControl,
@@ -31,7 +33,31 @@ class UAGBPostTitleEdit extends Component {
 		super( ...arguments )
 		this.onTagChange = this.onTagChange.bind( this );
 	}
+	componentDidMount() {
 
+		// Assigning block_id in the attribute.
+		this.props.setAttributes( { block_id: this.props.clientId.substr( 0, 8 ) } )
+
+		// Assigning block_id in the attribute.
+		//this.props.setAttributes( { classMigrate: true } )
+
+		// let level_val = parseInt( this.props.attributes.titleTag.replace( 'h' , '' ) )
+		// this.props.setAttributes( { level: level_val } )
+
+		// Pushing Style tag for this block css.
+		const $style = document.createElement( "style" )
+		$style.setAttribute( "id", "uagb-post-title-style-" + this.props.clientId.substr( 0, 8 ) )
+		document.head.appendChild( $style )
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		
+		var element = document.getElementById( "uagb-post-title-style-" + this.props.clientId.substr( 0, 8 ) )
+
+		if( null !== element && undefined !== element ) {
+			element.innerHTML = styling( this.props )
+		}
+	}
 	/*
 	 * Title Tag Change
 	 */
