@@ -2584,11 +2584,27 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 							'playOn'           => 'none',
 						),
 					),
-					'uagb/post-title-block'  => array(
+					'uagb/post-title-block'       => array(
 						'slug'        => '',
 						'title'       => __( 'Post Title', 'ultimate-addons-for-gutenberg' ),
 						'description' => __( 'This block helps you add posts title.', 'ultimate-addons-for-gutenberg' ),
 						'default'     => true,
+						'attributes'  => array(
+							'titleAlign'            => 'center',
+							'titleColor'            => '',
+							'titleFontFamily'       => '',
+							'titleLoadGoogleFonts'  => false,
+							'titleFontWeight'       => '',
+							'titleFontSubset'       => '',
+							'titleFontSize'         => '',
+							'titleFontSizeType'     => 'px',
+							'titleFontSizeTablet'   => '',
+							'titleFontSizeMobile'   => '',
+							'titleLineHeight'       => '',
+							'titleLineHeightType'   => 'em',
+							'titleLineHeightTablet' => '',
+							'titleLineHeightMobile' => '',
+						),
 					),
 				);
 			}

@@ -8,6 +8,7 @@ import generateCSSUnit from "../../../dist/blocks/uagb-controls/generateCSSUnit"
 function styling( props ) {
 
 	const {
+		titleAlign,
 		titleTag,
 		titleColor,
 		titleFontFamily,
@@ -32,6 +33,7 @@ function styling( props ) {
 		"font-size": generateCSSUnit( titleFontSize, titleFontSizeType ),
 		"line-height": generateCSSUnit( titleLineHeight, titleLineHeightType ),
 		"color": titleColor,
+		"text-align":titleAlign,
 	}
 
 	tablet_selectors[" " + titleTag + ".uagb-post-title"] = {
