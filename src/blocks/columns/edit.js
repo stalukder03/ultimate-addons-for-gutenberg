@@ -771,11 +771,13 @@ class UAGBColumns extends Component {
 							label={ __( "Reverse Columns (Tablet)" ) }
 							checked={ reverseTablet }
 							onChange={ ( value ) => setAttributes( { reverseTablet: ! reverseTablet } ) }
+							help={ __( "If enabled layout will be stacked for Tablet & Mobile devices", 'ultimate-addons-for-gutenberg' ) }
 						/>
 						<ToggleControl
 							label={ __( "Reverse Columns (Mobile)" ) }
 							checked={ reverseMobile }
 							onChange={ ( value ) => setAttributes( { reverseMobile: ! reverseMobile } ) }
+							help={ __( "If enabled layout will be stacked for Tablet & Mobile devices", 'ultimate-addons-for-gutenberg' ) }
 						/>
 					</PanelBody>
 					<PanelBody title={ __( "Spacing" ) } initialOpen={ false }>
