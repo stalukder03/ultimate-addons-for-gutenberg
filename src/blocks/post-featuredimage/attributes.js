@@ -18,7 +18,10 @@ const attributes = {
 	},
 	borderWidth : {
 		type: "number",
-		default: 1
+		default: 0
+	},
+	src :{
+		type :"string"
 	},
 	borderRadius : {
 		type: "number"
@@ -28,19 +31,25 @@ const attributes = {
 	},
 	vPadding: {
 		type: "number",
-		default:10 
+		default:0 
 	},
 	hPadding: {
 		type: "number",
-		default:14 
+		default:0 
+	},
+	paddingType :{
+		type: "string",
+		default: "px",
+	},
+	marginType :{
+		type: "string",
+		default: "px",
 	},
 	vMargin: {
 		type: "number",
-		default:10 
 	},
 	hMargin: {
 		type: "number",
-		default:14 
 	},
 	backgroundColor: {
 		type: "string",

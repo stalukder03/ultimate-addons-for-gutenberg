@@ -3,6 +3,7 @@
  */
 
 import UAGB_Block_Icons from "../../../dist/blocks/uagb-controls/block-icons"
+import styling from "./styling"
 const { Component, Fragment } = wp.element
 const { __ } = wp.i18n
 
@@ -37,7 +38,26 @@ class UAGBFeaturedImage extends Component {
 	constructor() {
 		super( ...arguments )
 	}
-	
+	componentDidMount() {
+
+		// Assigning block_id in the attribute.
+		this.props.setAttributes( { block_id: this.props.clientId.substr( 0, 8 ) } )
+
+		this.props.setAttributes( { classMigrate: true } )
+
+		// Pushing Style tag for this block css.
+		const $style = document.createElement( "style" )
+		$style.setAttribute( "id", "uagb-style-post-featured-img-" + this.props.clientId.substr( 0, 8 ) )
+		document.head.appendChild( $style )
+
+	}
+	componentDidUpdate( ) {
+		var element = document.getElementById( "uagb-style-post-featured-img-" + this.props.clientId.substr( 0, 8 ) )
+
+		if( null !== element && undefined !== element ) {
+			element.innerHTML = styling( this.props )
+		}
+	}
 	render() {
 
 		const {
@@ -173,19 +193,19 @@ class UAGBFeaturedImage extends Component {
 			attributes.imgSize &&
 			latestPosts.uagb_featured_image_src[attributes.imgSize]
 		) {
-			var src = latestPosts.uagb_featured_image_src[attributes.imgSize]
-
+			var path = latestPosts.uagb_featured_image_src[attributes.imgSize];
+			var src = path[0];
 			return (
 				<Fragment>
 					{ inspectorControls }
-					<div className='uagb-post__featured-img'>
+					<div className='uagb-featured-image__wrap'>
 						<img src={ src }/>
 					</div>
 				</Fragment>	
 			)
 		} else {
 
-			return null
+			return <p>This page does not have featured image. Please add Featured Image to display.</p>
 		}
 	}
 }
