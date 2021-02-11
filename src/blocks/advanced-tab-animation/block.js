@@ -19,7 +19,7 @@ const AdvancedAnimationControls = wp.compose.createHigherOrderComponent((BlockEd
 				{isSelected &&  ! block_type.includes(blocks_name) &&
 					<InspectorAdvancedControls>
 						<span className="components-base-control__help">
-							{ __( "This settings will only take effect once you are on the live page, and not while you're editing in Gutenberg.", 'ultimate-addons-for-gutenberg' ) }
+							{ __( "This setting will only take effect once you are on the live page, and not while you're editing.", 'ultimate-addons-for-gutenberg' ) }
 						</span>
 						<SelectControl
 							label={ __( "Animation", 'ultimate-addons-for-gutenberg' ) }
