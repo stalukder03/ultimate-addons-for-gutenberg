@@ -4,6 +4,7 @@
 import classnames from "classnames"
 import UAGB_Block_Icons from "../../../dist/blocks/uagb-controls/block-icons"
 import styling from "./styling"
+const { select } = wp.data;
 const { Component, Fragment } = wp.element
 const { __ } = wp.i18n
 
@@ -63,8 +64,7 @@ class UAGBFeaturedImage extends Component {
 
 		const {
 			attributes,
-			setAttributes,
-			latestPosts,
+			setAttributes
 		} = this.props
 
 		const {
@@ -189,7 +189,7 @@ class UAGBFeaturedImage extends Component {
 				</PanelBody>
 			</InspectorControls>
 		)
-		
+		var latestPosts = select("core/editor").getCurrentPost();
 		if (
 			undefined !== latestPosts.uagb_featured_image_src &&
 			attributes.imgSize &&
@@ -205,7 +205,7 @@ class UAGBFeaturedImage extends Component {
 							onChange={ ( value ) => {
 								setAttributes( { align: value } )
 							} }
-							controls={ [ "left", "center", "right", "full" ] }
+							controls={ [ "left", "center", "right" ] }
 						/>
 					</BlockControls>
 					{ inspectorControls }
@@ -225,8 +225,4 @@ class UAGBFeaturedImage extends Component {
 	}
 }
 
-export default withSelect( ( select, props ) => {
-	return {
-		latestPosts: select("core/editor").getCurrentPost(),
-	}
-})( UAGBFeaturedImage );
+export default UAGBFeaturedImage;
