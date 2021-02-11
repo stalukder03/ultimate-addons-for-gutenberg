@@ -2584,6 +2584,29 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 							'playOn'           => 'none',
 						),
 					),
+					'uagb/post-comments'                 => array(
+						'slug'        => '',
+						'title'       => __( 'Post Comments', 'ultimate-addons-for-gutenberg' ),
+						'description' => __( 'This block helps you add Comments.', 'ultimate-addons-for-gutenberg' ),
+						'default'     => true,
+						'attributes'  => array(
+							'block_id'         => '',
+							'jsonLottie'       => '',
+							'lottieURl'        => '',
+							'height'           => '',
+							'heightTablet'     => '',
+							'heightMob'        => '',
+							'width'            => '',
+							'widthTablet'      => '',
+							'widthMob'         => '',
+							'backgroundColor'  => '',
+							'backgroundHColor' => '',
+							'loop'             => true,
+							'speed'            => 1,
+							'reverse'          => false,
+							'playOn'           => 'none',
+						),
+					),
 				);
 			}
 			return self::$block_attributes;
