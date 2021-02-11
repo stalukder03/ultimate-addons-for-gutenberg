@@ -1299,7 +1299,6 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 						'description' => __( 'This block allows you to place a post featured image.', 'ultimate-addons-for-gutenberg' ),
 						'default'     => true,
 						'attributes'  => array(
-							'classMigrate'     => false,
 							'block_id'         => '',
 							'align'            => 'center',
 							'imgSize'          => 'thumbnail',

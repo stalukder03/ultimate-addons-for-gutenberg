@@ -10,19 +10,8 @@ const { __ } = wp.i18n
 
 const {
 	PanelBody,
-	Placeholder,
 	RangeControl,
 	SelectControl,
-	Spinner,
-	ToggleControl,
-	TabPanel,
-	Dashicon,
-	Toolbar,
-	TextControl,
-	RadioControl,
-	Button,
-	Tip,
-	Disabled
 } = wp.components
 
 const {
@@ -31,9 +20,6 @@ const {
 	BlockControls,
 	BlockAlignmentToolbar,
 } = wp.blockEditor
-
-const { withSelect } = wp.data
-
 
 class UAGBFeaturedImage extends Component {
 	

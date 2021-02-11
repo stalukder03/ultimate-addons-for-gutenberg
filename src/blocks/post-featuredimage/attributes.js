@@ -7,10 +7,6 @@ const attributes = {
 	align: {
 		type: "string",
 	},
-	classMigrate: {
-		type: "boolean",
-		default: false
-	},
 	imgSize:{
 		type: "string",
 		default: "thumbnail",
