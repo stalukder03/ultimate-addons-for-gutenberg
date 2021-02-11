@@ -15,25 +15,24 @@ export default function save( props ) {
 	} = props.attributes
 
 	const title = select("core/editor").getCurrentPost();
+	var src;
 
 	if (
 		undefined !== title.uagb_featured_image_src &&
 		imgSize &&
 		title.uagb_featured_image_src[imgSize]
 	) {
-		var src = title.uagb_featured_image_src[imgSize]
-
-		return (
-				<div className={ classnames(
-					className,
-					"uagb-featured-image__wrap",
-					`uagb-block-${ block_id }`
-				) }>
-					<img src={ src[0] }/>
-				</div>
-		)
-	} else {
-
-		return 'dbdbdbd';
+		src = title.uagb_featured_image_src[imgSize]
+	}else{
+		src = '#';
 	}
+
+	return (
+			<div className={ classnames(
+				`uagb-block-${ block_id }`,
+				"uagb-featured-image__wrap",
+			) }>
+				<img src={ src[0] }/>
+			</div>
+	)
 }

@@ -1303,7 +1303,6 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 							'block_id'         => '',
 							'align'            => 'center',
 							'imgSize'          => 'thumbnail',
-							'src'              => '',
 							'borderStyle'      => 'none',
 							'borderWidth'      => 0,
 							'borderRadius'     => '',

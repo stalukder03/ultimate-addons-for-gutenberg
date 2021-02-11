@@ -18,13 +18,14 @@ function styling( props ) {
         hMargin,
         backgroundColor,
         paddingType,
-        marginType
+		marginType,
+		align
 	} = props.attributes
 
 	var selectors = {}
 
 	selectors = {
-		" .uagb-featured-image__wrap" : {
+		".uagb-featured-image__wrap > img" : {
 			"padding-left" : generateCSSUnit( hPadding, paddingType ),
 			"padding-right" : generateCSSUnit( hPadding, paddingType ),
 			"padding-top" : generateCSSUnit( vPadding, paddingType ),
@@ -38,6 +39,9 @@ function styling( props ) {
 			"margin-right" : generateCSSUnit( hMargin, marginType ),
 			"margin-top" : generateCSSUnit( vMargin, marginType ),
 			"margin-bottom" : generateCSSUnit( vMargin, marginType ),
+		},
+		".uagb-featured-image__wrap" : {
+			"text-align" : align
 		},
 	}
 

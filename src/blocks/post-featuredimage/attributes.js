@@ -4,6 +4,9 @@ const attributes = {
 	block_id: {
 		type: "string"
 	},
+	align: {
+		type: "string",
+	},
 	classMigrate: {
 		type: "boolean",
 		default: false
@@ -19,9 +22,6 @@ const attributes = {
 	borderWidth : {
 		type: "number",
 		default: 0
-	},
-	src :{
-		type :"string"
 	},
 	borderRadius : {
 		type: "number"

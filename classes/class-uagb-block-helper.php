@@ -19,7 +19,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 		/**
 		 * Get featured image block CSS
 		 *
-		 * @since 1.19.0
+		 * @since x.x.x
 		 * @param array  $attr The block attributes.
 		 * @param string $id The selector ID.
 		 * @return array The Widget List.
@@ -29,11 +29,11 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 
 			$attr = array_merge( $defaults, $attr );
 
-			$selectors = array();
-
-			$selectors = array(
-
-				' .uagb-featured-image__wrap' => array(
+			$selectors          = array();
+			$t_selectors        = array();
+			$m_selectors        = array();
+			$selectors          = array(
+				'.uagb-featured-image__wrap > img' => array(
 					'padding-left'     => UAGB_Helper::get_css_value( $attr['hPadding'], 'px' ),
 					'padding-right'    => UAGB_Helper::get_css_value( $attr['hPadding'], 'px' ),
 					'padding-top'      => UAGB_Helper::get_css_value( $attr['vPadding'], 'px' ),
@@ -47,11 +47,17 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 					'margin-right'     => UAGB_Helper::get_css_value( $attr['hMargin'], 'px' ),
 					'margin-top'       => UAGB_Helper::get_css_value( $attr['vMargin'], 'px' ),
 					'margin-bottom'    => UAGB_Helper::get_css_value( $attr['vMargin'], 'px' ),
-
+				),
+				'.uagb-featured-image__wrap'       => array(
+					'text-align' => $attr['align'],
 				),
 			);
-
-			return UAGB_Helper::generate_all_css( $selectors, ' .uagb-block-' . substr( $attr['block_id'], 0, 8 ) );
+			$combined_selectors = array(
+				'desktop' => $selectors,
+				'tablet'  => $t_selectors,
+				'mobile'  => $m_selectors,
+			);
+			return UAGB_Helper::generate_all_css( $combined_selectors, ' .uagb-block-' . $id );
 
 		}
 		/**
@@ -4317,17 +4323,6 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			$combined_selectors = UAGB_Helper::get_typography_css( $attr, 'radioCheck', ' .uagb-gf-styler__check-style-enabled form .gfield_radio label', $combined_selectors );
 
 			return UAGB_Helper::generate_all_css( $combined_selectors, '.uagb-block-' . $id );
-		}
-
-				/**
-				 * Get Marketing Button Block CSS
-				 *
-				 * @since 1.11.0
-				 * @param array  $attr The block attributes.
-				 * @param string $id The selector ID.
-				 * @return array The Widget List.
-				 */
-		public static function get_post_title_css( $attr, $id ) {
 		}
 		/**
 		 * Get Marketing Button Block CSS

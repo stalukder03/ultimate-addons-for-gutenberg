@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-
+import classnames from "classnames"
 import UAGB_Block_Icons from "../../../dist/blocks/uagb-controls/block-icons"
 import styling from "./styling"
 const { Component, Fragment } = wp.element
@@ -27,7 +27,8 @@ const {
 const {
 	InspectorControls,
 	ColorPalette,
-	ButtonGroup
+	BlockControls,
+	BlockAlignmentToolbar,
 } = wp.blockEditor
 
 const { withSelect } = wp.data
@@ -77,7 +78,8 @@ class UAGBFeaturedImage extends Component {
 			borderColor,
 			vMargin,
 			hMargin,
-			backgroundColor
+			backgroundColor,
+			align
 		} = attributes
 
 		const inspectorControls = (
@@ -170,7 +172,7 @@ class UAGBFeaturedImage extends Component {
 									<p className="uagb-setting-label">{ __( "Border Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: borderColor }} ></span></span></p>
 									<ColorPalette
 										value={ borderColor }
-										onChange={ ( colorValue ) => setAttributes( { borderColor: colorValue } ) }
+										onChange={ ( value ) => setAttributes( { borderColor: value } ) }
 										allowReset
 									/>
 								</Fragment>
@@ -181,7 +183,7 @@ class UAGBFeaturedImage extends Component {
 						value={ borderRadius }
 						onChange={ ( value ) => setAttributes( { borderRadius: value } ) }
 						min={ 0 }
-						max={ 1000 }
+						max={ 100 }
 						allowReset
 					/>
 				</PanelBody>
@@ -197,8 +199,21 @@ class UAGBFeaturedImage extends Component {
 			var src = path[0];
 			return (
 				<Fragment>
+					<BlockControls>
+						<BlockAlignmentToolbar
+							value={ align }
+							onChange={ ( value ) => {
+								setAttributes( { align: value } )
+							} }
+							controls={ [ "left", "center", "right", "full" ] }
+						/>
+					</BlockControls>
 					{ inspectorControls }
-					<div className='uagb-featured-image__wrap'>
+					
+					<div className={ classnames(
+					`uagb-block-${ this.props.clientId.substr( 0, 8 ) }`,
+					"uagb-featured-image__wrap",
+					) }>
 						<img src={ src }/>
 					</div>
 				</Fragment>	
