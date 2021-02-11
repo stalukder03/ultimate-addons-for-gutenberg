@@ -861,8 +861,16 @@ if ( ! class_exists( 'UAGB_Post' ) ) {
 			}
 
 			$total = $query->max_num_pages;
+			$categories = get_categories();
 			?>
-
+			<div class="uagb-post__header-filters-wrap">
+				<ul class="uagb-post__header-filters">
+					<li class="uagb-post__header-filter uagb-filter__current" data-filter="*"><?php echo wp_kses_post( "All" ); ?></li>
+					<?php foreach($categories as $category) {
+						?> <li class="uagb-post__header-filter" data-filter="<?php echo esc_attr( $category->name ); ?>" id="<?php echo esc_attr( $category->term_id ); ?>"><?php echo wp_kses_post( $category->name ); ?></li> <?php
+					} ?>
+				</ul>
+			</div>
 			<div class="<?php echo esc_html( implode( ' ', $outerwrap ) ); ?>" data-total="<?php echo esc_attr( $total ); ?>">
 
 				<div class="<?php echo esc_html( implode( ' ', $wrap ) ); ?>">

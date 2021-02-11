@@ -423,3 +423,30 @@
 	  transform: scale(1);
 	}
   }
+
+  .uagb-post__header-filter {
+    display: inline-block;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.uagb-post__header-filter {
+    background-color: #e4e4e4;
+}
+
+.uagb-post__header-filter {
+    padding: 4px 14px 4px 14px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.uagb-post__header-filters {
+    padding-bottom: 15px;
+    border-bottom: 0px solid #B7B7BF;
+}
+
+.uagb-post__header-filters {
+    display: block;
+    margin: 0;
+    margin-bottom: 10px;
+}
