@@ -5118,9 +5118,9 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			return UAGB_Helper::generate_all_css( $combined_selectors, '.uagb-block-' . $id );
 		}
 		/**
-		 * Get Advanced Heading Block CSS
+		 * Get Post Title Block CSS
 		 *
-		 * @since 0.0.1
+		 * @since x.x.x
 		 * @param array  $attr The block attributes.
 		 * @param string $id The selector ID.
 		 * @return array The Widget List.

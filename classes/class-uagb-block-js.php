@@ -559,9 +559,9 @@ if ( ! class_exists( 'UAGB_Block_JS' ) ) {
 			UAGB_Helper::blocks_google_font( $desc_load_google_font, $desc_font_family, $desc_font_weight, $desc_font_subset );
 		}
 		/**
-		 * Adds Google fonts for Advanced Heading block.
+		 * Adds Google fonts for Post Title block.
 		 *
-		 * @since 1.9.1
+		 * @since x.x.x
 		 * @param array $attr the blocks attr.
 		 */
 		public static function blocks_post_title_gfont( $attr ) {

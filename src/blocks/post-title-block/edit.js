@@ -38,12 +38,6 @@ class UAGBPostTitleEdit extends Component {
 		// Assigning block_id in the attribute.
 		this.props.setAttributes( { block_id: this.props.clientId.substr( 0, 8 ) } )
 
-		// Assigning block_id in the attribute.
-		//this.props.setAttributes( { classMigrate: true } )
-
-		// let level_val = parseInt( this.props.attributes.titleTag.replace( 'h' , '' ) )
-		// this.props.setAttributes( { level: level_val } )
-
 		// Pushing Style tag for this block css.
 		const $style = document.createElement( "style" )
 		$style.setAttribute( "id", "uagb-post-title-style-" + this.props.clientId.substr( 0, 8 ) )
