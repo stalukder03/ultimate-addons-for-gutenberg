@@ -20,15 +20,19 @@ function PostCommentDisplay({postId}) {
                     post: postId,
                 }
             );
-
+                console.log( comments );
             return comments && comments.length
 				? comments.map( ( comment ) => (
-						<RawHTML
-							className="uagb-post-comments__content"
-							key={ comment.id }
-						>
-							{ comment.content.rendered }
-						</RawHTML>
+                    <div className="uagb-post-comments__wrap" key={ comment.id }>
+                        <div className="uagb-post-comments__author-wrap">
+                            <div className="uagb-post-comments__avatar-wrap">
+                                <img className="uagb-post-comments__avatar" src={comment.author_avatar_urls[24]}/>
+                            </div>
+                            <div className="uagb-post-comments__author">{comment.author_name} Says :</div>
+                        </div>
+                        <div className="uagb-post-comments__content" 
+                        dangerouslySetInnerHTML={{ __html: comment.content.rendered }}></div>
+                    </div>
 				  ) )
 				: __( 'No comments.' );
         },[ postId ]
