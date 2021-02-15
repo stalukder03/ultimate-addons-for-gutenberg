@@ -859,18 +859,50 @@ if ( ! class_exists( 'UAGB_Post' ) ) {
 					// Nothing to do here.
 					break;
 			}
-
+			print_r(admin_url('admin-ajax.php'));
 			$total = $query->max_num_pages;
 			$categories = get_categories();
 			?>
 			<div class="uagb-post__header-filters-wrap">
 				<ul class="uagb-post__header-filters">
-					<li class="uagb-post__header-filter uagb-filter__current" data-filter="*"><?php echo wp_kses_post( "All" ); ?></li>
-					<?php foreach($categories as $category) {
-						?> <li class="uagb-post__header-filter" data-filter="<?php echo esc_attr( $category->name ); ?>" id="<?php echo esc_attr( $category->term_id ); ?>"><?php echo wp_kses_post( $category->name ); ?></li> <?php
-					} ?>
+					<!-- <li class="uagb-post__header-filter uagb-filter__current" data-filter="*"><?php //echo wp_kses_post( "All" ); ?></li> -->
+					<form id="filter">
+					<?php
+						if( $terms = get_terms( array( 'taxonomy' => 'category', 'orderby' => 'name' ) ) ) : 
+							echo '<select name="categoryfilter"><option value="">Select category...</option>';
+							foreach ( $terms as $term ) :
+								echo '<option value="' . $term->term_id . '">' . $term->name . '</option>'; // ID of the category as the value of an option
+								// echo '<li class="uagb-post__header-filter" data-filter="' . $term->term_id . '">' . $term->name . '</li>'; // ID of the category as the value of an option
+							endforeach;
+							echo '</select>';
+						endif;
+					?>
+					<button>Apply filter</button>
+					<input type="hidden" name="action" value="myfilter">
+				</form>
 				</ul>
 			</div>
+			<script>
+			jQuery(function($){
+				$('#filter').submit(function(){
+					var filter = $('#filter');
+					// console.log(filter);
+					$.ajax({
+						url:'<?php echo admin_url( 'admin-ajax.php' ); ?>',
+						data:filter.serialize(), // form data
+						type:"POST", // POST
+						beforeSend:function(xhr){
+							filter.find('button').text('Processing...'); // changing the button label
+						},
+						success:function(data){
+							filter.find('button').text('Apply filter'); // changing the button label back
+							$('.uagb-post-grid').html(data); // insert data
+						}
+					});
+					return false;
+				});
+			});
+			</script>
 			<div class="<?php echo esc_html( implode( ' ', $outerwrap ) ); ?>" data-total="<?php echo esc_attr( $total ); ?>">
 
 				<div class="<?php echo esc_html( implode( ' ', $wrap ) ); ?>">
