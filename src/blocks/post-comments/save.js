@@ -32,6 +32,6 @@ export default function save( props ) {
             }
             </div>);
     }else{
-        return 'no comment'
+        return __('No Comment')
     }
 }

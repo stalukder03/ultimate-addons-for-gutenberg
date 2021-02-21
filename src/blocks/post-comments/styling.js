@@ -19,6 +19,7 @@ function styling( props ) {
         borderWidth,
         borderRadius,
         borderColor, 
+		mobilePaddingType,
         topPaddingMobile,
         bottomPaddingMobile,
         leftPaddingMobile,
@@ -44,16 +45,48 @@ function styling( props ) {
         leftMargin,
         rightMargin,
         desktopMarginType,
-        desktopPaddingType 
+        desktopPaddingType,
+        authorFontFamily,
+		authorFontWeight,
+		authorFontSize,
+		authorFontSizeType,
+		authorFontSizeMobile,
+		authorFontSizeTablet,
+		authorLineHeight,
+		authorLineHeightType,
+		authorLineHeightMobile,
+		authorLineHeightTablet,
+		authorFontSubset,
+        commentFontFamily,
+		commentFontWeight,
+		commentFontSize,
+		commentFontSizeType,
+		commentFontSizeMobile,
+		commentFontSizeTablet,
+		commentLineHeight,
+		commentFontSubset,
+		commentLineHeightType,
+		commentLineHeightMobile,
+		commentLineHeightTablet,
+		authorColor,
+		commentColor,
+		iconSize,
+		mobileMarginType,
+		tabletPaddingType,
+		tabletMarginType,
+		align
 	} = props.attributes
 
 	var selectors = {}
 	var tablet_selectors = {}
 	var mobile_selectors = {}
+	var boxShadowPositionCSS = boxShadowPosition;
 
+	if ( 'outset' === boxShadowPosition ) {
+		boxShadowPositionCSS = '';
+	}
 	selectors = {
-		
-		" .uagb-post-comments__wrap" : {
+		".uagb-post-comments__wrap" : {
 			"padding-left" : generateCSSUnit( leftPadding, desktopPaddingType ),
 			"padding-right" : generateCSSUnit( rightPadding, desktopPaddingType ),
 			"padding-top" : generateCSSUnit( topPadding, desktopPaddingType ),
@@ -62,14 +95,72 @@ function styling( props ) {
 			"border-width": generateCSSUnit( borderWidth, "px" ),
 			"border-color": borderColor,
 			"border-radius": generateCSSUnit( borderRadius, "px" ),
+			'text-align':align,
             "margin-left" : generateCSSUnit( leftMargin, desktopMarginType ),
 			"margin-right" : generateCSSUnit( rightMargin, desktopMarginType ),
 			"margin-top" : generateCSSUnit( topMargin, desktopMarginType ),
 			"margin-bottom" : generateCSSUnit( bottomMargin, desktopMarginType ),
-			
+			"box-shadow": generateCSSUnit( boxShadowHOffset, "px" ) + ' ' + generateCSSUnit( boxShadowVOffset, "px" ) + ' ' + generateCSSUnit( boxShadowBlur, "px" ) + ' ' + generateCSSUnit( boxShadowSpread, "px" ) + ' ' + boxShadowColor + ' ' + boxShadowPositionCSS  
+		},	
+		" .uagb-post-comments__author": {
+			"font-family": authorFontFamily,
+			"font-weight": authorFontWeight,
+			"font-size": generateCSSUnit( authorFontSize, authorFontSizeType ),
+			"line-height": generateCSSUnit( authorLineHeight, authorLineHeightType ),
+			"color": authorColor,
 		},
+		" .uagb-post-comments__content > p": {
+			"font-family": commentFontFamily,
+			"font-weight": commentFontWeight,
+			"font-size": generateCSSUnit( commentFontSize, commentFontSizeType ),
+			"line-height": generateCSSUnit( commentLineHeight, commentLineHeightType ),
+			"color": commentColor,
+		},
+		" .uagb-post-comments__avatar": {
+			"width" : generateCSSUnit( iconSize, 'px' ),
+			"height" : generateCSSUnit( iconSize, 'px' ),
+		}
 	}
-
+	mobile_selectors = {
+		".uagb-post-comments__wrap" : {
+			"padding-top": generateCSSUnit( topPaddingMobile, mobilePaddingType ),
+			"padding-bottom": generateCSSUnit( bottomPaddingMobile, mobilePaddingType ),
+			"padding-left": generateCSSUnit( leftPaddingMobile, mobilePaddingType ),
+			"padding-right": generateCSSUnit( rightPaddingMobile, mobilePaddingType ),
+			"margin-top": generateCSSUnit( topMarginMobile, mobileMarginType ),
+			"margin-bottom": generateCSSUnit( bottomMarginMobile, mobileMarginType ),
+			"margin-left": generateCSSUnit( leftMarginMobile, mobileMarginType ),
+			"margin-right": generateCSSUnit( rightMarginMobile, mobileMarginType ),
+		},
+		" .uagb-post-comments__author": {
+			"font-size": generateCSSUnit( authorFontSizeMobile, authorFontSizeType ),
+			"line-height": generateCSSUnit( authorLineHeightMobile, authorLineHeightType ),
+		},
+		" .uagb-post-comments__content > p": {
+			"font-size": generateCSSUnit( commentFontSizeMobile, commentFontSizeType ),
+			"line-height": generateCSSUnit( commentLineHeightMobile, commentLineHeightType ),
+		}
+	}
+	tablet_selectors = {
+		".uagb-post-comments__wrap" : {
+			"padding-top": generateCSSUnit( topPaddingTablet, tabletPaddingType ),
+			"padding-bottom": generateCSSUnit( bottomPaddingTablet, tabletPaddingType ),
+			"padding-left": generateCSSUnit( leftPaddingTablet, tabletPaddingType ),
+			"padding-right": generateCSSUnit( rightPaddingTablet, tabletPaddingType ),
+			"margin-top": generateCSSUnit( topMarginTablet, tabletMarginType ),
+			"margin-bottom": generateCSSUnit( bottomMarginTablet, tabletMarginType ),
+			"margin-left": generateCSSUnit( leftMarginTablet, tabletMarginType ),
+			"margin-right": generateCSSUnit( rightMarginTablet, tabletMarginType ),
+		},
+		" .uagb-post-comments__author": {
+			"font-size": generateCSSUnit( authorFontSizeTablet, authorFontSizeType ),
+			"line-height": generateCSSUnit( authorLineHeightTablet, authorLineHeightType ),
+		},
+		" .uagb-post-comments__content > p": {
+			"font-size": generateCSSUnit( commentFontSizeTablet, commentFontSizeType ),
+			"line-height": generateCSSUnit( commentLineHeightTablet, commentLineHeightType ),
+		}
+	}
 	var id = `.uagb-block-${ props.clientId.substr( 0, 8 ) }`
 
 	var styling_css = generateCSS( selectors, id )

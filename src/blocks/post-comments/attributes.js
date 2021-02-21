@@ -1,17 +1,25 @@
 /**
  * BLOCK: UAGB Section Attributes
  */
+
 const attributes = {
-	classMigrate: {
-		type: "boolean",
-		default: false
-	},
+	
 	align: {
 		type: "string",
 		default: "center"
 	},
 	block_id: {
 		type: "string",
+	},
+	iconSize:{
+		type: "number",
+		default: 30
+	},
+	authorColor:{
+		type: "string"
+	},
+	commentColor:{
+		type: "string"
 	},
 	mobilePaddingType: {
 		type: "string",
@@ -135,97 +143,6 @@ const attributes = {
 		type: "number",
 		default: ""
 	},
-	contentWidth: {
-		type: "string",
-		default: "boxed"
-	},
-	width: {
-		type: "number",
-		default: 900
-	},
-	innerWidth: {
-		type: "number",
-		default: 1140
-	},
-	innerWidthType: {
-		type: "string",
-		default: "px"
-	},
-	themeWidth: {
-		type: "boolean",
-		default: false
-	},
-	tag: {
-		type: "string",
-		default: "section"
-	},
-	backgroundType: {
-		type: "string",
-	},
-	backgroundImage: {
-		type: "object",
-	},
-	backgroundPosition: {
-		type: "string",
-		default: "center-center"
-	},
-	backgroundSize: {
-		type: "string",
-		default: "cover"
-	},
-	backgroundRepeat: {
-		type: "string",
-		default: "no-repeat"
-	},
-	backgroundAttachment: {
-		type: "string",
-		default: "scroll"
-	},
-	backgroundVideo: {
-		type: "object",
-	},
-	backgroundColor: {
-		type: "string",
-	},
-	gradientColor1: {
-		type: "string",
-	},
-	gradientColor2: {
-		type: "string",
-	},
-	gradientType: {
-		type: "string",
-		default: "linear"
-	},
-	gradientLocation1: {
-		type: "number",
-		default: 0
-	},
-	gradientLocation2: {
-		type: "number",
-		default: 100
-	},
-	gradientAngle: {
-		type: "number",
-		default: 0
-	},
-	gradientPosition : {
-		type: "string",
-		default: "center center"
-	},
-	backgroundOpacity: {
-		type: "number"
-	},
-	backgroundVideoOpacity: {
-		type: "number",
-		default: 50
-	},
-	backgroundVideoColor: {
-		type: "string",
-	},
-	backgroundImageColor: {
-		type: "string"
-	},
 	borderStyle : {
 		type: "string",
 		default: "none"
@@ -239,36 +156,6 @@ const attributes = {
 	},
 	borderColor : {
 		type: "string"
-	},
-	overlayType: {
-		type: "string",
-		default: "color"
-	},
-	gradientOverlayColor1: {
-		type: "string",
-	},
-	gradientOverlayColor2: {
-		type: "string",
-	},
-	gradientOverlayType: {
-		type: "string",
-		default: "linear"
-	},
-	gradientOverlayLocation1: {
-		type: "number",
-		default: 0
-	},
-	gradientOverlayLocation2: {
-		type: "number",
-		default: 100
-	},
-	gradientOverlayAngle: {
-		type: "number",
-		default: 0
-	},
-	gradientOverlayPosition: {
-		type: "string",
-		default: "center center"
 	},
 	boxShadowColor: {
 		type: "string"
@@ -291,9 +178,77 @@ const attributes = {
 		type: "string",
 		default: "outset"
 	},
-	gradientValue: {
+	commentFontSubset: {
 		type: "string",
-		default: "",
+	},
+	commentFontFamily: {
+		type: "string",
+		default: "Default",
+	},
+	commentFontWeight: {
+		type: "string",
+	},
+	commentFontSizeType: {
+		type: "string",
+		default: "px"
+	},
+	commentLineHeightType: {
+		type: "string",
+		default: "em"
+	},
+	commentFontSize: {
+		type: "number",
+	},
+	commentFontSizeTablet: {
+		type: "number",
+	},
+	commentFontSizeMobile: {
+		type: "number",
+	},
+	commentLineHeight: {
+		type: "number",
+	},
+	commentLineHeightTablet: {
+		type: "number",
+	},
+	commentLineHeightMobile: {
+		type: "number",
+	},
+	authorFontFamily: {
+		type: "string",
+		default: "Default",
+	},
+	authorFontWeight: {
+		type: "string",
+	},
+	authorFontSubset: {
+		type: "string",
+	},
+	authorFontSizeType: {
+		type: "string",
+		default: "px"
+	},
+	authorLineHeightType: {
+		type: "string",
+		default: "em"
+	},
+	authorFontSize: {
+		type: "number",
+	},
+	authorFontSizeTablet: {
+		type: "number",
+	},
+	authorFontSizeMobile: {
+		type: "number",
+	},
+	authorLineHeight: {
+		type: "number",
+	},
+	authorLineHeightTablet: {
+		type: "number",
+	},
+	authorLineHeightMobile: {
+		type: "number",
 	},
 }
 

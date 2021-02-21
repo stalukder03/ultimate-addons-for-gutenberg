@@ -5,6 +5,10 @@ import BoxShadowControl from "../../components/box-shadow"
 import styling from "./styling"
 import UAGB_Block_Icons from "../../../dist/blocks/uagb-controls/block-icons"
 
+// Import Web font loader for google fonts.
+import WebfontLoader from "../../components/typography/fontloader"
+// Import all of our Text Options requirements.
+import TypographyControl from "../../components/typography"
 const {
 	Component,
 	Fragment,
@@ -29,14 +33,9 @@ const {
 	ButtonGroup,
 	Button,
 	Dashicon,
-	ToggleControl,
-	TextControl,
-	Popover,
-	ToolbarButton,
-	ToolbarGroup,
 } = wp.components
 
-const { select,useSelect } = wp.data;
+const { select,withSelect } = wp.data;
 
 
 class UAGBPostCommentsEdit extends Component {
@@ -65,8 +64,7 @@ class UAGBPostCommentsEdit extends Component {
 	}
     render() {
         
-        const currentPostId = select('core/editor').getCurrentPostId();
-		const { setAttributes, attributes } = this.props
+       	const { setAttributes, attributes , comments } = this.props
         const { 
 			block_id,
             boxShadowColor,
@@ -104,29 +102,155 @@ class UAGBPostCommentsEdit extends Component {
             leftMargin,
             rightMargin,
 			desktopMarginType,
-			desktopPaddingType 
+			desktopPaddingType,
+			authorFontFamily,
+			authorFontWeight,
+			authorColor,
+			authorFontSize,
+			authorFontSizeType,
+			authorFontSizeMobile,
+			authorFontSizeTablet,
+			authorLineHeight,
+			authorLineHeightType,
+			authorLineHeightMobile,
+			authorLineHeightTablet,
+			commentColor,
+			commentFontFamily,
+			commentFontWeight,
+			commentFontSize,
+			commentFontSizeType,
+			commentFontSizeMobile,
+			commentFontSizeTablet,
+			commentLineHeight,
+			commentLineHeightType,
+			commentLineHeightMobile,
+			commentLineHeightTablet,
+			tabletPaddingType,
+			mobilePaddingType,
+			tabletMarginType,
+			mobileMarginType,
+			iconSize,
+			align,
+			authorFontSubset,
+			commentFontSubset
 		} = attributes
-		const comments = select( 'core' ).getEntityRecords('root','comment',{post: currentPostId});
-		console.log(comments);
 		const comments_data = (
 			
-			comments && comments.length && (
+			comments && comments.length ? (
 				comments.map( ( comment ) => (
-				<div className={`uagb-post-comments__wrap uagb-block-${ block_id }`} key={ comment.id }>
-					<div className="uagb-post-comments__author-wrap">
-						<div className="uagb-post-comments__avatar-wrap">
-							<img className="uagb-post-comments__avatar" src={comment.author_avatar_urls[24]}/>
+					<div className={`uagb-post-comments__wrap uagb-block-${ block_id }`} key={ comment.id }>
+						<div className="uagb-post-comments__author-wrap">
+							<div className="uagb-post-comments__avatar-wrap">
+								<img className="uagb-post-comments__avatar" src={comment.author_avatar_urls[24]}/>
+							</div>
+							<div className="uagb-post-comments__author">{comment.author_name} Says :</div>
 						</div>
-						<div className="uagb-post-comments__author">{comment.author_name} Says :</div>
+						<div className="uagb-post-comments__content" 
+						dangerouslySetInnerHTML={{ __html: comment.content.rendered }}></div>
 					</div>
-					<div className="uagb-post-comments__content" 
-					dangerouslySetInnerHTML={{ __html: comment.content.rendered }}></div>
-				</div>
-			)))
+				))
+			): __('No Comments')
 		);
+		
+		// Load Google fonts for author.
+		let loadauthorGoogleFonts
+		if( loadauthorGoogleFonts == true ) {
+
+			const authorconfig = {
+				google: {
+					families: [ authorFontFamily + ( authorFontWeight ? ":" + authorFontWeight : "" ) ],
+				},
+			}
+
+			loadauthorGoogleFonts = (
+				<WebfontLoader config={ authorconfig }>
+				</WebfontLoader>
+			)
+		}
+		// Load Google fonts for comment.
+		let loadcommentGoogleFonts
+		if( loadcommentGoogleFonts == true ) {
+
+			const commentconfig = {
+				google: {
+					families: [ commentFontFamily + ( commentFontWeight ? ":" + commentFontWeight : "" ) ],
+				},
+			}
+
+			loadcommentGoogleFonts = (
+				<WebfontLoader config={ commentconfig }>
+				</WebfontLoader>
+			)
+		}
         return (
                 <Fragment>
+					<BlockControls key='controls'>
+					<BlockAlignmentToolbar
+						value={ align }
+						onChange={ ( value ) => {
+							setAttributes( { align: value } )
+						} }
+						controls={ [ "left", "center", "right", "full" ] }
+					/>
+					</BlockControls>
                     <InspectorControls>
+						<PanelBody title={ __( "Design" ) } initialOpen={ false }>
+						<p className="uagb-setting-label">{ __( "Author Name" ) }</p>
+							<TypographyControl
+								label={ __( "Typography" ) }
+								attributes = { attributes }
+								setAttributes = { setAttributes }
+								loadGoogleFonts = { { value: loadauthorGoogleFonts, label: "loadauthorGoogleFonts" } }
+								fontFamily = { { value: authorFontFamily, label:'authorFontFamily'  } }	
+								fontSubset = { { value: authorFontSubset, label: "titleFontSubset" } }
+								fontWeight = { { value: authorFontWeight, label:'authorFontWeight'  } }
+								fontSizeType = { { value: authorFontSizeType, label: 'authorFontSizeType' } }
+								fontSize = { { value: authorFontSize, label:'authorFontSize'  } }
+								fontSizeMobile = { { value: authorFontSizeMobile, label:'authorFontSizeMobile'  } }
+								fontSizeTablet= { { value: authorFontSizeTablet, label:'authorFontSizeTablet'  } }
+								lineHeightType = { { value: authorLineHeightType, label: 'authorLineHeightType' } }
+								lineHeight = { { value: authorLineHeight, label:'authorLineHeight'  } }
+								lineHeightMobile = { { value: authorLineHeightMobile, label:'authorLineHeightMobile'  } }
+								lineHeightTablet= { { value: authorLineHeightTablet, label:'authorLineHeightTablet'  } }
+							/>
+							<p className="uagb-setting-label">{ __( "Author Name Color" ) }</p>
+							<ColorPalette
+								value={ authorColor }
+								onChange={ ( value ) => setAttributes( { authorColor: value } ) }
+								allowReset
+							/>
+							<p className="uagb-setting-label">{ __( "Comment" ) }</p>
+							<TypographyControl
+									label={ __( "Typography" ) }
+									attributes = { attributes }
+									setAttributes = { setAttributes }
+									loadGoogleFonts = { { value: loadcommentGoogleFonts, label: "loadcommentGoogleFonts" } }
+									fontFamily = { { value: commentFontFamily, label:'commentFontFamily'  } }	
+									fontSubset = { { value: commentFontSubset, label: "commentFontSubset" } }
+									fontWeight = { { value: commentFontWeight, label:'commentFontWeight'  } }
+									fontSizeType = { { value: commentFontSizeType, label: 'commentFontSizeType' } }
+									fontSize = { { value: commentFontSize, label:'commentFontSize'  } }
+									fontSizeMobile = { { value: commentFontSizeMobile, label:'commentFontSizeMobile'  } }
+									fontSizeTablet= { { value: commentFontSizeTablet, label:'commentFontSizeTablet'  } }
+									lineHeightType = { { value: commentLineHeightType, label: 'commentLineHeightType' } }
+									lineHeight = { { value: commentLineHeight, label:'commentLineHeight'  } }
+									lineHeightMobile = { { value: commentLineHeightMobile, label:'commentLineHeightMobile'  } }
+									lineHeightTablet= { { value: commentLineHeightTablet, label:'commentLineHeightTablet'  } }
+							/>
+							<p className="uagb-setting-label">{ __( "Comment Color" ) }</p>
+							<ColorPalette
+								value={ commentColor }
+								onChange={ ( value ) => setAttributes( { commentColor: value } ) }
+								allowReset
+							/>
+							<RangeControl
+								label={ __( "Avatar Size" ) }
+								value={ iconSize }
+								onChange={ ( value ) => setAttributes( { iconSize: value } ) }
+								min={ 1 }
+								max={ 500}
+								/>
+						</PanelBody>
 						<PanelBody title={ __( "Spacing" ) } initialOpen={ false }>
 							<TabPanel className="uagb-size-type-field-tabs uagb-size-type-field__common-tabs uagb-inline-margin" activeClass="active-tab"
 								tabs={ [
@@ -521,9 +645,17 @@ class UAGBPostCommentsEdit extends Component {
 						</PanelBody>
 					</InspectorControls>
 				{comments_data}
+				{ loadauthorGoogleFonts }
+				{ loadcommentGoogleFonts }
             </Fragment>
         );
     }
 }
 
-export default UAGBPostCommentsEdit;
+export default withSelect( ( select, props ) => {
+	const { getEntityRecords } = select( "core" )
+	const currentPostId = select('core/editor').getCurrentPostId();	
+	return {
+		comments: getEntityRecords('root','comment',{post: currentPostId}),
+	}
+})( UAGBPostCommentsEdit );
