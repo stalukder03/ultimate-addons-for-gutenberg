@@ -1,5 +1,5 @@
 /**
- * BLOCK: UAGB Section Attributes
+ * BLOCK: UAGB Post Comment Attributes
  */
 
 const attributes = {

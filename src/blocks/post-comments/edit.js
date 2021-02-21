@@ -1,4 +1,8 @@
 
+/**
+ * BLOCK: Post Comment Block
+ */
+
 const { __ } = wp.i18n
 
 import BoxShadowControl from "../../components/box-shadow"
