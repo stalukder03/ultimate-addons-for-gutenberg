@@ -15,7 +15,7 @@ export default function save( props ) {
     var post_date = select("core/editor").getCurrentPost();
     
 	const dateFormat = __experimentalGetSettings().formats.date 
-
+    
     if( post_date.date_gmt ){
     
       return <div className={`uagb-post-date__wrap uagb-block-${ block_id }`}>

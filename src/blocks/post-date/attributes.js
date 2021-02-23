@@ -15,10 +15,7 @@ const attributes = {
 		type: "number",
 		default: 30
 	},
-	authorColor:{
-		type: "string"
-	},
-	commentColor:{
+	dateColor:{
 		type: "string"
 	},
 	mobilePaddingType: {
@@ -178,40 +175,40 @@ const attributes = {
 		type: "string",
 		default: "outset"
 	},
-	authorFontFamily: {
+	dateFontFamily: {
 		type: "string",
 		default: "Default",
 	},
-	authorFontWeight: {
+	dateFontWeight: {
 		type: "string",
 	},
-	authorFontSubset: {
+	dateFontSubset: {
 		type: "string",
 	},
-	authorFontSizeType: {
+	dateFontSizeType: {
 		type: "string",
 		default: "px"
 	},
-	authorLineHeightType: {
+	dateLineHeightType: {
 		type: "string",
 		default: "em"
 	},
-	authorFontSize: {
+	dateFontSize: {
 		type: "number",
 	},
-	authorFontSizeTablet: {
+	dateFontSizeTablet: {
 		type: "number",
 	},
-	authorFontSizeMobile: {
+	dateFontSizeMobile: {
 		type: "number",
 	},
-	authorLineHeight: {
+	dateLineHeight: {
 		type: "number",
 	},
-	authorLineHeightTablet: {
+	dateLineHeightTablet: {
 		type: "number",
 	},
-	authorLineHeightMobile: {
+	dateLineHeightMobile: {
 		type: "number",
 	},
 }

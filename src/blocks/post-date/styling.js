@@ -3,7 +3,6 @@
  */
 
 import generateCSS from "../../../dist/blocks/uagb-controls/generateCSS"
-import hexToRgba from "../../../dist/blocks/uagb-controls/hexToRgba"
 import generateCSSUnit from "../../../dist/blocks/uagb-controls/generateCSSUnit"
 
 function styling( props ) {
@@ -46,17 +45,17 @@ function styling( props ) {
         rightMargin,
         desktopMarginType,
         desktopPaddingType,
-        authorFontFamily,
-		authorFontWeight,
-		authorFontSize,
-		authorFontSizeType,
-		authorFontSizeMobile,
-		authorFontSizeTablet,
-		authorLineHeight,
-		authorLineHeightType,
-		authorLineHeightMobile,
-		authorLineHeightTablet,
-		authorColor,
+        dateFontFamily,
+		dateFontWeight,
+		dateFontSize,
+		dateFontSizeType,
+		dateFontSizeMobile,
+		dateFontSizeTablet,
+		dateLineHeight,
+		dateLineHeightType,
+		dateLineHeightMobile,
+		dateLineHeightTablet,
+		dateColor,
 		mobileMarginType,
 		tabletPaddingType,
 		tabletMarginType,
@@ -82,16 +81,20 @@ function styling( props ) {
 			"border-color": borderColor,
 			"border-radius": generateCSSUnit( borderRadius, "px" ),
 			'text-align':align,
+			'color':dateColor,
             "margin-left" : generateCSSUnit( leftMargin, desktopMarginType ),
 			"margin-right" : generateCSSUnit( rightMargin, desktopMarginType ),
 			"margin-top" : generateCSSUnit( topMargin, desktopMarginType ),
 			"margin-bottom" : generateCSSUnit( bottomMargin, desktopMarginType ),
 			"box-shadow": generateCSSUnit( boxShadowHOffset, "px" ) + ' ' + generateCSSUnit( boxShadowVOffset, "px" ) + ' ' + generateCSSUnit( boxShadowBlur, "px" ) + ' ' + generateCSSUnit( boxShadowSpread, "px" ) + ' ' + boxShadowColor + ' ' + boxShadowPositionCSS,
-			"font-family": authorFontFamily,
-			"font-weight": authorFontWeight,
-			"font-size": generateCSSUnit( authorFontSize, authorFontSizeType ),
-			"line-height": generateCSSUnit( authorLineHeight, authorLineHeightType ),
-			"color": authorColor,
+			"font-family": dateFontFamily,
+			"font-weight": dateFontWeight,
+			"font-size": generateCSSUnit( dateFontSize, dateFontSizeType ),
+			"line-height": generateCSSUnit( dateLineHeight, dateLineHeightType ),
+		},
+		".uagb-post-date__wrap > time > span" : {
+			"font-size": generateCSSUnit( dateFontSize, dateFontSizeType ),
+			"width": generateCSSUnit( dateFontSize, 'px' ),
 		}
 	}
 	mobile_selectors = {
@@ -104,9 +107,13 @@ function styling( props ) {
 			"margin-bottom": generateCSSUnit( bottomMarginMobile, mobileMarginType ),
 			"margin-left": generateCSSUnit( leftMarginMobile, mobileMarginType ),
 			"margin-right": generateCSSUnit( rightMarginMobile, mobileMarginType ),
-			"font-size": generateCSSUnit( authorFontSizeMobile, authorFontSizeType ),
-			"line-height": generateCSSUnit( authorLineHeightMobile, authorLineHeightType ),
+			"font-size": generateCSSUnit( dateFontSizeMobile, dateFontSizeType ),
+			"line-height": generateCSSUnit( dateLineHeightMobile, dateLineHeightType ),
 		},
+		".uagb-post-date__wrap > time > span" : {
+			"font-size": generateCSSUnit( dateFontSizeMobile, 'px' ),
+			"width": generateCSSUnit( dateFontSizeMobile, 'px' ),
+		}
 	}
 	tablet_selectors = {
 		".uagb-post-date__wrap" : {
@@ -118,8 +125,12 @@ function styling( props ) {
 			"margin-bottom": generateCSSUnit( bottomMarginTablet, tabletMarginType ),
 			"margin-left": generateCSSUnit( leftMarginTablet, tabletMarginType ),
 			"margin-right": generateCSSUnit( rightMarginTablet, tabletMarginType ),
-			"font-size": generateCSSUnit( authorFontSizeTablet, authorFontSizeType ),
-			"line-height": generateCSSUnit( authorLineHeightTablet, authorLineHeightType ),
+			"font-size": generateCSSUnit( dateFontSizeTablet, dateFontSizeType ),
+			"line-height": generateCSSUnit( dateLineHeightTablet, dateLineHeightType ),
+		},
+		".uagb-post-date__wrap > time > span" : {
+			"font-size": generateCSSUnit( dateFontSizeTablet, 'px' ),
+			"width": generateCSSUnit( dateFontSizeTablet, 'px' ),
 		}
 	}
 	var id = `.uagb-block-${ props.clientId.substr( 0, 8 ) }`

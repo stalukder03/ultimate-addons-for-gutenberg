@@ -9,6 +9,7 @@ import generateCSSUnit from "../../../dist/blocks/uagb-controls/generateCSSUnit"
 function styling( props ) {
 
 	const {
+		iconSize,
         boxShadowColor,
         boxShadowHOffset,
         boxShadowVOffset,
@@ -85,15 +86,22 @@ function styling( props ) {
             "margin-left" : generateCSSUnit( leftMargin, desktopMarginType ),
 			"margin-right" : generateCSSUnit( rightMargin, desktopMarginType ),
 			"margin-top" : generateCSSUnit( topMargin, desktopMarginType ),
+			"color": authorColor,
 			"margin-bottom" : generateCSSUnit( bottomMargin, desktopMarginType ),
 			"box-shadow": generateCSSUnit( boxShadowHOffset, "px" ) + ' ' + generateCSSUnit( boxShadowVOffset, "px" ) + ' ' + generateCSSUnit( boxShadowBlur, "px" ) + ' ' + generateCSSUnit( boxShadowSpread, "px" ) + ' ' + boxShadowColor + ' ' + boxShadowPositionCSS  
+		},
+		".uagb-post-author__name" : {
+			"color": authorColor,
+		},
+		".uagb-post-author__wrap > span" : {
+			"font-size" : generateCSSUnit( iconSize, 'px' ),
+			"width" : generateCSSUnit( iconSize, 'px' ),
 		},	
 		" .uagb-post-author__name": {
 			"font-family": authorFontFamily,
 			"font-weight": authorFontWeight,
 			"font-size": generateCSSUnit( authorFontSize, authorFontSizeType ),
 			"line-height": generateCSSUnit( authorLineHeight, authorLineHeightType ),
-			"color": authorColor,
 		}
 	}
 	mobile_selectors = {

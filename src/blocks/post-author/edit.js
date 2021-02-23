@@ -114,6 +114,7 @@ class UAGBPostAuthorEdit extends Component {
 			authorFontFamily,
 			authorFontWeight,
 			authorColor,
+			iconSize,
 			authorFontSize,
 			authorFontSizeType,
 			authorFontSizeMobile,
@@ -172,7 +173,7 @@ class UAGBPostAuthorEdit extends Component {
 								setAttributes = { setAttributes }
 								loadGoogleFonts = { { value: loadauthorGoogleFonts, label: "loadauthorGoogleFonts" } }
 								fontFamily = { { value: authorFontFamily, label:'authorFontFamily'  } }	
-								fontSubset = { { value: authorFontSubset, label: "titleFontSubset" } }
+								fontSubset = { { value: authorFontSubset, label: "authorFontSubset" } }
 								fontWeight = { { value: authorFontWeight, label:'authorFontWeight'  } }
 								fontSizeType = { { value: authorFontSizeType, label: 'authorFontSizeType' } }
 								fontSize = { { value: authorFontSize, label:'authorFontSize'  } }
@@ -187,6 +188,15 @@ class UAGBPostAuthorEdit extends Component {
 							<ColorPalette
 								value={ authorColor }
 								onChange={ ( value ) => setAttributes( { authorColor: value } ) }
+								allowReset
+							/>
+							<h2>{ __( "Icon Size" ) }</h2>
+							<RangeControl
+								className={ "uagb-margin-control" }
+								value={ iconSize }
+								onChange={ ( value ) => setAttributes( { iconSize: value } ) }
+								min={ 0 }
+								max={ 500 }
 								allowReset
 							/>
 						</PanelBody>
@@ -584,6 +594,7 @@ class UAGBPostAuthorEdit extends Component {
 						</PanelBody>
 					</InspectorControls>	
 					{author_data}
+					{loadauthorGoogleFonts}
             </Fragment>
         );
     }

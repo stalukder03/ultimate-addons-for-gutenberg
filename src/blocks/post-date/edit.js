@@ -10,6 +10,8 @@ import BoxShadowControl from "../../components/box-shadow"
 import styling from "./styling"
 import UAGB_Block_Icons from "../../../dist/blocks/uagb-controls/block-icons"
 
+// Import all of our Text Options requirements.
+import TypographyControl from "../../components/typography"
 const {
 	Component,
 	Fragment,
@@ -53,12 +55,12 @@ class UAGBPostDateEdit extends Component {
 
 		// Pushing Style tag for this block css.
 		const $style = document.createElement( "style" )
-		$style.setAttribute( "id", "uagb-style-post-content-" + this.props.clientId.substr( 0, 8 ) )
+		$style.setAttribute( "id", "uagb-style-post-date-" + this.props.clientId.substr( 0, 8 ) )
 		document.head.appendChild( $style )
 
 	}
 	componentDidUpdate( prevProps ) {
-		var element = document.getElementById( "uagb-style-post-content-" + this.props.clientId.substr( 0, 8 ) )
+		var element = document.getElementById( "uagb-style-post-date-" + this.props.clientId.substr( 0, 8 ) )
 
 		if( null !== element && undefined !== element ) {
 			element.innerHTML = styling( this.props )
@@ -109,6 +111,18 @@ class UAGBPostDateEdit extends Component {
 			tabletMarginType,
 			mobileMarginType,
 			align,
+			dateColor,
+			dateFontFamily,
+			dateFontWeight,
+			dateFontSize,
+			dateFontSizeType,
+			dateFontSizeMobile,
+			dateFontSizeTablet,
+			dateFontSubset,
+			dateLineHeight,
+			dateLineHeightType,
+			dateLineHeightMobile,
+			dateLineHeightTablet,
 		} = attributes
 		
 		var post_date = select("core/editor").getCurrentPost();
@@ -125,7 +139,21 @@ class UAGBPostDateEdit extends Component {
 			</div>
 			): __('No Data Found')
 		);
-		
+		// Load Google fonts for date.
+		let loaddateGoogleFonts
+		if( loaddateGoogleFonts == true ) {
+
+			const dateconfig = {
+				google: {
+					families: [ dateFontFamily + ( dateFontWeight ? ":" + dateFontWeight : "" ) ],
+				},
+			}
+
+			loaddateGoogleFonts = (
+				<WebfontLoader config={ dateconfig }>
+				</WebfontLoader>
+			)
+		}
         return (
                 <Fragment>
 					<BlockControls key='controls'>
@@ -134,10 +162,36 @@ class UAGBPostDateEdit extends Component {
 						onChange={ ( value ) => {
 							setAttributes( { align: value } )
 						} }
-						controls={ [ "left", "center", "right", "full" ] }
+						controls={ [ "left", "center", "right" ] }
 					/>
 					</BlockControls>
                     <InspectorControls>
+						<PanelBody title={ __( "Design" ) } initialOpen={ false }>
+						<p className="uagb-setting-label">{ __( "Date" ) }</p>
+							<TypographyControl
+								label={ __( "Typography" ) }
+								attributes = { attributes }
+								setAttributes = { setAttributes }
+								loadGoogleFonts = { { value: loaddateGoogleFonts, label: "loaddateGoogleFonts" } }
+								fontFamily = { { value: dateFontFamily, label:'dateFontFamily'  } }	
+								fontSubset = { { value: dateFontSubset, label: "dateFontSubset" } }
+								fontWeight = { { value: dateFontWeight, label:'dateFontWeight'  } }
+								fontSizeType = { { value: dateFontSizeType, label: 'dateFontSizeType' } }
+								fontSize = { { value: dateFontSize, label:'dateFontSize'  } }
+								fontSizeMobile = { { value: dateFontSizeMobile, label:'dateFontSizeMobile'  } }
+								fontSizeTablet= { { value: dateFontSizeTablet, label:'dateFontSizeTablet'  } }
+								lineHeightType = { { value: dateLineHeightType, label: 'dateLineHeightType' } }
+								lineHeight = { { value: dateLineHeight, label:'dateLineHeight'  } }
+								lineHeightMobile = { { value: dateLineHeightMobile, label:'dateLineHeightMobile'  } }
+								lineHeightTablet= { { value: dateLineHeightTablet, label:'dateLineHeightTablet'  } }
+							/>
+							<p className="uagb-setting-label">{ __( "Date Text Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: dateColor }} ></span></span></p>
+							<ColorPalette
+								value={ dateColor }
+								onChange={ ( colorValue ) => setAttributes( { dateColor: colorValue } ) }
+								allowReset
+							/>
+						</PanelBody>
 						<PanelBody title={ __( "Spacing" ) } initialOpen={ false }>
 							<TabPanel className="uagb-size-type-field-tabs uagb-size-type-field__common-tabs uagb-inline-margin" activeClass="active-tab"
 								tabs={ [
@@ -532,6 +586,7 @@ class UAGBPostDateEdit extends Component {
 						</PanelBody>
 					</InspectorControls>	
 					{date_data}
+					{loaddateGoogleFonts}
             </Fragment>
         );
     }

@@ -825,6 +825,33 @@ if ( ! class_exists( 'UAGB_Block_JS' ) ) {
 			UAGB_Helper::blocks_google_font( $list_load_google_font, $list_font_family, $list_font_weight, $list_font_subset );
 
 		}
+		/**
+		 * Adds Google fonts for post author block.
+		 *
+		 * @since x.x.x
+		 * @param array $attr the blocks attr.
+		 */
+		public static function blocks_fse_post_author_gfont( $attr ) {
 
+			$author_load_google_font = isset( $attr['authorLoadGoogleFonts'] ) ? $attr['authorLoadGoogleFonts'] : '';
+			$author_font_family      = isset( $attr['authorFontFamily'] ) ? $attr['authorFontFamily'] : '';
+			$author_font_weight      = isset( $attr['authorFontWeight'] ) ? $attr['authorFontWeight'] : '';
+			$author_font_subset      = isset( $attr['authorFontSubset'] ) ? $attr['authorFontSubset'] : '';
+			UAGB_Helper::blocks_google_font( $author_load_google_font, $author_font_family, $author_font_weight, $author_font_subset );
+		}
+		/**
+		 * Adds Google fonts for post date block.
+		 *
+		 * @since x.x.x
+		 * @param array $attr the blocks attr.
+		 */
+		public static function blocks_fse_post_date_gfont( $attr ) {
+
+			$date_load_google_font = isset( $attr['dateLoadGoogleFonts'] ) ? $attr['dateLoadGoogleFonts'] : '';
+			$date_font_family      = isset( $attr['dateFontFamily'] ) ? $attr['dateFontFamily'] : '';
+			$date_font_weight      = isset( $attr['dateFontWeight'] ) ? $attr['dateFontWeight'] : '';
+			$date_font_subset      = isset( $attr['dateFontSubset'] ) ? $attr['dateFontSubset'] : '';
+			UAGB_Helper::blocks_google_font( $date_load_google_font, $date_font_family, $date_font_weight, $date_font_subset );
+		}
 	}
 }

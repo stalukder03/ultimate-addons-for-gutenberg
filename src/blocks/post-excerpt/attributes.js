@@ -15,10 +15,7 @@ const attributes = {
 		type: "number",
 		default: 30
 	},
-	authorColor:{
-		type: "string"
-	},
-	commentColor:{
+	excerptColor:{
 		type: "string"
 	},
 	mobilePaddingType: {
@@ -178,76 +175,40 @@ const attributes = {
 		type: "string",
 		default: "outset"
 	},
-	commentFontSubset: {
-		type: "string",
-	},
-	commentFontFamily: {
+	excerptFontFamily: {
 		type: "string",
 		default: "Default",
 	},
-	commentFontWeight: {
+	excerptFontWeight: {
 		type: "string",
 	},
-	commentFontSizeType: {
-		type: "string",
-		default: "px"
-	},
-	commentLineHeightType: {
-		type: "string",
-		default: "em"
-	},
-	commentFontSize: {
-		type: "number",
-	},
-	commentFontSizeTablet: {
-		type: "number",
-	},
-	commentFontSizeMobile: {
-		type: "number",
-	},
-	commentLineHeight: {
-		type: "number",
-	},
-	commentLineHeightTablet: {
-		type: "number",
-	},
-	commentLineHeightMobile: {
-		type: "number",
-	},
-	authorFontFamily: {
-		type: "string",
-		default: "Default",
-	},
-	authorFontWeight: {
+	excerptFontSubset: {
 		type: "string",
 	},
-	authorFontSubset: {
-		type: "string",
-	},
-	authorFontSizeType: {
+	excerptFontSizeType: {
 		type: "string",
 		default: "px"
 	},
-	authorLineHeightType: {
+	excerptLineHeightType: {
 		type: "string",
 		default: "em"
 	},
-	authorFontSize: {
+	excerptFontSize: {
 		type: "number",
 	},
-	authorFontSizeTablet: {
+	excerptFontSizeTablet: {
 		type: "number",
 	},
-	authorFontSizeMobile: {
+	excerptFontSizeMobile: {
 		type: "number",
 	},
-	authorLineHeight: {
+	excerptLineHeight: {
 		type: "number",
 	},
-	authorLineHeightTablet: {
+	excerptLineHeightTablet: {
 		type: "number",
 	},
-	authorLineHeightMobile: {
+	excerptLineHeightMobile: {
 		type: "number",
 	},
 }
