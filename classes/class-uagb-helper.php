@@ -492,8 +492,8 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 					$css += UAGB_Block_Helper::get_social_share_child_css( $blockattr, $block_id );
 					break;
 
-				case 'uagb/post-featuredimage':
-					$css += UAGB_Block_Helper::get_featuredimage_css( $blockattr, $block_id );
+				case 'uagb/fse-post-featured-image':
+					$css += UAGB_Block_Helper::get_fse_featuredimage_css( $blockattr, $block_id );
 					break;
 
 				case 'uagb/content-timeline':
