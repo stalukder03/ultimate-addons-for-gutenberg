@@ -538,8 +538,8 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 					UAGB_Block_JS::blocks_post_gfont( $blockattr );
 					break;
 
-				case 'uagb/post-content':
-					$css += UAGB_Block_Helper::get_post_content_css( $blockattr, $block_id );
+				case 'uagb/fse-post-content':
+					$css += UAGB_Block_Helper::get_fse_post_content_css( $blockattr, $block_id );
 					break;
 
 				case 'uagb/columns':

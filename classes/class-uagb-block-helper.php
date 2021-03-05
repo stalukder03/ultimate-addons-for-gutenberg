@@ -2948,8 +2948,8 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 		 * @param string $id The selector ID.
 		 * @return array The Widget List.
 		 */
-		public static function get_post_content_css( $attr, $id ) {
-			$defaults = UAGB_Helper::$block_list['uagb/post-content']['attributes'];
+		public static function get_fse_post_content_css( $attr, $id ) {
+			$defaults = UAGB_Helper::$block_list['uagb/fse-post-content']['attributes'];
 
 			$attr = array_merge( $defaults, (array) $attr );
 
@@ -2962,7 +2962,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 				$boxShadowPositionCSS = '';
 			}
 			$selectors   = array(
-				'.uagb-post-content__wrap' => array(
+				'.uagb-fse-post-content__wrap' => array(
 					'padding-left'   => UAGB_Helper::get_css_value( $attr['leftPadding'], $attr['desktopPaddingType'] ),
 					'padding-right'  => UAGB_Helper::get_css_value( $attr['rightPadding'], $attr['desktopPaddingType'] ),
 					'padding-top'    => UAGB_Helper::get_css_value( $attr['topPadding'], $attr['desktopPaddingType'] ),
@@ -2980,7 +2980,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 				),
 			);
 			$m_selectors = array(
-				'.uagb-post-content__wrap' => array(
+				'.uagb-fse-post-content__wrap' => array(
 					'padding-top'    => UAGB_Helper::get_css_value( $attr['topPaddingMobile'], $attr['mobilePaddingType'] ),
 					'padding-bottom' => UAGB_Helper::get_css_value( $attr['bottomPaddingMobile'], $attr['mobilePaddingType'] ),
 					'padding-left'   => UAGB_Helper::get_css_value( $attr['leftPaddingMobile'], $attr['mobilePaddingType'] ),
@@ -2993,7 +2993,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			);
 
 			$t_selectors = array(
-				'.uagb-post-content__wrap' => array(
+				'.uagb-fse-post-content__wrap' => array(
 					'padding-top'    => UAGB_Helper::get_css_value( $attr['topPaddingTablet'], $attr['tabletPaddingType'] ),
 					'padding-bottom' => UAGB_Helper::get_css_value( $attr['bottomPaddingTablet'], $attr['tabletPaddingType'] ),
 					'padding-left'   => UAGB_Helper::get_css_value( $attr['leftPaddingTablet'], $attr['tabletPaddingType'] ),

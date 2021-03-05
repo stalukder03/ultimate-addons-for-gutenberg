@@ -2584,7 +2584,7 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 							'playOn'           => 'none',
 						),
 					),
-					'uagb/post-content'           => array(
+					'uagb/fse-post-content'           => array(
 						'slug'        => '',
 						'title'       => __( 'Post Content', 'ultimate-addons-for-gutenberg' ),
 						'description' => __( 'This block helps you add Content.', 'ultimate-addons-for-gutenberg' ),
@@ -2592,6 +2592,7 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 						'attributes'  => array(
 							'align'               => 'center',
 							'block_id'            => '',
+							'content'             => '',
 							'mobilePaddingType'   => 'px',
 							'tabletPaddingType'   => 'px',
 							'desktopPaddingType'  => 'px',
