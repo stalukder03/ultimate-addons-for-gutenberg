@@ -266,7 +266,7 @@ if ( ! class_exists( 'UAGB_Block_JS' ) ) {
 		 * @since x.x.x
 		 * @param array $attr the blocks attr.
 		 */
-		public static function blocks_post_comment_gfont( $attr ) {
+		public static function blocks_fse_post_comment_gfont( $attr ) {
 
 			$author_load_google_font = isset( $attr['authorLoadGoogleFonts'] ) ? $attr['authorLoadGoogleFonts'] : '';
 			$author_font_family      = isset( $attr['authorFontFamily'] ) ? $attr['authorFontFamily'] : '';

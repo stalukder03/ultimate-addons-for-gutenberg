@@ -2584,10 +2584,10 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 							'playOn'           => 'none',
 						),
 					),
-					'uagb/post-comments'          => array(
+					'uagb/fse-post-comments'          => array(
 						'slug'        => '',
 						'title'       => __( 'Post Comments', 'ultimate-addons-for-gutenberg' ),
-						'description' => __( 'This block helps you add Comments.', 'ultimate-addons-for-gutenberg' ),
+						'description' => __( 'This block helps you add post Comments.', 'ultimate-addons-for-gutenberg' ),
 						'default'     => true,
 						'attributes'  => array(
 							'align'                   => 'center',
@@ -2631,7 +2631,6 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 							'borderColor '            => '',
 							'boxShadowColor'          => '',
 							'boxShadowHOffset'        => '',
-							0,
 							'boxShadowVOffset'        => 0,
 							'boxShadowBlur'           => '',
 							'boxShadowSpread'         => '',

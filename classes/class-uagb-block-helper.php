@@ -2948,8 +2948,8 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 		 * @param string $id The selector ID.
 		 * @return array The Widget List.
 		 */
-		public static function get_post_comment_css( $attr, $id ) {
-			$defaults = UAGB_Helper::$block_list['uagb/post-comments']['attributes'];
+		public static function get_fse_post_comment_css( $attr, $id ) {
+			$defaults = UAGB_Helper::$block_list['uagb/fse-post-comments']['attributes'];
 
 			$attr = array_merge( $defaults, (array) $attr );
 

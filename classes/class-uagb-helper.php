@@ -538,9 +538,9 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 					UAGB_Block_JS::blocks_post_gfont( $blockattr );
 					break;
 
-				case 'uagb/post-comments':
-					$css += UAGB_Block_Helper::get_post_comment_css( $blockattr, $block_id );
-					UAGB_Block_JS::blocks_post_comment_gfont( $blockattr );
+				case 'uagb/fse-post-comments':
+					$css += UAGB_Block_Helper::get_fse_post_comment_css( $blockattr, $block_id );
+					UAGB_Block_JS::blocks_fse_post_comment_gfont( $blockattr );
 					break;
 
 				case 'uagb/columns':
