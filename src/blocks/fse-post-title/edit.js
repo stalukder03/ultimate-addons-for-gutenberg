@@ -37,7 +37,7 @@ class UAGBPostTitleEdit extends Component {
 
 		// Assigning block_id in the attribute.
 		this.props.setAttributes( { block_id: this.props.clientId.substr( 0, 8 ) } )
-
+		this.props.setAttributes( { titleText: select("core/editor").getEditedPostAttribute( 'title' ) } )
 		// Pushing Style tag for this block css.
 		const $style = document.createElement( "style" )
 		$style.setAttribute( "id", "uagb-post-title-style-" + this.props.clientId.substr( 0, 8 ) )
@@ -71,6 +71,7 @@ class UAGBPostTitleEdit extends Component {
 			attributes,
 			setAttributes,
 			attributes: {
+				block_id,
 				titleAlign,
 				titleColor,
 				titleTag,
@@ -117,41 +118,41 @@ class UAGBPostTitleEdit extends Component {
 					/>
 				</BlockControls>
 				<InspectorControls>
-				<PanelBody title={ __( "Post Title" ) }>
-						<h2>{ __( "Title" ) }</h2>
+				<PanelBody title={ __( "Post Title" , 'ultimate-addons-for-gutenberg') }>
+						<h2>{ __( "Title", 'ultimate-addons-for-gutenberg' ) }</h2>
 					<SelectControl
-						label={ __( "Title Tag" ) }
+						label={ __( "Title Tag" , 'ultimate-addons-for-gutenberg') }
 						value={ titleTag }
 						onChange={ value => {
 							this.onTagChange( value )
 						} }
 						options={ [
-							{ value: "h1", label: __( "H1" ) },
-							{ value: "h2", label: __( "H2" ) },
-							{ value: "h3", label: __( "H3" ) },
-							{ value: "h4", label: __( "H4" ) },
-							{ value: "h5", label: __( "H5" ) },
-							{ value: "h6", label: __( "H6" ) },
+							{ value: "h1", label: __( "H1" , 'ultimate-addons-for-gutenberg') },
+							{ value: "h2", label: __( "H2" , 'ultimate-addons-for-gutenberg') },
+							{ value: "h3", label: __( "H3" , 'ultimate-addons-for-gutenberg') },
+							{ value: "h4", label: __( "H4" , 'ultimate-addons-for-gutenberg') },
+							{ value: "h5", label: __( "H5" , 'ultimate-addons-for-gutenberg') },
+							{ value: "h6", label: __( "H6" , 'ultimate-addons-for-gutenberg') },
 						] }
 					/>
 					<TypographyControl
-						label={ __( "Typography" ) }
+						label={ __( "Typography", 'ultimate-addons-for-gutenberg' ) }
 						attributes = { attributes }
 						setAttributes = { setAttributes }
-						loadGoogleFonts = { { value: titleLoadGoogleFonts, label:'titleLoadGoogleFonts'  } }
-						fontFamily = { { value: titleFontFamily, label:'titleFontFamily'  } }
-						fontWeight = { { value: titleFontWeight, label:'titleFontWeight'  } }
-						fontSubset = { { value: titleFontSubset, label:'titleFontSubset'  } }
-						fontSizeType = { { value: titleFontSizeType, label: 'titleFontSizeType' } }
-						fontSize = { { value: titleFontSize, label:'titleFontSize'  } }
-						fontSizeMobile = { { value: titleFontSizeMobile, label:'titleFontSizeMobile'  } }
-						fontSizeTablet= { { value: titleFontSizeTablet, label:'titleFontSizeTablet'  } }
-						lineHeightType = { { value: titleLineHeightType, label: 'titleLineHeightType' } }
-						lineHeight = { { value: titleLineHeight, label:'titleLineHeight'  } }
-						lineHeightMobile = { { value: titleLineHeightMobile, label:'titleLineHeightMobile'  } }
-						lineHeightTablet= { { value: titleLineHeightTablet, label:'titleLineHeightTablet'  } }
+						loadGoogleFonts = { { value: titleLoadGoogleFonts, label:__('titleLoadGoogleFonts' , 'ultimate-addons-for-gutenberg')} }
+						fontFamily = { { value: titleFontFamily, label:__('titleFontFamily' , 'ultimate-addons-for-gutenberg')} }
+						fontWeight = { { value: titleFontWeight, label:__('titleFontWeight' , 'ultimate-addons-for-gutenberg')} }
+						fontSubset = { { value: titleFontSubset, label:__('titleFontSubset' , 'ultimate-addons-for-gutenberg')} }
+						fontSizeType = { { value: titleFontSizeType, label:__( 'titleFontSizeType', 'ultimate-addons-for-gutenberg')} }
+						fontSize = { { value: titleFontSize, label:__('titleFontSize' , 'ultimate-addons-for-gutenberg')} }
+						fontSizeMobile = { { value: titleFontSizeMobile, label:__('titleFontSizeMobile' , 'ultimate-addons-for-gutenberg')} }
+						fontSizeTablet= { { value: titleFontSizeTablet, label:__('titleFontSizeTablet' , 'ultimate-addons-for-gutenberg')} }
+						lineHeightType = { { value: titleLineHeightType, label:__( 'titleLineHeightType', 'ultimate-addons-for-gutenberg')} }
+						lineHeight = { { value: titleLineHeight, label:__('titleLineHeight' , 'ultimate-addons-for-gutenberg')} }
+						lineHeightMobile = { { value: titleLineHeightMobile, label:__('titleLineHeightMobile' , 'ultimate-addons-for-gutenberg')} }
+						lineHeightTablet= { { value: titleLineHeightTablet, label:__('titleLineHeightTablet' , 'ultimate-addons-for-gutenberg')} }
 					/>
-					<p className="uagb-setting-label">{ __( "Title Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: titleColor }} ></span></span></p>
+					<p className="uagb-setting-label">{ __( "Title Color" , 'ultimate-addons-for-gutenberg') }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: titleColor }} ></span></span></p>
 						<ColorPalette
 							value={ titleColor }
 							onChange={ ( value ) => setAttributes( { titleColor: value } ) }
@@ -162,11 +163,11 @@ class UAGBPostTitleEdit extends Component {
 				<div
 					className={ classnames(
 						className,
-						`uagb-block-${this.props.clientId.substr( 0, 8 )}`,					
+						`uagb-block-${block_id}`,					
 					) }
 				>
 					<div className="uagb-post-title__wrap">
-						<Tag className="uagb-post-title">
+						<Tag className="uagb-post-title__text">
 							{ title }
 						</Tag>
 					</div>

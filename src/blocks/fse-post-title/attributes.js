@@ -2,6 +2,9 @@ const attributes = {
 	block_id: {
 		type: "string"
 	},
+	titleText:{
+		type: "string",
+	},
 	titleAlign: {
 		type: "string",
 		default: "center",

@@ -559,12 +559,12 @@ if ( ! class_exists( 'UAGB_Block_JS' ) ) {
 			UAGB_Helper::blocks_google_font( $desc_load_google_font, $desc_font_family, $desc_font_weight, $desc_font_subset );
 		}
 		/**
-		 * Adds Google fonts for Post Title block.
+		 * Adds Google fonts for Fse Post Title block.
 		 *
 		 * @since x.x.x
 		 * @param array $attr the blocks attr.
 		 */
-		public static function blocks_post_title_gfont( $attr ) {
+		public static function blocks_fse_post_title_gfont( $attr ) {
 
 			$title_load_google_font = isset( $attr['titleLoadGoogleFonts'] ) ? $attr['titleLoadGoogleFonts'] : '';
 			$title_font_family      = isset( $attr['titleFontFamily'] ) ? $attr['titleFontFamily'] : '';

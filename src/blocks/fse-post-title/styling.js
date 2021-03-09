@@ -27,7 +27,7 @@ function styling( props ) {
 	var mobile_selectors = {}
 	var selectors = {}
 
-	selectors[" " + titleTag + ".uagb-post-title"] = {
+	selectors[" " + titleTag + ".uagb-post-title__text"] = {
 		"font-family": titleFontFamily,
 		"font-weight": titleFontWeight,
 		"font-size": generateCSSUnit( titleFontSize, titleFontSizeType ),
@@ -36,12 +36,12 @@ function styling( props ) {
 		"text-align":titleAlign,
 	}
 
-	tablet_selectors[" " + titleTag + ".uagb-post-title"] = {
+	tablet_selectors[" " + titleTag + ".uagb-post-title__text"] = {
 		"font-size": generateCSSUnit( titleFontSizeTablet, titleFontSizeType ),
 		"line-height": generateCSSUnit( titleLineHeightTablet, titleLineHeightType ),
 	}
 
-	mobile_selectors[" " + titleTag + ".uagb-post-title"] = {
+	mobile_selectors[" " + titleTag + ".uagb-post-title__text"] = {
 		"font-size": generateCSSUnit( titleFontSizeMobile, titleFontSizeType ),
 		"line-height": generateCSSUnit( titleLineHeightMobile, titleLineHeightType ),
 	}

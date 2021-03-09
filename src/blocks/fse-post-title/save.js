@@ -3,18 +3,15 @@
  */
 
 import classnames from "classnames"
-const { select } = wp.data;
 
 export default function save( props ) {
 
     const {
 		block_id,
 		titleTag,
+        titleText
 	} = props.attributes
     var Tag = titleTag;
-    
-    const title = select("core/editor").getEditedPostAttribute( 'title' );
-
     return(
         <div className={ classnames(
 				props.className,
@@ -22,8 +19,8 @@ export default function save( props ) {
 			) }
         >
             <div className="uagb-post-title__wrap">
-                <Tag className="uagb-post-title">
-                    { title }
+                <Tag className="uagb-post-title__text">
+                    { titleText }
                 </Tag>
             </div>
         </div>

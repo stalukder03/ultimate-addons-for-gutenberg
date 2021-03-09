@@ -9,15 +9,15 @@ const {
 	registerBlockType
 } = wp.blocks
 
-registerBlockType( "uagb/post-title-block", {
-	title: uagb_blocks_info.blocks["uagb/post-title-block"]["title"],
-	description: uagb_blocks_info.blocks["uagb/post-title-block"]["description"],
+registerBlockType( "uagb/fse-post-title", {
+	title: uagb_blocks_info.blocks["uagb/fse-post-title"]["title"],
+	description: uagb_blocks_info.blocks["uagb/fse-post-title"]["description"],
 	icon: UAGB_Block_Icons.marketing_button,
 	category: uagb_blocks_info.category,
 	keywords: [
-		__( "post title" ),
-		__( "title" ),
-		__( "uag" ),
+		__( "post title" , 'ultimate-addons-for-gutenberg' ),
+		__( "title" , 'ultimate-addons-for-gutenberg' ),
+		__( "uag" , 'ultimate-addons-for-gutenberg' ),
 	],
 	attributes,
 	edit,

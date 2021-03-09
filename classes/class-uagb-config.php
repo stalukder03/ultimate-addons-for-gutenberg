@@ -2584,10 +2584,10 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 							'playOn'           => 'none',
 						),
 					),
-					'uagb/post-title-block'       => array(
+					'uagb/fse-post-title'         => array(
 						'slug'        => '',
 						'title'       => __( 'Post Title', 'ultimate-addons-for-gutenberg' ),
-						'description' => __( 'This block helps you add posts title.', 'ultimate-addons-for-gutenberg' ),
+						'description' => __( 'This block helps you to add post title.', 'ultimate-addons-for-gutenberg' ),
 						'default'     => true,
 						'attributes'  => array(
 							'titleAlign'            => 'center',
