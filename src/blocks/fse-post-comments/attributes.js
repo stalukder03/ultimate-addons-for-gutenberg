@@ -8,7 +8,7 @@ const attributes = {
 		type: "string",
 		default: "center"
 	},
-	comments: {
+	postComments: {
 		type:"array"
 	},
 	block_id: {

@@ -45,10 +45,9 @@ class UAGBPostCommentsEdit extends Component {
 	}
 	
 	componentDidMount() {
-
+		const { setAttributes } = this.props
 		// Assigning block_id in the attribute.
-		this.props.setAttributes( { block_id: this.props.clientId.substr( 0, 8 ) } )
-
+		setAttributes( { block_id: this.props.clientId.substr( 0, 8 ) } )
 		// Pushing Style tag for this block css.
 		const $style = document.createElement( "style" )
 		$style.setAttribute( "id", "uagb-style-post-comments-" + this.props.clientId.substr( 0, 8 ) )
@@ -56,6 +55,8 @@ class UAGBPostCommentsEdit extends Component {
 
 	}
 	componentDidUpdate( prevProps ) {
+		const { setAttributes , comments } = this.props
+		setAttributes({ postComments: comments });
 		var element = document.getElementById( "uagb-style-post-comments-" + this.props.clientId.substr( 0, 8 ) )
 
 		if( null !== element && undefined !== element ) {
@@ -134,11 +135,12 @@ class UAGBPostCommentsEdit extends Component {
 			authorFontSubset,
 			commentFontSubset
 		} = attributes
+
 		const comments_data = (
 			
 			comments && comments.length ? (
 				comments.map( ( comment ) => (
-					<div className={`uagb-post-comments__wrap uagb-block-${ block_id }`} key={ comment.id }>
+					<div className="uagb-post-comments__wrap" key={ comment.id }>
 						<div className="uagb-post-comments__author-wrap">
 							<div className="uagb-post-comments__avatar-wrap">
 								<img className="uagb-post-comments__avatar" src={comment.author_avatar_urls[24]}/>
@@ -644,7 +646,9 @@ class UAGBPostCommentsEdit extends Component {
 							/>
 						</PanelBody>
 					</InspectorControls>
-				{comments_data}
+					<div className={`uagb-block-${ block_id }`}>
+						{comments_data}
+					</div>
 				{ loadauthorGoogleFonts }
 				{ loadcommentGoogleFonts }
             </Fragment>

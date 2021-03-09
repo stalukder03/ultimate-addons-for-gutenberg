@@ -85,7 +85,7 @@ function styling( props ) {
 		boxShadowPositionCSS = '';
 	}
 	selectors = {
-		".uagb-post-comments__wrap" : {
+		" .uagb-post-comments__wrap" : {
 			"padding-left" : generateCSSUnit( leftPadding, desktopPaddingType ),
 			"padding-right" : generateCSSUnit( rightPadding, desktopPaddingType ),
 			"padding-top" : generateCSSUnit( topPadding, desktopPaddingType ),
@@ -121,7 +121,7 @@ function styling( props ) {
 		}
 	}
 	mobile_selectors = {
-		".uagb-post-comments__wrap" : {
+		" .uagb-post-comments__wrap" : {
 			"padding-top": generateCSSUnit( topPaddingMobile, mobilePaddingType ),
 			"padding-bottom": generateCSSUnit( bottomPaddingMobile, mobilePaddingType ),
 			"padding-left": generateCSSUnit( leftPaddingMobile, mobilePaddingType ),
@@ -141,7 +141,7 @@ function styling( props ) {
 		}
 	}
 	tablet_selectors = {
-		".uagb-post-comments__wrap" : {
+		" .uagb-post-comments__wrap" : {
 			"padding-top": generateCSSUnit( topPaddingTablet, tabletPaddingType ),
 			"padding-bottom": generateCSSUnit( bottomPaddingTablet, tabletPaddingType ),
 			"padding-left": generateCSSUnit( leftPaddingTablet, tabletPaddingType ),

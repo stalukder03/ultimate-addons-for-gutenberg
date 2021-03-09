@@ -2584,7 +2584,7 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 							'playOn'           => 'none',
 						),
 					),
-					'uagb/fse-post-comments'          => array(
+					'uagb/fse-post-comments'      => array(
 						'slug'        => '',
 						'title'       => __( 'Post Comments', 'ultimate-addons-for-gutenberg' ),
 						'description' => __( 'This block helps you add post Comments.', 'ultimate-addons-for-gutenberg' ),

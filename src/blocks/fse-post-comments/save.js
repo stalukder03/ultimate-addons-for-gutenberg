@@ -3,21 +3,18 @@
  */
 
 const { __ } = wp.i18n
-const { select } = wp.data;
 
 export default function save( props ) {
     const { attributes } = props
 
     const {
 		block_id,
+        postComments
     } = attributes
 
-    const currentPostId = select('core/editor').getCurrentPostId();
-
-    const comments = select( 'core' ).getEntityRecords('root','comment',{post: currentPostId});
-    if(comments && comments.length){
+    if(postComments && postComments.length){
     return (<div className={`uagb-block-${ block_id }`}>
-            {comments.map(( comment , index) =>{
+            {postComments.map(( comment , index) =>{
             return <div className="uagb-post-comments__wrap" key={ comment.id }>
                             <div className="uagb-post-comments__author-wrap">
                                 <div className="uagb-post-comments__avatar-wrap">
