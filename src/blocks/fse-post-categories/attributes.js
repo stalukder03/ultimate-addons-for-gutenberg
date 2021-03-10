@@ -1,5 +1,5 @@
 /**
- * BLOCK: UAGB Post Comment Attributes
+ * BLOCK: UAGB Fse Post Categories Attributes
  */
 
 const attributes = {

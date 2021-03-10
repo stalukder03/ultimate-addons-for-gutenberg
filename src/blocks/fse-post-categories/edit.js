@@ -1,6 +1,6 @@
 
 /**
- * BLOCK: Post Comment Block
+ * BLOCK: Fse Post Categories Block
  */
 
 const { __ } = wp.i18n
@@ -15,18 +15,14 @@ import WebfontLoader from "../../components/typography/fontloader"
 import TypographyControl from "../../components/typography"
 const {
 	Component,
-	Fragment,
-    RawHTML
+	Fragment
 } = wp.element
 
 const {
 	BlockControls,
 	BlockAlignmentToolbar,
 	InspectorControls,
-	RichText,
-	PanelColorSettings,
 	ColorPalette,
-	__experimentalLinkControl
 } = wp.blockEditor
 
 const {
@@ -39,7 +35,7 @@ const {
 	Dashicon,
 } = wp.components
 
-const { select,withSelect } = wp.data;
+const { withSelect } = wp.data;
 
 
 class UAGBPostCommentsEdit extends Component {
@@ -55,12 +51,12 @@ class UAGBPostCommentsEdit extends Component {
 
 		// Pushing Style tag for this block css.
 		const $style = document.createElement( "style" )
-		$style.setAttribute( "id", "uagb-style-post-comments-" + this.props.clientId.substr( 0, 8 ) )
+		$style.setAttribute( "id", "uagb-style-post-category-" + this.props.clientId.substr( 0, 8 ) )
 		document.head.appendChild( $style )
 
 	}
 	componentDidUpdate( prevProps ) {
-		var element = document.getElementById( "uagb-style-post-comments-" + this.props.clientId.substr( 0, 8 ) )
+		var element = document.getElementById( "uagb-style-post-category-" + this.props.clientId.substr( 0, 8 ) )
 
 		if( null !== element && undefined !== element ) {
 			element.innerHTML = styling( this.props )
@@ -138,23 +134,23 @@ class UAGBPostCommentsEdit extends Component {
 			authorFontSubset,
 			commentFontSubset
 		} = attributes
-		const comments_data = (
+		// const comments_data = (
 			
-			comments && comments.length ? (
-				comments.map( ( comment ) => (
-					<div className={`uagb-post-comments__wrap uagb-block-${ block_id }`} key={ comment.id }>
-						<div className="uagb-post-comments__author-wrap">
-							<div className="uagb-post-comments__avatar-wrap">
-								<img className="uagb-post-comments__avatar" src={comment.author_avatar_urls[24]}/>
-							</div>
-							<div className="uagb-post-comments__author">{comment.author_name} Says :</div>
-						</div>
-						<div className="uagb-post-comments__content" 
-						dangerouslySetInnerHTML={{ __html: comment.content.rendered }}></div>
-					</div>
-				))
-			): __('No Comments')
-		);
+		// 	comments && comments.length ? (
+		// 		comments.map( ( comment ) => (
+		// 			<div className={`uagb-post-comments__wrap uagb-block-${ block_id }`} key={ comment.id }>
+		// 				<div className="uagb-post-comments__author-wrap">
+		// 					<div className="uagb-post-comments__avatar-wrap">
+		// 						<img className="uagb-post-comments__avatar" src={comment.author_avatar_urls[24]}/>
+		// 					</div>
+		// 					<div className="uagb-post-comments__author">{comment.author_name} Says :</div>
+		// 				</div>
+		// 				<div className="uagb-post-comments__content" 
+		// 				dangerouslySetInnerHTML={{ __html: comment.content.rendered }}></div>
+		// 			</div>
+		// 		))
+		// 	): __('No Comments')
+		// );
 		
 		// Load Google fonts for author.
 		let loadauthorGoogleFonts
@@ -648,7 +644,7 @@ class UAGBPostCommentsEdit extends Component {
 							/>
 						</PanelBody>
 					</InspectorControls>
-				{comments_data}
+				abc
 				{ loadauthorGoogleFonts }
 				{ loadcommentGoogleFonts }
             </Fragment>
@@ -656,10 +652,14 @@ class UAGBPostCommentsEdit extends Component {
     }
 }
 
-export default withSelect( ( select, props ) => {
+export default withSelect( ( select ) => {
 	const { getEntityRecords } = select( "core" )
-	const currentPostId = select('core/editor').getCurrentPostId();	
-	return {
-		comments: getEntityRecords('root','comment',{post: currentPostId}),
-	}
+	const currentPostId = select('core/editor').getCurrentPostId();
+	let allTaxonomy = uagb_blocks_info.all_taxonomy
+	let currentTax = allTaxonomy['post']
+	console.log(currentTax.terms.category);
+	var current = select("core/editor").getCurrentPost();
+	console.log(current.categories)
+	console.log(getEntityRecords('postType','post',{post: currentPostId}))	
+	
 })( UAGBPostCommentsEdit );

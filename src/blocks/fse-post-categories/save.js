@@ -1,5 +1,5 @@
 /**
- * BLOCK: Post Comment - Save Block
+ * BLOCK: Fse Post Categories - Save Block
  */
 
 const { __ } = wp.i18n
