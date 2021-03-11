@@ -35,7 +35,7 @@ const {
 	Dashicon,
 } = wp.components
 
-const { withSelect } = wp.data;
+const { select } = wp.data;
 
 
 class UAGBPostCommentsEdit extends Component {
@@ -45,10 +45,22 @@ class UAGBPostCommentsEdit extends Component {
 	}
 	
 	componentDidMount() {
-
 		// Assigning block_id in the attribute.
 		this.props.setAttributes( { block_id: this.props.clientId.substr( 0, 8 ) } )
-
+		let allTaxonomy = uagb_blocks_info.all_taxonomy
+		let currentTax = allTaxonomy['post']
+		var list = currentTax.terms.category;
+		var current = select("core/editor").getCurrentPost();
+		var cat = current.categories;	
+		var categoriesname = [];
+		for(var j=0;j<list.length;j++){
+			for(var i=0;i<cat.length;i++){
+				if(list[j].id === cat[i] ){
+					categoriesname.push(list[j].name);
+				}
+			}
+		}
+		this.props.setAttributes( { categories: categoriesname} )
 		// Pushing Style tag for this block css.
 		const $style = document.createElement( "style" )
 		$style.setAttribute( "id", "uagb-style-post-category-" + this.props.clientId.substr( 0, 8 ) )
@@ -64,9 +76,10 @@ class UAGBPostCommentsEdit extends Component {
 	}
     render() {
         
-       	const { setAttributes, attributes , comments } = this.props
+       	const { setAttributes, attributes } = this.props
         const { 
 			block_id,
+			categories,
             boxShadowColor,
             boxShadowHOffset,
             boxShadowVOffset,
@@ -134,23 +147,11 @@ class UAGBPostCommentsEdit extends Component {
 			authorFontSubset,
 			commentFontSubset
 		} = attributes
-		// const comments_data = (
-			
-		// 	comments && comments.length ? (
-		// 		comments.map( ( comment ) => (
-		// 			<div className={`uagb-post-comments__wrap uagb-block-${ block_id }`} key={ comment.id }>
-		// 				<div className="uagb-post-comments__author-wrap">
-		// 					<div className="uagb-post-comments__avatar-wrap">
-		// 						<img className="uagb-post-comments__avatar" src={comment.author_avatar_urls[24]}/>
-		// 					</div>
-		// 					<div className="uagb-post-comments__author">{comment.author_name} Says :</div>
-		// 				</div>
-		// 				<div className="uagb-post-comments__content" 
-		// 				dangerouslySetInnerHTML={{ __html: comment.content.rendered }}></div>
-		// 			</div>
-		// 		))
-		// 	): __('No Comments')
-		// );
+		const category_data = (
+			categories && categories.length ? (
+				<div className="uagb-post-categories__author">{categories.join(", ")} </div>
+			): __('No Category Data Found' , 'ultimate-addons-for-gutenberg')
+		);
 		
 		// Load Google fonts for author.
 		let loadauthorGoogleFonts
@@ -644,7 +645,10 @@ class UAGBPostCommentsEdit extends Component {
 							/>
 						</PanelBody>
 					</InspectorControls>
-				abc
+					<div className={`uagb-post-categories__wrap uagb-block-${ block_id }`}>
+						<span className="dashicons-tag dashicons"></span>
+						{category_data}
+					</div>
 				{ loadauthorGoogleFonts }
 				{ loadcommentGoogleFonts }
             </Fragment>
@@ -652,14 +656,4 @@ class UAGBPostCommentsEdit extends Component {
     }
 }
 
-export default withSelect( ( select ) => {
-	const { getEntityRecords } = select( "core" )
-	const currentPostId = select('core/editor').getCurrentPostId();
-	let allTaxonomy = uagb_blocks_info.all_taxonomy
-	let currentTax = allTaxonomy['post']
-	console.log(currentTax.terms.category);
-	var current = select("core/editor").getCurrentPost();
-	console.log(current.categories)
-	console.log(getEntityRecords('postType','post',{post: currentPostId}))	
-	
-})( UAGBPostCommentsEdit );
+export default  UAGBPostCommentsEdit;

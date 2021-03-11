@@ -20,9 +20,9 @@ registerBlockType( "uagb/fse-post-categories", {
 	icon: UAGB_Block_Icons.marketing_button,
 	category: uagb_blocks_info.category,
 	keywords: [
-		__( "Post Commnets" ),
-		__( "post" ),
-		__( "uag" ),
+		__( "Post Categories" , 'ultimate-addons-for-gutenberg' ),
+		__( "category", 'ultimate-addons-for-gutenberg' ),
+		__( "uag", 'ultimate-addons-for-gutenberg' ),
 	],
 	edit,
 	save,

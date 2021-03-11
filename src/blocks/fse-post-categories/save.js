@@ -10,28 +10,17 @@ export default function save( props ) {
 
     const {
 		block_id,
+        categories
     } = attributes
 
-    const currentPostId = select('core/editor').getCurrentPostId();
+    const category_data = (
+        categories && categories.length ? (
+            <div className="uagb-post-categories__author">{categories.join(" ")} </div>
+        ): __('No Category Data Found', 'ultimate-addons-for-gutenberg')
+    );
 
-    const comments = select( 'core' ).getEntityRecords('root','comment',{post: currentPostId});
-    if(comments && comments.length){
-    return (<div className={`uagb-block-${ block_id }`}>
-            {comments.map(( comment , index) =>{
-            return <div className="uagb-post-comments__wrap" key={ comment.id }>
-                            <div className="uagb-post-comments__author-wrap">
-                                <div className="uagb-post-comments__avatar-wrap">
-                                    <img className="uagb-post-comments__avatar" src={comment.author_avatar_urls[24]}/>
-                                </div>
-                                <div className="uagb-post-comments__author">{comment.author_name} Says :</div>
-                            </div>
-                            <div className="uagb-post-comments__content" 
-                            dangerouslySetInnerHTML={{ __html: comment.content.rendered }}></div>
-                        </div>
-                })
-            }
-            </div>);
-    }else{
-        return __('No Comment')
-    }
+    return <div className={`uagb-post-categories__wrap uagb-block-${ block_id }`}>
+                <span className="dashicons-tag dashicons"></span>
+                {category_data}
+            </div>
 }

@@ -2,6 +2,8 @@
  * BLOCK: UAGB Fse Post Categories Attributes
  */
 
+import { array } from "prop-types"
+
 const attributes = {
 	
 	align: {
@@ -10,6 +12,9 @@ const attributes = {
 	},
 	block_id: {
 		type: "string",
+	},
+	categories:{
+		type:'array'
 	},
 	iconSize:{
 		type: "number",
