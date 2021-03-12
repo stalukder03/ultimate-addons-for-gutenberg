@@ -1,8 +1,8 @@
 /**
- * BLOCK: UAGB Post Date Attributes
+ * BLOCK: UAGB Fse Post Date Attributes
  */
 
-const attributes = {
+ const attributes = {
 	
 	align: {
 		type: "string",
@@ -17,6 +17,16 @@ const attributes = {
 	iconSize:{
 		type: "number",
 		default: 30
+	},
+	iconColor:{
+		type:"string"
+	},
+	iconPosition:{
+		type:"string",
+		default:"before"
+	},
+	iconSpace:{
+		type:"number"
 	},
 	dateColor:{
 		type: "string"
@@ -143,41 +153,6 @@ const attributes = {
 		type: "number",
 		default: ""
 	},
-	borderStyle : {
-		type: "string",
-		default: "none"
-	},
-	borderWidth : {
-		type: "number",
-		default: 1
-	},
-	borderRadius : {
-		type: "number"
-	},
-	borderColor : {
-		type: "string"
-	},
-	boxShadowColor: {
-		type: "string"
-	},
-	boxShadowHOffset : {
-		type: "number",
-		default: 0
-	},
-	boxShadowVOffset : {
-		type: "number",
-		default: 0
-	},
-	boxShadowBlur : {
-		type: "number"
-	},
-	boxShadowSpread : {
-		type: "number"
-	},
-	boxShadowPosition: {
-		type: "string",
-		default: "outset"
-	},
 	dateFontFamily: {
 		type: "string",
 		default: "Default",
@@ -214,6 +189,7 @@ const attributes = {
 	dateLineHeightMobile: {
 		type: "number",
 	},
+	
 }
 
 export default attributes

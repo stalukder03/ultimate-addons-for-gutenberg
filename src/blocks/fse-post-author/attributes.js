@@ -21,10 +21,17 @@ const attributes = {
 		type: "number",
 		default: 30
 	},
-	authorColor:{
-		type: "string"
+	iconColor:{
+		type:"string"
 	},
-	commentColor:{
+	iconPosition:{
+		type:"string",
+		default:"before"
+	},
+	iconSpace:{
+		type:"number"
+	},
+	authorColor:{
 		type: "string"
 	},
 	mobilePaddingType: {
@@ -149,41 +156,6 @@ const attributes = {
 		type: "number",
 		default: ""
 	},
-	borderStyle : {
-		type: "string",
-		default: "none"
-	},
-	borderWidth : {
-		type: "number",
-		default: 1
-	},
-	borderRadius : {
-		type: "number"
-	},
-	borderColor : {
-		type: "string"
-	},
-	boxShadowColor: {
-		type: "string"
-	},
-	boxShadowHOffset : {
-		type: "number",
-		default: 0
-	},
-	boxShadowVOffset : {
-		type: "number",
-		default: 0
-	},
-	boxShadowBlur : {
-		type: "number"
-	},
-	boxShadowSpread : {
-		type: "number"
-	},
-	boxShadowPosition: {
-		type: "string",
-		default: "outset"
-	},
 	authorFontFamily: {
 		type: "string",
 		default: "Default",
@@ -220,6 +192,7 @@ const attributes = {
 	authorLineHeightMobile: {
 		type: "number",
 	},
+	
 }
 
 export default attributes

@@ -5133,46 +5133,38 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			$m_selectors = array();
 			$t_selectors = array();
 
-			$boxShadowPositionCSS = $attr['boxShadowPosition'];
-
-			if ( 'outset' === $attr['boxShadowPosition'] ) {
-				$boxShadowPositionCSS = '';
-			}
 			$selectors   = array(
 				'.uagb-post-author__wrap'        => array(
 					'padding-left'   => UAGB_Helper::get_css_value( $attr['leftPadding'], $attr['desktopPaddingType'] ),
 					'padding-right'  => UAGB_Helper::get_css_value( $attr['rightPadding'], $attr['desktopPaddingType'] ),
 					'padding-top'    => UAGB_Helper::get_css_value( $attr['topPadding'], $attr['desktopPaddingType'] ),
 					'padding-bottom' => UAGB_Helper::get_css_value( $attr['bottomPadding'], $attr['desktopPaddingType'] ),
-					'border-style'   => $attr['borderStyle'],
-					'border-width'   => UAGB_Helper::get_css_value( $attr['borderWidth'], 'px' ),
-					'border-color'   => $attr['borderColor'],
-					'border-radius'  => UAGB_Helper::get_css_value( $attr['borderRadius'], 'px' ),
 					'text-align'     => $attr['align'],
-					'margin-left'    => UAGB_Helper::get_css_value( $attr['leftMargin'], $attr['desktopMarginType'] ),
-					'margin-right'   => UAGB_Helper::get_css_value( $attr['rightMargin'], $attr['desktopMarginType'] ),
-					'margin-top'     => UAGB_Helper::get_css_value( $attr['topMargin'], $attr['desktopMarginType'] ),
-					'margin-bottom'  => UAGB_Helper::get_css_value( $attr['bottomMargin'], $attr['desktopMarginType'] ),
-					'box-shadow'     => UAGB_Helper::get_css_value( $attr['boxShadowHOffset'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['boxShadowVOffset'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['boxShadowBlur'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['boxShadowSpread'], 'px' ) . ' ' . $attr['boxShadowColor'] . ' ' . $boxShadowPositionCSS,
 				),
 				' .uagb-post-author__name'      => array(
 					'color' => $attr['authorColor'],
 				),
 				'.uagb-post-author__wrap > span'      => array(
-					'font-size' => UAGB_Helper::get_css_value( $attr['iconSize'], 'px' ),
-					'width'  => UAGB_Helper::get_css_value( $attr['iconSize'], 'px' ),
+					"color"=> $attr['iconColor'],
+					"font-size" => UAGB_Helper::get_css_value( $attr['iconSize'], 'px' )
 				),
 			);
+			if($attr['iconPosition'] === "before"){
+				$selectors[".uagb-post-author__wrap .dashicons-admin-users"] = array(
+					"margin-right"=> UAGB_Helper::get_css_value( $attr['iconSpace'], 'px' ),
+				);
+			}
+			if($attr['iconPosition'] === "after"){
+				$selectors[".uagb-post-author__wrap .dashicons-admin-users"] = array(
+					"margin-left"=> UAGB_Helper::get_css_value( $attr['iconSpace'], 'px' ),
+				);
+			}
 			$m_selectors = array(
 				'.uagb-post-author__wrap'         => array(
 					'padding-top'    => UAGB_Helper::get_css_value( $attr['topPaddingMobile'], $attr['mobilePaddingType'] ),
 					'padding-bottom' => UAGB_Helper::get_css_value( $attr['bottomPaddingMobile'], $attr['mobilePaddingType'] ),
 					'padding-left'   => UAGB_Helper::get_css_value( $attr['leftPaddingMobile'], $attr['mobilePaddingType'] ),
 					'padding-right'  => UAGB_Helper::get_css_value( $attr['rightPaddingMobile'], $attr['mobilePaddingType'] ),
-					'margin-top'     => UAGB_Helper::get_css_value( $attr['topMarginMobile'], $attr['mobileMarginType'] ),
-					'margin-bottom'  => UAGB_Helper::get_css_value( $attr['bottomMarginMobile'], $attr['mobileMarginType'] ),
-					'margin-left'    => UAGB_Helper::get_css_value( $attr['leftMarginMobile'], $attr['mobileMarginType'] ),
-					'margin-right'   => UAGB_Helper::get_css_value( $attr['rightMarginMobile'], $attr['mobileMarginType'] ),
 				),
 				' .uagb-post-author__name'      => array(
 					'font-size'   => UAGB_Helper::get_css_value( $attr['authorFontSizeMobile'], $attr['authorFontSizeType'] ),
@@ -5186,10 +5178,6 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 					'padding-bottom' => UAGB_Helper::get_css_value( $attr['bottomPaddingTablet'], $attr['tabletPaddingType'] ),
 					'padding-left'   => UAGB_Helper::get_css_value( $attr['leftPaddingTablet'], $attr['tabletPaddingType'] ),
 					'padding-right'  => UAGB_Helper::get_css_value( $attr['rightPaddingTablet'], $attr['tabletPaddingType'] ),
-					'margin-top'     => UAGB_Helper::get_css_value( $attr['topMarginTablet'], $attr['tabletMarginType'] ),
-					'margin-bottom'  => UAGB_Helper::get_css_value( $attr['bottomMarginTablet'], $attr['tabletMarginType'] ),
-					'margin-left'    => UAGB_Helper::get_css_value( $attr['leftMarginTablet'], $attr['tabletMarginType'] ),
-					'margin-right'   => UAGB_Helper::get_css_value( $attr['rightMarginTablet'], $attr['tabletMarginType'] ),
 				),
 				' .uagb-post-author__name'      => array(
 					'font-size'   => UAGB_Helper::get_css_value( $attr['authorFontSizeTablet'], $attr['authorFontSizeType'] ),

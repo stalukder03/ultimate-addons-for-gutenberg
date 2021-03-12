@@ -3,105 +3,77 @@
  */
 
 import generateCSS from "../../../dist/blocks/uagb-controls/generateCSS"
-import hexToRgba from "../../../dist/blocks/uagb-controls/hexToRgba"
 import generateCSSUnit from "../../../dist/blocks/uagb-controls/generateCSSUnit"
 
 function styling( props ) {
 
 	const {
+		align,
+		iconColor,
+		iconPosition,
+		iconSpace,
 		iconSize,
-        boxShadowColor,
-        boxShadowHOffset,
-        boxShadowVOffset,
-        boxShadowBlur,
-        boxShadowSpread,
-        boxShadowPosition,
-        borderStyle,
-        borderWidth,
-        borderRadius,
-        borderColor, 
-		mobilePaddingType,
-        topPaddingMobile,
-        bottomPaddingMobile,
-        leftPaddingMobile,
-        rightPaddingMobile,
-        topPaddingTablet,
-        bottomPaddingTablet,
-        leftPaddingTablet,
-        rightPaddingTablet,
-        topPadding,
-        bottomPadding,
-        leftPadding,
-        rightPadding,
-        topMarginMobile,
-        bottomMarginMobile,
-        leftMarginMobile,
-        rightMarginMobile,
-        topMarginTablet,
-        bottomMarginTablet,
-        leftMarginTablet,
-        rightMarginTablet,
-        topMargin,
-        bottomMargin,
-        leftMargin,
-        rightMargin,
-        desktopMarginType,
-        desktopPaddingType,
-        authorFontFamily,
-		authorFontWeight,
-		authorFontSize,
-		authorFontSizeType,
-		authorFontSizeMobile,
-		authorFontSizeTablet,
-		authorLineHeight,
-		authorLineHeightType,
-		authorLineHeightMobile,
-		authorLineHeightTablet,
 		authorColor,
-		mobileMarginType,
+		mobilePaddingType,
 		tabletPaddingType,
-		tabletMarginType,
-		align
+		desktopPaddingType,
+		topPadding,
+		bottomPadding,
+		leftPadding,
+		rightPadding,
+		topPaddingTablet,
+		bottomPaddingTablet,
+		leftPaddingTablet,
+		rightPaddingTablet,
+		topPaddingMobile,
+		bottomPaddingMobile,
+		leftPaddingMobile,
+		rightPaddingMobile,
+		authorFontFamily,
+		authorFontWeight,
+		authorFontSubset,
+		authorFontSizeType,
+		authorLineHeightType,
+		authorFontSize,
+		authorFontSizeTablet,
+		authorFontSizeMobile,
+		authorLineHeight,
+		authorLineHeightTablet,
+		authorLineHeightMobile,
 	} = props.attributes
 
 	var selectors = {}
 	var tablet_selectors = {}
 	var mobile_selectors = {}
-	var boxShadowPositionCSS = boxShadowPosition;
-
-	if ( 'outset' === boxShadowPosition ) {
-		boxShadowPositionCSS = '';
-	}
+	
 	selectors = {
 		".uagb-post-author__wrap" : {
 			"padding-left" : generateCSSUnit( leftPadding, desktopPaddingType ),
 			"padding-right" : generateCSSUnit( rightPadding, desktopPaddingType ),
 			"padding-top" : generateCSSUnit( topPadding, desktopPaddingType ),
 			"padding-bottom" : generateCSSUnit( bottomPadding, desktopPaddingType ),
-			"border-style": borderStyle,
-			"border-width": generateCSSUnit( borderWidth, "px" ),
-			"border-color": borderColor,
-			"border-radius": generateCSSUnit( borderRadius, "px" ),
 			'text-align': align,
-            "margin-left" : generateCSSUnit( leftMargin, desktopMarginType ),
-			"margin-right" : generateCSSUnit( rightMargin, desktopMarginType ),
-			"margin-top" : generateCSSUnit( topMargin, desktopMarginType ),
-			"color": authorColor,
-			"margin-bottom" : generateCSSUnit( bottomMargin, desktopMarginType ),
-			"box-shadow": generateCSSUnit( boxShadowHOffset, "px" ) + ' ' + generateCSSUnit( boxShadowVOffset, "px" ) + ' ' + generateCSSUnit( boxShadowBlur, "px" ) + ' ' + generateCSSUnit( boxShadowSpread, "px" ) + ' ' + boxShadowColor + ' ' + boxShadowPositionCSS  
 		},
-		".uagb-post-author__name" : {
+		".uagb-post-author__wrap .uagb-post-author__name" : {
 			"color": authorColor,
-		},
-		".uagb-post-author__wrap > span" : {
-			"font-size" : generateCSSUnit( iconSize, 'px' ),
-			"width" : generateCSSUnit( iconSize, 'px' ),
-		},	
-		" .uagb-post-author__name": {
 			"font-family": authorFontFamily,
 			"font-weight": authorFontWeight,
 			"font-size": generateCSSUnit( authorFontSize, authorFontSizeType ),
 			"line-height": generateCSSUnit( authorLineHeight, authorLineHeightType ),
+		},
+	}
+	if(iconPosition === "before"){
+		selectors[".uagb-post-author__wrap .dashicons-admin-users"] = {
+			"margin-right": generateCSSUnit( iconSpace, 'px' ),
+			"color": iconColor,
+			"font-size" : generateCSSUnit( iconSize, 'px' )
+		}
+	}
+	if(iconPosition === "after"){
+		selectors[".uagb-post-author__wrap .dashicons-admin-users"] = {
+			"margin-left": generateCSSUnit( iconSpace, 'px' ),
+			"color": iconColor,
+			"font-size" : generateCSSUnit( iconSize, 'px' )
 		}
 	}
 	mobile_selectors = {
@@ -110,12 +82,8 @@ function styling( props ) {
 			"padding-bottom": generateCSSUnit( bottomPaddingMobile, mobilePaddingType ),
 			"padding-left": generateCSSUnit( leftPaddingMobile, mobilePaddingType ),
 			"padding-right": generateCSSUnit( rightPaddingMobile, mobilePaddingType ),
-			"margin-top": generateCSSUnit( topMarginMobile, mobileMarginType ),
-			"margin-bottom": generateCSSUnit( bottomMarginMobile, mobileMarginType ),
-			"margin-left": generateCSSUnit( leftMarginMobile, mobileMarginType ),
-			"margin-right": generateCSSUnit( rightMarginMobile, mobileMarginType ),
 		},
-		" .uagb-post-author__name": {
+		".uagb-post-author__wrap .uagb-post-author__name": {
 			"font-size": generateCSSUnit( authorFontSizeMobile, authorFontSizeType ),
 			"line-height": generateCSSUnit( authorLineHeightMobile, authorLineHeightType ),
 		}
@@ -125,11 +93,7 @@ function styling( props ) {
 			"padding-top": generateCSSUnit( topPaddingTablet, tabletPaddingType ),
 			"padding-bottom": generateCSSUnit( bottomPaddingTablet, tabletPaddingType ),
 			"padding-left": generateCSSUnit( leftPaddingTablet, tabletPaddingType ),
-			"padding-right": generateCSSUnit( rightPaddingTablet, tabletPaddingType ),
-			"margin-top": generateCSSUnit( topMarginTablet, tabletMarginType ),
-			"margin-bottom": generateCSSUnit( bottomMarginTablet, tabletMarginType ),
-			"margin-left": generateCSSUnit( leftMarginTablet, tabletMarginType ),
-			"margin-right": generateCSSUnit( rightMarginTablet, tabletMarginType ),
+			"padding-right": generateCSSUnit( rightPaddingTablet, tabletPaddingType )
 		},
 		" .uagb-post-author__name": {
 			"font-size": generateCSSUnit( authorFontSizeTablet, authorFontSizeType ),

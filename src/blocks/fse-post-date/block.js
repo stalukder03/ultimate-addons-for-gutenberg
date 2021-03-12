@@ -21,7 +21,7 @@ registerBlockType( "uagb/fse-post-date", {
 	category: uagb_blocks_info.category,
 	keywords: [
 		__( "Post Date"  , 'ultimate-addons-for-gutenberg'),
-		__( "post"  , 'ultimate-addons-for-gutenberg'),
+		__( "Date"  , 'ultimate-addons-for-gutenberg'),
 		__( "uag"  , 'ultimate-addons-for-gutenberg'),
 	],
 	edit,
