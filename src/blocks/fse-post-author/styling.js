@@ -83,10 +83,6 @@ function styling( props ) {
 			"padding-left": generateCSSUnit( leftPaddingMobile, mobilePaddingType ),
 			"padding-right": generateCSSUnit( rightPaddingMobile, mobilePaddingType ),
 		},
-		".uagb-post-author__wrap .uagb-post-author__name": {
-			"font-size": generateCSSUnit( authorFontSizeMobile, authorFontSizeType ),
-			"line-height": generateCSSUnit( authorLineHeightMobile, authorLineHeightType ),
-		}
 	}
 	tablet_selectors = {
 		".uagb-post-author__wrap" : {
@@ -94,10 +90,6 @@ function styling( props ) {
 			"padding-bottom": generateCSSUnit( bottomPaddingTablet, tabletPaddingType ),
 			"padding-left": generateCSSUnit( leftPaddingTablet, tabletPaddingType ),
 			"padding-right": generateCSSUnit( rightPaddingTablet, tabletPaddingType )
-		},
-		" .uagb-post-author__name": {
-			"font-size": generateCSSUnit( authorFontSizeTablet, authorFontSizeType ),
-			"line-height": generateCSSUnit( authorLineHeightTablet, authorLineHeightType ),
 		}
 	}
 	var id = `.uagb-block-${ props.clientId.substr( 0, 8 ) }`

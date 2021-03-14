@@ -527,10 +527,20 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 					$css += UAGB_Block_Helper::get_fse_post_author_css( $blockattr, $block_id );
 					UAGB_Block_JS::blocks_fse_post_author_gfont( $blockattr );
 					break;
-				
+
 				case 'uagb/fse-post-date':
 					$css += UAGB_Block_Helper::get_fse_post_date_css( $blockattr, $block_id );
 					UAGB_Block_JS::blocks_fse_post_date_gfont( $blockattr );
+					break;
+
+				case 'uagb/fse-post-excerpt':
+					$css += UAGB_Block_Helper::get_fse_post_excerpt_css( $blockattr, $block_id );
+					UAGB_Block_JS::blocks_fse_post_excerpt_gfont( $blockattr );
+					break;
+
+				case 'uagb/fse-post-categories':
+					$css += UAGB_Block_Helper::get_fse_post_categories_css( $blockattr, $block_id );
+					UAGB_Block_JS::blocks_fse_post_categories_gfont( $blockattr );
 					break;
 
 				case 'uagb/post-grid':

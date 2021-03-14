@@ -2,8 +2,6 @@
  * BLOCK: UAGB Fse Post Categories Attributes
  */
 
-import { array } from "prop-types"
-
 const attributes = {
 	
 	align: {
@@ -18,12 +16,20 @@ const attributes = {
 	},
 	iconSize:{
 		type: "number",
-		default: 30
+		default: 18
 	},
-	authorColor:{
-		type: "string"
+	iconColor:{
+		type:"string"
 	},
-	commentColor:{
+	iconPosition:{
+		type:"string",
+		default:"before"
+	},
+	iconSpace:{
+		type:"number",
+		default: 5
+	},
+	categoriesColor:{
 		type: "string"
 	},
 	mobilePaddingType: {
@@ -148,111 +154,40 @@ const attributes = {
 		type: "number",
 		default: ""
 	},
-	borderStyle : {
-		type: "string",
-		default: "none"
-	},
-	borderWidth : {
-		type: "number",
-		default: 1
-	},
-	borderRadius : {
-		type: "number"
-	},
-	borderColor : {
-		type: "string"
-	},
-	boxShadowColor: {
-		type: "string"
-	},
-	boxShadowHOffset : {
-		type: "number",
-		default: 0
-	},
-	boxShadowVOffset : {
-		type: "number",
-		default: 0
-	},
-	boxShadowBlur : {
-		type: "number"
-	},
-	boxShadowSpread : {
-		type: "number"
-	},
-	boxShadowPosition: {
-		type: "string",
-		default: "outset"
-	},
-	commentFontSubset: {
-		type: "string",
-	},
-	commentFontFamily: {
+	categoriesFontFamily: {
 		type: "string",
 		default: "Default",
 	},
-	commentFontWeight: {
+	categoriesFontWeight: {
 		type: "string",
 	},
-	commentFontSizeType: {
-		type: "string",
-		default: "px"
-	},
-	commentLineHeightType: {
-		type: "string",
-		default: "em"
-	},
-	commentFontSize: {
-		type: "number",
-	},
-	commentFontSizeTablet: {
-		type: "number",
-	},
-	commentFontSizeMobile: {
-		type: "number",
-	},
-	commentLineHeight: {
-		type: "number",
-	},
-	commentLineHeightTablet: {
-		type: "number",
-	},
-	commentLineHeightMobile: {
-		type: "number",
-	},
-	authorFontFamily: {
-		type: "string",
-		default: "Default",
-	},
-	authorFontWeight: {
+	categoriesFontSubset: {
 		type: "string",
 	},
-	authorFontSubset: {
-		type: "string",
-	},
-	authorFontSizeType: {
+	categoriesFontSizeType: {
 		type: "string",
 		default: "px"
 	},
-	authorLineHeightType: {
+	categoriesLineHeightType: {
 		type: "string",
 		default: "em"
 	},
-	authorFontSize: {
+	categoriesFontSize: {
 		type: "number",
 	},
-	authorFontSizeTablet: {
+	categoriesFontSizeTablet: {
 		type: "number",
 	},
-	authorFontSizeMobile: {
+	categoriesFontSizeMobile: {
 		type: "number",
 	},
-	authorLineHeight: {
+	categoriesLineHeight: {
 		type: "number",
 	},
-	authorLineHeightTablet: {
+	categoriesLineHeightTablet: {
 		type: "number",
 	},
-	authorLineHeightMobile: {
+	categoriesLineHeightMobile: {
 		type: "number",
 	},
 }

@@ -853,5 +853,33 @@ if ( ! class_exists( 'UAGB_Block_JS' ) ) {
 			$date_font_subset      = isset( $attr['dateFontSubset'] ) ? $attr['dateFontSubset'] : '';
 			UAGB_Helper::blocks_google_font( $date_load_google_font, $date_font_family, $date_font_weight, $date_font_subset );
 		}
+		/**
+		 * Adds Google fonts for post categories block.
+		 *
+		 * @since x.x.x
+		 * @param array $attr the blocks attr.
+		 */
+		public static function blocks_fse_post_categories_gfont( $attr ) {
+
+			$categories_load_google_font = isset( $attr['categoriesLoadGoogleFonts'] ) ? $attr['categoriesLoadGoogleFonts'] : '';
+			$categories_font_family      = isset( $attr['categoriesFontFamily'] ) ? $attr['categoriesFontFamily'] : '';
+			$categories_font_weight      = isset( $attr['categoriesFontWeight'] ) ? $attr['categoriesFontWeight'] : '';
+			$categories_font_subset      = isset( $attr['categoriesFontSubset'] ) ? $attr['categoriesFontSubset'] : '';
+			UAGB_Helper::blocks_google_font( $categories_load_google_font, $categories_font_family, $categories_font_weight, $categories_font_subset );
+		}
+		/**
+		 * Adds Google fonts for post excerpt block.
+		 *
+		 * @since x.x.x
+		 * @param array $attr the blocks attr.
+		 */
+		public static function blocks_fse_post_excerpt_gfont( $attr ) {
+
+			$excerpt_load_google_font = isset( $attr['excerptLoadGoogleFonts'] ) ? $attr['excerptLoadGoogleFonts'] : '';
+			$excerpt_font_family      = isset( $attr['excerptFontFamily'] ) ? $attr['excerptFontFamily'] : '';
+			$excerpt_font_weight      = isset( $attr['excerptFontWeight'] ) ? $attr['excerptFontWeight'] : '';
+			$excerpt_font_subset      = isset( $attr['excerptFontSubset'] ) ? $attr['excerptFontSubset'] : '';
+			UAGB_Helper::blocks_google_font( $excerpt_load_google_font, $excerpt_font_family, $excerpt_font_weight, $excerpt_font_subset );
+		}
 	}
 }

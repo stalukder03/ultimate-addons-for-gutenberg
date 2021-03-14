@@ -21,7 +21,7 @@ registerBlockType( "uagb/fse-post-excerpt", {
 	category: uagb_blocks_info.category,
 	keywords: [
 		__( "Post Excerpt", 'ultimate-addons-for-gutenberg' ),
-		__( "post", 'ultimate-addons-for-gutenberg' ),
+		__( "Excerpt", 'ultimate-addons-for-gutenberg' ),
 		__( "uag", 'ultimate-addons-for-gutenberg' ),
 	],
 	edit,

@@ -4,8 +4,6 @@
  */
 
 const { __ } = wp.i18n
-
-import BoxShadowControl from "../../components/box-shadow"
 import styling from "./styling"
 import UAGB_Block_Icons from "../../../dist/blocks/uagb-controls/block-icons"
 
@@ -71,50 +69,29 @@ class UAGBPostDateEdit extends Component {
         const { 
 			date,
 			block_id,
-            boxShadowColor,
-            boxShadowHOffset,
-            boxShadowVOffset,
-            boxShadowBlur,
-            boxShadowSpread,
-            boxShadowPosition,
-            borderStyle,
-            borderWidth,
-            borderRadius,
-            borderColor, 
-            topPaddingMobile,
-            bottomPaddingMobile,
-            leftPaddingMobile,
-            rightPaddingMobile,
-            topPaddingTablet,
-            bottomPaddingTablet,
-            leftPaddingTablet,
-            rightPaddingTablet,
-            topPadding,
-            bottomPadding,
-            leftPadding,
-            rightPadding,
-            topMarginMobile,
-            bottomMarginMobile,
-            leftMarginMobile,
-            rightMarginMobile,
-            topMarginTablet,
-            bottomMarginTablet,
-            leftMarginTablet,
-            rightMarginTablet,
-            topMargin,
-            bottomMargin,
-            leftMargin,
-            rightMargin,
-			desktopMarginType,
+			topPaddingMobile,
+			bottomPaddingMobile,
+			leftPaddingMobile,
+			rightPaddingMobile,
+			topPaddingTablet,
+			bottomPaddingTablet,
+			leftPaddingTablet,
+			rightPaddingTablet,
+			topPadding,
+			bottomPadding,
+			leftPadding,
+			rightPadding,
 			desktopPaddingType,
 			tabletPaddingType,
 			mobilePaddingType,
-			tabletMarginType,
-			mobileMarginType,
 			align,
-			dateColor,
 			dateFontFamily,
 			dateFontWeight,
+			dateColor,
+			iconSize,
+			iconColor,
+			iconPosition,
+			iconSpace,
 			dateFontSize,
 			dateFontSizeType,
 			dateFontSizeMobile,
@@ -127,17 +104,10 @@ class UAGBPostDateEdit extends Component {
 		} = attributes
 		
 		const dateFormat = __experimentalGetSettings().formats.date
-
-		const date_data = (
-			date ? (
-			<div className={ `uagb-post-date__wrap uagb-block-${block_id}`}>
-				 <time dateTime={ format( "c", date ) }>
-                    <span className="dashicons-calendar dashicons"></span>
-                    { dateI18n( dateFormat, date ) }
-				</time>
-			</div>
-			): __('No Data Found' , 'ultimate-addons-for-gutenberg')
-		);
+		if ( date === null || date === undefined) {
+			return __('No Data Found', 'ultimate-addons-for-gutenberg')
+		}
+		
 		// Load Google fonts for date.
 		let loaddateGoogleFonts
 		if( loaddateGoogleFonts == true ) {
@@ -166,9 +136,8 @@ class UAGBPostDateEdit extends Component {
 					</BlockControls>
 					<InspectorControls>
 						 <PanelBody title={ __( "Design" , 'ultimate-addons-for-gutenberg') } initialOpen={ false }>
-							 <p className="uagb-setting-label">{ __( "Date" , 'ultimate-addons-for-gutenberg') }</p>
 							 <TypographyControl
-								 label={ __( "Typography", 'ultimate-addons-for-gutenberg' ) }
+								 label={ __( "Date Typography", 'ultimate-addons-for-gutenberg' ) }
 								 attributes = { attributes }
 								 setAttributes = { setAttributes }
 								 loadGoogleFonts = { { value: loaddateGoogleFonts, label:__( "loaddateGoogleFonts", 'ultimate-addons-for-gutenberg') } }
@@ -393,7 +362,17 @@ class UAGBPostDateEdit extends Component {
 							 </TabPanel>
 						 </PanelBody>
 					 </InspectorControls>
-				  	{date_data}
+					 <div className={ `uagb-post-date__wrap uagb-block-${block_id}`}>
+						{(iconPosition === 'before' &&
+						<span className="dashicons-calendar dashicons"></span>
+						)}
+						<time dateTime={ format( "c", date ) }> 
+							{ dateI18n( dateFormat, date ) }
+						</time>
+						{(iconPosition === 'after' &&
+						<span className="dashicons-calendar dashicons"></span>
+						)}
+					</div>
 					{loaddateGoogleFonts}
             </Fragment>
         );

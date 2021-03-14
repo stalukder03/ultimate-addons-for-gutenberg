@@ -14,12 +14,26 @@ const attributes = {
 	postExcerpt: {
 		type: "string",
 	},
-	iconSize:{
-		type: "number",
-		default: 30
-	},
 	excerptColor:{
 		type: "string"
+	},
+	excerptFontFamilyMobile:{
+		type:"string"
+	},
+	excerptFontSubsetMobile:{
+		type:"string"
+	},
+	excerptFontWeightMobile:{
+		type:"string"
+	},
+	excerptFontFamilyTablet:{
+		type:"string"
+	},
+	excerptFontSubsetTablet:{
+		type:"string"
+	},
+	excerptFontWeightTablet:{
+		type:"string"
 	},
 	mobilePaddingType: {
 		type: "string",
@@ -142,41 +156,6 @@ const attributes = {
 	rightMarginMobile: {
 		type: "number",
 		default: ""
-	},
-	borderStyle : {
-		type: "string",
-		default: "none"
-	},
-	borderWidth : {
-		type: "number",
-		default: 1
-	},
-	borderRadius : {
-		type: "number"
-	},
-	borderColor : {
-		type: "string"
-	},
-	boxShadowColor: {
-		type: "string"
-	},
-	boxShadowHOffset : {
-		type: "number",
-		default: 0
-	},
-	boxShadowVOffset : {
-		type: "number",
-		default: 0
-	},
-	boxShadowBlur : {
-		type: "number"
-	},
-	boxShadowSpread : {
-		type: "number"
-	},
-	boxShadowPosition: {
-		type: "string",
-		default: "outset"
 	},
 	excerptFontFamily: {
 		type: "string",

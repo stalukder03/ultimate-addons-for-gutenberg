@@ -133,7 +133,7 @@
 							onChange={ ( value ) => {
 								setAttributes( { align: value } )
 							} }
-							controls={ [ "left", "center", "right", "full" ] }
+							controls={ [ "left", "center", "right" ] }
 						/>
 					 </BlockControls>
 					 <InspectorControls>

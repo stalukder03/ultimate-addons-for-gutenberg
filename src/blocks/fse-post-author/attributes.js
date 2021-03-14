@@ -19,7 +19,7 @@ const attributes = {
 	},
 	iconSize:{
 		type: "number",
-		default: 30
+		default: 18
 	},
 	iconColor:{
 		type:"string"
@@ -29,7 +29,8 @@ const attributes = {
 		default:"before"
 	},
 	iconSpace:{
-		type:"number"
+		type:"number",
+		default: 5
 	},
 	authorColor:{
 		type: "string"

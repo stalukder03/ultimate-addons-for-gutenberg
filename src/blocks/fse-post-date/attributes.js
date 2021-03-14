@@ -16,7 +16,7 @@
 	},
 	iconSize:{
 		type: "number",
-		default: 30
+		default: 18
 	},
 	iconColor:{
 		type:"string"
@@ -26,7 +26,8 @@
 		default:"before"
 	},
 	iconSpace:{
-		type:"number"
+		type:"number",
+		default:5
 	},
 	dateColor:{
 		type: "string"

@@ -12,12 +12,12 @@ export default function save( props ) {
     postExcerpt
     } = attributes
 
-    if( postExcerpt ){
+    if ( postExcerpt === undefined || postExcerpt === null) {
+			return __('No Data Found', 'ultimate-addons-for-gutenberg')
+		}
     
-      return <div className={`uagb-post-excerpt__wrap uagb-block-${ block_id }`}> 
-                <div dangerouslySetInnerHTML={ { __html: postExcerpt } } />
-            </div> 
-    }else{
-        return __('No Data Found', 'ultimate-addons-for-gutenberg')
-    }         
+    return <div className={`uagb-post-excerpt__wrap uagb-block-${ block_id }`}> 
+              <div className="uagb-post-excerpt__text" dangerouslySetInnerHTML={ { __html: postExcerpt } } />
+          </div> 
+             
 }
