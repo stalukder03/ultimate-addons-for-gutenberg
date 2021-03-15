@@ -36,6 +36,22 @@
 		 navigationLineHeight,
 		 navigationLineHeightTablet,
 		 navigationLineHeightMobile,
+		 navMobilePaddingType,
+		navDesktopPaddingType,
+		navTabletPaddingType,
+		navTopPaddingMobile,
+		navBottomPaddingMobile,
+		navLeftPaddingMobile,
+		navRightPaddingMobile,
+		navTopPaddingTablet,
+		navBottomPaddingTablet,
+		navLeftPaddingTablet,
+		navRightPaddingTablet,
+		navTopPadding,
+		navBottomPadding,
+		navLeftPadding,
+		navRightPadding,
+		navigationBgColor
 	 } = props.attributes
  
 	 var selectors = {}
@@ -49,8 +65,15 @@
 			 "padding-top" : generateCSSUnit( topPadding, desktopPaddingType ),
 			 "padding-bottom" : generateCSSUnit( bottomPadding, desktopPaddingType ),
 			 'text-align': align,
+			 "background-color":navigationBgColor
 		 },
-		 ".uagb-fse-navigation__wrap .uagb-fse-navigation__name" : {
+		 " .uagb-menu-list" : {
+			"padding-left" : generateCSSUnit( navLeftPadding, navDesktopPaddingType ),
+			"padding-right" : generateCSSUnit( navRightPadding, navDesktopPaddingType ),
+			"padding-top" : generateCSSUnit( navTopPadding, navDesktopPaddingType ),
+			"padding-bottom" : generateCSSUnit( navBottomPadding, navDesktopPaddingType ),
+		},
+		 ".uagb-fse-navigation__wrap .uagb-menu-list" : {
 			 "color": navigationColor,
 			 "font-family": navigationFontFamily,
 			 "font-weight": navigationFontWeight,
@@ -65,10 +88,16 @@
 			 "padding-left": generateCSSUnit( leftPaddingMobile, mobilePaddingType ),
 			 "padding-right": generateCSSUnit( rightPaddingMobile, mobilePaddingType ),
 		 },
-		 ".uagb-fse-navigation__wrap .uagb-fse-navigation__name": {
+		 ".uagb-fse-navigation__wrap .uagb-menu-list": {
 			 "font-size": generateCSSUnit( navigationFontSizeMobile, navigationFontSizeType ),
 			 "line-height": generateCSSUnit( navigationLineHeightMobile, navigationLineHeightType ),
-		 }
+		 },
+		 " .uagb-menu-list" : {
+			"padding-left" : generateCSSUnit( navLeftPaddingMobile, navMobilePaddingType ),
+			"padding-right" : generateCSSUnit( navRightPaddingMobile, navMobilePaddingType ),
+			"padding-top" : generateCSSUnit( navTopPaddingMobile, navMobilePaddingType ),
+			"padding-bottom" : generateCSSUnit( navBottomPaddingMobile, navMobilePaddingType ),
+		},
 	 }
 	 tablet_selectors = {
 		 ".uagb-fse-navigation__wrap" : {
@@ -77,10 +106,16 @@
 			 "padding-left": generateCSSUnit( leftPaddingTablet, tabletPaddingType ),
 			 "padding-right": generateCSSUnit( rightPaddingTablet, tabletPaddingType )
 		 },
-		 " .uagb-fse-navigation__name": {
+		 " .uagb-menu-list": {
 			 "font-size": generateCSSUnit( navigationFontSizeTablet, navigationFontSizeType ),
 			 "line-height": generateCSSUnit( navigationLineHeightTablet, navigationLineHeightType ),
-		 }
+		 },
+		 " .uagb-menu-list" : {
+			"padding-left" : generateCSSUnit( navLeftPaddingTablet, navTabletPaddingType ),
+			"padding-right" : generateCSSUnit( navRightPaddingTablet, navTabletPaddingType ),
+			"padding-top" : generateCSSUnit( navTopPaddingTablet, navTabletPaddingType ),
+			"padding-bottom" : generateCSSUnit( navBottomPaddingTablet, navTabletPaddingType ),
+		},
 	 }
 	 var id = `.uagb-block-${ props.clientId.substr( 0, 8 ) }`
  

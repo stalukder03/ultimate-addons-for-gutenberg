@@ -21,7 +21,7 @@ export default function save( props ) {
         return __('No Data Found', 'ultimate-addons-for-gutenberg')
     }
     if (  menu_id === undefined || menu_id === null) {
-        return __('Please Select Navigation', 'ultimate-addons-for-gutenberg')
+        return __('Please Select Navigation Menu', 'ultimate-addons-for-gutenberg')
     }
 
     return <div className={`uagb-fse-navigation__wrap uagb-block-${ block_id } uagb-fse-navigation-${layout}`}>

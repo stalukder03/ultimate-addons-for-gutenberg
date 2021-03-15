@@ -42,6 +42,8 @@ class UAGBPostNavigationEdit extends Component {
 	}
 	
 	componentDidMount() {
+		const {menu_items} = this.props
+		this.props.setAttributes({menuitem : menu_items});
 		// Assigning block_id in the attribute.
 		this.props.setAttributes( { block_id: this.props.clientId.substr( 0, 8 ) } )
 		// Pushing Style tag for this block css.
@@ -51,8 +53,7 @@ class UAGBPostNavigationEdit extends Component {
 
 	}
 	componentDidUpdate( prevProps ) {
-		const {menu_items} = this.props
-		this.props.setAttributes({menuitem : menu_items});
+		
 		var element = document.getElementById( "uagb-style-post-category-" + this.props.clientId.substr( 0, 8 ) )
 
 		if( null !== element && undefined !== element ) {
@@ -83,6 +84,7 @@ class UAGBPostNavigationEdit extends Component {
 			navigationFontFamily,
 			navigationFontWeight,
 			navigationColor,
+			navigationBgColor,
 			navigationFontSize,
 			navigationFontSizeType,
 			navigationFontSizeMobile,
@@ -93,7 +95,22 @@ class UAGBPostNavigationEdit extends Component {
 			navigationLineHeightMobile,
 			navigationLineHeightTablet,
 			menu_id,
-			layout
+			layout,
+			navMobilePaddingType,
+			navDesktopPaddingType,
+			navTabletPaddingType,
+			navTopPaddingMobile,
+			navBottomPaddingMobile,
+			navLeftPaddingMobile,
+			navRightPaddingMobile,
+			navTopPaddingTablet,
+			navBottomPaddingTablet,
+			navLeftPaddingTablet,
+			navRightPaddingTablet,
+			navTopPadding,
+			navBottomPadding,
+			navLeftPadding,
+			navRightPadding,
 		} = attributes
 
 		if (  navigation === undefined || navigation === null) {
@@ -101,12 +118,13 @@ class UAGBPostNavigationEdit extends Component {
 		}else if(navigation.length === 0){
 			return __('No Data Found', 'ultimate-addons-for-gutenberg')
 		}
-		var menu_item =[];
-		navigation.map( ( cat, v ) => {
-			menu_item.push(
-				{ value: cat.id, label: cat.name, }
-			)
-		});
+
+		var menu_item =[
+			{ value: "", label: __( "Select Menu",'ultimate-addons-for-gutenberg' ) }
+		];
+		navigation.map( ( item, thisIndex ) => {
+			menu_item.push( { value : item.id , label: item.name } )
+		} )
 		
 		if (  menu_items === undefined || menu_items === null) {
 			return __('No Data Found', 'ultimate-addons-for-gutenberg')
@@ -178,12 +196,185 @@ class UAGBPostNavigationEdit extends Component {
 								 lineHeightMobile = { { value: navigationLineHeightMobile, label:__('navigationLineHeightMobile' , 'ultimate-addons-for-gutenberg') } }
 								 lineHeightTablet= { { value: navigationLineHeightTablet, label:__('navigationLineHeightTablet' , 'ultimate-addons-for-gutenberg') } }
 							 />
-							 <p className="uagb-setting-label">{ __( "Navigation Name Color", 'ultimate-addons-for-gutenberg' ) }</p>
+							 <p className="uagb-setting-label">{ __( "Navigation Text Color", 'ultimate-addons-for-gutenberg' ) }</p>
 							 <ColorPalette
 								 value={ navigationColor }
 								 onChange={ ( value ) => setAttributes( { navigationColor: value } ) }
 								 allowReset
 							 />
+							 <p className="uagb-setting-label">{ __( "Navigation Background Color", 'ultimate-addons-for-gutenberg' ) }</p>
+							 <ColorPalette
+								 value={ navigationBgColor }
+								 onChange={ ( value ) => setAttributes( { navigationBgColor: value } ) }
+								 allowReset
+							 />
+							  <p className="uagb-setting-label">{ __( "Navigation Text Padding", 'ultimate-addons-for-gutenberg' ) }</p>
+								<TabPanel className="uagb-size-type-field-tabs uagb-size-type-field__common-tabs uagb-inline-margin" activeClass="active-tab"
+								 tabs={ [
+									 {
+										 name: "desktop",
+										 title: <Dashicon icon="desktop" />,
+										 className: "uagb-desktop-tab uagb-responsive-tabs",
+									 },
+									 {
+										 name: "tablet",
+										 title: <Dashicon icon="tablet" />,
+										 className: "uagb-tablet-tab uagb-responsive-tabs",
+									 },
+									 {
+										 name: "mobile",
+										 title: <Dashicon icon="smartphone" />,
+										 className: "uagb-mobile-tab uagb-responsive-tabs",
+									 },
+								 ] }>
+								 {
+									 ( tab ) => {
+										 let tabout
+ 
+										 if ( "mobile" === tab.name ) {
+											 tabout = (
+												 <Fragment>
+													 <ButtonGroup className="uagb-size-type-field" aria-label={ __( "Size Type" , 'ultimate-addons-for-gutenberg') }>
+														 <Button key={ "px" } className="uagb-size-btn" isSmall isPrimary={ navMobilePaddingType === "px" } aria-pressed={ navMobilePaddingType === "px" } onClick={ () => setAttributes( { navMobilePaddingType: "px" } ) }>{ "px" }</Button>
+														 <Button key={ "%" } className="uagb-size-btn" isSmall isPrimary={ navMobilePaddingType === "%" } aria-pressed={ navMobilePaddingType === "%" } onClick={ () => setAttributes( { navMobilePaddingType: "%" } ) }>{ "%" }</Button>
+													 </ButtonGroup>
+													 <h2>{ __( "Padding Mobile" , 'ultimate-addons-for-gutenberg') }</h2>
+													 <RangeControl
+														 label={ UAGB_Block_Icons.top_margin }
+														 className={ "uagb-margin-control" }
+														 value={ navTopPaddingMobile }
+														 onChange={ ( value ) => setAttributes( { navTopPaddingMobile: value } ) }
+														 min={ 0 }
+														 max={ ( "%" == navMobilePaddingType ) ? 100 : 2000 }
+														 allowReset
+													 />
+													 <RangeControl
+														 label={ UAGB_Block_Icons.bottom_margin }
+														 className={ "uagb-margin-control" }
+														 value={ navBottomPaddingMobile }
+														 onChange={ ( value ) => setAttributes( { navBottomPaddingMobile: value } ) }
+														 min={ 0 }
+														 max={ ( "%" == navMobilePaddingType ) ? 100 : 2000 }
+														 allowReset
+													 />
+													 <RangeControl
+														 label={ UAGB_Block_Icons.left_margin }
+														 className={ "uagb-margin-control" }
+														 value={ navLeftPaddingMobile }
+														 onChange={ ( value ) => setAttributes( { navLeftPaddingMobile: value } ) }
+														 min={ 0 }
+														 max={ ( "%" == navMobilePaddingType ) ? 100 : 2000 }
+														 allowReset
+													 />
+													 <RangeControl
+														 label={ UAGB_Block_Icons.right_margin }
+														 className={ "uagb-margin-control" }
+														 value={ navRightPaddingMobile }
+														 onChange={ ( value ) => setAttributes( { navRightPaddingMobile: value } ) }
+														 min={ 0 }
+														 max={ ( "%" == navMobilePaddingType ) ? 100 : 2000 }
+														 allowReset
+													 />
+												 </Fragment>
+											 )
+										 } else if ( "tablet" === tab.name ) {
+											 tabout = (
+												 <Fragment>
+													 <ButtonGroup className="uagb-size-type-field" aria-label={ __( "Size Type" , 'ultimate-addons-for-gutenberg') }>
+														 <Button key={ "px" } className="uagb-size-btn" isSmall isPrimary={ navtabletPaddingType === "px" } aria-pressed={ navtabletPaddingType === "px" } onClick={ () => setAttributes( { navtabletPaddingType: "px" } ) }>{ "px" }</Button>
+														 <Button key={ "%" } className="uagb-size-btn" isSmall isPrimary={ navtabletPaddingType === "%" } aria-pressed={ navtabletPaddingType === "%" } onClick={ () => setAttributes( { navtabletPaddingType: "%" } ) }>{ "%" }</Button>
+													 </ButtonGroup>
+													 <h2>{ __( "Padding Tablet", 'ultimate-addons-for-gutenberg' ) }</h2>
+													 <RangeControl
+														 label={ UAGB_Block_Icons.top_margin }
+														 className={ "uagb-margin-control" }
+														 value={ navTopPaddingTablet }
+														 onChange={ ( value ) => setAttributes( { navTopPaddingTablet: value } ) }
+														 min={ 0 }
+														 max={ ( "%" == navTabletPaddingType ) ? 100 : 2000 }
+														 allowReset
+													 />
+													 <RangeControl
+														 label={ UAGB_Block_Icons.bottom_margin }
+														 className={ "uagb-margin-control" }
+														 value={ navBottomPaddingTablet }
+														 onChange={ ( value ) => setAttributes( { navBottomPaddingTablet: value } ) }
+														 min={ 0 }
+														 max={ ( "%" == navTabletPaddingType ) ? 100 : 2000 }
+														 allowReset
+													 />
+													 <RangeControl
+														 label={ UAGB_Block_Icons.left_margin }
+														 className={ "uagb-margin-control" }
+														 value={ navLeftPaddingTablet }
+														 onChange={ ( value ) => setAttributes( { navLeftPaddingTablet: value } ) }
+														 min={ 0 }
+														 max={ ( "%" == navTabletPaddingType ) ? 100 : 2000 }
+														 allowReset
+													 />
+													 <RangeControl
+														 label={ UAGB_Block_Icons.right_margin }
+														 className={ "uagb-margin-control" }
+														 value={ navRightPaddingTablet }
+														 onChange={ ( value ) => setAttributes( { navRightPaddingTablet: value } ) }
+														 min={ 0 }
+														 max={ ( "%" == navTabletPaddingType ) ? 100 : 2000 }
+														 allowReset
+													 />
+												 </Fragment>
+											 )
+										 } else {
+											 tabout = (
+												 <Fragment>
+													 <ButtonGroup className="uagb-size-type-field" aria-label={ __( "Size Type" , 'ultimate-addons-for-gutenberg') }>
+														 <Button key={ "px" } className="uagb-size-btn" isSmall isPrimary={ navDesktopPaddingType === "px" } aria-pressed={ navDesktopPaddingType === "px" } onClick={ () => setAttributes( { navDesktopPaddingType: "px" } ) }>{ "px" }</Button>
+														 <Button key={ "%" } className="uagb-size-btn" isSmall isPrimary={ navDesktopPaddingType === "%" } aria-pressed={ navDesktopPaddingType === "%" } onClick={ () => setAttributes( { navDesktopPaddingType: "%" } ) }>{ "%" }</Button>
+													 </ButtonGroup>
+													 <h2>{ __( "Padding" , 'ultimate-addons-for-gutenberg') }</h2>
+													 <RangeControl
+														 label={ UAGB_Block_Icons.top_margin }
+														 className={ "uagb-margin-control" }
+														 value={ navTopPadding }
+														 onChange={ ( value ) => setAttributes( { navTopPadding: value } ) }
+														 min={ 0 }
+														 max={ ( "%" == navDesktopPaddingType ) ? 100 : 2000 }
+														 allowReset
+													 />
+													 <RangeControl
+														 label={ UAGB_Block_Icons.bottom_margin }
+														 className={ "uagb-margin-control" }
+														 value={ navBottomPadding }
+														 onChange={ ( value ) => setAttributes( { navBottomPadding: value } ) }
+														 min={ 0 }
+														 max={ ( "%" == navDesktopPaddingType ) ? 100 : 2000 }
+														 allowReset
+													 />
+													 <RangeControl
+														 label={ UAGB_Block_Icons.left_margin }
+														 className={ "uagb-margin-control" }
+														 value={ navLeftPadding }
+														 onChange={ ( value ) => setAttributes( { navLeftPadding: value } ) }
+														 min={ 0 }
+														 max={ ( "%" == navDesktopPaddingType ) ? 100 : 2000 }
+														 allowReset
+													 />
+													 <RangeControl
+														 label={ UAGB_Block_Icons.right_margin }
+														 className={ "uagb-margin-control" }
+														 value={ navRightPadding }
+														 onChange={ ( value ) => setAttributes( { navRightPadding: value } ) }
+														 min={ 0 }
+														 max={ ( "%" == navDesktopPaddingType ) ? 100 : 2000 }
+														 allowReset
+													 />
+												 </Fragment>
+											 )
+										 }
+ 
+										 return <div>{ tabout }</div>
+									 }
+								 }
+							 </TabPanel>
 						 </PanelBody>
 						 <PanelBody title={ __( "Spacing" , 'ultimate-addons-for-gutenberg') } initialOpen={ false }>
 							 <TabPanel className="uagb-size-type-field-tabs uagb-size-type-field__common-tabs uagb-inline-margin" activeClass="active-tab"
@@ -356,7 +547,7 @@ class UAGBPostNavigationEdit extends Component {
 					</InspectorControls>	
 					
 					<div className={`uagb-fse-navigation__wrap uagb-block-${ block_id } uagb-fse-navigation-${layout}`}>
-					{menu_id === undefined || menu_id === null ? __('Please Select Navigation', 'ultimate-addons-for-gutenberg')
+					{menu_id === undefined || menu_id === null ? __('Please Select Navigation Menu', 'ultimate-addons-for-gutenberg')
 					: menu_items.map((item, index) => {
 							if(menu_id == item.menus[0]){
 								return <li className="uagb-menu-list"><a href={item.url}>{item.title.raw}</a></li>

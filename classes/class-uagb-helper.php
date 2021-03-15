@@ -560,7 +560,7 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 					$css += UAGB_Block_Helper::get_cf7_styler_css( $blockattr, $block_id );
 					UAGB_Block_JS::blocks_cf7_styler_gfont( $blockattr );
 					break;
-				
+
 				case 'uagb/fse-navigation':
 					$css += UAGB_Block_Helper::get_fse_navigation_css( $blockattr, $block_id );
 					UAGB_Block_JS::blocks_fse_navigation_styler_gfont( $blockattr );

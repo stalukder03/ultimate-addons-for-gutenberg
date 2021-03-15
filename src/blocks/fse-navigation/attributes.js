@@ -8,7 +8,7 @@ const attributes = {
 		type: "string",
 	},
 	menu_id: {
-		type:"number"
+		type:"number",
 	},
 	menuitem:{
 		type:"array"
@@ -176,6 +176,54 @@ const attributes = {
 	},
 	navigationLineHeightMobile: {
 		type: "number",
+	},
+	navigationBgColor:{
+		type:"string"
+	},
+	navMobilePaddingType:{
+		type:"string"
+	},
+	navDesktopPaddingType:{
+		type:"string"
+	},
+	navTabletPaddingType:{
+		type:"string"
+	},
+	navTopPaddingMobile:{
+		type:"number"
+	},
+	navBottomPaddingMobile:{
+		type:"number"
+	},
+	navLeftPaddingMobile:{
+		type:"number"
+	},
+	navRightPaddingMobile:{
+		type:"number"
+	},
+	navTopPaddingTablet:{
+		type:"number"
+	},
+	navBottomPaddingTablet:{
+		type:"number"
+	},
+	navLeftPaddingTablet:{
+		type:"number"
+	},
+	navRightPaddingTablet:{
+		type:"number"
+	},
+	navTopPaddingDesktop:{
+		type:"number"
+	},
+	navBottomPaddingDesktop:{
+		type:"number"
+	},
+	navLeftPaddingDesktop:{
+		type:"number"
+	},
+	navRightPaddingDesktop:{
+		type:"number"
 	},
 }
 
