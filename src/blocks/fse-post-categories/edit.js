@@ -34,7 +34,7 @@ const {
 
 const { select } = wp.data;
 
-class UAGBPostCommentsEdit extends Component {
+class UAGBPostCategoryEdit extends Component {
     
     constructor() {
 		super( ...arguments )
@@ -148,7 +148,7 @@ class UAGBPostCommentsEdit extends Component {
 					<InspectorControls>
 						 <PanelBody title={ __( "Design" , 'ultimate-addons-for-gutenberg') } initialOpen={ false }>
 							 <TypographyControl
-								 label={ __( "Author Typography", 'ultimate-addons-for-gutenberg' ) }
+								 label={ __( "Category Typography", 'ultimate-addons-for-gutenberg' ) }
 								 attributes = { attributes }
 								 setAttributes = { setAttributes }
 								 loadGoogleFonts = { { value: loadcategoriesGoogleFonts, label:__( "loadcategoriesGoogleFonts", 'ultimate-addons-for-gutenberg') } }
@@ -164,7 +164,7 @@ class UAGBPostCommentsEdit extends Component {
 								 lineHeightMobile = { { value: categoriesLineHeightMobile, label:__('categoriesLineHeightMobile' , 'ultimate-addons-for-gutenberg') } }
 								 lineHeightTablet= { { value: categoriesLineHeightTablet, label:__('categoriesLineHeightTablet' , 'ultimate-addons-for-gutenberg') } }
 							 />
-							 <p className="uagb-setting-label">{ __( "Author Name Color", 'ultimate-addons-for-gutenberg' ) }</p>
+							 <p className="uagb-setting-label">{ __( "Category Color", 'ultimate-addons-for-gutenberg' ) }</p>
 							 <ColorPalette
 								 value={ categoriesColor }
 								 onChange={ ( value ) => setAttributes( { categoriesColor: value } ) }
@@ -389,4 +389,4 @@ class UAGBPostCommentsEdit extends Component {
     }
 }
 
-export default  UAGBPostCommentsEdit;
+export default  UAGBPostCategoryEdit;

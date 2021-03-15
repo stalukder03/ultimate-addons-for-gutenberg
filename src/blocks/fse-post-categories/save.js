@@ -3,7 +3,6 @@
  */
 
 const { __ } = wp.i18n
-const { select, useSelect } = wp.data;
 
 export default function save( props ) {
     const { attributes } = props

@@ -134,7 +134,7 @@ class UAGBPostExcerptEdit extends Component {
 					<InspectorControls>
 						 <PanelBody title={ __( "Design" , 'ultimate-addons-for-gutenberg') } initialOpen={ false }>
 							 <TypographyControl
-								 label={ __( "Date Typography", 'ultimate-addons-for-gutenberg' ) }
+								 label={ __( "Excerpt Typography", 'ultimate-addons-for-gutenberg' ) }
 								 attributes = { attributes }
 								 setAttributes = { setAttributes }
 								 loadGoogleFonts = { { value: loadexcerptGoogleFonts, label:__( "loadexcerptGoogleFonts", 'ultimate-addons-for-gutenberg') } }
@@ -156,7 +156,7 @@ class UAGBPostExcerptEdit extends Component {
 								 lineHeightMobile = { { value: excerptLineHeightMobile, label:__('excerptLineHeightMobile' , 'ultimate-addons-for-gutenberg') } }
 								 lineHeightTablet= { { value: excerptLineHeightTablet, label:__('excerptLineHeightTablet' , 'ultimate-addons-for-gutenberg') } }
 							 />
-							 <p className="uagb-setting-label">{ __( "Date Color", 'ultimate-addons-for-gutenberg' ) }</p>
+							 <p className="uagb-setting-label">{ __( "Excerpt Color", 'ultimate-addons-for-gutenberg' ) }</p>
 							 <ColorPalette
 								 value={ excerptColor }
 								 onChange={ ( value ) => setAttributes( { excerptColor: value } ) }
