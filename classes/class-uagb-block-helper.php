@@ -5271,5 +5271,61 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 
 			return UAGB_Helper::generate_all_css( $combined_selectors, '.uagb-block-' . $id );
 		}
+		/**
+		 * Get fse Navigation Block CSS
+		 *
+		 * @since x.x.x
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 * @return array The Widget List.
+		 */
+		public static function get_fse_navigation_css( $attr, $id ) {
+			$defaults = UAGB_Helper::$block_list['uagb/fse-navigation']['attributes'];
+
+			$attr = array_merge( $defaults, (array) $attr );
+
+			$m_selectors = array();
+			$t_selectors = array();
+
+			$selectors = array(
+				'.uagb-fse-navigation__wrap' => array(
+					'padding-left'   => UAGB_Helper::get_css_value( $attr['leftPadding'], $attr['desktopPaddingType'] ),
+					'padding-right'  => UAGB_Helper::get_css_value( $attr['rightPadding'], $attr['desktopPaddingType'] ),
+					'padding-top'    => UAGB_Helper::get_css_value( $attr['topPadding'], $attr['desktopPaddingType'] ),
+					'padding-bottom' => UAGB_Helper::get_css_value( $attr['bottomPadding'], $attr['desktopPaddingType'] ),
+					'text-align'     => $attr['align'],
+				),
+				'.uagb-fse-navigation__wrap .uagb-fse-navigation__name' => array(
+					'color' => $attr['navigationColor'],
+				),
+			);
+			$m_selectors = array(
+				'.uagb-fse-navigation__wrap' => array(
+					'padding-top'    => UAGB_Helper::get_css_value( $attr['topPaddingMobile'], $attr['mobilePaddingType'] ),
+					'padding-bottom' => UAGB_Helper::get_css_value( $attr['bottomPaddingMobile'], $attr['mobilePaddingType'] ),
+					'padding-left'   => UAGB_Helper::get_css_value( $attr['leftPaddingMobile'], $attr['mobilePaddingType'] ),
+					'padding-right'  => UAGB_Helper::get_css_value( $attr['rightPaddingMobile'], $attr['mobilePaddingType'] ),
+				),
+			);
+
+			$t_selectors = array(
+				'.uagb-fse-navigation__wrap' => array(
+					'padding-top'    => UAGB_Helper::get_css_value( $attr['topPaddingTablet'], $attr['tabletPaddingType'] ),
+					'padding-bottom' => UAGB_Helper::get_css_value( $attr['bottomPaddingTablet'], $attr['tabletPaddingType'] ),
+					'padding-left'   => UAGB_Helper::get_css_value( $attr['leftPaddingTablet'], $attr['tabletPaddingType'] ),
+					'padding-right'  => UAGB_Helper::get_css_value( $attr['rightPaddingTablet'], $attr['tabletPaddingType'] ),
+				),
+			);
+
+			$combined_selectors = array(
+				'desktop' => $selectors,
+				'tablet'  => $t_selectors,
+				'mobile'  => $m_selectors,
+			);
+
+			$combined_selectors = UAGB_Helper::get_typography_css( $attr, 'navigation', '.uagb-fse-navigation__name', $combined_selectors );
+
+			return UAGB_Helper::generate_all_css( $combined_selectors, '.uagb-block-' . $id );
+		}
 	}
 }
