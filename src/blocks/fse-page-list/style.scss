@@ -1,0 +1,12 @@
+.uagb-fse-page-list__wrap{
+    .uagb-menu-list{
+        list-style-type: none;
+        margin:20px;
+    }
+}
+.uagb-fse-page-list__wrap.uagb-fse-page-list-horizontal > .uagb-menu-list{
+    display:inline-flex;
+}
+.uagb-fse-page-list__wrap.uagb-fse-page-list-vertical{
+    display:block;
+}

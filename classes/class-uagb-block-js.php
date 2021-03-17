@@ -839,5 +839,21 @@ if ( ! class_exists( 'UAGB_Block_JS' ) ) {
 
 			UAGB_Helper::blocks_google_font( $navigation_load_google_font, $navigation_font_family, $navigation_font_weight, $navigation_font_subset );
 		}
+
+		/**
+		 * Adds Google fonts for FSE Page List block.
+		 *
+		 * @since x.x.x
+		 * @param array $attr the blocks attr.
+		 */
+		public static function blocks_fse_page_list_styler_gfont( $attr ) {
+
+			$pagelist_load_google_font = isset( $attr['pageListLoadGoogleFonts'] ) ? $attr['pageListLoadGoogleFonts'] : '';
+			$pagelist_font_family      = isset( $attr['pageListFontFamily'] ) ? $attr['pageListFontFamily'] : '';
+			$pagelist_font_weight      = isset( $attr['pageListFontWeight'] ) ? $attr['pageListFontWeight'] : '';
+			$pagelist_font_subset      = isset( $attr['pageListFontSubset'] ) ? $attr['pageListFontSubset'] : '';
+
+			UAGB_Helper::blocks_google_font( $pagelist_load_google_font, $pagelist_font_family, $pagelist_font_weight, $pagelist_font_subset );
+		}
 	}
 }

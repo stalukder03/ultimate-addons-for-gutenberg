@@ -5272,7 +5272,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			return UAGB_Helper::generate_all_css( $combined_selectors, '.uagb-block-' . $id );
 		}
 		/**
-		 * Get fse Navigation Block CSS
+		 * Get FSE Navigation Block CSS
 		 *
 		 * @since x.x.x
 		 * @param array  $attr The block attributes.
@@ -5342,6 +5342,85 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			);
 
 			$combined_selectors = UAGB_Helper::get_typography_css( $attr, 'navigation', ' .uagb-menu-list', $combined_selectors );
+
+			return UAGB_Helper::generate_all_css( $combined_selectors, '.uagb-block-' . $id );
+		}
+
+		/**
+		 * Get FSE Page List Block CSS
+		 *
+		 * @since x.x.x
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 * @return array The Widget List.
+		 */
+		public static function get_fse_page_list_css( $attr, $id ) {
+			$defaults = UAGB_Helper::$block_list['uagb/fse-page-list']['attributes'];
+
+			$attr = array_merge( $defaults, (array) $attr );
+
+			$m_selectors = array();
+			$t_selectors = array();
+
+			$selectors = array(
+				'.uagb-fse-page-list__wrap' => array(
+					'padding-left'     => UAGB_Helper::get_css_value( $attr['leftPadding'], $attr['desktopPaddingType'] ),
+					'padding-right'    => UAGB_Helper::get_css_value( $attr['rightPadding'], $attr['desktopPaddingType'] ),
+					'padding-top'      => UAGB_Helper::get_css_value( $attr['topPadding'], $attr['desktopPaddingType'] ),
+					'padding-bottom'   => UAGB_Helper::get_css_value( $attr['bottomPadding'], $attr['desktopPaddingType'] ),
+					'text-align'       => $attr['align'],
+					'background-color' => $attr['pageListBgColor'],
+					'border-radius'    => UAGB_Helper::get_css_value( $attr['borderRadius'], 'px' ),
+					'border-width'     => UAGB_Helper::get_css_value( $attr['borderWidth'], 'px' ),
+					'border-style'     => $attr['borderStyle'],
+					'border-color'     => $attr['borderColor'],
+				),
+				'.uagb-fse-page-list__wrap .uagb-menu-list > a' => array(
+					'color'          => $attr['pageListColor'],
+					'padding-left'   => UAGB_Helper::get_css_value( $attr['navLeftPadding'], $attr['navDesktopPaddingType'] ),
+					'padding-right'  => UAGB_Helper::get_css_value( $attr['navRightPadding'], $attr['navDesktopPaddingType'] ),
+					'padding-top'    => UAGB_Helper::get_css_value( $attr['navTopPadding'], $attr['navDesktopPaddingType'] ),
+					'padding-bottom' => UAGB_Helper::get_css_value( $attr['navBottomPadding'], $attr['navDesktopPaddingType'] ),
+
+				),
+			);
+			$m_selectors = array(
+				'.uagb-fse-page-list__wrap' => array(
+					'padding-top'    => UAGB_Helper::get_css_value( $attr['topPaddingMobile'], $attr['mobilePaddingType'] ),
+					'padding-bottom' => UAGB_Helper::get_css_value( $attr['bottomPaddingMobile'], $attr['mobilePaddingType'] ),
+					'padding-left'   => UAGB_Helper::get_css_value( $attr['leftPaddingMobile'], $attr['mobilePaddingType'] ),
+					'padding-right'  => UAGB_Helper::get_css_value( $attr['rightPaddingMobile'], $attr['mobilePaddingType'] ),
+				),
+				'.uagb-fse-page-list__wrap .uagb-menu-list > a' => array(
+					'padding-left'   => UAGB_Helper::get_css_value( $attr['navMobileLeftPadding'], $attr['navMobilePaddingType'] ),
+					'padding-right'  => UAGB_Helper::get_css_value( $attr['navMobileRightPadding'], $attr['navMobilePaddingType'] ),
+					'padding-top'    => UAGB_Helper::get_css_value( $attr['navMobileTopPadding'], $attr['navMobilePaddingType'] ),
+					'padding-bottom' => UAGB_Helper::get_css_value( $attr['navMobileBottomPadding'], $attr['navMobilePaddingType'] ),
+				),
+			);
+
+			$t_selectors = array(
+				'.uagb-fse-page-list__wrap' => array(
+					'padding-top'    => UAGB_Helper::get_css_value( $attr['topPaddingTablet'], $attr['tabletPaddingType'] ),
+					'padding-bottom' => UAGB_Helper::get_css_value( $attr['bottomPaddingTablet'], $attr['tabletPaddingType'] ),
+					'padding-left'   => UAGB_Helper::get_css_value( $attr['leftPaddingTablet'], $attr['tabletPaddingType'] ),
+					'padding-right'  => UAGB_Helper::get_css_value( $attr['rightPaddingTablet'], $attr['tabletPaddingType'] ),
+				),
+				'.uagb-fse-page-list__wrap .uagb-menu-list > a' => array(
+					'padding-left'   => UAGB_Helper::get_css_value( $attr['navTabletLeftPadding'], $attr['navTabletPaddingType'] ),
+					'padding-right'  => UAGB_Helper::get_css_value( $attr['navTabletRightPadding'], $attr['navTabletPaddingType'] ),
+					'padding-top'    => UAGB_Helper::get_css_value( $attr['navTabletTopPadding'], $attr['navTabletPaddingType'] ),
+					'padding-bottom' => UAGB_Helper::get_css_value( $attr['navTabletBottomPadding'], $attr['navTabletPaddingType'] ),
+				),
+			);
+
+			$combined_selectors = array(
+				'desktop' => $selectors,
+				'tablet'  => $t_selectors,
+				'mobile'  => $m_selectors,
+			);
+
+			$combined_selectors = UAGB_Helper::get_typography_css( $attr, 'pageList', ' .uagb-menu-list > a', $combined_selectors );
 
 			return UAGB_Helper::generate_all_css( $combined_selectors, '.uagb-block-' . $id );
 		}

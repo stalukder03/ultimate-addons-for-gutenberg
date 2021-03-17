@@ -565,6 +565,12 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 					$css += UAGB_Block_Helper::get_fse_navigation_css( $blockattr, $block_id );
 					UAGB_Block_JS::blocks_fse_navigation_styler_gfont( $blockattr );
 					break;
+
+				case 'uagb/fse-page-list':
+					$css += UAGB_Block_Helper::get_fse_page_list_css( $blockattr, $block_id );
+					UAGB_Block_JS::blocks_fse_page_list_styler_gfont( $blockattr );
+					break;
+
 				case 'uagb/marketing-button':
 					$css += UAGB_Block_Helper::get_marketing_btn_css( $blockattr, $block_id );
 					UAGB_Block_JS::blocks_marketing_btn_gfont( $blockattr );

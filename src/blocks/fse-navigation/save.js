@@ -3,7 +3,6 @@
  */
 
 const { __ } = wp.i18n
-const { select, useSelect } = wp.data;
 
 export default function save( props ) {
     const { attributes } = props
@@ -16,8 +15,6 @@ export default function save( props ) {
     } = attributes
 
     if (  menuitem === undefined || menuitem === null) {
-        return __('No Data Found', 'ultimate-addons-for-gutenberg')
-    }else if(menuitem.length === 0){
         return __('No Data Found', 'ultimate-addons-for-gutenberg')
     }
     if (  menu_id === undefined || menu_id === null) {

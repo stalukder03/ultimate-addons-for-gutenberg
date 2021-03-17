@@ -9,6 +9,10 @@ const attributes = {
 	},
 	menu_id: {
 		type:"number",
+		default: 0
+	},
+	navigation:{
+		type:"array"
 	},
 	menuitem:{
 		type:"array"
