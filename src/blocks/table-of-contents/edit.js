@@ -86,6 +86,10 @@ class UAGBTableOfContentsEdit extends Component {
 		const $style = document.createElement( "style" )
 		$style.setAttribute( "id", "uagb-style-toc-" + this.props.clientId.substr( 0, 8 ) )
 		document.head.appendChild( $style )
+
+		console.log(this.props.attributes.heading);
+
+		this.props.setAttributes( { newHeading: this.props.attributes.heading } )
 	}
 
 	render() {
@@ -183,6 +187,7 @@ class UAGBTableOfContentsEdit extends Component {
 			headingLineHeightMobile,
 			mappingHeaders,
 			headingAlignment,
+			newHeading
 		} = attributes
 
 		let loadGFonts
@@ -973,9 +978,9 @@ class UAGBTableOfContentsEdit extends Component {
 							<RichText
 								tagName= { "div" }
 								placeholder={ __( "Table Of Contents",'ultimate-addons-for-gutenberg' ) }
-								value={ heading }
+								value={ newHeading }
 								className = 'uagb-toc__title'
-								onChange = { ( value ) => setAttributes( { heading: value } ) }
+								onChange = { ( value ) => setAttributes( { newHeading: value } ) }
 								multiline={ false }
 								onRemove={ () => props.onReplace( [] ) }
 							/>
