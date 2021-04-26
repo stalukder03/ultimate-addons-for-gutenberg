@@ -1,10 +1,11 @@
+ *
 /**
  * Set inline styles.
  * @param  {object} props - The block object.
  * @return {object} The inline background type CSS.
  */
-import generateCSS from "../../../dist/blocks/uagb-controls/generateCSS"
-import generateCSSUnit from "../../../dist/blocks/uagb-controls/generateCSSUnit"
+import generateCSS from "../../../dist/blocks/uagb-controls/generateCSS";
+import generateCSSUnit from "../../../dist/blocks/uagb-controls/generateCSSUnit";
 
 function styling( props ) {
 
@@ -89,9 +90,9 @@ function styling( props ) {
 		radioCheckBorderRadiusType,
 		fieldBorderRadiusType,
 		buttonBorderRadiusType
-	} = props.attributes
+	} = props.attributes;
 
-	var selectors = {
+	let selectors = {
 		" .wpcf7 .wpcf7-form": {
 			"text-align": align,
 		},
@@ -363,9 +364,9 @@ function styling( props ) {
 			"line-height":  generateCSSUnit( radioCheckLineHeight, radioCheckLineHeightType ),
 			"color": radioCheckLableColor,
 		},		
-	}
+	};
 
-	var tablet_selectors = {		
+	let tablet_selectors = {		
 		" .wpcf7 input:not([type=submit])": {			
 			"font-size": generateCSSUnit( inputFontSizeTablet, inputFontSizeType ),	
 			"line-height": generateCSSUnit( inputLineHeightTablet, inputLineHeightType ),	
@@ -399,9 +400,9 @@ function styling( props ) {
 			"font-size": generateCSSUnit( validationMsgFontSizeTablet, validationMsgFontSizeType ),
 			"line-height": generateCSSUnit( validationMsgLineHeightTablet, validationMsgLineHeightType ),	
 		},
-	}
+	};
 
-	var mobile_selectors = {		
+	let mobile_selectors = {		
 		" .wpcf7 input:not([type=submit])": {			
 			"font-size": generateCSSUnit( inputFontSizeMobile, inputFontSizeType ),	
 			"line-height": generateCSSUnit( inputLineHeightMobile, inputLineHeightType ),		
@@ -434,15 +435,15 @@ function styling( props ) {
 			"font-size": generateCSSUnit( validationMsgFontSizeMobile, validationMsgFontSizeType ),
 			"line-height": generateCSSUnit( validationMsgLineHeightMobile, validationMsgLineHeightType ),	
 		},
-	}	
+	};	
 
-	var styling_css = generateCSS( selectors, `.block-editor-page #wpwrap .uagb-block-${ props.clientId.substr( 0, 8 ) }` )
+	let styling_css = generateCSS( selectors, `.block-editor-page #wpwrap .uagb-block-${ props.clientId.substr( 0, 8 ) }` );
 
-	styling_css += generateCSS( tablet_selectors, `.block-editor-page #wpwrap .uagb-block-${ props.clientId.substr( 0, 8 ) }`, true, "tablet" )
+	styling_css += generateCSS( tablet_selectors, `.block-editor-page #wpwrap .uagb-block-${ props.clientId.substr( 0, 8 ) }`, true, "tablet" );
 
-	styling_css += generateCSS( mobile_selectors, `.block-editor-page #wpwrap .uagb-block-${ props.clientId.substr( 0, 8 ) }`, true, "mobile" )
+	styling_css += generateCSS( mobile_selectors, `.block-editor-page #wpwrap .uagb-block-${ props.clientId.substr( 0, 8 ) }`, true, "mobile" );
 
-	return styling_css
+	return styling_css;
 }
 
-export default styling
+export default styling;

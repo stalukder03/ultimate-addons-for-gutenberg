@@ -1,11 +1,12 @@
+ *
 /**
  * Set inline styles.
  * @param  {object} props - The block object.
  * @return {object} The inline background type CSS.
  */
 
-import generateCSS from "../../../dist/blocks/uagb-controls/generateCSS"
-import generateCSSUnit from "../../../dist/blocks/uagb-controls/generateCSSUnit"
+import generateCSS from "../../../dist/blocks/uagb-controls/generateCSS";
+import generateCSSUnit from "../../../dist/blocks/uagb-controls/generateCSSUnit";
 
 function styling( props ) {
 
@@ -81,21 +82,21 @@ function styling( props ) {
 		quotePaddingType,
 		quotePaddingTablet,
 		quotePaddingMobile,
-	} = props.attributes
+	} = props.attributes;
 
-	var author_space = authorSpace
+	let author_space = authorSpace;
 
 	if( align !== "center" || skinStyle == "border" ){
-		author_space = 0
+		author_space = 0;
 	}
 	//Set align to left for border style
-	var text_align = align
+	let text_align = align;
 
 	if( skinStyle == "border" ){
-		text_align = "left"
+		text_align = "left";
 	}
 
-	var selectors = {
+	let selectors = {
 		" .uagb-blockquote__content.block-editor-rich-text__editable": {
 			"font-size": generateCSSUnit( descFontSize, descFontSizeType ),
 			"font-family": descFontFamily,
@@ -157,7 +158,7 @@ function styling( props ) {
 			"height": generateCSSUnit( authorImageWidth, "px" ),
 			"border-radius": generateCSSUnit( authorImgBorderRadius, "%" )
 		}
-	}
+	};
 	
 	if( enableTweet ){
 		selectors[" a.uagb-blockquote__tweet-button"] = {
@@ -165,14 +166,14 @@ function styling( props ) {
 			"font-family": tweetBtnFontFamily,
 			"font-weight": tweetBtnFontWeight,
 			"line-height": generateCSSUnit( tweetBtnLineHeight, tweetBtnLineHeightType ),			
-		}
+		};
 		selectors[" .uagb-blockquote__tweet-style-link a.uagb-blockquote__tweet-button"] = {
 			"color": tweetLinkColor,		
-		}
+		};
 
 		selectors[" .uagb-blockquote__tweet-style-link a.uagb-blockquote__tweet-button svg"] = {
 			"fill": tweetLinkColor,		
-		}
+		};
 
 		selectors[" .uagb-blockquote__tweet-style-classic a.uagb-blockquote__tweet-button"] = {
 			"color": tweetBtnColor,		
@@ -181,11 +182,11 @@ function styling( props ) {
 			"padding-right": generateCSSUnit( tweetBtnHrPadding, "px" ),
 			"padding-top": generateCSSUnit( tweetBtnVrPadding, "px" ),
 			"padding-bottom": generateCSSUnit( tweetBtnVrPadding, "px" ),	
-		}
+		};
 
 		selectors[" .uagb-blockquote__tweet-style-classic a.uagb-blockquote__tweet-button svg"] = {
 			"fill": tweetBtnColor,		
-		}
+		};
 
 		selectors[" .uagb-blockquote__tweet-style-bubble a.uagb-blockquote__tweet-button"] = {
 			"color": tweetBtnColor,		
@@ -194,59 +195,59 @@ function styling( props ) {
 			"padding-right": generateCSSUnit( tweetBtnHrPadding, "px" ),
 			"padding-top": generateCSSUnit( tweetBtnVrPadding, "px" ),
 			"padding-bottom": generateCSSUnit( tweetBtnVrPadding, "px" ),	
-		}	
+		};	
 		selectors[" .uagb-blockquote__tweet-style-bubble a.uagb-blockquote__tweet-button svg"] = {
 			"fill": tweetBtnColor,		
-		}	
+		};	
 
 		selectors[" .uagb-blockquote__tweet-style-bubble a.uagb-blockquote__tweet-button:before"] = {
 			"border-right-color": tweetBtnBgColor,		
-		}	
+		};	
 
 		selectors[" a.uagb-blockquote__tweet-button svg"] = {
 			"width": generateCSSUnit( tweetBtnFontSize, tweetBtnFontSizeType ),
 			"height": generateCSSUnit( tweetBtnFontSize, tweetBtnFontSizeType ),
-		}
+		};
 
 		selectors[" .uagb-blockquote__tweet-icon_text a.uagb-blockquote__tweet-button svg"] = {
 			"margin-right": generateCSSUnit( tweetIconSpacing, "px" ),
-		}	
+		};	
 
 		// Hover CSS
 		selectors[" .uagb-blockquote__tweet-style-link a.uagb-blockquote__tweet-button:hover"] = {
 			"color": tweetBtnHoverColor,		
-		}
+		};
 
 		selectors[" .uagb-blockquote__tweet-style-link a.uagb-blockquote__tweet-button:hover svg"] = {
 			"fill": tweetBtnHoverColor,		
-		}
+		};
 
 		selectors[" .uagb-blockquote__tweet-style-classic a.uagb-blockquote__tweet-button:hover"] = {
 			"color": tweetBtnHoverColor,		
 			"background-color": tweetBtnBgHoverColor,	
-		}
+		};
 
 		selectors[" .uagb-blockquote__tweet-style-classic a.uagb-blockquote__tweet-button:hover svg"] = {
 			"fill": tweetBtnHoverColor,		
 			"background-color": tweetBtnBgHoverColor,	
-		}
+		};
 
 		selectors[" .uagb-blockquote__tweet-style-bubble a.uagb-blockquote__tweet-button:hover "] = {
 			"color": tweetBtnHoverColor,		
 			"background-color": tweetBtnBgHoverColor,	
-		}
+		};
 
 		selectors[" .uagb-blockquote__tweet-style-bubble a.uagb-blockquote__tweet-button:hover svg"] = {
 			"fill": tweetBtnHoverColor,		
 			"background-color": tweetBtnBgHoverColor,	
-		}
+		};
 
 		selectors[" .uagb-blockquote__tweet-style-bubble a.uagb-blockquote__tweet-button:hover:before"] = {
 			"border-right-color": tweetBtnBgHoverColor,	
-		}
+		};
 	}
 
-	var tablet_selectors = {
+	let tablet_selectors = {
 		" .uagb-blockquote__content.block-editor-rich-text__editable": {
 			"font-size": generateCSSUnit( descFontSizeTablet, descFontSizeType ),
 			"line-height": generateCSSUnit( descLineHeightTablet, descLineHeightType ),
@@ -270,9 +271,9 @@ function styling( props ) {
 			"width"         : generateCSSUnit( quoteSizeTablet, quoteSizeType ),
 			"height"        : generateCSSUnit( quoteSizeTablet, quoteSizeType ),
 		},		
-	}
+	};
 
-	var mobile_selectors = {
+	let mobile_selectors = {
 		" .uagb-blockquote__content.block-editor-rich-text__editable": {
 			"font-size": generateCSSUnit( descFontSizeMobile, descFontSizeType ),
 			"line-height": generateCSSUnit( descLineHeightMobile, descLineHeightType ),
@@ -296,17 +297,17 @@ function styling( props ) {
 			"width"         : generateCSSUnit( quoteSizeMobile, quoteSizeType ),
 			"height"        : generateCSSUnit( quoteSizeMobile, quoteSizeType ),
 		},		
-	}
+	};
 
-	var base_selector = `.block-editor-page #wpwrap .uagb-block-${ props.clientId.substr( 0, 8 ) }`
+	let base_selector = `.block-editor-page #wpwrap .uagb-block-${ props.clientId.substr( 0, 8 ) }`;
 
-	var styling_css = generateCSS( selectors, base_selector )
+	let styling_css = generateCSS( selectors, base_selector );
 
-	styling_css += generateCSS( tablet_selectors, base_selector, true, "tablet" )
+	styling_css += generateCSS( tablet_selectors, base_selector, true, "tablet" );
 
-	styling_css += generateCSS( mobile_selectors, base_selector, true, "mobile" )
+	styling_css += generateCSS( mobile_selectors, base_selector, true, "mobile" );
 
-	return styling_css
+	return styling_css;
 }
 
-export default styling
+export default styling;

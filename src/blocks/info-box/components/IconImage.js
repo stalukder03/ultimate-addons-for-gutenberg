@@ -1,29 +1,29 @@
 const {
 	RichText,
-} = wp.blockEditor
+} = wp.blockEditor;
 
-const { __ } = wp.i18n
+const { __ } = wp.i18n;
 
 class InfoBoxIconImage extends React.Component {
 
 	render() {
 
-		const { attributes } = this.props 
+		const { attributes } = this.props; 
 
-		let url_chk = ""
+		let url_chk = "";
 		if( typeof attributes.iconImage !== "undefined" && attributes.iconImage !== null && attributes.iconImage !=="" ){
-			url_chk = attributes.iconImage.url
+			url_chk = attributes.iconImage.url;
 		}
 		
-		let url = ""
+		let url = "";
 		if( url_chk !== "" ){
-			let size = attributes.iconImage.sizes
-			let imageSize = attributes.imageSize
+			const size = attributes.iconImage.sizes;
+			const imageSize = attributes.imageSize;
 
 			if ( typeof size !== "undefined" && typeof size[imageSize] !== "undefined" ) {
-			  url = size[imageSize].url 
+			  url = size[imageSize].url; 
 			}else{
-			  url = url_chk 
+			  url = url_chk; 
 			}
 
 			return (
@@ -31,19 +31,19 @@ class InfoBoxIconImage extends React.Component {
 					<div className="uagb-ifb-image">
 						<div className="uagb-ifb-image-content">
 							<img
-								className ="uagb-ifb-img-src"
-								src = { url }                        
-								alt = { attributes.iconImage.alt }                    
+								className="uagb-ifb-img-src"
+								src={ url }                        
+								alt={ attributes.iconImage.alt }                    
 							/>
 						</div>
 					</div>
 				</div>                      
-			)
-		}else{
-			return null
-		}       
+			);
+		}
+		return null;
+		       
 		
 	}
 }
 
-export default InfoBoxIconImage
+export default InfoBoxIconImage;

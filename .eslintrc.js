@@ -16,11 +16,13 @@ module.exports = {
 	},
 	plugins: [ 'react' ],
 	rules: {
+		"object-curly-spacing": ["error", "always", { "objectsInObjects": false }],
+		"space-in-parens": ["error", "always"],
 		"react/react-in-jsx-scope": "off",
 		indent: [ 'error', 'tab' ],
 		"linebreak-style": ["error", "unix"],
 		quotes: [ 'error', 'double' ],
 		semi: [ 'error', 'always' ],
 	},
-	"globals": { "wp": true },
+	"globals": { "wp": true, "uagb_blocks_info": true },
 };

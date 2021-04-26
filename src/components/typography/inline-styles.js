@@ -1,3 +1,4 @@
+ *
 /**
  * Set inline styles.
  * @param {object} props - The block object.
@@ -5,7 +6,7 @@
  */
 function TypographyStyles( props ) {
 	return {
-	}
+	};
 }
 
-export default TypographyStyles
+export default TypographyStyles;
