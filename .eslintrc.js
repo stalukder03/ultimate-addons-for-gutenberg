@@ -19,11 +19,16 @@ module.exports = {
 		"object-curly-spacing": ["error", "always", { "objectsInObjects": false }],
 		"space-in-parens": ["error", "always"],
 		"keyword-spacing": ["error", { "before": true, "after": true }],
+		"react/display-name": "off",
+		"react/prop-types": "off",
 		"react/react-in-jsx-scope": "off",
 		indent: [ 'error', 'tab' ],
 		"linebreak-style": ["error", "unix"],
 		quotes: [ 'error', 'double' ],
 		semi: [ 'error', 'always' ],
 	},
-	"globals": { "wp": true, "uagb_blocks_info": true },
+	"globals": {
+		"wp": true,
+		"uagb_blocks_info": true
+	},
 };
