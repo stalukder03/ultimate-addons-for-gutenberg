@@ -11,7 +11,7 @@ const {
 } = wp.blockEditor;
 
 const deprecated = [
-	{	
+	{
 		attributes,
 		save( props ) {
 			const { className } = props;
@@ -26,7 +26,7 @@ const deprecated = [
 				showIcon,
 				iconPosition
 			} = props.attributes;
-			
+
 			return (
 				<div className={ classnames(
 					className,
@@ -44,7 +44,7 @@ const deprecated = [
 									<span className="uagb-tabs__icon">{ renderSVG( icon ) }</span> ) }
 									<RichText.Content
 										tagName={ "span" }
-										value={ header }					
+										value={ header }
 									/>
 									{ ( showIcon && ( iconPosition === "right" || iconPosition === "bottom" ) &&
 										 <span className="uagb-tabs__icon">{ renderSVG( icon ) }</span> ) }

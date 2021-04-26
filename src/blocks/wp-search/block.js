@@ -8,6 +8,7 @@ import save from "./save";
 import edit from "./edit";
 import attributes from "./attributes";
 import blockIcons from "../../../dist/blocks/uagb-controls/block-icons";
+import deprecated from "./deprecated";
 
 const { __ } = wp.i18n;
 
@@ -31,5 +32,6 @@ registerBlockType( "uagb/wp-search", {
 	attributes,
 	edit,
 	save,
+	deprecated,
 	example: {},
 } );
