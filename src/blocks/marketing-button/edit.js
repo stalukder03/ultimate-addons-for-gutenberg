@@ -81,7 +81,7 @@ class UAGBMarketingButtonEdit extends Component {
 	componentDidUpdate( prevProps ) {
 		const element = document.getElementById( "uagb-style-marketing-btn-" + this.props.clientId.substr( 0, 8 ) );
 
-		if( null !== element && undefined !== element ) {
+		if ( null !== element && undefined !== element ) {
 			element.innerHTML = styling( this.props );
 		}
 	}
@@ -176,7 +176,7 @@ class UAGBMarketingButtonEdit extends Component {
 
 		// Load Google fonts for heading.
 		let loadTitleGoogleFonts;
-		if( loadTitleGoogleFonts == true ) {
+		if ( loadTitleGoogleFonts == true ) {
 
 			const titleconfig = {
 				google: {
@@ -192,7 +192,7 @@ class UAGBMarketingButtonEdit extends Component {
 
 		// Load Google fonts for prefix.
 		let loadPrefixGoogleFonts;
-		if( loadPrefixGoogleFonts == true ) {
+		if ( loadPrefixGoogleFonts == true ) {
 
 			const prefixconfig = {
 				google: {
@@ -416,7 +416,7 @@ class UAGBMarketingButtonEdit extends Component {
 							{
 								( tabName ) => {
 									let tabout_color;
-									if( "normal" === tabName.name ) {
+									if ( "normal" === tabName.name ) {
 										tabout_color = <Fragment>
 											<p className="uagb-setting-label">{ __( "Title Color", "ultimate-addons-for-gutenberg" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={ { backgroundColor: titleColor } } ></span></span></p>
 											<ColorPalette

@@ -24,7 +24,7 @@ const UserConditionOptions = ( props ) => {
  
 	const user_role = uagb_blocks_info.user_role;
 
-	return(
+	return (
 		<Fragment>
 			<SelectControl
 				label={ __( "Display Conditions" ) }

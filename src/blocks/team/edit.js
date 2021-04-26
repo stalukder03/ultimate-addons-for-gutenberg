@@ -73,7 +73,7 @@ class UAGBTeam extends Component {
 		  	const p = { "value" : name, "label": name };
 		  	size_arr.push( p );
 		} );
-		return( size_arr );
+		return ( size_arr );
 	}
 
 	onSelectImage( media ) {
@@ -178,7 +178,7 @@ class UAGBTeam extends Component {
 			stack
 		} = attributes;
 
-		if( image && image.sizes ){
+		if ( image && image.sizes ){
 			imageSizeOptions = this.getImageSize( image.sizes );
 		}
 
@@ -191,7 +191,7 @@ class UAGBTeam extends Component {
 		let loadPrefixGoogleFonts;
 		let loadDescGoogleFonts;
 
-		if( titleLoadGoogleFonts == true ) {
+		if ( titleLoadGoogleFonts == true ) {
 			
 			const tconfig = {
 				google: {
@@ -205,7 +205,7 @@ class UAGBTeam extends Component {
 			);
 		}
 
-		if( prefixLoadGoogleFonts == true ) {
+		if ( prefixLoadGoogleFonts == true ) {
 
 			const pconfig = {
 				google: {
@@ -218,7 +218,7 @@ class UAGBTeam extends Component {
 				</WebfontLoader>
 			);
 		}
-		if( descLoadGoogleFonts == true ) {
+		if ( descLoadGoogleFonts == true ) {
 
 			const dconfig = {
 				google: {
@@ -786,7 +786,7 @@ class UAGBTeam extends Component {
 	componentDidUpdate( prevProps, prevState ) {
 		const element = document.getElementById( "uagb-team-style-" + this.props.clientId.substr( 0, 8 ) );
 
-		if( null !== element && undefined !== element ) {
+		if ( null !== element && undefined !== element ) {
 			element.innerHTML = styling( this.props );
 		}
 	}

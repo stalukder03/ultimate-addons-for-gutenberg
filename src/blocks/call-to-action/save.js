@@ -96,7 +96,7 @@ export default function save( props ) {
 	);
 
 	let target ="";
-	if( ctaTarget ){
+	if ( ctaTarget ){
 		target ="_blank";
 	}
 

@@ -141,21 +141,21 @@ function CtaStyle( props ) {
 		},
 	};
 
-	if( textAlign === "left" && ctaPosition === "right" ){
+	if ( textAlign === "left" && ctaPosition === "right" ){
 		selectors[" .uagb-cta__left-right-wrap .uagb-cta__content"] = {
 			"margin-left" : generateCSSUnit( ctaLeftSpace, "px" ),
 			"margin-right" : "0",
 		};
 	}
 
-	if( textAlign === "right" && ctaPosition === "right" ){
+	if ( textAlign === "right" && ctaPosition === "right" ){
 		selectors[" .uagb-cta__left-right-wrap .uagb-cta__content"] = {
 			"margin-right" : generateCSSUnit( ctaRightSpace, "px" ),
 			"margin-left" : "0",
 		};
 	}
 
-	if( ctaPosition === "right" && ( ctaType === "text" || ctaType === "button" ) ){
+	if ( ctaPosition === "right" && ( ctaType === "text" || ctaType === "button" ) ){
 		selectors[" .uagb-cta__content-right .uagb-cta__left-right-wrap .uagb-cta__content"] = {
 			"width" : generateCSSUnit( contentWidth, "%" ),
 		};

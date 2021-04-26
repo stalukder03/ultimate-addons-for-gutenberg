@@ -106,7 +106,7 @@ class UAGBcontentTimelineChild extends Component {
 		const post_date = t_date;
 
 			
-		if( timelinAlignment == "center" ){
+		if ( timelinAlignment == "center" ){
 			display_inner_date = true;
 		} 
 

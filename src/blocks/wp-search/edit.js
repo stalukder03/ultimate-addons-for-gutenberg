@@ -70,7 +70,7 @@ class UAGBWpSearchEdit extends Component {
         
 		const element = document.getElementById( "uagb-style-wp-search-" + this.props.clientId.substr( 0, 8 ) );
 
-		if( null != element && "undefined" !== typeof element ) {
+		if ( null != element && "undefined" !== typeof element ) {
 			element.innerHTML = styling( this.props );
 		}
 
@@ -146,7 +146,7 @@ class UAGBWpSearchEdit extends Component {
         
 		let loadInputGoogleFonts;
 
-		if( inputloadGoogleFonts == true ) {
+		if ( inputloadGoogleFonts == true ) {
 			
 			const qconfig = {
 				google: {
@@ -161,7 +161,7 @@ class UAGBWpSearchEdit extends Component {
 		}
 		let loadButtonGoogleFonts;
 
-		if( buttonloadGoogleFonts == true ) {
+		if ( buttonloadGoogleFonts == true ) {
 			
 			const qconfig = {
 				google: {
@@ -395,7 +395,7 @@ class UAGBWpSearchEdit extends Component {
 		};
 		const buttonSettings = () => {
 
-			if( "input-button" === layout ) {
+			if ( "input-button" === layout ) {
 
 				return (
 					<PanelBody

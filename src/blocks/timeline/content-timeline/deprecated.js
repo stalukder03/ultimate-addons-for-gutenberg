@@ -62,7 +62,7 @@ const deprecated = [
 									{
 										tm_content.map( ( post,index ) => {
 											const second_index = "uagb-"+index;
-											if( timelinAlignment == "center" ){
+											if ( timelinAlignment == "center" ){
 												display_inner_date = true;
 												content_align_class = AlignClass( props.attributes, index ); // Get classname for layout alignment
 												day_align_class     = DayAlignClass( props.attributes, index ); //
@@ -187,7 +187,7 @@ const deprecated = [
 									{
 										tm_content.map( ( post,index ) => {
 											const second_index = "uagb-"+index;
-											if( timelinAlignment == "center" ){
+											if ( timelinAlignment == "center" ){
 												display_inner_date = true;
 												content_align_class = AlignClass( props.attributes, index ); // Get classname for layout alignment
 												day_align_class     = DayAlignClass( props.attributes, index ); //
@@ -195,7 +195,7 @@ const deprecated = [
 											const Tag = headingTag;
 											const icon_class = "uagb-timeline__icon-new out-view-uagb-timeline__icon "+icon;
 											let post_date = dateI18n( dateFormat, t_date[index].title );
-											if( post_date === "Invalid date" ){
+											if ( post_date === "Invalid date" ){
 												post_date = t_date[index].title;
 											}
 											return (
@@ -319,7 +319,7 @@ const deprecated = [
 											}
 
 											const second_index = "uagb-"+index;
-											if( timelinAlignment == "center" ){
+											if ( timelinAlignment == "center" ){
 												display_inner_date = true;
 												content_align_class = AlignClass( props.attributes, index ); // Get classname for layout alignment
 												day_align_class     = DayAlignClass( props.attributes, index ); //
@@ -327,7 +327,7 @@ const deprecated = [
 											const Tag = headingTag;
 											const icon_class = "uagb-timeline__icon-new out-view-uagb-timeline__icon ";
 											let post_date = dateI18n( dateFormat, t_date[index].title );
-											if( post_date === "Invalid date" ){
+											if ( post_date === "Invalid date" ){
 												post_date = t_date[index].title;
 											}
 											return (
@@ -450,7 +450,7 @@ const deprecated = [
 											}
 		
 											const second_index = "uagb-"+index;
-											if( timelinAlignment == "center" ){
+											if ( timelinAlignment == "center" ){
 												display_inner_date = true;
 												content_align_class = AlignClass( props.attributes, index ); // Get classname for layout alignment
 												day_align_class     = DayAlignClass( props.attributes, index ); //
@@ -461,7 +461,7 @@ const deprecated = [
 											if ( "custom" != dateFormat ) {
 		
 												post_date = dateI18n( dateFormat, t_date[index].title );
-												if( post_date === "Invalid date" ){
+												if ( post_date === "Invalid date" ){
 													post_date = t_date[index].title;
 												}
 											}

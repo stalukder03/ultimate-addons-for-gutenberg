@@ -71,7 +71,7 @@ class Blog extends React.Component {
 			dots,
 			rtl : false,
 			afterChange: current  => {
-				if( equalHeight ){
+				if ( equalHeight ){
 					uagb_carousel_height( block_id );
 				}
 		    },

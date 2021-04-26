@@ -64,9 +64,9 @@ function RestMenuStyle( props ) {
 	let mobile_selectors = {};
 
 	let align = headingAlign;
-	if( "left" === align ){
+	if ( "left" === align ){
     	align = "flex-start";
-	}else if( "right" === align ){
+	} else if ( "right" === align ){
     	align = "flex-end";
 	}
 

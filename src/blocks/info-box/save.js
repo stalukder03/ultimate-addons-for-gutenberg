@@ -43,9 +43,9 @@ export default function save( props ) {
 	// Get icon/Image components.
 	let is_image = "";
 
-	if( source_type === "icon" && icon !=="" ) {
+	if ( source_type === "icon" && icon !=="" ) {
 		is_image = <Icon attributes={ props.attributes } />;
-	}else{
+	} else {
 		is_image = <InfoBoxIconImage attributes={ props.attributes } />;
 	}
 
@@ -54,7 +54,7 @@ export default function save( props ) {
 	const seperator_html = <InfoBoxSeparator attributes={ props.attributes } />;
 	let show_seperator = true;
 
-	if( seperatorPosition == "after_icon" && ( iconimgPosition == "above-title" || iconimgPosition == "below-title" ) ){
+	if ( seperatorPosition == "after_icon" && ( iconimgPosition == "above-title" || iconimgPosition == "below-title" ) ){
 		show_seperator = false;
 		icon_image_html = (
 			<Fragment>
@@ -64,11 +64,11 @@ export default function save( props ) {
 		);
 	}
 
-	if( seperatorPosition == "after_icon" && ( iconimgPosition !== "above-title" || iconimgPosition !== "below-title" ) ){
+	if ( seperatorPosition == "after_icon" && ( iconimgPosition !== "above-title" || iconimgPosition !== "below-title" ) ){
 		seperator_position = "after_title";
 	}
 
-	if( iconimgPosition == "below-title" &&  seperatorPosition == "after_title" ){
+	if ( iconimgPosition == "below-title" &&  seperatorPosition == "after_title" ){
 		show_seperator = false;
 		icon_image_html = (
 			<Fragment>
@@ -154,7 +154,7 @@ export default function save( props ) {
 	);
 
 	let target ="_self";
-	if( ctaTarget ){
+	if ( ctaTarget ){
 		target ="_blank";
 	}
 

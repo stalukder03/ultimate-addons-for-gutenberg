@@ -45,7 +45,7 @@ class UAGBRestaurantMenuChild extends Component {
 		let image_url = null;
 		if ( ! media || ! media.url ) {
 			image_url = null;
-		}else{
+		} else {
 			image_url = media;
 		}
 
@@ -66,10 +66,10 @@ class UAGBRestaurantMenuChild extends Component {
 	getImageName( image ){
 
 		let image_title = __( "Select Image" );
-		if( image ){
-			if( image.url == null || image.url == "" ){
+		if ( image ){
+			if ( image.url == null || image.url == "" ){
 				image_title = __( "Select Image" );
-			}else{
+			} else {
 				image_title = __( "Replace Image" );
 			}
 		}

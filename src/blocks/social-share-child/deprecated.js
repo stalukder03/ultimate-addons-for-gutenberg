@@ -27,7 +27,7 @@ const deprecated =[
 
 			let url = "";
 
-			if( null != current_url ) {
+			if ( null != current_url ) {
 				url = links[type];
 			}
 

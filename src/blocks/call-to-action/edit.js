@@ -139,7 +139,7 @@ class UAGBCallToAction extends Component {
 		let loadTitleGoogleFonts;
 		let loadDescGoogleFonts;
 
-		if( ctaLoadGoogleFonts == true ) {
+		if ( ctaLoadGoogleFonts == true ) {
 					
 			const ctaconfig = {
 				google: {
@@ -153,7 +153,7 @@ class UAGBCallToAction extends Component {
 			);
 		}
 
-		if( titleLoadGoogleFonts == true ) {
+		if ( titleLoadGoogleFonts == true ) {
 					
 			const titleconfig = {
 				google: {
@@ -167,7 +167,7 @@ class UAGBCallToAction extends Component {
 			);
 		}
 		
-		if( descLoadGoogleFonts == true ) {
+		if ( descLoadGoogleFonts == true ) {
 					
 			const descconfig = {
 				google: {
@@ -362,9 +362,9 @@ class UAGBCallToAction extends Component {
 					{
 						( tabName ) => {
 							let cta_text_tab;
-							if( "normal" === tabName.name ) {
+							if ( "normal" === tabName.name ) {
 								cta_text_tab = cta_txt_color;
-							}else {
+							} else {
 								cta_text_tab = cta_txt_hover_color;
 							}
 							return <div>{ cta_text_tab }</div>;
@@ -391,9 +391,9 @@ class UAGBCallToAction extends Component {
 						{
 							( tabName ) => {
 								let tabout;
-								if( "normal" === tabName.name ) {
+								if ( "normal" === tabName.name ) {
 									tabout = ctaNormalSettings;
-								}else {
+								} else {
 									tabout = ctaHoverSettings;
 								}
 								return <div>{ tabout }</div>;
@@ -741,7 +741,7 @@ class UAGBCallToAction extends Component {
 	componentDidUpdate( prevProps ) {
 		const element = document.getElementById( "uagb-cta-style-" + this.props.clientId.substr( 0, 8 ) );
 
-		if( null !== element && undefined !== element ) {
+		if ( null !== element && undefined !== element ) {
 			element.innerHTML = CtaStyle( this.props );
 		}
 	}

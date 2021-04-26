@@ -25,20 +25,20 @@ class TableOfContents extends Component {
 
 				const innerBlock = header.innerBlocks;
 
-				if( innerBlock.length > 0 ) {
+				if ( innerBlock.length > 0 ) {
 					innerBlock.forEach( function( element ) {
-						if( element.innerBlocks.length > 0 ) {
+						if ( element.innerBlocks.length > 0 ) {
 							getData( element.innerBlocks, a );
 						} else {
 							a.push( element.attributes );
 						}
 					} );
 				} else {
-					if( header.name === "core/heading" ) {
+					if ( header.name === "core/heading" ) {
 						a.push( header.attributes );
 					}
 
-					if( header.name === "uagb/advanced-heading" ) {
+					if ( header.name === "uagb/advanced-heading" ) {
 						a.push( header.attributes );
 					}
 				}
@@ -52,7 +52,7 @@ class TableOfContents extends Component {
 			const a = [];
 			const headers = getData( select( "core/block-editor" ).getBlocks(), a );
 
-			if( typeof headers !== "undefined" ) {
+			if ( typeof headers !== "undefined" ) {
 				headers.forEach( ( heading, key ) => {
 					const contentAnchor = ( typeof heading.content === "undefined" ||
 						heading.content === "" ) ? "headingId" : "anchor";

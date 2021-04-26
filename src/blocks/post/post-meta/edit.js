@@ -10,10 +10,10 @@ export const PostMeta = ( props ) =>  {
 	const cat = post.categories;	
 	const categoriesName = [];
 
-	if( list !== undefined && cat !== undefined ){
-		for( let j=0;j<list.length;j++ ){
-			for( let i=0;i<cat.length;i++ ){
-				if( list[j].id === cat[i] ){
+	if ( list !== undefined && cat !== undefined ){
+		for ( let j=0;j<list.length;j++ ){
+			for ( let i=0;i<cat.length;i++ ){
+				if ( list[j].id === cat[i] ){
 					categoriesName.push( list[j].name );
 				}
 			}

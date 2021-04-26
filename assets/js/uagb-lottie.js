@@ -22,7 +22,7 @@
 
 			animation.setDirection( reversedir );
             
-			if( "hover" === attr.playOn ){
+			if ( "hover" === attr.playOn ){
 				document.getElementsByClassName( id )[0].addEventListener( "mouseenter", function() {
 					animation.play();
 				} );

@@ -38,7 +38,7 @@ class TypographyControl extends Component {
 		let control = true;
 		let label = __( "Hide Advanced","ultimate-addons-for-gutenberg" );
 
-		if( this.state !== null && this.state.showAdvancedControls === true ) {
+		if ( this.state !== null && this.state.showAdvancedControls === true ) {
 			control = false;
 			label = __( "Advanced","ultimate-addons-for-gutenberg" );
 		}
@@ -94,7 +94,7 @@ class TypographyControl extends Component {
 			disableAdvancedOptions = false
 		} = this.props;
 
-		if( true !== disableFontFamily ) {
+		if ( true !== disableFontFamily ) {
 			fontFamily = (
 				<FontFamilyControl
 					{ ...this.props }
@@ -102,7 +102,7 @@ class TypographyControl extends Component {
 			);
 		}
 
-		if( true !== disableLineHeight ) {
+		if ( true !== disableLineHeight ) {
 			fontWeight = (
 				<RangeTypographyControl
 					type={ this.props.lineHeightType }
@@ -122,7 +122,7 @@ class TypographyControl extends Component {
 			);
 		}
 
-		if( true !== disableFontSize ) {
+		if ( true !== disableFontSize ) {
 			fontSize = (
 				<RangeTypographyControl
 					type={ this.props.fontSizeType }
@@ -142,7 +142,7 @@ class TypographyControl extends Component {
 			);
 		}
 
-		if( true !== disableFontFamily && true !== disableFontSize ) {
+		if ( true !== disableFontFamily && true !== disableFontSize ) {
 			fontAdvancedControls =  (
 				<Button
 					className="uagb-size-btn uagb-typography-control-btn"
@@ -171,7 +171,7 @@ class TypographyControl extends Component {
 		}
 
 
-		if( this.state !== null && this.state.showAdvancedControls === true ) {
+		if ( this.state !== null && this.state.showAdvancedControls === true ) {
 
 			showAdvancedFontControls = (
 				<div className="uagb-typography-advanced">
@@ -182,7 +182,7 @@ class TypographyControl extends Component {
 			);
 		}
 
-		if( true !== disableFontFamily && true !== disableFontSize ) {
+		if ( true !== disableFontFamily && true !== disableFontSize ) {
 			fontTypoAdvancedControls =  (
 				<div className="uag-typography-option-actions">
 					<span>{ this.props.label }</span>

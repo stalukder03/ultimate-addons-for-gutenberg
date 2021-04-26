@@ -103,7 +103,7 @@ class UAGBRatingEdit extends Component {
 
 		const element = document.getElementById( "uagb-ratings-style-" + this.props.clientId.substr( 0, 8 ) );
 
-		if( null !== element && undefined !== element ) {
+		if ( null !== element && undefined !== element ) {
 			element.innerHTML = styling( this.props );
 		}
 
@@ -161,7 +161,7 @@ class UAGBRatingEdit extends Component {
 		  	const p = { "value" : name, "label": name };
 		  	size_arr.push( p );
 		} );
-		return( size_arr );
+		return ( size_arr );
 	}
 
 	render() {
@@ -288,25 +288,25 @@ class UAGBRatingEdit extends Component {
 			} );
 		}
 
-		if( mainimage && mainimage.sizes ){
+		if ( mainimage && mainimage.sizes ){
 			imageSizeOptions = this.getImageSize( mainimage.sizes );
 		}
 
 		let url_chk = "";
 		let title = "";
-		if( "undefined" !== typeof this.props.attributes.mainimage  && null !== this.props.attributes.mainimage && "" !== this.props.attributes.mainimage ){
+		if ( "undefined" !== typeof this.props.attributes.mainimage  && null !== this.props.attributes.mainimage && "" !== this.props.attributes.mainimage ){
 			url_chk = this.props.attributes.mainimage.url;
 			title = this.props.attributes.mainimage.title;
 		}
 			
 		let url = "";
-		if( "" !== url_chk ){
+		if ( "" !== url_chk ){
 			const size = this.props.attributes.mainimage.sizes;
 			const imageSize = this.props.attributes.imgSize;
 
 			if ( "undefined" !== typeof size && "undefined" !== typeof size[imageSize] ) {
 				  url = size[imageSize].url; 
-			}else{
+			} else {
 				  url = url_chk; 
 			}
 		}
@@ -323,7 +323,7 @@ class UAGBRatingEdit extends Component {
 		let loadHeadingGoogleFonts;
 		let loadSubHeadingGoogleFonts;
 
-		if( headLoadGoogleFonts == true ) {
+		if ( headLoadGoogleFonts == true ) {
 			
 			const hconfig = {
 				google: {
@@ -337,7 +337,7 @@ class UAGBRatingEdit extends Component {
 			);
 		}
 
-		if( subHeadLoadGoogleFonts == true ) {
+		if ( subHeadLoadGoogleFonts == true ) {
 
 			const sconfig = {
 				google: {
@@ -351,7 +351,7 @@ class UAGBRatingEdit extends Component {
 			);
 		}	
 		
-		if( contentLoadGoogleFonts == true ) {
+		if ( contentLoadGoogleFonts == true ) {
 			const cconfig = {
 				google: {
 					families: [ contentFontFamily + ( contentFontWeight ? ":" + contentFontWeight : "" ) ],
@@ -976,9 +976,9 @@ export default compose(
 		const newAverage = ownProps.attributes.parts.map( ( i ) => i.value ).reduce( ( total, v ) => total + v ) / ownProps.attributes.parts.length;
 		let itemtype = "";
 				
-		if( ["Product", "SoftwareApplication", "Book"].includes( ownProps.attributes.itemType ) ){
+		if ( ["Product", "SoftwareApplication", "Book"].includes( ownProps.attributes.itemType ) ){
 			itemtype = ( ( ownProps.attributes.itemSubtype != "None" && ownProps.attributes.itemSubtype != "" ) ? ownProps.attributes.itemSubtype : ownProps.attributes.itemType );
-		}else{
+		} else {
 			itemtype = ownProps.attributes.itemType;
 		}
 
@@ -1074,7 +1074,7 @@ export default compose(
 			json_data.itemReviewed.image = ownProps.attributes.mainimage.url;
 		}
 	
-		if( ownProps.attributes.itemType == "Product" ){
+		if ( ownProps.attributes.itemType == "Product" ){
 			json_data.itemReviewed[ownProps.attributes.identifierType] = ownProps.attributes.identifier;
 			json_data.itemReviewed.offers = {
 				"@type": ownProps.attributes.offerType,

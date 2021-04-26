@@ -66,7 +66,7 @@ function styling( props ) {
 
 	const alignment = ( align == "left" ) ? "flex-start" : ( ( align == "right" ) ? "flex-end" : "center" );
 
-	if( align !== "full" ) { 
+	if ( align !== "full" ) { 
 		selectors[" .uagb-buttons__wrap"] = {
 			"justify-content" : alignment,
 			"-webkit-box-pack": alignment,

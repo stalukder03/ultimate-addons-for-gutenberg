@@ -72,7 +72,7 @@ class UAGBtestimonial extends Component {
 		let imag_url = null;
 		if ( ! media || ! media.url ) {
 			imag_url = null;
-		}else{
+		} else {
 			imag_url = media;
 		}
 
@@ -119,10 +119,10 @@ class UAGBtestimonial extends Component {
 		const { test_block } = this.props.attributes;
 
 		let image_name = __( "Select Image","ultimate-addons-for-gutenberg" );
-		if( image ){
-			if( image.url == null || image.url == "" ){
+		if ( image ){
+			if ( image.url == null || image.url == "" ){
 				image_name = __( "Select Image","ultimate-addons-for-gutenberg" );
-			}else{
+			} else {
 				image_name = __( "Replace Image","ultimate-addons-for-gutenberg" );
 			}
 		}
@@ -274,7 +274,7 @@ class UAGBtestimonial extends Component {
 		let loadCompanyGoogleFonts;
 		let loadDescGoogleFonts;
 
-		if( nameLoadGoogleFonts == true ) {
+		if ( nameLoadGoogleFonts == true ) {
 
 			const nameconfig = {
 				google: {
@@ -288,7 +288,7 @@ class UAGBtestimonial extends Component {
 			);
 		}
 
-		if( companyLoadGoogleFonts == true ) {
+		if ( companyLoadGoogleFonts == true ) {
 
 			const companyconfig = {
 				google: {
@@ -302,7 +302,7 @@ class UAGBtestimonial extends Component {
 			);
 		}
 
-		if( descLoadGoogleFonts == true ) {
+		if ( descLoadGoogleFonts == true ) {
 
 			const descconfig = {
 				google: {
@@ -690,7 +690,7 @@ class UAGBtestimonial extends Component {
 		// Set testinomial image panel
 		const tmControls = ( index ) => {
 			let image_val = null;
-			if( test_block[index] && typeof test_block[index] !== "undefined" ){
+			if ( test_block[index] && typeof test_block[index] !== "undefined" ){
 				image_val = test_block[index].image;
 			}
 			return (
@@ -803,9 +803,9 @@ class UAGBtestimonial extends Component {
 		let cnt = 0;
 		test_block.map( ( item, thisIndex ) => {
 			const image_arr = test_block[thisIndex];
-			if( image_arr && typeof image_arr !== "undefined" ){
+			if ( image_arr && typeof image_arr !== "undefined" ){
 	            const image = image_arr.image;
-	            if( typeof image !== "undefined" && image !== null && image !=="" ){
+	            if ( typeof image !== "undefined" && image !== null && image !=="" ){
 	            	cnt++;
 	            }
 	        }
@@ -833,10 +833,10 @@ class UAGBtestimonial extends Component {
 									} );
 								} ); }
 								setAttributes( { test_block: cloneTest_block } );
-							}else{
+							} else {
 								const incAmount = Math.abs( newCount - cloneTest_block.length );
 								const data_new = cloneTest_block;
-				            for( let i= 0; i < incAmount; i++ ){
+				            for ( let i= 0; i < incAmount; i++ ){
 				                data_new.pop();
 				            }
 				            setAttributes( { test_block:data_new } );
@@ -1038,7 +1038,7 @@ class UAGBtestimonial extends Component {
 	componentDidUpdate( prevProps, prevState ) {
 		const element = document.getElementById( "uagb-testinomial-style-" + this.props.clientId.substr( 0, 8 ) );
 
-		if( null !== element && undefined !== element ) {
+		if ( null !== element && undefined !== element ) {
 			element.innerHTML = TestimonialStyle( this.props );
 		}
 	}

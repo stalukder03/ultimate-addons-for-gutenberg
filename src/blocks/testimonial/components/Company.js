@@ -21,13 +21,13 @@ class Company extends React.Component {
 
 		const test_arr = attributes.test_block[index_value];
 		let company = "";
-		if( test_arr && typeof test_arr !== "undefined" ){
+		if ( test_arr && typeof test_arr !== "undefined" ){
 			company = test_arr.company;			
 		}
 
 		const data_copy = [...attributes.test_block];
 		
-		if( setAttributes !== "not_set" ){
+		if ( setAttributes !== "not_set" ){
 			return (
 				<RichText
 					tagName='div'

@@ -67,7 +67,7 @@ function styling( props ) {
 
 	let inner_width = "100%";
 
-	if( typeof contentWidth !== "undefined" ) {
+	if ( typeof contentWidth !== "undefined" ) {
 		if ( "boxed" != contentWidth ) {
 			if ( typeof innerWidth !== "undefined" ) {
 				inner_width = generateCSSUnit( innerWidth, innerWidthType );
@@ -102,13 +102,13 @@ function styling( props ) {
 			"opacity" : 1,
 			"background-color": backgroundVideoColor
 		};
-	} else if( "image" == backgroundType ) {
-		if( "color" == overlayType ){
+	} else if ( "image" == backgroundType ) {
+		if ( "color" == overlayType ){
 			selectors[" > .uagb-section__overlay"] = {
 				"opacity" : ( typeof backgroundOpacity !== "undefined" ) ? backgroundOpacity/100 : 0,
 				"background-color": backgroundImageColor
 			};
-		}else{
+		} else {
 			selectors[" > .uagb-section__overlay"]["background-color"] = "transparent";
 			selectors[" > .uagb-section__overlay"].opacity = ( typeof backgroundOpacity !== "undefined" ) ? backgroundOpacity/100 : "";
 
@@ -120,7 +120,7 @@ function styling( props ) {
 				selectors[" > .uagb-section__overlay"]["background-image"] = `radial-gradient( at ${ gradientOverlayPosition }, ${ gradientOverlayColor1 } ${ gradientOverlayLocation1 }%, ${ gradientOverlayColor2 } ${ gradientOverlayLocation2 }%)`;
 			}
 		}
-	} else if( "color" == backgroundType ) {
+	} else if ( "color" == backgroundType ) {
 		selectors[" > .uagb-section__overlay"] = {
 			"opacity" : ( typeof backgroundOpacity !== "undefined" ) ? backgroundOpacity/100 : "",
 			"background-color" : backgroundColor
@@ -129,9 +129,9 @@ function styling( props ) {
 		selectors[" > .uagb-section__overlay"]["background-color"] = "transparent";
 		selectors[" > .uagb-section__overlay"].opacity = ( typeof backgroundOpacity !== "undefined" ) ? backgroundOpacity/100 : "";
 
-		if( gradientValue ){
+		if ( gradientValue ){
 			selectors[" > .uagb-section__overlay"]["background-image"] = gradientValue;
-		}else if ( "linear" === gradientType ) {
+		} else if ( "linear" === gradientType ) {
 
 			selectors[" > .uagb-section__overlay"]["background-image"] = `linear-gradient(${ gradientAngle }deg, ${ gradientColor1 } ${ gradientLocation1 }%, ${ gradientColor2 } ${ gradientLocation2 }%)`;
 		} else {

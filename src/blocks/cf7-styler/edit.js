@@ -213,7 +213,7 @@ class UAGBCF7 extends Component {
 		let loadValidationGoogleFonts;
 		let loadMsgGoogleFonts;
 
-		if( labelLoadGoogleFonts == true ) {
+		if ( labelLoadGoogleFonts == true ) {
 					
 			const labelconfig = {
 				google: {
@@ -227,7 +227,7 @@ class UAGBCF7 extends Component {
 			);
 		}
 
-		if( inputLoadGoogleFonts == true ) {
+		if ( inputLoadGoogleFonts == true ) {
 					
 			const inputconfig = {
 				google: {
@@ -241,7 +241,7 @@ class UAGBCF7 extends Component {
 			);
 		}
 
-		if( buttonLoadGoogleFonts == true ) {
+		if ( buttonLoadGoogleFonts == true ) {
 					
 			const buttonconfig = {
 				google: {
@@ -255,7 +255,7 @@ class UAGBCF7 extends Component {
 			);
 		}
 
-		if( radioCheckLoadGoogleFonts == true ) {
+		if ( radioCheckLoadGoogleFonts == true ) {
 					
 			const radioCheckconfig = {
 				google: {
@@ -269,7 +269,7 @@ class UAGBCF7 extends Component {
 			);
 		}
 
-		if( validationMsgLoadGoogleFonts == true ) {
+		if ( validationMsgLoadGoogleFonts == true ) {
 					
 			const validationMsgconfig = {
 				google: {
@@ -283,7 +283,7 @@ class UAGBCF7 extends Component {
 			);
 		}
 
-		if( msgLoadGoogleFonts == true ) {
+		if ( msgLoadGoogleFonts == true ) {
 					
 			const msgconfig = {
 				google: {
@@ -629,9 +629,9 @@ class UAGBCF7 extends Component {
 					{
 						( tabName ) => {
 							let tabout;
-							if( "normal" === tabName.name ) {
+							if ( "normal" === tabName.name ) {
 								tabout = buttonNormalSettings;
-							}else {
+							} else {
 								tabout = buttonHoverSettings;
 							}
 							return <div>{ tabout }</div>;
@@ -1067,7 +1067,7 @@ class UAGBCF7 extends Component {
 		} );
 		const element = document.getElementById( "uagb-cf7-styler-" + this.props.clientId.substr( 0, 8 ) );
 
-		if( null !== element && undefined !== element ) {
+		if ( null !== element && undefined !== element ) {
 			element.innerHTML = styling( this.props );
 		}
 	}

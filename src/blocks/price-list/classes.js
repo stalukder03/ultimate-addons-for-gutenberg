@@ -8,30 +8,30 @@ function PositionClasses( attributes ) {
 	let imge_cnt = 0;
 	const image = attributes.image;
 	
-	if( typeof attributes.rest_menu_item_arr !== "undefined" ){
+	if ( typeof attributes.rest_menu_item_arr !== "undefined" ){
 		attributes.rest_menu_item_arr.map( ( item, thisIndex ) => {
 			const image_arr = item.image;
-			if( image_arr && typeof image_arr !== "undefined" ){
+			if ( image_arr && typeof image_arr !== "undefined" ){
 				imge_cnt++;
 			}
 		} );
 	}
 		
-	if( typeof image !== "undefined" && image !== null && image !=="" ){
+	if ( typeof image !== "undefined" && image !== null && image !=="" ){
 		imge_cnt++;
 	}
 		
-	if( imge_cnt > 0 ){
+	if ( imge_cnt > 0 ){
 		iconimgStyle_class += "uagb-rm__image-position-"+attributes.imagePosition+ " ";
 	}
 	
 	iconimgStyle_class += " uagb-rm__align-"+attributes.headingAlign+ " ";
 	
-	if( "left" == attributes.imagePosition  || "right" == attributes.imagePosition ){
+	if ( "left" == attributes.imagePosition  || "right" == attributes.imagePosition ){
 		iconimgStyle_class += "uagb-rm__image-aligned-"+attributes.imageAlignment+ " ";
-		if( attributes.stack !== "none" ){
+		if ( attributes.stack !== "none" ){
 			iconimgStyle_class +="uagb-rm-stacked-"+attributes.stack+ " ";
-			if( attributes.imagePosition === "right" ){
+			if ( attributes.imagePosition === "right" ){
 				iconimgStyle_class += "uagb-rm-reverse-order-"+attributes.stack+ " ";
 			}
 		}

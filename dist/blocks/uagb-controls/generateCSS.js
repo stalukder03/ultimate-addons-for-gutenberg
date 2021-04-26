@@ -3,16 +3,16 @@ function generateCSS ( selectors, id, isResponsive = false, responsiveType = "" 
 	let gen_styling_css  = "";
 
 
-	for( const i in selectors ) {
+	for ( const i in selectors ) {
 
 		const sel = selectors[i];
 		let css = "";
 
-		for( const j in sel ) {
+		for ( const j in sel ) {
 			
 			let checkString = true;
 			
-			if( typeof sel[j] === "string" && sel[j].length === 0 ) {
+			if ( typeof sel[j] === "string" && sel[j].length === 0 ) {
 				checkString = false;
 			}
 
@@ -20,7 +20,7 @@ function generateCSS ( selectors, id, isResponsive = false, responsiveType = "" 
 				continue;
 			}
 
-			if( typeof sel[j] !== "undefined" && checkString ) {
+			if ( typeof sel[j] !== "undefined" && checkString ) {
 				if ( "font-family" === j ) {
 					css += j + ": " + "'" + sel[j] + "'" + ";";
 				} else {
@@ -29,7 +29,7 @@ function generateCSS ( selectors, id, isResponsive = false, responsiveType = "" 
 			}
 		}
 
-		if( css.length !== 0 ) {
+		if ( css.length !== 0 ) {
 			gen_styling_css += id;
 			gen_styling_css += i + "{";
 			gen_styling_css += css;

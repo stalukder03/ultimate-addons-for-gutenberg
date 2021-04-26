@@ -100,7 +100,7 @@ class UAGBPostCarousel extends Component {
 	componentDidUpdate() {
 
 		const equalHeight =  this.props.attributes.equalHeight;
-		if( equalHeight ) {
+		if ( equalHeight ) {
 			uagb_carousel_height( this.props.clientId.substr( 0, 8 ) );
 		} else {
 			uagb_carousel_unset_height( this.props.clientId.substr( 0, 8 ) );
@@ -109,7 +109,7 @@ class UAGBPostCarousel extends Component {
 		const element = document.getElementById( "uagb-post-carousel-style-" + this.props.clientId.substr( 0, 8 ) );
 		let css = "";
 
-		if( null !== element && undefined !== element ) {
+		if ( null !== element && undefined !== element ) {
 			css = styling( this.props );
 			css += ".uagb-block-" + this.props.clientId.substr( 0, 8 ) + ".uagb-post-grid ul.slick-dots li.slick-active button:before, .uagb-block-" + this.props.clientId.substr( 0, 8 ) + ".uagb-slick-carousel ul.slick-dots li button:before { color: " + this.props.attributes.arrowColor + "; }";
 			element.innerHTML = css;
@@ -408,7 +408,7 @@ class UAGBPostCarousel extends Component {
 		let loadExcerptGoogleFonts;
 		let loadCtaGoogleFonts;
 
-		if( titleLoadGoogleFonts == true ) {
+		if ( titleLoadGoogleFonts == true ) {
 
 			const titleconfig = {
 				google: {
@@ -422,7 +422,7 @@ class UAGBPostCarousel extends Component {
 			);
 		}
 
-		if( metaLoadGoogleFonts == true ) {
+		if ( metaLoadGoogleFonts == true ) {
 
 			const metaconfig = {
 				google: {
@@ -436,7 +436,7 @@ class UAGBPostCarousel extends Component {
 			);
 		}
 
-		if( excerptLoadGoogleFonts == true ) {
+		if ( excerptLoadGoogleFonts == true ) {
 
 			const excerptconfig = {
 				google: {
@@ -450,7 +450,7 @@ class UAGBPostCarousel extends Component {
 			);
 		}
 
-		if( ctaLoadGoogleFonts == true ) {
+		if ( ctaLoadGoogleFonts == true ) {
 
 			const ctaconfig = {
 				google: {
@@ -1178,9 +1178,9 @@ export default compose(
 		const temp = parseInt( categories );
 		category.push( temp );
 		const catlenght = categoriesList.length;
-		for( let i=0;i<catlenght;i++ ){
-			if( categoriesList[i].id == temp ){
-				if( categoriesList[i].child.length !== 0 ){
+		for ( let i=0;i<catlenght;i++ ){
+			if ( categoriesList[i].id == temp ){
+				if ( categoriesList[i].child.length !== 0 ){
 					categoriesList[i].child.forEach( element => {
 						category.push( element );
 					} );

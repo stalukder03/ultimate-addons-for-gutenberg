@@ -68,7 +68,7 @@ class UAGBMultiButtonEdit extends Component {
 
 		const element = document.getElementById( "uagb-style-buttons-" + this.props.clientId.substr( 0, 8 ) );
 
-		if( null !== element && undefined !== element ) {
+		if ( null !== element && undefined !== element ) {
 			element.innerHTML = styling( this.props );
 		}
 	}
@@ -91,7 +91,7 @@ class UAGBMultiButtonEdit extends Component {
 		} = attributes;
 
 		let loadBtnGoogleFonts;
-		if( loadGoogleFonts == true ) {
+		if ( loadGoogleFonts == true ) {
 
 			const btnconfig = {
 				google: {

@@ -9,7 +9,7 @@
 	const parseTocSlug = function( slug ) {
 
 		// If not have the element then return false!
-		if( ! slug ) {
+		if ( ! slug ) {
 			return slug;
 		}
 
@@ -171,17 +171,17 @@
 					
 						if ( openLevel > level ) {
 							const arrayOpenLevel = new Array( openLevel - level + 1 );
-							if( 2 == ( arrayOpenLevel ).length ){
+							if ( 2 == ( arrayOpenLevel ).length ){
 								headerTable += ( arrayOpenLevel ).join( "<ul class='uagb-toc__list'>" );
-							} else{
+							} else {
 								headerTable += "<ul class='uagb-toc__list'>";
 							}
 
 						} else if ( openLevel < level ) {
 							const arrayLevel = new Array( level - openLevel + 1 );
-							if( 0 !== ( arrayLevel ).length ){
+							if ( 0 !== ( arrayLevel ).length ){
 								headerTable += ( arrayLevel ).join( "</ul>" );
-							} else{
+							} else {
 								headerTable += "</ul>";
 							}
 						
@@ -196,7 +196,7 @@
 
 				$( `.uagb-block-${blockId} .uagb-toc__list-wrap` ).prepend( headerTable );
 
-			} else{
+			} else {
 
 				headerTable +=  attr.emptyHeadingTeaxt;
 

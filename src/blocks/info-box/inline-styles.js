@@ -229,7 +229,7 @@ function InfoBoxStyle( props ) {
 		};
 	}
 
-	if( iconimgPosition == "above-title" ||  iconimgPosition == "below-title" ){
+	if ( iconimgPosition == "above-title" ||  iconimgPosition == "below-title" ){
 		selectors[" .uagb-infobox__content-wrap"] = {
 			"text-align" : headingAlign,
 		};

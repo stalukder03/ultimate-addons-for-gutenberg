@@ -68,7 +68,7 @@ class UAGBButtonsChild extends Component {
 	componentDidUpdate( prevProps ) {
 		const element = document.getElementById( "uagb-style-button-" + this.props.clientId.substr( 0, 8 ) );
 
-		if( null !== element && undefined !== element ) {
+		if ( null !== element && undefined !== element ) {
 			element.innerHTML = styling( this.props );
 		}
 	}
@@ -217,7 +217,7 @@ class UAGBButtonsChild extends Component {
 								{
 									( tabName ) => {
 										let btn_color_tab;
-										if( "normal" === tabName.name ) {
+										if ( "normal" === tabName.name ) {
 											btn_color_tab = <Fragment>
 												<p className="uagb-setting-label">{ __( "Text Color", "ultimate-addons-for-gutenberg" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={ { backgroundColor: color } } ></span></span></p>
 												<ColorPalette
@@ -238,7 +238,7 @@ class UAGBButtonsChild extends Component {
 													allowReset
 												/>
 											</Fragment>;
-										}else {
+										} else {
 											btn_color_tab = <Fragment>
 												<p className="uagb-setting-label">{ __( "Text Hover Color", "ultimate-addons-for-gutenberg" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={ { backgroundColor: hColor } } ></span></span></p>
 												<ColorPalette

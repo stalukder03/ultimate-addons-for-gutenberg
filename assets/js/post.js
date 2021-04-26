@@ -17,7 +17,7 @@
 					blog_post = $( this ).find( ".uagb-post__inner-wrap" ),
 					blog_post_height = blog_post.outerHeight();
 
-				if( max_height < blog_post_height ) {
+				if ( max_height < blog_post_height ) {
 					max_height = blog_post_height;
 					post_active_height = max_height + 15;
 				}
@@ -86,13 +86,13 @@
 
 				$( window ).scroll( function () {
                     
-					if( ( $( window ).scrollTop() + windowHeight50 ) >= ( $scope.find( ".uagb-post__items:last" ).offset().top ) ) {
+					if ( ( $( window ).scrollTop() + windowHeight50 ) >= ( $scope.find( ".uagb-post__items:last" ).offset().top ) ) {
         
 						const $args = {
 							"page_number" : count
 						};
 						total = $scope.data( "total" );
-						if( true == loadStatus ) {
+						if ( true == loadStatus ) {
                             
 							if ( count <= total ) {
 								loader.show();
@@ -115,7 +115,7 @@
 						"page_number" : count
 					};
 					$scope.find( ".uagb-post__load-more-wrap" ).hide();
-					if( true == loadStatus ) {
+					if ( true == loadStatus ) {
                         
 						if ( count <= total ) {
 							loader.show();

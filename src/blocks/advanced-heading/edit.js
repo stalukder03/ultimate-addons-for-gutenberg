@@ -69,7 +69,7 @@ class UAGBAdvancedHeading extends Component {
 	componentDidUpdate( prevProps, prevState ) {
 		const element = document.getElementById( "uagb-adv-heading-style-" + this.props.clientId.substr( 0, 8 ) );
 
-		if( null !== element && undefined !== element ) {
+		if ( null !== element && undefined !== element ) {
 			element.innerHTML = styling( this.props );
 		}
 	}
@@ -171,7 +171,7 @@ class UAGBAdvancedHeading extends Component {
 		let loadHeadingGoogleFonts;
 		let loadSubHeadingGoogleFonts;
 
-		if( headLoadGoogleFonts == true ) {
+		if ( headLoadGoogleFonts == true ) {
 			
 			const hconfig = {
 				google: {
@@ -185,7 +185,7 @@ class UAGBAdvancedHeading extends Component {
 			);
 		}
 
-		if( subHeadLoadGoogleFonts == true ) {
+		if ( subHeadLoadGoogleFonts == true ) {
 
 			const sconfig = {
 				google: {

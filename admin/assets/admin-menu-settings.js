@@ -33,7 +33,7 @@
 			 * @param opt
 			 */
 			remove( opt ) {
-			    if( jQuery.inArray( opt, requests ) > -1 )
+			    if ( jQuery.inArray( opt, requests ) > -1 )
 			        requests.splice( $.inArray( opt, requests ), 1 );
 			},
 
@@ -46,11 +46,11 @@
 			    let self = this,
 			        oriSuc;
 
-			    if( requests.length ) {
+			    if ( requests.length ) {
 			        oriSuc = requests[0].complete;
 
 			        requests[0].complete = function() {
-			             if( typeof( oriSuc ) === "function" ) oriSuc();
+			             if ( typeof( oriSuc ) === "function" ) oriSuc();
 			             requests.shift();
 			             self.run.apply( self, [] );
 			        };
@@ -318,7 +318,7 @@
 				} )
 					.done( function ( result ) {
 					
-						if( result.success ) {
+						if ( result.success ) {
 							$button.text( uagb.activated_text ).removeClass( "updating-message" );
 
 							setTimeout( function() {

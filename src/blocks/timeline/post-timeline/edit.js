@@ -254,7 +254,7 @@ class UAGBTimeline extends Component {
 		let loadAuthorGoogleFonts;
 		let loadCtaGoogleFonts;
 
-		if( headLoadGoogleFonts == true ) {
+		if ( headLoadGoogleFonts == true ) {
 
 			const headconfig = {
 				google: {
@@ -268,7 +268,7 @@ class UAGBTimeline extends Component {
 			);
 		}
 
-		if( subHeadLoadGoogleFonts == true ) {
+		if ( subHeadLoadGoogleFonts == true ) {
 
 			const subHeadconfig = {
 				google: {
@@ -282,7 +282,7 @@ class UAGBTimeline extends Component {
 			);
 		}
 
-		if( dateLoadGoogleFonts == true ) {
+		if ( dateLoadGoogleFonts == true ) {
 
 			const dateconfig = {
 				google: {
@@ -296,7 +296,7 @@ class UAGBTimeline extends Component {
 			);
 		}
 
-		if( authorLoadGoogleFonts == true ) {
+		if ( authorLoadGoogleFonts == true ) {
 
 			const authorconfig = {
 				google: {
@@ -310,7 +310,7 @@ class UAGBTimeline extends Component {
 			);
 		}
 
-		if( ctaLoadGoogleFonts == true ) {
+		if ( ctaLoadGoogleFonts == true ) {
 
 			const ctaconfig = {
 				google: {
@@ -404,9 +404,9 @@ class UAGBTimeline extends Component {
 					{
 						( tabName ) => {
 							let tabout;
-							if( "focus" === tabName.name ) {
+							if ( "focus" === tabName.name ) {
 								tabout = iconFocusSettings;
-							}else {
+							} else {
 								tabout = iconColorSettings;
 							}
 							return <div>{ tabout }</div>;
@@ -920,7 +920,7 @@ class UAGBTimeline extends Component {
 
 		let cta_enable = "";
 
-		if( displayPostLink ){
+		if ( displayPostLink ){
 			cta_enable = "uagb_timeline__cta-enable";
 		}
 
@@ -1001,7 +1001,7 @@ class UAGBTimeline extends Component {
 		const line_inner          = timeline.find( ".uagb-timeline__line__inner" );
 		const line_outer          = timeline.find( ".uagb-timeline__line" );
 		const $icon_class         = timeline.find( ".uagb-timeline__marker" );
-		if( $icon_class.length > 0 ){
+		if ( $icon_class.length > 0 ){
 			const $card_last          = timeline.find( ".uagb-timeline__field:last-child" );
 			const timeline_start_icon = $icon_class.first().position();
 			const timeline_end_icon   = $icon_class.last().position();
@@ -1012,21 +1012,21 @@ class UAGBTimeline extends Component {
 			let $last_item, parent_top;
 			const $document = $( document );
 
-			if( tm_item.hasClass( "uagb-timeline__arrow-center" ) ) {
+			if ( tm_item.hasClass( "uagb-timeline__arrow-center" ) ) {
 
 				line_outer.css( "bottom", timeline_end_icon.top );
 
 				parent_top = last_item_top - timeline_start_icon.top;
 				$last_item = parent_top + timeline_end_icon.top;
 
-			} else if( tm_item.hasClass( "uagb-timeline__arrow-top" ) ) {
+			} else if ( tm_item.hasClass( "uagb-timeline__arrow-top" ) ) {
 
 				const top_height = timeline_card_height - timeline_end_icon.top;
 				line_outer.css( "bottom", top_height );
 
 				$last_item = last_item_top;
 
-			} else if( tm_item.hasClass( "uagb-timeline__arrow-bottom" ) ) {
+			} else if ( tm_item.hasClass( "uagb-timeline__arrow-bottom" ) ) {
 
 				const bottom_height = timeline_card_height - timeline_end_icon.top;
 				line_outer.css( "bottom", bottom_height );
@@ -1057,7 +1057,7 @@ class UAGBTimeline extends Component {
 			if ( elementPos < ( viewportHeightHalf ) ) {
 				if ( ( viewportHeightHalf ) + Math.abs( photoViewportOffsetTop ) < ( elementEnd ) ) {
 					line_inner.height( ( viewportHeightHalf ) + photoViewportOffsetTop );
-				}else if ( ( photoViewportOffsetTop + viewportHeightHalf ) >= elementEnd ) {
+				} else if ( ( photoViewportOffsetTop + viewportHeightHalf ) >= elementEnd ) {
 					line_inner.height( elementEnd );
 				}
 			} else if ( ( photoViewportOffsetTop  + viewportHeightHalf ) < elementEnd ) {
@@ -1067,7 +1067,7 @@ class UAGBTimeline extends Component {
 				} else {
 					line_inner.height( ( viewportHeightHalf ) + photoViewportOffsetTop );
 				}
-			}else if ( ( photoViewportOffsetTop + viewportHeightHalf ) >= elementEnd ) {
+			} else if ( ( photoViewportOffsetTop + viewportHeightHalf ) >= elementEnd ) {
 				line_inner.height( elementEnd );
 			}
 
@@ -1133,7 +1133,7 @@ class UAGBTimeline extends Component {
 
 		// Add CSS.
 		const element = document.getElementById( "uagb-timeline-style-" + this.props.clientId );
-		if( null != element && "undefined" !== typeof element ) {
+		if ( null != element && "undefined" !== typeof element ) {
 			element.innerHTML = contentTimelineStyle( this.props );
 		}
 
@@ -1166,7 +1166,7 @@ class UAGBTimeline extends Component {
 				{
 					displayPosts.map( ( post,index ) => {
 
-						if( timelinAlignment == "center" ){
+						if ( timelinAlignment == "center" ){
 							display_inner_date = true;
 							content_align_class = AlignClass( this.props.attributes, index );
 							day_align_class = DayAlignClass( this.props.attributes, index );
@@ -1254,9 +1254,9 @@ export default withSelect( ( select, props ) => {
 	const temp = parseInt( categories );
 	category.push( temp );
 	const catlenght = categoriesList.length;
-	for( let i=0;i<catlenght;i++ ){
-		if( categoriesList[i].id == temp ){
-			if( categoriesList[i].child.length !== 0 ){
+	for ( let i=0;i<catlenght;i++ ){
+		if ( categoriesList[i].id == temp ){
+			if ( categoriesList[i].child.length !== 0 ){
 				categoriesList[i].child.forEach( element => {
 					category.push( element );
 				} );

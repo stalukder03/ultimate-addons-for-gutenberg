@@ -30,7 +30,7 @@ class Blog extends React.Component {
 		const paginationRender = () => {
 			if ( "infinite" === paginationType ) {
 
-				if( "scroll" === paginationEventType ) { 
+				if ( "scroll" === paginationEventType ) { 
 					return (
 						
 						<div className="uagb-post-inf-loader">
@@ -40,7 +40,7 @@ class Blog extends React.Component {
 						</div>
 					);
 				}
-				if( "button" === paginationEventType ) { 
+				if ( "button" === paginationEventType ) { 
 					return (
 						<div className="uagb-post__load-more-wrap">
 							<span className="uagb-post-pagination-button">

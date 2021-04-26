@@ -169,7 +169,7 @@ export class ReviewBody extends Component {
 
 		let target ="_self";
 		const rel ="noopener noreferrer";
-		if( ctaTarget ){
+		if ( ctaTarget ){
 			target ="_blank";
 		}
 

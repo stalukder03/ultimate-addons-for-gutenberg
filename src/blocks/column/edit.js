@@ -61,7 +61,7 @@ class UAGBColumnEdit extends Component {
 	componentDidUpdate( prevProps ) {
 		const element = document.getElementById( "uagb-column-style-" + this.props.clientId.substr( 0, 8 ) );
 
-		if( null !== element && undefined !== element ) {
+		if ( null !== element && undefined !== element ) {
 			element.innerHTML = styling( this.props );
 		}
 	}

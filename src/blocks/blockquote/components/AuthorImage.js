@@ -5,18 +5,18 @@ class AuthorImage extends React.Component {
 		const { attributes } = this.props; 
 
 		let url_chk = "";
-		if( typeof attributes.authorImage !== "undefined" && attributes.authorImage !== null && attributes.authorImage !=="" ){
+		if ( typeof attributes.authorImage !== "undefined" && attributes.authorImage !== null && attributes.authorImage !=="" ){
 			url_chk = attributes.authorImage.url;
 		}
 		
 		let url = "";
-		if( url_chk !== "" ){
+		if ( url_chk !== "" ){
 			const size = attributes.authorImage.sizes;
 			const authorImageSize = attributes.authorImageSize;
 
 			if ( typeof size !== "undefined" && typeof size[authorImageSize] !== "undefined" ) {
 			  url = size[authorImageSize].url; 
-			}else{
+			} else {
 			  url = url_chk; 
 			}
 

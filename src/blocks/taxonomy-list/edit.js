@@ -69,7 +69,7 @@ class UAGBTaxonomyList extends Component {
         
 		const element = document.getElementById( "uagb-style-taxonomy-list-" + this.props.clientId.substr( 0, 8 ) );
 
-		if( null != element && "undefined" !== typeof element ) {
+		if ( null != element && "undefined" !== typeof element ) {
 			element.innerHTML = styling( this.props );
 		}
 	}
@@ -185,7 +185,7 @@ class UAGBTaxonomyList extends Component {
 		let loadListGoogleFonts;
 
 
-		if( titleLoadGoogleFonts == true ) {
+		if ( titleLoadGoogleFonts == true ) {
 
 			const titleconfig = {
 				google: {
@@ -199,7 +199,7 @@ class UAGBTaxonomyList extends Component {
 			);
 		}
 
-		if( countLoadGoogleFonts == true ) {
+		if ( countLoadGoogleFonts == true ) {
 
 			const countconfig = {
 				google: {
@@ -213,7 +213,7 @@ class UAGBTaxonomyList extends Component {
 			);
 		}
 
-		if( listLoadGoogleFonts == true ) {
+		if ( listLoadGoogleFonts == true ) {
 
 			const listconfig = {
 				google: {
@@ -515,9 +515,9 @@ class UAGBTaxonomyList extends Component {
 									{
 										( tabName ) => {
 											let color_tab;
-											if( "normal" === tabName.name ) {
+											if ( "normal" === tabName.name ) {
 												color_tab = color_control;
-											}else {
+											} else {
 												color_tab = color_control_hover;
 											}
 											return <div>{ color_tab }</div>;

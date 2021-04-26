@@ -51,7 +51,7 @@ export default function RangeTypographyControl ( props ) {
 	];
  	let sizeTypes;
 
-	if( "sizeTypes" in props ) {
+	if ( "sizeTypes" in props ) {
 		sizeTypes = props.sizeTypes;
 	} else {
 		sizeTypes = [

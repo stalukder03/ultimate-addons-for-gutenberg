@@ -230,7 +230,7 @@ class UAGBcontentTimeline extends Component {
 		
 		const element = document.getElementById( "uagb-content-timeline-style-" + this.props.clientId );
 
-		if( element ) {
+		if ( element ) {
 			element.innerHTML = contentTimelineStyle( this.props );
 		}
 		
@@ -320,9 +320,9 @@ class UAGBcontentTimeline extends Component {
 					{
 						( tabName ) => {
 							let tabout;
-							if( "focus" === tabName.name ) {
+							if ( "focus" === tabName.name ) {
 								tabout = iconFocusSettings;
-							}else {
+							} else {
 								tabout = iconColorSettings;
 							}
 							return <div>{ tabout }</div>;
@@ -398,7 +398,7 @@ class UAGBcontentTimeline extends Component {
 		let loadSubHeadGoogleFonts;
 		let loadDateGoogleFonts;
 
-		if( headLoadGoogleFonts == true ) {
+		if ( headLoadGoogleFonts == true ) {
 
 			const headconfig = {
 				google: {
@@ -412,7 +412,7 @@ class UAGBcontentTimeline extends Component {
 			);
 		}
 
-		if( subHeadLoadGoogleFonts == true ) {
+		if ( subHeadLoadGoogleFonts == true ) {
 
 			const subHeadconfig = {
 				google: {
@@ -426,7 +426,7 @@ class UAGBcontentTimeline extends Component {
 			);
 		}
 
-		if( dateLoadGoogleFonts == true ) {
+		if ( dateLoadGoogleFonts == true ) {
 
 			const dateconfig = {
 				google: {
@@ -731,27 +731,27 @@ class UAGBcontentTimeline extends Component {
 
 		select( "core/block-editor" ).getBlocksByClientId( this.props.clientId )[0].innerBlocks.forEach( function ( block,key ) {
 			let align_class = "";
-			if( "left" == block.attributes.timelinAlignment ){
+			if ( "left" == block.attributes.timelinAlignment ){
 				align_class = "uagb-timeline__widget uagb-timeline__left";
-			}else if( "right" == block.attributes.timelinAlignment ){
+			} else if ( "right" == block.attributes.timelinAlignment ){
 				align_class = "uagb-timeline__widget uagb-timeline__right";
-			}else if( "center" == block.attributes.timelinAlignment ){
-				if( key % 2 == "0" ){
+			} else if ( "center" == block.attributes.timelinAlignment ){
+				if ( key % 2 == "0" ){
 					align_class = "uagb-timeline__widget uagb-timeline__right";
-				}else{
+				} else {
 					align_class = "uagb-timeline__widget uagb-timeline__left";
 				}  
 			} 
 
 			let day_align_class = "";
-			if( "left" == block.attributes.timelinAlignment ){
+			if ( "left" == block.attributes.timelinAlignment ){
 				day_align_class = "uagb-timeline__day-new uagb-timeline__day-left";
-			}else if( "right" == block.attributes.timelinAlignment ){
+			} else if ( "right" == block.attributes.timelinAlignment ){
 				day_align_class = "uagb-timeline__day-new uagb-timeline__day-right";
-			}else if( "center" == block.attributes.timelinAlignment ){
-				if( key % 2 == "0" ){
+			} else if ( "center" == block.attributes.timelinAlignment ){
+				if ( key % 2 == "0" ){
 					day_align_class = "uagb-timeline__day-new uagb-timeline__day-right";
-				}else{
+				} else {
 					day_align_class = "uagb-timeline__day-new uagb-timeline__day-left";
 				}
 			}
@@ -780,7 +780,7 @@ class UAGBcontentTimeline extends Component {
 		const line_inner          = timeline.find( ".uagb-timeline__line__inner" );
 		const line_outer          = timeline.find( ".uagb-timeline__line" );
 		const $icon_class         = timeline.find( ".uagb-timeline__marker" );
-		if( $icon_class.length > 0 ){
+		if ( $icon_class.length > 0 ){
 			const $card_last          = timeline.find( ".uagb-timeline__field:last-child" );
 			const timeline_start_icon = $icon_class.first().position();
 			const timeline_end_icon   = $icon_class.last().position();
@@ -791,21 +791,21 @@ class UAGBcontentTimeline extends Component {
 			let $last_item, parent_top;
 			const $document = $( document );
 
-			if( tm_item.hasClass( "uagb-timeline__arrow-center" ) ) {
+			if ( tm_item.hasClass( "uagb-timeline__arrow-center" ) ) {
 
 				line_outer.css( "bottom", timeline_end_icon.top );
 
 				parent_top = last_item_top - timeline_start_icon.top;
 				$last_item = parent_top + timeline_end_icon.top;
 
-			} else if( tm_item.hasClass( "uagb-timeline__arrow-top" ) ) {
+			} else if ( tm_item.hasClass( "uagb-timeline__arrow-top" ) ) {
 
 				const top_height = timeline_card_height - timeline_end_icon.top;
 				line_outer.css( "bottom", top_height );
 
 				$last_item = last_item_top;
 
-			} else if( tm_item.hasClass( "uagb-timeline__arrow-bottom" ) ) {
+			} else if ( tm_item.hasClass( "uagb-timeline__arrow-bottom" ) ) {
 
 				const bottom_height = timeline_card_height - timeline_end_icon.top;
 				line_outer.css( "bottom", bottom_height );
@@ -836,7 +836,7 @@ class UAGBcontentTimeline extends Component {
 			if ( elementPos < ( viewportHeightHalf ) ) {
 				if ( ( viewportHeightHalf ) + Math.abs( photoViewportOffsetTop ) < ( elementEnd ) ) {
 					line_inner.height( ( viewportHeightHalf ) + photoViewportOffsetTop );
-				}else if ( ( photoViewportOffsetTop + viewportHeightHalf ) >= elementEnd ) {
+				} else if ( ( photoViewportOffsetTop + viewportHeightHalf ) >= elementEnd ) {
 					line_inner.height( elementEnd );
 				}
 			} else if ( ( photoViewportOffsetTop  + viewportHeightHalf ) < elementEnd ) {
@@ -846,14 +846,14 @@ class UAGBcontentTimeline extends Component {
 				} else {
 					line_inner.height( ( viewportHeightHalf ) + photoViewportOffsetTop );
 				}
-			}else if ( ( photoViewportOffsetTop + viewportHeightHalf ) >= elementEnd ) {
+			} else if ( ( photoViewportOffsetTop + viewportHeightHalf ) >= elementEnd ) {
 				line_inner.height( elementEnd );
 			}
 
 		
 		}
 	}
-}export default withSelect( ( select, props ) => {
+} export default withSelect( ( select, props ) => {
 	const { __experimentalGetPreviewDeviceType = null } = select( "core/edit-post" );
 	const deviceType = __experimentalGetPreviewDeviceType ? __experimentalGetPreviewDeviceType() : null;
 

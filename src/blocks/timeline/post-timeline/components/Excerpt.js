@@ -9,12 +9,12 @@ class Excerpt extends React.Component {
 			undefined !== post.uagb_excerpt
 		) {
 
-			if( attributes.displayPostExcerpt && post.uagb_excerpt ){
+			if ( attributes.displayPostExcerpt && post.uagb_excerpt ){
 				var trimmed_excerpt =  ( post.uagb_excerpt ).split( /\s+/ ).slice( 0,attributes.exerptLength ).join( " " );
 			}
 
 			let margin_var = "";
-			if( attributes.displayPostLink ){
+			if ( attributes.displayPostLink ){
             	margin_var = attributes.contentSpace+"px";
 			}
 			return (

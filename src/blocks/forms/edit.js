@@ -207,7 +207,7 @@ class UAGBFormsEdit extends Component {
 
 		let loadsubmittextGoogleFonts;
 
-		if( submitTextloadGoogleFonts == true ) {
+		if ( submitTextloadGoogleFonts == true ) {
 			
 			const qconfig = {
 				google: {
@@ -223,7 +223,7 @@ class UAGBFormsEdit extends Component {
 		
 		let loadlabelGoogleFonts;
 
-		if( labelloadGoogleFonts == true ) {
+		if ( labelloadGoogleFonts == true ) {
 			
 			const qconfig = {
 				google: {
@@ -239,7 +239,7 @@ class UAGBFormsEdit extends Component {
 		
 		let loadinputGoogleFonts;
 
-		if( inputloadGoogleFonts == true ) {
+		if ( inputloadGoogleFonts == true ) {
 			
 			const qconfig = {
 				google: {
@@ -527,7 +527,7 @@ class UAGBFormsEdit extends Component {
 						{
 							( tabName ) => {
 								let tabout_submitColor;
-								if( "normal" === tabName.name ) {
+								if ( "normal" === tabName.name ) {
 									tabout_submitColor = <Fragment>
 										<p className="uagb-setting-label">{ __( "Submit Color" , "ultimate-addons-for-gutenberg" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={ { backgroundColor: submitColor } } ></span></span></p>
 										<ColorPalette
@@ -542,7 +542,7 @@ class UAGBFormsEdit extends Component {
 											allowReset
 										/>
 									</Fragment>;
-								}else {
+								} else {
 									tabout_submitColor = <Fragment>
 										<p className="uagb-setting-label">{ __( "Submit Hover Color", "ultimate-addons-for-gutenberg" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={ { backgroundColor: submitColorHover } } ></span></span></p>
 										<ColorPalette
@@ -1072,7 +1072,7 @@ class UAGBFormsEdit extends Component {
 
 		const element = document.getElementById( "uagb-style-forms-" + this.props.clientId.substr( 0, 8 ) );
 
-		if( null !== element && undefined !== element ) {
+		if ( null !== element && undefined !== element ) {
 			element.innerHTML = styling( this.props );
 		}
 
@@ -1082,7 +1082,7 @@ class UAGBFormsEdit extends Component {
 		const mainDiv = document.getElementById( "block-" + id );
 		const formscope = mainDiv.getElementsByClassName( "uagb-forms__outer-wrap" );
 		
-		if( null !== formscope[0] && undefined !== formscope[0] ) {
+		if ( null !== formscope[0] && undefined !== formscope[0] ) {
 			
 			const editorwrap = formscope[0].children;
 			const formInnerWrap = editorwrap[0].children;
@@ -1092,14 +1092,14 @@ class UAGBFormsEdit extends Component {
 			
 			for ( let index = 0; index < sibling.length; index++ ) {
 
-				if( sibling[index].classList.contains( "uag-col-2" ) && sibling[index+1].classList.contains( "uag-col-2" ) ){
+				if ( sibling[index].classList.contains( "uag-col-2" ) && sibling[index+1].classList.contains( "uag-col-2" ) ){
 					const div = document.createElement( "div" );
 					div.className = "uag-col-2-wrap uag-col-wrap-" + index;                        
 					sibling[index+1].after( div );
 					const wrapper_div = formscope[0].getElementsByClassName( "uag-col-wrap-" + index );
 					wrapper_div[0].appendChild( sibling[index] );
 					wrapper_div[0].appendChild( sibling[index] );
-				}else if( ( sibling[index].classList.contains( "uag-col-3" ) ) && ( sibling[index+1].classList.contains( "uag-col-3" ) && ( sibling[index+2].classList.contains( "uag-col-3" ) ) ) ){
+				} else if ( ( sibling[index].classList.contains( "uag-col-3" ) ) && ( sibling[index+1].classList.contains( "uag-col-3" ) && ( sibling[index+2].classList.contains( "uag-col-3" ) ) ) ){
 					const div = document.createElement( "div" );
 					div.className = "uag-col-3-wrap uag-col-wrap-" + index;                        
 					sibling[index+2].after( div );
@@ -1108,7 +1108,7 @@ class UAGBFormsEdit extends Component {
 					wrapper_div[0].appendChild( sibling[index] );
 					wrapper_div[0].appendChild( sibling[index] );
 
-				}else if( ( sibling[index].classList.contains( "uag-col-4" ) ) && ( sibling[index+1].classList.contains( "uag-col-4" ) && ( sibling[index+2].classList.contains( "uag-col-4" ) ) && ( sibling[index+3].classList.contains( "uag-col-4" ) ) ) ){
+				} else if ( ( sibling[index].classList.contains( "uag-col-4" ) ) && ( sibling[index+1].classList.contains( "uag-col-4" ) && ( sibling[index+2].classList.contains( "uag-col-4" ) ) && ( sibling[index+3].classList.contains( "uag-col-4" ) ) ) ){
 					const div = document.createElement( "div" );
 					div.className = "uag-col-4-wrap uag-col-wrap-" + index;                        
 					sibling[index+3].after( div );

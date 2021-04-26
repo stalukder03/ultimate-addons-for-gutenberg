@@ -117,7 +117,7 @@ class UAGBPostMasonry extends Component {
 	componentDidUpdate( prevProps, prevState ) {
 		const element = document.getElementById( "uagb-post-masonry-style-" + this.props.clientId.substr( 0, 8 ) );
 
-		if( null !== element && undefined !== element ) {
+		if ( null !== element && undefined !== element ) {
 			element.innerHTML = styling( this.props );
 		}
 	}
@@ -395,7 +395,7 @@ class UAGBPostMasonry extends Component {
 		let loadExcerptGoogleFonts;
 		let loadCtaGoogleFonts;
 
-		if( titleLoadGoogleFonts == true ) {
+		if ( titleLoadGoogleFonts == true ) {
 
 			const titleconfig = {
 				google: {
@@ -409,7 +409,7 @@ class UAGBPostMasonry extends Component {
 			);
 		}
 
-		if( metaLoadGoogleFonts == true ) {
+		if ( metaLoadGoogleFonts == true ) {
 
 			const metaconfig = {
 				google: {
@@ -423,7 +423,7 @@ class UAGBPostMasonry extends Component {
 			);
 		}
 
-		if( excerptLoadGoogleFonts == true ) {
+		if ( excerptLoadGoogleFonts == true ) {
 
 			const excerptconfig = {
 				google: {
@@ -437,7 +437,7 @@ class UAGBPostMasonry extends Component {
 			);
 		}
 
-		if( ctaLoadGoogleFonts == true ) {
+		if ( ctaLoadGoogleFonts == true ) {
 
 			const ctaconfig = {
 				google: {
@@ -641,7 +641,7 @@ class UAGBPostMasonry extends Component {
 									{
 										( tabName ) => {
 											
-											if( "normal" === tabName.name ) {
+											if ( "normal" === tabName.name ) {
 												
 												return (
 													<Fragment>
@@ -1399,9 +1399,9 @@ export default compose(
 		const temp = parseInt( categories );
 		category.push( temp );
 		const catlenght = categoriesList.length;
-		for( let i=0;i<catlenght;i++ ){
-			if( categoriesList[i].id == temp ){
-				if( categoriesList[i].child.length !== 0 ){
+		for ( let i=0;i<catlenght;i++ ){
+			if ( categoriesList[i].id == temp ){
+				if ( categoriesList[i].child.length !== 0 ){
 					categoriesList[i].child.forEach( element => {
 						category.push( element );
 					} );

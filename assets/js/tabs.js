@@ -8,11 +8,11 @@ function uagbTabInit(){
 		const tabActive = tabWrap[item].getAttribute( "data-tab-active" );
 		const tabLi = tabWrap[item].querySelectorAll( ".uagb-tabs__panel li.uagb-tab" );
 		for ( let i = 0; i < tabLi.length; i++ ) {
-			if( !tabLi[i].classList.contains( "uagb-tabs__active" ) ){
-				if( tabActive == i ){  
+			if ( !tabLi[i].classList.contains( "uagb-tabs__active" ) ){
+				if ( tabActive == i ){  
 					tabLi[i].classList.add( "uagb-tabs__active" );
 					tabWrap[item].classList.add( "uagb-active-tab-"+i ); 
-				}else{
+				} else {
 					tabWrap[item].classList.add( "uagb-active-tab-"+tabActive );
 				}
 				tabLi[i].setAttribute( "id", "uagb-tabs__tab"+i );
@@ -20,10 +20,10 @@ function uagbTabInit(){
 		}
 		const tabBody = tabWrap[item].querySelectorAll( ".uagb-tabs__body-wrap .uagb-tabs__body-container" );
 		for ( let body = 0; body < tabBody.length; body++ ) {
-			if( tabBody[body] == undefined ){
+			if ( tabBody[body] == undefined ){
 				return;
 			}
-			if( tabBody[body].classList.contains( ".uagb-tabs__inner-tab" ) ){
+			if ( tabBody[body].classList.contains( ".uagb-tabs__inner-tab" ) ){
                
 				tabBody[body].classList.add( "uagb-inner-tab-"+body ); 
 			}
@@ -35,7 +35,7 @@ function uagbTabInit(){
         
 		const tabAnchor = tabWrap[item].querySelectorAll( ".uagb-tabs__panel li a" );
 		for ( let a = 0; a < tabAnchor.length; a++ ) {
-			if( !tabAnchor[a].classList.contains( "uagb-tabs-list" ) ){
+			if ( !tabAnchor[a].classList.contains( "uagb-tabs-list" ) ){
 				tabAnchor[a].classList.add( "uagb-tabs-list" );
 				tabAnchor[a].setAttribute( "data-tab", a );
 			}
@@ -60,9 +60,9 @@ function tabClickEvent( e , tabName , list , count ){
 	const mainWrap = list.closest( ".uagb-tabs__wrap" );
     
 	for ( let idx = 0; idx < 15; idx++ ) {
-		if( mainWrap.classList.contains( "uagb-active-tab-"+idx ) ){
+		if ( mainWrap.classList.contains( "uagb-active-tab-"+idx ) ){
 			mainWrap.classList.remove( "uagb-active-tab-"+idx ); 
-		}else{
+		} else {
 			mainWrap.classList.add( "uagb-active-tab-"+ tabId );
 		}
 

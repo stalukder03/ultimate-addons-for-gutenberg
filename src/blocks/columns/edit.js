@@ -100,7 +100,7 @@ class UAGBColumns extends Component {
 	componentDidUpdate( prevProps ) {
 		const element = document.getElementById( "uagb-columns-style-" + this.props.clientId.substr( 0, 8 ) );
 
-		if( null !== element && undefined !== element ) {
+		if ( null !== element && undefined !== element ) {
 			element.innerHTML = styling( this.props );
 		}
 	}

@@ -42,7 +42,7 @@ const deprecated =[
 
 								let url = "";
 
-								if( null != current_url ) {
+								if ( null != current_url ) {
 									url = links[social.type] + encodeURI( current_url );
 								}
 
@@ -107,7 +107,7 @@ const deprecated =[
 
 								let url = "";
 
-								if( null != current_url ) {
+								if ( null != current_url ) {
 									url = links[social.type];
 								}
 
@@ -173,7 +173,7 @@ const deprecated =[
 
 								let url = "";
 
-								if( null != current_url ) {
+								if ( null != current_url ) {
 									url = links[social.type];
 								}
 

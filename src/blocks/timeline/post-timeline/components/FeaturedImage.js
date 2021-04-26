@@ -14,7 +14,7 @@ class FeaturedImage extends React.Component {
 		) {
 			const src = post.uagb_featured_image_src[attributes.imageSize];
 			let target ="_self";
-			if( attributes.linkTarget ){
+			if ( attributes.linkTarget ){
 				target ="_blank";
 			}
 			return (

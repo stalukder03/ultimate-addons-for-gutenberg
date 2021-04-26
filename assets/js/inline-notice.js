@@ -13,7 +13,7 @@
 			const cookies_days = attr.close_cookie_days;
 			const current_cookie = Cookies.get( "uagb-notice-" + unique_id );
 
-			if( "undefined" === typeof current_cookie && true === is_cookie ){
+			if ( "undefined" === typeof current_cookie && true === is_cookie ){
 				$( id ).show();
 			}
 
@@ -24,12 +24,12 @@
 						$( id ).addClass( "uagb-notice__active" ).css( "display" ,"none" );
 					}
 
-					if( "undefined" === typeof current_cookie && true === is_cookie ){
+					if ( "undefined" === typeof current_cookie && true === is_cookie ){
 						current_cookies = Cookies.set( "uagb-notice-" + unique_id, true, { expires: cookies_days } );
 						$( id ).addClass( "uagb-notice__active" ).css( "display" ,"none" );
 					}
 
-					if( false === is_cookie ){
+					if ( false === is_cookie ){
 						$( id ).addClass( "uagb-notice__active" ).css( "display" ,"none" );
 					}
 				} );

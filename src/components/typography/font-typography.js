@@ -36,7 +36,7 @@ function FontFamilyControl( props ) {
 			{ value: k, label: k, weight: googleFonts[k].weight }
 		);
 
-		if( k === props.fontFamily.value ) {
+		if ( k === props.fontFamily.value ) {
 			fontWeight = googleFonts[k].weight;
 			fontSubset = googleFonts[k].subset;
 		}
@@ -57,7 +57,7 @@ function FontFamilyControl( props ) {
 
 	const fontSubsetObj = [];
 
-	if( typeof fontSubset === "object" ) {
+	if ( typeof fontSubset === "object" ) {
 		fontSubset.forEach( function( item ) {
 			fontSubsetObj.push(
 				{ value: item, label: item }
@@ -77,16 +77,16 @@ function FontFamilyControl( props ) {
 		let font_flag;
 		let new_value;
 
-		if( typeof googleFonts[fontFamily] === "object" ) {
+		if ( typeof googleFonts[fontFamily] === "object" ) {
 
 			const gfontsObj = googleFonts[fontFamily].weight;
 			const gfontSubsetObj = googleFonts[fontFamily].subset;
 
-			if( typeof gfontsObj === "object" ) {
+			if ( typeof gfontsObj === "object" ) {
 
 				gfontsObj.forEach( function( item ) {
 
-					if( fontWeight.value == item ) {
+					if ( fontWeight.value == item ) {
 						font_flag = false;
 					} else {
 						new_value  = item;
@@ -98,7 +98,7 @@ function FontFamilyControl( props ) {
 
 				gfontSubsetObj.forEach( function( item ) {
 
-					if( fontSubset.value == item ) {
+					if ( fontSubset.value == item ) {
 						font_flag = false;
 					} else {
 						new_value  = item;
@@ -115,7 +115,7 @@ function FontFamilyControl( props ) {
 
 		let value;
 
-		if( fontFamily != "" && typeof googleFonts[fontFamily] !== "object" ) {
+		if ( fontFamily != "" && typeof googleFonts[fontFamily] !== "object" ) {
 			value = false;
 		} else {
 			value = true;

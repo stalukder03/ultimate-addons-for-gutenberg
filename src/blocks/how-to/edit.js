@@ -92,7 +92,7 @@ class UAGBHowTo extends Component {
 		}
 		const element = document.getElementById( "uagb-how-to-schema-style-" + this.props.clientId.substr( 0, 8 ) );
 
-		if( null !== element && undefined !== element ) {
+		if ( null !== element && undefined !== element ) {
 			element.innerHTML = styling( this.props );
 		}
 	}
@@ -168,7 +168,7 @@ class UAGBHowTo extends Component {
 		  	const p = { "value" : name, "label": name };
 		  	size_arr.push( p );
 		} );
-		return( size_arr );
+		return ( size_arr );
 	}
 
 	render() {
@@ -258,7 +258,7 @@ class UAGBHowTo extends Component {
 			},
 		} = this.props;
 		
-		if( mainimage && mainimage.sizes ){
+		if ( mainimage && mainimage.sizes ){
 			imageSizeOptions = this.getImageSize( mainimage.sizes );
 		}
 		
@@ -267,7 +267,7 @@ class UAGBHowTo extends Component {
 		let loadPriceGoogleFonts;
 		
 		
-		if( true === headLoadGoogleFonts ) {
+		if ( true === headLoadGoogleFonts ) {
 			
 			const hconfig = {
 				google: {
@@ -281,7 +281,7 @@ class UAGBHowTo extends Component {
 			);
 		}
 		
-		if( true === subHeadLoadGoogleFonts ) {
+		if ( true === subHeadLoadGoogleFonts ) {
 			
 			const sconfig = {
 				google: {
@@ -295,7 +295,7 @@ class UAGBHowTo extends Component {
 			);
 		}	
 		
-		if( true === priceLoadGoogleFonts ){
+		if ( true === priceLoadGoogleFonts ){
 			const pconfig = {
 				google: {
 					families: [ priceFontFamily + ( priceFontWeight ? ":" + priceFontWeight : "" ) ],
@@ -310,19 +310,19 @@ class UAGBHowTo extends Component {
 		
 		let url_chk = "";
 		let title = "";
-		if( "undefined" !== typeof attributes.mainimage  && null !== attributes.mainimage && "" !== attributes.mainimage ){
+		if ( "undefined" !== typeof attributes.mainimage  && null !== attributes.mainimage && "" !== attributes.mainimage ){
 			url_chk = attributes.mainimage.url;
 			title = attributes.mainimage.title;
 		}
 		
 		let url = "";
-		if( "" !== url_chk ){
+		if ( "" !== url_chk ){
 			const size = attributes.mainimage.sizes;
 			const imageSize = attributes.imgSize;
 			
 			if ( "undefined" !== typeof size && "undefined" !== typeof size[imageSize] ) {
 				url = size[imageSize].url; 
-			}else{
+			} else {
 				url = url_chk; 
 			}
 		}
@@ -510,10 +510,10 @@ class UAGBHowTo extends Component {
 								} ); }
 
 								setAttributes( { tools: cloneIcons } );
-							}else{
+							} else {
 								const incAmount = Math.abs( newCount - cloneIcons.length );
 								const data_new = cloneIcons;
-				            for( let i= 0; i < incAmount; i++ ){
+				            for ( let i= 0; i < incAmount; i++ ){
 				                data_new.pop();
 				            }
 				            setAttributes( { tools:data_new } );
@@ -552,10 +552,10 @@ class UAGBHowTo extends Component {
 								} ); }
 
 								setAttributes( { materials: cloneIcons } );
-							}else{
+							} else {
 								const incAmount = Math.abs( newCount - cloneIcons.length );
 								const data_new = cloneIcons;
-				            for( let i= 0; i < incAmount; i++ ){
+				            for ( let i= 0; i < incAmount; i++ ){
 				                data_new.pop();
 				            }
 				            setAttributes( { materials:data_new } );
@@ -964,7 +964,7 @@ export default compose(
 
 		let url_chk = "";
 		let title = "";
-		if( "undefined" !== ownProps.attributes.mainimage  && null !== ownProps.attributes.mainimage && "" !== ownProps.attributes.mainimage ){
+		if ( "undefined" !== ownProps.attributes.mainimage  && null !== ownProps.attributes.mainimage && "" !== ownProps.attributes.mainimage ){
 			url_chk = ownProps.attributes.mainimage.url;
 			title = ownProps.attributes.mainimage.title;
 		}

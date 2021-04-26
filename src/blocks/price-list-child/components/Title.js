@@ -15,18 +15,18 @@ class Title extends React.Component {
 		} = this.props;
 		let author_title = "";
 		
-		if( typeof index_value !== "undefined" ){
+		if ( typeof index_value !== "undefined" ){
 			const test_arr = attributes.rest_menu_item_arr[index_value];
-			if( test_arr ){
-				if( typeof test_arr !== "undefined" ){		
+			if ( test_arr ){
+				if ( typeof test_arr !== "undefined" ){		
 					author_title = test_arr.title;		
 				}
 			}
-		}else{
+		} else {
 			author_title = attributes.title;	
 		}
 
-		if( setAttributes !== "not_set" ){
+		if ( setAttributes !== "not_set" ){
 		
 			return (
 				<RichText

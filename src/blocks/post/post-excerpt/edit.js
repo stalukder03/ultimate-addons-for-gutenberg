@@ -31,7 +31,7 @@ export const PostExcerpt = ( props ) =>  {
 			</div>
 		);
 
-	}else if( attributes.displayPostExcerpt && attributes.displayPostContentRadio == "full_post" ){
+	} else if ( attributes.displayPostExcerpt && attributes.displayPostContentRadio == "full_post" ){
 			
 		return (
 			<div className='uagb-post__text'> 

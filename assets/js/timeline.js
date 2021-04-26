@@ -12,7 +12,7 @@
 	function uagbTimelineInit() {
 
 		const timeline            = $( ".uagb-timeline" );
-    	if( timeline.parents( ".wp-block" ).length == 0 ){
+    	if ( timeline.parents( ".wp-block" ).length == 0 ){
     		timeline.each( function() {
 				const line_inner          = $( this ).find( ".uagb-timeline__line__inner" );
 				const line_outer          = $( this ).find( ".uagb-timeline__line" );
@@ -28,21 +28,21 @@
 				const last_item_top = $card_last.offset().top - $( this ).offset().top;
 				let $last_item, parent_top;
 
-				if( $( this ).hasClass( "uagb-timeline__arrow-center" ) ) {
+				if ( $( this ).hasClass( "uagb-timeline__arrow-center" ) ) {
 
 					line_outer.css( "bottom", timeline_end_icon.top );
 
 					parent_top = last_item_top - timeline_start_icon.top;
 					$last_item = parent_top + timeline_end_icon.top;
 
-				} else if( $( this ).hasClass( "uagb-timeline__arrow-top" ) ) {
+				} else if ( $( this ).hasClass( "uagb-timeline__arrow-top" ) ) {
 
 					const top_height = timeline_card_height - timeline_end_icon.top;
 					line_outer.css( "bottom", top_height );
 
 					$last_item = last_item_top;
 
-				} else if( $( this ).hasClass( "uagb-timeline__arrow-bottom" ) ) {
+				} else if ( $( this ).hasClass( "uagb-timeline__arrow-bottom" ) ) {
 
 					const bottom_height = timeline_card_height - timeline_end_icon.top;
 					line_outer.css( "bottom", bottom_height );
@@ -70,7 +70,7 @@
 				if ( elementPos < ( viewportHeightHalf ) ) {
 					if ( ( viewportHeightHalf ) + Math.abs( photoViewportOffsetTop ) < ( elementEnd ) ) {
 						line_inner.height( ( viewportHeightHalf ) + photoViewportOffsetTop );
-					}else if ( ( photoViewportOffsetTop + viewportHeightHalf ) >= elementEnd ) {
+					} else if ( ( photoViewportOffsetTop + viewportHeightHalf ) >= elementEnd ) {
 						line_inner.height( elementEnd );
 					}
 				} else if ( ( photoViewportOffsetTop  + viewportHeightHalf ) < elementEnd ) {
@@ -80,7 +80,7 @@
 					} else {
 						line_inner.height( ( viewportHeightHalf ) + photoViewportOffsetTop );
 					}
-				}else if ( ( photoViewportOffsetTop + viewportHeightHalf ) >= elementEnd ) {
+				} else if ( ( photoViewportOffsetTop + viewportHeightHalf ) >= elementEnd ) {
 					line_inner.height( elementEnd );
 				}
 
@@ -91,7 +91,7 @@
 				let timeline_icon = $( this ).find( ".uagb-timeline__marker" ),
 					animate_border  = $( this ).find( ".uagb-timeline__field-wrap" );
 
-				if( animate_border.length == 0 ){						
+				if ( animate_border.length == 0 ){						
 					animate_border  = $( this ).find( ".uagb-timeline__animate-border" );
 				}
 

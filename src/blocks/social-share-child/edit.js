@@ -56,7 +56,7 @@ class UAGBSocialShareChild extends Component {
 	componentDidUpdate( prevProps ) {
 		const element = document.getElementById( "uagb-style-social-share-child-" + this.props.clientId.substr( 0, 8 ) );
 
-		if( null !== element && undefined !== element ) {
+		if ( null !== element && undefined !== element ) {
 			element.innerHTML = styling( this.props );
 		}
 	}
@@ -216,9 +216,9 @@ class UAGBSocialShareChild extends Component {
 					{
 						( tabName ) => {
 							let color_tab;
-							if( "normal" === tabName.name ) {
+							if ( "normal" === tabName.name ) {
 								color_tab = color_control;
-							}else {
+							} else {
 								color_tab = color_control_hover;
 							}
 							return <div>{ color_tab }</div>;

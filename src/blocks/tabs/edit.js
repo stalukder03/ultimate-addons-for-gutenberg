@@ -77,7 +77,7 @@ class UAGBTabsEdit extends Component {
 
 		const element = document.getElementById( "uagb-style-tab-" + this.props.clientId.substr( 0, 8 ) );
 
-		if( null !== element && undefined !== element ) {
+		if ( null !== element && undefined !== element ) {
 			element.innerHTML = styling( this.props );
 		}
 	}

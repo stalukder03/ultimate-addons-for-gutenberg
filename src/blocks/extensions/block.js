@@ -61,7 +61,7 @@ wp.hooks.addFilter(
 	"uagb/apply-extra-class",
 	ApplyExtraClass,
 );
-if( enableConditions ){
+if ( enableConditions ){
 	wp.hooks.addFilter(
 		"editor.BlockEdit",
 		"uagb/advanced-control-block",

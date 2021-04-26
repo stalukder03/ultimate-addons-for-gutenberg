@@ -13,19 +13,19 @@ class CTA extends React.Component {
 
 		let target ="_self";
 		const rel ="noopener noreferrer";
-		if( attributes.ctaTarget ){
+		if ( attributes.ctaTarget ){
 			target ="_blank";
 		}
 
 		let cta_icon_output = "";
-		if( attributes.ctaIcon !== "" ){
+		if ( attributes.ctaIcon !== "" ){
 			cta_icon_output = <span className={ classnames( `uagb-cta-${ attributes.ctaType }-icon`, `uagb-cta__align-button-${ attributes.ctaIconPosition }` , "uagb-cta-with-svg" ) }>
 				{ renderSVG( attributes.ctaIcon ) }
 			</span>;
 		}
 
 		let link = "/"; 
-		if( setAttributes == "not_set" ){
+		if ( setAttributes == "not_set" ){
 			link = attributes.ctaLink;
 		}
 		return (			

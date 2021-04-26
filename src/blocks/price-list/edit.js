@@ -214,9 +214,9 @@ class UAGBRestaurantMenu extends Component {
 		let cnt = 0;
 		rest_menu_item_arr.map( ( item, thisIndex ) => {
 			const image_arr = rest_menu_item_arr[thisIndex];
-			if( image_arr && typeof image_arr !== "undefined" ){
+			if ( image_arr && typeof image_arr !== "undefined" ){
 				const image = image_arr.image;
-				if( typeof image !== "undefined" && image !== null && image !=="" ){
+				if ( typeof image !== "undefined" && image !== null && image !=="" ){
 					cnt++;
 				}
 			}
@@ -226,7 +226,7 @@ class UAGBRestaurantMenu extends Component {
 		let loadDescGoogleFonts;
 		let loadPriceGoogleFonts;
 		
-		if( titleLoadGoogleFonts == true ) {
+		if ( titleLoadGoogleFonts == true ) {
 			
 			const titleconfig = {
 				google: {
@@ -240,7 +240,7 @@ class UAGBRestaurantMenu extends Component {
 			);
 		}
 			
-		if( descLoadGoogleFonts == true ) {
+		if ( descLoadGoogleFonts == true ) {
 				
 			const descconfig = {
 				google: {
@@ -254,7 +254,7 @@ class UAGBRestaurantMenu extends Component {
 			);
 		}
 				
-		if( priceLoadGoogleFonts == true ) {
+		if ( priceLoadGoogleFonts == true ) {
 					
 			const priceconfig = {
 				google: {
@@ -666,7 +666,7 @@ class UAGBRestaurantMenu extends Component {
 	componentDidUpdate( prevProps ) {
 		const element = document.getElementById( "uagb-restaurant-menu-style-" + this.props.clientId.substr( 0, 8 ) );
 															
-		if( null !== element && undefined !== element ) {
+		if ( null !== element && undefined !== element ) {
 			element.innerHTML = RestMenuStyle( this.props );
 		}
 

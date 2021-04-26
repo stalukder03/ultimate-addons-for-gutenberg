@@ -46,9 +46,9 @@ const deprecated = [
 			// Get icon/Image components.
 			let is_image = "";
 
-			if( source_type === "icon" ) {
+			if ( source_type === "icon" ) {
 				is_image = <InfoBoxIcon attributes={ props.attributes } />;
-			}else{
+			} else {
 				is_image = <InfoBoxIconImage attributes={ props.attributes } />;
 			}
 
@@ -132,7 +132,7 @@ const deprecated = [
 			);
 
 			let target ="";
-			if( ctaTarget ){
+			if ( ctaTarget ){
 				target ="_blank";
 			}
 
@@ -181,9 +181,9 @@ const deprecated = [
 			// Get icon/Image components.
 			let is_image = "";
 
-			if( source_type === "icon" && icon !=="" ) {
+			if ( source_type === "icon" && icon !=="" ) {
 				is_image = <InfoBoxIcon attributes={ props.attributes } />;
-			}else{
+			} else {
 				is_image = <InfoBoxIconImage attributes={ props.attributes } />;
 			}
 
@@ -267,7 +267,7 @@ const deprecated = [
 			);
 
 			let target ="";
-			if( ctaTarget ){
+			if ( ctaTarget ){
 				target ="_blank";
 			}
 
@@ -316,9 +316,9 @@ const deprecated = [
 			// Get icon/Image components.
 			let is_image = "";
 
-			if( source_type === "icon" && icon !=="" ) {
+			if ( source_type === "icon" && icon !=="" ) {
 				is_image = <Icon attributes={ props.attributes } />;
-			}else{
+			} else {
 				is_image = <InfoBoxIconImage attributes={ props.attributes } />;
 			}
 
@@ -402,7 +402,7 @@ const deprecated = [
 			);
 
 			let target ="";
-			if( ctaTarget ){
+			if ( ctaTarget ){
 				target ="_blank";
 			}
 
@@ -452,9 +452,9 @@ const deprecated = [
 			// Get icon/Image components.
 			let is_image = "";
 
-			if( source_type === "icon" && icon !=="" ) {
+			if ( source_type === "icon" && icon !=="" ) {
 				is_image = <Icon attributes={ props.attributes } />;
-			}else{
+			} else {
 				is_image = <InfoBoxIconImage attributes={ props.attributes } />;
 			}
 
@@ -463,7 +463,7 @@ const deprecated = [
 			const seperator_html = <InfoBoxSeparator attributes={ props.attributes } />;
 			let show_seperator = true;
 
-			if( seperatorPosition == "after_icon" && ( iconimgPosition == "above-title" || iconimgPosition == "below-title" ) ){
+			if ( seperatorPosition == "after_icon" && ( iconimgPosition == "above-title" || iconimgPosition == "below-title" ) ){
 				show_seperator = false;
 				icon_image_html = (
 					<Fragment>
@@ -473,11 +473,11 @@ const deprecated = [
 				);
 			}
 
-			if( seperatorPosition == "after_icon" && ( iconimgPosition !== "above-title" || iconimgPosition !== "below-title" ) ){
+			if ( seperatorPosition == "after_icon" && ( iconimgPosition !== "above-title" || iconimgPosition !== "below-title" ) ){
 				seperator_position = "after_title";
 			}
 
-			if( iconimgPosition == "below-title" &&  seperatorPosition == "after_title" ){
+			if ( iconimgPosition == "below-title" &&  seperatorPosition == "after_title" ){
 				show_seperator = false;
 				icon_image_html = (
 					<Fragment>
@@ -567,7 +567,7 @@ const deprecated = [
 			);
 
 			let target ="";
-			if( ctaTarget ){
+			if ( ctaTarget ){
 				target ="_blank";
 			}
 
@@ -618,9 +618,9 @@ const deprecated = [
 			// Get icon/Image components.
 			let is_image = "";
 		
-			if( source_type === "icon" && icon !=="" ) {
+			if ( source_type === "icon" && icon !=="" ) {
 				is_image = <Icon attributes={ props.attributes } />;
-			}else{
+			} else {
 				is_image = <InfoBoxIconImage attributes={ props.attributes } />;
 			}
 		
@@ -629,7 +629,7 @@ const deprecated = [
 			const seperator_html = <InfoBoxSeparator attributes={ props.attributes } />;
 			let show_seperator = true;
 		
-			if( seperatorPosition == "after_icon" && ( iconimgPosition == "above-title" || iconimgPosition == "below-title" ) ){
+			if ( seperatorPosition == "after_icon" && ( iconimgPosition == "above-title" || iconimgPosition == "below-title" ) ){
 				show_seperator = false;
 				icon_image_html = (
 					<Fragment>
@@ -639,11 +639,11 @@ const deprecated = [
 				);
 			}
 		
-			if( seperatorPosition == "after_icon" && ( iconimgPosition !== "above-title" || iconimgPosition !== "below-title" ) ){
+			if ( seperatorPosition == "after_icon" && ( iconimgPosition !== "above-title" || iconimgPosition !== "below-title" ) ){
 				seperator_position = "after_title";
 			}
 		
-			if( iconimgPosition == "below-title" &&  seperatorPosition == "after_title" ){
+			if ( iconimgPosition == "below-title" &&  seperatorPosition == "after_title" ){
 				show_seperator = false;
 				icon_image_html = (
 					<Fragment>
@@ -733,7 +733,7 @@ const deprecated = [
 			);
 		
 			let target ="";
-			if( ctaTarget ){
+			if ( ctaTarget ){
 				target ="_blank";
 			}
 		
@@ -783,9 +783,9 @@ const deprecated = [
 			// Get icon/Image components.
 			let is_image = "";
 		
-			if( source_type === "icon" && icon !=="" ) {
+			if ( source_type === "icon" && icon !=="" ) {
 				is_image = <Icon attributes={ props.attributes } />;
-			}else{
+			} else {
 				is_image = <InfoBoxIconImage attributes={ props.attributes } />;
 			}
 		
@@ -794,7 +794,7 @@ const deprecated = [
 			const seperator_html = <InfoBoxSeparator attributes={ props.attributes } />;
 			let show_seperator = true;
 		
-			if( seperatorPosition == "after_icon" && ( iconimgPosition == "above-title" || iconimgPosition == "below-title" ) ){
+			if ( seperatorPosition == "after_icon" && ( iconimgPosition == "above-title" || iconimgPosition == "below-title" ) ){
 				show_seperator = false;
 				icon_image_html = (
 					<Fragment>
@@ -804,11 +804,11 @@ const deprecated = [
 				);
 			}
 		
-			if( seperatorPosition == "after_icon" && ( iconimgPosition !== "above-title" || iconimgPosition !== "below-title" ) ){
+			if ( seperatorPosition == "after_icon" && ( iconimgPosition !== "above-title" || iconimgPosition !== "below-title" ) ){
 				seperator_position = "after_title";
 			}
 		
-			if( iconimgPosition == "below-title" &&  seperatorPosition == "after_title" ){
+			if ( iconimgPosition == "below-title" &&  seperatorPosition == "after_title" ){
 				show_seperator = false;
 				icon_image_html = (
 					<Fragment>
@@ -894,7 +894,7 @@ const deprecated = [
 			);
 		
 			let target ="";
-			if( ctaTarget ){
+			if ( ctaTarget ){
 				target ="_blank";
 			}
 		
@@ -939,9 +939,9 @@ const deprecated = [
 			// Get icon/Image components.
 			let is_image = "";
 
-			if( source_type === "icon" && icon !=="" ) {
+			if ( source_type === "icon" && icon !=="" ) {
 				is_image = <Icon attributes={ props.attributes } />;
-			}else{
+			} else {
 				is_image = <InfoBoxIconImage attributes={ props.attributes } />;
 			}
 
@@ -950,7 +950,7 @@ const deprecated = [
 			const seperator_html = <InfoBoxSeparator attributes={ props.attributes } />;
 			let show_seperator = true;
 
-			if( seperatorPosition == "after_icon" && ( iconimgPosition == "above-title" || iconimgPosition == "below-title" ) ){
+			if ( seperatorPosition == "after_icon" && ( iconimgPosition == "above-title" || iconimgPosition == "below-title" ) ){
 				show_seperator = false;
 				icon_image_html = (
 					<Fragment>
@@ -960,11 +960,11 @@ const deprecated = [
 				);
 			}
 
-			if( seperatorPosition == "after_icon" && ( iconimgPosition !== "above-title" || iconimgPosition !== "below-title" ) ){
+			if ( seperatorPosition == "after_icon" && ( iconimgPosition !== "above-title" || iconimgPosition !== "below-title" ) ){
 				seperator_position = "after_title";
 			}
 
-			if( iconimgPosition == "below-title" &&  seperatorPosition == "after_title" ){
+			if ( iconimgPosition == "below-title" &&  seperatorPosition == "after_title" ){
 				show_seperator = false;
 				icon_image_html = (
 					<Fragment>
@@ -1050,7 +1050,7 @@ const deprecated = [
 			);
 
 			let target ="";
-			if( ctaTarget ){
+			if ( ctaTarget ){
 				target ="_blank";
 			}
 

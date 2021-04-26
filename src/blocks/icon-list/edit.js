@@ -73,7 +73,7 @@ class UAGBIconList extends Component {
 	componentDidUpdate( prevProps ) {
 		const element = document.getElementById( "uagb-style-icon-list-" + this.props.clientId.substr( 0, 8 ) );
 
-		if( null !== element && undefined !== element ) {
+		if ( null !== element && undefined !== element ) {
 			element.innerHTML = styling( this.props );
 		}
 	}
@@ -126,7 +126,7 @@ class UAGBIconList extends Component {
 
 		let googleFonts;
 
-		if( loadGoogleFonts == true ) {
+		if ( loadGoogleFonts == true ) {
 
 			const hconfig = {
 				google: {

@@ -133,7 +133,7 @@ class SchemaNotices extends Component {
 			break;
 		}
         
-		if( itemType ){
+		if ( itemType ){
 			if ( "undefined" === typeof rTitle || "" === rTitle ) {
 				msg = __( "Missing title of the review","ultimate-addons-for-gutenberg" );
 				emptyItems.push( msg );
@@ -169,7 +169,7 @@ class SchemaNotices extends Component {
 		);
 
 		const schemaNoticeMarkup = () => {
-			if( enableSchema == true ){
+			if ( enableSchema == true ){
 				if ( 0 !== emptyItems.length ) {
 					return (
 						<div className="rating-schema-notices">

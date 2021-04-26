@@ -109,7 +109,7 @@ class UAGBinfoBox extends Component {
 		  	const p = { "value" : name, "label": name };
 		  	size_arr.push( p );
 		} );
-		return( size_arr );
+		return ( size_arr );
 	}
 
 	/*
@@ -268,7 +268,7 @@ class UAGBinfoBox extends Component {
 			noSelectedPlaceholder: __( "Select Icon", "ultimate-addons-for-gutenberg" )
 		};
 
-		if( iconImage && iconImage.sizes ){
+		if ( iconImage && iconImage.sizes ){
 			imageSizeOptions = this.getImageSize( iconImage.sizes );
 		}
 
@@ -277,7 +277,7 @@ class UAGBinfoBox extends Component {
 		let loadCtaGoogleFonts;
 		let loadHeadGoogleFonts;
 
-		if( prefixLoadGoogleFonts == true ) {
+		if ( prefixLoadGoogleFonts == true ) {
 
 			const prefixconfig = {
 				google: {
@@ -291,7 +291,7 @@ class UAGBinfoBox extends Component {
 			);
 		}
 
-		if( headLoadGoogleFonts == true ) {
+		if ( headLoadGoogleFonts == true ) {
 
 			const headconfig = {
 				google: {
@@ -305,7 +305,7 @@ class UAGBinfoBox extends Component {
 			);
 		}
 
-		if( subHeadLoadGoogleFonts == true ) {
+		if ( subHeadLoadGoogleFonts == true ) {
 
 			const subHeadconfig = {
 				google: {
@@ -319,7 +319,7 @@ class UAGBinfoBox extends Component {
 			);
 		}
 
-		if( subHeadLoadGoogleFonts == true ) {
+		if ( subHeadLoadGoogleFonts == true ) {
 
 			const ctaconfig = {
 				google: {
@@ -363,7 +363,7 @@ class UAGBinfoBox extends Component {
 					{
 						( tabName ) => {
 							let tabout_icon;
-							if( "normal" === tabName.name ) {
+							if ( "normal" === tabName.name ) {
 								tabout_icon = <Fragment>
 									<p className="uagb-setting-label">{ __( "Icon Color", "ultimate-addons-for-gutenberg" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={ { backgroundColor: iconColor } } ></span></span></p>
 									<ColorPalette
@@ -372,7 +372,7 @@ class UAGBinfoBox extends Component {
 										allowReset
 									/>
 								</Fragment>;
-							}else {
+							} else {
 								tabout_icon = <Fragment>
 									<p className="uagb-setting-label">{ __( "Icon Hover Color", "ultimate-addons-for-gutenberg" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={ { backgroundColor: iconHover } } ></span></span></p>
 									<ColorPalette
@@ -642,7 +642,7 @@ class UAGBinfoBox extends Component {
 						{
 							( tabName ) => {
 								let tabout_1;
-								if( "normal" === tabName.name ) {
+								if ( "normal" === tabName.name ) {
 									tabout_1 = <Fragment>
 										<p className="uagb-setting-label">{ __( "Text Color", "ultimate-addons-for-gutenberg" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={ { backgroundColor: ctaLinkColor } } ></span></span></p>
 										<ColorPalette
@@ -685,9 +685,9 @@ class UAGBinfoBox extends Component {
 					{
 						( tabName ) => {
 							let tabout;
-							if( "normal" === tabName.name ) {
+							if ( "normal" === tabName.name ) {
 								tabout = ctaNormalSettings;
-							}else {
+							} else {
 								tabout = ctaHoverSettings;
 							}
 							return <div>{ tabout }</div>;
@@ -955,10 +955,10 @@ class UAGBinfoBox extends Component {
 		);
 
 		let image_name = __( "Select Image", "ultimate-addons-for-gutenberg" );
-		if( iconImage ){
-			if( iconImage.url == null || iconImage.url == "" ){
+		if ( iconImage ){
+			if ( iconImage.url == null || iconImage.url == "" ){
 				image_name = __( "Select Image", "ultimate-addons-for-gutenberg" );
-			}else{
+			} else {
 				image_name = __( "Replace Image", "ultimate-addons-for-gutenberg" );
 			}
 		}
@@ -1091,9 +1091,9 @@ class UAGBinfoBox extends Component {
 		// Get icon/Image components.
 		let is_image = "";
 
-		if( source_type === "icon" && icon !== "" ) {
+		if ( source_type === "icon" && icon !== "" ) {
 			is_image =  <Icon attributes={ attributes } />;
-		}else{
+		} else {
 			is_image = <InfoBoxIconImage attributes={ attributes } />;
 		}
 
@@ -1102,7 +1102,7 @@ class UAGBinfoBox extends Component {
 		const seperator_html = <InfoBoxSeparator attributes={ attributes } />;
 		let show_seperator = true;
 
-		if( seperatorPosition == "after_icon" && ( iconimgPosition == "above-title" || iconimgPosition =="below-title" ) ){
+		if ( seperatorPosition == "after_icon" && ( iconimgPosition == "above-title" || iconimgPosition =="below-title" ) ){
 			show_seperator = false;
 			icon_image_html = (
 				<Fragment>
@@ -1112,11 +1112,11 @@ class UAGBinfoBox extends Component {
 			);
 		}
 
-		if( seperatorPosition == "after_icon" && ( iconimgPosition !== "above-title" || iconimgPosition !== "below-title" ) ){
+		if ( seperatorPosition == "after_icon" && ( iconimgPosition !== "above-title" || iconimgPosition !== "below-title" ) ){
 			seperator_position = "after_title";
 		}
 
-		if( iconimgPosition == "below-title" &&  seperatorPosition == "after_title" ){
+		if ( iconimgPosition == "below-title" &&  seperatorPosition == "after_title" ){
 			show_seperator = false;
 			icon_image_html = (
 				<Fragment>
@@ -1236,7 +1236,7 @@ class UAGBinfoBox extends Component {
 	componentDidUpdate( prevProps ) {
 		const element = document.getElementById( "uagb-info-box-style-" + this.props.clientId.substr( 0, 8 ) );
 
-		if( null !== element && undefined !== element ) {
+		if ( null !== element && undefined !== element ) {
 			element.innerHTML = InfoBoxStyle( this.props );
 		}
 	}

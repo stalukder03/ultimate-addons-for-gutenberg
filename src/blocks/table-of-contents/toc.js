@@ -58,7 +58,7 @@ class TableOfContents extends React.Component {
 
 		const parseList = list => {
 			const items = [];
-			if( list !== "undefined" && list && list.length > 0 ){
+			if ( list !== "undefined" && list && list.length > 0 ){
 				list.forEach( item => {
 				
 					if ( Array.isArray( item ) ) {

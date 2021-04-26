@@ -7,34 +7,34 @@ class RestMenuImage extends React.Component {
 		let url_check = "";
 		let image_arr = "";
 
-		if( typeof index_value !== "undefined" ){
+		if ( typeof index_value !== "undefined" ){
 			const image_array = attributes.rest_menu_item_arr[index_value];	
-			if( typeof image_array !== "undefined" ){		
+			if ( typeof image_array !== "undefined" ){		
 				image_arr = image_array.image;		
 			}     
-		}else if( attributes.image !== "" ){
+		} else if ( attributes.image !== "" ){
 			image_arr = attributes.image;
 		   }
 		
-		if( image_arr && typeof image_arr !== "undefined" ){
+		if ( image_arr && typeof image_arr !== "undefined" ){
 			let image = "";
-			if(  typeof image_arr !== "undefined" ){
+			if (  typeof image_arr !== "undefined" ){
 				image = image_arr;
-			}else{
+			} else {
 				image = attributes.image;
 			}
 			let url = "";
 			  
-			if( typeof image !== "undefined" && image !== null && image !=="" ){
+			if ( typeof image !== "undefined" && image !== null && image !=="" ){
 				url_check = image.url;
 			}   
 			 
-			if( url_check !== "" ){
+			if ( url_check !== "" ){
 				const size = image.sizes;
 				const imageSize = attributes.imageSize;
 				if ( typeof size !== "undefined" && typeof size[imageSize] !== "undefined" ) {
 					url = size[imageSize].url; 
-				}else{
+				} else {
 					url = url_check; 
 				}
                 

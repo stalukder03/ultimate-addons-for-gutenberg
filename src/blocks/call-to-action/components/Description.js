@@ -18,7 +18,7 @@ class Description extends React.Component {
 			props
 		} = this.props;
 
-		if( setAttributes !== "not_set" ){
+		if ( setAttributes !== "not_set" ){
 			return (
 				<RichText
 					tagName='p'

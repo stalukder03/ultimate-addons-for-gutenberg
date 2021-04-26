@@ -72,7 +72,7 @@ class UAGBInlineNoticeEdit extends Component {
 	componentDidUpdate( prevProps ) {
 		const element = document.getElementById( "uagb-inline-notice-style-" + this.props.clientId.substr( 0, 8 ) );
 
-		if( null !== element && undefined !== element ) {
+		if ( null !== element && undefined !== element ) {
 			element.innerHTML = styling( this.props );
 		}
 	}
@@ -145,7 +145,7 @@ class UAGBInlineNoticeEdit extends Component {
 		let loadDescriptionGoogleFonts;
 
 
-		if( true === titleLoadGoogleFonts ) {
+		if ( true === titleLoadGoogleFonts ) {
 			
 			const hconfig = {
 				google: {
@@ -159,7 +159,7 @@ class UAGBInlineNoticeEdit extends Component {
 			);
 		}
 
-		if( true === descLoadGoogleFonts ) {
+		if ( true === descLoadGoogleFonts ) {
 
 			const sconfig = {
 				google: {

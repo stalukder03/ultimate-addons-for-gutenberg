@@ -70,9 +70,9 @@ function TestimonialStyle( props ) {
 
 	let img_align = "center";
 
-	if( headingAlign == "left" ){
+	if ( headingAlign == "left" ){
 		img_align = "flex-start";
-	}else if( headingAlign == "right" ){
+	} else if ( headingAlign == "right" ){
 		img_align = "flex-end";
 	}
 
@@ -154,7 +154,7 @@ function TestimonialStyle( props ) {
 		},
 	};
 
-	if( test_item_count == columns ) {
+	if ( test_item_count == columns ) {
 		selectors[".uagb-slick-carousel"] = {
 			"padding": "0",
 		};
@@ -168,19 +168,19 @@ function TestimonialStyle( props ) {
 			"border-width": generateCSSUnit( borderWidth, "px" ),
 			"border-radius": generateCSSUnit( borderRadius, "px" ),
 		};
-	}else{
+	} else {
 		selectors[" .uagb-testimonial__wrap .uagb-tm__content"] = {
 			"border-radius": generateCSSUnit( borderRadius, "px" ),
 		};
 	}
 
-	if( arrowDots === "dots" ){
+	if ( arrowDots === "dots" ){
 		selectors[" .uagb-slick-carousel.uagb-tm__arrow-outside"] = {
 			"padding" : "0 0 35px 0",
 		};
 	}
 
-	if( test_item_count === 1 || test_item_count === columns ){
+	if ( test_item_count === 1 || test_item_count === columns ){
 		selectors[" .uagb-slick-carousel.uagb-tm__arrow-outside"] = {
 			"padding" : "0",
 		};

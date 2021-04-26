@@ -101,7 +101,7 @@ const deprecated = [
 			);
 
 			let target ="";
-			if( ctaTarget ){
+			if ( ctaTarget ){
 				target ="_blank";
 			}
 
@@ -209,7 +209,7 @@ const deprecated = [
 			);
 
 			let target ="";
-			if( ctaTarget ){
+			if ( ctaTarget ){
 				target ="_blank";
 			}
 
@@ -317,7 +317,7 @@ const deprecated = [
 			);
 
 			let target ="";
-			if( ctaTarget ){
+			if ( ctaTarget ){
 				target ="_blank";
 			}
 

@@ -183,7 +183,7 @@ class UAGBBlockQuote extends Component {
 		let loadAuthorGoogleFonts;
 		let loadTweetGoogleFonts;
 
-		if( descLoadGoogleFonts == true ) {
+		if ( descLoadGoogleFonts == true ) {
 					
 			const descconfig = {
 				google: {
@@ -197,7 +197,7 @@ class UAGBBlockQuote extends Component {
 			);
 		}
 
-		if( authorLoadGoogleFonts == true ) {
+		if ( authorLoadGoogleFonts == true ) {
 					
 			const authorconfig = {
 				google: {
@@ -211,7 +211,7 @@ class UAGBBlockQuote extends Component {
 			);
 		}
 
-		if( tweetBtnLoadGoogleFonts == true ) {
+		if ( tweetBtnLoadGoogleFonts == true ) {
 					
 			const tweetBtnconfig = {
 				google: {
@@ -260,10 +260,10 @@ class UAGBBlockQuote extends Component {
 		);
 
 		let image_name = __( "Select Image", "ultimate-addons-for-gutenberg" );
-		if( authorImage ){
-			if( authorImage.url == null || authorImage.url == "" ){
+		if ( authorImage ){
+			if ( authorImage.url == null || authorImage.url == "" ){
 				image_name = __( "Select Image", "ultimate-addons-for-gutenberg" );
-			}else{
+			} else {
 				image_name = __( "Replace Image", "ultimate-addons-for-gutenberg" );
 			}
 		}
@@ -507,9 +507,9 @@ class UAGBBlockQuote extends Component {
 						{
 							( tabName ) => {
 								let tabout;
-								if( "hover" === tabName.name ) {
+								if ( "hover" === tabName.name ) {
 									tabout = hoverSettings;
-								}else {
+								} else {
 									tabout = colorSettings;
 								}
 								return <div>{ tabout }</div>;
@@ -1022,9 +1022,9 @@ class UAGBBlockQuote extends Component {
 						{
 							( tabName ) => {
 								let tweet_tab_output;
-								if( "hover" === tabName.name ) {
+								if ( "hover" === tabName.name ) {
 									tweet_tab_output = tweet_hover;
-								}else {
+								} else {
 									tweet_tab_output = tweet_normal;
 								}
 								return <div>{ tweet_tab_output }</div>;
@@ -1154,7 +1154,7 @@ class UAGBBlockQuote extends Component {
 	componentDidUpdate( prevProps, prevState ) {
 		const element = document.getElementById( "uagb-blockquote-style-" + this.props.clientId.substr( 0, 8 ) );
 
-		if( null !== element && undefined !== element ) {
+		if ( null !== element && undefined !== element ) {
 			element.innerHTML = styling( this.props );
 		}
 	}

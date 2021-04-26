@@ -6,17 +6,17 @@ function ContentTmClasses( attributes ) {
 
 	/* Arrow position */
 	let arrow_align_class  = "uagb-timeline__arrow-top"+" ";
-	if( attributes.arrowlinAlignment == "center" ){
+	if ( attributes.arrowlinAlignment == "center" ){
 		arrow_align_class = "uagb-timeline__arrow-center"+" ";
-	}else if( attributes.arrowlinAlignment == "bottom" ){
+	} else if ( attributes.arrowlinAlignment == "bottom" ){
 		arrow_align_class = "uagb-timeline__arrow-bottom"+" ";
 	}
 
 	/* Alignmnet */
 	let align_class = "uagb-timeline__center-block "+" ";
-	if( attributes.timelinAlignment == "left" ){
+	if ( attributes.timelinAlignment == "left" ){
 		align_class = "uagb-timeline__left-block"+" ";
-	}else if( attributes.timelinAlignment == "right" ){
+	} else if ( attributes.timelinAlignment == "right" ){
 		align_class = "uagb-timeline__right-block"+" ";
 	}
 	align_class+= arrow_align_class+"";

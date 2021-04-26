@@ -18,6 +18,7 @@ module.exports = {
 	rules: {
 		"object-curly-spacing": ["error", "always", { "objectsInObjects": false }],
 		"space-in-parens": ["error", "always"],
+		"keyword-spacing": ["error", { "before": true, "after": true }],
 		"react/react-in-jsx-scope": "off",
 		indent: [ 'error', 'tab' ],
 		"linebreak-style": ["error", "unix"],

@@ -134,7 +134,7 @@ class UAGBFaqEdit extends Component {
 		}
 		const element = document.getElementById( "uagb-style-faq-" + this.props.clientId.substr( 0, 8 ) );
 
-		if( null !== element && undefined !== element ) {
+		if ( null !== element && undefined !== element ) {
 			element.innerHTML = styling( this.props );
 		}
 
@@ -275,7 +275,7 @@ class UAGBFaqEdit extends Component {
 		let loadQuestionGoogleFonts;
 		let loadAnswerGoogleFonts;
 
-		if( questionloadGoogleFonts == true ) {
+		if ( questionloadGoogleFonts == true ) {
 			
 			const qconfig = {
 				google: {
@@ -289,7 +289,7 @@ class UAGBFaqEdit extends Component {
 			);
 		}
 
-		if( answerloadGoogleFonts == true ) {
+		if ( answerloadGoogleFonts == true ) {
 
 			const aconfig = {
 				google: {

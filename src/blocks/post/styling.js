@@ -161,7 +161,7 @@ function styling( props ) {
 			"text-align": paginationAlignment
 		},
 	};
-	if( imgPosition !== "background" ){
+	if ( imgPosition !== "background" ){
 		selectors[" .uagb-post__inner-wrap  > .uagb-post__image:first-child"] = {
 			"margin-top" : generateCSSUnit( ( -contentPadding ), "px" ),
 			"margin-left" : generateCSSUnit( ( -contentPadding ), "px" ),

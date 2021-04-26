@@ -227,7 +227,7 @@ function styling( props ) {
 			"border-color" : inputborderHoverColor,            
 		};
         
-	}else if( "underlined" == formStyle ){
+	} else if ( "underlined" == formStyle ){
 		selectors[" .uagb-forms-main-form  .uagb-forms-input"] = {
 			"border": 0,
 			"outline": 0,

@@ -73,7 +73,7 @@ function setupFAQ() {
 	if ( ( ( ( document.getElementById( hashval ) !== undefined ) && ( document.getElementById( hashval ) !== null ) && ( document.getElementById( hashval ) !== "" ) ) && pattern.test( hashval ) ) ) {
 
 		const elementToOpen = document.getElementById( hashval );
-		if( elementToOpen.getElementsByClassName( "uagb-faq-item" )[0] !== undefined ){
+		if ( elementToOpen.getElementsByClassName( "uagb-faq-item" )[0] !== undefined ){
 			elementToOpen.getElementsByClassName( "uagb-faq-item" )[0].classList.add( "uagb-faq-item-active" );
 			elementToOpen.getElementsByClassName( "uagb-faq-item" )[0].setAttribute( "aria-expanded", true );
 			slideDown( elementToOpen.getElementsByClassName( "uagb-faq-content" )[0], 500 );
@@ -130,7 +130,7 @@ window.addEventListener(
 
 function faqClick( e, faqItem, questionButtons ) {
 
-	if( e.keyCode === 13 || e.keyCode === 32 || e.button === 0 ){ // enter || spacebar || left mouse click.
+	if ( e.keyCode === 13 || e.keyCode === 32 || e.button === 0 ){ // enter || spacebar || left mouse click.
 		if ( faqItem.classList.contains( "uagb-faq-item-active" ) ) {
 			faqItem.classList.remove( "uagb-faq-item-active" );
 			faqItem.setAttribute( "aria-expanded", false );
@@ -144,7 +144,7 @@ function faqClick( e, faqItem, questionButtons ) {
 			faqItem.classList.add( "uagb-faq-item-active" );
 			faqItem.setAttribute( "aria-expanded", true );
 			slideDown( faqItem.getElementsByClassName( "uagb-faq-content" )[0], 500 );
-			if( "true" === faqToggle ) {
+			if ( "true" === faqToggle ) {
 				
 				var questionButtons = parent.querySelectorAll( ".uagb-faq-content" );
 				for ( let buttonChild = 0; buttonChild < questionButtons.length; buttonChild++ ) {

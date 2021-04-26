@@ -66,7 +66,7 @@ class UAGBTableOfContentsEdit extends Component {
 
 		const element = document.getElementById( "uagb-style-toc-" + this.props.clientId.substr( 0, 8 ) );
 
-		if( null !== element && undefined !== element ) {
+		if ( null !== element && undefined !== element ) {
 			element.innerHTML = styling( this.props );
 		}
 	}
@@ -87,7 +87,7 @@ class UAGBTableOfContentsEdit extends Component {
 		const $style = document.createElement( "style" );
 		$style.setAttribute( "id", "uagb-style-toc-" + this.props.clientId.substr( 0, 8 ) );
 		document.head.appendChild( $style );
-		if( this.props.attributes.heading && "" !== this.props.attributes.heading ){
+		if ( this.props.attributes.heading && "" !== this.props.attributes.heading ){
 			this.props.setAttributes( { headingTitle: this.props.attributes.heading } );
 		}
 	}
@@ -193,7 +193,7 @@ class UAGBTableOfContentsEdit extends Component {
 		let loadGFonts;
 		let headingloadGFonts;
 
-		if( loadGoogleFonts == true ) {
+		if ( loadGoogleFonts == true ) {
 
 			const config = {
 				google: {
@@ -208,7 +208,7 @@ class UAGBTableOfContentsEdit extends Component {
 		}
 
 
-		if( headingLoadGoogleFonts == true ) {
+		if ( headingLoadGoogleFonts == true ) {
 
 			const headingconfig = {
 				google: {
@@ -223,7 +223,7 @@ class UAGBTableOfContentsEdit extends Component {
 		}
 
 		const scrollElement = jQuery( ".uagb-toc__scroll-top" );
-		if( null != scrollElement && "undefined" !== scrollElement ) {
+		if ( null != scrollElement && "undefined" !== scrollElement ) {
 
 			if ( scrollToTop ) {
 				scrollElement.addClass( "uagb-toc__show-scroll" );
@@ -869,7 +869,7 @@ export default compose(
 		const parseTocSlug = ( slug ) => {
 
 			// If not have the element then return false!
-			if( ! slug ) {
+			if ( ! slug ) {
 				return slug;
 			}
 			
@@ -892,7 +892,7 @@ export default compose(
 		
 		const headerArray = $( "div.is-root-container" ).find( "h1, h2, h3, h4, h5, h6" );
 		const headers = [];
-		if( headerArray != "undefined" ) {
+		if ( headerArray != "undefined" ) {
 
 			headerArray.each( function ( index, value ){
 				const header = $( this );

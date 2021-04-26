@@ -69,7 +69,7 @@ function styling( props ) {
 		"margin-bottom": generateCSSUnit( headSpace, "px" ),
 	};
 
-	if( seperatorStyle !== "none" ){
+	if ( seperatorStyle !== "none" ){
 		selectors[" .uagb-separator"] = {
 			"border-top-style": seperatorStyle,
 			"border-top-width": generateCSSUnit( separatorHeight, "px" ),

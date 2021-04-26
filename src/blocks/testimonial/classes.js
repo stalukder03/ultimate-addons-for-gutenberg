@@ -8,11 +8,11 @@ function PositionClasses( attributes ) {
 	iconimgStyle_class += " uagb-tm__imgicon-style-"+attributes.iconimgStyle+ " ";
 	iconimgStyle_class += "uagb-tm__image-position-"+attributes.imagePosition+ " ";
 
-	if( attributes.imagePosition == "left" || attributes.imagePosition == "right" ){
+	if ( attributes.imagePosition == "left" || attributes.imagePosition == "right" ){
     	iconimgStyle_class += "uagb-tm__image-aligned-"+attributes.imageAlignment+ " ";
-		if( attributes.stack !== "none" ){
+		if ( attributes.stack !== "none" ){
 			iconimgStyle_class +="uagb-tm-stacked-"+attributes.stack+ " ";
-			if( attributes.imagePosition === "right" ){
+			if ( attributes.imagePosition === "right" ){
 				iconimgStyle_class += "uagb-tm-reverse-order-"+attributes.stack+ " ";
 			}
 		}

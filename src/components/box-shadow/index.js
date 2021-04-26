@@ -30,7 +30,7 @@ class BoxShadowControl extends Component {
 		let control = true;
 		let label = __( "Hide Advanced","ultimate-addons-for-gutenberg" );
 
-		if( this.state !== null && this.state.showAdvancedControls === true ) {
+		if ( this.state !== null && this.state.showAdvancedControls === true ) {
 			control = false;
 			label = __( "Advanced","ultimate-addons-for-gutenberg" );
 		}
@@ -67,7 +67,7 @@ class BoxShadowControl extends Component {
 		let advancedControls;
 		let boxShadowAdvancedControls;
 		let resetBoxShadowAdvancedControls;
-		if( this.state !== null && true === this.state.showAdvancedControls ) {
+		if ( this.state !== null && true === this.state.showAdvancedControls ) {
 			advancedControls = (
 				<div className="uagb-box-shadow-advanced">
 					<Fragment>
@@ -152,7 +152,7 @@ class BoxShadowControl extends Component {
 			</Button>
 		);
 
-		return(
+		return (
 			<div className='uag-typography-option-actions'>
 				<span>{ this.props.label }</span>
 				{ boxShadowAdvancedControls }

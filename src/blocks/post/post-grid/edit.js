@@ -129,7 +129,7 @@ class UAGBPostGrid extends Component {
 	componentDidUpdate() {
 		
 		const element = document.getElementById( "uagb-post-grid-style-" + this.props.clientId.substr( 0, 8 ) );
-		if( null !== element && undefined !== element ) {
+		if ( null !== element && undefined !== element ) {
 			element.innerHTML = styling( this.props );
 		}
 	}
@@ -433,7 +433,7 @@ class UAGBPostGrid extends Component {
 		let loadExcerptGoogleFonts;
 		let loadCtaGoogleFonts;
 
-		if( titleLoadGoogleFonts == true ) {
+		if ( titleLoadGoogleFonts == true ) {
 
 			const titleconfig = {
 				google: {
@@ -447,7 +447,7 @@ class UAGBPostGrid extends Component {
 			);
 		}
 
-		if( metaLoadGoogleFonts == true ) {
+		if ( metaLoadGoogleFonts == true ) {
 
 			const metaconfig = {
 				google: {
@@ -461,7 +461,7 @@ class UAGBPostGrid extends Component {
 			);
 		}
 
-		if( excerptLoadGoogleFonts == true ) {
+		if ( excerptLoadGoogleFonts == true ) {
 
 			const excerptconfig = {
 				google: {
@@ -475,7 +475,7 @@ class UAGBPostGrid extends Component {
 			);
 		}
 
-		if( ctaLoadGoogleFonts == true ) {
+		if ( ctaLoadGoogleFonts == true ) {
 
 			const ctaconfig = {
 				google: {
@@ -1265,9 +1265,9 @@ export default compose(
 		const temp = parseInt( categories );
 		category.push( temp );
 		const catlenght = categoriesList.length;
-		for( let i=0;i<catlenght;i++ ){
-			if( categoriesList[i].id == temp ){
-				if( categoriesList[i].child.length !== 0 ){
+		for ( let i=0;i<catlenght;i++ ){
+			if ( categoriesList[i].id == temp ){
+				if ( categoriesList[i].child.length !== 0 ){
 					categoriesList[i].child.forEach( element => {
 						category.push( element );
 					} );

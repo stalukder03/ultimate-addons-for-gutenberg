@@ -31,10 +31,10 @@ function inlineStyles( props, isEditor ) {
 	const style = {};
 
 	if ( "image" === backgroundType ) {
-		if( "color" == overlayType ){
+		if ( "color" == overlayType ){
 			style.opacity = ( typeof backgroundOpacity !== "undefined" ) ? backgroundOpacity/100 : "";
 			style["background-color"] = backgroundImageColor;
-		}else{
+		} else {
 			style["background-color"] = "transparent";
 			style.opacity = ( typeof backgroundOpacity !== "undefined" ) ? backgroundOpacity/100 : "";
 
@@ -51,7 +51,7 @@ function inlineStyles( props, isEditor ) {
 		style["background-color"] = "transparent";
 		style.opacity = ( typeof backgroundOpacity !== "undefined" ) ? backgroundOpacity/100 : "";
 
-		if( gradientValue ) {
+		if ( gradientValue ) {
 			style["background-image"] = gradientValue;
 		} else if ( "linear" === gradientType ) {
 

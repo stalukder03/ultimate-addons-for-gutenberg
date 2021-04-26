@@ -55,7 +55,7 @@ class UAGBLottie extends Component {
 	componentDidUpdate( prevProps, prevState ) {
 		const element = document.getElementById( "uagb-lottie-style-" + this.props.clientId.substr( 0, 8 ) );
 
-		if( null !== element && undefined !== element ) {
+		if ( null !== element && undefined !== element ) {
 			element.innerHTML = styling( this.props );
 		}
 	}
@@ -301,12 +301,12 @@ class UAGBLottie extends Component {
 
 		//Check if given url is valid or not for json extension.
 		let validJsonPath = "invalid";
-		if( lottieURl && lottieURl.endsWith( ".json" ) ){
+		if ( lottieURl && lottieURl.endsWith( ".json" ) ){
 			validJsonPath = "valid"; 
 		}       
 		if ( ! uagb_blocks_info.uagb_mime_type ) {
 
-			return(
+			return (
 				<div className="uagb-show-notice">
 					<span> 
 						{ __( "Lottie block requires the file type JSON to be uploaded to media files. Seems like your website has disabled this file type. Please refer", "ultimate-addons-for-gutenberg" ) }

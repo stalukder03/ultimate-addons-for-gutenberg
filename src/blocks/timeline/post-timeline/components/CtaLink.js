@@ -4,7 +4,7 @@ class CtaLink extends React.Component {
 
 		const { post, attributes } = this.props;
 		let target ="_self";
-		if( attributes.linkTarget ){
+		if ( attributes.linkTarget ){
 			target ="_blank";
 		}
 

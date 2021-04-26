@@ -15,18 +15,18 @@ class Price extends React.Component {
 		} = this.props;
 
 		let price = "";
-		if( typeof index_value !== "undefined" ){
+		if ( typeof index_value !== "undefined" ){
 			const rest_arr = attributes.rest_menu_item_arr[index_value];
-			if( rest_arr ){
-				if( typeof rest_arr !== "undefined" ){		
+			if ( rest_arr ){
+				if ( typeof rest_arr !== "undefined" ){		
 					price = rest_arr.price;	
 				}
 			}
-		}else{
+		} else {
 			price = attributes.price;
 		}
 
-		if( setAttributes !== "not_set" ){
+		if ( setAttributes !== "not_set" ){
 			return (
 				<RichText
 					tagName='div'

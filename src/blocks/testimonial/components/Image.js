@@ -13,20 +13,20 @@ class TestimonialImage extends React.Component {
         
 		const image_arr = attributes.test_block[index_value];
         
-		if( image_arr && typeof image_arr !== "undefined" ){
+		if ( image_arr && typeof image_arr !== "undefined" ){
 			const image = image_arr.image;
 			let url = "";
            
-			if( typeof image !== "undefined" && image !== null && image !=="" ){
+			if ( typeof image !== "undefined" && image !== null && image !=="" ){
 				url_check = image.url;
 			}       
             
-			if( url_check !== "" ){
+			if ( url_check !== "" ){
 				const size = image.sizes;
 				const imageSize = attributes.imageSize;
 				if ( typeof size !== "undefined" && typeof size[imageSize] !== "undefined" ) {
 					url = size[imageSize].url; 
-				}else{
+				} else {
 					url = url_check; 
 				}
                 

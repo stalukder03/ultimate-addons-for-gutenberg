@@ -61,11 +61,11 @@ class UAGBFormsDateEdit extends Component {
 		let validation_min_value = "";
 		let validation_max_value = "";
 
-		if( minYear && minMonth && minDay ){
+		if ( minYear && minMonth && minDay ){
 			validation_min_value = minYear+"-"+minMonth+"-"+minDay;			
 		}
 
-		if( maxYear && maxMonth && maxDay ){	
+		if ( maxYear && maxMonth && maxDay ){	
 			validation_max_value = maxYear+"-"+maxMonth+"-"+maxDay;	
 		}
 
@@ -180,9 +180,9 @@ class UAGBFormsDateEdit extends Component {
 	
 
 		let date_html = "";
-		if( additonalVal ){
+		if ( additonalVal ){
 			date_html = <input type="date" className="uagb-forms-date-input uagb-forms-input" required={ dateRequired } min={ validation_min_value } max={ validation_max_value } name={ block_id } />;		
-		}else{
+		} else {
 			date_html = <input type="date" className="uagb-forms-date-input uagb-forms-input" required={ dateRequired } name={ block_id } />;
 		}
 

@@ -11,18 +11,18 @@ class InfoBoxIconImage extends React.Component {
 		const { attributes } = this.props; 
 
 		let url_chk = "";
-		if( typeof attributes.iconImage !== "undefined" && attributes.iconImage !== null && attributes.iconImage !=="" ){
+		if ( typeof attributes.iconImage !== "undefined" && attributes.iconImage !== null && attributes.iconImage !=="" ){
 			url_chk = attributes.iconImage.url;
 		}
 		
 		let url = "";
-		if( url_chk !== "" ){
+		if ( url_chk !== "" ){
 			const size = attributes.iconImage.sizes;
 			const imageSize = attributes.imageSize;
 
 			if ( typeof size !== "undefined" && typeof size[imageSize] !== "undefined" ) {
 			  url = size[imageSize].url; 
-			}else{
+			} else {
 			  url = url_chk; 
 			}
 

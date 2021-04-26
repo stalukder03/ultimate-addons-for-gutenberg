@@ -29,7 +29,7 @@ const deprecated = [
 			if ( "custom" != dateFormat ) {
         
 				post_date = dateI18n( dateFormat, t_date );
-				if( post_date === "Invalid date" ){
+				if ( post_date === "Invalid date" ){
 					post_date = t_date;
 				}
 			}
@@ -37,7 +37,7 @@ const deprecated = [
 			let content_class = "";
 			let dayalign_class = "";
         
-			if( props.attributes.dayalign_class != "undefined" && props.attributes.content_class != "undefined" ){
+			if ( props.attributes.dayalign_class != "undefined" && props.attributes.content_class != "undefined" ){
 				content_class = props.attributes.content_class;
 				dayalign_class = props.attributes.dayalign_class;
 			}
