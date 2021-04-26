@@ -1,4 +1,3 @@
- *
 /**
  * Function name: AlignClass
  * @param array attributes settign array of attributes.
@@ -16,11 +15,11 @@ function AlignClass( attributes, index_val ) {
 			align_class = "uagb-timeline__widget uagb-timeline__right";
 		}else{
 			align_class = "uagb-timeline__widget uagb-timeline__left";
-		}  
-	}     
-    
+		}
+	}
+
 	return [
-		align_class        
+		align_class
 	];
 }
 

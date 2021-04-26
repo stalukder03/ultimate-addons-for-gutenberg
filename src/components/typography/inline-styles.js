@@ -1,4 +1,3 @@
- *
 /**
  * Set inline styles.
  * @param {object} props - The block object.

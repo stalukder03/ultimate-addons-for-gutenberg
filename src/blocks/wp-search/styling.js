@@ -8,7 +8,7 @@ import generateCSSUnit from "../../../dist/blocks/uagb-controls/generateCSSUnit"
 function styling( props ) {
 
 	const {
-		block_id,
+		blockId,
 		layout,
 		inputSize,
 		textColor,
@@ -64,15 +64,15 @@ function styling( props ) {
 	} = props.attributes;
 
 	let boxShadowPositionCSS = boxShadowPosition;
-    
+
 	if ( "outset" === boxShadowPosition ) {
 		boxShadowPositionCSS = "";
 	}
 
 	let selectors = {};
-	let tablet_selectors = {};
-	let mobile_selectors = {};
-    
+	let tabletSelectors = {};
+	let mobileSelectors = {};
+
 	const $vInputPaddingDesktop = generateCSSUnit( vinputPaddingDesktop, inputPaddingTypeDesktop );
 	const $hInputPaddingDesktop = generateCSSUnit( hinputPaddingDesktop, inputPaddingTypeDesktop );
 	const $vInputPaddingTablet = generateCSSUnit( vinputPaddingTablet, inputPaddingTypeDesktop );
@@ -81,7 +81,7 @@ function styling( props ) {
 	const $hInputPaddingMobile = generateCSSUnit( hinputPaddingMobile, inputPaddingTypeDesktop );
 	const $iconSize = generateCSSUnit( iconSize, "px" );
 	const $buttonIconSize = generateCSSUnit( buttonIconSize, "px" );
-    
+
 	const inputCSS = {
 		"color": textColor,
 		"background-color": inputBgColor,
@@ -108,17 +108,17 @@ function styling( props ) {
 		"box-shadow": generateCSSUnit( boxShadowHOffset, "px" ) + " " + generateCSSUnit( boxShadowVOffset, "px" ) + " " + generateCSSUnit( boxShadowBlur, "px" ) + " " + generateCSSUnit( boxShadowSpread, "px" ) + " " + boxShadowColor + " " + boxShadowPositionCSS
 	};
 
-	let icon_color = textColor;
+	let iconColorTmp = textColor;
 
 	if ( "undefined" !== typeof iconColor && "" !== iconColor ) {
-		icon_color = iconColor;
+		iconColorTmp = iconColor;
 	}
 	if ( "px" === inputSizeType ) {
 		boxCSS["max-width"] = generateCSSUnit( inputSize, inputSizeType );
 	} else {
 		boxCSS.width = generateCSSUnit( inputSize, inputSizeType );
 	}
-    
+
 	selectors = {
 		" .uagb-search-form__container .uagb-search-submit" : {
 			"width" : generateCSSUnit( buttonWidth, "px" ),
@@ -152,7 +152,7 @@ function styling( props ) {
 			"width" : $iconSize,
 			"height" : $iconSize,
 			"font-size" : $iconSize,
-			"fill" : icon_color
+			"fill" : iconColorTmp
 		},
 	};
 
@@ -177,7 +177,7 @@ function styling( props ) {
 			"padding-left": $hInputPaddingDesktop,
 		};
 	}
-    
+
 	selectors[".uagb-layout-input-button .uagb-search-form__container .uagb-search-submit"] = {
 		"background-color" : buttonBgColor,
 	};
@@ -185,7 +185,7 @@ function styling( props ) {
 		"background-color" : buttonBgHoverColor,
 	};
 
-	mobile_selectors = {
+	mobileSelectors = {
 		" .uagb-search-wrapper .uagb-search-form__container .uagb-search-form__input" : {
 			"font-size" : generateCSSUnit( inputFontSizeMobile, inputFontSizeType ),
 			"line-height" : generateCSSUnit( inputLineHeightMobile, inputLineHeightType ),
@@ -205,7 +205,7 @@ function styling( props ) {
 		},
 	};
 
-	tablet_selectors = {
+	tabletSelectors = {
 		" .uagb-search-wrapper .uagb-search-form__container .uagb-search-form__input" : {
 			"font-size" : generateCSSUnit( inputFontSizeTablet, inputFontSizeType ),
 			"line-height" : generateCSSUnit( inputLineHeightTablet, inputLineHeightType ),
@@ -224,16 +224,16 @@ function styling( props ) {
 			"line-height" : generateCSSUnit( buttonLineHeightTablet, buttonLineHeightType ),
 		},
 	};
-	let styling_css = "";
-	const id = `.uagb-block-${ block_id }`;
+	let stylingCss = "";
+	const id = `.uagb-block-${ blockId }`;
 
-	styling_css = generateCSS( selectors, id );
-    
-	styling_css += generateCSS( tablet_selectors, `${id}.uagb-editor-preview-mode-tablet`, true, "tablet" );
+	stylingCss = generateCSS( selectors, id );
 
-	styling_css += generateCSS( mobile_selectors, `${id}.uagb-editor-preview-mode-mobile`, true, "mobile" );
+	stylingCss += generateCSS( tabletSelectors, `${id}.uagb-editor-preview-mode-tablet`, true, "tablet" );
 
-	return styling_css;
+	stylingCss += generateCSS( mobileSelectors, `${id}.uagb-editor-preview-mode-mobile`, true, "mobile" );
+
+	return stylingCss;
 }
 
 export default styling;

@@ -1,5 +1,5 @@
 /**
- * BLOCK: WP Search 
+ * BLOCK: WP Search
  */
 
 import styling from "./styling";
@@ -9,7 +9,7 @@ import BoxShadowControl from "../../components/box-shadow";
 import TypographyControl from "../../components/typography";
 import WebfontLoader from "../../components/typography/fontloader";
 import renderSVG from "../../../dist/blocks/uagb-controls/renderIcon";
-import UAGB_Block_Icons from "../../../dist/blocks/uagb-controls/block-icons";
+import blockIcons from "../../../dist/blocks/uagb-controls/block-icons";
 import Columnresponsive from "../../components/typography/column-responsive";
 
 const { __ } = wp.i18n;
@@ -27,13 +27,11 @@ const {
 	SelectControl,
 	RangeControl,
 	TextControl,
-	TabPanel,
 	ButtonGroup,
 	Button,
-	Dashicon,
 } = wp.components;
 
-const { select, withSelect } = wp.data;
+const { withSelect } = wp.data;
 
 class UAGBWpSearchEdit extends Component {
 
@@ -47,14 +45,14 @@ class UAGBWpSearchEdit extends Component {
 
 	componentDidMount() {
 
-		// Assigning block_id in the attribute.
-		this.props.setAttributes( { block_id: this.props.clientId.substr( 0, 8 ) } );
+		// Assigning blockId in the attribute.
+		this.props.setAttributes( { blockId: this.props.clientId.substr( 0, 8 ) } );
 		// Pushing Style tag for this block css.
 		const $style = document.createElement( "style" );
 		$style.setAttribute( "id", "uagb-style-wp-search-" + this.props.clientId.substr( 0, 8 ) );
 		document.head.appendChild( $style );
 	}
-	componentDidUpdate( prevProps, prevState ) {
+	componentDidUpdate( prevProps ) {
 
 		if ( ! this.props.isSelected && prevProps.isSelected && this.state.isFocused ) {
 			this.setState( {
@@ -67,10 +65,10 @@ class UAGBWpSearchEdit extends Component {
 				isFocused: true,
 			} );
 		}
-        
+
 		const element = document.getElementById( "uagb-style-wp-search-" + this.props.clientId.substr( 0, 8 ) );
 
-		if ( null != element && "undefined" !== typeof element ) {
+		if ( null !== element && "undefined" !== typeof element ) {
 			element.innerHTML = styling( this.props );
 		}
 
@@ -78,11 +76,11 @@ class UAGBWpSearchEdit extends Component {
 	formPreventDefault( e ) {
 		e.preventDefault();
 	}
-    
+
 	render() {
 		const { attributes, setAttributes, deviceType } = this.props;
 		const {
-			block_id,
+			blockId,
 			layout,
 			placeholder,
 			inputSize,
@@ -143,11 +141,11 @@ class UAGBWpSearchEdit extends Component {
 			buttonTextHoverColor,
 			inputSizeType
 		} = attributes;
-        
+
 		let loadInputGoogleFonts;
 
-		if ( inputloadGoogleFonts == true ) {
-			
+		if ( inputloadGoogleFonts === true ) {
+
 			const qconfig = {
 				google: {
 					families: [ inputFontFamily + ( inputFontWeight ? ":" + inputFontWeight : "" ) ],
@@ -161,8 +159,8 @@ class UAGBWpSearchEdit extends Component {
 		}
 		let loadButtonGoogleFonts;
 
-		if ( buttonloadGoogleFonts == true ) {
-			
+		if ( buttonloadGoogleFonts === true ) {
+
 			const qconfig = {
 				google: {
 					families: [ buttonFontFamily + ( buttonFontWeight ? ":" + buttonFontWeight : "" ) ],
@@ -174,7 +172,7 @@ class UAGBWpSearchEdit extends Component {
 				</WebfontLoader>
 			);
 		}
-        
+
 		const generalSettings = () => {
 			return (
 
@@ -210,7 +208,7 @@ class UAGBWpSearchEdit extends Component {
 							max={ ( "px" === inputSizeType ) ? 500 : 100 }
 						/>
 					</Fragment>
-                    
+
 				</PanelBody>
 			);
 		};
@@ -289,7 +287,7 @@ class UAGBWpSearchEdit extends Component {
 							</ButtonGroup>
 							<h2>{ __( "Padding", "ultimate-addons-for-gutenberg" ) }</h2>
 							<RangeControl
-								label={ UAGB_Block_Icons.vertical_spacing }
+								label={ blockIcons.vertical_spacing }
 								className={ "uagb-margin-control" }
 								value={ vinputPaddingDesktop }
 								onChange={ ( value ) => setAttributes( { vinputPaddingDesktop: value } ) }
@@ -298,7 +296,7 @@ class UAGBWpSearchEdit extends Component {
 								allowReset
 							/>
 							<RangeControl
-								label={ UAGB_Block_Icons.horizontal_spacing }
+								label={ blockIcons.horizontal_spacing }
 								className={ "uagb-margin-control" }
 								value={ hinputPaddingDesktop }
 								onChange={ ( value ) => setAttributes( { hinputPaddingDesktop: value } ) }
@@ -316,7 +314,7 @@ class UAGBWpSearchEdit extends Component {
 							</ButtonGroup>
 							<h2>{ __( "Padding", "ultimate-addons-for-gutenberg" ) }</h2>
 							<RangeControl
-								label={ UAGB_Block_Icons.vertical_spacing }
+								label={ blockIcons.vertical_spacing }
 								className={ "uagb-margin-control" }
 								value={ vinputPaddingTablet }
 								onChange={ ( value ) => setAttributes( { vinputPaddingTablet: value } ) }
@@ -325,7 +323,7 @@ class UAGBWpSearchEdit extends Component {
 								allowReset
 							/>
 							<RangeControl
-								label={ UAGB_Block_Icons.horizontal_spacing }
+								label={ blockIcons.horizontal_spacing }
 								className={ "uagb-margin-control" }
 								value={ hinputPaddingTablet }
 								onChange={ ( value ) => setAttributes( { hinputPaddingTablet: value } ) }
@@ -343,7 +341,7 @@ class UAGBWpSearchEdit extends Component {
 							</ButtonGroup>
 							<h2>{ __( "Padding", "ultimate-addons-for-gutenberg" ) }</h2>
 							<RangeControl
-								label={ UAGB_Block_Icons.vertical_spacing }
+								label={ blockIcons.vertical_spacing }
 								className={ "uagb-margin-control" }
 								value={ vinputPaddingMobile }
 								onChange={ ( value ) => setAttributes( { vinputPaddingMobile: value } ) }
@@ -352,7 +350,7 @@ class UAGBWpSearchEdit extends Component {
 								allowReset
 							/>
 							<RangeControl
-								label={ UAGB_Block_Icons.horizontal_spacing }
+								label={ blockIcons.horizontal_spacing }
 								className={ "uagb-margin-control" }
 								value={ hinputPaddingMobile }
 								onChange={ ( value ) => setAttributes( { hinputPaddingMobile: value } ) }
@@ -509,11 +507,11 @@ class UAGBWpSearchEdit extends Component {
                                 	/>
 							</Fragment>
 							}
-						</Fragment> 
+						</Fragment>
 					</PanelBody>
 				);
 			}
-            
+
 			return "";
 		};
 		const iconSettings = () => {
@@ -552,15 +550,15 @@ class UAGBWpSearchEdit extends Component {
 			return "";
 		};
 		const renderClassic = () => {
-            
+
 			if ( "input-button" === layout ) {
-                
+
 				return (
 					<form className="uagb-search-wrapper" onSubmit={ this.formPreventDefault } role="search" action={ uagb_blocks_info.uagb_home_url } method="get">
 						<div className="uagb-search-form__container wp-block-button" role="tablist">
-							<input placeholder={ placeholder } 
+							<input placeholder={ placeholder }
 								className="uagb-search-form__input" type="search" name="s" title="Search" />
-                            
+
 							<button className="uagb-search-submit wp-block-button__link" type="submit">
 								{ "icon" === buttonType &&
 								<span className="uagb-wp-search-button-icon-wrap">
@@ -588,16 +586,16 @@ class UAGBWpSearchEdit extends Component {
 			return "";
 		};
 		const renderMinimal = () => {
-            
+
 			if ( "input" === layout ) {
-                
+
 				return (
 					<form className="uagb-search-wrapper" onSubmit={ this.formPreventDefault } role="search" action={ uagb_blocks_info.uagb_home_url } method="get">
 						<div className="uagb-search-form__container" role="tablist">
 							<span className="uagb-wp-search-icon-wrap">
 								{ renderSVG( "fas fa-search" ) }
 							</span>
-							<input placeholder={ placeholder } 
+							<input placeholder={ placeholder }
 								className="uagb-search-form__input" type="search" name="s" title="Search" />
 						</div>
 					</form>
@@ -606,12 +604,12 @@ class UAGBWpSearchEdit extends Component {
 
 			return "";
 		};
-        
+
 		return (
 			<div className={ classnames(
 				"uagb-wp-search__outer-wrap",
 				`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
-				`uagb-block-${ block_id }`,
+				`uagb-block-${ blockId }`,
 				`uagb-layout-${ layout }`
 			) }
 			>
@@ -630,7 +628,7 @@ class UAGBWpSearchEdit extends Component {
 	}
 }
 
-export default withSelect( ( select, props ) => { 
+export default withSelect( ( select ) => {
 
 	const { __experimentalGetPreviewDeviceType = null } = select( "core/edit-post" );
 
