@@ -1,7 +1,7 @@
 /**
  * BLOCK: WP Search
  */
-
+import styling from "./styling";
 import { Fragment, useCallback, useEffect, useState } from "react";
 import classnames from "classnames";
 import BoxShadowControl from "../../components/box-shadow";
@@ -47,7 +47,7 @@ const UAGBWpSearchEdit = props => {
 		const $style = document.createElement( "style" );
 		$style.setAttribute( "id", "uagb-style-wp-search-" + props.clientId.substr( 0, 8 ) );
 		document.head.appendChild( $style );
-	}, [] ); // componentDidMount.
+	}, [state] ); // componentDidMount.
 
 	useEffect(() => {
 
@@ -68,7 +68,7 @@ const UAGBWpSearchEdit = props => {
 		if( null != element && "undefined" != typeof element ) {
 			element.innerHTML = styling( props )
 		}
-	}, [state]);   // componentDidUpdate.
+	}, [props]);   // componentDidUpdate.
 
 
 	const formPreventDefault = useCallback( ( e ) => {
