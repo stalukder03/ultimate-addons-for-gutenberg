@@ -55,8 +55,45 @@ if ( ! class_exists( 'UAGB_FAQ' ) ) {
 		 *
 		 * @return string Rendered block HTML.
 		 */
-        public function render_faq( $attributes ){
+        public function render_faq( $attributes, $content, $block  ){         
 
+            $equalHeightClass = $attributes['equalHeight'] ? "uagb-faq-equal-height" : "";
+
+            $wrap = array(
+				'wp-block-uagb-faq uagb-faq__outer-wrap',
+				'uagb-block-' . $attributes['block_id'],
+                'uagb-faq-icon-' . $attributes['iconAlign'],
+                'uagb-faq-layout-' . $attributes['layout'],
+                'uagb-faq-expand-first-' . $attributes['expandFirstItem'],
+                'uagb-faq-inactive-other-' . $attributes['inactiveOtherItems'],
+                $equalHeightClass
+			);
+
+            ob_start();
+			?>
+            <div class="<?php echo esc_html( implode( ' ', $wrap ) ); ?>"
+            data-faqtoggle = "<?php echo esc_attr( $attributes['enableToggle'] ); ?>"
+            role = 'tablist'
+            >
+            <?php if ( true === $attributes['enableSchemaSupport'] ) { ?>
+                <?php 
+                echo '<script type="application/ld+json">{
+                    "@context": "https://schema.org",
+                    "@type": "FAQPage",
+                    "@id": page_url,
+                    "mainEntity": []}
+                    </script>';  
+                ?>
+            <?php } ?>
+                <div className="uagb-faq__wrap uagb-buttons-layout-wrap">
+                   <?php 
+                        echo $content;
+                    ?>
+                </div>
+            </div>
+            <?php
+
+            return ob_get_clean();
         }
 
         /**
@@ -72,7 +109,7 @@ if ( ! class_exists( 'UAGB_FAQ' ) ) {
 		public function register_faq() {
 
 					register_block_type(
-						'uagb/',
+						'uagb/faq',
 						array(
 							'attributes'      => array_merge(
 								array(
@@ -357,11 +394,11 @@ if ( ! class_exists( 'UAGB_FAQ' ) ) {
                                         'type' => "number",
                                         'default' => 2
                                     ),
-                                    'tcolumns' =>{
+                                    'tcolumns' => array(
                                         'type' => "number",
                                         'default' => 2,
                                     ),
-                                    'mcolumns' => {
+                                    'mcolumns' => array(
                                         'type' => "number",
                                         'default' => 1,
                                     ),

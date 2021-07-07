@@ -5,13 +5,17 @@
 import UAGB_Block_Icons from "@Controls/block-icons"
 import attributes from "./attributes"
 import edit from "./edit"
-import save from "./save"
+// import save from "./save"
 import "./style.scss"
 import "./editor.scss"
 import deprecated from "./deprecated"
 
 const { addFilter } = wp.hooks;
 import { __ } from '@wordpress/i18n';
+
+const {
+	InnerBlocks
+} = wp.blockEditor
 
 const { Fragment } = wp.element;
 const { withSelect } = wp.data;
@@ -91,7 +95,11 @@ registerBlockType( "uagb/faq", {
 	supports: {
 		anchor: true,
 	},
-	save,
+	// save: props => <InnerBlocks.Content />
+	// Render via PHP
+	save() {
+		return <InnerBlocks.Content />;
+	},
 } )
 
 addFilter(

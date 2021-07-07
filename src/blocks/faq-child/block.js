@@ -29,5 +29,9 @@ registerBlockType( "uagb/faq-child", {
 		anchor: true,
 	},
 	save,
+	// Render via PHP
+	// save() {
+	// 	return null
+	// },
 	deprecated
 } )
