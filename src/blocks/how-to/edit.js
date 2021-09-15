@@ -202,21 +202,21 @@ export default compose(
 			} );
 		}
 
-		const getChildBlocks = select( 'core/block-editor' ).getBlocks(
-			ownProps.clientId
-		);
+		// const getChildBlocks = select( 'core/block-editor' ).getBlocks(
+		// 	ownProps.clientId
+		// );
 
-		getChildBlocks.forEach( ( steps, key ) => {
-			stepsData = {
-				'@type': 'HowToStep',
-				url: steps.attributes.ctaLink,
-				name: steps.attributes.infoBoxTitle,
-				text: steps.attributes.headingDesc,
-				image: steps.attributes.iconImage.url,
-			};
-			jsonData.step[ key ] = stepsData;
-		} );
-
+		// getChildBlocks.forEach( ( steps, key ) => {
+		// 	stepsData = {
+		// 		'@type': 'HowToStep',
+		// 		url: steps.attributes.ctaLink,
+		// 		name: steps.attributes.infoBoxTitle,
+		// 		text: steps.attributes.headingDesc,
+		// 		image: steps.attributes.iconImage.url,
+		// 	};
+		// 	jsonData.step[ key ] = stepsData;
+		// } );
+		
 		return {
 			schemaJsonData: jsonData,
 			deviceType,

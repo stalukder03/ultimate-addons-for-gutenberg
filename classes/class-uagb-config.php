@@ -3637,6 +3637,20 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 							'titleGap'         => '10',
 						),
 					),
+					'uagb/how-to-step'            => array(
+						'slug'        => '',
+						'title'       => __( 'Step', 'ultimate-addons-for-gutenberg' ),
+						'description' => __( 'This block helps you add Step in How to Block.', 'ultimate-addons-for-gutenberg' ),
+						'default'     => true,
+						'js_assets'   => array(),
+						'attributes'  => array(
+							'block_id'    => '',
+							'name'        => '',
+							'description' => '',
+							'url'         => '',
+							'image'       => '',
+						),
+					),
 				);
 			}
 			return self::$block_attributes;
