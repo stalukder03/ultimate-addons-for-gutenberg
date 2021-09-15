@@ -1,5 +1,5 @@
 /**
- * BLOCK: UAGB Form - Name Attributes
+ * BLOCK: UAGB How To - Step Attributes
  */
 import { __ } from '@wordpress/i18n';
 

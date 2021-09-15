@@ -1,5 +1,5 @@
 /**
- * BLOCK: Forms - Name
+ * BLOCK: How To - Step
  */
 
 import UAGB_Block_Icons from '@Controls/block-icons';

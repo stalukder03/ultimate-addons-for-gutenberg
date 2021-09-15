@@ -1,5 +1,5 @@
 /**
- * BLOCK: Forms - Name - Save Block
+ * BLOCK: How To - Step - Save Block
  */
 
 import classnames from 'classnames';
