@@ -10,7 +10,6 @@ import generateCSSUnit from '@Controls/generateCSSUnit';
 
 function styling( props ) {
 	const {
-	
 		imgPosition,
 		borderWidth,
 		borderStyle,
@@ -26,15 +25,13 @@ function styling( props ) {
 		titleFontSizeTablet,
 		titleFontFamily,
 		titleFontWeight,
-		titleFontSubset,
 		titleLineHeightType,
 		titleLineHeight,
 		titleLineHeightTablet,
 		titleLineHeightMobile,
-		titleLoadGoogleFonts,
 		titleBottomSpace,
 		titleTransform,
-	   	titleDecoration,
+		titleDecoration,
 		titleBottomSpaceUnit,
 
 		metaFontSize,
@@ -43,12 +40,10 @@ function styling( props ) {
 		metaFontSizeTablet,
 		metaFontFamily,
 		metaFontWeight,
-		metaFontSubset,
 		metaLineHeightType,
 		metaLineHeight,
 		metaLineHeightTablet,
 		metaLineHeightMobile,
-		metaLoadGoogleFonts,
 		metaColor,
 		metaBottomSpace,
 		metaLinkTransform,
@@ -61,12 +56,10 @@ function styling( props ) {
 		excerptFontSizeMobile,
 		excerptFontFamily,
 		excerptFontWeight,
-		excerptFontSubset,
 		excerptLineHeightType,
 		excerptLineHeight,
 		excerptLineHeightTablet,
 		excerptLineHeightMobile,
-		excerptLoadGoogleFonts,
 		excerptColor,
 		excerptBottomSpace,
 		excerptBottomSpaceUnit,
@@ -81,12 +74,10 @@ function styling( props ) {
 		ctaFontSizeMobile,
 		ctaFontFamily,
 		ctaFontWeight,
-		ctaFontSubset,
 		ctaLineHeightType,
 		ctaLineHeight,
 		ctaLineHeightTablet,
 		ctaLineHeightMobile,
-		ctaLoadGoogleFonts,
 		ctaBottomSpace,
 		ctaBgColor,
 		ctaHColor,
@@ -94,10 +85,10 @@ function styling( props ) {
 		ctaTransform,
 		ctaDecoration,
 		ctaBottomSpaceUnit,
-		
+
 		imageBottomSpace,
 		imageBottomSpaceUnit,
-		
+
 		overlayOpacity,
 		bgOverlayColor,
 		postPagination,
@@ -120,7 +111,7 @@ function styling( props ) {
 		paginationSpacing,
 		paginationSpacingUnit,
 		paginationAlignment,
-		
+
 		paddingBtnTop,
 		paddingBtnBottom,
 		paddingBtnLeft,
@@ -152,14 +143,10 @@ function styling( props ) {
 		mobilePaddingUnit,
 		tabletPaddingUnit,
 		contentPadding,
-		contentPaddingMobile,
 		contentPaddingUnit,
-		contentPaddingTablet,
 		arrowColor,
 		arrowSize,
-		arrowSizeUnit,
 		paginationType,
-		paginationFontSizeUnit,
 		paginationFontSize,
 		paginationEventType,
 		paginationAlign,
@@ -169,6 +156,7 @@ function styling( props ) {
 		paginationMasonryBorderWidth,
 		paginationMasonryBorderRadius,
 		paginationMasonryBorderColor,
+		paginationMasonryBorderHColor,
 		paginationButtonPaddingType,
 		paginationTextHoverColor,
 		paginationBgHoverColor,
@@ -188,9 +176,8 @@ function styling( props ) {
 		tabletpaginationButtonPaddingType,
 		loaderSize,
 		loaderColor,
-		
 	} = props.attributes;
-	
+
 	let mobileSelectors = {};
 	let tabletSelectors = {};
 
@@ -202,37 +189,61 @@ function styling( props ) {
 		' .uagb-post__items article': {
 			'padding-right': generateCSSUnit( rowGap / 2, rowGapUnit ),
 			'padding-left': generateCSSUnit( rowGap / 2, rowGapUnit ),
-			'margin-bottom': generateCSSUnit( columnGap, columnGapUnit  ),
+			'margin-bottom': generateCSSUnit( columnGap, columnGapUnit ),
 		},
 		' .uagb-post__inner-wrap': {
 			'background': bgColor,
-			'padding-top': generateCSSUnit( paddingTop , contentPaddingUnit ),
-			'padding-bottom': generateCSSUnit(  paddingBottom , contentPaddingUnit ),
-			'padding-left': generateCSSUnit( paddingLeft , contentPaddingUnit  ),
-			'padding-right': generateCSSUnit( paddingRight , contentPaddingUnit  ),
+			'padding-top': generateCSSUnit( paddingTop, contentPaddingUnit ),
+			'padding-bottom': generateCSSUnit(
+				paddingBottom,
+				contentPaddingUnit
+			),
+			'padding-left': generateCSSUnit( paddingLeft, contentPaddingUnit ),
+			'padding-right': generateCSSUnit(
+				paddingRight,
+				contentPaddingUnit
+			),
 			'text-align': align,
 		},
 		' .uagb-post__inner-wrap .uagb-post__cta': {
-			'margin-bottom': generateCSSUnit( ctaBottomSpace, ctaBottomSpaceUnit  ),
+			'margin-bottom': generateCSSUnit(
+				ctaBottomSpace,
+				ctaBottomSpaceUnit
+			),
 		},
 		' .uagb-post__inner-wrap .uagb-post__image': {
-			'margin-bottom': generateCSSUnit( imageBottomSpace, imageBottomSpaceUnit  ),
+			'margin-bottom': generateCSSUnit(
+				imageBottomSpace,
+				imageBottomSpaceUnit
+			),
 		},
 		' .uagb-post__inner-wrap .uagb-post__title': {
-			'margin-bottom': generateCSSUnit( titleBottomSpace, titleBottomSpaceUnit  ),
+			'margin-bottom': generateCSSUnit(
+				titleBottomSpace,
+				titleBottomSpaceUnit
+			),
 		},
 		' .uagb-post__inner-wrap .uagb-post-grid-byline': {
-			'margin-bottom': generateCSSUnit( metaBottomSpace, metaBottomSpaceUnit  ),
+			'margin-bottom': generateCSSUnit(
+				metaBottomSpace,
+				metaBottomSpaceUnit
+			),
 		},
 		' .uagb-post__inner-wrap .uagb-post__excerpt': {
-			'margin-bottom': generateCSSUnit( excerptBottomSpace, excerptBottomSpaceUnit  ),
+			'margin-bottom': generateCSSUnit(
+				excerptBottomSpace,
+				excerptBottomSpaceUnit
+			),
 		},
 		' .uagb-post__image:before': {
 			'background-color': bgOverlayColor,
 			'opacity': overlayOpacity / 100,
 		},
 		' .uagb-post-pagination-wrap': {
-			'margin-top': generateCSSUnit( paginationSpacing, paginationSpacingUnit ),
+			'margin-top': generateCSSUnit(
+				paginationSpacing,
+				paginationSpacingUnit
+			),
 			'text-align': paginationAlignment,
 		},
 	};
@@ -242,7 +253,10 @@ function styling( props ) {
 		] = {
 			'margin-top': generateCSSUnit( -paddingTop, contentPaddingUnit ),
 			'margin-left': generateCSSUnit( -paddingLeft, contentPaddingUnit ),
-			'margin-right': generateCSSUnit( -paddingRight, contentPaddingUnit ),
+			'margin-right': generateCSSUnit(
+				-paddingRight,
+				contentPaddingUnit
+			),
 		};
 	}
 	if ( ! inheritFromTheme ) {
@@ -314,7 +328,6 @@ function styling( props ) {
 			),
 			'text-transform': excerptTransform,
 			'text-decoration': excerptDecoration,
-
 		};
 		selectors[ ' .uagb-post__cta' ] = {
 			'pointer-events': 'visible',
@@ -334,10 +347,13 @@ function styling( props ) {
 		selectors[ ' .uagb-post__cta a' ] = {
 			'color': ctaColor,
 			'font-size': generateCSSUnit( ctaFontSize, ctaFontSizeType ),
-			'padding-top': generateCSSUnit( paddingBtnTop , paddingBtnUnit ),
-			'padding-bottom': generateCSSUnit( paddingBtnBottom , paddingBtnUnit ),
-			'padding-left': generateCSSUnit( paddingBtnLeft , paddingBtnUnit  ),
-			'padding-right': generateCSSUnit( paddingBtnRight , paddingBtnUnit  ),
+			'padding-top': generateCSSUnit( paddingBtnTop, paddingBtnUnit ),
+			'padding-bottom': generateCSSUnit(
+				paddingBtnBottom,
+				paddingBtnUnit
+			),
+			'padding-left': generateCSSUnit( paddingBtnLeft, paddingBtnUnit ),
+			'padding-right': generateCSSUnit( paddingBtnRight, paddingBtnUnit ),
 		};
 		selectors[ ' .uagb-post__text .uagb-post__cta:hover' ] = {
 			'color': ctaHColor,
@@ -350,7 +366,7 @@ function styling( props ) {
 	}
 
 	if ( true === postPagination ) {
-		if ( 'filled' == paginationLayout ) {
+		if ( 'filled' === paginationLayout ) {
 			selectors[ ' .uagb-post-pagination-wrap a' ] = {
 				'background-color': paginationBgColor,
 				'color': paginationColor,
@@ -400,7 +416,7 @@ function styling( props ) {
 				};
 			}
 		}
-		if ( 'border' == paginationLayout ) {
+		if ( 'border' === paginationLayout ) {
 			selectors[ ' .uagb-post-pagination-wrap a' ] = {
 				'border-style': 'solid',
 				'border-width': generateCSSUnit( paginationBorderSize, 'px' ),
@@ -505,8 +521,8 @@ function styling( props ) {
 
 	selectors[ ' .slick-arrow svg' ] = {
 		'fill': arrowColor,
-		'height': generateCSSUnit( arrowSize, arrowSizeUnit ),
-		'width': generateCSSUnit( arrowSize, arrowSizeUnit ),
+		'height': generateCSSUnit( arrowSize, 'px' ),
+		'width': generateCSSUnit( arrowSize, 'px' ),
 	};
 
 	if ( ! inheritFromTheme ) {
@@ -566,11 +582,22 @@ function styling( props ) {
 					ctaFontSizeType
 				),
 				'line-height': ctaLineHeightMobile + ctaLineHeightType,
-				'font-size': generateCSSUnit( ctaFontSize, ctaFontSizeType ),
-				'padding-top': generateCSSUnit( paddingBtnTopMobile , mobilePaddingBtnUnit ),
-				'padding-bottom': generateCSSUnit( paddingBtnBottomMobile , mobilePaddingBtnUnit ),
-				'padding-left': generateCSSUnit( paddingBtnLeftMobile , mobilePaddingBtnUnit  ),
-				'padding-right': generateCSSUnit( paddingBtnRightMobile , mobilePaddingBtnUnit  ),
+				'padding-top': generateCSSUnit(
+					paddingBtnTopMobile,
+					mobilePaddingBtnUnit
+				),
+				'padding-bottom': generateCSSUnit(
+					paddingBtnBottomMobile,
+					mobilePaddingBtnUnit
+				),
+				'padding-left': generateCSSUnit(
+					paddingBtnLeftMobile,
+					mobilePaddingBtnUnit
+				),
+				'padding-right': generateCSSUnit(
+					paddingBtnRightMobile,
+					mobilePaddingBtnUnit
+				),
 			},
 		};
 
@@ -630,10 +657,22 @@ function styling( props ) {
 					ctaFontSizeType
 				),
 				'line-height': ctaLineHeightTablet + ctaLineHeightType,
-				'padding-top': generateCSSUnit( paddingBtnTopTablet , tabletPaddingBtnUnit ),
-				'padding-bottom': generateCSSUnit( paddingBtnBottomTablet , tabletPaddingBtnUnit ),
-				'padding-left': generateCSSUnit( paddingBtnLeftTablet , tabletPaddingBtnUnit  ),
-				'padding-right': generateCSSUnit( paddingBtnRightTablet , tabletPaddingBtnUnit  ),
+				'padding-top': generateCSSUnit(
+					paddingBtnTopTablet,
+					tabletPaddingBtnUnit
+				),
+				'padding-bottom': generateCSSUnit(
+					paddingBtnBottomTablet,
+					tabletPaddingBtnUnit
+				),
+				'padding-left': generateCSSUnit(
+					paddingBtnLeftTablet,
+					tabletPaddingBtnUnit
+				),
+				'padding-right': generateCSSUnit(
+					paddingBtnRightTablet,
+					tabletPaddingBtnUnit
+				),
 			},
 		};
 	}
@@ -658,7 +697,10 @@ function styling( props ) {
 					'px'
 				),
 				'border-color': paginationMasonryBorderColor,
-				'font-size': generateCSSUnit( paginationFontSize, paginationFontSizeUnit ),
+				'font-size': generateCSSUnit(
+					paginationFontSize,
+					'px'
+				),
 				'padding-top': generateCSSUnit(
 					paginationButtonPaddingTop,
 					paginationButtonPaddingType
@@ -681,6 +723,7 @@ function styling( props ) {
 			] = {
 				'color': paginationTextHoverColor,
 				'background-color': paginationBgHoverColor,
+				'border-color': paginationMasonryBorderHColor,
 			};
 			mobileSelectors[
 				' .uagb-post__load-more-wrap .uagb-post-pagination-button'
@@ -732,16 +775,28 @@ function styling( props ) {
 		}
 	}
 	tabletSelectors[ ' .uagb-post__inner-wrap' ] = {
-		'padding-top': generateCSSUnit( paddingTopTablet , tabletPaddingUnit ),
-		'padding-bottom': generateCSSUnit( paddingBottomTablet , tabletPaddingUnit ),
-		'padding-left': generateCSSUnit( paddingLeftTablet , tabletPaddingUnit  ),
-		'padding-right': generateCSSUnit( paddingRightTablet , tabletPaddingUnit  ),
+		'padding-top': generateCSSUnit( paddingTopTablet, tabletPaddingUnit ),
+		'padding-bottom': generateCSSUnit(
+			paddingBottomTablet,
+			tabletPaddingUnit
+		),
+		'padding-left': generateCSSUnit( paddingLeftTablet, tabletPaddingUnit ),
+		'padding-right': generateCSSUnit(
+			paddingRightTablet,
+			tabletPaddingUnit
+		),
 	};
 	mobileSelectors[ ' .uagb-post__inner-wrap' ] = {
-		'padding-top': generateCSSUnit( paddingTopMobile , mobilePaddingUnit ),
-		'padding-bottom': generateCSSUnit( paddingBottomMobile , mobilePaddingUnit ),
-		'padding-left': generateCSSUnit( paddingLeftMobile , mobilePaddingUnit  ),
-		'padding-right': generateCSSUnit( paddingRightMobile , mobilePaddingUnit  ),
+		'padding-top': generateCSSUnit( paddingTopMobile, mobilePaddingUnit ),
+		'padding-bottom': generateCSSUnit(
+			paddingBottomMobile,
+			mobilePaddingUnit
+		),
+		'padding-left': generateCSSUnit( paddingLeftMobile, mobilePaddingUnit ),
+		'padding-right': generateCSSUnit(
+			paddingRightMobile,
+			mobilePaddingUnit
+		),
 	};
 	mobileSelectors[
 		'.uagb-post__inner-wrap  > .uagb-post__image:first-child'

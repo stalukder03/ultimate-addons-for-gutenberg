@@ -420,10 +420,6 @@ const Render = ( props ) => {
 												);
 											} }
 											className="uagb-tools__label"
-											placeholder={ __(
-												'Description',
-												'ultimate-addons-for-gutenberg'
-											) }
 											multiline={ false }
 											allowedFormats={ [
 												'core/bold',
@@ -484,10 +480,6 @@ const Render = ( props ) => {
 												);
 											} }
 											className="uagb-materials__label"
-											placeholder={ __(
-												'Description',
-												'ultimate-addons-for-gutenberg'
-											) }
 											multiline={ false }
 											allowedFormats={ [
 												'core/bold',

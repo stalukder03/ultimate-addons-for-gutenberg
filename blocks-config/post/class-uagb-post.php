@@ -430,6 +430,10 @@ if ( ! class_exists( 'UAGB_Post' ) ) {
 								'type'    => 'string',
 								'default' => '',
 							),
+							'paginationMasonryBorderHColor' => array(
+								'type'    => 'string',
+								'default' => '',
+							),
 							'paginationFontSize'           => array(
 								'type'    => 'number',
 								'default' => 13,
@@ -620,7 +624,7 @@ if ( ! class_exists( 'UAGB_Post' ) ) {
 				),
 				'excerptLength'           => array(
 					'type'    => 'number',
-					'default' => 25,
+					'default' => 15,
 				),
 				'displayPostAuthor'       => array(
 					'type'    => 'boolean',
@@ -738,7 +742,7 @@ if ( ! class_exists( 'UAGB_Post' ) ) {
 				),
 				'bgColor'                 => array(
 					'type'    => 'string',
-					'default' => '#e4e4e4',
+					'default' => '#f5f5f5',
 				),
 
 				// Title Attributes.
@@ -748,7 +752,7 @@ if ( ! class_exists( 'UAGB_Post' ) ) {
 				),
 				'titleTag'                => array(
 					'type'    => 'string',
-					'default' => 'h3',
+					'default' => 'h4',
 				),
 				'titleFontSize'           => array(
 					'type'    => 'number',
@@ -1680,7 +1684,7 @@ if ( ! class_exists( 'UAGB_Post' ) ) {
 
 			global $post;
 
-			$length = ( isset( $attributes['excerptLength'] ) ) ? $attributes['excerptLength'] : 25;
+			$length = ( isset( $attributes['excerptLength'] ) ) ? $attributes['excerptLength'] : 15;
 
 			if ( 'full_post' === $attributes['displayPostContentRadio'] ) {
 				$excerpt = get_the_content();

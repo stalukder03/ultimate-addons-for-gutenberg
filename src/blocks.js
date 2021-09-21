@@ -8,7 +8,7 @@
  * All blocks should be included here since this is the file that
  * Webpack is compiling as the input file.
  */
-__webpack_public_path__ = uagb_blocks_info.uagb_url + "dist/";
+__webpack_public_path__ = uagb_blocks_info.uagb_url + 'dist/';
 
 import "./blocks/extensions/attributes.js";
 import "./blocks/advanced-heading/block.js";
@@ -63,22 +63,22 @@ import "./blocks/lottie/block.js";
 import "./blocks/star-rating/block.js";
 import "./blocks/demo-control-block/block.js";
 
-wp.UAGBSvgIcons = Object.keys(uagb_blocks_info.uagb_svg_icons);
+wp.UAGBSvgIcons = Object.keys( uagb_blocks_info.uagb_svg_icons );
 
-import UAGB_Block_Icons from "@Controls/block-icons";
+import UAGB_Block_Icons from '@Controls/block-icons';
 
-import { updateCategory } from "@wordpress/blocks";
+import { updateCategory } from '@wordpress/blocks';
 
-updateCategory("uagb", {
+updateCategory( 'uagb', {
 	icon: UAGB_Block_Icons.logo,
-});
+} );
 
-setTimeout(async function () {
+setTimeout( async function () {
 	// Sort the Blocks based on title.
-	wp.blocks.getBlockTypes().sort((blockA, blockB) => {
-		if ("uagb" === blockA.category && "uagb" === blockB.category) {
+	wp.blocks.getBlockTypes().sort( ( blockA, blockB ) => {
+		if ( 'uagb' === blockA.category && 'uagb' === blockB.category ) {
 			return blockA.title > blockB.title ? 1 : -1;
 		}
 		return 0;
-	});
-}, 50);
+	} );
+}, 50 );
