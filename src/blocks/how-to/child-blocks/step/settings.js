@@ -2,11 +2,10 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import InspectorTabs from "@Components/inspector-tabs/InspectorTabs.js";
 import InspectorTab, { UAGTabs } from "@Components/inspector-tabs/InspectorTab.js";
-
 import { PanelBody, SelectControl } from '@wordpress/components';
 import UAGImage from "@Components/image";
-
 import { InspectorControls } from '@wordpress/block-editor';
+import jQuery from 'jquery';
 
 let imageSizeOptions = [
 	{
@@ -43,7 +42,7 @@ const Settings = ( props ) => {
 	};
 	const getImageSize = (sizes) => {
 		const sizeArr = [];
-		$.each(sizes, function (index) {
+		jQuery.each(sizes, function (index) {
 			const name = index;
 			const p = { value: name, label: name };
 			sizeArr.push(p);
