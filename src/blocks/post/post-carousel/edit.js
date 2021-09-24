@@ -11,7 +11,9 @@ import TypographyControl from '@Components/typography';
 import Border from '@Components/border';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
 import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
-import InspectorTab from '@Components/inspector-tabs/InspectorTab.js';
+import InspectorTab, {
+	UAGTabs,
+} from '@Components/inspector-tabs/InspectorTab.js';
 import SpacingControl from '@Components/spacing-control';
 import Range from '@Components/range/Range.js';
 import ResponsiveSlider from '@Components/responsive-slider';
@@ -1058,8 +1060,11 @@ const UAGBPostCarousel = ( props ) => {
 
 	const imageStyle = () => {
 		return (
-			displayPostImage === true &&
-			imgPosition === 'background' && (
+			<PanelBody
+				title={ __( 'Image', 'ultimate-addons-for-gutenberg' ) }
+				initialOpen={ false }
+			> 
+			{imgPosition === 'background' && (
 				<>
 					<AdvancedPopColorControl
 						label={ __(
@@ -1084,25 +1089,28 @@ const UAGBPostCarousel = ( props ) => {
 						min={ 0 }
 						max={ 100 }
 					/>
-					<Range
-						label={ __(
-							'Image Bottom Spacing',
-							'ultimate-addons-for-gutenberg'
-						) }
-						setAttributes={ setAttributes }
-						value={ imageBottomSpace }
-						onChange={ ( value ) =>
-							setAttributes( { imageBottomSpace: value } )
-						}
-						min={ 0 }
-						max={ 50 }
-						unit={ {
-							value: imageBottomSpaceUnit,
-							label: 'imageBottomSpaceUnit',
-						} }
-					/>
 				</>
-			)
+			)}
+			{imgPosition === 'top' && (
+			<Range
+				label={ __(
+					'Image Bottom Spacing',
+					'ultimate-addons-for-gutenberg'
+				) }
+				setAttributes={ setAttributes }
+				value={ imageBottomSpace }
+				onChange={ ( value ) =>
+					setAttributes( { imageBottomSpace: value } )
+				}
+				min={ 0 }
+				max={ 50 }
+				unit={ {
+					value: imageBottomSpaceUnit,
+					label: 'imageBottomSpaceUnit',
+				} }
+			/>
+			)}
+			</PanelBody>
 		);
 	};
 	const titleStyle = () => {
@@ -1792,14 +1800,14 @@ const UAGBPostCarousel = ( props ) => {
 	const inspectorControls = (
 		<InspectorControls>
 			<InspectorTabs>
-				<InspectorTab key={ 'general' }>
+				<InspectorTab { ...UAGTabs.general }>
 					{ getGeneralPanelBody() }
 					{ getCarouselPanelBody() }
 					{ getImagePanelBody() }
 					{ getContentPanelBody() }
 					{ getReadMoreLinkPanelBody() }
 				</InspectorTab>
-				<InspectorTab key={ 'style' }>
+				<InspectorTab { ...UAGTabs.style }>
 					{ ! inheritFromTheme && (
 						<>
 							{ displayPostTitle && titleStyle() }
@@ -1812,11 +1820,13 @@ const UAGBPostCarousel = ( props ) => {
 							{ displayPostLink && readMoreLinkStyleSettings() }
 						</>
 					) }
-					{ displayPostImage && imageStyle() }
+					{ displayPostImage  && imageStyle() }
 					{ spacingSettings() }
 					{ carouselStyle() }
 				</InspectorTab>
-				<InspectorTab key={ 'advance' }></InspectorTab>
+				<InspectorTab 
+					{ ...UAGTabs.advance  }
+					parentProps={ props }></InspectorTab>
 			</InspectorTabs>
 		</InspectorControls>
 	);
