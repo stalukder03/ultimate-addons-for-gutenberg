@@ -1057,7 +1057,7 @@ const Settings = ( props ) => {
 		return (
 			<PanelBody
 				title={ __( 'Image', 'ultimate-addons-for-gutenberg' ) }
-				initialOpen={ true }
+				initialOpen={ false }
 			> 
 			{imgPosition === 'background' &&
 				<>
@@ -1937,7 +1937,8 @@ const Settings = ( props ) => {
 					</InspectorTab>
 					<InspectorTab 
 						{ ...UAGTabs.advance }
-						parentProps={ props }></InspectorTab>
+						parentProps={ props }>
+					</InspectorTab>
 				</InspectorTabs>
 			</InspectorControls>
 		);
