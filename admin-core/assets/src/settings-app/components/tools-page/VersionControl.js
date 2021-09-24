@@ -7,7 +7,7 @@ import SettingTable from '../common/SettingTable';
 import React, { useState } from 'react';
 import ConfirmPopup from './ConfirmPopup';
 import apiFetch from '@wordpress/api-fetch';
-function VersionControl( ) {
+function VersionControl() {
 	const [ { globaldata, options }, dispatch ] = useStateValue();
 
 	const [ savingState, setsavingState ] = useState( false );
@@ -45,8 +45,7 @@ function VersionControl( ) {
 		);
 
 		setshowPopup( false );
-
-		location.href = rollbackUrl;
+		window.location.href = rollbackUrl; 
 	};
 
 	const cancelPopup = () => {

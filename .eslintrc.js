@@ -8,6 +8,7 @@ module.exports = {
 		'@wordpress/no-global-event-listener': 'off',
 		'quotes': [ 'error', 'single', { allowTemplateLiterals: true, avoidEscape: true } ],
 		'quote-props': [ 'error', 'consistent-as-needed' ],
+		'space-in-parens': ['error', 'always', { exceptions: [ 'empty' ] } ]
 	},
 	overrides: [
 		{
@@ -29,5 +30,11 @@ module.exports = {
 		__webpack_public_path__: true,
 		jQuery: true,
 		uagb_deactivate_blocks: true,
+		uag_react: true,
+		uagb_data: true,
+		bodymovin: true,
+		uagb_forms_data: true,
+		define: true,
+		Cookies: true
 	},
 };

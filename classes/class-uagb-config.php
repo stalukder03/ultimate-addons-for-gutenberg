@@ -50,62 +50,7 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 
 			if ( null === self::$block_attributes ) {
 
-				self::$block_attributes = array(
-					'uagb/demo-control' => array(
-						'slug'             => '',
-						'admin_categories' => array(),
-						'title'            => __( 'Demo Control', 'ultimate-addons-for-gutenberg' ),
-						'description'      => __( 'This block helps you find out demo control.', 'ultimate-addons-for-gutenberg' ),
-						'default'          => true,
-						'extension'        => false,
-						'attributes'       => array(
-							'block_id'              => '',
-							'c_id'                  => null,
-							'cookies'               => false,
-							'close_cookie_days'     => 1,
-							'textColor'             => '',
-							'titleColor'            => '',
-							'noticeColor'           => '#FFD54F',
-							'contentBgColor'        => '',
-							'fontSize'              => '14',
-							'icon'                  => 'fa fa-window-close',
-							'noticeDismiss'         => '',
-							'noticeDismissColor'    => '',
-							'noticeAlignment'       => 'left',
-							'titleFontFamily'       => 'Default',
-							'titleFontWeight'       => '',
-							'titleFontSubset'       => '',
-							'titleFontSizeType'     => 'px',
-							'titleLineHeightType'   => '',
-							'titleFontSize'         => '',
-							'titleFontSizeTablet'   => '',
-							'titleFontSizeMobile'   => '',
-							'titleLineHeight'       => '',
-							'titleLineHeightTablet' => '',
-							'titleLineHeightMobile' => '',
-							'descFontFamily'        => 'Default',
-							'descFontWeight'        => '',
-							'descFontSubset'        => '',
-							'descFontSize'          => '',
-							'descFontSizeType'      => 'px',
-							'descFontSizeTablet'    => '',
-							'descFontSizeMobile'    => '',
-							'descLineHeight'        => '',
-							'descLineHeightType'    => '',
-							'descLineHeightTablet'  => '',
-							'descLineHeightMobile'  => '',
-							'titleLoadGoogleFonts'  => '',
-							'descLoadGoogleFonts'   => '',
-							'titleHrPadding'        => 15,
-							'titleVrPadding'        => 15,
-							'contentHrPadding'      => 15,
-							'contentVrPadding'      => 15,
-							'layout'                => 'modern',
-							'highlightWidth'        => 10,
-							// demo.
-						),
-					),
-				);
+				self::$block_attributes = array();
 
 				$block_files = glob( UAGB_DIR . 'includes/blocks/*/block.php' );
 
@@ -233,7 +178,7 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 						'name' => 'call-to-action',
 					),
 					'uagb/cf7-styler'             => array(
-						'name' => 'cf7-designer',
+						'name' => 'cf7-styler',
 					),
 					'uagb/column'                 => array(
 						'name' => 'column',
@@ -251,7 +196,7 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 						'name' => 'forms',
 					),
 					'uagb/gf-styler'              => array(
-						'name' => 'gf-designer',
+						'name' => 'gf-styler',
 					),
 					'uagb/google-map'             => array(
 						'name' => 'google-map',

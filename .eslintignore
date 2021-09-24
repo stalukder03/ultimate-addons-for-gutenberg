@@ -13,6 +13,6 @@ vendor
 *.css
 *.scss
 
+assets/js/js_cookie.js
+
 **/deprecated/**
-legacy-admin/**
-src/blocks/demo-control-block/**

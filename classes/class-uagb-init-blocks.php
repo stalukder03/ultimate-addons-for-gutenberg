@@ -317,7 +317,6 @@ class UAGB_Init_Blocks {
 		// Common Editor style.
 		wp_enqueue_style(
 			'uagb-block-common-editor-css', // Handle.
-			// UAGB_URL . 'admin/assets/common-block-editor.css', // Block editor CSS.
 			UAGB_URL . 'dist/common-editor.css', // Block editor CSS.
 			array( 'wp-edit-blocks' ), // Dependency to include the CSS after it.
 			UAGB_VER
@@ -330,7 +329,13 @@ class UAGB_Init_Blocks {
 
 		if ( is_array( $saved_blocks ) ) {
 			foreach ( $saved_blocks as $slug => $data ) {
-				$_slug         = 'uagb/' . $slug;
+
+				$_slug = 'uagb/' . $slug;
+
+				if ( ! isset( UAGB_Config::$block_attributes[ $_slug ] ) ) {
+					continue;
+				}
+
 				$current_block = UAGB_Config::$block_attributes[ $_slug ];
 
 				if ( isset( $current_block['is_child'] ) && $current_block['is_child'] ) {

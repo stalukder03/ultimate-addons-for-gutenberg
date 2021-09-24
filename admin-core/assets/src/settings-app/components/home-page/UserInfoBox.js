@@ -77,9 +77,9 @@ function UserInfoBox() {
 			wp.updates.shouldRequestFilesystemCredentials &&
 			! wp.updates.ajaxLocked
 		) {
-			wp.updates.requestFilesystemCredentials( );
+			wp.updates.requestFilesystemCredentials();
 
-			$document.on( 'credential-modal-cancel', function () {
+			document.on( 'credential-modal-cancel', function () {
 				wp.a11y.speak( wp.updates.l10n.updateCancel, 'polite' );
 			} );
 		}
@@ -88,7 +88,7 @@ function UserInfoBox() {
 			.installTheme( {
 				slug: 'astra',
 			} )
-			.then( function (  ) {
+			.then( function () {
 				setsinstallingTheme( false );
 				setsinstallingThemeText( 'Installed Astra!' );
 				window.location.reload();
@@ -102,10 +102,7 @@ function UserInfoBox() {
 		if ( ! uag_react.theme_file ) {
 			return (
 				<NormalButton
-					buttonText={ __(
-						installingThemeText,
-						'ultimate-addons-for-gutenberg'
-					) }
+					buttonText={ installingThemeText }
 					saving={ installingTheme }
 					onClick={ installAstraClick }
 				/>
@@ -116,10 +113,7 @@ function UserInfoBox() {
 		) {
 			return (
 				<NormalButton
-					buttonText={ __(
-						activateThemeText,
-						'ultimate-addons-for-gutenberg'
-					) }
+					buttonText={ activateThemeText}
 					saving={ activateTheme }
 					onClick={ activateAstraClick }
 					data-slug="astra"
@@ -131,10 +125,10 @@ function UserInfoBox() {
 	};
 
 	const starterTemplateBtn = () => {
-		if(uag_react.starter_template_activate){
+		if( uag_react.starter_template_activate ){
 			return <NormalButton
 						buttonText={ __(
-							'Learn More	',
+							'Learn More',
 							'ultimate-addons-for-gutenberg'
 						) }
 						saving={ false }
@@ -144,21 +138,15 @@ function UserInfoBox() {
 		}
 		if( !uag_react.starter_template_activate && uag_react.starter_template_path ){
 			return <NormalButton
-						buttonText={ __(
-							activatePluginText,
-							'ultimate-addons-for-gutenberg'
-						) }
+						buttonText={activatePluginText }
 						saving={ activatePlugin }
 						onClick={ onstarterTemapletActivate }
 					/>
 		}else if( uag_react.starter_template_activate ){
 			return null;
-		}else if(!uag_react.starter_template_path){
+		}else if( !uag_react.starter_template_path ){
 			return <NormalButton
-						buttonText={ __(
-							installingPluginText,
-							'ultimate-addons-for-gutenberg'
-						) }
+						buttonText={ installingPluginText }
 						saving={ installingPlugin }
 						onClick={ onstarterTemapletinstall }
 					/>
@@ -194,9 +182,9 @@ function UserInfoBox() {
 			wp.updates.shouldRequestFilesystemCredentials &&
 			! wp.updates.ajaxLocked
 		) {
-			wp.updates.requestFilesystemCredentials( );
+			wp.updates.requestFilesystemCredentials();
 
-			$document.on( 'credential-modal-cancel', function () {
+			document.on( 'credential-modal-cancel', function () {
 				wp.a11y.speak( wp.updates.l10n.updateCancel, 'polite' );
 			} );
 		}
@@ -205,7 +193,7 @@ function UserInfoBox() {
 			.installPlugin( {
 				slug: 'astra-sites',
 			} )
-			.then( function ( ) {
+			.then( function () {
 				setsinstallingPlugin( false );
 				setsinstallingPluginText( 'Installed Starter Template!' );
 				window.location.reload();
@@ -308,12 +296,6 @@ function UserInfoBox() {
 			</div>
 			<div className="uag-metabox uag-starter-site__elements">
 				<div className="uag-starter-tmp__img">
-					<img
-						src={
-							uag_react.plugin_dir +
-							'admin-core/assets/images/astra-starter-sites.png'
-						} alt =''
-					/>
 				</div>
 				<div className="uag-starter-tmp__details">
 					<h3>
