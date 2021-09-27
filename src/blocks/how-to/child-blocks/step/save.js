@@ -22,7 +22,7 @@ export default function save( props ) {
 		urlText,
 		urlTarget
 	} = attributes;
-
+console.log(url);
 	let urlCheck = '';
 	if (
 		typeof image !== 'undefined' &&
