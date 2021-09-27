@@ -22,7 +22,7 @@ export default function save( props ) {
 		urlText,
 		urlTarget
 	} = attributes;
-console.log(url);
+
 	let urlCheck = '';
 	if (
 		typeof image !== 'undefined' &&
@@ -46,6 +46,12 @@ console.log(url);
 			imageUrl = urlCheck;
 		}
 	}
+
+	let target = '_self';
+	if (urlTarget) {
+		target = '_blank';
+	}
+
 	const imageMarkup = (
 		<img
 			className="uagb-how-to-step-image"
@@ -68,7 +74,7 @@ console.log(url);
 			{'text' === urlType && (
 				<a
 					href={url}
-					target={urlTarget}
+					target={target}
 					className="uagb-step-link"
 				>
 					<span className="uagb-step-link-text">
