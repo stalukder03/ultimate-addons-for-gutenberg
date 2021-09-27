@@ -1824,9 +1824,7 @@ const UAGBPostCarousel = ( props ) => {
 					{ spacingSettings() }
 					{ carouselStyle() }
 				</InspectorTab>
-				<InspectorTab 
-					{ ...UAGTabs.advance  }
-					parentProps={ props }></InspectorTab>
+				<InspectorTab { ...UAGTabs.advance } parentProps={props}></InspectorTab>
 			</InspectorTabs>
 		</InspectorControls>
 	);

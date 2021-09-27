@@ -2106,13 +2106,13 @@ const UAGBPostMasonry = ( props ) => {
 	const inspectorControls = (
 		<InspectorControls>
 			<InspectorTabs>
-				<InspectorTab {...UAGTabs.general}>
+				<InspectorTab { ...UAGTabs.general }>
 					{ generalSettings() }
 					{ imageSettings() }
 					{ contentSettings() }
 					{ readMoreLinkSettings() }
 				</InspectorTab>
-				<InspectorTab {...UAGTabs.style}>
+				<InspectorTab { ...UAGTabs.style }>
 					{ ! inheritFromTheme && (
 						<>
 							{ displayPostTitle && titleStyle() }
@@ -2130,9 +2130,7 @@ const UAGBPostMasonry = ( props ) => {
 						imageStyle() }
 					{ spacingSettings() }
 				</InspectorTab>
-				<InspectorTab 
-					{ ...UAGTabs.advance }
-					parentProps={ props }></InspectorTab>
+				<InspectorTab { ...UAGTabs.advance } parentProps={props}></InspectorTab>
 			</InspectorTabs>
 		</InspectorControls>
 	);

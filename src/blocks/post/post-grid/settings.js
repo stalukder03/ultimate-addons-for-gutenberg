@@ -1909,14 +1909,14 @@ const Settings = ( props ) => {
 		return (
 			<InspectorControls>
 				<InspectorTabs>
-					<InspectorTab {...UAGTabs.general }>
+					<InspectorTab { ...UAGTabs.general }>
 						{ generalSettings() }
 						{ paginationSettings() }
 						{ imageSettings() }
 						{ contentSettings() }
 						{ readMoreLinkSettings() }
 					</InspectorTab>
-					<InspectorTab {...UAGTabs.style}>
+					<InspectorTab { ...UAGTabs.style }>
 						{ ! inheritFromTheme && (
 							<>
 								{ displayPostTitle && titleStyle() }
@@ -1935,10 +1935,7 @@ const Settings = ( props ) => {
 							imageStyle() }
 						{ spacingSettings() }
 					</InspectorTab>
-					<InspectorTab 
-						{ ...UAGTabs.advance }
-						parentProps={ props }>
-					</InspectorTab>
+					<InspectorTab { ...UAGTabs.advance } parentProps={ props.parentProps }></InspectorTab>
 				</InspectorTabs>
 			</InspectorControls>
 		);
