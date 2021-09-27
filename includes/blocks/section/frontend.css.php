@@ -9,10 +9,6 @@
 
 global $content_width;
 
-$defaults = UAGB_Helper::$block_list['uagb/section']['attributes'];
-
-$attr = array_merge( $defaults, $attr );
-
 $bg_type                 = ( isset( $attr['backgroundType'] ) ) ? $attr['backgroundType'] : 'none';
 $overlay_type            = ( isset( $attr['overlayType'] ) ) ? $attr['overlayType'] : 'color';
 $gradientOverlayPosition = ( isset( $attr['gradientOverlayPosition'] ) ) ? $attr['gradientOverlayPosition'] : 'center center';
@@ -67,7 +63,7 @@ $position = str_replace( '-', ' ', $attr['backgroundPosition'] );
 $section_width = '100%';
 
 if ( isset( $attr['contentWidth'] ) && ( 'boxed' === $attr['contentWidth'] && isset( $attr['width'] ) ) ) {
-	$section_width = UAGB_Helper::get_css_value( $attr['width'], $attr['widthUnit'] );
+	$section_width = UAGB_Helper::get_css_value( $attr['width'], 'px' );
 }
 
 if ( 'wide' !== $attr['align'] && 'full' !== $attr['align'] ) {

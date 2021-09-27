@@ -10,10 +10,6 @@
 // Adds Fonts.
 UAGB_Block_JS::blocks_tabs_gfont( $attr );
 
-$defaults = UAGB_Helper::$block_list['uagb/tabs']['attributes'];
-
-$attr = array_merge( $defaults, (array) $attr );
-
 $tab_title_top_padding    = isset( $attr['tabTitleTopPadding'] ) ? $attr['tabTitleTopPadding'] : $attr['tabTitleVertPadding'];
 $tab_title_bottom_padding = isset( $attr['tabTitleBottomPadding'] ) ? $attr['tabTitleBottomPadding'] : $attr['tabTitleVertPadding'];
 $tab_title_left_padding   = isset( $attr['tabTitleLeftPadding'] ) ? $attr['tabTitleLeftPadding'] : $attr['tabTitleHrPadding'];
@@ -58,7 +54,7 @@ $selectors = array(
 		'fill' => $attr['activeiconColor'],
 	),
 
-	' .uagb-tabs__body-wrap '                              => array(
+	'.uagb-tabs__wrap .uagb-tabs__body-wrap '                              => array(
 		'background'     => $attr['bodyBgColor'],
 		'padding-top'    => UAGB_Helper::get_css_value( $tab_body_top_padding, $attr['tabBodyPaddingUnit'] ),
 		'padding-bottom' => UAGB_Helper::get_css_value( $tab_body_bottom_padding, $attr['tabBodyPaddingUnit'] ),
