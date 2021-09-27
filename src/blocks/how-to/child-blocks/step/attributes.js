@@ -19,6 +19,18 @@ const attributes = {
 		type: 'string',
 		default: '#',
 	},
+	urlType: {
+		type: 'string',
+		default: 'all',
+	},
+	urlText: {
+		type: 'string',
+		default: __( 'Read More', 'ultimate-addons-for-gutenberg' ),
+	},
+	urlTarget: {
+		type: 'boolean',
+		default: false,
+	},
 	image: {
 		type: 'object',
 		default: {
@@ -30,5 +42,33 @@ const attributes = {
 		type: 'string',
 		default: 'thumbnail',
 	},
+	urlFontSize: {
+		type: 'number',
+	},
+	urlFontSizeType: {
+		type: 'string',
+		default: 'px',
+	},
+	urlFontSizeMobile: {
+		type: 'number',
+	},
+	urlFontSizeTablet: {
+		type: 'number',
+	},
+	urlFontFamily: {
+		type: 'string',
+		default: 'Default',
+	},
+	urlFontWeight: {
+		type: 'string',
+	},
+	urlFontSubset: {
+		type: 'string',
+	},
+	urlLoadGoogleFonts: {
+		type: 'boolean',
+		default: false,
+	},
+
 };
 export default attributes;

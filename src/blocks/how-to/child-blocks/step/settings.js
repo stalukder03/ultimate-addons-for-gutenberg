@@ -2,11 +2,17 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import InspectorTabs from "@Components/inspector-tabs/InspectorTabs.js";
 import InspectorTab, { UAGTabs } from "@Components/inspector-tabs/InspectorTab.js";
-import { PanelBody, SelectControl } from '@wordpress/components';
 import UAGImage from "@Components/image";
 import { InspectorControls } from '@wordpress/block-editor';
 import jQuery from 'jquery';
+import TypographyControl from '@Components/typography';
 
+import {
+	PanelBody,
+	SelectControl,
+	ToggleControl,
+	TextControl,
+} from '@wordpress/components';
 let imageSizeOptions = [
 	{
 		value: "thumbnail",
@@ -21,7 +27,25 @@ const Settings = ( props ) => {
 
 	const { attributes, setAttributes } = props;
 
-	const { block_id, name, description, url, image, imageSize } = attributes;
+	const { 
+		block_id,
+		name,
+		description,
+		url,
+		urlType,
+		image,
+		imageSize,
+		urlText,
+		urlFontSize,
+		urlFontSizeType,
+		urlFontSizeMobile,
+		urlFontSizeTablet,
+		urlFontFamily,
+		urlFontWeight,
+		urlFontSubset,
+		urlLoadGoogleFonts,
+		urlTarget
+	} = attributes;
 	/*
 	 * Event to set Image as while adding.
 	 */
@@ -60,10 +84,11 @@ const Settings = ( props ) => {
 		item.label = item.label.replace(/\w/, firstLetter => firstLetter.toUpperCase());
 		 
 	});
-	const stepInspectorControls = () => {
+	const imageControls = () => {
 		return (
 			<PanelBody
 				initialOpen={ true }
+				title={ __( 'Image', 'ultimate-addons-for-gutenberg' ) }
 			>
 				<UAGImage
 					onSelectImage={onSelectImage}
@@ -91,12 +116,98 @@ const Settings = ( props ) => {
 			</PanelBody>
 		);
 	};
+	const urlControls = () => {
 
+		return (
+			<PanelBody title={__('Add Link')} initialOpen={false}>
+				<SelectControl
+					label={__('Type')}
+					value={urlType}
+					onChange={(value) => setAttributes({ urlType: value })}
+					options={[
+						{ value: 'none', label: __('None') },
+						{ value: 'text', label: __('Text') },
+						{ value: 'all', label: __('Complete Box') },
+					]}
+				/>
+				{urlType === 'text' && (
+					<>
+						<TextControl
+							label={__('Text')}
+							value={urlText}
+							onChange={(value) =>
+								setAttributes({ urlText: value })
+							}
+						/>
+						{urlType === 'text' && (
+							<TypographyControl
+								label={__('Typography')}
+								attributes={attributes}
+								setAttributes={setAttributes}
+								loadGoogleFonts={{
+									value: urlLoadGoogleFonts,
+									label: 'urlLoadGoogleFonts',
+								}}
+								fontFamily={{
+									value: urlFontFamily,
+									label: 'urlFontFamily',
+								}}
+								fontWeight={{
+									value: urlFontWeight,
+									label: 'urlFontWeight',
+								}}
+								fontSubset={{
+									value: urlFontSubset,
+									label: 'urlFontSubset',
+								}}
+								fontSizeType={{
+									value: urlFontSizeType,
+									label: 'urlFontSizeType',
+								}}
+								fontSize={{
+									value: urlFontSize,
+									label: 'urlFontSize',
+								}}
+								fontSizeMobile={{
+									value: urlFontSizeMobile,
+									label: 'urlFontSizeMobile',
+								}}
+								fontSizeTablet={{
+									value: urlFontSizeTablet,
+									label: 'urlFontSizeTablet',
+								}}
+								disableLineHeight={true}
+							/>
+						)}
+					</>
+				)}
+				{urlType !== 'none' && (
+					<>
+						<TextControl
+							label={__('Link')}
+							value={url}
+							onChange={(value) =>
+								setAttributes({ url: value })
+							}
+						/>
+						<ToggleControl
+							label={__('Open in new Window')}
+							checked={urlTarget}
+							onChange={() =>
+								setAttributes({ urlTarget: !urlTarget })
+							}
+						/>
+					</>
+				)}
+			</PanelBody>
+		);
+	}
 	return (
 			<InspectorControls>
 				<InspectorTabs tabs={["general", "advance"]}>
 					<InspectorTab {...UAGTabs.general}>
-					{ stepInspectorControls() }
+					{ imageControls() }
+					{ urlControls() }
 					</InspectorTab>
 					<InspectorTab {...UAGTabs.advance}>
 					</InspectorTab>
