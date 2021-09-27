@@ -69,6 +69,9 @@ const attributes = {
 		type: 'boolean',
 		default: false,
 	},
-
+	imgPosition: {
+		type: 'string',
+		default: 'above-title',
+	},
 };
 export default attributes;

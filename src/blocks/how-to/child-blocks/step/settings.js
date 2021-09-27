@@ -44,7 +44,8 @@ const Settings = ( props ) => {
 		urlFontWeight,
 		urlFontSubset,
 		urlLoadGoogleFonts,
-		urlTarget
+		urlTarget,
+		imgPosition
 	} = attributes;
 	/*
 	 * Event to set Image as while adding.
@@ -98,6 +99,7 @@ const Settings = ( props ) => {
 				{image &&
 					image.url !== "null" &&
 					image.url !== "" && (
+						<>
 						<SelectControl
 							label={__(
 								"Image Size",
@@ -111,7 +113,21 @@ const Settings = ( props ) => {
 								})
 							}
 						/>
+						<SelectControl
+							label={__('Select Position')}
+							value={imgPosition}
+							onChange={(value) =>
+								setAttributes({ imgPosition: value })
+							}
+							options={[
+								{ value: 'above-title', label: __('Above Title') },
+								{ value: 'inline-title', label: __('Left of Title') },
+								{ value: 'right-title', label: __('Right of Title') }
+							]}
+						/>
+					</>
 					)
+					
 				}
 			</PanelBody>
 		);
@@ -139,46 +155,6 @@ const Settings = ( props ) => {
 								setAttributes({ urlText: value })
 							}
 						/>
-						{urlType === 'text' && (
-							<TypographyControl
-								label={__('Typography')}
-								attributes={attributes}
-								setAttributes={setAttributes}
-								loadGoogleFonts={{
-									value: urlLoadGoogleFonts,
-									label: 'urlLoadGoogleFonts',
-								}}
-								fontFamily={{
-									value: urlFontFamily,
-									label: 'urlFontFamily',
-								}}
-								fontWeight={{
-									value: urlFontWeight,
-									label: 'urlFontWeight',
-								}}
-								fontSubset={{
-									value: urlFontSubset,
-									label: 'urlFontSubset',
-								}}
-								fontSizeType={{
-									value: urlFontSizeType,
-									label: 'urlFontSizeType',
-								}}
-								fontSize={{
-									value: urlFontSize,
-									label: 'urlFontSize',
-								}}
-								fontSizeMobile={{
-									value: urlFontSizeMobile,
-									label: 'urlFontSizeMobile',
-								}}
-								fontSizeTablet={{
-									value: urlFontSizeTablet,
-									label: 'urlFontSizeTablet',
-								}}
-								disableLineHeight={true}
-							/>
-						)}
 					</>
 				)}
 				{urlType !== 'none' && (
@@ -202,12 +178,60 @@ const Settings = ( props ) => {
 			</PanelBody>
 		);
 	}
+	const linkStyle = () => {
+
+		return (
+			<PanelBody title={__('Link')} initialOpen={true}>
+				<TypographyControl
+					label={__('Typography')}
+					attributes={attributes}
+					setAttributes={setAttributes}
+					loadGoogleFonts={{
+						value: urlLoadGoogleFonts,
+						label: 'urlLoadGoogleFonts',
+					}}
+					fontFamily={{
+						value: urlFontFamily,
+						label: 'urlFontFamily',
+					}}
+					fontWeight={{
+						value: urlFontWeight,
+						label: 'urlFontWeight',
+					}}
+					fontSubset={{
+						value: urlFontSubset,
+						label: 'urlFontSubset',
+					}}
+					fontSizeType={{
+						value: urlFontSizeType,
+						label: 'urlFontSizeType',
+					}}
+					fontSize={{
+						value: urlFontSize,
+						label: 'urlFontSize',
+					}}
+					fontSizeMobile={{
+						value: urlFontSizeMobile,
+						label: 'urlFontSizeMobile',
+					}}
+					fontSizeTablet={{
+						value: urlFontSizeTablet,
+						label: 'urlFontSizeTablet',
+					}}
+					disableLineHeight={true}
+				/>
+			</PanelBody>
+		);
+	}
 	return (
 			<InspectorControls>
-				<InspectorTabs tabs={["general", "advance"]}>
+				<InspectorTabs>
 					<InspectorTab {...UAGTabs.general}>
 					{ imageControls() }
 					{ urlControls() }
+					</InspectorTab>
+					<InspectorTab { ...UAGTabs.style }>
+						{ urlType === 'text' && linkStyle() }
 					</InspectorTab>
 					<InspectorTab {...UAGTabs.advance}>
 					</InspectorTab>

@@ -3,7 +3,6 @@
  */
 
 import React, { lazy, useEffect, Suspense } from 'react';
-
 import lazyLoader from '@Controls/lazy-loader';
 const Settings = lazy( () =>
 	import( /* webpackChunkName: "chunks/how-to/step-settings" */ './settings' )

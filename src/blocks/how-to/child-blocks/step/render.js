@@ -17,7 +17,17 @@ const Render = ( props ) => {
 
 	const { attributes, setAttributes, mergeBlocks, insertBlocksAfter } = props;
 
-	const { block_id, name, description, url, image } = attributes;
+	const { 
+		block_id,
+		name,
+		description,
+		url,
+		urlType,
+		image,
+		imageSize,
+		urlText,
+		urlTarget
+	} = attributes;
 
 	let urlCheck = '';
 	if (
@@ -42,21 +52,15 @@ const Render = ( props ) => {
 			imageUrl = urlCheck;
 		}
 	}
-
-	return (
-		<div
-			className={ classnames(
-				'uagb-how-to-step-wrap',
-				`uagb-block-${ block_id }`
-			) }
-		>
-			{ imageUrl &&
-				<img
-					className="uagb-how-to-step-image"
-					src={ imageUrl }
-					alt={ image.alt }
-				/>
-			}
+	const imageMarkup = (
+		<img
+			className="uagb-how-to-step-image"
+			src={ imageUrl }
+			alt={ image.alt }
+		/>
+	);
+	const contentMarkup = (
+		<>
 			<RichText
 				tagName="div"
 				className="uagb-how-to-step-name"
@@ -92,6 +96,47 @@ const Render = ( props ) => {
 				}
 				onRemove={ () => onReplace( [] ) }
 			/>
+			{'text' === urlType && (
+				<a
+					href={url}
+					target={urlTarget}
+					className="uagb-step-link"
+				>
+					<span className="uagb-step-link-text">
+						{urlText}
+					</span>
+				</a>
+			)}
+		</>
+	);
+	return (
+		<div
+			className={ classnames(
+				'uagb-how-to-step-wrap',
+				`uagb-block-${ block_id }`
+			) }
+		>
+			{'all' === urlType && (
+					<>
+						<a
+							className="uagb-step-link"
+							aria-label={'Step Link'}
+							rel="noopener noreferrer"
+						></a>
+						<div className="uagb-step-image-content-wrap">
+							{ imageUrl && imageMarkup }
+							{ contentMarkup }
+						</div>
+					</>
+				)
+			}
+			{'text' === urlType && (
+					<div className="uagb-step-image-content-wrap">
+						{ imageUrl && imageMarkup }
+						{ contentMarkup }
+					</div>
+				)
+			}
 		</div>
 	);
 };
