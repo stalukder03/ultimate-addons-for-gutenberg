@@ -952,7 +952,7 @@ const UAGBPostCarousel = ( props ) => {
 					}
 				/>
 				<Range
-					label={ __( 'Row Gap', 'ultimate-addons-for-gutenberg' ) }
+					label={ __( 'Column Gap', 'ultimate-addons-for-gutenberg' ) }
 					setAttributes={ setAttributes }
 					value={ rowGap }
 					onChange={ ( value ) => setAttributes( { rowGap: value } ) }
@@ -965,7 +965,7 @@ const UAGBPostCarousel = ( props ) => {
 				/>
 				<Range
 					label={ __(
-						'Column Gap',
+						'Row Gap',
 						'ultimate-addons-for-gutenberg'
 					) }
 					setAttributes={ setAttributes }
@@ -1736,7 +1736,7 @@ const UAGBPostCarousel = ( props ) => {
 	const carouselStyle = () => {
 		return (
 			<PanelBody
-				title={ __( 'Arrow', 'ultimate-addons-for-gutenberg' ) }
+				title={ __( 'Arrow and Dots', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
 				<AdvancedPopColorControl

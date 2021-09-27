@@ -947,7 +947,7 @@ const Settings = ( props ) => {
 					}
 				/>
 				<Range
-					label={ __( 'Row Gap', 'ultimate-addons-for-gutenberg' ) }
+					label={ __( 'Column Gap', 'ultimate-addons-for-gutenberg' ) }
 					setAttributes={ setAttributes }
 					value={ rowGap }
 					onChange={ ( value ) => setAttributes( { rowGap: value } ) }
@@ -960,7 +960,7 @@ const Settings = ( props ) => {
 				/>
 				<Range
 					label={ __(
-						'Column Gap',
+						'Row Gap',
 						'ultimate-addons-for-gutenberg'
 					) }
 					setAttributes={ setAttributes }
