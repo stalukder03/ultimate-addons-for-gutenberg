@@ -94,7 +94,7 @@ export default function save( props ) {
 					<>
 						<a // eslint-disable-line jsx-a11y/anchor-has-content
 							href={url}
-							target={urlTarget}
+							target={target}
 							className="uagb-step-link-all"
 							rel="noopener noreferrer"
 						></a>

@@ -53,6 +53,10 @@ const Render = ( props ) => {
 			imageUrl = urlCheck;
 		}
 	}
+	let target = '_self';
+	if ( urlTarget ) {
+		target = '_blank';
+	}
 	const imageMarkup = (
 		<img
 			className="uagb-how-to-step-image"
@@ -100,7 +104,7 @@ const Render = ( props ) => {
 			{'text' === urlType && (
 				<a
 					href={url}
-					target={urlTarget}
+					target={target}
 					className="uagb-step-link"
 				>
 					<span className="uagb-step-link-text">
@@ -124,6 +128,7 @@ const Render = ( props ) => {
 							className="uagb-step-link"
 							aria-label={'Step Link'}
 							rel="noopener noreferrer"
+							target={target}
 						></a>
 						<div className={`uagb-step-image-content-wrap uag-image-position-${imgPosition}`}>
 							{ imageUrl && imageMarkup }
