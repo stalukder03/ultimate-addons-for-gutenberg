@@ -78,13 +78,15 @@ $selectors = array(
 	),
 	' .uagb-testimonial__wrap.uagb-tm__bg-type-image .uagb-tm__overlay' => array(
 		'background-color' => $attr['backgroundImageColor'],
-		'opacity'          => ( isset( $attr['backgroundOpacity'] ) && '' !== $attr['backgroundOpacity'] ) ? ( ( 100 - $attr['backgroundOpacity'] ) / 100 ) : '0.5',
 	),
 	' .uagb-testimonial__wrap .uagb-tm__content'       => array(
 		'border-color'  => $attr['borderColor'],
 		'border-style'  => $attr['borderStyle'],
 		'border-width'  => UAGB_Helper::get_css_value( $attr['borderWidth'], 'px' ),
 		'border-radius' => UAGB_Helper::get_css_value( $attr['borderRadius'], 'px' ),
+	),
+	' .uagb-testimonial__wrap .uagb-tm__content:hover'       => array(
+		'border-color'  => $attr['borderHoverColor'],
 	),
 	' ul.slick-dots li button:before'                  => array(
 		'color' => $attr['arrowColor'],
@@ -98,7 +100,6 @@ $selectors = array(
 );
 if ( 'gradient' === $attr['backgroundType'] ) {
 	$selectors[' .uagb-tm__content']['background-color'] = 'transparent';
-	$selectors[' .uagb-tm__content']['opacity']          = ( isset( $attr['backgroundOpacity'] ) && '' !== $attr['backgroundOpacity'] ) ? $attr['backgroundOpacity'] / 100 : '';
 
 	if ( $attr['gradientValue'] ) {
 		$selectors[' .uagb-tm__content']['background-image'] = $attr['gradientValue'];
