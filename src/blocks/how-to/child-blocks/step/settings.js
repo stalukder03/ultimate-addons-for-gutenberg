@@ -212,7 +212,6 @@ const Settings = ( props ) => {
 					value={urlType}
 					onChange={( value ) => setAttributes( { urlType: value } )}
 					options={[
-						{ value: 'none', label: __( 'None' ) },
 						{ value: 'text', label: __( 'Text' ) },
 						{ value: 'all', label: __( 'Complete Box' ) },
 					]}
