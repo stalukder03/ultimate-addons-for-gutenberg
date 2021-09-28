@@ -206,16 +206,16 @@ export default compose(
 			ownProps.clientId
 		);
 
-		getChildBlocks.forEach((steps, key) => {
+		getChildBlocks.forEach( ( steps, key ) => {
 			stepsData = {	
-					"@type": "HowToStep",
-					"url": steps.attributes?.ctaLink || steps.attributes?.url,
-					"name": steps.attributes?.infoBoxTitle || steps.attributes?.name,
-					"text": steps.attributes?.headingDesc || steps.attributes?.description,
-					"image": steps.attributes?.iconImage?.url || steps.attributes?.image?.url
+					'@type': 'HowToStep',
+					'url': steps.attributes?.ctaLink || steps.attributes?.url,
+					'name': steps.attributes?.infoBoxTitle || steps.attributes?.name,
+					'text': steps.attributes?.headingDesc || steps.attributes?.description,
+					'image': steps.attributes?.iconImage?.url || steps.attributes?.image?.url
 			}
-			jsonData["step"][key] = stepsData;
-		});	
+			jsonData.step[key] = stepsData;
+		} );	
 
 		return {
 			schemaJsonData: jsonData,

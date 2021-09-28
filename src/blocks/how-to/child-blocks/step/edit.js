@@ -4,6 +4,10 @@
 
 import React, { lazy, useEffect, Suspense } from 'react';
 import lazyLoader from '@Controls/lazy-loader';
+import styling from './styling';
+import { compose } from '@wordpress/compose';
+import { withSelect } from '@wordpress/data';
+
 const Settings = lazy( () =>
 	import( /* webpackChunkName: "chunks/how-to/step-settings" */ './settings' )
 );
@@ -11,7 +15,7 @@ const Render = lazy( () =>
 	import( /* webpackChunkName: "chunks/how-to/step-render" */ './render' )
 );
 
-const UAGBFormsNameEdit = ( props ) => {
+const UAGBHowToStepEdit = ( props ) => {
 	useEffect( () => {
 		const { setAttributes } = props;
 
@@ -22,10 +26,21 @@ const UAGBFormsNameEdit = ( props ) => {
 		const $style = document.createElement( 'style' );
 		$style.setAttribute(
 			'id',
-			'uagb-style-how-to-name-' + props.clientId.substr( 0, 8 )
+			'uagb-style-how-to-step-' + props.clientId.substr( 0, 8 )
 		);
 		document.head.appendChild( $style );
 	}, [] );
+
+	useEffect( () => {
+		// Replacement for componentDidUpdate.
+		const element = document.getElementById(
+			'uagb-style-how-to-step-' + props.clientId.substr( 0, 8 )
+		);
+
+		if ( null !== element && undefined !== element ) {
+			element.innerHTML = styling( props );
+		}
+	}, [ props ] );
 
 	return (
 		<>
@@ -37,4 +52,17 @@ const UAGBFormsNameEdit = ( props ) => {
 	);
 };
 
-export default UAGBFormsNameEdit;
+export default compose(
+	withSelect( ( select ) => {
+		const { __experimentalGetPreviewDeviceType = null } = select(
+			'core/edit-post'
+		);
+		const deviceType = __experimentalGetPreviewDeviceType
+			? __experimentalGetPreviewDeviceType()
+			: null;
+
+		return {
+			deviceType,
+		};
+	} )
+)( UAGBHowToStepEdit );

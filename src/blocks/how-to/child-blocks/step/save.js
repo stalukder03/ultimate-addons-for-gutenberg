@@ -4,8 +4,6 @@
 
 import classnames from 'classnames';
 
-import { __ } from '@wordpress/i18n';
-
 import { RichText } from '@wordpress/block-editor';
 
 export default function save( props ) {
@@ -20,7 +18,8 @@ export default function save( props ) {
 		image,
 		imageSize,
 		urlText,
-		urlTarget
+		urlTarget,
+		imgPosition
 	} = attributes;
 
 	let urlCheck = '';
@@ -35,8 +34,7 @@ export default function save( props ) {
 	let imageUrl = '';
 	if ( urlCheck !== '' ) {
 		const size = image.sizes;
-		const imageSize = attributes.imageSize;
-
+		
 		if (
 			typeof size !== 'undefined' &&
 			typeof size[ imageSize ] !== 'undefined'
@@ -48,7 +46,7 @@ export default function save( props ) {
 	}
 
 	let target = '_self';
-	if (urlTarget) {
+	if ( urlTarget ) {
 		target = '_blank';
 	}
 
@@ -60,7 +58,7 @@ export default function save( props ) {
 		/>
 	);
 	const contentMarkup = (
-		<>
+		<div className="uagb-step-content-wrap">
 			<RichText.Content
 				tagName="div"
 				className="uagb-how-to-step-name"
@@ -76,13 +74,14 @@ export default function save( props ) {
 					href={url}
 					target={target}
 					className="uagb-step-link"
+					rel="noopener noreferrer"
 				>
 					<span className="uagb-step-link-text">
 						{urlText}
 					</span>
 				</a>
 			)}
-		</>
+		</div>
 	);
 	return (
 		<div
@@ -93,12 +92,13 @@ export default function save( props ) {
 		>
 			{'all' === urlType && (
 					<>
-						<a
+						<a // eslint-disable-line jsx-a11y/anchor-has-content
 							href={url}
 							target={urlTarget}
 							className="uagb-step-link-all"
+							rel="noopener noreferrer"
 						></a>
-						<div className="uagb-step-image-content-wrap">
+						<div className={`uagb-step-image-content-wrap uag-image-position-${imgPosition}`}>
 							{ imageUrl && imageMarkup }
 							{ contentMarkup }
 						</div>
@@ -106,7 +106,7 @@ export default function save( props ) {
 				)
 			}
 			{'text' === urlType && (
-					<div className="uagb-step-image-content-wrap">
+					<div className={`uagb-step-image-content-wrap uag-image-position-${imgPosition}`}>
 						{ imageUrl && imageMarkup }
 						{ contentMarkup }
 					</div>

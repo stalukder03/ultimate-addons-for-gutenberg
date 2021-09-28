@@ -69,9 +69,75 @@ const attributes = {
 		type: 'boolean',
 		default: false,
 	},
+
+	titleFontSize: {
+		type: 'number',
+	},
+	titleFontSizeType: {
+		type: 'string',
+		default: 'px',
+	},
+	titleFontSizeMobile: {
+		type: 'number',
+	},
+	titleFontSizeTablet: {
+		type: 'number',
+	},
+	titleFontFamily: {
+		type: 'string',
+		default: 'Default',
+	},
+	titleFontWeight: {
+		type: 'string',
+	},
+	titleFontSubset: {
+		type: 'string',
+	},
+	titleLoadGoogleFonts: {
+		type: 'boolean',
+		default: false,
+	},
+
+	descriptionFontSize: {
+		type: 'number',
+	},
+	descriptionFontSizeType: {
+		type: 'string',
+		default: 'px',
+	},
+	descriptionFontSizeMobile: {
+		type: 'number',
+	},
+	descriptionFontSizeTablet: {
+		type: 'number',
+	},
+	descriptionFontFamily: {
+		type: 'string',
+		default: 'Default',
+	},
+	descriptionFontWeight: {
+		type: 'string',
+	},
+	descriptionFontSubset: {
+		type: 'string',
+	},
+	descriptionLoadGoogleFonts: {
+		type: 'boolean',
+		default: false,
+	},
+
 	imgPosition: {
 		type: 'string',
 		default: 'above-title',
+	},
+	titleColor: {
+		type: 'string',
+	},
+	descriptionColor: {
+		type: 'string',
+	},
+	urlColor: {
+		type: 'string',
 	},
 };
 export default attributes;

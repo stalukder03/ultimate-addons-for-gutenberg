@@ -3,6 +3,7 @@ import React, { useLayoutEffect } from 'react';
 import { __ } from '@wordpress/i18n';
 import styles from './editor.lazy.scss';
 import { RichText } from '@wordpress/block-editor';
+import { createBlock } from '@wordpress/blocks';
 
 const Render = ( props ) => {
 	// Add and remove the CSS on the drop and remove of the component.
@@ -15,7 +16,7 @@ const Render = ( props ) => {
 
 	props = props.parentProps;
 
-	const { attributes, setAttributes, mergeBlocks, insertBlocksAfter } = props;
+	const { attributes, setAttributes, mergeBlocks, insertBlocksAfter, deviceType, onReplace } = props;
 
 	const { 
 		block_id,
@@ -26,7 +27,8 @@ const Render = ( props ) => {
 		image,
 		imageSize,
 		urlText,
-		urlTarget
+		urlTarget,
+		imgPosition
 	} = attributes;
 
 	let urlCheck = '';
@@ -41,7 +43,6 @@ const Render = ( props ) => {
 	let imageUrl = '';
 	if ( urlCheck !== '' ) {
 		const size = image.sizes;
-		const imageSize = attributes.imageSize;
 
 		if (
 			typeof size !== 'undefined' &&
@@ -60,7 +61,7 @@ const Render = ( props ) => {
 		/>
 	);
 	const contentMarkup = (
-		<>
+		<div className="uagb-step-content-wrap">
 			<RichText
 				tagName="div"
 				className="uagb-how-to-step-name"
@@ -107,31 +108,33 @@ const Render = ( props ) => {
 					</span>
 				</a>
 			)}
-		</>
+		</div>
 	);
 	return (
 		<div
 			className={ classnames(
 				'uagb-how-to-step-wrap',
+				`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
 				`uagb-block-${ block_id }`
 			) }
 		>
 			{'all' === urlType && (
 					<>
-						<a
+						<a // eslint-disable-line jsx-a11y/anchor-has-content, jsx-a11y/anchor-is-valid 
 							className="uagb-step-link"
 							aria-label={'Step Link'}
 							rel="noopener noreferrer"
 						></a>
-						<div className="uagb-step-image-content-wrap">
+						<div className={`uagb-step-image-content-wrap uag-image-position-${imgPosition}`}>
 							{ imageUrl && imageMarkup }
+
 							{ contentMarkup }
 						</div>
 					</>
 				)
 			}
 			{'text' === urlType && (
-					<div className="uagb-step-image-content-wrap">
+					<div className={`uagb-step-image-content-wrap uag-image-position-${imgPosition}`}>
 						{ imageUrl && imageMarkup }
 						{ contentMarkup }
 					</div>
