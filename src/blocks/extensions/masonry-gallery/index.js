@@ -98,7 +98,7 @@ const MasonryGallery = createHigherOrderComponent( ( BlockEdit ) => {
 						<InspectorControls>
 							<PanelBody
 								title={ __(
-									'UAG - Masonry Gallery',
+									'Masonry Gallery',
 									'ultimate-addons-for-gutenberg'
 								) }
 								initialOpen={ false }
@@ -140,7 +140,7 @@ function ApplyUniqueClass( extraProps, blockType, attributes ) {
 	return extraProps;
 }
 
-if ( '1' === enableMasonryGallery ) {
+if ( 'enabled' === enableMasonryGallery || true === enableMasonryGallery ) {
 	addFilter(
 		'editor.BlockEdit',
 		'uagb/masonry-gallery',
