@@ -2,7 +2,7 @@
 /**
  * Block Information & Attributes File.
  *
- * @since x.x.x
+ * @since 2.0.0
  *
  * @package uagb
  */
@@ -93,7 +93,7 @@ return array(
 	'titleFontSizeMobile'         => '',
 	'titleFontFamily'             => 'Default',
 	'titleFontWeight'             => '',
-	'titleFontSubset'             => '',
+	'titleFontStyle'              => '',
 	'titleLineHeightType'         => 'em',
 	'titleLineHeight'             => '',
 	'titleLineHeightTablet'       => '',

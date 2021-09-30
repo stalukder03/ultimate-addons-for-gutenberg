@@ -1,8 +1,8 @@
 <?php
 /**
- * Block Information & Attributes File.
+ * Attributes File.
  *
- * @since x.x.x
+ * @since 2.0.0
  *
  * @package uagb
  */
@@ -35,7 +35,7 @@ return array(
 	'headSpace'               => 15,
 	'headFontFamily'          => 'Default',
 	'headFontWeight'          => '',
-	'headFontSubset'          => '',
+	'headFontStyle'           => '',
 	'headFontSizeType'        => 'px',
 	'headLineHeightType'      => 'em',
 	'headFontSize'            => '',
@@ -46,7 +46,7 @@ return array(
 	'headLineHeightMobile'    => '',
 	'subHeadFontFamily'       => 'Default',
 	'subHeadFontWeight'       => '',
-	'subHeadFontSubset'       => '',
+	'subHeadFontStyle'        => '',
 	'subHeadFontSize'         => '',
 	'subHeadFontSizeType'     => 'px',
 	'subHeadFontSizeTablet'   => '',
@@ -64,7 +64,7 @@ return array(
 	'priceFontSizeMobile'     => '',
 	'priceFontFamily'         => 'Default',
 	'priceFontWeight'         => '',
-	'priceFontSubset'         => '',
+	'priceFontStyle'          => '',
 	'priceLineHeightType'     => 'em',
 	'priceLineHeight'         => '',
 	'priceLineHeightTablet'   => '',
@@ -73,4 +73,10 @@ return array(
 	'row_gap'                 => 20,
 	'step_gap'                => '',
 	'schema'                  => '',
+	'headTransform'           => '',
+	'headDecoration'          => '',
+	'subHeadTransform'        => '',
+	'subHeadDecoration'       => '',
+	'priceTransform'          => '',
+	'priceDecoration'         => '',
 );

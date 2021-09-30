@@ -2,7 +2,7 @@
 /**
  * Attributes File.
  *
- * @since x.x.x
+ * @since 2.0.0
  *
  * @package uagb
  */
@@ -60,7 +60,6 @@ return array(
 	'answerloadGoogleFonts'        => false,
 	'questionFontFamily'           => 'Default',
 	'questionFontWeight'           => '',
-	'questionFontSubset'           => '',
 	'questionFontSize'             => '',
 	'questionFontSizeType'         => 'px',
 	'questionFontSizeTablet'       => '',
@@ -71,7 +70,6 @@ return array(
 	'questionLineHeightMobile'     => '',
 	'answerFontFamily'             => 'Default',
 	'answerFontWeight'             => '',
-	'answerFontSubset'             => '',
 	'answerFontSize'               => '',
 	'answerFontSizeType'           => 'px',
 	'answerFontSizeTablet'         => '',
@@ -112,4 +110,10 @@ return array(
 	'answerRightPaddingMobile'     => '',
 	'answerBottomPaddingMobile'    => '',
 	'answerLeftPaddingMobile'      => '',
+	'questionFontStyle'            => '',
+	'questionTransform'            => '',
+	'questionDecoration'           => '',
+	'answerFontStyle'              => '',
+	'answerTransform'              => '',
+	'answerDecoration'             => '',
 );

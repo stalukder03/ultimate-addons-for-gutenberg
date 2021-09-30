@@ -2,7 +2,7 @@
 /**
  * Block Information & Attributes File.
  *
- * @since x.x.x
+ * @since 2.0.0
  *
  * @package uagb
  */
@@ -20,7 +20,7 @@ return array(
 	'headFontFamily'          => '',
 	'headLoadGoogleFonts'     => false,
 	'headFontWeight'          => '',
-	'headFontSubset'          => '',
+	'headFontStyle'           => '',
 	'headFontSize'            => '',
 	'headFontSizeType'        => 'px',
 	'headFontSizeTablet'      => '',
@@ -32,7 +32,7 @@ return array(
 	'subHeadFontFamily'       => '',
 	'subHeadLoadGoogleFonts'  => false,
 	'subHeadFontWeight'       => '',
-	'subHeadFontSubset'       => '',
+	'subHeadFontStyle'        => '',
 	'subHeadFontSize'         => '',
 	'subHeadFontSizeType'     => 'px',
 	'subHeadFontSizeTablet'   => '',
@@ -44,4 +44,8 @@ return array(
 	'headSpace'               => 15,
 	'separatorSpace'          => 15,
 	'separatorHoverColor'     => '',
+	'headTransform'           => '',
+	'headDecoration'          => '',
+	'subHeadTransform'        => '',
+	'subHeadDecoration'       => '',
 );

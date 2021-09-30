@@ -2,7 +2,7 @@
 /**
  * Attributes File.
  *
- * @since x.x.x
+ * @since 2.0.0
  *
  * @package uagb
  */
@@ -21,7 +21,6 @@ return array(
 	'titleFontSizeTablet'    => '',
 	'titleFontFamily'        => '',
 	'titleFontWeight'        => '',
-	'titleFontSubset'        => '',
 	'titleLineHeightType'    => 'em',
 	'titleLineHeight'        => '',
 	'titleLineHeightTablet'  => '',
@@ -33,7 +32,6 @@ return array(
 	'descFontSizeTablet'     => '',
 	'descFontFamily'         => '',
 	'descFontWeight'         => '',
-	'descFontSubset'         => '',
 	'descLineHeightType'     => 'em',
 	'descLineHeight'         => '',
 	'descLineHeightTablet'   => '',
@@ -53,7 +51,6 @@ return array(
 	'ctaFontSizeTablet'      => '',
 	'ctaFontFamily'          => '',
 	'ctaFontWeight'          => '',
-	'ctaFontSubset'          => '',
 	'ctaLoadGoogleFonts'     => false,
 	'ctaBtnLinkColor'        => '#333',
 	'ctaBgColor'             => '',
@@ -84,4 +81,13 @@ return array(
 	'mobileCTAPaddingUnit'   => 'px',
 	'tabletCTAPaddingUnit'   => 'px',
 	'ctaPaddingLink'         => '',
+	'titleTransform'         => '',
+	'titleDecoration'        => '',
+	'descTransform'          => '',
+	'descDecoration'         => '',
+	'ctaTransform'           => '',
+	'ctaDecoration'          => '',
+	'titleFontStyle'         => '',
+	'descFontStyle'          => '',
+	'ctaFontStyle'           => '',
 );

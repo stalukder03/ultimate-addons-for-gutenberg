@@ -2,7 +2,7 @@
 /**
  * Attributes File.
  *
- * @since x.x.x
+ * @since 2.0.0
  *
  * @package uagb
  */
@@ -26,7 +26,7 @@ return array(
 	'headFontSizeMobile'      => '',
 	'headFontFamily'          => '',
 	'headFontWeight'          => '',
-	'headFontSubset'          => '',
+	'headFontStyle'           => '',
 	'headLineHeightType'      => 'em',
 	'headLineHeight'          => '',
 	'headLineHeightTablet'    => '',
@@ -40,7 +40,7 @@ return array(
 	'subHeadFontSizeMobile'   => '',
 	'subHeadFontFamily'       => '',
 	'subHeadFontWeight'       => '',
-	'subHeadFontSubset'       => '',
+	'subHeadFontStyle'        => '',
 	'subHeadLineHeightType'   => 'em',
 	'subHeadLineHeight'       => '',
 	'subHeadLineHeightTablet' => '',
@@ -59,7 +59,7 @@ return array(
 	'dateFontsizeMobile'      => '',
 	'dateFontFamily'          => '',
 	'dateFontWeight'          => '',
-	'dateFontSubset'          => '',
+	'dateFontStyle'           => '',
 	'dateLineHeightType'      => 'em',
 	'dateLineHeight'          => '',
 	'dateLineHeightTablet'    => '',
@@ -95,4 +95,10 @@ return array(
 	'mobilePaddingUnit'       => 'px',
 	'tabletPaddingUnit'       => 'px',
 	'paddingLink'             => false,
+	'headTransform'           => '',
+	'subHeadTransform'        => '',
+	'dateTransform'           => '',
+	'headDecoration'          => '',
+	'subHeadDecoration'       => '',
+	'dateDecoration'          => '',
 );

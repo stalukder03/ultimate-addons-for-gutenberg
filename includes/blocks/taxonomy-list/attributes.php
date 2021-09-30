@@ -2,7 +2,7 @@
 /**
  * Attributes File.
  *
- * @since x.x.x
+ * @since 2.0.0
  *
  * @package uagb
  */
@@ -53,7 +53,7 @@ return array(
 	'titleFontSizeTablet'      => '',
 	'titleFontFamily'          => '',
 	'titleFontWeight'          => '',
-	'titleFontSubset'          => '',
+	'titleFontStyle'           => '',
 	'titleLineHeightType'      => 'em',
 	'titleLineHeight'          => '',
 	'titleLineHeightTablet'    => '',
@@ -65,7 +65,7 @@ return array(
 	'countFontSizeTablet'      => '',
 	'countFontFamily'          => '',
 	'countFontWeight'          => '',
-	'countFontSubset'          => '',
+	'countFontStyle'           => '',
 	'countLineHeightType'      => 'em',
 	'countLineHeight'          => '',
 	'countLineHeightTablet'    => '',
@@ -77,7 +77,7 @@ return array(
 	'listFontSizeTablet'       => '',
 	'listFontFamily'           => '',
 	'listFontWeight'           => '',
-	'listFontSubset'           => '',
+	'listFontStyle'            => '',
 	'listLineHeightType'       => 'em',
 	'listLineHeight'           => '',
 	'listLineHeightTablet'     => '',
@@ -97,4 +97,10 @@ return array(
 	'mobileContentPaddingUnit' => 'px',
 	'tabletContentPaddingUnit' => 'px',
 	'contentPaddingLink'       => false,
+	'titleTransform'           => '',
+	'countTransform'           => '',
+	'listTransform'            => '',
+	'titleDecoration'          => '',
+	'countDecoration'          => '',
+	'listDecoration'           => '',
 );

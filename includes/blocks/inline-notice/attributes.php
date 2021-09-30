@@ -2,7 +2,7 @@
 /**
  * Block Information & Attributes File.
  *
- * @since x.x.x
+ * @since 2.0.0
  *
  * @package uagb
  */
@@ -23,7 +23,6 @@ return array(
 	'noticeAlignment'          => 'left',
 	'titleFontFamily'          => 'Default',
 	'titleFontWeight'          => '',
-	'titleFontSubset'          => '',
 	'titleFontSizeType'        => 'px',
 	'titleLineHeightType'      => '',
 	'titleFontSize'            => '',
@@ -34,7 +33,6 @@ return array(
 	'titleLineHeightMobile'    => '',
 	'descFontFamily'           => 'Default',
 	'descFontWeight'           => '',
-	'descFontSubset'           => '',
 	'descFontSize'             => '',
 	'descFontSizeType'         => 'px',
 	'descFontSizeTablet'       => '',
@@ -59,4 +57,10 @@ return array(
 	'titlePaddingLink'         => false,
 	'layout'                   => 'modern',
 	'highlightWidth'           => 10,
+	'titleTransform'           => '',
+	'titleDecoration'          => '',
+	'descTransform'            => '',
+	'descDecoration'           => '',
+	'titleFontStyle'           => '',
+	'descFontStyle'            => '',
 );

@@ -2,7 +2,7 @@
 /**
  * Attributes File.
  *
- * @since x.x.x
+ * @since 2.0.0
  *
  * @package uagb
  */
@@ -49,8 +49,10 @@ return array(
 	'lineHeightTablet' => '',
 	'fontFamily'       => '',
 	'fontWeight'       => '',
-	'fontSubset'       => '',
 	'loadGoogleFonts'  => false,
 	'icon_layout'      => 'vertical',
 	'stack'            => 'none',
+	'fontStyle'        => '',
+	'fontTransform'    => '',
+	'fontDecoration'   => '',
 );

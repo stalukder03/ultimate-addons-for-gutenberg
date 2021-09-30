@@ -2,7 +2,7 @@
 /**
  * Attributes File.
  *
- * @since x.x.x
+ * @since 2.0.0
  *
  * @package uagb
  */
@@ -49,7 +49,7 @@ return array(
 	'titleLoadGoogleFonts'   => false,
 	'titleFontFamily'        => '',
 	'titleFontWeight'        => '',
-	'titleFontSubset'        => '',
+	'titleFontStyle'         => '',
 	'titleFontSize'          => 20,
 	'titleFontSizeType'      => 'px',
 	'titleFontSizeTablet'    => 20,
@@ -62,7 +62,7 @@ return array(
 	'prefixLoadGoogleFonts'  => false,
 	'prefixFontFamily'       => '',
 	'prefixFontWeight'       => '',
-	'prefixFontSubset'       => '',
+	'prefixFontStyle'        => '',
 	'prefixFontSize'         => 14,
 	'prefixFontSizeType'     => 'px',
 	'prefixFontSizeTablet'   => 14,
@@ -78,4 +78,8 @@ return array(
 	'paddingBtnUnit'         => 'px',
 	'mobilePaddingBtnUnit'   => 'px',
 	'tabletPaddingBtnUnit'   => 'px',
+	'titleTransform'         => '',
+	'titleDecoration'        => '',
+	'prefixTransform'        => '',
+	'prefixDecoration'       => '',
 );

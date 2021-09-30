@@ -2,7 +2,7 @@
 /**
  * Attributes File.
  *
- * @since x.x.x
+ * @since 2.0.0
  *
  * @package uagb
  */
@@ -22,7 +22,7 @@ return array(
 	'titleFontSizeTablet'        => '',
 	'titleFontFamily'            => '',
 	'titleFontWeight'            => '',
-	'titleFontSubset'            => '',
+	'titleFontStyle'             => '',
 	'titleLineHeightType'        => 'em',
 	'titleLineHeight'            => '',
 	'titleLineHeightTablet'      => '',
@@ -34,7 +34,7 @@ return array(
 	'priceFontSizeTablet'        => '',
 	'priceFontFamily'            => '',
 	'priceFontWeight'            => '',
-	'priceFontSubset'            => '',
+	'priceFontStyle'             => '',
 	'priceLineHeightType'        => 'em',
 	'priceLineHeight'            => '',
 	'priceLineHeightTablet'      => '',
@@ -46,7 +46,7 @@ return array(
 	'descFontSizeTablet'         => '',
 	'descFontFamily'             => '',
 	'descFontWeight'             => '',
-	'descFontSubset'             => '',
+	'descFontStyle'              => '',
 	'descLineHeightType'         => 'em',
 	'descLineHeight'             => '',
 	'descLineHeightTablet'       => '',

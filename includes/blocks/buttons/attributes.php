@@ -2,7 +2,7 @@
 /**
  * Attributes File.
  *
- * @since x.x.x
+ * @since 2.0.0
  *
  * @package uagb
  */
@@ -45,5 +45,7 @@ return array(
 	'fontFamily'      => '',
 	'fontWeight'      => '',
 	'loadGoogleFonts' => false,
-	'fontSubset'      => '',
+	'fontStyle'       => '',
+	'fontTransform'   => '',
+	'fontDecoration'  => '',
 );

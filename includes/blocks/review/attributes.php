@@ -2,7 +2,7 @@
 /**
  * Attributes File.
  *
- * @since x.x.x
+ * @since 2.0.0
  *
  * @package uagb
  */
@@ -58,7 +58,6 @@ return array(
 	'headFontSizeMobile'      => '',
 	'headFontFamily'          => '',
 	'headFontWeight'          => '',
-	'headFontSubset'          => '',
 	'headLineHeightType'      => 'em',
 	'headLineHeight'          => '',
 	'headLineHeightTablet'    => '',
@@ -70,7 +69,6 @@ return array(
 	'subHeadFontSizeMobile'   => '',
 	'subHeadFontFamily'       => '',
 	'subHeadFontWeight'       => '',
-	'subHeadFontSubset'       => '',
 	'subHeadLineHeightType'   => 'em',
 	'subHeadLineHeight'       => '',
 	'subHeadLineHeightTablet' => '',
@@ -79,7 +77,6 @@ return array(
 	'contentLoadGoogleFonts'  => false,
 	'contentFontFamily'       => '',
 	'contentFontWeight'       => '',
-	'contentFontSubset'       => '',
 	'contentFontSizeType'     => 'px',
 	'contentLineHeightType'   => 'em',
 	'contentFontSize'         => '',
@@ -106,4 +103,13 @@ return array(
 	'summaryColor'            => '',
 	'starActiveColor'         => '',
 	'starOutlineColor'        => '',
+	'headTransform'           => '',
+	'headDecoration'          => '',
+	'subHeadTransform'        => '',
+	'subHeadDecoration'       => '',
+	'contentTransform'        => '',
+	'contentDecoration'       => '',
+	'headFontStyle'           => '',
+	'subHeadFontStyle'        => '',
+	'contentFontStyle'        => '',
 );

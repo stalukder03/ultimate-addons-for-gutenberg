@@ -2,7 +2,7 @@
 /**
  * UAGB Block Module.
  *
- * @since x.x.x
+ * @since 2.0.0
  *
  * @package uagb
  */
@@ -136,7 +136,7 @@ class UAGB_Block_Module {
 	/**
 	 * Get frontend css.
 	 *
-	 * @since x.x.x
+	 * @since 2.0.0
 	 *
 	 * @param string $slug Block slug.
 	 * @param array  $attr Block attributes.
@@ -176,7 +176,7 @@ class UAGB_Block_Module {
 	/**
 	 * Get frontend JS.
 	 *
-	 * @since x.x.x
+	 * @since 2.0.0
 	 *
 	 * @param string $slug Block slug.
 	 * @param array  $attr Block attributes.

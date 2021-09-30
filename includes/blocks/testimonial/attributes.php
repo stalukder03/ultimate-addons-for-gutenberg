@@ -2,7 +2,7 @@
 /**
  * Attributes File.
  *
- * @since x.x.x
+ * @since 2.0.0
  *
  * @package uagb
  */
@@ -19,7 +19,7 @@ return array(
 	'nameFontSizeMobile'      => '',
 	'nameFontFamily'          => '',
 	'nameFontWeight'          => '',
-	'nameFontSubset'          => '',
+	'nameFontStyle'           => '',
 	'nameLineHeightType'      => 'em',
 	'nameLineHeight'          => '',
 	'nameLineHeightTablet'    => '',
@@ -31,7 +31,7 @@ return array(
 	'companyFontSizeMobile'   => '',
 	'companyFontFamily'       => '',
 	'companyFontWeight'       => '',
-	'companyFontSubset'       => '',
+	'companyFontStyle'        => '',
 	'companyLineHeightType'   => 'em',
 	'companyLineHeight'       => '',
 	'companyLineHeightTablet' => '',
@@ -43,7 +43,7 @@ return array(
 	'descFontSizeMobile'      => '',
 	'descFontFamily'          => '',
 	'descFontWeight'          => '',
-	'descFontSubset'          => '',
+	'descFontStyle'           => '',
 	'descLineHeightType'      => 'em',
 	'descLineHeight'          => '',
 	'descLineHeightTablet'    => '',
