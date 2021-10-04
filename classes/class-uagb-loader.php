@@ -24,6 +24,13 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 		private static $instance;
 
 		/**
+		 * Post assets object cache
+		 *
+		 * @var array
+		 */
+		public $post_assets_objs = array();
+
+		/**
 		 *  Initiator
 		 */
 		public static function get_instance() {
@@ -55,6 +62,8 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 			$this->loader();
 
 			add_action( 'plugins_loaded', array( $this, 'load_plugin' ) );
+
+			add_action( 'init', array( $this, 'init_actions' ) );
 		}
 
 		/**
@@ -79,6 +88,15 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 				define( 'UAGB_MOBILE_BREAKPOINT', '767' );
 			}
 
+			if ( ! defined( 'UAGB_UPLOAD_DIR_NAME' ) ) {
+				define( 'UAGB_UPLOAD_DIR_NAME', 'uag-plugin' );
+			}
+
+			if ( ! defined( 'UAGB_UPLOAD_DIR' ) ) {
+				$upload_dir = wp_upload_dir( null, false );
+				define( 'UAGB_UPLOAD_DIR', $upload_dir['basedir'] . '/' . UAGB_UPLOAD_DIR_NAME . '/' );
+			}
+
 			define( 'UAGB_ASSET_VER', get_option( '__uagb_asset_version', UAGB_VER ) );
 			define( 'UAGB_CSS_EXT', defined( 'WP_DEBUG' ) && WP_DEBUG ? '.css' : '.min.css' );
 			define( 'UAGB_JS_EXT', defined( 'WP_DEBUG' ) && WP_DEBUG ? '.js' : '.min.js' );
@@ -93,6 +111,8 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 		 */
 		public function loader() {
 
+			require_once UAGB_DIR . 'classes/utils.php';
+			require_once UAGB_DIR . 'classes/class-uagb-install.php';
 			require_once UAGB_DIR . 'classes/class-uagb-admin-helper.php';
 			require_once UAGB_DIR . 'classes/class-uagb-block-module.php';
 			require_once UAGB_DIR . 'classes/class-uagb-helper.php';
@@ -206,6 +226,9 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 		 * Activation Reset
 		 */
 		public function activation_reset() {
+
+			uagb_install()->create_files();
+
 			update_option( '__uagb_do_redirect', true );
 			update_option( '__uagb_asset_version', time() );
 		}
@@ -216,11 +239,38 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 		public function deactivation_reset() {
 			update_option( '__uagb_do_redirect', false );
 		}
-	}
 
-	/**
-	 *  Prepare if class 'UAGB_Loader' exist.
-	 *  Kicking this off by calling 'get_instance()' method
-	 */
-	UAGB_Loader::get_instance();
+		/**
+		 * Init actions
+		 *
+		 * @since x.x.x
+		 *
+		 * @return void
+		 */
+		public function init_actions() {
+
+			$theme_folder = get_template();
+
+			if ( 'astra' === $theme_folder ) {
+				require_once UAGB_DIR . 'compatibility/class-uagb-astra-compatibility.php';
+			}
+		}
+	}
+}
+
+/**
+ *  Prepare if class 'UAGB_Loader' exist.
+ *  Kicking this off by calling 'get_instance()' method
+ */
+UAGB_Loader::get_instance();
+
+/**
+ * Load main object
+ *
+ * @since x.x.x
+ *
+ * @return object
+ */
+function uagb() {
+	return UAGB_Loader::get_instance();
 }
