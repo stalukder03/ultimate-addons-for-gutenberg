@@ -17,6 +17,8 @@ export default function save( props ) {
 		backgroundVideo,
 		align,
 		columns,
+		columnsTablet,
+		columnsMobile,
 		stack,
 		vAlign,
 		columnGap,
@@ -73,6 +75,10 @@ export default function save( props ) {
 		? 'uagb-columns__reverse-mobile'
 		: '';
 
+	const colTablet = ( columnsTablet ) ? `uagb-columns__columns-tab-${columnsTablet}` : '';
+
+	const colMobile = ( columnsMobile ) ? `uagb-columns__columns-mob-${columnsMobile}` : '';
+
 	return (
 		<CustomTag
 			className={ classnames(
@@ -86,7 +92,9 @@ export default function save( props ) {
 				reverseTabletClass,
 				reverseMobileClass,
 				`uagb-block-${ block_id }`,
-				`uagb-columns__columns-${ columns }`
+				`uagb-columns__columns-${ columns }`,
+				colTablet,
+				colMobile
 			) }
 		>
 			<div className="uagb-columns__overlay"></div>

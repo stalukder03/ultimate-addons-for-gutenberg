@@ -82,6 +82,8 @@ const Settings = ( props ) => {
 		borderColor,
 		borderHoverColor,
 		columns,
+		columnsTablet,
+		columnsMobile,
 		bottomType,
 		bottomColor,
 		bottomHeight,
@@ -140,18 +142,29 @@ const Settings = ( props ) => {
 			<PanelBody
 				title={ __( 'Layout', 'ultimate-addons-for-gutenberg' ) }
 			>
-				<Range
-					label={ __( 'Columns', 'ultimate-addons-for-gutenberg' ) }
-					setAttributes={ setAttributes }
-					value={ columns }
-					onChange={ ( value ) =>
-						setAttributes( {
-							columns: value,
-						} )
-					}
+				<ResponsiveSlider
+					label={ __(
+						'Columns',
+						'ultimate-addons-for-gutenberg'
+					) }
+					data={ {
+						desktop: {
+							value: columns,
+							label: 'columns',
+						},
+						tablet: {
+							value: columnsTablet,
+							label: 'columnsTablet',
+						},
+						mobile: {
+							value: columnsMobile,
+							label: 'columnsMobile',
+						},
+					} }
 					min={ 0 }
 					max={ 6 }
 					displayUnit={ false }
+					setAttributes={ setAttributes }
 				/>
 				<MultiButtonsControl
 					setAttributes={ setAttributes }

@@ -30,6 +30,8 @@ const Render = ( props ) => {
 		backgroundType,
 		backgroundVideo,
 		columns,
+		columnsTablet,
+		columnsMobile,
 		bottomType,
 		topType,
 		bottomFlip,
@@ -90,6 +92,10 @@ const Render = ( props ) => {
 	const reverseMobileClass = reverseMobile
 		? 'uagb-columns__reverse-mobile'
 		: '';
+	
+	const colTablet = ( columnsTablet ) ? `uagb-columns__columns-tab-${columnsTablet}` : '';
+
+	const colMobile = ( columnsMobile ) ? `uagb-columns__columns-mob-${columnsMobile}` : '';
 
 	const CustomTag = `${ tag }`;
 
@@ -110,7 +116,9 @@ const Render = ( props ) => {
 				reverseTabletClass,
 				reverseMobileClass,
 				`uagb-block-${ props.parentProps.clientId.substr( 0, 8 ) }`,
-				`uagb-columns__columns-${ columns }`
+				`uagb-columns__columns-${ columns }`,
+				colTablet,
+				colMobile
 			) }
 		>
 			<div className="uagb-columns__overlay"></div>

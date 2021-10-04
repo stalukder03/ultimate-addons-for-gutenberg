@@ -76,6 +76,7 @@ const ColumnsComponent = ( props ) => {
 		if ( null !== element && undefined !== element ) {
 			element.innerHTML = styling( props );
 		}
+
 	}, [ props ] );
 
 	const blockVariationPickerOnSelect = (

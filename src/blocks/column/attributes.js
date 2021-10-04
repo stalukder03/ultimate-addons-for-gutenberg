@@ -263,6 +263,18 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
+	columns: {
+		type: 'number',
+		default: 1,
+	},
+	columnsTablet: {
+		type: 'number',
+		default: 2,
+	},
+	columnsMobile: {
+		type: 'number',
+		default: 1,
+	},
 };
 
 export default attributes;
