@@ -41,7 +41,6 @@ const Settings = ( props ) => {
 		urlFontSizeTablet,
 		urlFontFamily,
 		urlFontWeight,
-		urlFontSubset,
 		urlLoadGoogleFonts,
 
 		titleFontSize,
@@ -50,7 +49,6 @@ const Settings = ( props ) => {
 		titleFontSizeTablet,
 		titleFontFamily,
 		titleFontWeight,
-		titleFontSubset,
 		titleLoadGoogleFonts,
 
 		descriptionFontSize,
@@ -59,7 +57,6 @@ const Settings = ( props ) => {
 		descriptionFontSizeTablet,
 		descriptionFontFamily,
 		descriptionFontWeight,
-		descriptionFontSubset,
 		descriptionLoadGoogleFonts,
 
 		urlTarget,
@@ -67,6 +64,16 @@ const Settings = ( props ) => {
 		titleColor,
 		descriptionColor,
 		urlColor,
+
+		urlFontStyle,
+		urlTransform,
+		urlDecoration,
+		titleFontStyle,
+		titleTransform,
+		titleDecoration,
+		descriptionFontStyle,
+		descriptionTransform,
+		descriptionDecoration,
 	} = attributes;
 	/*
 	 * Event to set Image as while adding.
@@ -268,10 +275,18 @@ const Settings = ( props ) => {
 						value: urlFontWeight,
 						label: 'urlFontWeight',
 					}}
-					fontSubset={{
-						value: urlFontSubset,
-						label: 'urlFontSubset',
-					}}
+					fontStyle={ {
+						value: urlFontStyle,
+						label: 'urlFontStyle',
+					} }
+					transform={ {
+						value: urlTransform,
+						label: 'urlTransform',
+					} }
+					decoration={ {
+						value: urlDecoration,
+						label: 'urlDecoration',
+					} }
 					fontSizeType={{
 						value: urlFontSizeType,
 						label: 'urlFontSizeType',
@@ -320,10 +335,18 @@ const Settings = ( props ) => {
 						value: titleFontWeight,
 						label: 'titleFontWeight',
 					}}
-					fontSubset={{
-						value: titleFontSubset,
-						label: 'titleFontSubset',
-					}}
+					fontStyle={ {
+						value: titleFontStyle,
+						label: 'titleFontStyle',
+					} }
+					transform={ {
+						value: titleTransform,
+						label: 'titleTransform',
+					} }
+					decoration={ {
+						value: titleDecoration,
+						label: 'titleDecoration',
+					} }
 					fontSizeType={{
 						value: titleFontSizeType,
 						label: 'titleFontSizeType',
@@ -373,10 +396,18 @@ const Settings = ( props ) => {
 						value: descriptionFontWeight,
 						label: 'descriptionFontWeight',
 					}}
-					fontSubset={{
-						value: descriptionFontSubset,
-						label: 'descriptionFontSubset',
-					}}
+					fontStyle={ {
+						value: descriptionFontStyle,
+						label: 'descriptionFontStyle',
+					} }
+					transform={ {
+						value: descriptionTransform,
+						label: 'descriptionTransform',
+					} }
+					decoration={ {
+						value: descriptionDecoration,
+						label: 'descriptionDecoration',
+					} }
 					fontSizeType={{
 						value: descriptionFontSizeType,
 						label: 'descriptionFontSizeType',

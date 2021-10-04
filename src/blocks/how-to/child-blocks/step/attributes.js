@@ -62,7 +62,14 @@ const attributes = {
 	urlFontWeight: {
 		type: 'string',
 	},
-	urlFontSubset: {
+	urlFontStyle: {
+		type: 'string',
+		default: 'normal',
+	},
+	urlTransform: {
+		type: 'string',
+	},
+	urlDecoration: {
 		type: 'string',
 	},
 	urlLoadGoogleFonts: {
@@ -90,7 +97,14 @@ const attributes = {
 	titleFontWeight: {
 		type: 'string',
 	},
-	titleFontSubset: {
+	titleFontStyle: {
+		type: 'string',
+		default: 'normal',
+	},
+	titleTransform: {
+		type: 'string',
+	},
+	titleDecoration: {
 		type: 'string',
 	},
 	titleLoadGoogleFonts: {
@@ -118,7 +132,14 @@ const attributes = {
 	descriptionFontWeight: {
 		type: 'string',
 	},
-	descriptionFontSubset: {
+	descriptionFontStyle: {
+		type: 'string',
+		default: 'normal',
+	},
+	descriptionTransform: {
+		type: 'string',
+	},
+	descriptionDecoration: {
 		type: 'string',
 	},
 	descriptionLoadGoogleFonts: {

@@ -30,6 +30,16 @@ function styling( props ) {
 		titleColor,
 		descriptionColor,
 		urlColor,
+
+		urlFontStyle,
+		urlTransform,
+		urlDecoration,
+		titleFontStyle,
+		titleTransform,
+		titleDecoration,
+		descriptionFontStyle,
+		descriptionTransform,
+		descriptionDecoration,
 	} = props.attributes;
 
 	let tabletSelectors = {};
@@ -39,6 +49,9 @@ function styling( props ) {
 		' .uagb-step-link-text': {
 			'color': urlColor,
 			'font-family': urlFontFamily,
+			'font-style': urlFontStyle,
+			'text-transform': urlTransform,
+			'text-decoration': urlDecoration,
 			'font-weight': urlFontWeight,
 			'font-size': generateCSSUnit(
 				urlFontSize,
@@ -48,6 +61,9 @@ function styling( props ) {
 		' .block-editor-rich-text__editable.uagb-how-to-step-name': {
 			'color': titleColor,
 			'font-family': titleFontFamily,
+			'font-style': titleFontStyle,
+			'text-transform': titleTransform,
+			'text-decoration': titleDecoration,
 			'font-weight': titleFontWeight,
 			'font-size': generateCSSUnit(
 				titleFontSize,
@@ -57,6 +73,9 @@ function styling( props ) {
 		' .block-editor-rich-text__editable.uagb-how-to-step-description': {
 			'color': descriptionColor,
 			'font-family': descriptionFontFamily,
+			'font-style': descriptionFontStyle,
+			'text-transform': descriptionTransform,
+			'text-decoration': descriptionDecoration,
 			'font-weight': descriptionFontWeight,
 			'font-size': generateCSSUnit(
 				descriptionFontSize,

@@ -71,21 +71,18 @@ if ( ! class_exists( 'UAGB_Block_JS' ) ) {
 			$url_load_google_font = isset( $attr['urlLoadGoogleFonts'] ) ? $attr['urlLoadGoogleFonts'] : '';
 			$url_font_family      = isset( $attr['urlFontFamily'] ) ? $attr['urlFontFamily'] : '';
 			$url_font_weight      = isset( $attr['urlFontWeight'] ) ? $attr['urlFontWeight'] : '';
-			$url_font_subset      = isset( $attr['urlFontSubset'] ) ? $attr['urlFontSubset'] : '';
 
 			$title_load_google_font = isset( $attr['titleLoadGoogleFonts'] ) ? $attr['titleLoadGoogleFonts'] : '';
 			$title_font_family      = isset( $attr['titleFontFamily'] ) ? $attr['titleFontFamily'] : '';
 			$title_font_weight      = isset( $attr['titleFontWeight'] ) ? $attr['titleFontWeight'] : '';
-			$title_font_subset      = isset( $attr['titleFontSubset'] ) ? $attr['titleFontSubset'] : '';
 
 			$description_load_google_font = isset( $attr['descriptionLoadGoogleFonts'] ) ? $attr['descriptionLoadGoogleFonts'] : '';
 			$description_font_family      = isset( $attr['descriptionFontFamily'] ) ? $attr['descriptionFontFamily'] : '';
 			$description_font_weight      = isset( $attr['descriptionFontWeight'] ) ? $attr['descriptionFontWeight'] : '';
-			$description_font_subset      = isset( $attr['descriptionFontSubset'] ) ? $attr['descriptionFontSubset'] : '';
 
-			UAGB_Helper::blocks_google_font( $url_load_google_font, $url_font_family, $url_font_weight, $url_font_subset );
-			UAGB_Helper::blocks_google_font( $title_load_google_font, $title_font_family, $title_font_weight, $title_font_subset );
-			UAGB_Helper::blocks_google_font( $description_load_google_font, $description_font_family, $description_font_weight, $description_font_subset );
+			UAGB_Helper::blocks_google_font( $url_load_google_font, $url_font_family, $url_font_weight );
+			UAGB_Helper::blocks_google_font( $title_load_google_font, $title_font_family, $title_font_weight );
+			UAGB_Helper::blocks_google_font( $description_load_google_font, $description_font_family, $description_font_weight );
 		}
 
 		/**
