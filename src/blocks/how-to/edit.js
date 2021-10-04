@@ -20,7 +20,7 @@ const Render = lazy( () =>
 
 const HowToComponent = ( props ) => {
 
-	const [ prevState, setPrevState ] = useState('');
+	const [ prevState, setPrevState ] = useState( '' );
 
 	useEffect( () => {
 		// Replacement for componentDidMount.
@@ -40,7 +40,7 @@ const HowToComponent = ( props ) => {
 		);
 		document.head.appendChild( $style );
 
-		setPrevState(props.schemaJsonData);
+		setPrevState( props.schemaJsonData );
 	}, [] );
 
 	useEffect( () => {
@@ -53,7 +53,7 @@ const HowToComponent = ( props ) => {
 				schema: JSON.stringify( props.schemaJsonData ),
 			} );
 
-			setPrevState(props.schemaJsonData);
+			setPrevState( props.schemaJsonData );
 		}
 		const element = document.getElementById(
 			'uagb-how-to-schema-style-' + props.clientId.substr( 0, 8 )
