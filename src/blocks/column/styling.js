@@ -178,6 +178,7 @@ function styling( props ) {
 
 	const id = `#wpwrap .edit-post-visual-editor #block-${ props.clientId }`;
 	stylingCss = generateCSS( selectors, id );
+	
 	if ( colWidthTablet !== '' && colWidthTablet !== 0 ) {
 
 		selectorsTab = {
@@ -188,7 +189,7 @@ function styling( props ) {
 
 		stylingCss += generateCSS( selectorsTab, tabId );
 	}
-
+	// console.log(colWidthMobile)
 	if ( colWidthMobile !== '' && colWidthMobile !== 0 ) {
 		
 		selectorsMob = {

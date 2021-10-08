@@ -76,7 +76,6 @@ const ColumnsComponent = ( props ) => {
 		if ( null !== element && undefined !== element ) {
 			element.innerHTML = styling( props );
 		}
-
 	}, [ props ] );
 
 	const blockVariationPickerOnSelect = (
@@ -149,6 +148,12 @@ const applyWithSelect = withSelect( ( select, props ) => {
 	const deviceType = __experimentalGetPreviewDeviceType
 		? __experimentalGetPreviewDeviceType()
 		: null;
+
+	innerBlocks.forEach( ( columnChild ) => {
+		columnChild.attributes.colWidth = ( 100 / props.attributes.columns );
+		columnChild.attributes.colWidthTablet = ( undefined !== props.attributes.columnsTablet ) ? ( 100 / props.attributes.columnsTablet ) : 50;
+		columnChild.attributes.colWidthMobile = ( undefined !== props.attributes.columnsMobile ) ? ( 100 / props.attributes.columnsMobile ) : 100;
+	} );
 
 	return {
 		// Subscribe to changes of the innerBlocks to control the display of the layout selection placeholder.
