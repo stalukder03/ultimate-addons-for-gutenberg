@@ -473,13 +473,13 @@ class UAGB_Init_Blocks {
 			}
 		}
 
-		wp_localize_script(
-			'uagb-deactivate-block-js',
-			'uagb_deactivate_blocks',
-			array(
-				'deactivated_blocks' => $blocks,
-			)
-		);
+		// wp_localize_script(
+		// 	'uagb-deactivate-block-js',
+		// 	'uagb_deactivate_blocks',
+		// 	array(
+		// 		'deactivated_blocks' => $blocks,
+		// 	)
+		// );
 		$displayCondition = UAGB_Admin_Helper::get_admin_settings_option( 'uag_enable_block_condition', 'enabled' );
 
 		wp_localize_script(
@@ -507,6 +507,7 @@ class UAGB_Init_Blocks {
 				'uagb_svg_icons'                    => UAGB_Helper::backend_load_font_awesome_icons(),
 				'uagb_enable_extensions_for_blocks' => apply_filters( 'uagb_enable_extensions_for_blocks', array() ),
 				'uagb_how_to_old_user'              => get_option( 'uagb-how-to-old-user' ),
+				'deactivated_blocks' 				=> $blocks,
 			)
 		);
 		// To match the editor with frontend.

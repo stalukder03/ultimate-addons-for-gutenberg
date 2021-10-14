@@ -21,7 +21,138 @@ if ( 'enabled' === enableConditions ) {
 	import( /* webpackChunkName: "chunks/extensions/display-conditions" */  './blocks/extensions/condition-block');
 }
 
-import './blocks/advanced-heading/block.js';
+
+
+const allBlocks = [
+	'uagb/advanced-heading',
+	'uagb/blockquote',
+	'uagb/buttons',
+	'uagb/call-to-action',
+	'uagb/columns',
+	'uagb/content-timeline',
+	'uagb/faq',
+	'uagb/forms-accept',
+	'uagb/forms',
+	'uagb/google-map',
+	'uagb/how-to-step',
+	'uagb/how-to',
+	'uagb/icon-list',
+	'uagb/info-box',
+	'uagb/inline-notice',
+	'uagb/lottie',
+	'uagb/marketing-button',
+	'uagb/masonry-gallery',
+	'uagb/post-carousel',
+	'uagb/post-grid',
+	'uagb/post-masonry',
+	'uagb/post-timeline',
+	'uagb/restaurant-menu',
+	'uagb/review',
+	'uagb/section',
+	'uagb/social-share',
+	'uagb/star-rating',
+	'uagb/table-of-contents',
+	'uagb/tabs',
+	'uagb/taxonomy-list',
+	'uagb/team',
+	'uagb/testimonial',
+	'uagb/wp-search'
+];
+
+let deactivatedBlocks = [];
+
+if ( Array.isArray( uagb_blocks_info.deactivated_blocks ) ) {
+	deactivatedBlocks = uagb_blocks_info.deactivated_blocks;
+}
+
+const activatedBlocks = allBlocks.filter( block => ! deactivatedBlocks.includes( block ) );
+
+console.log( activatedBlocks );
+
+activatedBlocks.forEach( function (item) {
+	console.log( item );
+
+	switch ( item ) {
+		case 'uagb/advanced-heading':
+			import( /* webpackChunkName: "blocks/advanced-heading/block" */  './blocks/advanced-heading/block.js');
+			break;
+		case 'uagb/blockquote':
+			break;
+		case 'uagb/buttons':
+			break;
+		case 'uagb/call-to-action':
+			break;
+		case 'uagb/columns':
+			break;
+		case 'uagb/content-timeline':
+			break;
+		case 'uagb/faq':
+			break;
+		case 'uagb/forms-accept':
+			break;
+		case 'uagb/forms':
+			break;
+		case 'uagb/google-map':
+			break;
+		case 'uagb/how-to-step':
+			break;
+		case 'uagb/how-to':
+			break;
+		case 'uagb/icon-list':
+			break;
+		case 'uagb/info-box':
+			break;
+		case 'uagb/inline-notice':
+			break;
+		case 'uagb/lottie':
+			break;
+		case 'uagb/marketing-button':
+			break;
+		case 'uagb/masonry-gallery':
+			break;
+		case 'uagb/post-carousel':
+			break;
+		case 'uagb/post-grid':
+			break;
+		case 'uagb/post-masonry':
+			break;
+		case 'uagb/post-timeline':
+			break;
+		case 'uagb/restaurant-menu':
+			break;
+		case 'uagb/review':
+			break;
+		case 'uagb/section':
+			break;
+		case 'uagb/social-share':
+			break;
+		case 'uagb/star-rating':
+			break;
+		case 'uagb/table-of-contents':
+			break;
+		case 'uagb/tabs':
+			break;
+		case 'uagb/taxonomy-list':
+			break;
+		case 'uagb/team':
+			break;
+		case 'uagb/testimonial':
+			break;
+		case 'uagb/wp-search':
+			break;
+		default:
+			break;
+	}
+});
+
+// if ( activatedBlocks ) {
+// 	import './blocks/advanced-heading/block.js';
+// }
+
+
+
+
+// import './blocks/advanced-heading/block.js';
 import './blocks/post/block.js';
 import './blocks/section/block.js';
 import './blocks/buttons/block.js';
