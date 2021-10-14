@@ -109,22 +109,6 @@ function styling( props ) {
 		' > .uagb-tabs__panel .uagb-tab': {
 			'background': headerBgColor,
 			'text-align': titleAlign,
-			'padding-top': generateCSSUnit(
-				tabTitleTopPadding,
-				tabTitlePaddingUnit
-			),
-			'padding-bottom': generateCSSUnit(
-				tabTitleBottomPadding,
-				tabTitlePaddingUnit
-			),
-			'padding-left': generateCSSUnit(
-				tabTitleLeftPadding,
-				tabTitlePaddingUnit
-			),
-			'padding-right': generateCSSUnit(
-				tabTitleRightPadding,
-				tabTitlePaddingUnit
-			),
 			'margin-top': generateCSSUnit(
 				tabTitleTopMargin,
 				tabTitleMarginUnit
@@ -140,6 +124,24 @@ function styling( props ) {
 			'margin-bottom': generateCSSUnit(
 				tabTitleBottomMargin,
 				tabTitleMarginUnit
+			),
+		},
+		'.uagb-tabs__wrap ul.uagb-tabs__panel li.uagb-tab a p': {
+			'padding-top': generateCSSUnit(
+				tabTitleTopPadding,
+				tabTitlePaddingUnit
+			),
+			'padding-bottom': generateCSSUnit(
+				tabTitleBottomPadding,
+				tabTitlePaddingUnit
+			),
+			'padding-left': generateCSSUnit(
+				tabTitleLeftPadding,
+				tabTitlePaddingUnit
+			),
+			'padding-right': generateCSSUnit(
+				tabTitleRightPadding,
+				tabTitlePaddingUnit
 			),
 		},
 		' > .uagb-tabs__panel .uagb-tab a > p': {
@@ -250,22 +252,6 @@ function styling( props ) {
 			),
 		},
 		' > .uagb-tabs__panel .uagb-tab': {
-			'padding-top': generateCSSUnit(
-				tabTitleTopPaddingTablet,
-				tablettabTitlePaddingUnit
-			),
-			'padding-bottom': generateCSSUnit(
-				tabTitleBottomPaddingTablet,
-				tablettabTitlePaddingUnit
-			),
-			'padding-left': generateCSSUnit(
-				tabTitleLeftPaddingTablet,
-				tablettabTitlePaddingUnit
-			),
-			'padding-right': generateCSSUnit(
-				tabTitleRightPaddingTablet,
-				tablettabTitlePaddingUnit
-			),
 			'margin-top': generateCSSUnit(
 				tabTitleTopMarginTablet,
 				tablettabTitleMarginUnit
@@ -281,6 +267,24 @@ function styling( props ) {
 			'margin-bottom': generateCSSUnit(
 				tabTitleBottomMarginTablet,
 				tablettabTitleMarginUnit
+			),
+		},
+		'.uagb-tabs__wrap ul.uagb-tabs__panel li.uagb-tab a p': {
+			'padding-top': generateCSSUnit(
+				tabTitleTopPaddingTablet,
+				tablettabTitlePaddingUnit
+			),
+			'padding-bottom': generateCSSUnit(
+				tabTitleBottomPaddingTablet,
+				tablettabTitlePaddingUnit
+			),
+			'padding-left': generateCSSUnit(
+				tabTitleLeftPaddingTablet,
+				tablettabTitlePaddingUnit
+			),
+			'padding-right': generateCSSUnit(
+				tabTitleRightPaddingTablet,
+				tablettabTitlePaddingUnit
 			),
 		},
 		' > .uagb-tabs__body-wrap ': {
@@ -330,22 +334,6 @@ function styling( props ) {
 			),
 		},
 		' > .uagb-tabs__panel .uagb-tab': {
-			'padding-top': generateCSSUnit(
-				tabTitleTopPaddingMobile,
-				mobiletabTitlePaddingUnit
-			),
-			'padding-bottom': generateCSSUnit(
-				tabTitleBottomPaddingMobile,
-				mobiletabTitlePaddingUnit
-			),
-			'padding-left': generateCSSUnit(
-				tabTitleLeftPaddingMobile,
-				mobiletabTitlePaddingUnit
-			),
-			'padding-right': generateCSSUnit(
-				tabTitleRightPaddingMobile,
-				mobiletabTitlePaddingUnit
-			),
 			'margin-top': generateCSSUnit(
 				tabTitleTopMarginMobile,
 				mobiletabTitleMarginUnit
@@ -361,6 +349,24 @@ function styling( props ) {
 			'margin-bottom': generateCSSUnit(
 				tabTitleBottomMarginMobile,
 				mobiletabTitleMarginUnit
+			),
+		},
+		'.uagb-tabs__wrap ul.uagb-tabs__panel li.uagb-tab a p': {
+			'padding-top': generateCSSUnit(
+				tabTitleTopPaddingMobile,
+				mobiletabTitlePaddingUnit
+			),
+			'padding-bottom': generateCSSUnit(
+				tabTitleBottomPaddingMobile,
+				mobiletabTitlePaddingUnit
+			),
+			'padding-left': generateCSSUnit(
+				tabTitleLeftPaddingMobile,
+				mobiletabTitlePaddingUnit
+			),
+			'padding-right': generateCSSUnit(
+				tabTitleRightPaddingMobile,
+				mobiletabTitlePaddingUnit
 			),
 		},
 		' > .uagb-tabs__body-wrap ': {
