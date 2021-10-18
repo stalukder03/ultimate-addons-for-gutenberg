@@ -33,7 +33,7 @@
 		border-left: 1px solid #d5dadf;
 		border-right: 1px solid #d5dadf;
 		border-color: #d5dadf;
-		border-radius: 0;
+		border-radius: 2px;
 		box-shadow: none !important;
 		height: 30px;
 		margin: 0 -1px 0 3px;
@@ -51,11 +51,6 @@
 		width: 15px;
 		height: 15px;
 		font-size: 15px;
-	}
-
-	.uagb-spacing-control__inputs > :first-child.uagb-spacing-control__number {
-		-webkit-border-radius: 3px 0 0 3px;
-		border-radius: 3px 0 0 3px;
 	}
 
 	.uagb-spacing-control__inputs > :last-child {
@@ -162,7 +157,7 @@
 
 		span {
 			text-align: center;
-			width: 25%;
+			width: 20%;
 		}
 
 		.uagb-spacing-control__link-label {
