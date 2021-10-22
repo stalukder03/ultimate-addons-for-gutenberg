@@ -151,4 +151,9 @@ return array(
 	'prefixMobileSpace'       => '',
 	'imageWidthMobile'        => '',
 	'imageWidthTablet'        => '',
+	'showiconimg'             => true,
+	'showseprator'            => true,
+	'showPrefix'              => true,
+	'showTitle'               => true,
+	'showDesc'                => true,
 );

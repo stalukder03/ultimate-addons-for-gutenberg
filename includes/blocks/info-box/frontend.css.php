@@ -10,6 +10,7 @@
 // Adds Fonts.
 UAGB_Block_JS::blocks_info_box_gfont( $attr );
 
+$selectors   = array();
 $m_selectors = array();
 $t_selectors = array();
 
@@ -24,75 +25,88 @@ $btnPaddingLeft   = isset( $attr['paddingBtnLeft'] ) ? $attr['paddingBtnLeft'] :
 $btnPaddingRight  = isset( $attr['paddingBtnRight'] ) ? $attr['paddingBtnRight'] : $attr['ctaBtnHrPadding'];
 
 $selectors = array(
-	' .uagb-ifb-icon'                                     => array(
+	// CTA icon space.
+	' .uagb-ifb-align-icon-after'  => array(
+		'margin-left' => UAGB_Helper::get_css_value( $attr['ctaIconSpace'], $attr['ctaIconSpaceType'] ),
+	),
+	' .uagb-ifb-align-icon-before' => array(
+		'margin-right' => UAGB_Helper::get_css_value( $attr['ctaIconSpace'], $attr['ctaIconSpaceType'] ),
+	),
+);
+
+// Title Style.
+if ( $attr['showTitle'] ) {
+	$selectors[' .uagb-ifb-title-wrap .uagb-ifb-title'] = array(
+		'color'         => $attr['headingColor'],
+		'margin-bottom' => UAGB_Helper::get_css_value( $attr['headSpace'], $attr['headSpaceUnit'] ),
+	);
+}
+
+// Description Style.
+if ( $attr['showDesc'] ) {
+	$selectors[' .uagb-ifb-text-wrap .uagb-ifb-desc'] = array(
+		'color'         => $attr['subHeadingColor'],
+		'margin-bottom' => UAGB_Helper::get_css_value( $attr['subHeadSpace'], $attr['subHeadSpaceUnit'] ),
+	);
+}
+
+// Prefix Style.
+if ( $attr['showPrefix'] ) {
+	$selectors[' .uagb-ifb-title-prefix'] = array(
+		'color'         => $attr['prefixColor'],
+		'margin-bottom' => UAGB_Helper::get_css_value( $attr['prefixSpace'], $attr['prefixSpaceUnit'] ),
+	);
+}
+
+// Seperator.
+if ( $attr['showseprator'] ) {
+	$selectors[' .uagb-ifb-separator']        = array(
+		'width'            => UAGB_Helper::get_css_value( $attr['seperatorWidth'], $attr['separatorWidthType'] ),
+		'border-top-width' => UAGB_Helper::get_css_value( $attr['seperatorThickness'], $attr['thicknessUnit'] ),
+		'border-top-color' => $attr['seperatorColor'],
+		'border-top-style' => $attr['seperatorStyle'],
+	);
+	$selectors[' .uagb-ifb-separator-parent'] = array(
+		'margin-bottom' => UAGB_Helper::get_css_value( $attr['seperatorSpace'], $attr['seperatorSpaceUnit'] ),
+	);
+}
+
+// Icon/Image.
+if ( $attr['showiconimg'] ) {
+	$selectors[' .uagb-ifb-icon']              = array(
 		'height'      => $icon_size,
 		'width'       => $icon_size,
 		'line-height' => $icon_size,
-	),
-	' .uagb-ifb-icon > span'                              => array(
+	);
+	$selectors[' .uagb-ifb-icon > span']       = array(
 		'font-size'   => $icon_size,
 		'height'      => $icon_size,
 		'width'       => $icon_size,
 		'line-height' => $icon_size,
 		'color'       => $attr['iconColor'],
-	),
-	' .uagb-ifb-icon svg'                                 => array(
+	);
+	$selectors[' .uagb-ifb-icon svg']          = array(
 		'fill' => $attr['iconColor'],
-	),
-	' .uagb-ifb-icon:hover > span'                        => array(
+	);
+	$selectors[' .uagb-ifb-icon:hover > span'] = array(
 		'color' => $attr['iconHover'],
-	),
-	' .uagb-ifb-icon:hover svg'                           => array(
+	);
+	$selectors[' .uagb-ifb-icon:hover svg']    = array(
 		'fill' => $attr['iconHover'],
-	),
-
-	' .uagb-infbox__link-to-all:hover ~ .uagb-infobox__content-wrap .uagb-ifb-icon svg' => array(
+	);
+	$selectors[' .uagb-infbox__link-to-all:hover ~ .uagb-infobox__content-wrap .uagb-ifb-icon svg'] = array(
 		'fill' => $attr['iconHover'],
-	),
-
-	' .uagb-infobox__content-wrap .uagb-ifb-imgicon-wrap' => array(
+	);
+	$selectors[' .uagb-infobox__content-wrap .uagb-ifb-imgicon-wrap']                               = array(
 		'margin-left'   => UAGB_Helper::get_css_value( $attr['iconLeftMargin'], 'px' ),
 		'margin-right'  => UAGB_Helper::get_css_value( $attr['iconRightMargin'], 'px' ),
 		'margin-top'    => UAGB_Helper::get_css_value( $attr['iconTopMargin'], 'px' ),
 		'margin-bottom' => UAGB_Helper::get_css_value( $attr['iconBottomMargin'], 'px' ),
-	),
-	' .uagb-infobox .uagb-ifb-image-content img'          => array(
+	);
+	$selectors[' .uagb-infobox .uagb-ifb-image-content img']                                        = array(
 		'border-radius' => UAGB_Helper::get_css_value( $attr['iconimgBorderRadius'], $attr['iconimgBorderRadiusUnit'] ),
-	),
-	// Prefix Style.
-	' .uagb-ifb-title-prefix'                             => array(
-		'color'         => $attr['prefixColor'],
-		'margin-bottom' => UAGB_Helper::get_css_value( $attr['prefixSpace'], $attr['prefixSpaceUnit'] ),
-	),
-	// Title Style.
-
-	' .uagb-ifb-title-wrap .uagb-ifb-title'               => array(
-		'color'         => $attr['headingColor'],
-		'margin-bottom' => UAGB_Helper::get_css_value( $attr['headSpace'], $attr['headSpaceUnit'] ),
-	),
-	// Description Style.
-	' .uagb-ifb-text-wrap .uagb-ifb-desc'                 => array(
-		'color'         => $attr['subHeadingColor'],
-		'margin-bottom' => UAGB_Helper::get_css_value( $attr['subHeadSpace'], $attr['subHeadSpaceUnit'] ),
-	),
-	// Seperator.
-	' .uagb-ifb-separator'                                => array(
-		'width'            => UAGB_Helper::get_css_value( $attr['seperatorWidth'], $attr['separatorWidthType'] ),
-		'border-top-width' => UAGB_Helper::get_css_value( $attr['seperatorThickness'], $attr['thicknessUnit'] ),
-		'border-top-color' => $attr['seperatorColor'],
-		'border-top-style' => $attr['seperatorStyle'],
-	),
-	' .uagb-ifb-separator-parent'                         => array(
-		'margin-bottom' => UAGB_Helper::get_css_value( $attr['seperatorSpace'], $attr['seperatorSpaceUnit'] ),
-	),
-	// CTA icon space.
-	' .uagb-ifb-align-icon-after'                         => array(
-		'margin-left' => UAGB_Helper::get_css_value( $attr['ctaIconSpace'], $attr['ctaIconSpaceType'] ),
-	),
-	' .uagb-ifb-align-icon-before'                        => array(
-		'margin-right' => UAGB_Helper::get_css_value( $attr['ctaIconSpace'], $attr['ctaIconSpaceType'] ),
-	),
-);
+	);
+}
 
 if ( ! ( $attr['inheritFromTheme'] && 'button' === $attr['ctaType'] ) ) {
 	$selectors[' .uagb-infobox-cta-link']                          = array(
