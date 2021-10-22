@@ -48,4 +48,7 @@ return array(
 	'headDecoration'          => '',
 	'subHeadTransform'        => '',
 	'subHeadDecoration'       => '',
+	'showheading'             => true,
+	'showseprator'            => true,
+	'showdesc'                => true,
 );

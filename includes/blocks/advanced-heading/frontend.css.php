@@ -10,28 +10,34 @@
 // Add fonts.
 UAGB_Block_JS::blocks_advanced_heading_gfont( $attr );
 
+$selectors = array();
 $m_selectors = array();
 $t_selectors = array();
 
-$selectors = array(
-	' .uagb-heading-text'                                  => array(
+if ( $attr['showheading'] ) {
+	$selectors[' .uagb-heading-text'] = array(
 		'text-align'    => $attr['headingAlign'],
 		'color'         => $attr['headingColor'],
 		'margin-bottom' => UAGB_Helper::get_css_value( $attr['headSpace'], 'px' ),
-	),
-	'.wp-block-uagb-advanced-heading .uagb-separator-wrap' => array(
-		'text-align' => $attr['headingAlign'],
-	),
-	' .uagb-desc-text'                                     => array(
+	);
+}
+
+if ( $attr['showdesc'] ) {
+	$selectors[' .uagb-desc-text'] = array(
 		'text-align' => $attr['headingAlign'],
 		'color'      => $attr['subHeadingColor'],
-	),
+	);
+}
 
-);
+if ( $attr['showseprator'] ) {
+	$selectors['.wp-block-uagb-advanced-heading .uagb-separator-wrap'] = array(
+		'text-align' => $attr['headingAlign'],
+	);
+}
 
 $seperatorStyle = isset( $attr['seperatorStyle'] ) ? $attr['seperatorStyle'] : '';
 
-if ( 'none' !== $seperatorStyle ) {
+if ( $attr['showseprator'] && 'none' !== $seperatorStyle ) {
 	$selectors['.wp-block-uagb-advanced-heading .uagb-separator'] = array(
 		'border-top-style' => $attr['seperatorStyle'],
 		'border-top-width' => UAGB_Helper::get_css_value( $attr['separatorHeight'], 'px' ),
