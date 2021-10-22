@@ -16,6 +16,18 @@ const attributes = {
 	headingId: {
 		type: 'string',
 	},
+	showheading: {
+		type: 'boolean',
+		default: true,
+	},
+	showseprator: {
+		type: 'boolean',
+		default: true,
+	},
+	showdesc: {
+		type: 'boolean',
+		default: true,
+	},
 	headingDesc: {
 		source: 'html',
 		selector: 'p',

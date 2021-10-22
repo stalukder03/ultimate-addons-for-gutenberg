@@ -18,7 +18,7 @@ import {
 	InspectorControls,
 } from '@wordpress/block-editor';
 
-import { PanelBody, SelectControl } from '@wordpress/components';
+import { PanelBody, SelectControl, ToggleControl} from '@wordpress/components';
 
 // Extend component
 const Settings = ( props ) => {
@@ -64,6 +64,9 @@ const Settings = ( props ) => {
 		separatorSpace,
 		headLoadGoogleFonts,
 		subHeadLoadGoogleFonts,
+		showheading,
+		showseprator,
+		showdesc
 	} = attributes;
 
 	let loadHeadingGoogleFonts;
@@ -115,7 +118,18 @@ const Settings = ( props ) => {
 	const generalPanel = () => {
 		return (
 			<PanelBody>
-				<MultiButtonsControl
+				<ToggleControl
+					checked={ showheading }
+					onChange={ () =>
+						setAttributes( { showheading: ! showheading } )
+					}
+					label={ __(
+						'Enable Heading',
+						'ultimate-addons-for-gutenberg'
+					) }
+				/>
+				{ showheading && (
+				 <MultiButtonsControl
 					setAttributes={ setAttributes }
 					label={ __(
 						'Heading Tag',
@@ -151,6 +165,27 @@ const Settings = ( props ) => {
 							label: __( 'H6', 'ultimate-addons-for-gutenberg' ),
 						},
 					] }
+				/>
+				)}
+				<ToggleControl
+					checked={ showseprator }
+					onChange={ () =>
+						setAttributes( { showseprator: ! showseprator } )
+					}
+					label={ __(
+						'Enable Separator',
+						'ultimate-addons-for-gutenberg'
+					) }
+				/>
+				<ToggleControl
+					checked={ showdesc }
+					onChange={ () =>
+						setAttributes( { showdesc: ! showdesc } )
+					}
+					label={ __(
+						'Enable Sub-heading',
+						'ultimate-addons-for-gutenberg'
+					) }
 				/>
 			</PanelBody>
 		);
@@ -349,13 +384,6 @@ const Settings = ( props ) => {
 					}
 					options={ [
 						{
-							value: 'none',
-							label: __(
-								'None',
-								'ultimate-addons-for-gutenberg'
-							),
-						},
-						{
 							value: 'solid',
 							label: __(
 								'Solid',
@@ -483,9 +511,9 @@ const Settings = ( props ) => {
 						{ generalPanel() }
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
-						{ headingPanel() }
-						{ seperatorSettings() }
-						{ subheadingPanel() }
+						{ showheading && headingPanel() }
+						{ showseprator && seperatorSettings() }
+						{ showdesc && subheadingPanel() }
 					</InspectorTab>
 					<InspectorTab
 						{ ...UAGTabs.advance }

@@ -12,13 +12,16 @@ const Render = ( props ) => {
 			headingDesc,
 			headingTag,
 			seperatorStyle,
+			showheading,
+			showseprator,
+			showdesc
 		},
 		setAttributes,
 		className,
 		deviceType,
 	} = props;
 
-	const headingText = (
+	const headingText = showheading && (
 		<RichText
 			tagName={ headingTag }
 			placeholder={ __(
@@ -34,13 +37,13 @@ const Render = ( props ) => {
 		/>
 	);
 
-	const separator = seperatorStyle !== 'none' && (
+	const separator = ( showseprator && seperatorStyle !== 'none' ) && (
 		<div className="uagb-separator-wrap">
 			<div className="uagb-separator"></div>
 		</div>
 	);
 
-	const descText = (
+	const descText = showdesc && (
 		<RichText
 			tagName="p"
 			placeholder={ __(
