@@ -1296,7 +1296,7 @@ const Settings = ( props ) => {
 						</>
 					</PanelBody>
 				) }
-				{ 'null' !== seperatorStyle || showseprator && (
+				{ ( showseprator && 'null' !== seperatorStyle ) && (
 					<PanelBody title="Separator" initialOpen={ false }>
 						<>
 							{ 'none' !== seperatorStyle && (
