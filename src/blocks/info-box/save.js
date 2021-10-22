@@ -26,6 +26,8 @@ export default function save( props ) {
 		prefixTitle,
 		infoBoxTitle,
 		headingDesc,
+		showseprator,
+		showiconimg,
 		showPrefix,
 		showTitle,
 		showDesc,
@@ -35,16 +37,17 @@ export default function save( props ) {
 
 	// Get icon/Image components.
 	let isImage = '';
-
-	if ( source_type === 'icon' && icon !== '' ) {
-		isImage = <Icon attributes={ props.attributes } />;
-	} else {
-		isImage = <InfoBoxIconImage attributes={ props.attributes } />;
+	if( showiconimg ){
+		if ( source_type === 'icon' && icon !== '' ) {
+			isImage = <Icon attributes={ props.attributes } />;
+		} else {
+			isImage = <InfoBoxIconImage attributes={ props.attributes } />;
+		}
 	}
 
 	let iconImageHtml = isImage;
 	let position = seperatorPosition;
-	const seperatorHtml = <InfoBoxSeparator attributes={ props.attributes } />;
+	const seperatorHtml = ( showseprator ? <InfoBoxSeparator attributes={ props.attributes } /> : '' );
 	let showSeperator = true;
 
 	if (

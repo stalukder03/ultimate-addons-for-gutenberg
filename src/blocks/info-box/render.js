@@ -30,6 +30,8 @@ const Render = ( props ) => {
 		seperatorPosition,
 		seperatorStyle,
 		ctaType,
+		showseprator,
+		showiconimg,
 		showPrefix,
 		showTitle,
 		showDesc,
@@ -37,15 +39,17 @@ const Render = ( props ) => {
 	} = attributes;
 	// Get icon/Image components.
 	let isImage = '';
-	if ( source_type === 'icon' && icon !== '' ) {
-		isImage = <Icon attributes={ attributes } />;
-	} else {
-		isImage = <InfoBoxIconImage attributes={ attributes } />;
+	if( showiconimg ){
+		if ( source_type === 'icon' && icon !== '' ) {
+			isImage = <Icon attributes={ attributes } />;
+		} else {
+			isImage = <InfoBoxIconImage attributes={ attributes } />;
+		}
 	}
 
 	let iconImageHtml = isImage;
 	let seperatorPos = seperatorPosition;
-	const seperatorHtml = <InfoBoxSeparator attributes={ attributes } />;
+	const seperatorHtml = ( showseprator ? <InfoBoxSeparator attributes={ attributes } /> : '' );
 	let showSeperator = true;
 
 	if (

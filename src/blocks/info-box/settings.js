@@ -183,6 +183,8 @@ const Settings = ( props ) => {
 		imageWidthType,
 		imageWidthUnit,
 		stack,
+		showseprator,
+		showiconimg,
 		showPrefix,
 		showTitle,
 		showDesc,
@@ -325,6 +327,18 @@ const Settings = ( props ) => {
 				title={ __( 'Image/Icon', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
+				<ToggleControl
+					checked={ showiconimg }
+					onChange={ () =>
+						setAttributes( { showiconimg: ! showiconimg } )
+					}
+					label={ __(
+						'Enable Image/Icon',
+						'ultimate-addons-for-gutenberg'
+					) }
+				/>
+				{ showiconimg &&
+				<>
 				<SelectControl
 					label={ __(
 						'Select Position',
@@ -519,6 +533,8 @@ const Settings = ( props ) => {
 							) }
 					</>
 				) }
+				</>
+				}
 			</PanelBody>
 		);
 	};
@@ -596,6 +612,18 @@ const Settings = ( props ) => {
 				title={ __( 'Separator', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
+				<ToggleControl
+					checked={ showseprator }
+					onChange={ () =>
+						setAttributes( { showseprator: ! showseprator } )
+					}
+					label={ __(
+						'Enable Separator',
+						'ultimate-addons-for-gutenberg'
+					) }
+				/>
+				{ showseprator &&
+				<>
 				<SelectControl
 					label={ __( 'Style' ) }
 					value={ seperatorStyle }
@@ -603,13 +631,6 @@ const Settings = ( props ) => {
 						setAttributes( { seperatorStyle: value } )
 					}
 					options={ [
-						{
-							value: 'none',
-							label: __(
-								'None',
-								'ultimate-addons-for-gutenberg'
-							),
-						},
 						{
 							value: 'solid',
 							label: __(
@@ -682,6 +703,8 @@ const Settings = ( props ) => {
 						] }
 					/>
 				) }
+				</>
+				}
 			</PanelBody>
 		);
 	};
@@ -855,10 +878,9 @@ const Settings = ( props ) => {
 	const styleSettings = () => {
 		return (
 			<>
-				{ '' !== icon && (
-					<PanelBody title="Icon/Image" initialOpen={ false }>
+				{ ( showiconimg && '' !== icon ) && (
+					<PanelBody title="Icon/Image" initialOpen={ false } >
 						<>
-							{ ' ' }
 							{ source_type === 'icon' && (
 								<>
 									<AdvancedPopColorControl
@@ -1274,7 +1296,7 @@ const Settings = ( props ) => {
 						</>
 					</PanelBody>
 				) }
-				{ 'null' !== seperatorStyle && (
+				{ 'null' !== seperatorStyle || showseprator && (
 					<PanelBody title="Separator" initialOpen={ false }>
 						<>
 							{ 'none' !== seperatorStyle && (

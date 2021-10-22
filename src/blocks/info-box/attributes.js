@@ -456,6 +456,14 @@ const attributes = {
 		type: 'string',
 		default: 'tablet',
 	},
+	showiconimg: {
+		type: 'boolean',
+		default: true,
+	},
+	showseprator: {
+		type: 'boolean',
+		default: true,
+	},
 	showPrefix: {
 		type: 'boolean',
 		default: true,
