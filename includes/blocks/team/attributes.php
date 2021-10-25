@@ -81,7 +81,6 @@ return array(
 	'spacingLink'             => false,
 	'socialSpace'             => 20,
 	'headingTag'              => 'h3',
-
 	'titleTransform'          => '',
 	'titleDecoration'         => '',
 	'descTransform'           => '',
@@ -91,4 +90,8 @@ return array(
 	'titleFontStyle'          => '',
 	'descFontStyle'           => '',
 	'prefixFontStyle'         => '',
+	'showImg'                 => true,
+	'showPrefix'              => true,
+	'showTitle'               => true,
+	'showDesc'                => true,
 );

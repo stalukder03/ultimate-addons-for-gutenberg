@@ -136,6 +136,10 @@ const Settings = ( props ) => {
 		titleFontStyle,
 		descFontStyle,
 		prefixFontStyle,
+		showPrefix,
+		showTitle,
+		showDesc,
+		showImg,
 	} = attributes;
 
 	/*
@@ -244,6 +248,17 @@ const Settings = ( props ) => {
 			<PanelBody
 				title={ __( 'Layout', 'ultimate-addons-for-gutenberg' ) }
 			>
+				<ToggleControl
+					label={ __(
+						'Enable Title',
+						'ultimate-addons-for-gutenberg'
+					) }
+					checked={ showTitle }
+					onChange={ () =>
+						setAttributes( { showTitle: ! showTitle } )
+					}
+				/>
+				{ showTitle && (
 				<MultiButtonsControl
 					setAttributes={ setAttributes }
 					label={ __( 'Title Tag', 'ultimate-addons-for-gutenberg' ) }
@@ -278,6 +293,39 @@ const Settings = ( props ) => {
 						},
 					] }
 				/>
+				) }
+				<ToggleControl
+					label={ __(
+						'Enable Prefix',
+						'ultimate-addons-for-gutenberg'
+					) }
+					checked={ showPrefix }
+					onChange={ () =>
+						setAttributes( { showPrefix: ! showPrefix } )
+					}
+				/>
+				<ToggleControl
+					label={ __(
+						'Enable Description',
+						'ultimate-addons-for-gutenberg'
+					) }
+					checked={ showDesc }
+					onChange={ () =>
+						setAttributes( { showDesc: ! showDesc } )
+					}
+				/>
+				<ToggleControl
+					label={ __(
+						'Enable Image',
+						'ultimate-addons-for-gutenberg'
+					) }
+					checked={ showImg }
+					onChange={ () =>
+						setAttributes( { showImg: ! showImg } )
+					}
+				/>
+				{ showImg && (
+				<>
 				<UAGImage
 					onSelectImage={ onSelectImage }
 					backgroundImage={ image }
@@ -507,6 +555,8 @@ const Settings = ( props ) => {
 							displayUnit={ false }
 						/>
 					</>
+				) }
+				</>
 				) }
 			</PanelBody>
 		);
@@ -1170,11 +1220,11 @@ const Settings = ( props ) => {
 						{ getSocialLinksPanelBody() }
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
-						{ getTitlePanelColorSettings() }
-						{ getPrefixPanelColorSettings() }
-						{ getDescriptionPanelColorSettings() }
-						{ getSocialIconPanelColorSettings() }
-						{ image && getSpacingPanelBody() }
+						{ showTitle && ( getTitlePanelColorSettings() ) }
+						{ showPrefix && ( getPrefixPanelColorSettings() ) }
+						{ showDesc && ( getDescriptionPanelColorSettings() ) }
+						{ socialEnable && ( getSocialIconPanelColorSettings() ) }
+						{ ( showImg && image ) && ( getSpacingPanelBody() ) }
 					</InspectorTab>
 					<InspectorTab
 						{ ...UAGTabs.advance }

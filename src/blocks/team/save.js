@@ -46,6 +46,10 @@ export default function save( props ) {
 		socialTarget,
 		socialEnable,
 		stack,
+		showPrefix,
+		showTitle,
+		showDesc,
+		showImg,
 	} = props.attributes;
 
 	let size = '';
@@ -62,7 +66,7 @@ export default function save( props ) {
 
 	let image_html = '';
 
-	if ( '' !== img_url ) {
+	if ( '' !== img_url && showImg ) {
 		image_html = (
 			<div
 				className={ classnames(
@@ -96,20 +100,21 @@ export default function save( props ) {
 
 				<div className="uagb-team__content">
 					{ imgPosition === 'above' && image_html }
-
+					{ ( showTitle || showPrefix ) && (
 					<div className="uagb-team__title-wrap">
-						<RichText.Content
+						{ showTitle && ( <RichText.Content
 							tagName={ tag }
 							value={ title }
 							className="uagb-team__title"
-						/>
-						<RichText.Content
+						/> ) }
+						{ showPrefix && ( <RichText.Content
 							tagName="span"
 							value={ prefix }
 							className="uagb-team__prefix"
-						/>
+						/> ) }
 					</div>
-
+					) }
+					{ showDesc && (  
 					<div className="uagb-team__desc-wrap">
 						<RichText.Content
 							tagName="p"
@@ -117,6 +122,7 @@ export default function save( props ) {
 							className="uagb-team__desc"
 						/>
 					</div>
+					) }
 					{ socialEnable && (
 						<div className="uagb-team__social-icon-wrap">
 							<ul className="uagb-team__social-list">

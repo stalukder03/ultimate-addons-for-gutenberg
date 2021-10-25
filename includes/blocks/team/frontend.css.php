@@ -9,7 +9,7 @@
 
 // Adds Fonts.
 UAGB_Block_JS::blocks_team_gfont( $attr );
-
+$selectors   = array();
 $m_selectors = array();
 $t_selectors = array();
 
@@ -29,110 +29,122 @@ $icon_size   = UAGB_Helper::get_css_value( $attr['socialFontSize'], $attr['socia
 $m_icon_size = UAGB_Helper::get_css_value( $attr['socialFontSizeMobile'], $attr['socialFontSizeType'] );
 $t_icon_size = UAGB_Helper::get_css_value( $attr['socialFontSizeTablet'], $attr['socialFontSizeType'] );
 
-$selectors = array(
-	' p.uagb-team__desc'                 => array(
-		'color'         => $attr['descColor'],
-		'margin-bottom' => UAGB_Helper::get_css_value( $attr['descSpace'], 'px' ),
-	),
-	' .uagb-team__prefix'                => array(
-		'color' => $attr['prefixColor'],
-	),
-	' .uagb-team__desc-wrap'             => array(
-		'margin-top' => UAGB_Helper::get_css_value( $attr['prefixSpace'], 'px' ),
-	),
-	' .uagb-team__social-icon a'         => array(
-		'color'       => $attr['socialColor'],
-		'font-size'   => $icon_size,
-		'width'       => $icon_size,
-		'height'      => $icon_size,
-		'line-height' => $icon_size,
-	),
-	' .uagb-team__social-icon svg'       => array(
-		'fill'   => $attr['socialColor'],
-		'width'  => $icon_size,
-		'height' => $icon_size,
-	),
-	' .uagb-team__social-icon:hover a'   => array(
-		'color' => $attr['socialHoverColor'],
-	),
-	' .uagb-team__social-icon:hover svg' => array(
-		'fill' => $attr['socialHoverColor'],
-	),
-	'.uagb-team__image-position-left .uagb-team__social-icon' => array(
-		'margin-right' => UAGB_Helper::get_css_value( $attr['socialSpace'], 'px' ),
-		'margin-left'  => UAGB_Helper::get_css_value( 0, 'px' ),
-	),
-	'.uagb-team__image-position-right .uagb-team__social-icon' => array(
-		'margin-left'  => UAGB_Helper::get_css_value( $attr['socialSpace'], 'px' ),
-		'margin-right' => UAGB_Helper::get_css_value( 0, 'px' ),
-	),
-	'.uagb-team__image-position-above.uagb-team__align-center .uagb-team__social-icon' => array(
-		'margin-right' => UAGB_Helper::get_css_value( ( $attr['socialSpace'] / 2 ), 'px' ),
-		'margin-left'  => UAGB_Helper::get_css_value( ( $attr['socialSpace'] / 2 ), 'px' ),
-	),
-	'.uagb-team__image-position-above.uagb-team__align-left .uagb-team__social-icon' => array(
-		'margin-right' => UAGB_Helper::get_css_value( $attr['socialSpace'], 'px' ),
-		'margin-left'  => UAGB_Helper::get_css_value( 0, 'px' ),
-	),
-	'.uagb-team__image-position-above.uagb-team__align-right .uagb-team__social-icon' => array(
-		'margin-left'  => UAGB_Helper::get_css_value( $attr['socialSpace'], 'px' ),
-		'margin-right' => UAGB_Helper::get_css_value( 0, 'px' ),
-	),
-	' .uagb-team__image-wrap'            => array(
-		'margin-top'    => UAGB_Helper::get_css_value( $image_top_margin, $attr['imageMarginUnit'] ),
-		'margin-bottom' => UAGB_Helper::get_css_value( $image_bottom_margin, $attr['imageMarginUnit'] ),
-		'margin-left'   => $auto_image_left_margin,
-		'margin-right'  => $auto_image_right_margin,
-		'width'         => UAGB_Helper::get_css_value( $attr['imgWidth'], 'px' ),
-	),
-);
+if ( $attr['showImg'] ) {
+	$selectors = array(
+		' .uagb-team__social-icon a'         => array(
+			'color'       => $attr['socialColor'],
+			'font-size'   => $icon_size,
+			'width'       => $icon_size,
+			'height'      => $icon_size,
+			'line-height' => $icon_size,
+		),
+		' .uagb-team__social-icon svg'       => array(
+			'fill'   => $attr['socialColor'],
+			'width'  => $icon_size,
+			'height' => $icon_size,
+		),
+		' .uagb-team__social-icon:hover a'   => array(
+			'color' => $attr['socialHoverColor'],
+		),
+		' .uagb-team__social-icon:hover svg' => array(
+			'fill' => $attr['socialHoverColor'],
+		),
+		'.uagb-team__image-position-left .uagb-team__social-icon' => array(
+			'margin-right' => UAGB_Helper::get_css_value( $attr['socialSpace'], 'px' ),
+			'margin-left'  => UAGB_Helper::get_css_value( 0, 'px' ),
+		),
+		'.uagb-team__image-position-right .uagb-team__social-icon' => array(
+			'margin-left'  => UAGB_Helper::get_css_value( $attr['socialSpace'], 'px' ),
+			'margin-right' => UAGB_Helper::get_css_value( 0, 'px' ),
+		),
+		'.uagb-team__image-position-above.uagb-team__align-center .uagb-team__social-icon' => array(
+			'margin-right' => UAGB_Helper::get_css_value( ( $attr['socialSpace'] / 2 ), 'px' ),
+			'margin-left'  => UAGB_Helper::get_css_value( ( $attr['socialSpace'] / 2 ), 'px' ),
+		),
+		'.uagb-team__image-position-above.uagb-team__align-left .uagb-team__social-icon' => array(
+			'margin-right' => UAGB_Helper::get_css_value( $attr['socialSpace'], 'px' ),
+			'margin-left'  => UAGB_Helper::get_css_value( 0, 'px' ),
+		),
+		'.uagb-team__image-position-above.uagb-team__align-right .uagb-team__social-icon' => array(
+			'margin-left'  => UAGB_Helper::get_css_value( $attr['socialSpace'], 'px' ),
+			'margin-right' => UAGB_Helper::get_css_value( 0, 'px' ),
+		),
+		' .uagb-team__image-wrap'            => array(
+			'margin-top'    => UAGB_Helper::get_css_value( $image_top_margin, $attr['imageMarginUnit'] ),
+			'margin-bottom' => UAGB_Helper::get_css_value( $image_bottom_margin, $attr['imageMarginUnit'] ),
+			'margin-left'   => $auto_image_left_margin,
+			'margin-right'  => $auto_image_right_margin,
+			'width'         => UAGB_Helper::get_css_value( $attr['imgWidth'], 'px' ),
+		),
+	);
+}
 
 if ( 'above' !== $attr['imgPosition'] && 'middle' === $attr['imgAlign'] ) {
 	$selectors[' .uagb-team__image-wrap']['align-self'] = 'center';
 }
 
-$selectors[ ' ' . $attr['tag'] . '.uagb-team__title' ] = array(
-	'color'         => $attr['titleColor'],
-	'margin-bottom' => UAGB_Helper::get_css_value( $attr['titleSpace'], 'px' ),
-);
+if ( $attr['showPrefix'] ) {
+	$selectors[' .uagb-team__prefix'] = array(
+		'color' => $attr['prefixColor'],
+	);
+}
 
-$m_selectors = array(
-	' .uagb-team__social-icon a'   => array(
-		'font-size'   => $m_icon_size,
-		'width'       => $m_icon_size,
-		'height'      => $m_icon_size,
-		'line-height' => $m_icon_size,
-	),
-	' .uagb-team__social-icon svg' => array(
-		'width'  => $m_icon_size,
-		'height' => $m_icon_size,
-	),
-	' .uagb-team__image-wrap'      => array(
-		'margin-top'    => UAGB_Helper::get_css_value( $attr['imageMarginTopMobile'], $attr['mobileImageMarginUnit'] ),
-		'margin-bottom' => UAGB_Helper::get_css_value( $attr['imageMarginBottomMobile'], $attr['mobileImageMarginUnit'] ),
-		'margin-left'   => $auto_image_left_margin_mobile,
-		'margin-right'  => $auto_image_right_margin_mobile,
-	),
-);
+if ( $attr['showDesc'] ) {
+	$selectors[' p.uagb-team__desc']     = array(
+		'color'         => $attr['descColor'],
+		'margin-bottom' => UAGB_Helper::get_css_value( $attr['descSpace'], 'px' ),
+	);
+	$selectors[' .uagb-team__desc-wrap'] = array(
+		'margin-top' => UAGB_Helper::get_css_value( $attr['prefixSpace'], 'px' ),
+	);
+}
 
-$t_selectors = array(
-	' .uagb-team__social-icon a'   => array(
-		'font-size'   => $t_icon_size,
-		'width'       => $t_icon_size,
-		'height'      => $t_icon_size,
-		'line-height' => $t_icon_size,
-	),
-	' .uagb-team__social-icon svg' => array(
-		'width'  => $t_icon_size,
-		'height' => $t_icon_size,
-	),
-	' .uagb-team__image-wrap'      => array(
-		'margin-top'    => UAGB_Helper::get_css_value( $attr['imageMarginTopTablet'], $attr['tabletImageMarginUnit'] ),
-		'margin-bottom' => UAGB_Helper::get_css_value( $attr['imageMarginBottomTablet'], $attr['tabletImageMarginUnit'] ),
-		'margin-left'   => $auto_image_left_margin_tablet,
-		'margin-right'  => $auto_image_right_margin_tablet,
-	),
-);
+if ( $attr['showTitle'] ) {
+	$selectors[ ' ' . $attr['tag'] . '.uagb-team__title' ] = array(
+		'color'         => $attr['titleColor'],
+		'margin-bottom' => UAGB_Helper::get_css_value( $attr['titleSpace'], 'px' ),
+	);
+}
+
+if ( $attr['showImg'] ) {
+	$m_selectors = array(
+		' .uagb-team__social-icon a'   => array(
+			'font-size'   => $m_icon_size,
+			'width'       => $m_icon_size,
+			'height'      => $m_icon_size,
+			'line-height' => $m_icon_size,
+		),
+		' .uagb-team__social-icon svg' => array(
+			'width'  => $m_icon_size,
+			'height' => $m_icon_size,
+		),
+		' .uagb-team__image-wrap'      => array(
+			'margin-top'    => UAGB_Helper::get_css_value( $attr['imageMarginTopMobile'], $attr['mobileImageMarginUnit'] ),
+			'margin-bottom' => UAGB_Helper::get_css_value( $attr['imageMarginBottomMobile'], $attr['mobileImageMarginUnit'] ),
+			'margin-left'   => $auto_image_left_margin_mobile,
+			'margin-right'  => $auto_image_right_margin_mobile,
+		),
+	);
+
+	$t_selectors = array(
+		' .uagb-team__social-icon a'   => array(
+			'font-size'   => $t_icon_size,
+			'width'       => $t_icon_size,
+			'height'      => $t_icon_size,
+			'line-height' => $t_icon_size,
+		),
+		' .uagb-team__social-icon svg' => array(
+			'width'  => $t_icon_size,
+			'height' => $t_icon_size,
+		),
+		' .uagb-team__image-wrap'      => array(
+			'margin-top'    => UAGB_Helper::get_css_value( $attr['imageMarginTopTablet'], $attr['tabletImageMarginUnit'] ),
+			'margin-bottom' => UAGB_Helper::get_css_value( $attr['imageMarginBottomTablet'], $attr['tabletImageMarginUnit'] ),
+			'margin-left'   => $auto_image_left_margin_tablet,
+			'margin-right'  => $auto_image_right_margin_tablet,
+		),
+	);
+}
 
 $combined_selectors = array(
 	'desktop' => $selectors,

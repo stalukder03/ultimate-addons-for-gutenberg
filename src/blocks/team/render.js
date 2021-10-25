@@ -48,11 +48,15 @@ const Render = ( props ) => {
 		socialTarget,
 		socialEnable,
 		stack,
+		showPrefix,
+		showTitle,
+		showDesc,
+		showImg,
 	} = attributes;
 
 	const titleHtml = (
 		<div className="uagb-team__title-wrap">
-			<RichText
+			{ showTitle && ( <RichText
 				tagName={ tag }
 				value={ title }
 				className="uagb-team__title"
@@ -77,8 +81,8 @@ const Render = ( props ) => {
 						: undefined
 				}
 				onRemove={ () => onReplace( [] ) }
-			/>
-			<RichText
+			/> ) }
+			{ showPrefix && ( <RichText
 				tagName="div"
 				value={ prefix }
 				className="uagb-team__prefix"
@@ -103,6 +107,7 @@ const Render = ( props ) => {
 				}
 				onRemove={ () => onReplace( [] ) }
 			/>
+			) }
 		</div>
 	);
 
@@ -185,7 +190,7 @@ const Render = ( props ) => {
 
 	let imageHtml = '';
 
-	if ( '' !== imgUrl ) {
+	if ( '' !== imgUrl && showImg ) {
 		imageHtml = (
 			<div
 				className={ classnames(
@@ -222,9 +227,9 @@ const Render = ( props ) => {
 					<div className="uagb-team__content">
 						{ imgPosition === 'above' && imageHtml }
 
-						{ titleHtml }
+						{ ( showTitle || showPrefix ) && titleHtml }
 
-						{ descHtml }
+						{ showDesc && (  descHtml ) }
 
 						{ socialEnable && socialLinks }
 					</div>
