@@ -111,6 +111,8 @@ const Settings = ( props ) => {
 		titleFontStyle,
 		descFontStyle,
 		ctaFontStyle,
+		showTitle,
+		showDesc,
 	} = attributes;
 
 	let loadCtaGoogleFonts;
@@ -827,6 +829,7 @@ const Settings = ( props ) => {
 				title={ __( 'Spacing', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
+				{ showTitle && (
 				<Range
 					label={ __(
 						'Heading Bottom Margin (px)',
@@ -841,6 +844,9 @@ const Settings = ( props ) => {
 					max={ 500 }
 					displayUnit={ false }
 				/>
+				) }
+				{ showDesc && (
+				<>
 				{ ctaPosition !== 'right' && 
 					<Range
 						label={ __(
@@ -889,6 +895,8 @@ const Settings = ( props ) => {
 						displayUnit={ false }
 					/>
 				) }
+				</>
+				) }
 			</PanelBody>
 		);
 	};
@@ -898,6 +906,27 @@ const Settings = ( props ) => {
 				title={ __( 'Layout', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ true }
 			>
+				<ToggleControl
+					label={ __(
+						'Enable Title',
+						'ultimate-addons-for-gutenberg'
+					) }
+					checked={ showTitle }
+					onChange={ () =>
+						setAttributes( { showTitle: ! showTitle } )
+					}
+				/>
+				<ToggleControl
+					label={ __(
+						'Enable Description',
+						'ultimate-addons-for-gutenberg'
+					) }
+					checked={ showDesc }
+					onChange={ () =>
+						setAttributes( { showDesc: ! showDesc } )
+					}
+				/>
+				{ showTitle && (
 				<MultiButtonsControl
 					setAttributes={ setAttributes }
 					label={ __(
@@ -935,6 +964,7 @@ const Settings = ( props ) => {
 						},
 					] }
 				/>
+				) }
 				{ ctaType !== 'all' && ctaType !== 'none' && (
 					<>
 						<MultiButtonsControl
@@ -1118,13 +1148,13 @@ const Settings = ( props ) => {
 						{ ctaSettings() }
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
-						{ headingSettings() }
-						{ descriptionSettings() }
+						{ showTitle && headingSettings() }
+						{ showDesc && descriptionSettings() }
 						{ ! inheritFromTheme &&
 							ctaType !== 'all' &&
 							ctaType !== 'none' &&
 							ctaStyleSettings() }
-						{ marginSettings() }
+						{ ( showTitle || showDesc ) &&  marginSettings() }
 					</InspectorTab>
 					<InspectorTab
 						{ ...UAGTabs.advance }

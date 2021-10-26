@@ -16,6 +16,10 @@ export default function save( props ) {
 		columns,
 		test_block,
 		imagePosition,
+		showName,
+		showContent,
+		showCompany,
+		showImg
 	} = props.attributes;
 
 	return (
@@ -46,6 +50,8 @@ export default function save( props ) {
 							key={ 'tm_content-' + index }
 						>
 							<div className="uagb-tm__overlay"></div>
+							{ showImg && 
+							<>
 							{ ( imagePosition === 'top' ||
 								imagePosition === 'left' ) && (
 								<TestimonialImage
@@ -53,26 +59,35 @@ export default function save( props ) {
 									index_value={ index }
 								/>
 							) }
-
+							</>
+							}
+							{ ( showName || showCompany || showContent ) &&
 							<div className="uagb-tm__text-wrap">
 								{
 									// Get description.
 									<>
+									{ showContent &&
 										<Description
 											attributes={ props.attributes }
 											setAttributes="not_set"
 											props={ props }
 											index_value={ index }
 										/>
+									}
 									</>
 								}
+								{ ( showName || showCompany ) &&
 								<div className="uagb-tm__meta-inner">
+								{ showImg &&
+								<>
 									{ imagePosition === 'bottom' && (
 										<TestimonialImage
 											attributes={ props.attributes }
 											index_value={ index }
 										/>
 									) }
+								</>
+								}
 
 									{
 										//title_text
@@ -81,6 +96,7 @@ export default function save( props ) {
 												className="uagb-testimonial-details"
 												key={ 'tm_wraps-' + index }
 											>
+												{ showName &&
 												<AuthorName
 													attributes={
 														props.attributes
@@ -89,6 +105,8 @@ export default function save( props ) {
 													props={ props }
 													index_value={ index }
 												/>
+												}
+												{ showCompany &&
 												<Company
 													attributes={
 														props.attributes
@@ -97,17 +115,24 @@ export default function save( props ) {
 													props={ props }
 													index_value={ index }
 												/>
+												}
 											</div>
 										</>
 									}
 								</div>
+								}
 							</div>
+							}
+							{ showImg &&
+							<>
 							{ imagePosition === 'right' && (
 								<TestimonialImage
 									attributes={ props.attributes }
 									index_value={ index }
 								/>
 							) }
+							</>
+							}
 						</div>
 					</div>
 				) ) }

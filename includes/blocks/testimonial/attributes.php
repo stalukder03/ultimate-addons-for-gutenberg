@@ -130,4 +130,8 @@ return array(
 	'gradientLocation2'       => 100,
 	'gradientAngle'           => 0,
 	'gradientPosition'        => 'center center',
+	'showImg'                 => true,
+	'showName'                => true,
+	'showContent'             => true,
+	'showCompany'             => true,
 );

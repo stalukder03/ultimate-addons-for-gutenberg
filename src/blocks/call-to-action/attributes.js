@@ -324,6 +324,14 @@ const attributes = {
 		type: 'boolean',
 		default: false,
 	},
+	showTitle: {
+		type: 'boolean',
+		default: true,
+	},
+	showDesc: {
+		type: 'boolean',
+		default: true,
+	},
 };
 
 export default attributes;

@@ -155,6 +155,10 @@ const Settings = ( props ) => {
 		imgpaddingUnit,
 		imgmobilePaddingUnit,
 		imgtabletPaddingUnit,
+		showName,
+		showContent,
+		showCompany,
+		showImg
 	} = attributes;
 
 	let loadNameGoogleFonts;
@@ -1057,6 +1061,36 @@ const Settings = ( props ) => {
 							title={ __( 'General' ) }
 							initialOpen={ true }
 						>
+							<ToggleControl
+								label={ __(
+									'Enable Name',
+									'ultimate-addons-for-gutenberg'
+								) }
+								checked={ showName }
+								onChange={ () =>
+									setAttributes( { showName: ! showName } )
+								}
+							/>
+							<ToggleControl
+								label={ __(
+									'Enable Content',
+									'ultimate-addons-for-gutenberg'
+								) }
+								checked={ showContent }
+								onChange={ () =>
+									setAttributes( { showContent: ! showContent } )
+								}
+							/>
+							<ToggleControl
+								label={ __(
+									'Enable Company',
+									'ultimate-addons-for-gutenberg'
+								) }
+								checked={ showCompany }
+								onChange={ () =>
+									setAttributes( { showCompany: ! showCompany } )
+								}
+							/>
 							<Range
 								label={ __(
 									'Number of Testimonials',
@@ -1137,6 +1171,18 @@ const Settings = ( props ) => {
 							) }
 							initialOpen={ false }
 						>
+							<ToggleControl
+								label={ __(
+									'Enable Image',
+									'ultimate-addons-for-gutenberg'
+								) }
+								checked={ showImg }
+								onChange={ () =>
+									setAttributes( { showImg: ! showImg } )
+								}
+							/>
+							{ showImg && (
+							<>
 							{ getImageData() }
 							{ cnt > 0 && (
 								<>
@@ -1315,14 +1361,16 @@ const Settings = ( props ) => {
 									/>
 								</>
 							) }
+							</>
+							) }
 						</PanelBody>
 						{ carousalSettings() }
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
-						{ nameStyle() }
-						{ contentStyle() }
-						{ companyStyle() }
-						{ imageStyle() }
+						{ showName && nameStyle() }
+						{ showContent && contentStyle() }
+						{ showCompany && companyStyle() }
+						{ showImg && imageStyle() }
 						{ carouselStyle() }
 						{ borderSetting() }
 						{ backgroundStyle() }

@@ -53,6 +53,22 @@ const attributes = {
 		type: 'string',
 		default: 'left',
 	},
+	showTitle: {
+		type: 'boolean',
+		default: true,
+	},
+	showContent: {
+		type: 'boolean',
+		default: true,
+	},
+	showPrice: {
+		type: 'boolean',
+		default: true,
+	},
+	showImg: {
+		type: 'boolean',
+		default: true,
+	}
 };
 
 export default attributes;

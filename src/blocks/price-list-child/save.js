@@ -11,7 +11,13 @@ import PositionClasses from '../price-list/classes';
 import RestMenuImage from './components/RestMenuImage';
 
 export default function save( props ) {
-	const { imagePosition } = props.attributes;
+	const { 
+		imagePosition,
+		showTitle,
+		showContent,
+		showPrice,
+		showImg
+	} = props.attributes;
 
 	return (
 		<>
@@ -23,19 +29,26 @@ export default function save( props ) {
 				) }
 			>
 				<div className="uagb-rm__content">
+					{ showImg && <> 
 					{ ( imagePosition === 'top' || imagePosition === 'left' ) && (
 						<RestMenuImage attributes={ props.attributes } />
 					) }
+					</> }
+					{ ( showTitle || showContent || showPrice ) && 
 					<div className="uagb-rm__text-wrap">
 						{
 							<>
 								<div className="uagb-rm-details">
+								{ ( showTitle || showContent ) && 
 									<div className="uagb-rm__title-wrap">
+									{ showTitle && 
 										<Title
 											attributes={ props.attributes }
 											setAttributes="not_set"
 											props={ props }
 										/>
+									}
+									{ showContent && 
 										<div className="uagb-rest-menu-text-wrap">
 											<Description
 												attributes={ props.attributes }
@@ -43,7 +56,10 @@ export default function save( props ) {
 												props={ props }
 											/>
 										</div>
+									}
 									</div>
+								}
+								{ showPrice &&
 									<div className="uagb-rm__price-wrap">
 										<Price
 											attributes={ props.attributes }
@@ -51,13 +67,17 @@ export default function save( props ) {
 											props={ props }
 										/>
 									</div>
+								}
 								</div>
 							</>
 						}
 					</div>
+					}
+					{ showImg && <> 
 					{ imagePosition === 'right' && (
 						<RestMenuImage attributes={ props.attributes } />
 					) }
+					</> }
 				</div>
 				<div className="uagb-rm__separator-parent">
 					<div className="uagb-rm__separator"></div>

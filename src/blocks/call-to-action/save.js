@@ -21,6 +21,8 @@ export default function save( props ) {
 		className,
 		ctaTitle,
 		description,
+		showTitle,
+		showDesc 
 	} = props.attributes;
 
 	const isCta = (
@@ -68,23 +70,23 @@ export default function save( props ) {
 					{ ctaPosition === 'above-title' && (
 						<>
 							{ isCta }
-							{ titleText }
-							{ desc }
+							{ showTitle && titleText }
+							{ showDesc && desc }
 						</>
 					) }
 
 					{ ctaPosition === 'below-title' && (
 						<>
-							{ titleText }
-							{ desc }
+							{ showTitle && titleText }
+							{ showDesc && desc }
 							{ isCta }
 						</>
 					) }
 
 					{ ( ctaPosition === 'left' || ctaPosition === 'right' ) && (
 						<>
-							{ titleText }
-							{ desc }
+							{ showTitle && titleText }
+							{ showDesc && desc }
 						</>
 					) }
 				</div>

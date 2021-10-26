@@ -106,4 +106,8 @@ return array(
 	'descDecoration'             => '',
 	'priceTransform'             => '',
 	'priceDecoration'            => '',
+	'showImg'                    => true,
+	'showTitle'                  => true,
+	'showContent'                => true,
+	'showPrice'                  => true,
 );

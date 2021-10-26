@@ -109,6 +109,11 @@ const UAGBRestaurantMenu = ( props ) => {
 			pricelistChild.attributes.mcolumns = props.attributes.mcolumns;
 			pricelistChild.attributes.headingTag = props.attributes.headingTag;
 			pricelistChild.attributes.imageSize = props.attributes.imageSize;
+
+			pricelistChild.attributes.showImg = props.attributes.showImg;
+			pricelistChild.attributes.showTitle = props.attributes.showTitle;
+			pricelistChild.attributes.showContent = props.attributes.showContent;
+			pricelistChild.attributes.showPrice = props.attributes.showPrice;
 		} );
 	}, [ props ] );
 

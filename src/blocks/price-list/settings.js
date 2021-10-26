@@ -18,7 +18,7 @@ const maxColumns = 3;
 
 import { InspectorControls } from '@wordpress/block-editor';
 
-import { PanelBody, SelectControl, Icon } from '@wordpress/components';
+import { PanelBody, SelectControl, Icon, ToggleControl } from '@wordpress/components';
 
 const Settings = ( props ) => {
 	props = props.parentProps;
@@ -125,6 +125,10 @@ const Settings = ( props ) => {
 		descDecoration,
 		priceTransform,
 		priceDecoration,
+		showTitle,
+		showContent,
+		showPrice,
+		showImg
 	} = attributes;
 	
 	const setimageSize = ( value ) => {
@@ -859,6 +863,46 @@ const Settings = ( props ) => {
 							title={ __( 'General' ) }
 							initialOpen={ true }
 						>
+							<ToggleControl
+								label={ __(
+									'Enable Title',
+									'ultimate-addons-for-gutenberg'
+								) }
+								checked={ showTitle }
+								onChange={ () =>
+									setAttributes( { showTitle: ! showTitle } )
+								}
+							/>
+							<ToggleControl
+								label={ __(
+									'Enable Content',
+									'ultimate-addons-for-gutenberg'
+								) }
+								checked={ showContent }
+								onChange={ () =>
+									setAttributes( { showContent: ! showContent } )
+								}
+							/>
+							<ToggleControl
+								label={ __(
+									'Enable Price',
+									'ultimate-addons-for-gutenberg'
+								) }
+								checked={ showPrice }
+								onChange={ () =>
+									setAttributes( { showPrice: ! showPrice } )
+								}
+							/>
+							<ToggleControl
+								label={ __(
+									'Enable Image',
+									'ultimate-addons-for-gutenberg'
+								) }
+								checked={ showImg }
+								onChange={ () =>
+									setAttributes( { showImg: ! showImg } )
+								}
+							/>
 							<ResponsiveSlider
 								label={ __(
 									'Columns',
@@ -883,6 +927,7 @@ const Settings = ( props ) => {
 								displayUnit={ false }
 								setAttributes={ setAttributes }
 							/>
+							{ showTitle && 
 							<MultiButtonsControl
 								setAttributes={ setAttributes }
 								label={ __(
@@ -952,15 +997,16 @@ const Settings = ( props ) => {
 									},
 								] }
 							/>
+							}
 						</PanelBody>
-						{ imageSettings() }
+						{ showImg && imageSettings() }
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
-						{ titleSettings() }
+						{ showTitle && titleSettings() }
 						{ separatorSettings() }
-						{ imageStyles() }
-						{ contentSettings() }
-						{ priceSettings() }
+						{ showImg && imageStyles() }
+						{ showContent && contentSettings() }
+						{ showPrice && priceSettings() }
 						{ marginSettings() }
 					</InspectorTab>
 					<InspectorTab

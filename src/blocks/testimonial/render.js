@@ -43,6 +43,10 @@ const Render = ( props ) => {
 		autoplay,
 		autoplaySpeed,
 		arrowColor,
+		showName,
+		showContent,
+		showCompany,
+		showImg
 	} = attributes;
 
 	const NextArrow = () => {
@@ -151,33 +155,43 @@ const Render = ( props ) => {
 								key={ 'tm_content-' + index }
 							>
 								<div className="uagb-tm__overlay"></div>
-								{ ( imagePosition === 'top' ||
-									imagePosition === 'left' ) && (
+								{ showImg && 
+								<>
+								{ ( imagePosition === 'top' || imagePosition === 'left' ) && (
 									<TestimonialImage
 										attributes={ attributes }
 										index_value={ index }
 									/>
 								) }
-
+								</>
+								}
+								{ ( showName || showCompany || showContent ) &&
 								<div className="uagb-tm__text-wrap">
 									{
 										// Get description.
 										<>
+										{ showContent && (
 											<Description
 												attributes={ attributes }
 												setAttributes={ setAttributes }
 												props={ props }
 												index_value={ index }
 											/>
+										) }
 										</>
 									}
+									{ ( showName || showCompany ) &&
 									<div className="uagb-tm__meta-inner">
+									{ showImg &&
+										<>
 										{ imagePosition === 'bottom' && (
 											<TestimonialImage
 												attributes={ attributes }
 												index_value={ index }
 											/>
 										) }
+										</>
+									}
 
 										{
 											<>
@@ -185,6 +199,7 @@ const Render = ( props ) => {
 													className="uagb-testimonial-details"
 													key={ 'tm_wraps-' + index }
 												>
+													{ showName && (
 													<AuthorName
 														attributes={
 															attributes
@@ -195,6 +210,8 @@ const Render = ( props ) => {
 														props={ props }
 														index_value={ index }
 													/>
+													) }
+													{ showCompany && ( 
 													<Company
 														attributes={
 															attributes
@@ -205,17 +222,24 @@ const Render = ( props ) => {
 														props={ props }
 														index_value={ index }
 													/>
+													) }
 												</div>
 											</>
 										}
 									</div>
+									}
 								</div>
+								}
+							{ showImg &&
+								<>
 								{ imagePosition === 'right' && (
 									<TestimonialImage
 										attributes={ attributes }
 										index_value={ index }
 									/>
 								) }
+								</>
+							}
 							</div>
 						</div>
 					) ) }

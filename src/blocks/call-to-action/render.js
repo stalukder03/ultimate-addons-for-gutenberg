@@ -20,7 +20,7 @@ const Render = ( props ) => {
 	const { className, setAttributes, attributes, deviceType } = props;
 
 	// Setup the attributes.
-	const { block_id, ctaPosition, ctaType } = attributes;
+	const { block_id, ctaPosition, ctaType, showTitle, showDesc } = attributes;
 
 	const isCta = (
 		<CTA attributes={ attributes } setAttributes={ setAttributes } />
@@ -64,15 +64,15 @@ const Render = ( props ) => {
 					<div className="uagb-cta__content">
 						{ ctaPosition === 'below-title' && (
 							<>
-								{ titleText }
-								{ descText }
+								{ showTitle && titleText }
+								{ showDesc && descText }
 								{ isCta }
 							</>
 						) }
 						{ ctaPosition === 'right' && (
 							<>
-								{ titleText }
-								{ descText }
+								{ showTitle && titleText }
+								{ showDesc && descText }
 							</>
 						) }
 					</div>

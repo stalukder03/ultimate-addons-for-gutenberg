@@ -12,14 +12,24 @@ import InspectorTab, {
 	UAGTabs,
 } from '@Components/inspector-tabs/InspectorTab.js';
 import { PanelBody } from '@wordpress/components';
+import { select } from '@wordpress/data';
 
 const Settings = ( props ) => {
 	props = props.parentProps;
 	const { setAttributes, attributes } = props;
 
 	// Setup the attributes.
-	const { headingAlign, imagePosition, image } = attributes;
+	const { headingAlign, imagePosition, image, showImg } = attributes;
 
+	const parentClientId = select(
+		'core/block-editor'
+	).getBlockHierarchyRootClientId( props.clientId );
+	const parentAttributes = select( 'core/block-editor' ).getBlockAttributes(
+		parentClientId
+	);
+
+	const enableImg = parentAttributes ? parentAttributes.showImg : showImg;
+	
 	const onSelectRestImage = ( media ) => {
 		let imageUrl = null;
 		if ( ! media || ! media.url ) {
@@ -75,11 +85,13 @@ const Settings = ( props ) => {
 									'For the common styling options please select the Parent Block of this Price List Item.'
 								) }
 							</p>
+							{ enableImg && 
 							<UAGImage
 								onSelectImage={ onSelectRestImage }
 								backgroundImage={ image }
 								onRemoveImage={ onRemoveRestImage }
 							/>
+							}
 						</PanelBody>
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.advance }></InspectorTab>

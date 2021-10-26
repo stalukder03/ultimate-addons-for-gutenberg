@@ -13,7 +13,13 @@ const Render = ( props ) => {
 	const { className, setAttributes, attributes } = props;
 
 	// Setup the attributes.
-	const { imagePosition } = attributes;
+	const { 
+		imagePosition,
+		showTitle,
+		showContent,
+		showPrice,
+		showImg
+	} = attributes;
 
 	const parentClientId = select(
 		'core/block-editor'
@@ -37,19 +43,26 @@ const Render = ( props ) => {
 		>
 			<Suspense fallback={ lazyLoader() }>
 				<div className="uagb-rm__content">
+					{ showImg && <> 
 					{ ( position === 'top' || position === 'left' ) && (
 						<RestMenuImage attributes={ attributes } />
 					) }
+					</> }
+					{ ( showTitle || showContent || showPrice ) && 
 					<div className="uagb-rm__text-wrap">
 						{
 							<>
 								<div className="uagb-rm-details">
+								{ ( showTitle || showContent ) && 
 									<div className="uagb-rm__title-wrap">
+										{ showTitle && 
 										<Title
 											attributes={ attributes }
 											setAttributes={ setAttributes }
 											props={ props }
 										/>
+										}
+										{ showContent && 
 										<div className="uagb-rest-menu-text-wrap">
 											<Description
 												attributes={ attributes }
@@ -57,7 +70,10 @@ const Render = ( props ) => {
 												props={ props }
 											/>
 										</div>
+										}
 									</div>
+								}
+									{ showPrice &&
 									<div className="uagb-rm__price-wrap">
 										<Price
 											attributes={ attributes }
@@ -65,13 +81,17 @@ const Render = ( props ) => {
 											props={ props }
 										/>
 									</div>
+									}
 								</div>
 							</>
 						}
 					</div>
+					}
+					{ showImg && <> 
 					{ position === 'right' && (
 						<RestMenuImage attributes={ attributes } />
 					) }
+					</> }
 				</div>
 			</Suspense>
 			<div className="uagb-rm__separator-parent">
