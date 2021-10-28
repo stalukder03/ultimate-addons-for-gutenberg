@@ -11,7 +11,7 @@ import { RichText } from '@wordpress/block-editor';
 export default function save( props ) {
 	const { attributes } = props;
 
-	const { block_id, radioRequired, options, radioName } = attributes;
+	const { block_id, radioRequired, options, radioName, hideLabels } = attributes;
 
 	const isRequired = radioRequired
 		? __( 'required', 'ultimate-addons-for-gutenberg' )
@@ -24,14 +24,16 @@ export default function save( props ) {
 				'uagb-forms-field-set',
 				`uagb-block-${ block_id }`
 			) }
+			data-label={'Radio'}
 		>
+			{ hideLabels &&
 			<RichText.Content
 				tagName="div"
 				value={ radioName }
 				className={ `uagb-forms-radio-label ${ isRequired } uagb-forms-input-label` }
 				id={ block_id }
 			/>
-
+			}
 			{ options.map( ( o ) => {
 				const optionvalue = o.optionvalue;
 				const value = optionvalue.replace( /\s+/g, '-' ).toLowerCase();

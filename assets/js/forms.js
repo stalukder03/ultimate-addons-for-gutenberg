@@ -203,9 +203,12 @@
 			}
 
 			const originalSerialized = $( $form ).serializeArray();
+			
 			const postData = {};
 			for ( let i = 0; i < originalSerialized.length; i++ ) {
+				
 				const inputname = originalSerialized[ i ].name;
+				
 				if ( originalSerialized[ i ].name.endsWith( '[]' ) ) {
 					//For checkbox element
 					let name = originalSerialized[ i ].name;
@@ -216,7 +219,6 @@
 					postData[ name ].push( originalSerialized[ i ].value );
 				} else if ( originalSerialized[ i ].value.startsWith( '+' ) ) {
 					//For phone element.
-
 					let name = originalSerialized[ i ].name;
 					name = name.substring( 0, name.length - 2 );
 					if ( ! ( name in postData ) ) {
@@ -225,19 +227,20 @@
 					postData[ $( '#' + name ).html() ].push(
 						originalSerialized[ i ].value
 					);
-				} else {
-					postData[ $( '#' + inputname ).html() ] =
-						originalSerialized[ i ].value;
-				}
+				} else if( '' !== $( '#' + inputname ).html() ){ // check if label is assign to a field.
+						postData[ $( '#' + inputname ).html() ] = originalSerialized[ i ].value;
+					}else { // if not assign then take data-label as a key.
+						const key = $( '.uagb-block-'+ inputname ).data( 'label' );
+						postData[ key ] = originalSerialized[ i ].value;
+					}
 			}
-
 			const after_submit_data = {
 				to: attr.afterSubmitToEmail,
 				cc: attr.afterSubmitCcEmail,
 				bcc: attr.afterSubmitBccEmail,
 				subject: attr.afterSubmitEmailSubject,
 			};
-
+			
 			//add spiner to form button to show processing.
 			$( '<span class="components-spinner"></span>' ).appendTo(
 				$form.find( '.uagb-forms-main-submit-button-wrap' )

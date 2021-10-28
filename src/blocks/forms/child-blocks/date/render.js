@@ -28,6 +28,7 @@ const Render = ( props ) => {
 		minYear,
 		minMonth,
 		minDay,
+		hideLabels
 	} = attributes;
 
 	let validation_min_value = '';
@@ -72,6 +73,7 @@ const Render = ( props ) => {
 					'uagb-forms-field-set',
 					`uagb-block-${ block_id }`
 				) }
+				data-label={'Date'}
 			>
 				{ isSelected && (
 					<div className="uagb-forms-required-wrap">
@@ -89,6 +91,7 @@ const Render = ( props ) => {
 						/>
 					</div>
 				) }
+				{ hideLabels && ( 
 				<RichText
 					tagName="div"
 					placeholder={ __(
@@ -101,6 +104,7 @@ const Render = ( props ) => {
 					multiline={ false }
 					id={ block_id }
 				/>
+				) }
 				{ date_html }
 			</div>
 		</>

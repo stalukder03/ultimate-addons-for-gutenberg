@@ -24,5 +24,9 @@ const attributes = {
 		type: 'string',
 		default: __( 'Enter your message', 'ultimate-addons-for-gutenberg' ),
 	},
+	hideLabels: {
+		type: 'boolean',
+		default: true,
+	}
 };
 export default attributes;

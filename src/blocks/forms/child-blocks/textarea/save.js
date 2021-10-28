@@ -16,6 +16,7 @@ export default function save( props ) {
 		textareaName,
 		rows,
 		placeholder,
+		hideLabels
 	} = attributes;
 
 	const isRequired = textareaRequired
@@ -29,13 +30,16 @@ export default function save( props ) {
 				'uagb-forms-field-set',
 				`uagb-block-${ block_id }`
 			) }
+			data-label={'TextArea'}
 		>
+			{ hideLabels &&
 			<RichText.Content
 				tagName="div"
 				value={ textareaName }
 				className={ `uagb-forms-textarea-label ${ isRequired } uagb-forms-input-label` }
 				id={ block_id }
 			/>
+			}
 			<textarea
 				required={ textareaRequired }
 				className="uagb-forms-textarea-input uagb-forms-input"

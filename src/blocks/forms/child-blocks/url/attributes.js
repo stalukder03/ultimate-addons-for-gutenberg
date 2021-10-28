@@ -19,5 +19,9 @@ const attributes = {
 		type: 'string',
 		default: __( 'https://example.com', 'ultimate-addons-for-gutenberg' ),
 	},
+	hideLabels: {
+		type: 'boolean',
+		default: true,
+	}
 };
 export default attributes;

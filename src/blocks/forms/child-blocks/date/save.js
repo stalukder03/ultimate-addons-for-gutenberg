@@ -22,6 +22,7 @@ export default function save( props ) {
 		maxYear,
 		maxMonth,
 		maxDay,
+		hideLabels
 	} = attributes;
 
 	let validation_min_value = '';
@@ -68,13 +69,16 @@ export default function save( props ) {
 				'uagb-forms-field-set',
 				`uagb-block-${ block_id }`
 			) }
+			data-label={'Date'}
 		>
+			{ hideLabels && 
 			<RichText.Content
 				tagName="div"
 				value={ name }
 				className={ `uagb-forms-date-label ${ isRequired } uagb-forms-input-label` }
 				id={ block_id }
 			/>
+			}
 			{ date_html }
 		</div>
 	);

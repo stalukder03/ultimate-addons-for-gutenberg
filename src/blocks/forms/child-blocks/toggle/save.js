@@ -32,6 +32,7 @@ export default function save( props ) {
 				'uagb-forms-field-set',
 				`uagb-block-${ block_id }`
 			) }
+			data-label={'Toggle'}
 		>
 			<RichText.Content
 				tagName="div"

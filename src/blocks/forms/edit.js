@@ -13,7 +13,7 @@ const Render = lazy( () =>
 	import( /* webpackChunkName: "chunks/form/render" */ './render' )
 );
 
-import { withSelect, useDispatch } from '@wordpress/data';
+import { select, withSelect, useDispatch } from '@wordpress/data';
 
 import { compose, createHigherOrderComponent } from '@wordpress/compose';
 
@@ -100,6 +100,12 @@ const UAGBFormsEdit = ( props ) => {
 		if ( null !== element && undefined !== element ) {
 			element.innerHTML = styling( props );
 		}
+		const getChildBlocks = select( 'core/block-editor' ).getBlocks( 
+			props.clientId
+		);
+		getChildBlocks.forEach( ( formsChild ) => {
+			formsChild.attributes.hideLabels = props.attributes.hideLabels;
+		} );
 	}, [ props ] );
 
 	const blockVariationPickerOnSelect = useCallback(
@@ -225,7 +231,7 @@ const UAGBFormsEdit = ( props ) => {
 	);
 };
 
-const applyWithSelect = withSelect( ( select, props ) => {
+const applyWithSelect = withSelect( ( select, props ) => { // eslint-disable-line no-shadow
 	const { getBlocks } = select( 'core/block-editor' );
 	const {
 		getBlockType,

@@ -30,5 +30,6 @@ const attributes = {
 		type: 'string',
 		default: 'off',
 	},
+	
 };
 export default attributes;

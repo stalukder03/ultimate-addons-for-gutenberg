@@ -41,6 +41,7 @@ const Render = ( props ) => {
 					'uagb-forms-field-set',
 					`uagb-block-${ block_id }`
 				) }
+				data-label={'Toggle'}
 			>
 				{ isSelected && (
 					<div className="uagb-forms-required-wrap">

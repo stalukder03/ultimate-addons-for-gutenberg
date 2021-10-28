@@ -22,7 +22,7 @@ const Render = ( props ) => {
 
 	const { attributes, setAttributes, isSelected } = props;
 
-	const { block_id, checkboxRequired, options, checkboxName } = attributes;
+	const { block_id, checkboxRequired, options, checkboxName, hideLabels } = attributes;
 
 	const addOption = () => {
 		const newOption = {
@@ -144,6 +144,7 @@ const Render = ( props ) => {
 					'uagb-forms-field-set',
 					`uagb-block-${ block_id }`
 				) }
+				data-label={'Checkbox'}
 			>
 				{ isSelected && (
 					<div className="uagb-forms-required-wrap">
@@ -161,20 +162,22 @@ const Render = ( props ) => {
 						/>
 					</div>
 				) }
-				<RichText
-					tagName="div"
-					placeholder={ __(
-						'Checkbox Title',
-						'ultimate-addons-for-gutenberg'
-					) }
-					value={ checkboxName }
-					onChange={ ( value ) =>
-						setAttributes( { checkboxName: value } )
-					}
-					className={ `uagb-forms-checkbox-label ${ isRequired } uagb-forms-input-label` }
-					multiline={ false }
-					id={ block_id }
-				/>
+				{ hideLabels &&
+					<RichText
+						tagName="div"
+						placeholder={ __(
+							'Checkbox Title',
+							'ultimate-addons-for-gutenberg'
+						) }
+						value={ checkboxName }
+						onChange={ ( value ) =>
+							setAttributes( { checkboxName: value } )
+						}
+						className={ `uagb-forms-checkbox-label ${ isRequired } uagb-forms-input-label` }
+						multiline={ false }
+						id={ block_id }
+					/>
+				}
 				{ isSelected && (
 					<>
 						{ editView }

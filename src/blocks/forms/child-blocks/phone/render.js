@@ -21,7 +21,7 @@ const Render = ( props ) => {
 
 	const { attributes, setAttributes, isSelected } = props;
 
-	const { block_id, phoneRequired, phoneName, pattern } = attributes;
+	const { block_id, phoneRequired, phoneName, pattern, hideLabels } = attributes;
 
 	let phone_html = '';
 
@@ -66,6 +66,7 @@ const Render = ( props ) => {
 					'uagb-forms-field-set',
 					`uagb-block-${ block_id }`
 				) }
+				data-label={'Phone'}
 			>
 				{ isSelected && (
 					<div className="uagb-forms-required-wrap">
@@ -83,6 +84,7 @@ const Render = ( props ) => {
 						/>
 					</div>
 				) }
+				{ hideLabels &&
 				<RichText
 					tagName="div"
 					placeholder={ __(
@@ -97,6 +99,7 @@ const Render = ( props ) => {
 					multiline={ false }
 					id={ block_id }
 				/>
+				}
 				<select
 					className="uagb-forms-input uagb-form-phone-country uagb-form-phone-country-editor"
 					id={ `uagb-form-country-${ block_id }` }

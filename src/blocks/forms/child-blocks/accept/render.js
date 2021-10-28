@@ -25,6 +25,7 @@ const Render = ( props ) => {
 		linkInNewTab,
 	} = attributes;
 
+
 	const isRequired = acceptRequired
 		? __( 'required', 'ultimate-addons-for-gutenberg' )
 		: '';

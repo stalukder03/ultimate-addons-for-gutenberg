@@ -545,5 +545,9 @@ const attributes = {
 		type: 'string',
 		default: 'normal',
 	},
+	hideLabels: {
+		type: 'boolean',
+		default: true,
+	}
 };
 export default attributes;

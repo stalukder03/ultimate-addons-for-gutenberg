@@ -30,5 +30,9 @@ const attributes = {
 			},
 		],
 	},
+	hideLabels: {
+		type: 'boolean',
+		default: true,
+	}
 };
 export default attributes;

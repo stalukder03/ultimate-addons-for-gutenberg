@@ -19,5 +19,9 @@ const attributes = {
 		type: 'string',
 		default: __( 'example@mail.com', 'ultimate-addons-for-gutenberg' ),
 	},
+	hideLabels: {
+		type: 'boolean',
+		default: true,
+	}
 };
 export default attributes;

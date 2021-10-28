@@ -166,6 +166,7 @@ const Settings = ( props ) => {
 		submitTextFontStyle,
 		labelFontStyle,
 		inputFontStyle,
+		hideLabels,
 	} = attributes;
 
 	const generalSettings = () => {
@@ -184,6 +185,15 @@ const Settings = ( props ) => {
 					onChange={ ( value ) =>
 						setAttributes( {
 							formLabel: value,
+						} )
+					}
+				/>
+				<ToggleControl
+					label={ __( 'Show Label', 'ultimate-addons-for-gutenberg' ) }
+					checked={ hideLabels }
+					onChange={ () =>
+						setAttributes( {
+							hideLabels: ! hideLabels,
 						} )
 					}
 				/>

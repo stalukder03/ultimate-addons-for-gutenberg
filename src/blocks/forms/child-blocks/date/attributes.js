@@ -43,5 +43,9 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
+	hideLabels: {
+		type: 'boolean',
+		default: true,
+	}
 };
 export default attributes;

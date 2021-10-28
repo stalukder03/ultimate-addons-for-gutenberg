@@ -21,5 +21,9 @@ const attributes = {
 			'ultimate-addons-for-gutenberg'
 		),
 	},
+	hideLabels: {
+		type: 'boolean',
+		default: true,
+	}
 };
 export default attributes;

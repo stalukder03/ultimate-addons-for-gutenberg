@@ -22,7 +22,7 @@ const Render = ( props ) => {
 
 	const { attributes, setAttributes, isSelected } = props;
 
-	const { block_id, radioRequired, options, radioName } = attributes;
+	const { block_id, radioRequired, options, radioName, hideLabels } = attributes;
 
 	const addOption = () => {
 		const newOption = {
@@ -144,6 +144,7 @@ const Render = ( props ) => {
 					'uagb-forms-field-set',
 					`uagb-block-${ block_id }`
 				) }
+				data-label={'Radio'}
 			>
 				{ isSelected && (
 					<div className="uagb-forms-required-wrap">
@@ -161,6 +162,7 @@ const Render = ( props ) => {
 						/>
 					</div>
 				) }
+				{ hideLabels &&
 				<RichText
 					tagName="div"
 					placeholder={ __(
@@ -175,6 +177,7 @@ const Render = ( props ) => {
 					multiline={ false }
 					id={ block_id }
 				/>
+				}
 				{ isSelected && (
 					<>
 						<div className="uagb-forms-radio-controls">

@@ -22,7 +22,7 @@ const Render = ( props ) => {
 
 	const { attributes, setAttributes, isSelected } = props;
 
-	const { block_id, selectRequired, options, selectName } = attributes;
+	const { block_id, selectRequired, options, selectName, hideLabels } = attributes;
 
 	const addOption = () => {
 		const newOption = {
@@ -141,6 +141,7 @@ const Render = ( props ) => {
 					'uagb-forms-field-set',
 					`uagb-block-${ block_id }`
 				) }
+				data-label={'Select'}
 			>
 				{ isSelected && (
 					<div className="uagb-forms-required-wrap">
@@ -158,6 +159,7 @@ const Render = ( props ) => {
 						/>
 					</div>
 				) }
+				{ hideLabels &&
 				<RichText
 					tagName="div"
 					placeholder={ __(
@@ -172,6 +174,7 @@ const Render = ( props ) => {
 					multiline={ false }
 					id={ block_id }
 				/>
+				}
 				{ isSelected && (
 					<>
 						{ editView }

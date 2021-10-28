@@ -20,7 +20,7 @@ const Render = ( props ) => {
 
 	const { attributes, setAttributes, isSelected } = props;
 
-	const { block_id, name, required, placeholder } = attributes;
+	const { block_id, name, required, placeholder, hideLabels } = attributes;
 
 	const isRequired = required
 		? __( 'required', 'ultimate-addons-for-gutenberg' )
@@ -34,6 +34,7 @@ const Render = ( props ) => {
 					'uagb-forms-field-set',
 					`uagb-block-${ block_id }`
 				) }
+				data-label={'Email'}
 			>
 				{ isSelected && (
 					<div className="uagb-forms-required-wrap">
@@ -49,6 +50,7 @@ const Render = ( props ) => {
 						/>
 					</div>
 				) }
+				{ hideLabels &&
 				<RichText
 					tagName="div"
 					placeholder={ __(
@@ -61,6 +63,7 @@ const Render = ( props ) => {
 					multiline={ false }
 					id={ block_id }
 				/>
+				}
 				<input
 					type="text"
 					className="uagb-forms-email-input uagb-forms-input"

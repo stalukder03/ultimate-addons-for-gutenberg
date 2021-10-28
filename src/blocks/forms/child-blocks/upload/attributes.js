@@ -39,5 +39,9 @@ const attributes = {
 			__( 'wmv', 'ultimate-addons-for-gutenberg' ),
 		],
 	},
+	hideLabels: {
+		type: 'boolean',
+		default: true,
+	}
 };
 export default attributes;

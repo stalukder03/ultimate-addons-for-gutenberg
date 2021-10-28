@@ -13,7 +13,7 @@ import { RichText } from '@wordpress/block-editor';
 export default function save( props ) {
 	const { attributes } = props;
 
-	const { block_id, phoneRequired, phoneName, pattern } = attributes;
+	const { block_id, phoneRequired, phoneName, pattern, hideLabels } = attributes;
 
 	let placeholder = '';
 	if ( pattern === '[0-9]{3}-[0-9]{2}-[0-9]{3}' ) {
@@ -55,14 +55,16 @@ export default function save( props ) {
 				'uagb-forms-field-set',
 				`uagb-block-${ block_id }`
 			) }
+			data-label={'Phone'}
 		>
+			{ hideLabels &&
 			<RichText.Content
 				tagName="div"
 				value={ phoneName }
 				className={ `uagb-forms-phone-label ${ isRequired } uagb-forms-input-label` }
 				id={ block_id }
 			/>
-
+			}
 			<select
 				className="uagb-forms-input uagb-form-phone-country"
 				id={ `uagb-form-country-${ block_id }` }
