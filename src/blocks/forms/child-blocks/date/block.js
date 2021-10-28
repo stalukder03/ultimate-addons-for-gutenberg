@@ -6,7 +6,7 @@ import UAGB_Block_Icons from '@Controls/block-icons';
 import attributes from './attributes';
 import edit from './edit';
 import save from './save';
-
+import deprecated from './deprecated';
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 registerBlockType( 'uagb/forms-date', {
@@ -17,6 +17,7 @@ registerBlockType( 'uagb/forms-date', {
 	parent: [ 'uagb/forms' ],
 	attributes,
 	edit,
+	deprecated,
 	supports: {
 		anchor: true,
 	},

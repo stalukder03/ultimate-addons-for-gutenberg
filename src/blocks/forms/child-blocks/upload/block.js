@@ -7,6 +7,7 @@ import attributes from './attributes';
 import edit from './edit';
 import save from './save';
 import { registerBlockType } from '@wordpress/blocks';
+import deprecated from './deprecated';
 
 registerBlockType( 'uagb/forms-upload', {
 	title: uagb_blocks_info.blocks[ 'uagb/forms-upload' ].title,
@@ -16,6 +17,7 @@ registerBlockType( 'uagb/forms-upload', {
 	parent: [ 'uagb/forms' ],
 	attributes,
 	edit,
+	deprecated,
 	supports: {
 		anchor: true,
 	},

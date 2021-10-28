@@ -8,6 +8,7 @@ import edit from './edit';
 import save from './save';
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
+import deprecated from './deprecated';
 
 registerBlockType( 'uagb/forms-phone', {
 	title: __( 'Phone', 'ultimate-addons-for-gutenberg' ),
@@ -17,6 +18,7 @@ registerBlockType( 'uagb/forms-phone', {
 	parent: [ 'uagb/forms' ],
 	attributes,
 	edit,
+	deprecated,
 	supports: {
 		anchor: true,
 	},
