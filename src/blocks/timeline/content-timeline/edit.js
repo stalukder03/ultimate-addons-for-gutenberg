@@ -32,7 +32,7 @@ const ContentTimelineComponent = ( props ) => {
 		window.addEventListener( 'load', timelineContentConnector( id ) );
 		window.addEventListener( 'resize', timelineContentConnector( id ) );
 		const time = this;
-		jQuery( '.edit-post-layout__content' ).on( 'scroll', function () {
+		document.querySelector( '.edit-post-layout__content' ).addEventListener( 'scroll', function () {
 			time.timelineContentConnector( id );
 		} );
 
@@ -157,7 +157,7 @@ const ContentTimelineComponent = ( props ) => {
 		window.addEventListener( 'load', timelineContentConnector( id ) );
 		window.addEventListener( 'resize', timelineContentConnector( id ) );
 		const time = this;
-		jQuery( '.edit-post-layout__content' ).on( 'scroll', function () {
+		document.querySelector( '.edit-post-layout__content' ).addEventListener( 'scroll', function () {
 			time.timelineContentConnector( id );
 		} );
 	}, [ props ] );

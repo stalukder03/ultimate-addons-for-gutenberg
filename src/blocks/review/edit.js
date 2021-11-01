@@ -14,7 +14,6 @@ const Settings = lazy( () =>
 const Render = lazy( () =>
 	import( /* webpackChunkName: "chunks/review/render" */ './render' )
 );
-import jQuery from 'jquery';
 let prevState;
 
 const ReviewComponent = ( props ) => {
@@ -85,7 +84,7 @@ const ReviewComponent = ( props ) => {
 			element.innerHTML = styling( props );
 		}
 
-		jQuery( '.uagb-rating-link-wrapper' ).on( 'click', function ( event ) {
+		document.querySelector( '.uagb-rating-link-wrapper' ).addEventListener( 'click', function ( event ) {
 			event.preventDefault();
 		} );
 	}, [ props ] );
