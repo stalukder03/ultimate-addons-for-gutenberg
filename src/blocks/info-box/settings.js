@@ -15,7 +15,6 @@ import Range from '@Components/range/Range.js';
 import ResponsiveSlider from '@Components/responsive-slider';
 import UAGImage from '@Components/image';
 import MultiButtonsControl from '@Components/multi-buttons-control';
-import jQuery from 'jquery';
 
 import {
 	AlignmentToolbar,
@@ -221,11 +220,11 @@ const Settings = ( props ) => {
 
 	const getImageSize = ( sizes ) => {
 		const sizeArr = [];
-		jQuery.each( sizes, function ( index ) {
-			const name = index;
-			const p = { value: name, label: name };
+		const arr = Object.keys( sizes );
+		for( let i = 0; i < arr.length; i++ ) {
+			const p = { value: arr[i], label: arr[i] };
 			sizeArr.push( p );
-		} );
+		}
 		return sizeArr;
 	};
 

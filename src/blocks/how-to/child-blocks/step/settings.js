@@ -4,7 +4,6 @@ import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
 import InspectorTab, { UAGTabs } from '@Components/inspector-tabs/InspectorTab.js';
 import UAGImage from '@Components/image';
 import { InspectorControls } from '@wordpress/block-editor';
-import jQuery from 'jquery';
 import TypographyControl from '@Components/typography';
 import WebfontLoader from '@Components/typography/fontloader';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
@@ -95,11 +94,11 @@ const Settings = ( props ) => {
 	};
 	const getImageSize = ( sizes ) => {
 		const sizeArr = [];
-		jQuery.each( sizes, function ( index ) {
-			const name = index;
-			const p = { value: name, label: name };
+		const arr = Object.keys( sizes );
+		for( let i = 0; i < arr.length; i++ ) {
+			const p = { value: arr[i], label: arr[i] };
 			sizeArr.push( p );
-		} );
+		}
 		return sizeArr;
 	};
 	/*

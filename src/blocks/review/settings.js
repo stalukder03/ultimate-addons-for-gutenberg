@@ -17,7 +17,6 @@ import UAGImage from '@Components/image';
 import SpacingControl from '@Components/spacing-control';
 import MultiButtonsControl from '@Components/multi-buttons-control';
 
-import jQuery from 'jquery';
 import {
 	PanelBody,
 	SelectControl,
@@ -226,11 +225,11 @@ const Settings = ( props ) => {
 
 	const getImageSize = ( sizes ) => {
 		const sizeArr = [];
-		jQuery.each( sizes, function ( index ) {
-			const name = index;
-			const p = { value: name, label: name };
+		const arr = Object.keys( sizes );
+		for( let i = 0; i < arr.length; i++ ) {
+			const p = { value: arr[i], label: arr[i] };
 			sizeArr.push( p );
-		} );
+		}
 		return sizeArr;
 	};
 

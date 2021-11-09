@@ -12,8 +12,8 @@ $selector      = $base_selector . $id;
 
 ob_start();
 ?>
-jQuery( document ).ready(function() {
-	UAGBLottie._run( <?php echo wp_json_encode( $attr ); ?>, '<?php echo esc_attr( $selector ); ?>' );
+window.addEventListener( 'DOMContentLoaded', function() {
+	UAGBLottie._run(<?php echo wp_json_encode( $attr ); ?>, '<?php echo esc_attr( $selector ); ?>' );
 });
 <?php
 return ob_get_clean();
