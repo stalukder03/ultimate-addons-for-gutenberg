@@ -11,7 +11,7 @@ import { RichText } from '@wordpress/block-editor';
 export default function save( props ) {
 	const { attributes } = props;
 
-	const { block_id, selectRequired, options, selectName, hideLabels } = attributes;
+	const { block_id, selectRequired, options, selectName, hideLabels, uniqueId } = attributes;
 
 	const isRequired = selectRequired
 		? __( 'required', 'ultimate-addons-for-gutenberg' )
@@ -24,7 +24,6 @@ export default function save( props ) {
 				'uagb-forms-field-set',
 				`uagb-block-${ block_id }`
 			) }
-			data-label={'Select'}
 		>
 			{ hideLabels &&
 			<RichText.Content
@@ -37,7 +36,8 @@ export default function save( props ) {
 			<select
 				className="uagb-forms-select-box uagb-forms-input"
 				required={ selectRequired }
-				name={ block_id }
+				name={ uniqueId }
+				id={ block_id }
 			>
 				<option value="" disabled selected>
 					Select your option

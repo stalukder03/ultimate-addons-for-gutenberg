@@ -27,6 +27,10 @@ const attributes = {
 	hideLabels: {
 		type: 'boolean',
 		default: true,
+	},
+	uniqueId: {
+		type: 'string',
+		default: __( 'textarea', 'ultimate-addons-for-gutenberg' ),
 	}
 };
 export default attributes;

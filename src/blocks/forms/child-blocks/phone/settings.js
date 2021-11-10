@@ -5,7 +5,7 @@ import InspectorTab, {
 	UAGTabs,
 } from '@Components/inspector-tabs/InspectorTab.js';
 
-import { PanelBody, ToggleControl, SelectControl } from '@wordpress/components';
+import { PanelBody, ToggleControl, SelectControl, TextControl  } from '@wordpress/components';
 
 import { InspectorControls } from '@wordpress/block-editor';
 
@@ -14,7 +14,7 @@ const Settings = ( props ) => {
 
 	const { attributes, setAttributes } = props;
 
-	const { phoneRequired, pattern } = attributes;
+	const { phoneRequired, pattern, uniqueId } = attributes;
 
 	const phoneInspectorControls = () => {
 		return (
@@ -49,6 +49,17 @@ const Settings = ( props ) => {
 					onChange={ ( value ) =>
 						setAttributes( { pattern: value } )
 					}
+				/>
+				<TextControl
+					label="ID"
+					value={ uniqueId }
+					onChange={ ( value ) =>
+						setAttributes( { uniqueId: value } )
+					}
+					placeholder={ __(
+						'Please make sure ID is unique.',
+						'ultimate-addons-for-gutenberg'
+					) }
 				/>
 			</PanelBody>
 		);

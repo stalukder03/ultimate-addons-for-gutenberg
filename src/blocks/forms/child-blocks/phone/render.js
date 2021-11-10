@@ -21,7 +21,7 @@ const Render = ( props ) => {
 
 	const { attributes, setAttributes, isSelected } = props;
 
-	const { block_id, phoneRequired, phoneName, pattern, hideLabels } = attributes;
+	const { block_id, phoneRequired, phoneName, pattern, hideLabels, uniqueId } = attributes;
 
 	let phone_html = '';
 
@@ -40,7 +40,8 @@ const Render = ( props ) => {
 				pattern={ pattern }
 				required={ phoneRequired }
 				className="uagb-forms-phone-input uagb-forms-input"
-				name={ block_id }
+				id={ block_id }
+				name={ uniqueId }
 			/>
 		);
 	} else {
@@ -49,7 +50,8 @@ const Render = ( props ) => {
 				type="tel"
 				required={ phoneRequired }
 				className="uagb-forms-phone-input uagb-forms-input"
-				name={ block_id }
+				id={ block_id }
+				name={ uniqueId }
 			/>
 		);
 	}
@@ -66,7 +68,6 @@ const Render = ( props ) => {
 					'uagb-forms-field-set',
 					`uagb-block-${ block_id }`
 				) }
-				data-label={'Phone'}
 			>
 				{ isSelected && (
 					<div className="uagb-forms-required-wrap">
@@ -103,7 +104,7 @@ const Render = ( props ) => {
 				<select
 					className="uagb-forms-input uagb-form-phone-country uagb-form-phone-country-editor"
 					id={ `uagb-form-country-${ block_id }` }
-					name={ `${ phoneName }[]` }
+					name={ `country_code` }
 				>
 					{ countryOptions.map( ( o, index ) => (
 						<option value={ o.props.value } key={ index }>

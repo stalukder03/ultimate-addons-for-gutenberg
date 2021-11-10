@@ -16,7 +16,8 @@ const Render = ( props ) => {
 		textareaName,
 		rows,
 		placeholder,
-		hideLabels
+		hideLabels,
+		uniqueId
 	} = attributes;
 
 	const isRequired = textareaRequired
@@ -31,7 +32,6 @@ const Render = ( props ) => {
 					'uagb-forms-field-set',
 					`uagb-block-${ block_id }`
 				) }
-				data-label={'TextArea'}
 			>
 				{ isSelected && (
 					<div className="uagb-forms-required-wrap">
@@ -70,7 +70,8 @@ const Render = ( props ) => {
 					className="uagb-forms-textarea-input uagb-forms-input"
 					rows={ rows }
 					placeholder={ placeholder }
-					name={ block_id }
+					name={ uniqueId }
+					id={ block_id }
 				></textarea>
 			</div>
 		</>

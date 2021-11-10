@@ -20,7 +20,7 @@ const Render = ( props ) => {
 
 	const { attributes, setAttributes, isSelected } = props;
 
-	const { block_id, name, required, placeholder, hideLabels } = attributes;
+	const { block_id, name, required, placeholder, hideLabels, uniqueId } = attributes;
 
 	const isRequired = required
 		? __( 'required', 'ultimate-addons-for-gutenberg' )
@@ -69,7 +69,9 @@ const Render = ( props ) => {
 					className="uagb-forms-email-input uagb-forms-input"
 					placeholder={ placeholder }
 					required={ required }
-					name={ block_id }
+					name={ uniqueId }
+					id={ block_id }
+
 				/>
 			</div>
 		</>

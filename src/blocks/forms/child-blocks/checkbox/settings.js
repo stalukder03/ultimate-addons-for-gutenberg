@@ -1,7 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 
-import { PanelBody, ToggleControl } from '@wordpress/components';
+import { PanelBody, ToggleControl, TextControl } from '@wordpress/components';
 import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
 import InspectorTab, {
 	UAGTabs,
@@ -14,7 +14,7 @@ const Settings = ( props ) => {
 
 	const { attributes, setAttributes } = props;
 
-	const { checkboxRequired } = attributes;
+	const { checkboxRequired, uniqueId } = attributes;
 
 	const checkboxInspectorControls = () => {
 		return (
@@ -27,6 +27,17 @@ const Settings = ( props ) => {
 							checkboxRequired: ! checkboxRequired,
 						} )
 					}
+				/>
+				<TextControl
+					label="ID"
+					value={ uniqueId }
+					onChange={ ( value ) =>
+						setAttributes( { uniqueId: value } )
+					}
+					placeholder={ __(
+						'Please make sure ID is unique.',
+						'ultimate-addons-for-gutenberg'
+					) }
 				/>
 			</PanelBody>
 		);

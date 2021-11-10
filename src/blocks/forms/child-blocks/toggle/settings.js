@@ -19,6 +19,7 @@ const Settings = ( props ) => {
 		layout,
 		trueValue,
 		falseValue,
+		uniqueId
 	} = attributes;
 
 	const toggleInspectorControls = () => {
@@ -88,6 +89,17 @@ const Settings = ( props ) => {
 						},
 					] }
 					showIcons={ false }
+				/>
+				<TextControl
+					label="ID"
+					value={ uniqueId }
+					onChange={ ( value ) =>
+						setAttributes( { uniqueId: value } )
+					}
+					placeholder={ __(
+						'Please make sure ID is unique.',
+						'ultimate-addons-for-gutenberg'
+					) }
 				/>
 			</PanelBody>
 		);

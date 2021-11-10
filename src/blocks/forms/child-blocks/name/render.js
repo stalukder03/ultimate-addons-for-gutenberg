@@ -20,7 +20,7 @@ const Render = ( props ) => {
 
 	const { attributes, setAttributes, isSelected } = props;
 
-	const { block_id, nameRequired, name, placeholder, hideLabels } = attributes;
+	const { block_id, nameRequired, name, placeholder, hideLabels, uniqueId } = attributes;
 
 	const isRequired = nameRequired
 		? __( 'required', 'ultimate-addons-for-gutenberg' )
@@ -34,7 +34,6 @@ const Render = ( props ) => {
 					'uagb-forms-field-set',
 					`uagb-block-${ block_id }`
 				) }
-				data-label={'Name'}
 			>
 				{ isSelected && (
 					<div className="uagb-forms-required-wrap">
@@ -71,7 +70,8 @@ const Render = ( props ) => {
 					placeholder={ placeholder }
 					required={ nameRequired }
 					className="uagb-forms-name-input uagb-forms-input"
-					name={ block_id }
+					name={ uniqueId }
+					id={ block_id }
 				/>
 			</div>
 		</>

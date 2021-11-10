@@ -24,6 +24,10 @@ const attributes = {
 	hideLabels: {
 		type: 'boolean',
 		default: true,
+	},
+	uniqueId: {
+		type: 'string',
+		default: __( 'mob_no', 'ultimate-addons-for-gutenberg' ),
 	}
 };
 export default attributes;

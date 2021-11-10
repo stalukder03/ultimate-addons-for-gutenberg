@@ -42,6 +42,10 @@ const attributes = {
 	hideLabels: {
 		type: 'boolean',
 		default: true,
+	},
+	uniqueId: {
+		type: 'string',
+		default: __( 'upload', 'ultimate-addons-for-gutenberg' ),
 	}
 };
 export default attributes;

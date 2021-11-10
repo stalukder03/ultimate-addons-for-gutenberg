@@ -22,7 +22,8 @@ export default function save( props ) {
 		maxYear,
 		maxMonth,
 		maxDay,
-		hideLabels
+		hideLabels,
+		uniqueId
 	} = attributes;
 
 	let validation_min_value = '';
@@ -45,7 +46,8 @@ export default function save( props ) {
 				required={ dateRequired }
 				min={ validation_min_value }
 				max={ validation_max_value }
-				name={ block_id }
+				name={ uniqueId }
+				id={ block_id }
 			/>
 		);
 	} else {
@@ -54,7 +56,8 @@ export default function save( props ) {
 				type="date"
 				className="uagb-forms-date-input uagb-forms-input"
 				required={ dateRequired }
-				name={ block_id }
+				name={ uniqueId }
+				id={ block_id }
 			/>
 		);
 	}
@@ -69,7 +72,6 @@ export default function save( props ) {
 				'uagb-forms-field-set',
 				`uagb-block-${ block_id }`
 			) }
-			data-label={'Date'}
 		>
 			{ hideLabels && 
 			<RichText.Content

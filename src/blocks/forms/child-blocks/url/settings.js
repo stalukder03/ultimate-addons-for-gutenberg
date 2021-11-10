@@ -13,7 +13,7 @@ const Settings = ( props ) => {
 
 	const { attributes, setAttributes } = props;
 
-	const { required, placeholder } = attributes;
+	const { required, placeholder, uniqueId } = attributes;
 
 	const urlInspectorControls = () => {
 		return (
@@ -32,6 +32,17 @@ const Settings = ( props ) => {
 					onChange={ ( value ) =>
 						setAttributes( { placeholder: value } )
 					}
+				/>
+				<TextControl
+					label="ID"
+					value={ uniqueId }
+					onChange={ ( value ) =>
+						setAttributes( { uniqueId: value } )
+					}
+					placeholder={ __(
+						'Please make sure ID is unique.',
+						'ultimate-addons-for-gutenberg'
+					) }
 				/>
 			</PanelBody>
 		);

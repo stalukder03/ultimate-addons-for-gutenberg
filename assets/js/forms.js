@@ -201,21 +201,19 @@ UAGBForms = { // eslint-disable-line no-undef
 				postData[ name ].push( originalSerialized[ i ].value );
 			} else if ( originalSerialized[ i ].value.startsWith( '+' ) ) {
 				//For phone element.
-				let name = originalSerialized[ i ].name;
-				name = name.substring( 0, name.length - 2 );
+				const name = originalSerialized[ i ].name;
 				if ( ! ( name in postData ) ) {
 					postData[ name ] = [];
 				}
 				postData[ name ].push( originalSerialized[ i ].value );
 			} else if( inputname !== null ){
-			
 				if( '' !== inputname.innerHTML ){
 					postData[ inputname.innerHTML ] = originalSerialized[ i ].value;
-				} else {
-					const key = document.querySelector( '.uagb-block-'+ originalSerialized[ i ].name ).getAttribute( 'data-label' );
-					postData[ key ] = originalSerialized[ i ].value;
 				}
-			} 
+			}  else {	
+				const key = originalSerialized[ i ].name;
+				postData[ key ] = originalSerialized[ i ].value;
+			}
 		}
 
 		const after_submit_data = {
@@ -287,7 +285,7 @@ UAGBForms = { // eslint-disable-line no-undef
 				  obj
 			  )(
 				{
-				  name: x.name, value: x.value
+				  id: x.id, name: x.name, value: x.value
 				}
 			  )
 			)

@@ -22,7 +22,7 @@ const Render = ( props ) => {
 
 	const { attributes, setAttributes, isSelected } = props;
 
-	const { block_id, radioRequired, options, radioName, hideLabels } = attributes;
+	const { block_id, radioRequired, options, radioName, hideLabels, uniqueId } = attributes;
 
 	const addOption = () => {
 		const newOption = {
@@ -96,7 +96,7 @@ const Render = ( props ) => {
 					<input
 						type="radio"
 						id={ value }
-						name={ block_id }
+						name={ uniqueId }
 						value={ optionvalue }
 						required={ radioRequired }
 					/>
@@ -144,7 +144,6 @@ const Render = ( props ) => {
 					'uagb-forms-field-set',
 					`uagb-block-${ block_id }`
 				) }
-				data-label={'Radio'}
 			>
 				{ isSelected && (
 					<div className="uagb-forms-required-wrap">

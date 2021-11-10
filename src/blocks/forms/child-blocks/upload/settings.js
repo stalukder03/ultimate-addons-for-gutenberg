@@ -9,6 +9,7 @@ import {
 	PanelBody,
 	ToggleControl,
 	FormTokenField,
+	TextControl
 } from '@wordpress/components';
 
 import { InspectorControls } from '@wordpress/block-editor';
@@ -18,7 +19,7 @@ const Settings = ( props ) => {
 
 	const { attributes, setAttributes } = props;
 
-	const { uploadRequired, formats } = attributes;
+	const { uploadRequired, formats, uniqueId } = attributes;
 
 	const uploadInspectorControls = () => {
 		return (
@@ -38,6 +39,17 @@ const Settings = ( props ) => {
 					}
 					placeholder={ __(
 						'Type allowed formats',
+						'ultimate-addons-for-gutenberg'
+					) }
+				/>
+				<TextControl
+					label="ID"
+					value={ uniqueId }
+					onChange={ ( value ) =>
+						setAttributes( { uniqueId: value } )
+					}
+					placeholder={ __(
+						'Please make sure ID is unique.',
 						'ultimate-addons-for-gutenberg'
 					) }
 				/>

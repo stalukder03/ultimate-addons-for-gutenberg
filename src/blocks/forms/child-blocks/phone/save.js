@@ -13,7 +13,7 @@ import { RichText } from '@wordpress/block-editor';
 export default function save( props ) {
 	const { attributes } = props;
 
-	const { block_id, phoneRequired, phoneName, pattern, hideLabels } = attributes;
+	const { block_id, phoneRequired, phoneName, pattern, hideLabels, uniqueId } = attributes;
 
 	let placeholder = '';
 	if ( pattern === '[0-9]{3}-[0-9]{2}-[0-9]{3}' ) {
@@ -31,7 +31,7 @@ export default function save( props ) {
 				pattern={ pattern }
 				required={ phoneRequired }
 				className="uagb-forms-phone-input uagb-forms-input"
-				name={ `${ phoneName }[]` }
+				name={ uniqueId }
 			/>
 		);
 	} else {
@@ -40,7 +40,7 @@ export default function save( props ) {
 				type="tel"
 				required={ phoneRequired }
 				className="uagb-forms-phone-input uagb-forms-input"
-				name={ `${ phoneName }[]` }
+				name={ uniqueId }
 			/>
 		);
 	}
@@ -55,7 +55,6 @@ export default function save( props ) {
 				'uagb-forms-field-set',
 				`uagb-block-${ block_id }`
 			) }
-			data-label={'Phone'}
 		>
 			{ hideLabels &&
 			<RichText.Content
@@ -68,7 +67,7 @@ export default function save( props ) {
 			<select
 				className="uagb-forms-input uagb-form-phone-country"
 				id={ `uagb-form-country-${ block_id }` }
-				name={ `${ phoneName }[]` }
+				name={ `country_code` }
 			>
 				{ countryOptions.map( ( o, index ) => (
 					<option value={ o.props.value } key={ index }>

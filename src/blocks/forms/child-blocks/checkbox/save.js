@@ -10,7 +10,7 @@ import { RichText } from '@wordpress/block-editor';
 export default function save( props ) {
 	const { attributes } = props;
 
-	const { block_id, checkboxRequired, options, checkboxName, hideLabels } = attributes;
+	const { block_id, checkboxRequired, options, checkboxName, hideLabels, uniqueId } = attributes;
 
 	const isRequired = checkboxRequired
 		? __( 'required', 'ultimate-addons-for-gutenberg' )
@@ -23,7 +23,6 @@ export default function save( props ) {
 				'uagb-forms-field-set',
 				`uagb-block-${ block_id }`
 			) }
-			data-label={'Checkbox'}
 		>
 			{ hideLabels &&
 			<RichText.Content
@@ -42,7 +41,7 @@ export default function save( props ) {
 							type="checkbox"
 							className="uagb-forms-checkbox"
 							id={ `checkbox-${ value }-${ block_id }` }
-							name={ `${ checkboxName }[]` }
+							name={ uniqueId }
 							value={ optionvalue }
 							required={ checkboxRequired }
 							onInvalid="this.setCustomValidity('Please check this box if you want to proceed.')"

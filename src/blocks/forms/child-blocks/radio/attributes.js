@@ -33,6 +33,10 @@ const attributes = {
 	hideLabels: {
 		type: 'boolean',
 		default: true,
+	},
+	uniqueId: {
+		type: 'string',
+		default: __( 'radio', 'ultimate-addons-for-gutenberg' ),
 	}
 };
 export default attributes;

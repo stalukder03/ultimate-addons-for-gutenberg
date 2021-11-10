@@ -30,6 +30,10 @@ const attributes = {
 		type: 'string',
 		default: 'off',
 	},
+	uniqueId: {
+		type: 'string',
+		default: __( 'toggle', 'ultimate-addons-for-gutenberg' ),
+	}
 	
 };
 export default attributes;

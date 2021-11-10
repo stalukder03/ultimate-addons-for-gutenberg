@@ -25,6 +25,7 @@ const variations = [
 					name: __( 'First Name', 'ultimate-addons-for-gutenberg' ),
 					placeholder: __( 'John', 'ultimate-addons-for-gutenberg' ),
 					nameRequired: true,
+					uniqueId: __( 'first_name', 'ultimate-addons-for-gutenberg' ),
 				},
 			],
 			[
@@ -33,6 +34,7 @@ const variations = [
 					name: __( 'Last Name', 'ultimate-addons-for-gutenberg' ),
 					placeholder: __( 'Doe', 'ultimate-addons-for-gutenberg' ),
 					nameRequired: true,
+					uniqueId: __( 'last_name', 'ultimate-addons-for-gutenberg' ),
 				},
 			],
 			[ 'uagb/forms-email', { emailRequired: true } ],

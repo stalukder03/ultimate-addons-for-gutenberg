@@ -11,7 +11,7 @@ import { RichText } from '@wordpress/block-editor';
 export default function save( props ) {
 	const { attributes } = props;
 
-	const { block_id, uploadRequired, name, formats, hideLabels } = attributes;
+	const { block_id, uploadRequired, name, formats, hideLabels, uniqueId } = attributes;
 
 	const allowed_files = formats.map( ( f ) => '.'.concat( f ) ).join( ',' );
 
@@ -26,7 +26,6 @@ export default function save( props ) {
 				'uagb-forms-field-set',
 				`uagb-block-${ block_id }`
 			) }
-			data-label={'Upload'}
 		>
 			{ hideLabels &&
 			<RichText.Content
@@ -41,7 +40,8 @@ export default function save( props ) {
 				accept={ allowed_files }
 				className="uagb-forms-upload-input"
 				required={ uploadRequired }
-				name={ block_id }
+				name={ uniqueId }
+				id={ block_id }
 			/>
 		</div>
 	);

@@ -14,7 +14,7 @@ const Settings = ( props ) => {
 
 	const { attributes, setAttributes } = props;
 
-	const { nameRequired, placeholder } = attributes;
+	const { nameRequired, placeholder, uniqueId } = attributes;
 
 	const nameInspectorControls = () => {
 		return (
@@ -34,6 +34,17 @@ const Settings = ( props ) => {
 					}
 					placeholder={ __(
 						'Placeholder',
+						'ultimate-addons-for-gutenberg'
+					) }
+				/>
+				<TextControl
+					label="ID"
+					value={ uniqueId }
+					onChange={ ( value ) =>
+						setAttributes( { uniqueId: value } )
+					}
+					placeholder={ __(
+						'Please make sure ID is unique.',
 						'ultimate-addons-for-gutenberg'
 					) }
 				/>

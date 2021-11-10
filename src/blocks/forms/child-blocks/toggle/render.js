@@ -27,6 +27,7 @@ const Render = ( props ) => {
 		layout,
 		trueValue,
 		falseValue,
+		uniqueId
 	} = attributes;
 
 	const isRequired = toggleRequired
@@ -41,7 +42,6 @@ const Render = ( props ) => {
 					'uagb-forms-field-set',
 					`uagb-block-${ block_id }`
 				) }
-				data-label={'Toggle'}
 			>
 				{ isSelected && (
 					<div className="uagb-forms-required-wrap">
@@ -80,7 +80,8 @@ const Render = ( props ) => {
 						data-falsestate={ falseValue }
 						value={ toggleStatus ? trueValue : falseValue }
 						required={ toggleRequired }
-						name={ block_id }
+						name={ uniqueId }
+						id={ block_id }
 					/>
 					<input
 						type="checkbox"
@@ -91,7 +92,8 @@ const Render = ( props ) => {
 						data-falsestate={ falseValue }
 						value={ toggleStatus ? trueValue : falseValue }
 						required={ toggleRequired }
-						name={ block_id }
+						name={ uniqueId }
+						id={ block_id }
 					/>
 					<span className={ `uagb-slider ${ layout }` }></span>
 				</label>

@@ -11,7 +11,7 @@ const Render = ( props ) => {
 
 	const { attributes, setAttributes, isSelected } = props;
 
-	const { block_id, uploadRequired, name, hideLabels } = attributes;
+	const { block_id, uploadRequired, name, hideLabels, uniqueId } = attributes;
 
 	const isRequired = uploadRequired
 		? __( 'required', 'ultimate-addons-for-gutenberg' )
@@ -25,7 +25,6 @@ const Render = ( props ) => {
 					'uagb-forms-field-set',
 					`uagb-block-${ block_id }`
 				) }
-				data-label={'Upload'}
 			>
 				{ isSelected && (
 					<div className="uagb-forms-required-wrap">
@@ -59,7 +58,8 @@ const Render = ( props ) => {
 				}
 				<input
 					type="file"
-					name={ block_id }
+					name={ uniqueId }
+					id={ block_id }
 					className="uagb-forms-upload-input"
 					disabled
 					required={ uploadRequired }

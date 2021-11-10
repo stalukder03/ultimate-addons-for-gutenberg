@@ -28,7 +28,8 @@ const Render = ( props ) => {
 		minYear,
 		minMonth,
 		minDay,
-		hideLabels
+		hideLabels,
+		uniqueId
 	} = attributes;
 
 	let validation_min_value = '';
@@ -47,7 +48,8 @@ const Render = ( props ) => {
 				required={ dateRequired }
 				min={ validation_min_value }
 				max={ validation_max_value }
-				name={ block_id }
+				name={ uniqueId }
+				id={ block_id }
 			/>
 		);
 	} else {
@@ -56,7 +58,8 @@ const Render = ( props ) => {
 				type="date"
 				className="uagb-forms-date-input uagb-forms-input"
 				required={ dateRequired }
-				name={ block_id }
+				name={ uniqueId }
+				id={ block_id }
 			/>
 		);
 	}
@@ -73,7 +76,6 @@ const Render = ( props ) => {
 					'uagb-forms-field-set',
 					`uagb-block-${ block_id }`
 				) }
-				data-label={'Date'}
 			>
 				{ isSelected && (
 					<div className="uagb-forms-required-wrap">

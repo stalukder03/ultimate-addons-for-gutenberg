@@ -19,6 +19,7 @@ export default function save( props ) {
 		layout,
 		trueValue,
 		falseValue,
+		uniqueId
 	} = attributes;
 
 	const isRequired = toggleRequired
@@ -32,7 +33,6 @@ export default function save( props ) {
 				'uagb-forms-field-set',
 				`uagb-block-${ block_id }`
 			) }
-			data-label={'Toggle'}
 		>
 			<RichText.Content
 				tagName="div"
@@ -50,7 +50,8 @@ export default function save( props ) {
 					data-falsestate={ falseValue }
 					value={ toggleStatus ? trueValue : falseValue }
 					required={ toggleRequired }
-					name={ block_id }
+					name={ uniqueId }
+					id={ block_id }
 				/>
 				<input
 					type="checkbox"
@@ -60,7 +61,8 @@ export default function save( props ) {
 					data-falsestate={ falseValue }
 					value={ toggleStatus ? trueValue : falseValue }
 					required={ toggleRequired }
-					name={ block_id }
+					name={ uniqueId }
+					id={ block_id }
 				/>
 				<span className={ `uagb-slider ${ layout }` }></span>
 			</label>

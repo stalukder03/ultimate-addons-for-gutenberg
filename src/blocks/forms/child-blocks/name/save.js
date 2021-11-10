@@ -11,7 +11,7 @@ import { RichText } from '@wordpress/block-editor';
 export default function save( props ) {
 	const { attributes } = props;
 
-	const { block_id, nameRequired, name, placeholder, hideLabels } = attributes;
+	const { block_id, nameRequired, name, placeholder, hideLabels, uniqueId } = attributes;
 
 	const isRequired = nameRequired
 		? __( 'required', 'ultimate-addons-for-gutenberg' )
@@ -24,7 +24,6 @@ export default function save( props ) {
 				'uagb-forms-field-set',
 				`uagb-block-${ block_id }`
 			) }
-			data-label={'Name'}
 		>
 			{ hideLabels &&
 			<RichText.Content
@@ -39,7 +38,8 @@ export default function save( props ) {
 				placeholder={ placeholder }
 				required={ nameRequired }
 				className="uagb-forms-name-input uagb-forms-input"
-				name={ block_id }
+				name={ uniqueId }
+				id={ block_id }
 			/>
 		</div>
 	);

@@ -22,7 +22,7 @@ const Render = ( props ) => {
 
 	const { attributes, setAttributes, isSelected } = props;
 
-	const { block_id, checkboxRequired, options, checkboxName, hideLabels } = attributes;
+	const { block_id, checkboxRequired, options, checkboxName, hideLabels, uniqueId } = attributes;
 
 	const addOption = () => {
 		const newOption = {
@@ -94,7 +94,7 @@ const Render = ( props ) => {
 						type="checkbox"
 						className="uagb-forms-checkbox"
 						id={ `checkbox-${ value }-${ block_id }` }
-						name={ `${ checkboxName }[]` }
+						name={ uniqueId }
 						value={ value }
 						required={ checkboxRequired }
 					/>
@@ -144,7 +144,6 @@ const Render = ( props ) => {
 					'uagb-forms-field-set',
 					`uagb-block-${ block_id }`
 				) }
-				data-label={'Checkbox'}
 			>
 				{ isSelected && (
 					<div className="uagb-forms-required-wrap">

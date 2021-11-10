@@ -14,7 +14,7 @@ const Settings = ( props ) => {
 
 	const { attributes, setAttributes } = props;
 
-	const { textareaRequired, rows, placeholder } = attributes;
+	const { textareaRequired, rows, placeholder, uniqueId } = attributes;
 
 	const textareaInspectorControls = () => {
 		return (
@@ -49,6 +49,17 @@ const Settings = ( props ) => {
 					min={ 2 }
 					max={ 10 }
 					displayUnit={ false }
+				/>
+				<TextControl
+					label="ID"
+					value={ uniqueId }
+					onChange={ ( value ) =>
+						setAttributes( { uniqueId: value } )
+					}
+					placeholder={ __(
+						'Please make sure ID is unique.',
+						'ultimate-addons-for-gutenberg'
+					) }
 				/>
 			</PanelBody>
 		);

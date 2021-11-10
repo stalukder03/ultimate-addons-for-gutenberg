@@ -1,7 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 
-import { PanelBody, SelectControl, ToggleControl } from '@wordpress/components';
+import { PanelBody, SelectControl, ToggleControl, TextControl } from '@wordpress/components';
 import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
 import InspectorTab, {
 	UAGTabs,
@@ -43,6 +43,7 @@ const Settings = ( props ) => {
 		maxYear,
 		maxMonth,
 		maxDay,
+		uniqueId
 	} = attributes;
 
 	let validation_min_value = '';
@@ -161,6 +162,17 @@ const Settings = ( props ) => {
 						{ invalidDateErrorMsg }
 					</>
 				) }
+				<TextControl
+					label="ID"
+					value={ uniqueId }
+					onChange={ ( value ) =>
+						setAttributes( { uniqueId: value } )
+					}
+					placeholder={ __(
+						'Please make sure ID is unique.',
+						'ultimate-addons-for-gutenberg'
+					) }
+				/>
 			</PanelBody>
 		);
 	};

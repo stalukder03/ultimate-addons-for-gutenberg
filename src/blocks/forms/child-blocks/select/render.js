@@ -22,7 +22,7 @@ const Render = ( props ) => {
 
 	const { attributes, setAttributes, isSelected } = props;
 
-	const { block_id, selectRequired, options, selectName, hideLabels } = attributes;
+	const { block_id, selectRequired, options, selectName, hideLabels, uniqueId } = attributes;
 
 	const addOption = () => {
 		const newOption = {
@@ -90,7 +90,8 @@ const Render = ( props ) => {
 			<select
 				className="uagb-forms-select-box uagb-forms-input"
 				required={ selectRequired }
-				name={ block_id }
+				name={ uniqueId }
+				id={ block_id }
 				defaultValue=""
 			>
 				<option value="" disabled>
@@ -141,7 +142,6 @@ const Render = ( props ) => {
 					'uagb-forms-field-set',
 					`uagb-block-${ block_id }`
 				) }
-				data-label={'Select'}
 			>
 				{ isSelected && (
 					<div className="uagb-forms-required-wrap">
