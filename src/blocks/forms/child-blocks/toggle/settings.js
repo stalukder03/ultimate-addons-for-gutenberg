@@ -91,7 +91,7 @@ const Settings = ( props ) => {
 					showIcons={ false }
 				/>
 				<TextControl
-					label="ID"
+					label="Field Name"
 					value={ uniqueId }
 					onChange={ ( value ) =>
 						setAttributes( { uniqueId: value } )
