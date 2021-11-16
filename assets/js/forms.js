@@ -194,10 +194,12 @@ UAGBForms = { // eslint-disable-line no-undef
 			const inputname = document.getElementById( originalSerialized[ i ].name );
 			if ( originalSerialized[ i ].name.endsWith( '[]' ) ) {
 				//For checkbox element
-				const name = document.getElementById( originalSerialized[ i ].name );
+				const name = originalSerialized[ i ].name;
+				
 				if ( ! ( name in postData ) ) {
 					postData[ name ] = [];
 				}
+				
 				postData[ name ].push( originalSerialized[ i ].value );
 			} else if ( originalSerialized[ i ].value.startsWith( '+' ) ) {
 				//For phone element.

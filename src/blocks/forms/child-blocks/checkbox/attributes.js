@@ -36,7 +36,7 @@ const attributes = {
 	},
 	uniqueId: {
 		type: 'string',
-		default: __( 'checkbox', 'ultimate-addons-for-gutenberg' ),
+		default: __( 'checkbox[]', 'ultimate-addons-for-gutenberg' ),
 	}
 };
 export default attributes;
