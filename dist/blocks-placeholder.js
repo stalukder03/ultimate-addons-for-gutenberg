@@ -7,6 +7,7 @@
  */
 
 registerBlockType( 'uagb/advanced-heading', { title: __( 'Creative Heading', 'ultimate-addons-for-gutenberg' ) } );
+registerBlockType( 'uagb/animated-headline', { title: __( 'Animated Headline', 'ultimate-addons-for-gutenberg' ) } );
 registerBlockType( 'uagb/blockquote', { title: __( 'Blockquote', 'ultimate-addons-for-gutenberg' ) } );
 registerBlockType( 'uagb/buttons', { title: __( 'Multi Buttons', 'ultimate-addons-for-gutenberg' ) } );
 registerBlockType( 'uagb/call-to-action', { title: __( 'Call To Action', 'ultimate-addons-for-gutenberg' ) } );
