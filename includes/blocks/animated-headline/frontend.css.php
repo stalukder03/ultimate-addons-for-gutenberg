@@ -24,6 +24,4 @@ $combined_selectors = array(
 );
 
 $base_selector = '.uagb-block-';
-error_log(print_r($attr, true));
-error_log(print_r($id, true));
 return UAGB_Helper::generate_all_css( $combined_selectors, $base_selector . $id );

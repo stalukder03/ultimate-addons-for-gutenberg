@@ -10,12 +10,12 @@ import styling from './styling';
 
 const Settings = lazy( () =>
 	import(
-		/* webpackChunkName: "chunks/advanced-heading/settings" */ './settings'
+		/* webpackChunkName: "chunks/animated-headline/settings" */ './settings'
 	)
 );
 const Render = lazy( () =>
 	import(
-		/* webpackChunkName: "chunks/advanced-heading/render" */ './render'
+		/* webpackChunkName: "chunks/animated-headline/render" */ './render'
 	)
 );
 
