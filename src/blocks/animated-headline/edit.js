@@ -6,6 +6,7 @@ import React, { lazy, Suspense, useEffect } from 'react';
 import { withSelect } from '@wordpress/data';
 import { compose } from '@wordpress/compose';
 import lazyLoader from '@Controls/lazy-loader';
+import styling from './styling';
 
 const Settings = lazy( () =>
 	import(
@@ -33,6 +34,17 @@ const UAGBAnimatedHeadline = ( props ) => {
 		);
 		document.head.appendChild( $style );
 	}, [] );
+
+	useEffect( () => {
+		// Replacement for componentDidUpdate.
+		const element = document.getElementById(
+			'uagb-animated-headline-style-' + props.clientId.substr( 0, 8 )
+		);
+
+		if ( null !== element && undefined !== element ) {
+			element.innerHTML = styling( props );
+		}
+	}, [ props ] );
 
     return (
         <>

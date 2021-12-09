@@ -37,6 +37,11 @@ const attributes = {
 	headlineId: {
 		type: 'string',
 	},
+	// block control
+	headlineAlign: {
+		type: 'string',
+		default: 'center',
+	},
 };
 
 export default attributes;

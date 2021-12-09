@@ -6,7 +6,7 @@ import React from 'react';
 import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
 import InspectorTab, { UAGTabs } from '@Components/inspector-tabs/InspectorTab.js';
 import MultiButtonsControl from '@Components/multi-buttons-control';
-import { InspectorControls } from '@wordpress/block-editor';
+import { InspectorControls, BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import { TextControl, TextareaControl, SelectControl } from '@wordpress/components';
 
@@ -22,8 +22,22 @@ const Settings = ( props ) => {
 		highlightedText,
 		rotatingText,
 		afterText,
+		headlineAlign
 	} = attributes;
 	
+	const blockControlSettings = () => {
+		return (
+			<BlockControls key="controls">
+				<AlignmentToolbar
+					value={ headlineAlign }
+					onChange={ ( value ) =>
+						setAttributes( { headlineAlign: value } )
+					}
+				/>
+			</BlockControls>
+		)
+	}
+
 	const generalPanel = () => {
 		return (
 			<UAGAdvancedPanelBody>
@@ -102,6 +116,9 @@ const Settings = ( props ) => {
 
 	return (
 		<div>
+			{
+				blockControlSettings()
+			}
 			<InspectorControls>
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>

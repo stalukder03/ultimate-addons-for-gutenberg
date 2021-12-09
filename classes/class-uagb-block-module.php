@@ -131,6 +131,9 @@ class UAGB_Block_Module {
 		'lottie'             => array(
 			'dir' => 'lottie',
 		),
+		'animated-headline'   => array(
+			'dir' => 'animated-headline',
+		),
 	);
 
 	/**
