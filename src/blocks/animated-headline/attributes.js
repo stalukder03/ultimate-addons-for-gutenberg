@@ -8,25 +8,34 @@ const attributes = {
 		type: 'boolean',
 		default: false,
 	},
-	headingTitle: {
-		source: 'html',
-		selector: 'h1,h2,h3,h4,h5,h6',
-		default: __( 'Your Animated headline', 'ultimate-addons-for-gutenberg' ),
-	},
-	headingId: {
-		type: 'string',
-	},
-	headingAlign: {
-		type: 'string',
-		default: 'center',
-	},
-	headingColor: {
-		type: 'string',
-	},
-	
-	headingTag: {
+	// General
+	headlineTag: {
 		type: 'string',
 		default: 'h2',
+	},
+	animateType: {
+		type: 'string',
+		default: 'highlighted'
+	},
+	beforeText: {
+		type: 'string',
+		default: __( 'This Page is', 'ultimate-addons-for-gutenberg' )
+	},
+	highlightedText: {
+		type: 'string',
+		default: __( 'Amazing', 'ultimate-addons-for-gutenberg' )
+	},
+	rotatingText: {
+		type: 'string',
+		default: 'Better\nBigger\nFaster'
+	},
+	afterText: {
+		type: 'string',
+		default: ''
+	},
+	// Advanced
+	headlineId: {
+		type: 'string',
 	},
 };
 

@@ -4,26 +4,25 @@
 
 import React from 'react';
 import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
-import InspectorTab, {
-	UAGTabs,
-} from '@Components/inspector-tabs/InspectorTab.js';
+import InspectorTab, { UAGTabs } from '@Components/inspector-tabs/InspectorTab.js';
 import MultiButtonsControl from '@Components/multi-buttons-control';
+import { InspectorControls } from '@wordpress/block-editor';
+import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
+import { TextControl, TextareaControl, SelectControl } from '@wordpress/components';
 
 import { __ } from '@wordpress/i18n';
-
-import {
-	InspectorControls,
-} from '@wordpress/block-editor';
-
-import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 const Settings = ( props ) => {
 	props = props.parentProps;
 	const { attributes, setAttributes } = props;
 	const {
-		headingTag,
+		headlineTag,
+		animateType,
+		beforeText,
+		highlightedText,
+		rotatingText,
+		afterText,
 	} = attributes;
-
 	
 	const generalPanel = () => {
 		return (
@@ -35,8 +34,8 @@ const Settings = ( props ) => {
 						'ultimate-addons-for-gutenberg'
 					) }
 					data={ {
-						value: headingTag,
-						label: 'headingTag',
+						value: headlineTag,
+						label: 'headlineTag',
 					} }
 					options={ [
 						{
@@ -64,6 +63,38 @@ const Settings = ( props ) => {
 							label: __( 'H6', 'ultimate-addons-for-gutenberg' ),
 						},
 					] }
+				/>
+				<SelectControl
+					label={__( 'Style', 'ultimate-addons-for-gutenberg' )}
+					value={ animateType }
+					options={ [
+						{ label: 'Highlighted', value: 'highlighted' },
+						{ label: 'Rotating', value: 'rotating' },
+					] }
+					onChange={ ( value ) => setAttributes( {animateType: value} ) }
+				/>
+				<TextControl
+					label={__( 'Before Text', 'ultimate-addons-for-gutenberg' )}
+					placeholder={__( 'Enter Your Headline', 'ultimate-addons-for-gutenberg' )}
+					value={beforeText}
+					onChange={ ( value ) => setAttributes( {beforeText: value} ) }
+				/>
+				<TextControl
+					label={__( 'Highlighted Text', 'ultimate-addons-for-gutenberg' )}
+					value={highlightedText}
+					onChange={ ( value ) => setAttributes( {highlightedText: value} ) }
+				/>
+				<TextareaControl
+					label={__( 'Rotating Text', 'ultimate-addons-for-gutenberg' )}
+					placeholder={__( 'Enter each word in a separate line', 'ultimate-addons-for-gutenberg' )}
+					value={rotatingText}
+					onChange={ ( value ) => setAttributes( {rotatingText: value} ) }
+				/>
+				<TextControl
+					label={__( 'After Text', 'ultimate-addons-for-gutenberg' )}
+					placeholder={__( 'Enter Your Headline', 'ultimate-addons-for-gutenberg' )}
+					value={afterText}
+					onChange={ ( value ) => setAttributes( {afterText: value} ) }
 				/>
 			</UAGAdvancedPanelBody>
 		);

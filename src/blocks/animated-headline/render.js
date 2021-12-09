@@ -1,7 +1,5 @@
 import React from 'react';
 import classnames from 'classnames';
-import { RichText } from '@wordpress/block-editor';
-import { __ } from '@wordpress/i18n';
 
 
 const Render = ( props ) => {
@@ -9,29 +7,23 @@ const Render = ( props ) => {
 	const {
 		attributes: {
 			block_id,
-			headingTitle,
-            headingTag
+            headlineTag,
+			animateType,
+			beforeText,
+			highlightedText,
+			rotatingText,
+			afterText,
 		},
-		setAttributes,
 		className,
 		deviceType,
 	} = props;
 
-	const headingText = (
-		<RichText
-			tagName={ headingTag }
-			placeholder={ __(
-				'Write a Heading',
-				'ultimate-addons-for-gutenberg'
-			) }
-			value={ headingTitle }
-			className="uagb-animated-heading-text"
-			multiline={ false }
-			onChange={ ( value ) => {
-				setAttributes( { headingTitle: value } );
-			} }
-		/>
-	);
+	const beforeConent = beforeText && ( <span className="uagb-animated-headline__before-text">{beforeText}</span> )
+	const afterContent = afterText && ( <span className="uagb-animated-headline__after-text">{afterText}</span> )
+	const highlightedContent = highlightedText && ( <span className="uagb-animated-headline__text-highlighted">{highlightedText}</span> )
+	const rotatingContent = rotatingText && ( <span className="uagb-animated-headline__text-rotating">{rotatingText}</span> )
+	const content = animateType === 'highlighted' ? highlightedContent : rotatingContent
+	const CustomTag = `${headlineTag}`;
 	return (
 		<div
 			className={ classnames(
@@ -40,7 +32,11 @@ const Render = ( props ) => {
 				`uagb-block-${ block_id }`
 			) }
 		>
-			{ headingText }
+			<CustomTag className="uagb-animated-headline">
+				{beforeConent}
+				{content}
+				{afterContent}
+			</CustomTag>
 		</div>
 	);
 };

@@ -29,7 +29,7 @@ registerBlockType( 'uagb/animated-headline', {
     },
     example: {
         attributes: {
-            headingTitle: __(
+            headlineTitle: __(
                 'Write a Heading',
                 'ultimate-addons-for-gutenberg'
             ),

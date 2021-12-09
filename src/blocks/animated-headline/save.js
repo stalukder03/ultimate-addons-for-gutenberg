@@ -4,34 +4,37 @@
 
 import React from 'react';
 import classnames from 'classnames';
-import { RichText } from '@wordpress/block-editor';
 
-const save = (props) => {
+const save = ( props ) => {
     const {
 		block_id,
-		headingTitle,
-		headingTag,
-		headingId,
+		headlineTag,
+		animateType,
+		beforeText,
+		afterText,
+		highlightedText,
+		rotatingText,
 	} = props.attributes;
-    let headingText = '';
-	if ( headingTitle !== '' ) {
-		headingText = (
-			<RichText.Content
-				tagName={ headingTag }
-				value={ headingTitle }
-				className="uagb-animated-heading-text"
-				id={ headingId }
-			/>
-		);
-	}
-    return (
+
+    const beforeConent = beforeText && ( <span className="uagb-animated-headline__before-text">{beforeText}</span> )
+	const afterContent = afterText && ( <span className="uagb-animated-headline__after-text">{afterText}</span> )
+	const highlightedContent = highlightedText && ( <span className="uagb-animated-headline__text-highlighted">{highlightedText}</span> )
+	const rotatingContent = rotatingText && ( <span className="uagb-animated-headline__text-rotating">{rotatingText}</span> )
+	const content = animateType === 'highlighted' ? highlightedContent : rotatingContent
+	const CustomTag = `${headlineTag}`;
+    
+	return (
         <div
             className={ classnames(
                 props.className,
                 `uagb-block-${ block_id }`
             ) }
         >
-            { headingText }
+            <CustomTag className="uagb-animated-headline">
+				{beforeConent}
+				{content}
+				{afterContent}
+			</CustomTag>
         </div>
     );
 }
