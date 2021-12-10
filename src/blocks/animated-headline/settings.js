@@ -92,16 +92,6 @@ const Settings = ( props ) => {
 				{
 					animateType === 'highlighted' ? (
 						<SelectControl
-							label={__( 'Animation', 'ultimate-addons-for-gutenberg' )}
-							value={ rotatingAnimation }
-							options={ [
-								{ label: 'Typing', value: 'typing' },
-								{ label: 'Clip', value: 'clip' },
-							] }
-							onChange={ ( value ) => setAttributes( {rotatingAnimation: value} ) }
-						/>
-					) : (
-						<SelectControl
 							label={__( 'Shape', 'ultimate-addons-for-gutenberg' )}
 							value={ highlightedShape }
 							options={ [
@@ -109,6 +99,16 @@ const Settings = ( props ) => {
 								{ label: 'Curly', value: 'curly' },
 							] }
 							onChange={ ( value ) => setAttributes( {highlightedShape: value} ) }
+						/>
+					) : (
+						<SelectControl
+							label={__( 'Animation', 'ultimate-addons-for-gutenberg' )}
+							value={ rotatingAnimation }
+							options={ [
+								{ label: 'Typing', value: 'typing' },
+								{ label: 'Clip', value: 'clip' },
+							] }
+							onChange={ ( value ) => setAttributes( {rotatingAnimation: value} ) }
 						/>
 					)
 				}
