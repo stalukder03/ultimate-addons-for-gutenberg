@@ -22,7 +22,9 @@ const Settings = ( props ) => {
 		highlightedText,
 		rotatingText,
 		afterText,
-		headlineAlign
+		headlineAlign,
+		rotatingAnimation,
+		highlightedShape
 	} = attributes;
 	
 	const blockControlSettings = () => {
@@ -87,23 +89,51 @@ const Settings = ( props ) => {
 					] }
 					onChange={ ( value ) => setAttributes( {animateType: value} ) }
 				/>
+				{
+					animateType === 'highlighted' ? (
+						<SelectControl
+							label={__( 'Animation', 'ultimate-addons-for-gutenberg' )}
+							value={ rotatingAnimation }
+							options={ [
+								{ label: 'Typing', value: 'typing' },
+								{ label: 'Clip', value: 'clip' },
+							] }
+							onChange={ ( value ) => setAttributes( {rotatingAnimation: value} ) }
+						/>
+					) : (
+						<SelectControl
+							label={__( 'Shape', 'ultimate-addons-for-gutenberg' )}
+							value={ highlightedShape }
+							options={ [
+								{ label: 'Circle', value: 'circle' },
+								{ label: 'Curly', value: 'curly' },
+							] }
+							onChange={ ( value ) => setAttributes( {highlightedShape: value} ) }
+						/>
+					)
+				}
 				<TextControl
 					label={__( 'Before Text', 'ultimate-addons-for-gutenberg' )}
 					placeholder={__( 'Enter Your Headline', 'ultimate-addons-for-gutenberg' )}
 					value={beforeText}
 					onChange={ ( value ) => setAttributes( {beforeText: value} ) }
 				/>
-				<TextControl
-					label={__( 'Highlighted Text', 'ultimate-addons-for-gutenberg' )}
-					value={highlightedText}
-					onChange={ ( value ) => setAttributes( {highlightedText: value} ) }
-				/>
-				<TextareaControl
-					label={__( 'Rotating Text', 'ultimate-addons-for-gutenberg' )}
-					placeholder={__( 'Enter each word in a separate line', 'ultimate-addons-for-gutenberg' )}
-					value={rotatingText}
-					onChange={ ( value ) => setAttributes( {rotatingText: value} ) }
-				/>
+				{
+					animateType === 'highlighted' ? (
+						<TextControl
+							label={__( 'Highlighted Text', 'ultimate-addons-for-gutenberg' )}
+							value={highlightedText}
+							onChange={ ( value ) => setAttributes( {highlightedText: value} ) }
+						/>
+					) : ( 
+						<TextareaControl
+							label={__( 'Rotating Text', 'ultimate-addons-for-gutenberg' )}
+							placeholder={__( 'Enter each word in a separate line', 'ultimate-addons-for-gutenberg' )}
+							value={rotatingText}
+							onChange={ ( value ) => setAttributes( {rotatingText: value} ) }
+						/>
+					)
+				}
 				<TextControl
 					label={__( 'After Text', 'ultimate-addons-for-gutenberg' )}
 					placeholder={__( 'Enter Your Headline', 'ultimate-addons-for-gutenberg' )}

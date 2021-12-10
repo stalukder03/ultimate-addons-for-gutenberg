@@ -17,6 +17,14 @@ const attributes = {
 		type: 'string',
 		default: 'highlighted'
 	},
+	rotatingAnimation: {
+		type: 'string',
+		default: 'typing'
+	},
+	highlightedShape: {
+		type: 'string',
+		default: 'circle'
+	},
 	beforeText: {
 		type: 'string',
 		default: __( 'This Page is', 'ultimate-addons-for-gutenberg' )

@@ -17,5 +17,6 @@ $block_data = array(
 	'description'      => __( 'This block lets you add a animated headline.', 'ultimate-addons-for-gutenberg' ),
 	'default'          => true,
 	'extension'        => false,
+	'js_assets'        => array( 'uagb-animated-headline-js' ),
 	'priority'         => 1,
 );
