@@ -6,6 +6,9 @@
 .wp-block-uagb-animated-headline {
     .uagb-animated-headline {
         &__text-rotating {
+            position: relative;
+            display: inline-block;
+            vertical-align: top;
             margin-left: 10px;
         }
         &__after-text {
@@ -15,6 +18,18 @@
             &::after {
                 content: "|";
                 animation: uagb-animated-headline-blink 1s infinite;
+            }
+        }
+        &-dynamic-text-clip {
+            
+            
+            position: absolute;
+                left: -300px;
+                transition: all .5s ease;
+            &--active {
+                display: inline-block;
+                position: relative;
+                left: 0;
             }
         }
     }

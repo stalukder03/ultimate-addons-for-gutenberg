@@ -13,11 +13,18 @@ window.UAGBAnimatedHeading = {
 		const rotatingWrapper = wrapper.querySelector(
 			'.uagb-animated-headline__text-rotating'
 		);
-		if( rotatingWrapper && this.settings.rotatingAnimation === 'typing' ){
+		if(!rotatingWrapper){
+			return;
+		}
+		if( this.settings.rotatingAnimation === 'typing' ){
 			this.typingTimeout = null;
 			this.breakTimeTimeout = null;
 			rotatingWrapper.innerHTML ="<span class='uagb-animated-headline-dynamic-text-typing'></span>"
 			this.animationTyping( rotatingWrapper, this.settings.rotatingText );
+		} else if(this.settings.rotatingAnimation === 'clip') {
+			this.clipStartTimeout = null;
+			this.clipBreakTimeout = null;
+			this.animateClip(rotatingWrapper, this.settings.rotatingText );
 		}
 	},
 	animationTyping( rotatingWrap, data ) {
@@ -32,6 +39,9 @@ window.UAGBAnimatedHeading = {
 				const rotatingChildWrap = rotatingWrap.querySelector(
 					'.uagb-animated-headline-dynamic-text-typing'
 				)
+				if(!rotatingChildWrap){
+					return;
+				}
 				// set the text of typeText to a substring of the text to be typed using letterPosition.
 				rotatingChildWrap.innerText = textToBeTyped.slice( 0, letterPosition );
 				if ( isAdding ) {
@@ -66,4 +76,37 @@ window.UAGBAnimatedHeading = {
 			}, 120 );
 		}
 	},
+	animateClip(rotatingWrap, data){
+		const wordArray = data.split( /\n|\\n/ );
+		// insert dom
+		let domList = '';
+		wordArray.forEach((item, index) => {
+			domList += `<span class="uagb-animated-headline-dynamic-text-clip">${item}</span>`;
+		})
+		rotatingWrap.innerHTML = domList
+
+		// add style
+		rotatingWrap.style.width = '300px';
+		rotatingWrap.style.overflow = 'hidden';
+
+		const rotatingChildWrap = rotatingWrap.querySelectorAll('.uagb-animated-headline-dynamic-text-clip')
+		let wordIndex = 0;
+		wordClip();
+		function wordClip() {
+			setTimeout( function () {
+				if(rotatingChildWrap[wordIndex] === undefined){
+					wordIndex = 0;
+				}
+				rotatingChildWrap.forEach((item, index) => {
+					if(wordIndex === index){
+						rotatingChildWrap[index].classList.toggle('uagb-animated-headline-dynamic-text-clip--active')
+					} else {
+						rotatingChildWrap[index].classList.remove('uagb-animated-headline-dynamic-text-clip--active')
+					}
+				})
+				wordIndex++;
+				wordClip();
+			}, 3000 );
+		}
+	}
 };
