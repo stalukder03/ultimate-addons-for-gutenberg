@@ -9,5 +9,8 @@
 
 return array(
 	'classMigrate'    => false,
-	'headlineAlign'	  => 'center'		
+	'headlineAlign'	  => 'center',
+	'animateType'	  => 'highlighted',
+	'rotatingAnimation' => 'typing',
+	'rotatingText'    => 'Better\nBigger\nFaster'	
 );

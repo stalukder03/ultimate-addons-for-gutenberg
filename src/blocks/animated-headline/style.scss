@@ -1,0 +1,25 @@
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+.wp-block-uagb-animated-headline {
+    .uagb-animated-headline {
+        &__text-rotating {
+            margin-left: 10px;
+        }
+        &__after-text {
+            margin-left: 10px;
+        }
+        &-dynamic-text-typing {
+            &::after {
+                content: "|";
+                animation: uagb-animated-headline-blink 1s infinite;
+            }
+        }
+    }
+}
+@keyframes uagb-animated-headline-blink {
+    0%, 100% {opacity: 1;}
+    50% {opacity: 0;}
+}

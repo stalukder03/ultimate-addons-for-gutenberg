@@ -19,7 +19,7 @@ const save = ( props ) => {
     const beforeConent = beforeText && ( <span className="uagb-animated-headline__before-text">{beforeText}</span> )
 	const afterContent = afterText && ( <span className="uagb-animated-headline__after-text">{afterText}</span> )
 	const highlightedContent = highlightedText && ( <span className="uagb-animated-headline__text-highlighted">{highlightedText}</span> )
-	const rotatingContent = rotatingText && ( <span className="uagb-animated-headline__text-rotating">{rotatingText}</span> )
+	const rotatingContent = rotatingText && ( <span className="uagb-animated-headline__text-rotating"></span> )
 	const content = animateType === 'highlighted' ? highlightedContent : rotatingContent
 	const CustomTag = `${headlineTag}`;
     
