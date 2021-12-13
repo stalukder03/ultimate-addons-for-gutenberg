@@ -3,18 +3,22 @@ import { __ } from '@wordpress/i18n';
 import { InnerBlocks } from '@wordpress/block-editor';
 import React from 'react';
 
-const ALLOWED_BLOCKS = [ 'uagb/container-child' ];
-
 const Render = ( props ) => {
 	props = props.parentProps;
 	const {
-		attributes: {
-			block_id,
-		},
+		attributes,
 		setAttributes,
 		className,
 		deviceType,
 	} = props;
+
+	const {
+		block_id
+	} = attributes;
+
+	let direction = attributes[ 'direction' + deviceType ];
+	
+	let moverDirection = 'row' === direction ? 'horizontal' : 'vertical';
 
 	return (
 		<div
@@ -25,8 +29,7 @@ const Render = ( props ) => {
 			) }
 		>
 			<InnerBlocks
-				allowedBlocks={ ALLOWED_BLOCKS }
-				__experimentalMoverDirection={ 'vertical' }
+				__experimentalMoverDirection={ moverDirection }
 			/>
 		</div>
 	);

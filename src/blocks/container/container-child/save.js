@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import { InnerBlocks } from '@wordpress/block-editor';
 
 export default function save( props ) {
-	const { attributes } = props;
+	const { attributes, className } = props;
 
 	const { 
 		block_id,
@@ -15,7 +15,8 @@ export default function save( props ) {
 	return (
 		<div
 			className={ classnames(
-				`uagb-block-${ block_id }`
+				className,
+				`uagb-block-${ block_id }`,
 			) }
 		>
 			<InnerBlocks.Content />

@@ -62,7 +62,7 @@ import './blocks/tabs-child/block.js';
 import './blocks/lottie/block.js';
 import './blocks/star-rating/block.js';
 import './blocks/container/block.js';
-import './blocks/container/container-child/block.js';
+// import './blocks/container/container-child/block.js';
 
 wp.UAGBSvgIcons = Object.keys( uagb_blocks_info.uagb_svg_icons );
 
