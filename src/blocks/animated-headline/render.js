@@ -38,7 +38,7 @@ const Render = ( props ) => {
 		>
 			<CustomTag className="uagb-animated-headline">
 				{beforeConent}
-				{content}
+				{' '}{content}{' '}
 				{afterContent}
 			</CustomTag>
 		</div>

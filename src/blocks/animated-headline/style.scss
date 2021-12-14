@@ -6,30 +6,54 @@
 .wp-block-uagb-animated-headline {
     .uagb-animated-headline {
         &__text-rotating {
-            position: relative;
             display: inline-block;
-            vertical-align: top;
-            margin-left: 10px;
         }
         &__after-text {
             margin-left: 10px;
         }
+        // effect
         &-dynamic-text-typing {
+            position: relative;
+            display: inline-block;
             &::after {
-                content: "|";
+                /* line */
+                content: '';
+                position: absolute;
+                top: 0;
+                left: auto;
+                right: 0;
+                width: 2px;
+                height: 100%;
+                background-color: #0d0d0d; 
                 animation: uagb-animated-headline-blink 1s infinite;
             }
         }
+        // effect
         &-dynamic-text-clip {
-            
-            
-            position: absolute;
-                left: -300px;
-                transition: all .5s ease;
-            &--active {
+            position: relative;
+            overflow: hidden;
+            vertical-align: top; 
+            &::after {
+                /* line */
+                content: '';
+                position: absolute;
+                top: 0;
+                left: auto;
+                right: 0;
+                width: 2px;
+                height: 100%;
+                background-color: #0d0d0d; 
+            }
+            &__item {
                 display: inline-block;
-                position: relative;
-                left: 0;
+                position: absolute;
+                top: 0;
+                left: 0; 
+                opacity: 0; 
+                &--active {
+                    position: relative;
+                    opacity: 1;
+                }
             }
         }
     }

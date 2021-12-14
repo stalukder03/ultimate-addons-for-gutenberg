@@ -19,11 +19,12 @@ window.UAGBAnimatedHeading = {
 		if( this.settings.rotatingAnimation === 'typing' ){
 			this.typingTimeout = null;
 			this.breakTimeTimeout = null;
+			// added new div for avoid eidtor animation issue
 			rotatingWrapper.innerHTML ="<span class='uagb-animated-headline-dynamic-text-typing'></span>"
 			this.animationTyping( rotatingWrapper, this.settings.rotatingText );
 		} else if(this.settings.rotatingAnimation === 'clip') {
-			this.clipStartTimeout = null;
-			this.clipBreakTimeout = null;
+			// added new div for avoid eidtor animation issue
+			rotatingWrapper.innerHTML ="<span class='uagb-animated-headline-dynamic-text-clip'></span>"
 			this.animateClip(rotatingWrapper, this.settings.rotatingText );
 		}
 	},
@@ -77,36 +78,43 @@ window.UAGBAnimatedHeading = {
 		}
 	},
 	animateClip(rotatingWrap, data){
-		const wordArray = data.split( /\n|\\n/ );
-		// insert dom
-		let domList = '';
-		wordArray.forEach((item, index) => {
-			domList += `<span class="uagb-animated-headline-dynamic-text-clip">${item}</span>`;
-		})
-		rotatingWrap.innerHTML = domList
-
-		// add style
-		rotatingWrap.style.width = '300px';
-		rotatingWrap.style.overflow = 'hidden';
-
-		const rotatingChildWrap = rotatingWrap.querySelectorAll('.uagb-animated-headline-dynamic-text-clip')
-		let wordIndex = 0;
+		let selectorTextClip = 'uagb-animated-headline-dynamic-text-clip'
+		const rotatingChildWrap = rotatingWrap.querySelector(
+			'.' + selectorTextClip
+		)
+		// insert child item from given string
+		rotatingChildWrap.innerHTML = this._animateClipDomInsert(selectorTextClip, data);
+		const clipChildItemWrap = rotatingWrap.querySelectorAll(`.${selectorTextClip}__item`)
+		let wordIndex = 1;
 		wordClip();
 		function wordClip() {
+			// enable looping
+			if(clipChildItemWrap[wordIndex] === undefined){
+				wordIndex = 0;
+			}
+			// get child element maximum width and assign parent inline style
+			jQuery(rotatingChildWrap).animate({width: clipChildItemWrap[wordIndex].clientWidth})
 			setTimeout( function () {
-				if(rotatingChildWrap[wordIndex] === undefined){
-					wordIndex = 0;
-				}
-				rotatingChildWrap.forEach((item, index) => {
-					if(wordIndex === index){
-						rotatingChildWrap[index].classList.toggle('uagb-animated-headline-dynamic-text-clip--active')
-					} else {
-						rotatingChildWrap[index].classList.remove('uagb-animated-headline-dynamic-text-clip--active')
-					}
+				jQuery(rotatingChildWrap).animate({width:2}, function() {
+					clipChildItemWrap.forEach((item, index) => {
+						if(wordIndex === index){
+							clipChildItemWrap[index].classList.toggle(`${selectorTextClip}__item--active`)
+						} else {
+							clipChildItemWrap[index].classList.remove(`${selectorTextClip}__item--active`)
+						}
+					})
 				})
 				wordIndex++;
 				wordClip();
-			}, 3000 );
+			}, 5000 );
 		}
+	},
+	_animateClipDomInsert(selectorTextClip, data){
+		const wordArray = data.split( /\n|\\n/ );
+		let domList = '';
+		wordArray.forEach((item, index) => {
+			domList += `<span class="${selectorTextClip + '__item'} ${index === 0 ? selectorTextClip + '__item--active' : ''}">${item}</span>`;
+		})
+		return domList;
 	}
 };
