@@ -21,6 +21,14 @@ const UAGBContainerChildEdit = ( props ) => {
 		// Assigning block_id in the attribute.
 		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
 
+		// Pushing Style tag for this block css.
+		const $style = document.createElement( 'style' );
+		$style.setAttribute(
+			'id',
+			'uagb-container-style-' + props.clientId.substr( 0, 8 )
+		);
+		document.head.appendChild( $style );
+
 	}, [] );
 
 	return (
