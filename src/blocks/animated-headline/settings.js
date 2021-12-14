@@ -84,8 +84,8 @@ const Settings = ( props ) => {
 					label={__( 'Style', 'ultimate-addons-for-gutenberg' )}
 					value={ animateType }
 					options={ [
-						{ label: 'Highlighted', value: 'highlighted' },
-						{ label: 'Rotating', value: 'rotating' },
+						{ label: __( 'Highlighted', 'ultimate-addons-for-gutenberg' ), value: 'highlighted' },
+						{ label: __('Rotating', 'ultimate-addons-for-gutenberg'), value: 'rotating' },
 					] }
 					onChange={ ( value ) => setAttributes( {animateType: value} ) }
 				/>
@@ -95,8 +95,8 @@ const Settings = ( props ) => {
 							label={__( 'Shape', 'ultimate-addons-for-gutenberg' )}
 							value={ highlightedShape }
 							options={ [
-								{ label: 'Circle', value: 'circle' },
-								{ label: 'Curly', value: 'curly' },
+								{ label: __('Circle', 'ultimate-addons-for-gutenberg'), value: 'circle' },
+								{ label: __('Curly', 'ultimate-addons-for-gutenberg'), value: 'curly' },
 							] }
 							onChange={ ( value ) => setAttributes( {highlightedShape: value} ) }
 						/>
@@ -105,8 +105,15 @@ const Settings = ( props ) => {
 							label={__( 'Animation', 'ultimate-addons-for-gutenberg' )}
 							value={ rotatingAnimation }
 							options={ [
-								{ label: 'Typing', value: 'typing' },
-								{ label: 'Clip', value: 'clip' },
+								{ label: __('Typing', 'ultimate-addons-for-gutenberg'), value: 'typing' },
+								{ label: __('Clip', 'ultimate-addons-for-gutenberg'), value: 'clip' },
+								{ label: __('Flip', 'ultimate-addons-for-gutenberg'), value: 'Flip' },
+								{ label: __('Swirl', 'ultimate-addons-for-gutenberg'), value: 'swirl' },
+								{ label: __('Blinds', 'ultimate-addons-for-gutenberg'), value: 'blinds' },
+								{ label: __('Drop-In', 'ultimate-addons-for-gutenberg'), value: 'dropIn' },
+								{ label: __('Wave', 'ultimate-addons-for-gutenberg'), value: 'Wave' },
+								{ label: __('Slide', 'ultimate-addons-for-gutenberg'), value: 'slide' },
+								{ label: __('Slide Down', 'ultimate-addons-for-gutenberg'), value: 'slideDown' },
 							] }
 							onChange={ ( value ) => setAttributes( {rotatingAnimation: value} ) }
 						/>
