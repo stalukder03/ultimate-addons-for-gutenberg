@@ -8,7 +8,7 @@ import InspectorTab, {
 import ResponsiveSlider from '@Components/responsive-slider';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
-const Settings = (props) => {
+const Settings = ( props ) => {
 	props = props.parentProps;
 
 	const { attributes, setAttributes } = props;

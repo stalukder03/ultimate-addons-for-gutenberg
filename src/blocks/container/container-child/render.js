@@ -1,11 +1,11 @@
 import classnames from 'classnames';
-import { __ } from '@wordpress/i18n';
 import { InnerBlocks } from '@wordpress/block-editor';
+import React from 'react';
 
 const Render = ( props ) => {
 	props = props.parentProps;
 
-	const { attributes, setAttributes, deviceType, className } = props;
+	const { attributes, className } = props;
 
 	const { 
 		block_id,

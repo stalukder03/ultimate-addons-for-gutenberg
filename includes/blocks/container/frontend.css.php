@@ -7,47 +7,46 @@
  * @package uagb
  */
 
-// // Add fonts.
-// UAGB_Block_JS::blocks_advanced_heading_gfont( $attr );
+$selectors = array(
+	'.wp-block-uagb-container' => array(
+		'width'           => UAGB_Helper::get_css_value( $attr['widthDesktop'], $attr['widthType'] ),
+		'min-height'      => UAGB_Helper::get_css_value( $attr['minHeightDesktop'], $attr['minHeightType'] ),
+		'flex-direction'  => $attr['directionDesktop'],
+		'align-items'     => $attr['alignItemsDesktop'],
+		'justify-content' => $attr['justifyContentDesktop'],
+		'flex-wrap'       => $attr['wrapDesktop'],
+		'align-content'   => $attr['alignContentDesktop'],
+	),
+);
 
-// $m_selectors = array();
-// $t_selectors = array();
+$t_selectors = array(
+	'.wp-block-uagb-container' => array(
+		'width'           => UAGB_Helper::get_css_value( $attr['widthTablet'], $attr['widthType'] ),
+		'min-height'      => UAGB_Helper::get_css_value( $attr['minHeightTablet'], $attr['minHeightType'] ),
+		'flex-direction'  => $attr['directionTablet'],
+		'align-items'     => $attr['alignItemsTablet'],
+		'justify-content' => $attr['justifyContentTablet'],
+		'flex-wrap'       => $attr['wrapTablet'],
+		'align-content'   => $attr['alignContentTablet'],
+	),
+);
 
-// $selectors = array(
-// 	' .uagb-heading-text'                                  => array(
-// 		'color'         => $attr['headingColor'],
-// 		'margin-bottom' => UAGB_Helper::get_css_value( $attr['headSpace'], 'px' ),
-// 	),
-// 	'.wp-block-uagb-advanced-heading ' => array(
-// 		'text-align' => $attr['headingAlign'],
-// 	),
-// 	' .uagb-desc-text'                                     => array(
-// 		'color'      => $attr['subHeadingColor'],
-// 	),
+$m_selectors = array(
+	'.wp-block-uagb-container' => array(
+		'width'           => UAGB_Helper::get_css_value( $attr['widthMobile'], $attr['widthType'] ),
+		'min-height'      => UAGB_Helper::get_css_value( $attr['minHeightMobile'], $attr['minHeightType'] ),
+		'flex-direction'  => $attr['directionMobile'],
+		'align-items'     => $attr['alignItemsMobile'],
+		'justify-content' => $attr['justifyContentMobile'],
+		'flex-wrap'       => $attr['wrapMobile'],
+		'align-content'   => $attr['alignContentMobile'],
+	),
+);
 
-// );
+$combined_selectors = array(
+	'desktop' => $selectors,
+	'tablet'  => $t_selectors,
+	'mobile'  => $m_selectors,
+);
 
-// $seperatorStyle = isset( $attr['seperatorStyle'] ) ? $attr['seperatorStyle'] : '';
-
-// if ( 'none' !== $seperatorStyle ) {
-// 	$selectors['.wp-block-uagb-advanced-heading .uagb-separator'] = array(
-// 		'border-top-style' => $attr['seperatorStyle'],
-// 		'border-top-width' => UAGB_Helper::get_css_value( $attr['separatorHeight'], 'px' ),
-// 		'width'            => UAGB_Helper::get_css_value( $attr['separatorWidth'], $attr['separatorWidthType'] ),
-// 		'border-color'     => $attr['separatorColor'],
-// 		'margin-bottom'    => UAGB_Helper::get_css_value( $attr['separatorSpace'], 'px' ),
-// 	);
-// }
-
-// $combined_selectors = array(
-// 	'desktop' => $selectors,
-// 	'tablet'  => $t_selectors,
-// 	'mobile'  => $m_selectors,
-// );
-
-// $combined_selectors = UAGB_Helper::get_typography_css( $attr, 'head', ' .uagb-heading-text', $combined_selectors );
-// $combined_selectors = UAGB_Helper::get_typography_css( $attr, 'subHead', ' .uagb-desc-text', $combined_selectors );
-
-// $base_selector = ( $attr['classMigrate'] ) ? '.uagb-block-' : '#uagb-adv-heading-';
-
-// return UAGB_Helper::generate_all_css( $combined_selectors, $base_selector . $id );
+return UAGB_Helper::generate_all_css( $combined_selectors, '.uagb-block-' . $id );

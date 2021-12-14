@@ -1,13 +1,21 @@
 import classnames from 'classnames';
-import { __ } from '@wordpress/i18n';
 import { InnerBlocks } from '@wordpress/block-editor';
-import React from 'react';
+import styles from './editor.lazy.scss';
+import React, { useLayoutEffect } from 'react';
 
 const Render = ( props ) => {
+
+	// Add and remove the CSS on the drop and remove of the component.
+	useLayoutEffect( () => {
+		styles.use();
+		return () => {
+			styles.unuse();
+		};
+	}, [] );
+
 	props = props.parentProps;
 	const {
 		attributes,
-		setAttributes,
 		className,
 		deviceType,
 	} = props;
@@ -16,9 +24,9 @@ const Render = ( props ) => {
 		block_id
 	} = attributes;
 
-	let direction = attributes[ 'direction' + deviceType ];
+	const direction = attributes[ 'direction' + deviceType ];
 	
-	let moverDirection = 'row' === direction ? 'horizontal' : 'vertical';
+	const moverDirection = 'row' === direction ? 'horizontal' : 'vertical';
 
 	return (
 		<div

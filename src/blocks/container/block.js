@@ -8,7 +8,7 @@ import edit from './edit';
 import save from './save';
 import './style.scss';
 import { __ } from '@wordpress/i18n';
-import { registerBlockType, createBlock } from '@wordpress/blocks';
+import { registerBlockType } from '@wordpress/blocks';
 
 registerBlockType( 'uagb/container', {
 	title: __( 'Container', 'ultimate-addons-for-gutenberg' ),

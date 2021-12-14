@@ -6,6 +6,7 @@ import React, { lazy, useEffect, Suspense } from 'react';
 import lazyLoader from '@Controls/lazy-loader';
 import { compose } from '@wordpress/compose';
 import { withSelect } from '@wordpress/data';
+import styling from './styling';
 
 const Settings = lazy( () =>
 	import( /* webpackChunkName: "chunks/container/container-child-settings" */ './settings' )
@@ -25,11 +26,22 @@ const UAGBContainerChildEdit = ( props ) => {
 		const $style = document.createElement( 'style' );
 		$style.setAttribute(
 			'id',
-			'uagb-container-style-' + props.clientId.substr( 0, 8 )
+			'uagb-container-child-style-' + props.clientId.substr( 0, 8 )
 		);
 		document.head.appendChild( $style );
 
 	}, [] );
+
+	useEffect( () => {
+		// Replacement for componentDidUpdate.
+		const element = document.getElementById(
+			'uagb-container-child-style-' + props.clientId.substr( 0, 8 )
+		);
+
+		if ( null !== element && undefined !== element ) {
+			element.innerHTML = styling( props );
+		}
+	}, [ props ] );
 
 	return (
 		<>

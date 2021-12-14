@@ -1,5 +1,3 @@
-import { __ } from '@wordpress/i18n';
-
 const attributes = {
 	block_id: {
 		type: 'string',
@@ -71,15 +69,27 @@ const attributes = {
 	},
 	wrapDesktop: {
 		type: 'string',
-		default: 'no-wrap',
+		default: 'nowrap',
 	},
 	wrapTablet: {
 		type: 'string',
-		default: 'no-wrap',
+		default: 'nowrap',
 	},
 	wrapMobile: {
 		type: 'string',
-		default: 'no-wrap',
+		default: 'nowrap',
+	},
+	alignContentDesktop: {
+		type: 'string',
+		default: 'flex-start',
+	},
+	alignContentTablet: {
+		type: 'string',
+		default: 'flex-start',
+	},
+	alignContentMobile: {
+		type: 'string',
+		default: 'flex-start',
 	},
 };
 
