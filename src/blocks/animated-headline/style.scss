@@ -53,6 +53,26 @@
                     background-color: #0d0d0d; 
                     animation: uagb-animated-headline-blink 1s infinite;
                 }
+                .uagb-animated-headline-dynamic-text {
+                    display: inline-block;
+                    position: absolute;
+                    top: 0;
+                    left: 0; 
+                    &--inactive {
+                        opacity: 0;
+                    }
+                    &--active {
+                        position: relative;
+                        opacity: 1;
+                    }
+                    &:not(.uagb-animated-headline-dynamic-text--active) {
+                        visibility: hidden; 
+                    }
+                    .uagb-animated-headline-dynamic-letter:not(.uagb-animated-headline-animation-in) {
+                        position: absolute;
+                        visibility: hidden; 
+                    }
+                }
             }
         }
         &__after-text {
