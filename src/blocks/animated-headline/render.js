@@ -34,9 +34,19 @@ const Render = ( props ) => {
 				{
 					rotatingTextArray.length > 0 && rotatingTextArray.map((item, index) => (
 						<span 
-							className={`uagb-animated-headline-dynamic-text ${index === 0 ? `uagb-animated-headline-dynamic-text--active` : 'uagb-animated-headline-dynamic-text--inactive'}`} key={index}
+							className={`uagb-animated-headline-dynamic-text ${index === 0 ? `uagb-animated-headline-dynamic-text--active` : ''}`} key={index}
 						>
-								{item}
+								{
+									rotatingAnimation === 'typing' ? (
+									<>
+										{
+											item.split('').map((ChildItem, ChildItemIndex) => (
+												<span className="uagb-animated-headline-dynamic-letter" key={ChildItemIndex}>{ChildItem}</span>
+											))
+										}
+									</>
+									) : item
+								}
 						</span>
 					))
 				}
@@ -65,4 +75,5 @@ const Render = ( props ) => {
 		</div>
 	);
 };
-export default React.memo( Render );
+// remove React.memo for caching related issue ignore
+export default Render;

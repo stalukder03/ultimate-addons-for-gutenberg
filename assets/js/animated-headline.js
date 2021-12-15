@@ -31,7 +31,7 @@ UAGBAnimatedHeading = {
 		if(!rotatingWrapper){
 			return;
 		}
-		this.resetInlineStyle();
+		this._resetInlineStyle();
 		if( this.settings.data.rotatingAnimation === 'typing' ){
 			this.animationTyping(mainWrapper);
 		} else if(this.settings.data.rotatingAnimation === 'clip') {
@@ -39,12 +39,12 @@ UAGBAnimatedHeading = {
 		}
 	},
 	animationTyping(mainWrapper) {
+		let typingInterval = null;
 		const that = this
 		const rotatingWrap = mainWrapper.querySelector(
 			'.' + this.settings.classes.textRotating + '--typing'
 		);
 		const typingChildItemWrap = rotatingWrap.querySelectorAll(`.${that.settings.classes.dynamicText}`)
-		that._animationTypingDynamicLetterInsert(typingChildItemWrap);
 		let wordIndex = 0;
 		wordTyping();
 		function wordTyping() {
@@ -52,7 +52,9 @@ UAGBAnimatedHeading = {
 			if(typingChildItemWrap[wordIndex] === undefined){
 				wordIndex = 0;
 			}
-			setTimeout( function () {
+			clearInterval(typingInterval)
+			typingInterval = setTimeout( function () {
+				let showingLetterInterval = null
 				// show word
 				that._hidePreviousWord(typingChildItemWrap, wordIndex)
 				that._removeInActiveAnimationIn(typingChildItemWrap, wordIndex)
@@ -61,7 +63,8 @@ UAGBAnimatedHeading = {
 				let letterCount = 0;
 				showingLetter();
 				function showingLetter(){
-					setTimeout(() => {
+					clearInterval(showingLetterInterval)
+					showingLetterInterval = setTimeout(() => {
 						if(dynamicLetters[letterCount] !== undefined){
 							dynamicLetters[letterCount].classList.add(that.settings.classes.dynamicLetterAnimationIn)
 						}
@@ -74,15 +77,35 @@ UAGBAnimatedHeading = {
 			}, 5000 );
 		}
 	},
-	_animationTypingDynamicLetterInsert(allNodes){
-		allNodes.forEach((item, index) => {
-			const letters = item.innerHTML.split('')
-			let dynamicLettersMarkup = '';
-			letters.map((letter) => {
-				dynamicLettersMarkup += `<span class="${this.settings.classes.dynamicLetter}">${letter}</span>`;
-			})
-			item.innerHTML = dynamicLettersMarkup
-		})
+	animateClip(rotatingWrap){
+		let clipInterval = null;
+		const that = this
+		let selectorClip = this.settings.classes.textRotating + '--clip'
+		const clipChildItemWrap = rotatingWrap.querySelectorAll(`.${that.settings.classes.dynamicText}`)
+		let wordIndex = 1;
+		wordClip();
+		function wordClip() {
+			// enable looping
+			if(clipChildItemWrap[wordIndex] === undefined){
+				wordIndex = 0;
+			}
+			// get child element maximum width and assign parent inline style
+			jQuery('.' + selectorClip).animate({width: clipChildItemWrap[wordIndex].clientWidth})
+			clearInterval(clipInterval)
+			clipInterval = setTimeout( function () {
+				jQuery('.' + selectorClip).animate({width:2}, function() {
+					clipChildItemWrap.forEach((item, index) => {
+						if(wordIndex === index){
+							clipChildItemWrap[index].classList.add(`${that.settings.classes.dynamicText}--active`)
+						} else {
+							clipChildItemWrap[index].classList.remove(`${that.settings.classes.dynamicText}--active`)
+						}
+					})
+				})
+				wordIndex++;
+				wordClip();
+			}, 5000 );
+		}
 	},
 	_hidePreviousWord(allNodes, currentShowingIndex)
 	{
@@ -100,39 +123,8 @@ UAGBAnimatedHeading = {
 			dynamicLettersNodes[index].classList.remove(this.settings.classes.dynamicLetterAnimationIn)
 		});
 	},
-	animateClip(rotatingWrap){
-		const that = this
-		let selectorClip = this.settings.classes.textRotating + '--clip'
-		// insert child item from given string
-		const clipChildItemWrap = rotatingWrap.querySelectorAll(`.${that.settings.classes.dynamicText}`)
-		let wordIndex = 1;
-		wordClip();
-		function wordClip() {
-			// enable looping
-			if(clipChildItemWrap[wordIndex] === undefined){
-				wordIndex = 0;
-			}
-			// get child element maximum width and assign parent inline style
-			jQuery('.' + selectorClip).animate({width: clipChildItemWrap[wordIndex].clientWidth})
-			setTimeout( function () {
-				jQuery('.' + selectorClip).animate({width:2}, function() {
-					clipChildItemWrap.forEach((item, index) => {
-						if(wordIndex === index){
-							clipChildItemWrap[index].classList.remove(`${that.settings.classes.dynamicText}--inactive`)
-							clipChildItemWrap[index].classList.add(`${that.settings.classes.dynamicText}--active`)
-						} else {
-							clipChildItemWrap[index].classList.add(`${that.settings.classes.dynamicText}--inactive`)
-							clipChildItemWrap[index].classList.remove(`${that.settings.classes.dynamicText}--active`)
-						}
-					})
-				})
-				wordIndex++;
-				wordClip();
-			}, 5000 );
-		}
-	},
-	resetInlineStyle(){
+	_resetInlineStyle(){
 		const wrappper = document.querySelector( this.settings.selectors.mainSelector)
 		wrappper.querySelector('.' + this.settings.classes.textRotating).removeAttribute('style')
-	},
+	}
 };

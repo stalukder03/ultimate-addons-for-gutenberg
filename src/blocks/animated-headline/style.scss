@@ -28,9 +28,7 @@
                     position: absolute;
                     top: 0;
                     left: 0; 
-                    &--inactive {
-                        opacity: 0;
-                    }
+                    opacity: 0;
                     &--active {
                         position: relative;
                         opacity: 1;
@@ -58,9 +56,6 @@
                     position: absolute;
                     top: 0;
                     left: 0; 
-                    &--inactive {
-                        opacity: 0;
-                    }
                     &--active {
                         position: relative;
                         opacity: 1;
