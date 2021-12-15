@@ -10,7 +10,10 @@ import { __ } from '@wordpress/i18n';
 import {
 	InspectorControls,
 } from '@wordpress/block-editor';
-
+import BoxShadowControl from '@Components/box-shadow';
+import SpacingControl from '@Components/spacing-control';
+import Background from '@Components/background';
+import Border from '@Components/border';
 // Extend component
 
 
@@ -43,6 +46,27 @@ const Settings = ( props ) => {
 		alignContentDesktop,
 		alignContentTablet,
 		alignContentMobile,
+
+		backgroundType,
+		backgroundImage,
+		backgroundColor,
+		backgroundPosition,
+		backgroundAttachment,
+		backgroundRepeat,
+		backgroundSize,
+		backgroundImageColor,
+		gradientValue,
+		borderStyle,
+		borderWidth,
+		borderRadius,
+		borderColor,
+		borderHoverColor,
+		boxShadowColor,
+		boxShadowHOffset,
+		boxShadowVOffset,
+		boxShadowBlur,
+		boxShadowSpread,
+		boxShadowPosition,
 	} = attributes;
 
 	const generalSettings = () => {
@@ -320,11 +344,142 @@ const Settings = ( props ) => {
 		);
 	};
 
+	const styleSettings = () => {
+		return (
+			<UAGAdvancedPanelBody
+				title={ __( 'Background', 'ultimate-addons-for-gutenberg' ) }
+			>
+				<Background
+					setAttributes={ setAttributes }
+					backgroundGradient={ {
+						value: gradientValue,
+						label: 'gradientValue',
+					} }
+					backgroundImageColor={ {
+						value: backgroundImageColor,
+						label: 'backgroundImageColor',
+					} }
+					backgroundSize={ {
+						value: backgroundSize,
+						label: 'backgroundSize',
+					} }
+					backgroundRepeat={ {
+						value: backgroundRepeat,
+						label: 'backgroundRepeat',
+					} }
+					backgroundAttachment={ {
+						value: backgroundAttachment,
+						label: 'backgroundAttachment',
+					} }
+					backgroundPosition={ {
+						value: backgroundPosition,
+						label: 'backgroundPosition',
+					} }
+					backgroundImage={ {
+						value: backgroundImage,
+						label: 'backgroundImage',
+					} }
+					backgroundColor={ {
+						value: backgroundColor,
+						label: 'backgroundColor',
+					} }
+					backgroundType={ {
+						value: backgroundType,
+						label: 'backgroundType',
+					} }
+					backgroundVideoType={ {
+						value: false,
+					} }
+					{ ...props }
+				/>
+				<Border
+					setAttributes={ setAttributes }
+					borderStyle={ {
+						value: borderStyle,
+						label: 'borderStyle',
+						title: __( 'Style', 'ultimate-addons-for-gutenberg' ),
+					} }
+					borderWidth={ {
+						value: borderWidth,
+						label: 'borderWidth',
+						title: __( 'Width', 'ultimate-addons-for-gutenberg' ),
+					} }
+					borderRadius={ {
+						value: borderRadius,
+						label: 'borderRadius',
+						title: __( 'Radius', 'ultimate-addons-for-gutenberg' ),
+					} }
+					borderColor={ {
+						value: borderColor,
+						label: 'borderColor',
+						title: __( 'Color', 'ultimate-addons-for-gutenberg' ),
+					} }
+					borderHoverColor={ {
+						value: borderHoverColor,
+						label: 'borderHoverColor',
+						title: __(
+							'Hover Color',
+							'ultimate-addons-for-gutenberg'
+						),
+					} }
+				/>
+				<BoxShadowControl
+					setAttributes={ setAttributes }
+					label={ __(
+						'Box Shadow',
+						'ultimate-addons-for-gutenberg'
+					) }
+					boxShadowColor={ {
+						value: boxShadowColor,
+						label: 'boxShadowColor',
+						title: __( 'Color', 'ultimate-addons-for-gutenberg' ),
+					} }
+					boxShadowHOffset={ {
+						value: boxShadowHOffset,
+						label: 'boxShadowHOffset',
+						title: __(
+							'Horizontal',
+							'ultimate-addons-for-gutenberg'
+						),
+					} }
+					boxShadowVOffset={ {
+						value: boxShadowVOffset,
+						label: 'boxShadowVOffset',
+						title: __(
+							'Vertical',
+							'ultimate-addons-for-gutenberg'
+						),
+					} }
+					boxShadowBlur={ {
+						value: boxShadowBlur,
+						label: 'boxShadowBlur',
+						title: __( 'Blur', 'ultimate-addons-for-gutenberg' ),
+					} }
+					boxShadowSpread={ {
+						value: boxShadowSpread,
+						label: 'boxShadowSpread',
+						title: __( 'Spread', 'ultimate-addons-for-gutenberg' ),
+					} }
+					boxShadowPosition={ {
+						value: boxShadowPosition,
+						label: 'boxShadowPosition',
+						title: __(
+							'Position',
+							'ultimate-addons-for-gutenberg'
+						),
+					} }
+				/>
+			</UAGAdvancedPanelBody>
+		);
+	};
 	return (
 		<InspectorControls>
 			<InspectorTabs>
 				<InspectorTab { ...UAGTabs.general }>
 					{ generalSettings() }
+				</InspectorTab>
+				<InspectorTab { ...UAGTabs.style }>
+					{ styleSettings() }
 				</InspectorTab>
 				<InspectorTab
 					{ ...UAGTabs.advance }

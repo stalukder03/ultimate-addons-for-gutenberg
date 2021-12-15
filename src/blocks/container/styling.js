@@ -4,6 +4,7 @@
 
 import generateCSS from '@Controls/generateCSS';
 import generateCSSUnit from '@Controls/generateCSSUnit';
+import generateBackgroundCSS from '@Controls/generateBackgroundCSS';
 
 function styling( props ) {
 	const {
@@ -30,6 +31,25 @@ function styling( props ) {
 		alignContentDesktop,
 		alignContentTablet,
 		alignContentMobile,
+		backgroundType,
+		backgroundImage,
+		backgroundColor,
+		backgroundPosition,
+		backgroundAttachment,
+		backgroundRepeat,
+		backgroundSize,
+		gradientValue,
+		borderStyle,
+		borderWidth,
+		borderRadius,
+		borderColor,
+		borderHoverColor,
+		boxShadowColor,
+		boxShadowHOffset,
+		boxShadowVOffset,
+		boxShadowBlur,
+		boxShadowSpread,
+		boxShadowPosition,
 	} = props.attributes;
 
 	
@@ -44,6 +64,51 @@ function styling( props ) {
 			'align-content' : alignContentDesktop,
 		},
 	};
+
+	let backgroundAttributes = {
+        backgroundType,
+        backgroundImage,
+        backgroundColor,
+        gradientValue,
+        backgroundRepeat,
+        backgroundPosition,
+        backgroundSize,
+        backgroundAttachment,
+    };
+
+	let containerBackgroundCSS = generateBackgroundCSS(backgroundAttributes);
+
+	let boxShadowPositionCSS = boxShadowPosition;
+
+	if ( 'outset' === boxShadowPosition ) {
+		boxShadowPositionCSS = '';
+	}
+	
+	let containerCSS = {
+		...containerBackgroundCSS,
+		'border-style': borderStyle,
+		'border-color': borderColor,
+		'border-radius': generateCSSUnit( borderRadius, 'px' ),
+		'border-width': generateCSSUnit( borderWidth, 'px' ),
+		'box-shadow':
+				generateCSSUnit( boxShadowHOffset, 'px' ) +
+				' ' +
+				generateCSSUnit( boxShadowVOffset, 'px' ) +
+				' ' +
+				generateCSSUnit( boxShadowBlur, 'px' ) +
+				' ' +
+				generateCSSUnit( boxShadowSpread, 'px' ) +
+				' ' +
+				boxShadowColor +
+				' ' +
+				boxShadowPositionCSS,
+	}
+
+	selectors['.wp-block-uagb-container'] = containerCSS;
+	selectors['.wp-block-uagb-container:hover'] = {
+		'border-color': borderHoverColor,
+	};
+
 	const tablet_selectors = {
 		' .block-editor-block-list__layout' : {
 			'width' : generateCSSUnit( widthTablet, widthType ),
@@ -55,6 +120,7 @@ function styling( props ) {
 			'align-content' : alignContentTablet,
 		},
 	};
+
 	const mobile_selectors = {
 		' .block-editor-block-list__layout' : {
 			'width' : generateCSSUnit( widthMobile, widthType ),
