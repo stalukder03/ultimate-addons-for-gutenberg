@@ -1,27 +1,41 @@
-window.UAGBAnimatedHeading = {
+UAGBAnimatedHeading = {
 	// eslint-disable-line no-undef
 	settings: {},
-	init( $selector, settings = {} ) {
-		this.settings = settings
-		const wrapper = document.querySelector( $selector );
-		if( this.settings.animateType === 'rotating' ){
-			this.dispatchRoatingAnimation( wrapper )
+	init( mainSelector, data = {} ) {
+		this.settings = this.getDefaultSettings(mainSelector, data)
+		const mainWrapper = document.querySelector( mainSelector );
+		if( this.settings.data.animateType === 'rotating' ){
+			this.dispatchRoatingAnimation( mainWrapper )
 		}
 	},
-	dispatchRoatingAnimation( wrapper )
+	getDefaultSettings(mainSelector, data)
 	{
-		const rotatingWrapper = wrapper.querySelector(
-			'.uagb-animated-headline__text-rotating'
+		return {
+			data,
+			selectors: {
+				mainSelector,
+			},
+			classes: {
+				textRotating: 'uagb-animated-headline__text-rotating',
+				dynamicText: 'uagb-animated-headline-dynamic-text'
+			}
+		}
+	},
+	dispatchRoatingAnimation( mainWrapper )
+	{
+		const rotatingWrapper = mainWrapper.querySelector(
+			'.' + this.settings.classes.textRotating
 		);
 		if(!rotatingWrapper){
 			return;
 		}
-		if( this.settings.rotatingAnimation === 'typing' ){
+		this.resetInlineStyle();
+		if( this.settings.data.rotatingAnimation === 'typing' ){
 			this.typingTimeout = null;
 			this.breakTimeTimeout = null;
-			this.animationTyping( rotatingWrapper, this.settings.rotatingText );
-		} else if(this.settings.rotatingAnimation === 'clip') {
-			this.animateClip(rotatingWrapper, this.settings.rotatingText );
+			this.animationTyping( rotatingWrapper, this.settings.data.rotatingText );
+		} else if(this.settings.data.rotatingAnimation === 'clip') {
+			this.animateClip(rotatingWrapper, this.settings.data.rotatingText );
 		}
 	},
 	animationTyping( rotatingWrap, data ) {
@@ -74,10 +88,10 @@ window.UAGBAnimatedHeading = {
 		}
 	},
 	animateClip(rotatingWrap){
-		let selectorClip = 'uagb-animated-headline__text-rotating--clip'
-		let selectorClipChild = 'uagb-animated-headline-dynamic-text-clip'
+		const that = this
+		let selectorClip = this.settings.classes.textRotating + '--clip'
 		// insert child item from given string
-		const clipChildItemWrap = rotatingWrap.querySelectorAll(`.${selectorClipChild}__item`)
+		const clipChildItemWrap = rotatingWrap.querySelectorAll(`.${that.settings.classes.dynamicText}`)
 		let wordIndex = 1;
 		wordClip();
 		function wordClip() {
@@ -91,9 +105,11 @@ window.UAGBAnimatedHeading = {
 				jQuery('.' + selectorClip).animate({width:2}, function() {
 					clipChildItemWrap.forEach((item, index) => {
 						if(wordIndex === index){
-							clipChildItemWrap[index].classList.toggle(`${selectorClipChild}__item--active`)
+							clipChildItemWrap[index].classList.remove(`${that.settings.classes.dynamicText}--inactive`)
+							clipChildItemWrap[index].classList.add(`${that.settings.classes.dynamicText}--active`)
 						} else {
-							clipChildItemWrap[index].classList.remove(`${selectorClipChild}__item--active`)
+							clipChildItemWrap[index].classList.add(`${that.settings.classes.dynamicText}--inactive`)
+							clipChildItemWrap[index].classList.remove(`${that.settings.classes.dynamicText}--active`)
 						}
 					})
 				})
@@ -101,5 +117,10 @@ window.UAGBAnimatedHeading = {
 				wordClip();
 			}, 5000 );
 		}
+	},
+	resetInlineStyle(){
+		const wrappper = document.querySelector( this.settings.selectors.mainSelector)
+		wrappper.querySelector('.' + this.settings.classes.textRotating).removeAttribute('style')
 	}
+
 };

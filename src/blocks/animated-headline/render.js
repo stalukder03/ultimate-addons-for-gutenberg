@@ -20,7 +20,7 @@ const Render = ( props ) => {
 	} = props;
 
 	useEffect( () => {
-		window.UAGBAnimatedHeading.init( '.uagb-block-' + props.attributes.block_id, props.attributes );
+		UAGBAnimatedHeading.init( '.uagb-block-' + props.attributes.block_id, props.attributes );
 	}, [props.attributes] )
 
 	const getRotatingContent = () => {
@@ -34,7 +34,7 @@ const Render = ( props ) => {
 				{
 					rotatingTextArray.length > 0 && rotatingTextArray.map((item, index) => (
 						<span 
-							className={`uagb-animated-headline-dynamic-text-${rotatingAnimation}__item ${index === 0 ? `uagb-animated-headline-dynamic-text-${rotatingAnimation}__item--active` : ''}`} key={index}
+							className={`uagb-animated-headline-dynamic-text ${index === 0 ? `uagb-animated-headline-dynamic-text--active` : 'uagb-animated-headline-dynamic-text--inactive'}`} key={index}
 						>
 								{item}
 						</span>
