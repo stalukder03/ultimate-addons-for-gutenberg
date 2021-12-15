@@ -22,7 +22,7 @@ const save = ( props ) => {
 		return (
 			<span className={`uagb-animated-headline__text-rotating uagb-animated-headline__text-rotating--${rotatingAnimation}`}>
 				{
-					rotatingTextArray.length > 0 && rotatingTextArray.map((item, index) => (
+					rotatingTextArray.length > 0 && rotatingTextArray.map( ( item, index ) => (
 						<span 
 							className={`uagb-animated-headline-dynamic-text ${index === 0 ? `uagb-animated-headline-dynamic-text--active` : ''}`} key={index}
 						>
@@ -30,15 +30,15 @@ const save = ( props ) => {
 									rotatingAnimation === 'typing' ? (
 									<>
 										{
-											item.split('').map((ChildItem, ChildItemIndex) => (
+											item.split( '' ).map( ( ChildItem, ChildItemIndex ) => (
 												<span className="uagb-animated-headline-dynamic-letter" key={ChildItemIndex}>{ChildItem}</span>
-											))
+											) )
 										}
 									</>
 									) : item
 								}
 						</span>
-					))
+					) )
 				}
 			</span>
 		);

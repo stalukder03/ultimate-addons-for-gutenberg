@@ -20,11 +20,11 @@ const Render = ( props ) => {
 	} = props;
 
 	useEffect( () => {
-		UAGBAnimatedHeading.init( '.uagb-block-' + props.attributes.block_id, props.attributes );
+		UAGBAnimatedHeading.init( '.uagb-block-' + props.attributes.block_id, props.attributes ) // eslint-disable-line no-undef
 	}, [props.attributes] )
 
 	const getRotatingContent = () => {
-		if(!rotatingText){
+		if( !rotatingText ){
 			return;
 		}
 		const rotatingTextArray = rotatingText.split( /\n|\\n/ );
@@ -32,7 +32,7 @@ const Render = ( props ) => {
 		return (
 			<span className={`uagb-animated-headline__text-rotating uagb-animated-headline__text-rotating--${rotatingAnimation}`}>
 				{
-					rotatingTextArray.length > 0 && rotatingTextArray.map((item, index) => (
+					rotatingTextArray.length > 0 && rotatingTextArray.map( ( item, index ) => (
 						<span 
 							className={`uagb-animated-headline-dynamic-text ${index === 0 ? `uagb-animated-headline-dynamic-text--active` : ''}`} key={index}
 						>
@@ -40,15 +40,15 @@ const Render = ( props ) => {
 									rotatingAnimation === 'typing' ? (
 									<>
 										{
-											item.split('').map((ChildItem, ChildItemIndex) => (
+											item.split( '' ).map( ( ChildItem, ChildItemIndex ) => (
 												<span className="uagb-animated-headline-dynamic-letter" key={ChildItemIndex}>{ChildItem}</span>
-											))
+											) )
 										}
 									</>
 									) : item
 								}
 						</span>
-					))
+					) )
 				}
 			</span>
 		);
