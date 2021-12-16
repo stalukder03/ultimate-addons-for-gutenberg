@@ -42,6 +42,9 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 		else if( this.settings.data.rotatingAnimation === 'swirl' ) {
 			this.animateSwirl( rotatingWrapper );
 		}
+		else if( this.settings.data.rotatingAnimation === 'blinds' ) {
+			this.animateBlinds( rotatingWrapper );
+		}
 	},
 	animationTyping( rotatingWrap ) {
 		const that = this
@@ -133,6 +136,29 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 				that._insertActiveAnimationIn(flipChildItemWrap, wordIndex)
 				// remove previous node animation in class
 				that._removeInActiveAnimationIn(flipChildItemWrap, wordIndex)
+				wordIndex++
+				wordSwirl();
+			}, 5000 );
+		}
+	},
+	animateBlinds(rotatingWrap){
+		const that = this
+		const blindChildItemWrap = rotatingWrap.querySelectorAll( `.${that.settings.classes.dynamicText}` )
+		let flipInterval = null;
+		let wordIndex = 1;
+		that._insertActiveAnimationIn(blindChildItemWrap, 0)
+		wordSwirl();
+		function wordSwirl() {
+			// enable looping
+			if( blindChildItemWrap[wordIndex] === undefined ){
+				wordIndex = 0;
+			}
+			clearInterval( flipInterval )
+			flipInterval = setTimeout( function () {
+				that._swtichWord(blindChildItemWrap, wordIndex)
+				that._insertActiveAnimationIn(blindChildItemWrap, wordIndex)
+				// remove previous node animation in class
+				that._removeInActiveAnimationIn(blindChildItemWrap, wordIndex)
 				wordIndex++
 				wordSwirl();
 			}, 5000 );

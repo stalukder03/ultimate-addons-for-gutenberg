@@ -19,7 +19,7 @@ const save = ( props ) => {
 
 	const getRotatingContent = () => {
 		const rotatingTextArray = rotatingText.split( /\n|\\n/ );
-		const dynamicLetterAnimationLists = ['typing', 'swirl']
+		const dynamicLetterAnimationLists = ['typing', 'swirl', 'blinds']
 		return (
 			<span className={`uagb-animated-headline__text-rotating uagb-animated-headline__text-rotating--${rotatingAnimation}`}>
 				{
