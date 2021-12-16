@@ -32,7 +32,7 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 		}
 		this._resetInlineStyle();
 		if( this.settings.data.rotatingAnimation === 'typing' ){
-			this.animationTyping( mainWrapper );
+			this.animationTyping( rotatingWrapper );
 		} else if( this.settings.data.rotatingAnimation === 'clip' ) {
 			this.animateClip( rotatingWrapper );
 		}
@@ -43,15 +43,12 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 			this.animateSwirl( rotatingWrapper );
 		}
 	},
-	animationTyping( mainWrapper ) {
-		let animationDelay = 0
-		let typingInterval = null;
+	animationTyping( rotatingWrap ) {
 		const that = this
-		const rotatingWrap = mainWrapper.querySelector(
-			'.' + this.settings.classes.textRotating + '--typing'
-		);
 		const typingChildItemWrap = rotatingWrap.querySelectorAll( `.${that.settings.classes.dynamicText}` )
-		let wordIndex = 0;
+		let typingInterval = null;
+		let wordIndex = 1;
+		that._insertActiveAnimationIn(typingChildItemWrap, 0)
 		wordTyping();
 		function wordTyping() {
 			// enable looping
@@ -60,28 +57,13 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 			}
 			clearInterval( typingInterval )
 			typingInterval = setTimeout( function () {
-				animationDelay = 5000; 
-				let showingLetterInterval = null
-				// show word
-				that._hidePreviousWord( typingChildItemWrap, wordIndex )
-				that._removeInActiveAnimationIn( typingChildItemWrap, wordIndex )
-				typingChildItemWrap[wordIndex].classList.add( `${that.settings.classes.dynamicText}--active` )
-				const dynamicLetters = typingChildItemWrap[wordIndex].querySelectorAll( `.${that.settings.classes.dynamicLetter}` )
-				let letterCount = 0;
-				showingLetter();
-				function showingLetter(){
-					clearInterval( showingLetterInterval )
-					showingLetterInterval = setTimeout( () => {
-						if( dynamicLetters[letterCount] !== undefined ){
-							dynamicLetters[letterCount].classList.add( that.settings.classes.dynamicLetterAnimationIn )
-						}
-						letterCount++
-						showingLetter();
-					}, 150 );
-				}
-				wordIndex++;
+				that._swtichWord(typingChildItemWrap, wordIndex)
+				that._insertActiveAnimationIn(typingChildItemWrap, wordIndex)
+				// remove previous node animation in class
+				that._removeInActiveAnimationIn(typingChildItemWrap, wordIndex)
+				wordIndex++
 				wordTyping();
-			}, animationDelay );
+			}, 5000 );
 		}
 	},
 	animateClip( rotatingWrap ){
