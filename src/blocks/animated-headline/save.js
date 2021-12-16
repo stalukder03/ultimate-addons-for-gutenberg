@@ -24,7 +24,7 @@ const save = ( props ) => {
 				{
 					rotatingTextArray.length > 0 && rotatingTextArray.map( ( item, index ) => (
 						<span 
-							className={`uagb-animated-headline-dynamic-text ${index === 0 ? `uagb-animated-headline-dynamic-text--active` : ''}`} key={index}
+							className={`uagb-animated-headline-dynamic-text uagb-animated-headline-dynamic-text--${index === 0 ? `active` : 'inactive'}`} key={index}
 						>
 								{
 									rotatingAnimation === 'typing' ? (

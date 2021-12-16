@@ -107,7 +107,7 @@ const Settings = ( props ) => {
 							options={ [
 								{ label: __( 'Typing', 'ultimate-addons-for-gutenberg' ), value: 'typing' },
 								{ label: __( 'Clip', 'ultimate-addons-for-gutenberg' ), value: 'clip' },
-								{ label: __( 'Flip', 'ultimate-addons-for-gutenberg' ), value: 'Flip' },
+								{ label: __( 'Flip', 'ultimate-addons-for-gutenberg' ), value: 'flip' },
 								{ label: __( 'Swirl', 'ultimate-addons-for-gutenberg' ), value: 'swirl' },
 								{ label: __( 'Blinds', 'ultimate-addons-for-gutenberg' ), value: 'blinds' },
 								{ label: __( 'Drop-In', 'ultimate-addons-for-gutenberg' ), value: 'dropIn' },

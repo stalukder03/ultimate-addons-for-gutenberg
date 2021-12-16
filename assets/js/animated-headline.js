@@ -36,6 +36,9 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 		} else if( this.settings.data.rotatingAnimation === 'clip' ) {
 			this.animateClip( rotatingWrapper );
 		}
+		else if( this.settings.data.rotatingAnimation === 'flip' ) {
+			this.animateFlip( rotatingWrapper );
+		}
 	},
 	animationTyping( mainWrapper ) {
 		let animationDelay = 0
@@ -108,6 +111,23 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 			}, 5000 );
 		}
 	},
+	animateFlip(rotatingWrap){
+		const that = this
+		const flipChildItemWrap = rotatingWrap.querySelectorAll( `.${that.settings.classes.dynamicText}` )
+		let wordIndex = 1;
+		wordFlip();
+		function wordFlip() {
+			// enable looping
+			if( flipChildItemWrap[wordIndex] === undefined ){
+				wordIndex = 0;
+			}
+			setTimeout( function () {
+				that._swtichWord(flipChildItemWrap, wordIndex)
+				wordIndex++
+				wordFlip();
+			}, 5000 );
+		}
+	},
 	_hidePreviousWord( allNodes, currentShowingIndex )
 	{
 		if( currentShowingIndex === 0 ){
@@ -115,6 +135,14 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 		} else {
 			allNodes[currentShowingIndex - 1].classList.remove( `${this.settings.classes.dynamicText}--active` )
 		}	
+	},
+	_swtichWord( allNodes, index )
+	{
+		const removeIndex = (index === 0) ? allNodes.length : index;
+		allNodes[index].classList.add( `${this.settings.classes.dynamicText}--active` )
+		allNodes[index].classList.remove( `${this.settings.classes.dynamicText}--inactive` )
+		allNodes[removeIndex - 1].classList.add( `${this.settings.classes.dynamicText}--inactive` )
+		allNodes[removeIndex - 1].classList.remove( `${this.settings.classes.dynamicText}--active` )
 	},
 	_removeInActiveAnimationIn( allNodes, currentShowingIndex )
 	{
