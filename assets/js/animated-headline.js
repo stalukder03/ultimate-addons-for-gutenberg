@@ -39,6 +39,9 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 		else if( this.settings.data.rotatingAnimation === 'flip' ) {
 			this.animateFlip( rotatingWrapper );
 		}
+		else if( this.settings.data.rotatingAnimation === 'swirl' ) {
+			this.animateSwirl( rotatingWrapper );
+		}
 	},
 	animationTyping( mainWrapper ) {
 		let animationDelay = 0
@@ -112,6 +115,7 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 		}
 	},
 	animateFlip(rotatingWrap){
+		let flipInterval = null;
 		const that = this
 		const flipChildItemWrap = rotatingWrap.querySelectorAll( `.${that.settings.classes.dynamicText}` )
 		let wordIndex = 1;
@@ -121,10 +125,34 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 			if( flipChildItemWrap[wordIndex] === undefined ){
 				wordIndex = 0;
 			}
-			setTimeout( function () {
+			clearInterval( flipInterval )
+			flipInterval = setTimeout( function () {
 				that._swtichWord(flipChildItemWrap, wordIndex)
 				wordIndex++
 				wordFlip();
+			}, 5000 );
+		}
+	},
+	animateSwirl(rotatingWrap){
+		const that = this
+		const flipChildItemWrap = rotatingWrap.querySelectorAll( `.${that.settings.classes.dynamicText}` )
+		let flipInterval = null;
+		let wordIndex = 1;
+		that._insertActiveAnimationIn(flipChildItemWrap, 0)
+		wordSwirl();
+		function wordSwirl() {
+			// enable looping
+			if( flipChildItemWrap[wordIndex] === undefined ){
+				wordIndex = 0;
+			}
+			clearInterval( flipInterval )
+			flipInterval = setTimeout( function () {
+				that._swtichWord(flipChildItemWrap, wordIndex)
+				that._insertActiveAnimationIn(flipChildItemWrap, wordIndex)
+				// remove previous node animation in class
+				that._removeInActiveAnimationIn(flipChildItemWrap, wordIndex)
+				wordIndex++
+				wordSwirl();
 			}, 5000 );
 		}
 	},
@@ -138,16 +166,33 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 	},
 	_swtichWord( allNodes, index )
 	{
-		const removeIndex = (index === 0) ? allNodes.length : index;
+		const prevIndex = (index === 0 ? allNodes.length : index) - 1;
 		allNodes[index].classList.add( `${this.settings.classes.dynamicText}--active` )
 		allNodes[index].classList.remove( `${this.settings.classes.dynamicText}--inactive` )
-		allNodes[removeIndex - 1].classList.add( `${this.settings.classes.dynamicText}--inactive` )
-		allNodes[removeIndex - 1].classList.remove( `${this.settings.classes.dynamicText}--active` )
+		allNodes[prevIndex].classList.add( `${this.settings.classes.dynamicText}--inactive` )
+		allNodes[prevIndex].classList.remove( `${this.settings.classes.dynamicText}--active` )
 	},
-	_removeInActiveAnimationIn( allNodes, currentShowingIndex )
+	_insertActiveAnimationIn(allNodes, index){
+		const self = this;
+		const dynamicLetters = allNodes[index].querySelectorAll( `.${self.settings.classes.dynamicLetter}` )
+		let showingLetterInterval = null;
+		let letterCount = 0;
+		showingLetter();
+		function showingLetter(){
+			clearInterval( showingLetterInterval )
+			showingLetterInterval = setTimeout( () => {
+				if( dynamicLetters[letterCount] !== undefined ){
+					dynamicLetters[letterCount].classList.add( self.settings.classes.dynamicLetterAnimationIn )
+					showingLetter();
+				}
+				letterCount++
+			}, 150 );
+		}
+	},
+	_removeInActiveAnimationIn( allNodes, index )
 	{
-		const removeItemIndex = ( currentShowingIndex === 0 ? allNodes.length - 1 : currentShowingIndex - 1 )
-		const dynamicLettersNodes = allNodes[removeItemIndex].querySelectorAll( `.${this.settings.classes.dynamicLetter}` )
+		const prevIndex = (index === 0 ? allNodes.length : index) - 1;
+		const dynamicLettersNodes = allNodes[prevIndex].querySelectorAll( `.${this.settings.classes.dynamicLetter}` )
 		dynamicLettersNodes.forEach( ( element, index ) => {
 			dynamicLettersNodes[index].classList.remove( this.settings.classes.dynamicLetterAnimationIn )
 		} );

@@ -19,6 +19,7 @@ const save = ( props ) => {
 
 	const getRotatingContent = () => {
 		const rotatingTextArray = rotatingText.split( /\n|\\n/ );
+		const dynamicLetterAnimationLists = ['typing', 'swirl']
 		return (
 			<span className={`uagb-animated-headline__text-rotating uagb-animated-headline__text-rotating--${rotatingAnimation}`}>
 				{
@@ -27,7 +28,7 @@ const save = ( props ) => {
 							className={`uagb-animated-headline-dynamic-text uagb-animated-headline-dynamic-text--${index === 0 ? `active` : 'inactive'}`} key={index}
 						>
 								{
-									rotatingAnimation === 'typing' ? (
+									dynamicLetterAnimationLists.indexOf(rotatingAnimation)  !== -1 ? (
 									<>
 										{
 											item.split( '' ).map( ( ChildItem, ChildItemIndex ) => (
