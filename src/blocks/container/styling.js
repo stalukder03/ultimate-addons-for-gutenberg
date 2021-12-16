@@ -108,7 +108,7 @@ function styling( props ) {
 	selectors['.wp-block-uagb-container:hover'] = {
 		'border-color': borderHoverColor,
 	};
-
+	
 	const tablet_selectors = {
 		' .block-editor-block-list__layout' : {
 			'width' : generateCSSUnit( widthTablet, widthType ),
