@@ -4,9 +4,8 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 	init( mainSelector, data = {} ) {
 		this.settings = this.getDefaultSettings( mainSelector, data )
 		this.elements = this.getDefaultElements(mainSelector)
-		this._resetInlineStyle();
-		if( this.settings.data.animateType === 'rotating' ){
-			// this.dispatchRoatingAnimation()
+		if( this.elements.dynamicTextWrapper && this.settings.data.animateType === 'rotating' ){
+			this._resetInlineStyle();
 			if(
 				this.settings.data.rotatingAnimation === 'dropIn' || 
 				this.settings.data.rotatingAnimation === 'flip'   ||
@@ -43,7 +42,7 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 		const dynamicTextWrapper = headlineWrapper.querySelector(
 			'.' + this.settings.classes.textRotating
 		);
-		const dynamicText = dynamicTextWrapper.querySelectorAll( `.${this.settings.classes.dynamicText}` )
+		const dynamicText = dynamicTextWrapper && dynamicTextWrapper.querySelectorAll( `.${this.settings.classes.dynamicText}` )
 		return {
 			headlineWrapper,
 			dynamicTextWrapper,
