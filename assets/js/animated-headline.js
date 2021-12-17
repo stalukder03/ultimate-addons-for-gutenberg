@@ -62,7 +62,7 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 			}
 			clearInterval( wordSwitchInterval )
 			wordSwitchInterval = setTimeout( function () {
-				that._swtichWord(that.elements.dynamicText, wordIndex)
+				that._switchWord(that.elements.dynamicText, wordIndex)
 				that._setDynamicWidth(that.elements.dynamicText, wordIndex)
 				wordIndex++
 				wordSwtich();
@@ -82,7 +82,7 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 			}
 			clearInterval( wordLetterSwitchInterval )
 			wordLetterSwitchInterval = setTimeout( function () {
-				that._swtichWord(that.elements.dynamicText, wordIndex)
+				that._switchWord(that.elements.dynamicText, wordIndex)
 				that._insertActiveAnimationIn(that.elements.dynamicText, wordIndex)
 				// remove previous node animation in class
 				that._removeInActiveAnimationIn(that.elements.dynamicText, wordIndex)
@@ -108,7 +108,7 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 			clearInterval( clipInterval )
 			clipInterval = setTimeout( function () {
 				jQuery( '.' + selectorClip ).animate( {width:2}, function() {
-					that._swtichWord(that.elements.dynamicText, wordIndex)
+					that._switchWord(that.elements.dynamicText, wordIndex)
 				} )
 				wordIndex++;
 				wordClip();
@@ -124,7 +124,7 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 			allNodes[currentShowingIndex - 1].classList.remove( `${this.settings.classes.dynamicText}--active` )
 		}	
 	},
-	_swtichWord( allNodes, activeIndex )
+	_switchWord( allNodes, activeIndex )
 	{
 		allNodes.forEach((node, index) => {
 			if(index === activeIndex){
