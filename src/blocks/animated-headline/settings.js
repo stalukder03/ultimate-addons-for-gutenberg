@@ -170,4 +170,4 @@ const Settings = ( props ) => {
 		</div>
 	);
 };
-export default React.memo( Settings );
+export default Settings;
