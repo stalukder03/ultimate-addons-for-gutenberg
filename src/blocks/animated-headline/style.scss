@@ -192,6 +192,28 @@
                     }                    
                 }
             }
+            &--slideDown {
+                display: inline-block;
+                overflow: hidden;
+                vertical-align: top; 
+                -webkit-transition: width 0.5s;
+                -o-transition: width 0.5s;
+                transition: width 0.5s;
+                .uagb-animated-headline-dynamic-text { 
+                    opacity: 0;
+                    top: .2em;
+                    &--active {
+                        top: 0;
+                        opacity: 1;
+                        -webkit-animation: uagb-animated-headline-slide-down-in .6s;
+                        animation: uagb-animated-headline-slide-down-in .6s;
+                    }
+                    &--inactive {
+                        -webkit-animation: uagb-animated-headline-slide-down-out .6s;
+                        animation: uagb-animated-headline-slide-down-out .6s;  
+                    }                    
+                }
+            }
         }
         &__after-text {
             margin-left: 10px;
@@ -484,3 +506,76 @@
         transform: translateX(100%); 
     } 
 }
+
+// Slide Down
+@-webkit-keyframes uagb-animated-headline-slide-down-in {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(-100%);
+        transform: translateY(-100%); 
+    }
+    60% {
+        opacity: 1;
+        -webkit-transform: translateY(20%);
+        transform: translateY(20%); 
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        transform: translateY(0); 
+    } 
+}
+
+@keyframes uagb-animated-headline-slide-down-in {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(-100%);
+        transform: translateY(-100%); 
+    }
+    60% {
+        opacity: 1;
+        -webkit-transform: translateY(20%);
+        transform: translateY(20%); 
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        transform: translateY(0); 
+    } 
+}
+
+@-webkit-keyframes uagb-animated-headline-slide-down-out {
+    0% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        transform: translateY(0); 
+    }
+    60% {
+        opacity: 0;
+        -webkit-transform: translateY(120%);
+        transform: translateY(120%); 
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: translateY(100%);
+        transform: translateY(100%); 
+    } 
+}
+
+@keyframes uagb-animated-headline-slide-down-out {
+    0% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        transform: translateY(0); 
+    }
+    60% {
+        opacity: 0;
+        -webkit-transform: translateY(120%);
+        transform: translateY(120%); 
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: translateY(100%);
+        transform: translateY(100%); 
+    } 
+}  

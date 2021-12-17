@@ -9,7 +9,8 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 			if(
 				this.settings.data.rotatingAnimation === 'dropIn' || 
 				this.settings.data.rotatingAnimation === 'flip'   ||
-				this.settings.data.rotatingAnimation === 'slide'
+				this.settings.data.rotatingAnimation === 'slide'  ||
+				this.settings.data.rotatingAnimation === 'slideDown'  
 			){
 				this.rotatingWordSwitchAnimation();
 			}
