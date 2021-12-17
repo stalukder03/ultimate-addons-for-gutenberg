@@ -8,7 +8,8 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 			this.dispatchRoatingAnimation()
 			if(
 				this.settings.data.rotatingAnimation === 'dropIn' || 
-				this.settings.data.rotatingAnimation === 'flip'
+				this.settings.data.rotatingAnimation === 'flip'   ||
+				this.settings.data.rotatingAnimation === 'slide'
 			){
 				this.rotatingWordSwitchAnimation();
 			}
@@ -212,7 +213,7 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 		} );
 	},
 	_setDynamicWidth(allNodes, activeIndex){
-		jQuery(this.elements.dynamicTextWrapper).animate({width: jQuery(allNodes[activeIndex]).width()})
+		jQuery(this.elements.dynamicTextWrapper).css({width: jQuery(allNodes[activeIndex]).width()})
 	},
 	_resetInlineStyle(){
 		const wrappper = document.querySelector( this.settings.selectors.mainSelector )
