@@ -161,6 +161,22 @@
                     
                 }
             }
+            &--dropIn {
+                -webkit-perspective: 300px;
+                perspective: 300px; 
+                .uagb-animated-headline-dynamic-text { 
+                    opacity: 0; 
+                    &--active {
+                        opacity: 1;
+                        -webkit-animation: uagb-animated-headline-drop-in-in .8s;
+                        animation: uagb-animated-headline-drop-in-in .8s; 
+                    }
+                    &--inactive {
+                        -webkit-animation: uagb-animated-headline-drop-in-out .8s;
+                        animation: uagb-animated-headline-drop-in-out .8s; 
+                    }                    
+                }
+            }
         }
         &__after-text {
             margin-left: 10px;
@@ -327,5 +343,57 @@
     100% {
         -webkit-transform: rotateY(-180deg);
         transform: rotateY(-180deg); 
+    } 
+}
+
+// Drop In
+@-webkit-keyframes uagb-animated-headline-drop-in-in {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateZ(100px);
+        transform: translateZ(100px); 
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0); 
+    } 
+}
+
+@keyframes uagb-animated-headline-drop-in-in {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateZ(100px);
+        transform: translateZ(100px); 
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0); 
+    } 
+}
+// Drop Out
+@-webkit-keyframes uagb-animated-headline-drop-in-out {
+    0% {
+        opacity: 1;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0); 
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: translateZ(-100px);
+        transform: translateZ(-100px); 
+    } 
+}
+
+@keyframes uagb-animated-headline-drop-in-out {
+    0% {
+        opacity: 1;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0); }
+    100% {
+        opacity: 0;
+        -webkit-transform: translateZ(-100px);
+        transform: translateZ(-100px); 
     } 
 }

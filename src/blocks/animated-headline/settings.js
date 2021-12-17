@@ -111,7 +111,7 @@ const Settings = ( props ) => {
 								{ label: __( 'Swirl', 'ultimate-addons-for-gutenberg' ), value: 'swirl' },
 								{ label: __( 'Blinds', 'ultimate-addons-for-gutenberg' ), value: 'blinds' },
 								{ label: __( 'Drop-In', 'ultimate-addons-for-gutenberg' ), value: 'dropIn' },
-								{ label: __( 'Wave', 'ultimate-addons-for-gutenberg' ), value: 'Wave' },
+								{ label: __( 'Wave', 'ultimate-addons-for-gutenberg' ), value: 'wave' },
 								{ label: __( 'Slide', 'ultimate-addons-for-gutenberg' ), value: 'slide' },
 								{ label: __( 'Slide Down', 'ultimate-addons-for-gutenberg' ), value: 'slideDown' },
 							] }

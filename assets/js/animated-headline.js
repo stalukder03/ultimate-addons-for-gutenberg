@@ -6,6 +6,12 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 		this.elements = this.getDefaultElements(mainSelector)
 		if( this.settings.data.animateType === 'rotating' ){
 			this.dispatchRoatingAnimation()
+			if(
+				this.settings.data.rotatingAnimation === 'dropIn' || 
+				this.settings.data.rotatingAnimation === 'flip'
+			){
+				this.rotatingWordSwitchAnimation();
+			}
 		}
 	},
 	getDefaultSettings( mainSelector, data )
@@ -36,6 +42,26 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 			dynamicText
 		}
 	},
+	rotatingWordSwitchAnimation(){
+		let wordSwitchInterval = null;
+		const that = this
+		let wordIndex = 1;
+		that._setDynamicWidth(that.elements.dynamicText, 0)
+		wordSwtich();
+		function wordSwtich() {
+			// enable looping
+			if( that.elements.dynamicText[wordIndex] === undefined ){
+				wordIndex = 0;
+			}
+			clearInterval( wordSwitchInterval )
+			wordSwitchInterval = setTimeout( function () {
+				that._swtichWord(that.elements.dynamicText, wordIndex)
+				that._setDynamicWidth(that.elements.dynamicText, wordIndex)
+				wordIndex++
+				wordSwtich();
+			}, 5000 );
+		}
+	},
 	dispatchRoatingAnimation()
 	{
 		this._resetInlineStyle();
@@ -43,9 +69,6 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 			this.animationTyping();
 		} else if( this.settings.data.rotatingAnimation === 'clip' ) {
 			this.animateClip();
-		}
-		else if( this.settings.data.rotatingAnimation === 'flip' ) {
-			this.animateFlip();
 		}
 		else if( this.settings.data.rotatingAnimation === 'swirl' ) {
 			this.animateSwirl();
@@ -80,7 +103,7 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 		let clipInterval = null;
 		const that = this
 		const selectorClip = this.settings.classes.textRotating + '--clip'
-		let wordIndex = 1;
+		let wordIndex = 0;
 		wordClip();
 		function wordClip() {
 			// enable looping
@@ -92,34 +115,10 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 			clearInterval( clipInterval )
 			clipInterval = setTimeout( function () {
 				jQuery( '.' + selectorClip ).animate( {width:2}, function() {
-					that.elements.dynamicText.forEach( ( item, index ) => {
-						if( wordIndex === index ){
-							that.elements.dynamicText[index].classList.add( `${that.settings.classes.dynamicText}--active` )
-						} else {
-							that.elements.dynamicText[index].classList.remove( `${that.settings.classes.dynamicText}--active` )
-						}
-					} )
+					that._swtichWord(that.elements.dynamicText, wordIndex)
 				} )
 				wordIndex++;
 				wordClip();
-			}, 5000 );
-		}
-	},
-	animateFlip(){
-		let flipInterval = null;
-		const that = this
-		let wordIndex = 1;
-		wordFlip();
-		function wordFlip() {
-			// enable looping
-			if( that.elements.dynamicText[wordIndex] === undefined ){
-				wordIndex = 0;
-			}
-			clearInterval( flipInterval )
-			flipInterval = setTimeout( function () {
-				that._swtichWord(that.elements.dynamicText, wordIndex)
-				wordIndex++
-				wordFlip();
 			}, 5000 );
 		}
 	},
@@ -175,13 +174,17 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 			allNodes[currentShowingIndex - 1].classList.remove( `${this.settings.classes.dynamicText}--active` )
 		}	
 	},
-	_swtichWord( allNodes, index )
+	_swtichWord( allNodes, activeIndex )
 	{
-		const prevIndex = (index === 0 ? allNodes.length : index) - 1;
-		allNodes[index].classList.add( `${this.settings.classes.dynamicText}--active` )
-		allNodes[index].classList.remove( `${this.settings.classes.dynamicText}--inactive` )
-		allNodes[prevIndex].classList.add( `${this.settings.classes.dynamicText}--inactive` )
-		allNodes[prevIndex].classList.remove( `${this.settings.classes.dynamicText}--active` )
+		allNodes.forEach((node, index) => {
+			if(index === activeIndex){
+				allNodes[index].classList.add( `${this.settings.classes.dynamicText}--active` )
+				allNodes[index].classList.remove( `${this.settings.classes.dynamicText}--inactive` )
+			} else {
+				allNodes[index].classList.add( `${this.settings.classes.dynamicText}--inactive` )
+				allNodes[index].classList.remove( `${this.settings.classes.dynamicText}--active` )
+			}
+		});
 	},
 	_insertActiveAnimationIn(allNodes, index){
 		const self = this;
@@ -207,6 +210,9 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 		dynamicLettersNodes.forEach( ( element, index ) => {
 			dynamicLettersNodes[index].classList.remove( this.settings.classes.dynamicLetterAnimationIn )
 		} );
+	},
+	_setDynamicWidth(allNodes, activeIndex){
+		jQuery(this.elements.dynamicTextWrapper).animate({width: jQuery(allNodes[activeIndex]).width()})
 	},
 	_resetInlineStyle(){
 		const wrappper = document.querySelector( this.settings.selectors.mainSelector )
