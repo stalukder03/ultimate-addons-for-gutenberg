@@ -1,10 +1,11 @@
 UAGBAnimatedHeading = { // eslint-disable-line no-undef
 	settings: {},
+	elements: {},
 	init( mainSelector, data = {} ) {
 		this.settings = this.getDefaultSettings( mainSelector, data )
-		const mainWrapper = document.querySelector( mainSelector );
+		this.elements = this.getDefaultElements(mainSelector)
 		if( this.settings.data.animateType === 'rotating' ){
-			this.dispatchRoatingAnimation( mainWrapper )
+			this.dispatchRoatingAnimation()
 		}
 	},
 	getDefaultSettings( mainSelector, data )
@@ -15,6 +16,7 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 				mainSelector,
 			},
 			classes: {
+				texthighlighted: 'uagb-animated-headline__text-highlighted',
 				textRotating: 'uagb-animated-headline__text-rotating',
 				dynamicText: 'uagb-animated-headline-dynamic-text',
 				dynamicLetter: 'uagb-animated-headline-dynamic-letter',
@@ -22,75 +24,79 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 			}
 		}
 	},
-	dispatchRoatingAnimation( mainWrapper )
-	{
-		const rotatingWrapper = mainWrapper.querySelector(
+	getDefaultElements(mainSelector){
+		const headlineWrapper = document.querySelector( mainSelector );
+		const dynamicTextWrapper = headlineWrapper.querySelector(
 			'.' + this.settings.classes.textRotating
 		);
-		if( !rotatingWrapper ){
-			return;
-		}
-		this._resetInlineStyle();
-		if( this.settings.data.rotatingAnimation === 'typing' ){
-			this.animationTyping( rotatingWrapper );
-		} else if( this.settings.data.rotatingAnimation === 'clip' ) {
-			this.animateClip( rotatingWrapper );
-		}
-		else if( this.settings.data.rotatingAnimation === 'flip' ) {
-			this.animateFlip( rotatingWrapper );
-		}
-		else if( this.settings.data.rotatingAnimation === 'swirl' ) {
-			this.animateSwirl( rotatingWrapper );
-		}
-		else if( this.settings.data.rotatingAnimation === 'blinds' ) {
-			this.animateBlinds( rotatingWrapper );
+		const dynamicText = dynamicTextWrapper.querySelectorAll( `.${this.settings.classes.dynamicText}` )
+		return {
+			headlineWrapper,
+			dynamicTextWrapper,
+			dynamicText
 		}
 	},
-	animationTyping( rotatingWrap ) {
+	dispatchRoatingAnimation()
+	{
+		this._resetInlineStyle();
+		if( this.settings.data.rotatingAnimation === 'typing' ){
+			this.animationTyping();
+		} else if( this.settings.data.rotatingAnimation === 'clip' ) {
+			this.animateClip();
+		}
+		else if( this.settings.data.rotatingAnimation === 'flip' ) {
+			this.animateFlip();
+		}
+		else if( this.settings.data.rotatingAnimation === 'swirl' ) {
+			this.animateSwirl();
+		}
+		else if( this.settings.data.rotatingAnimation === 'blinds' ) {
+			this.animateBlinds();
+		}
+	},
+	animationTyping() {
 		const that = this
-		const typingChildItemWrap = rotatingWrap.querySelectorAll( `.${that.settings.classes.dynamicText}` )
 		let typingInterval = null;
 		let wordIndex = 1;
-		that._insertActiveAnimationIn(typingChildItemWrap, 0)
+		that._insertActiveAnimationIn(that.elements.dynamicText, 0)
 		wordTyping();
 		function wordTyping() {
 			// enable looping
-			if( typingChildItemWrap[wordIndex] === undefined ){
+			if( that.elements.dynamicText[wordIndex] === undefined ){
 				wordIndex = 0;
 			}
 			clearInterval( typingInterval )
 			typingInterval = setTimeout( function () {
-				that._swtichWord(typingChildItemWrap, wordIndex)
-				that._insertActiveAnimationIn(typingChildItemWrap, wordIndex)
+				that._swtichWord(that.elements.dynamicText, wordIndex)
+				that._insertActiveAnimationIn(that.elements.dynamicText, wordIndex)
 				// remove previous node animation in class
-				that._removeInActiveAnimationIn(typingChildItemWrap, wordIndex)
+				that._removeInActiveAnimationIn(that.elements.dynamicText, wordIndex)
 				wordIndex++
 				wordTyping();
 			}, 5000 );
 		}
 	},
-	animateClip( rotatingWrap ){
+	animateClip(){
 		let clipInterval = null;
 		const that = this
 		const selectorClip = this.settings.classes.textRotating + '--clip'
-		const clipChildItemWrap = rotatingWrap.querySelectorAll( `.${that.settings.classes.dynamicText}` )
 		let wordIndex = 1;
 		wordClip();
 		function wordClip() {
 			// enable looping
-			if( clipChildItemWrap[wordIndex] === undefined ){
+			if( that.elements.dynamicText[wordIndex] === undefined ){
 				wordIndex = 0;
 			}
 			// get child element maximum width and assign parent inline style
-			jQuery( '.' + selectorClip ).animate( {width: clipChildItemWrap[wordIndex].clientWidth} )
+			jQuery( '.' + selectorClip ).animate( {width: that.elements.dynamicText[wordIndex].clientWidth} )
 			clearInterval( clipInterval )
 			clipInterval = setTimeout( function () {
 				jQuery( '.' + selectorClip ).animate( {width:2}, function() {
-					clipChildItemWrap.forEach( ( item, index ) => {
+					that.elements.dynamicText.forEach( ( item, index ) => {
 						if( wordIndex === index ){
-							clipChildItemWrap[index].classList.add( `${that.settings.classes.dynamicText}--active` )
+							that.elements.dynamicText[index].classList.add( `${that.settings.classes.dynamicText}--active` )
 						} else {
-							clipChildItemWrap[index].classList.remove( `${that.settings.classes.dynamicText}--active` )
+							that.elements.dynamicText[index].classList.remove( `${that.settings.classes.dynamicText}--active` )
 						}
 					} )
 				} )
@@ -99,66 +105,63 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 			}, 5000 );
 		}
 	},
-	animateFlip(rotatingWrap){
+	animateFlip(){
 		let flipInterval = null;
 		const that = this
-		const flipChildItemWrap = rotatingWrap.querySelectorAll( `.${that.settings.classes.dynamicText}` )
 		let wordIndex = 1;
 		wordFlip();
 		function wordFlip() {
 			// enable looping
-			if( flipChildItemWrap[wordIndex] === undefined ){
+			if( that.elements.dynamicText[wordIndex] === undefined ){
 				wordIndex = 0;
 			}
 			clearInterval( flipInterval )
 			flipInterval = setTimeout( function () {
-				that._swtichWord(flipChildItemWrap, wordIndex)
+				that._swtichWord(that.elements.dynamicText, wordIndex)
 				wordIndex++
 				wordFlip();
 			}, 5000 );
 		}
 	},
-	animateSwirl(rotatingWrap){
+	animateSwirl(){
 		const that = this
-		const flipChildItemWrap = rotatingWrap.querySelectorAll( `.${that.settings.classes.dynamicText}` )
 		let flipInterval = null;
 		let wordIndex = 1;
-		that._insertActiveAnimationIn(flipChildItemWrap, 0)
+		that._insertActiveAnimationIn(that.elements.dynamicText, 0)
 		wordSwirl();
 		function wordSwirl() {
 			// enable looping
-			if( flipChildItemWrap[wordIndex] === undefined ){
+			if( that.elements.dynamicText[wordIndex] === undefined ){
 				wordIndex = 0;
 			}
 			clearInterval( flipInterval )
 			flipInterval = setTimeout( function () {
-				that._swtichWord(flipChildItemWrap, wordIndex)
-				that._insertActiveAnimationIn(flipChildItemWrap, wordIndex)
+				that._swtichWord(that.elements.dynamicText, wordIndex)
+				that._insertActiveAnimationIn(that.elements.dynamicText, wordIndex)
 				// remove previous node animation in class
-				that._removeInActiveAnimationIn(flipChildItemWrap, wordIndex)
+				that._removeInActiveAnimationIn(that.elements.dynamicText, wordIndex)
 				wordIndex++
 				wordSwirl();
 			}, 5000 );
 		}
 	},
-	animateBlinds(rotatingWrap){
+	animateBlinds(){
 		const that = this
-		const blindChildItemWrap = rotatingWrap.querySelectorAll( `.${that.settings.classes.dynamicText}` )
 		let flipInterval = null;
 		let wordIndex = 1;
-		that._insertActiveAnimationIn(blindChildItemWrap, 0)
+		that._insertActiveAnimationIn(that.elements.dynamicText, 0)
 		wordSwirl();
 		function wordSwirl() {
 			// enable looping
-			if( blindChildItemWrap[wordIndex] === undefined ){
+			if( that.elements.dynamicText[wordIndex] === undefined ){
 				wordIndex = 0;
 			}
 			clearInterval( flipInterval )
 			flipInterval = setTimeout( function () {
-				that._swtichWord(blindChildItemWrap, wordIndex)
-				that._insertActiveAnimationIn(blindChildItemWrap, wordIndex)
+				that._swtichWord(that.elements.dynamicText, wordIndex)
+				that._insertActiveAnimationIn(that.elements.dynamicText, wordIndex)
 				// remove previous node animation in class
-				that._removeInActiveAnimationIn(blindChildItemWrap, wordIndex)
+				that._removeInActiveAnimationIn(that.elements.dynamicText, wordIndex)
 				wordIndex++
 				wordSwirl();
 			}, 5000 );
