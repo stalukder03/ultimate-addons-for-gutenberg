@@ -17,7 +17,7 @@ function generateBackgroundCSS (backgroundAttributes) {
 
         if ( 'color' === backgroundType ) {
 
-            if ( '' !== backgroundImage && '' !== backgroundColor && undefined !== backgroundColor && 'unset' !== backgroundColor ) {
+            if ( backgroundImage && '' !== backgroundImage && '' !== backgroundColor && undefined !== backgroundColor && 'unset' !== backgroundColor ) {
                 bgCSS['background-image'] = 'linear-gradient(to right, ' + backgroundColor + ', ' + backgroundColor + '), url(' + backgroundImage.url + ');';
             }  else if ( undefined === backgroundImage || '' === backgroundImage || 'unset' === backgroundImage ) {
                 bgCSS['background-color'] = backgroundColor;

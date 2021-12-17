@@ -4,6 +4,7 @@
 
 import generateCSS from '@Controls/generateCSS';
 import generateCSSUnit from '@Controls/generateCSSUnit';
+import generateBackgroundCSS from '@Controls/generateBackgroundCSS';
 
 function styling( props ) {
 	const {
@@ -15,15 +16,76 @@ function styling( props ) {
 		minHeightTablet,
 		minHeightMobile,
 		minHeightType,
+		backgroundType,
+		backgroundImage,
+		backgroundColor,
+		backgroundPosition,
+		backgroundAttachment,
+		backgroundRepeat,
+		backgroundSize,
+		gradientValue,
+		borderStyle,
+		borderWidth,
+		borderRadius,
+		borderColor,
+		borderHoverColor,
+		boxShadowColor,
+		boxShadowHOffset,
+		boxShadowVOffset,
+		boxShadowBlur,
+		boxShadowSpread,
+		boxShadowPosition,
 	} = props.attributes;
 
+	let backgroundAttributes = {
+        backgroundType,
+        backgroundImage,
+        backgroundColor,
+        gradientValue,
+        backgroundRepeat,
+        backgroundPosition,
+        backgroundSize,
+        backgroundAttachment,
+    };
+
+	let containerBackgroundCSS = generateBackgroundCSS(backgroundAttributes);
+
+	let boxShadowPositionCSS = boxShadowPosition;
+
+	if ( 'outset' === boxShadowPosition ) {
+		boxShadowPositionCSS = '';
+	}
 	
-	const selectors = {
-		'.block-editor-block-list__block' : {
-			'width' : generateCSSUnit( widthDesktop, widthType ),
-			'min-height' : generateCSSUnit( minHeightDesktop, minHeightType ),
-		},
+	let containerCSS = {
+		...containerBackgroundCSS,
+		'width' : generateCSSUnit( widthDesktop, widthType ),
+		'min-height' : generateCSSUnit( minHeightDesktop, minHeightType ),
+		'border-style': borderStyle,
+		'border-color': borderColor,
+		'border-radius': generateCSSUnit( borderRadius, 'px' ),
+		'border-width': generateCSSUnit( borderWidth, 'px' ),
+		'box-shadow':
+				generateCSSUnit( boxShadowHOffset, 'px' ) +
+				' ' +
+				generateCSSUnit( boxShadowVOffset, 'px' ) +
+				' ' +
+				generateCSSUnit( boxShadowBlur, 'px' ) +
+				' ' +
+				generateCSSUnit( boxShadowSpread, 'px' ) +
+				' ' +
+				boxShadowColor +
+				' ' +
+				boxShadowPositionCSS,
+	}
+
+	let selectors = {
+		'.block-editor-block-list__block' : containerCSS,	
 	};
+	
+	selectors['.block-editor-block-list__block:hover'] = {
+		'border-color': borderHoverColor,
+	};
+
 	const tablet_selectors = {
 		'.block-editor-block-list__block' : {
 			'width' : generateCSSUnit( widthTablet, widthType ),
