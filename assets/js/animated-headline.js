@@ -1,11 +1,11 @@
 UAGBAnimatedHeading = { // eslint-disable-line no-undef
 	settings: {},
 	elements: {},
+	interval: [],
 	init( mainSelector, data = {} ) {
 		this.settings = this.getDefaultSettings( mainSelector, data )
 		this.elements = this.getDefaultElements(mainSelector)
 		if( this.elements.dynamicTextWrapper && this.settings.data.animateType === 'rotating' ){
-			this._resetInlineStyle();
 			if(
 				this.settings.data.rotatingAnimation === 'dropIn' || 
 				this.settings.data.rotatingAnimation === 'flip'   ||
@@ -50,8 +50,9 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 		}
 	},
 	rotatingWordSwitch(){
-		let wordSwitchInterval = null;
 		const that = this
+		that._resetClearInterval();
+		that._resetInlineStyle();
 		let wordIndex = 1;
 		that._setDynamicWidth(that.elements.dynamicText, 0)
 		wordSwtich();
@@ -60,18 +61,18 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 			if( that.elements.dynamicText[wordIndex] === undefined ){
 				wordIndex = 0;
 			}
-			clearInterval( wordSwitchInterval )
-			wordSwitchInterval = setTimeout( function () {
+			that.interval.push(setTimeout( function () {
 				that._switchWord(that.elements.dynamicText, wordIndex)
 				that._setDynamicWidth(that.elements.dynamicText, wordIndex)
 				wordIndex++
 				wordSwtich();
-			}, 5000 );
+			}, 5000 ));
 		}
 	},
 	rotatingWordSwitchWithLetterInsert (){
-		let wordLetterSwitchInterval = null;
 		const that = this
+		that._resetClearInterval();
+		that._resetInlineStyle();
 		let wordIndex = 1;
 		that._insertActiveAnimationIn(that.elements.dynamicText, 0)
 		wordLetterSwtich();
@@ -80,21 +81,21 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 			if( that.elements.dynamicText[wordIndex] === undefined ){
 				wordIndex = 0;
 			}
-			clearInterval( wordLetterSwitchInterval )
-			wordLetterSwitchInterval = setTimeout( function () {
+			that.interval.push(setTimeout( function () {
 				that._switchWord(that.elements.dynamicText, wordIndex)
 				that._insertActiveAnimationIn(that.elements.dynamicText, wordIndex)
 				// remove previous node animation in class
 				that._removeInActiveAnimationIn(that.elements.dynamicText, wordIndex)
 				wordIndex++
 				wordLetterSwtich();
-			}, 5000 );
+			}, 5000 ));
 		}
 	},
 	
 	animateClip(){
-		let clipInterval = null;
 		const that = this
+		that._resetClearInterval();
+		that._resetInlineStyle();
 		const selectorClip = this.settings.classes.textRotating + '--clip'
 		let wordIndex = 0;
 		wordClip();
@@ -105,14 +106,14 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 			}
 			// get child element maximum width and assign parent inline style
 			jQuery( '.' + selectorClip ).animate( {width: that.elements.dynamicText[wordIndex].clientWidth} )
-			clearInterval( clipInterval )
-			clipInterval = setTimeout( function () {
+		
+			that.interval.push(setTimeout( function () {
 				jQuery( '.' + selectorClip ).animate( {width:2}, function() {
 					that._switchWord(that.elements.dynamicText, wordIndex)
 				} )
 				wordIndex++;
 				wordClip();
-			}, 5000 );
+			}, 5000 ));
 		}
 	},
 
@@ -139,18 +140,16 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 	_insertActiveAnimationIn(allNodes, index){
 		const self = this;
 		const dynamicLetters = allNodes[index].querySelectorAll( `.${self.settings.classes.dynamicLetter}` )
-		let showingLetterInterval = null;
 		let letterCount = 0;
 		showingLetter();
 		function showingLetter(){
-			clearInterval( showingLetterInterval )
-			showingLetterInterval = setTimeout( () => {
+			self.interval.push(setTimeout( () => {
 				if( dynamicLetters[letterCount] !== undefined ){
 					dynamicLetters[letterCount].classList.add( self.settings.classes.dynamicLetterAnimationIn )
 					showingLetter();
 				}
 				letterCount++
-			}, 150 );
+			}, 150 ));
 		}
 	},
 	_removeInActiveAnimationIn( allNodes, index )
@@ -167,5 +166,9 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 	_resetInlineStyle(){
 		const wrappper = document.querySelector( this.settings.selectors.mainSelector )
 		wrappper.querySelector( '.' + this.settings.classes.textRotating ).removeAttribute( 'style' )
+	},
+	_resetClearInterval(runner){
+		this.interval.map(item => clearInterval(item))
+		this.interval = []
 	}
 };
