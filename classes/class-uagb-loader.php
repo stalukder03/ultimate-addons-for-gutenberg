@@ -170,6 +170,8 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 			require_once UAGB_DIR . 'admin-core/admin-loader.php';
 
 			add_filter( 'rest_pre_dispatch', array( $this, 'rest_pre_dispatch' ), 10, 3 );
+
+			do_action('uagb_core_loaded');
 		}
 
 		/**
