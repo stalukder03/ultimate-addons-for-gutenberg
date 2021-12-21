@@ -125,6 +125,7 @@ final class UAGB_Scripts_Utils {
 				array(),
 				UAGB_VER
 			);
+			do_action('uag_enqueue_blocks_styles_after');
 		}
 	}
 
