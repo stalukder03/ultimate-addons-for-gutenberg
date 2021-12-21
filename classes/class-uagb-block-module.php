@@ -136,6 +136,20 @@ class UAGB_Block_Module {
 	}
 
 	/**
+	 * get block module dir path
+	 * @since 2.0.0
+	 * @return string
+	 */
+	public static function get_block_module_dir_path($path)
+	{
+		if(file_exists(UAGB_DIR . 'includes/blocks/' . $path)){
+			return UAGB_DIR . 'includes/blocks/' . $path;
+		}
+		
+		return apply_filters('uagb_block_module_dir_path', $path);
+	}
+
+	/**
 	 * Get frontend css.
 	 *
 	 * @since 2.0.0
@@ -154,8 +168,8 @@ class UAGB_Block_Module {
 
 		if ( isset( $blocks[ $slug ] ) ) {
 
-			$block_dir = UAGB_DIR . 'includes/blocks/' . $blocks[ $slug ]['dir'];
-
+			$block_dir =  self::get_block_module_dir_path($blocks[ $slug ]['dir']);
+			
 			$css_file = $block_dir . '/frontend.css.php';
 
 			if ( file_exists( $css_file ) ) {
@@ -196,7 +210,7 @@ class UAGB_Block_Module {
 
 		if ( isset( $blocks[ $slug ] ) ) {
 
-			$block_dir = UAGB_DIR . 'includes/blocks/' . $blocks[ $slug ]['dir'];
+			$block_dir =  self::get_block_module_dir_path($blocks[ $slug ]['dir']);
 
 			$js_file = $block_dir . '/frontend.js.php';
 
