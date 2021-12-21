@@ -67,12 +67,45 @@ const Settings = ( props ) => {
 		boxShadowBlur,
 		boxShadowSpread,
 		boxShadowPosition,
+
+		topPaddingDesktop,
+		bottomPaddingDesktop,
+		leftPaddingDesktop,
+		rightPaddingDesktop,
+		topPaddingTablet,
+		bottomPaddingTablet,
+		leftPaddingTablet,
+		rightPaddingTablet,
+		topPaddingMobile,
+		bottomPaddingMobile,
+		leftPaddingMobile,
+		rightPaddingMobile,
+		paddingType,
+		paddingLink,
+		topMarginDesktop,
+		bottomMarginDesktop,
+		leftMarginDesktop,
+		rightMarginDesktop,
+		topMarginTablet,
+		bottomMarginTablet,
+		leftMarginTablet,
+		rightMarginTablet,
+		topMarginMobile,
+		bottomMarginMobile,
+		leftMarginMobile,
+		rightMarginMobile,
+		marginType,
+		marginLink,
 	} = attributes;
 
 	const generalSettings = () => {
 
 		const directionOptions = {
 			desktop: [
+				{
+					value: '',
+					label: __( 'Default', 'ultimate-addons-for-gutenberg' ),
+				},
 				{
 					value: 'row',
 					label: __( 'Row', 'ultimate-addons-for-gutenberg' ),
@@ -95,7 +128,11 @@ const Settings = ( props ) => {
 		const alignItemsOptions = {
 			desktop: [
 				{
-					value: 'flex-start',
+					value: '',
+					label: __( 'Default', 'ultimate-addons-for-gutenberg' ),
+				},
+				{
+					value: '',
 					label: __( 'Left', 'ultimate-addons-for-gutenberg' ),
 				},
 				{
@@ -115,6 +152,10 @@ const Settings = ( props ) => {
 
 		const justifyContentOptions = {
 			desktop: [
+				{
+					value: '',
+					label: __( 'Default', 'ultimate-addons-for-gutenberg' ),
+				},
 				{
 					value: 'flex-start',
 					label: __( 'Left', 'ultimate-addons-for-gutenberg' ),
@@ -145,6 +186,10 @@ const Settings = ( props ) => {
 		const wrapOptions = {
 			desktop: [
 				{
+					value: '',
+					label: __( 'Default', 'ultimate-addons-for-gutenberg' ),
+				},
+				{
 					value: 'wrap',
 					label: __( 'Wrap', 'ultimate-addons-for-gutenberg' ),
 				},
@@ -164,7 +209,7 @@ const Settings = ( props ) => {
 				title={ __( 'Container', 'ultimate-addons-for-gutenberg' ) }
 			>
 				<ResponsiveSlider
-					label={ __( 'Width', 'ultimate-addons-for-gutenberg' ) }
+					label={ __( 'Width', 'ultimate	-addons-for-gutenberg' ) }
 					data={ {
 						desktop: {
 							value: widthDesktop,
@@ -467,6 +512,130 @@ const Settings = ( props ) => {
 							'Position',
 							'ultimate-addons-for-gutenberg'
 						),
+					} }
+				/>
+				<SpacingControl
+					{ ...props }
+					label={ __( 'Padding', 'ultimate-addons-for-gutenberg' ) }
+					valueTop={ {
+						value: topPaddingDesktop,
+						label: 'topPaddingDesktop',
+					} }
+					valueRight={ {
+						value: rightPaddingDesktop,
+						label: 'rightPaddingDesktop',
+					} }
+					valueBottom={ {
+						value: bottomPaddingDesktop,
+						label: 'bottomPaddingDesktop',
+					} }
+					valueLeft={ {
+						value: leftPaddingDesktop,
+						label: 'leftPaddingDesktop',
+					} }
+					valueTopTablet={ {
+						value: topPaddingTablet,
+						label: 'topPaddingTablet',
+					} }
+					valueRightTablet={ {
+						value: rightPaddingTablet,
+						label: 'rightPaddingTablet',
+					} }
+					valueBottomTablet={ {
+						value: bottomPaddingTablet,
+						label: 'bottomPaddingTablet',
+					} }
+					valueLeftTablet={ {
+						value: leftPaddingTablet,
+						label: 'leftPaddingTablet',
+					} }
+					valueTopMobile={ {
+						value: topPaddingMobile,
+						label: 'topPaddingMobile',
+					} }
+					valueRightMobile={ {
+						value: rightPaddingMobile,
+						label: 'rightPaddingMobile',
+					} }
+					valueBottomMobile={ {
+						value: bottomPaddingMobile,
+						label: 'bottomPaddingMobile',
+					} }
+					valueLeftMobile={ {
+						value: leftPaddingMobile,
+						label: 'leftPaddingMobile',
+					} }
+					unit={ {
+						value: paddingType,
+						label: 'paddingType',
+					} }
+					attributes={ attributes }
+					setAttributes={ setAttributes }
+					link={ {
+						value: paddingLink,
+						label: 'paddingLink',
+					} }
+				/>
+				<SpacingControl
+					{ ...props }
+					label={ __( 'Margin', 'ultimate-addons-for-gutenberg' ) }
+					valueTop={ {
+						value: topMarginDesktop,
+						label: 'topMarginDesktop',
+					} }
+					valueRight={ {
+						value: rightMarginDesktop,
+						label: 'rightMarginDesktop',
+					} }
+					valueBottom={ {
+						value: bottomMarginDesktop,
+						label: 'bottomMarginDesktop',
+					} }
+					valueLeft={ {
+						value: leftMarginDesktop,
+						label: 'leftMarginDesktop',
+					} }
+					valueTopTablet={ {
+						value: topMarginTablet,
+						label: 'topMarginTablet',
+					} }
+					valueRightTablet={ {
+						value: rightMarginTablet,
+						label: 'rightMarginTablet',
+					} }
+					valueBottomTablet={ {
+						value: bottomMarginTablet,
+						label: 'bottomMarginTablet',
+					} }
+					valueLeftTablet={ {
+						value: leftMarginTablet,
+						label: 'leftMarginTablet',
+					} }
+					valueTopMobile={ {
+						value: topMarginMobile,
+						label: 'topMarginMobile',
+					} }
+					valueRightMobile={ {
+						value: rightMarginMobile,
+						label: 'rightMarginMobile',
+					} }
+					valueBottomMobile={ {
+						value: bottomMarginMobile,
+						label: 'bottomMarginMobile',
+					} }
+					valueLeftMobile={ {
+						value: leftMarginMobile,
+						label: 'leftMarginMobile',
+					} }
+					unit={ {
+						value: marginType,
+						label: 'marginType',
+					} }
+					attributes={ attributes }
+					setAttributes={ setAttributes }
+					link={ {
+						value: marginLink,
+						label: 'marginLink',
 					} }
 				/>
 			</UAGAdvancedPanelBody>

@@ -33,63 +33,63 @@ const attributes = {
 	},
 	directionDesktop: {
 		type: 'string',
-		default: 'column',
+		default: '',
 	},
 	directionTablet: {
 		type: 'string',
-		default: 'column',
+		default: '',
 	},
 	directionMobile: {
 		type: 'string',
-		default: 'column',
+		default: '',
 	},
 	alignItemsDesktop: {
 		type: 'string',
-		default: 'flex-start',
+		default: '',
 	},
 	alignItemsTablet: {
 		type: 'string',
-		default: 'flex-start',
+		default: '',
 	},
 	alignItemsMobile: {
 		type: 'string',
-		default: 'flex-start',
+		default: '',
 	},
 	justifyContentDesktop: {
 		type: 'string',
-		default: 'flex-start',
+		default: '',
 	},
 	justifyContentTablet: {
 		type: 'string',
-		default: 'flex-start',
+		default: '',
 	},
 	justifyContentMobile: {
 		type: 'string',
-		default: 'flex-start',
+		default: '',
 	},
 	wrapDesktop: {
 		type: 'string',
-		default: 'nowrap',
+		default: '',
 	},
 	wrapTablet: {
 		type: 'string',
-		default: 'nowrap',
+		default: '',
 	},
 	wrapMobile: {
 		type: 'string',
-		default: 'nowrap',
+		default: '',
 	},
 	alignContentDesktop: {
 		type: 'string',
-		default: 'flex-start',
+		default: '',
 	},
 	alignContentTablet: {
 		type: 'string',
-		default: 'flex-start',
+		default: '',
 	},
 	alignContentMobile: {
 		type: 'string',
-		default: 'flex-start',
+		default: '',
 	},
 
 	backgroundType: {
@@ -165,6 +165,100 @@ const attributes = {
 	boxShadowPosition: {
 		type: 'string',
 		default: 'outset',
+	},
+
+	topPaddingDesktop: {
+		type: 'number',
+		default: 20,
+	},
+	bottomPaddingDesktop: {
+		type: 'number',
+		default: 20,
+	},
+	leftPaddingDesktop: {
+		type: 'number',
+		default: 20,
+	},
+	rightPaddingDesktop: {
+		type: 'number',
+		default: 20,
+	},
+	topPaddingTablet: {
+		type: 'number',
+	},
+	bottomPaddingTablet: {
+		type: 'number',
+	},
+	leftPaddingTablet: {
+		type: 'number',
+	},
+	rightPaddingTablet: {
+		type: 'number',
+	},
+	topPaddingMobile: {
+		type: 'number',
+	},
+	bottomPaddingMobile: {
+		type: 'number',
+	},
+	leftPaddingMobile: {
+		type: 'number',
+	},
+	rightPaddingMobile: {
+		type: 'number',
+	},
+	paddingType: {
+		type: 'string',
+		default: 'px',
+	},
+	paddingLink: {
+		type: 'boolean',
+		default: false,
+	},
+
+	topMarginDesktop: {
+		type: 'number',
+	},
+	bottomMarginDesktop: {
+		type: 'number',
+	},
+	leftMarginDesktop: {
+		type: 'number',
+	},
+	rightMarginDesktop: {
+		type: 'number',
+	},
+	topMarginTablet: {
+		type: 'number',
+	},
+	bottomMarginTablet: {
+		type: 'number',
+	},
+	leftMarginTablet: {
+		type: 'number',
+	},
+	rightMarginTablet: {
+		type: 'number',
+	},
+	topMarginMobile: {
+		type: 'number',
+	},
+	bottomMarginMobile: {
+		type: 'number',
+	},
+	leftMarginMobile: {
+		type: 'number',
+	},
+	rightMarginMobile: {
+		type: 'number',
+	},
+	marginType: {
+		type: 'string',
+		default: 'px',
+	},
+	marginLink: {
+		type: 'boolean',
+		default: false,
 	},
 };
 

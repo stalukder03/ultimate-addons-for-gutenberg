@@ -754,15 +754,14 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 
 			$gen_bg_css = array();
 
-			$bg_type  = isset( $bg_obj['backgroundType'] ) ? $bg_obj['backgroundType'] : '';
-			$bg_img   = isset( $bg_obj['backgroundImage'] ) ? $bg_obj['backgroundImage'] : '';
-			$bg_color = isset( $bg_obj['backgroundColor'] ) ? $bg_obj['backgroundColor'] : '';
+			$bg_type        = isset( $bg_obj['backgroundType'] ) ? $bg_obj['backgroundType'] : '';
+			$bg_img         = isset( $bg_obj['backgroundImage'] ) ? $bg_obj['backgroundImage'] : '';
+			$bg_color       = isset( $bg_obj['backgroundColor'] ) ? $bg_obj['backgroundColor'] : '';
 			$gradient_value = isset( $bg_obj['gradientValue'] ) ? $bg_obj['gradientValue'] : '';
-			$repeat = isset( $bg_obj['backgroundRepeat'] ) ? $bg_obj['backgroundRepeat'] : '';
-			$position = isset( $bg_obj['backgroundPosition'] ) ? $bg_obj['backgroundPosition'] : '';
-			$size = isset( $bg_obj['backgroundSize'] ) ? $bg_obj['backgroundSize'] : '';
-			$attachment = isset( $bg_obj['backgroundAttachment'] ) ? $bg_obj['backgroundAttachment'] : '';
-
+			$repeat         = isset( $bg_obj['backgroundRepeat'] ) ? $bg_obj['backgroundRepeat'] : '';
+			$position       = isset( $bg_obj['backgroundPosition'] ) ? $bg_obj['backgroundPosition'] : '';
+			$size           = isset( $bg_obj['backgroundSize'] ) ? $bg_obj['backgroundSize'] : '';
+			$attachment     = isset( $bg_obj['backgroundAttachment'] ) ? $bg_obj['backgroundAttachment'] : '';
 
 			if ( '' !== $bg_type ) {
 				switch ( $bg_type ) {
