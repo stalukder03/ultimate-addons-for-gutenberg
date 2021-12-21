@@ -189,7 +189,7 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 		 * @since 1.13.4
 		 */
 		public static function create_specific_stylesheet() {
-
+			
 			$saved_blocks         = self::get_admin_settings_option( '_uagb_blocks' );
 			$combined             = array();
 			$is_already_post      = false;
@@ -289,7 +289,7 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 
 			foreach ( $combined as $key => $c_block ) {
 
-				$style_file = UAGB_DIR . 'assets/css/blocks/' . $c_block . '.css';
+				$style_file = UAGB_Helper::get_block_static_css_file_path($c_block);
 
 				if ( file_exists( $style_file ) ) {
 					$style .= $wp_filesystem->get_contents( $style_file );

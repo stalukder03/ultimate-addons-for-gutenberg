@@ -1323,6 +1323,24 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 
 			return empty( $excerpt ) ? '' : $excerpt;
 		}
+
+		/**
+		 * get Static css file path
+		 * 
+		 * @param string block_name
+		 * 
+		 * @return string
+		 * 
+		 * @since 2.0.0
+		 */
+		public static function get_block_static_css_file_path($block_name)
+		{
+			if(file_exists(UAGB_DIR . 'assets/css/blocks/' . $block_name . '.css')){
+				return UAGB_DIR . 'assets/css/blocks/' . $block_name . '.css';
+			}
+			
+			return apply_filters('uagb_block_static_css_file_path', $block_name);
+		}
 	}
 
 	/**
