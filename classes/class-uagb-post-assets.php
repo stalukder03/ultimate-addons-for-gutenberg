@@ -1084,6 +1084,21 @@ class UAGB_Post_Assets {
 	}
 
 	/**
+	 * get Static css file path
+	 * 
+	 * @return string
+	 * @since 2.0.0
+	 */
+	public static function get_block_static_css_file_path($block_name)
+	{
+		if(file_exists(UAGB_DIR . 'assets/css/blocks/' . $block_name . '.css')){
+			return UAGB_DIR . 'assets/css/blocks/' . $block_name . '.css';
+		}
+		
+		return apply_filters('uagb_block_static_css_file_path', $block_name);
+	}
+
+	/**
 	 * Get Static CSS of Block.
 	 *
 	 * @param string $block_name Block Name.
@@ -1095,7 +1110,7 @@ class UAGB_Post_Assets {
 
 		$css = '';
 
-		$block_static_css_path = UAGB_DIR . 'assets/css/blocks/' . $block_name . '.css';
+		$block_static_css_path = self::get_block_static_css_file_path($block_name);
 
 		if ( file_exists( $block_static_css_path ) ) {
 
