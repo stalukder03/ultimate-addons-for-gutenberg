@@ -65,7 +65,7 @@ return array(
 	'bottomPaddingMobile'   => '',
 	'leftPaddingMobile'     => '',
 	'rightPaddingMobile'    => '',
-	'paddingType'           => '',
+	'paddingType'           => 'px',
 	'paddingLink'           => '',
 	'topMarginDesktop'      => '',
 	'bottomMarginDesktop'   => '',
@@ -79,6 +79,6 @@ return array(
 	'bottomMarginMobile'    => '',
 	'leftMarginMobile'      => '',
 	'rightMarginMobile'     => '',
-	'marginType'            => '',
+	'marginType'            => 'px',
 	'marginLink'            => '',
 );

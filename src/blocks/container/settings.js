@@ -569,6 +569,14 @@ const Settings = ( props ) => {
 						value: paddingType,
 						label: 'paddingType',
 					} }
+					mUnit={ {
+						value: paddingType,
+						label: 'paddingType',
+					} }
+					tUnit={ {
+						value: paddingType,
+						label: 'paddingType',
+					} }
 					attributes={ attributes }
 					setAttributes={ setAttributes }
 					link={ {
@@ -628,6 +636,14 @@ const Settings = ( props ) => {
 						label: 'leftMarginMobile',
 					} }
 					unit={ {
+						value: marginType,
+						label: 'marginType',
+					} }
+					mUnit={ {
+						value: marginType,
+						label: 'marginType',
+					} }
+					tUnit={ {
 						value: marginType,
 						label: 'marginType',
 					} }
