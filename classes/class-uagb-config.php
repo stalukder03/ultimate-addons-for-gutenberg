@@ -65,7 +65,7 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 					}
 				}
 			}
-			return self::$block_attributes;
+			return apply_filters('uagb_blocks_attributes_config', self::$block_attributes);
 		}
 
 		/**
