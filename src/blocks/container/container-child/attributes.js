@@ -105,5 +105,99 @@ const attributes = {
 		type: 'string',
 		default: 'outset',
 	},
+
+	topPaddingDesktop: {
+		type: 'number',
+		default: 20,
+	},
+	bottomPaddingDesktop: {
+		type: 'number',
+		default: 20,
+	},
+	leftPaddingDesktop: {
+		type: 'number',
+		default: 20,
+	},
+	rightPaddingDesktop: {
+		type: 'number',
+		default: 20,
+	},
+	topPaddingTablet: {
+		type: 'number',
+	},
+	bottomPaddingTablet: {
+		type: 'number',
+	},
+	leftPaddingTablet: {
+		type: 'number',
+	},
+	rightPaddingTablet: {
+		type: 'number',
+	},
+	topPaddingMobile: {
+		type: 'number',
+	},
+	bottomPaddingMobile: {
+		type: 'number',
+	},
+	leftPaddingMobile: {
+		type: 'number',
+	},
+	rightPaddingMobile: {
+		type: 'number',
+	},
+	paddingType: {
+		type: 'string',
+		default: 'px',
+	},
+	paddingLink: {
+		type: 'boolean',
+		default: false,
+	},
+
+	topMarginDesktop: {
+		type: 'number',
+	},
+	bottomMarginDesktop: {
+		type: 'number',
+	},
+	leftMarginDesktop: {
+		type: 'number',
+	},
+	rightMarginDesktop: {
+		type: 'number',
+	},
+	topMarginTablet: {
+		type: 'number',
+	},
+	bottomMarginTablet: {
+		type: 'number',
+	},
+	leftMarginTablet: {
+		type: 'number',
+	},
+	rightMarginTablet: {
+		type: 'number',
+	},
+	topMarginMobile: {
+		type: 'number',
+	},
+	bottomMarginMobile: {
+		type: 'number',
+	},
+	leftMarginMobile: {
+		type: 'number',
+	},
+	rightMarginMobile: {
+		type: 'number',
+	},
+	marginType: {
+		type: 'string',
+		default: 'px',
+	},
+	marginLink: {
+		type: 'boolean',
+		default: false,
+	},
 };
 export default attributes;

@@ -35,6 +35,32 @@ function styling( props ) {
 		boxShadowBlur,
 		boxShadowSpread,
 		boxShadowPosition,
+		topPaddingDesktop,
+		bottomPaddingDesktop,
+		leftPaddingDesktop,
+		rightPaddingDesktop,
+		topPaddingTablet,
+		bottomPaddingTablet,
+		leftPaddingTablet,
+		rightPaddingTablet,
+		topPaddingMobile,
+		bottomPaddingMobile,
+		leftPaddingMobile,
+		rightPaddingMobile,
+		paddingType,
+		topMarginDesktop,
+		bottomMarginDesktop,
+		leftMarginDesktop,
+		rightMarginDesktop,
+		topMarginTablet,
+		bottomMarginTablet,
+		leftMarginTablet,
+		rightMarginTablet,
+		topMarginMobile,
+		bottomMarginMobile,
+		leftMarginMobile,
+		rightMarginMobile,
+		marginType,
 	} = props.attributes;
 
 	let backgroundAttributes = {
@@ -76,6 +102,14 @@ function styling( props ) {
 				boxShadowColor +
 				' ' +
 				boxShadowPositionCSS,
+		'padding-top': generateCSSUnit( topPaddingDesktop, paddingType ),
+		'padding-bottom': generateCSSUnit( bottomPaddingDesktop, paddingType ),
+		'padding-left': generateCSSUnit( leftPaddingDesktop, paddingType ),
+		'padding-right': generateCSSUnit( rightPaddingDesktop, paddingType ),
+		'margin-top': generateCSSUnit( topMarginDesktop, marginType ),
+		'margin-bottom': generateCSSUnit( bottomMarginDesktop, marginType ),
+		'margin-left': generateCSSUnit( leftMarginDesktop, marginType ),
+		'margin-right': generateCSSUnit( rightMarginDesktop, marginType ),
 	}
 
 	let selectors = {
@@ -90,12 +124,28 @@ function styling( props ) {
 		'.block-editor-block-list__block' : {
 			'width' : generateCSSUnit( widthTablet, widthType ),
 			'min-height' : generateCSSUnit( minHeightTablet, minHeightType ),
+			'padding-top': generateCSSUnit( topPaddingTablet, paddingType ),
+			'padding-bottom': generateCSSUnit( bottomPaddingTablet, paddingType ),
+			'padding-left': generateCSSUnit( leftPaddingTablet, paddingType ),
+			'padding-right': generateCSSUnit( rightPaddingTablet, paddingType ),
+			'margin-top': generateCSSUnit( topMarginTablet, marginType ),
+			'margin-bottom': generateCSSUnit( bottomMarginTablet, marginType ),
+			'margin-left': generateCSSUnit( leftMarginTablet, marginType ),
+			'margin-right': generateCSSUnit( rightMarginTablet, marginType ),
 		},
 	};
 	const mobile_selectors = {
 		'.block-editor-block-list__block' : {
 			'width' : generateCSSUnit( widthMobile, widthType ),
 			'min-height' : generateCSSUnit( minHeightMobile, minHeightType ),
+			'padding-top': generateCSSUnit( topPaddingMobile, paddingType ),
+			'padding-bottom': generateCSSUnit( bottomPaddingMobile, paddingType ),
+			'padding-left': generateCSSUnit( leftPaddingMobile, paddingType ),
+			'padding-right': generateCSSUnit( rightPaddingMobile, paddingType ),
+			'margin-top': generateCSSUnit( topMarginMobile, marginType ),
+			'margin-bottom': generateCSSUnit( bottomMarginMobile, marginType ),
+			'margin-left': generateCSSUnit( leftMarginMobile, marginType ),
+			'margin-right': generateCSSUnit( rightMarginMobile, marginType ),
 		},
 	};
 

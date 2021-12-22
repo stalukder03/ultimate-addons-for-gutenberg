@@ -46,6 +46,34 @@ const Settings = ( props ) => {
 		boxShadowBlur,
 		boxShadowSpread,
 		boxShadowPosition,
+		topPaddingDesktop,
+		bottomPaddingDesktop,
+		leftPaddingDesktop,
+		rightPaddingDesktop,
+		topPaddingTablet,
+		bottomPaddingTablet,
+		leftPaddingTablet,
+		rightPaddingTablet,
+		topPaddingMobile,
+		bottomPaddingMobile,
+		leftPaddingMobile,
+		rightPaddingMobile,
+		paddingType,
+		paddingLink,
+		topMarginDesktop,
+		bottomMarginDesktop,
+		leftMarginDesktop,
+		rightMarginDesktop,
+		topMarginTablet,
+		bottomMarginTablet,
+		leftMarginTablet,
+		rightMarginTablet,
+		topMarginMobile,
+		bottomMarginMobile,
+		leftMarginMobile,
+		rightMarginMobile,
+		marginType,
+		marginLink,
 	} = attributes;
 
 	const generalSettings = () => {
@@ -258,6 +286,146 @@ const Settings = ( props ) => {
 							'Position',
 							'ultimate-addons-for-gutenberg'
 						),
+					} }
+				/>
+				<SpacingControl
+					{ ...props }
+					label={ __( 'Padding', 'ultimate-addons-for-gutenberg' ) }
+					valueTop={ {
+						value: topPaddingDesktop,
+						label: 'topPaddingDesktop',
+					} }
+					valueRight={ {
+						value: rightPaddingDesktop,
+						label: 'rightPaddingDesktop',
+					} }
+					valueBottom={ {
+						value: bottomPaddingDesktop,
+						label: 'bottomPaddingDesktop',
+					} }
+					valueLeft={ {
+						value: leftPaddingDesktop,
+						label: 'leftPaddingDesktop',
+					} }
+					valueTopTablet={ {
+						value: topPaddingTablet,
+						label: 'topPaddingTablet',
+					} }
+					valueRightTablet={ {
+						value: rightPaddingTablet,
+						label: 'rightPaddingTablet',
+					} }
+					valueBottomTablet={ {
+						value: bottomPaddingTablet,
+						label: 'bottomPaddingTablet',
+					} }
+					valueLeftTablet={ {
+						value: leftPaddingTablet,
+						label: 'leftPaddingTablet',
+					} }
+					valueTopMobile={ {
+						value: topPaddingMobile,
+						label: 'topPaddingMobile',
+					} }
+					valueRightMobile={ {
+						value: rightPaddingMobile,
+						label: 'rightPaddingMobile',
+					} }
+					valueBottomMobile={ {
+						value: bottomPaddingMobile,
+						label: 'bottomPaddingMobile',
+					} }
+					valueLeftMobile={ {
+						value: leftPaddingMobile,
+						label: 'leftPaddingMobile',
+					} }
+					unit={ {
+						value: paddingType,
+						label: 'paddingType',
+					} }
+					mUnit={ {
+						value: paddingType,
+						label: 'paddingType',
+					} }
+					tUnit={ {
+						value: paddingType,
+						label: 'paddingType',
+					} }
+					attributes={ attributes }
+					setAttributes={ setAttributes }
+					link={ {
+						value: paddingLink,
+						label: 'paddingLink',
+					} }
+				/>
+				<SpacingControl
+					{ ...props }
+					label={ __( 'Margin', 'ultimate-addons-for-gutenberg' ) }
+					valueTop={ {
+						value: topMarginDesktop,
+						label: 'topMarginDesktop',
+					} }
+					valueRight={ {
+						value: rightMarginDesktop,
+						label: 'rightMarginDesktop',
+					} }
+					valueBottom={ {
+						value: bottomMarginDesktop,
+						label: 'bottomMarginDesktop',
+					} }
+					valueLeft={ {
+						value: leftMarginDesktop,
+						label: 'leftMarginDesktop',
+					} }
+					valueTopTablet={ {
+						value: topMarginTablet,
+						label: 'topMarginTablet',
+					} }
+					valueRightTablet={ {
+						value: rightMarginTablet,
+						label: 'rightMarginTablet',
+					} }
+					valueBottomTablet={ {
+						value: bottomMarginTablet,
+						label: 'bottomMarginTablet',
+					} }
+					valueLeftTablet={ {
+						value: leftMarginTablet,
+						label: 'leftMarginTablet',
+					} }
+					valueTopMobile={ {
+						value: topMarginMobile,
+						label: 'topMarginMobile',
+					} }
+					valueRightMobile={ {
+						value: rightMarginMobile,
+						label: 'rightMarginMobile',
+					} }
+					valueBottomMobile={ {
+						value: bottomMarginMobile,
+						label: 'bottomMarginMobile',
+					} }
+					valueLeftMobile={ {
+						value: leftMarginMobile,
+						label: 'leftMarginMobile',
+					} }
+					unit={ {
+						value: marginType,
+						label: 'marginType',
+					} }
+					mUnit={ {
+						value: marginType,
+						label: 'marginType',
+					} }
+					tUnit={ {
+						value: marginType,
+						label: 'marginType',
+					} }
+					attributes={ attributes }
+					setAttributes={ setAttributes }
+					link={ {
+						value: marginLink,
+						label: 'marginLink',
 					} }
 				/>
 			</UAGAdvancedPanelBody>

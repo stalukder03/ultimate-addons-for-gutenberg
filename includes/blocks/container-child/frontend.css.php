@@ -20,13 +20,13 @@ $bg_obj = array(
 
 $container_bg_css = UAGB_Block_Helper::uag_get_background_obj( $bg_obj );
 $container_css    = array(
-	'width'         => UAGB_Helper::get_css_value( $attr['widthDesktop'], $attr['widthType'] ),
-	'min-height'    => UAGB_Helper::get_css_value( $attr['minHeightDesktop'], $attr['minHeightType'] ),
-	'border-style'  => $attr['borderStyle'],
-	'border-color'  => $attr['borderColor'],
-	'border-radius' => UAGB_Helper::get_css_value( $attr['borderRadius'], 'px' ),
-	'border-width'  => UAGB_Helper::get_css_value( $attr['borderWidth'], 'px' ),
-	'box-shadow'    =>
+	'width'          => UAGB_Helper::get_css_value( $attr['widthDesktop'], $attr['widthType'] ),
+	'min-height'     => UAGB_Helper::get_css_value( $attr['minHeightDesktop'], $attr['minHeightType'] ),
+	'border-style'   => $attr['borderStyle'],
+	'border-color'   => $attr['borderColor'],
+	'border-radius'  => UAGB_Helper::get_css_value( $attr['borderRadius'], 'px' ),
+	'border-width'   => UAGB_Helper::get_css_value( $attr['borderWidth'], 'px' ),
+	'box-shadow'     =>
 			UAGB_Helper::get_css_value( $attr['boxShadowHOffset'], 'px' ) .
 			' ' .
 			UAGB_Helper::get_css_value( $attr['boxShadowVOffset'], 'px' ) .
@@ -38,13 +38,18 @@ $container_css    = array(
 			$attr['boxShadowColor'] .
 			' ' .
 			$attr['boxShadowPositionCSS'],
+	'padding-top'    => UAGB_Helper::get_css_value( $attr['topPaddingDesktop'], $attr['paddingType'] ),
+	'padding-bottom' => UAGB_Helper::get_css_value( $attr['bottomPaddingDesktop'], $attr['paddingType'] ),
+	'padding-left'   => UAGB_Helper::get_css_value( $attr['leftPaddingDesktop'], $attr['paddingType'] ),
+	'padding-right'  => UAGB_Helper::get_css_value( $attr['rightPaddingDesktop'], $attr['paddingType'] ),
+	'margin-top'     => UAGB_Helper::get_css_value( $attr['topMarginDesktop'], $attr['marginType'] ),
+	'margin-bottom'  => UAGB_Helper::get_css_value( $attr['bottomMarginDesktop'], $attr['marginType'] ),
+	'margin-left'    => UAGB_Helper::get_css_value( $attr['leftMarginDesktop'], $attr['marginType'] ),
+	'margin-right'   => UAGB_Helper::get_css_value( $attr['rightMarginDesktop'], $attr['marginType'] ),
 );
 
 $container_css = array_merge( $container_css, $container_bg_css );
 
-$selectors = array(
-	'.wp-block-uagb-container-child' => $container_css,
-);
 $selectors = array(
 	'.wp-block-uagb-container-child'       => $container_css,
 	'.wp-block-uagb-container-child:hover' => array(
@@ -54,15 +59,31 @@ $selectors = array(
 
 $t_selectors = array(
 	'.wp-block-uagb-container-child' => array(
-		'width'      => UAGB_Helper::get_css_value( $attr['widthTablet'], $attr['widthType'] ),
-		'min-height' => UAGB_Helper::get_css_value( $attr['minHeightTablet'], $attr['minHeightType'] ),
+		'width'          => UAGB_Helper::get_css_value( $attr['widthTablet'], $attr['widthType'] ),
+		'min-height'     => UAGB_Helper::get_css_value( $attr['minHeightTablet'], $attr['minHeightType'] ),
+		'padding-top'    => UAGB_Helper::get_css_value( $attr['topPaddingTablet'], $attr['paddingType'] ),
+		'padding-bottom' => UAGB_Helper::get_css_value( $attr['bottomPaddingTablet'], $attr['paddingType'] ),
+		'padding-left'   => UAGB_Helper::get_css_value( $attr['leftPaddingTablet'], $attr['paddingType'] ),
+		'padding-right'  => UAGB_Helper::get_css_value( $attr['rightPaddingTablet'], $attr['paddingType'] ),
+		'margin-top'     => UAGB_Helper::get_css_value( $attr['topMarginTablet'], $attr['marginType'] ),
+		'margin-bottom'  => UAGB_Helper::get_css_value( $attr['bottomMarginTablet'], $attr['marginType'] ),
+		'margin-left'    => UAGB_Helper::get_css_value( $attr['leftMarginTablet'], $attr['marginType'] ),
+		'margin-right'   => UAGB_Helper::get_css_value( $attr['rightMarginTablet'], $attr['marginType'] ),
 	),
 );
 
 $m_selectors = array(
 	'.wp-block-uagb-container-child' => array(
-		'width'      => UAGB_Helper::get_css_value( $attr['widthMobile'], $attr['widthType'] ),
-		'min-height' => UAGB_Helper::get_css_value( $attr['minHeightMobile'], $attr['minHeightType'] ),
+		'width'          => UAGB_Helper::get_css_value( $attr['widthMobile'], $attr['widthType'] ),
+		'min-height'     => UAGB_Helper::get_css_value( $attr['minHeightMobile'], $attr['minHeightType'] ),
+		'padding-top'    => UAGB_Helper::get_css_value( $attr['topPaddingMobile'], $attr['paddingType'] ),
+		'padding-bottom' => UAGB_Helper::get_css_value( $attr['bottomPaddingMobile'], $attr['paddingType'] ),
+		'padding-left'   => UAGB_Helper::get_css_value( $attr['leftPaddingMobile'], $attr['paddingType'] ),
+		'padding-right'  => UAGB_Helper::get_css_value( $attr['rightPaddingMobile'], $attr['paddingType'] ),
+		'margin-top'     => UAGB_Helper::get_css_value( $attr['topMarginMobile'], $attr['marginType'] ),
+		'margin-bottom'  => UAGB_Helper::get_css_value( $attr['bottomMarginMobile'], $attr['marginType'] ),
+		'margin-left'    => UAGB_Helper::get_css_value( $attr['leftMarginMobile'], $attr['marginType'] ),
+		'margin-right'   => UAGB_Helper::get_css_value( $attr['rightMarginMobile'], $attr['marginType'] ),
 	),
 );
 
