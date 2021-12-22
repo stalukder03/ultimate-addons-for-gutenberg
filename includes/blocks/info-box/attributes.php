@@ -66,7 +66,7 @@ return array(
 	'iconimgBorderRadius'     => '0',
 	'seperatorStyle'          => 'solid',
 	'seperatorWidth'          => '30',
-	'seperatorColor'          => '',
+	'seperatorColor'          => '#333',
 	'seperatorThickness'      => '2',
 	'thicknessUnit'           => 'px',
 	'ctaType'                 => 'none',
@@ -148,4 +148,5 @@ return array(
 	'prefixMobileSpace'       => '',
 	'imageWidthMobile'        => '',
 	'imageWidthTablet'        => '',
+	'ctaIconPosition'         => 'after',
 );
