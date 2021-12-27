@@ -79,19 +79,6 @@ function styling( props ) {
 		marginType,
 	} = props.attributes;
 
-	
-	const selectors = {
-		' .block-editor-block-list__layout' : {
-			'width' : generateCSSUnit( widthDesktop, widthType ),
-			'min-height' : generateCSSUnit( minHeightDesktop, minHeightType ),
-			'flex-direction' : directionDesktop,
-			'align-items' : alignItemsDesktop,
-			'justify-content' : justifyContentDesktop,
-			'flex-wrap' : wrapDesktop,
-			'align-content' : alignContentDesktop,
-		},
-	};
-
 	let backgroundAttributes = {
         backgroundType,
         backgroundImage,
@@ -112,7 +99,13 @@ function styling( props ) {
 	}
 	
 	let containerCSS = {
-		...containerBackgroundCSS,
+		'width' : generateCSSUnit( widthDesktop, widthType ),
+		'min-height' : generateCSSUnit( minHeightDesktop, minHeightType ),
+		'flex-direction' : directionDesktop,
+		'align-items' : alignItemsDesktop,
+		'justify-content' : justifyContentDesktop,
+		'flex-wrap' : wrapDesktop,
+		'align-content' : alignContentDesktop,
 		'padding-top': generateCSSUnit( topPaddingDesktop, paddingType ),
 		'padding-bottom': generateCSSUnit( bottomPaddingDesktop, paddingType ),
 		'padding-left': generateCSSUnit( leftPaddingDesktop, paddingType ),
@@ -125,9 +118,10 @@ function styling( props ) {
 		'border-color': borderColor,
 		'border-radius': generateCSSUnit( borderRadius, 'px' ),
 		'border-width': generateCSSUnit( borderWidth, 'px' ),
+		...containerBackgroundCSS,
 		'box-shadow':
-				generateCSSUnit( boxShadowHOffset, 'px' ) +
-				' ' +
+		generateCSSUnit( boxShadowHOffset, 'px' ) +
+		' ' +
 				generateCSSUnit( boxShadowVOffset, 'px' ) +
 				' ' +
 				generateCSSUnit( boxShadowBlur, 'px' ) +
@@ -139,8 +133,8 @@ function styling( props ) {
 				boxShadowPositionCSS,
 	}
 
-	selectors['.wp-block-uagb-container'] = containerCSS;
-	selectors['.wp-block-uagb-container:hover'] = {
+	selectors[' .block-editor-block-list__layout'] = containerCSS;
+	selectors[' .block-editor-block-list__layout:hover'] = {
 		'border-color': borderHoverColor,
 	};
 	
