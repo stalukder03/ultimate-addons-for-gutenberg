@@ -85,7 +85,7 @@ function styling( props ) {
 	let containerCSS = {
 		...containerBackgroundCSS,
 		'width' : generateCSSUnit( widthDesktop, widthType ),
-		'min-height' : generateCSSUnit( minHeightDesktop, minHeightType ),
+		'height' : generateCSSUnit( minHeightDesktop, minHeightType ),
 		'border-style': borderStyle,
 		'border-color': borderColor,
 		'border-radius': generateCSSUnit( borderRadius, 'px' ),
@@ -123,7 +123,7 @@ function styling( props ) {
 	const tablet_selectors = {
 		'.block-editor-block-list__block' : {
 			'width' : generateCSSUnit( widthTablet, widthType ),
-			'min-height' : generateCSSUnit( minHeightTablet, minHeightType ),
+			'height' : generateCSSUnit( minHeightTablet, minHeightType ),
 			'padding-top': generateCSSUnit( topPaddingTablet, paddingType ),
 			'padding-bottom': generateCSSUnit( bottomPaddingTablet, paddingType ),
 			'padding-left': generateCSSUnit( leftPaddingTablet, paddingType ),
@@ -137,7 +137,7 @@ function styling( props ) {
 	const mobile_selectors = {
 		'.block-editor-block-list__block' : {
 			'width' : generateCSSUnit( widthMobile, widthType ),
-			'min-height' : generateCSSUnit( minHeightMobile, minHeightType ),
+			'height' : generateCSSUnit( minHeightMobile, minHeightType ),
 			'padding-top': generateCSSUnit( topPaddingMobile, paddingType ),
 			'padding-bottom': generateCSSUnit( bottomPaddingMobile, paddingType ),
 			'padding-left': generateCSSUnit( leftPaddingMobile, paddingType ),

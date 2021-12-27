@@ -123,7 +123,7 @@ const Settings = ( props ) => {
 					setAttributes={ setAttributes }
 				/>
 				<ResponsiveSlider
-					label={ __( 'Min Height', 'ultimate-addons-for-gutenberg' ) }
+					label={ __( 'Height', 'ultimate-addons-for-gutenberg' ) }
 					data={ {
 						desktop: {
 							value: minHeightDesktop,
