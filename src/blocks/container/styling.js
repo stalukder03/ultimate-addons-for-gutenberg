@@ -79,6 +79,8 @@ function styling( props ) {
 		marginType,
 	} = props.attributes;
 
+	let selectors = {};
+	
 	let backgroundAttributes = {
         backgroundType,
         backgroundImage,
