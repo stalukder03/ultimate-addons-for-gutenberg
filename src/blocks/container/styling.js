@@ -80,7 +80,7 @@ function styling( props ) {
 	} = props.attributes;
 
 	let selectors = {};
-	
+
 	let backgroundAttributes = {
         backgroundType,
         backgroundImage,
@@ -135,13 +135,13 @@ function styling( props ) {
 				boxShadowPositionCSS,
 	}
 
-	selectors[' .block-editor-block-list__layout'] = containerCSS;
-	selectors[' .block-editor-block-list__layout:hover'] = {
+	selectors[' > .block-editor-inner-blocks > .block-editor-block-list__layout'] = containerCSS;
+	selectors[' > .block-editor-inner-blocks > .block-editor-block-list__layout:hover'] = {
 		'border-color': borderHoverColor,
 	};
 	
 	const tablet_selectors = {
-		' .block-editor-block-list__layout' : {
+		' > .block-editor-inner-blocks > .block-editor-block-list__layout' : {
 			'width' : generateCSSUnit( widthTablet, widthType ),
 			'min-height' : generateCSSUnit( minHeightTablet, minHeightType ),
 			'flex-direction' : directionTablet,
@@ -149,8 +149,6 @@ function styling( props ) {
 			'justify-content' : justifyContentTablet,
 			'flex-wrap' : wrapTablet,
 			'align-content' : alignContentTablet,
-		},
-		'.wp-block-uagb-container' : {
 			'padding-top': generateCSSUnit( topPaddingTablet, paddingType ),
 			'padding-bottom': generateCSSUnit( bottomPaddingTablet, paddingType ),
 			'padding-left': generateCSSUnit( leftPaddingTablet, paddingType ),
@@ -163,7 +161,7 @@ function styling( props ) {
 	};
 
 	const mobile_selectors = {
-		' .block-editor-block-list__layout' : {
+		' > .block-editor-inner-blocks > .block-editor-block-list__layout' : {
 			'width' : generateCSSUnit( widthMobile, widthType ),
 			'min-height' : generateCSSUnit( minHeightMobile, minHeightType ),
 			'flex-direction' : directionMobile,
@@ -171,8 +169,6 @@ function styling( props ) {
 			'justify-content' : justifyContentMobile,
 			'flex-wrap' : wrapMobile,
 			'align-content' : alignContentMobile,
-		},
-		'.wp-block-uagb-container' : {
 			'padding-top': generateCSSUnit( topPaddingMobile, paddingType ),
 			'padding-bottom': generateCSSUnit( bottomPaddingMobile, paddingType ),
 			'padding-left': generateCSSUnit( leftPaddingMobile, paddingType ),
