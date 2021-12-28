@@ -140,6 +140,10 @@ function styling( props ) {
 		'border-color': borderHoverColor,
 	};
 	
+	selectors[' > .block-editor-inner-blocks > .block-editor-block-list__layout .block-list-appender'] = {
+		'margin': 0,
+	};
+
 	const tablet_selectors = {
 		' > .block-editor-inner-blocks > .block-editor-block-list__layout' : {
 			'width' : generateCSSUnit( widthTablet, widthType ),
