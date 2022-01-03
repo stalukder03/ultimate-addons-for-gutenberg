@@ -389,10 +389,11 @@ const Settings = ( props ) => {
 		);
 	};
 
-	const styleSettings = () => {
+	const backgroundSettings = () => {
 		return (
 			<UAGAdvancedPanelBody
 				title={ __( 'Background', 'ultimate-addons-for-gutenberg' ) }
+				initialOpen={ false }
 			>
 				<Background
 					setAttributes={ setAttributes }
@@ -437,6 +438,16 @@ const Settings = ( props ) => {
 					} }
 					{ ...props }
 				/>
+			</UAGAdvancedPanelBody>
+		);
+	};
+	
+	const borderSettings = () => {
+		return(
+			<UAGAdvancedPanelBody
+				title={ __( 'Border', 'ultimate-addons-for-gutenberg' ) }
+				initialOpen={ false }
+			>
 				<Border
 					setAttributes={ setAttributes }
 					borderStyle={ {
@@ -467,7 +478,18 @@ const Settings = ( props ) => {
 							'ultimate-addons-for-gutenberg'
 						),
 					} }
+					disableBottomSeparator={ true }
 				/>
+			</UAGAdvancedPanelBody>
+		);
+	}
+
+	const boxShadowSettings = () => {
+		return(
+			<UAGAdvancedPanelBody
+				title={ __( 'Box Shadow', 'ultimate-addons-for-gutenberg' ) }
+				initialOpen={ false }
+			>
 				<BoxShadowControl
 					setAttributes={ setAttributes }
 					label={ __(
@@ -514,6 +536,16 @@ const Settings = ( props ) => {
 						),
 					} }
 				/>
+			</UAGAdvancedPanelBody>
+		);
+	}
+
+	const spacingSettings = () => {
+		return(
+			<UAGAdvancedPanelBody
+				title={ __( 'Spacing', 'ultimate-addons-for-gutenberg' ) }
+				initialOpen={ false }
+			>
 				<SpacingControl
 					{ ...props }
 					label={ __( 'Padding', 'ultimate-addons-for-gutenberg' ) }
@@ -656,7 +688,7 @@ const Settings = ( props ) => {
 				/>
 			</UAGAdvancedPanelBody>
 		);
-	};
+	}
 	return (
 		<InspectorControls>
 			<InspectorTabs>
@@ -664,7 +696,10 @@ const Settings = ( props ) => {
 					{ generalSettings() }
 				</InspectorTab>
 				<InspectorTab { ...UAGTabs.style }>
-					{ styleSettings() }
+					{ backgroundSettings() }
+					{ borderSettings() }
+					{ boxShadowSettings() }
+					{ spacingSettings() }
 				</InspectorTab>
 				<InspectorTab
 					{ ...UAGTabs.advance }
