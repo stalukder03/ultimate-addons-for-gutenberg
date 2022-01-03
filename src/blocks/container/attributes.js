@@ -260,6 +260,10 @@ const attributes = {
 		type: 'boolean',
 		default: false,
 	},
+	variationSelected: {
+		type: 'boolean',
+		default: false,
+	}
 };
 
 export default attributes;

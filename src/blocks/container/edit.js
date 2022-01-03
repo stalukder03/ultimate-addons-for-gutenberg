@@ -18,10 +18,15 @@ const Render = lazy( () =>
 
 //  Import CSS.
 import './style.scss';
+import { __ } from '@wordpress/i18n';
 
-import { withSelect } from '@wordpress/data';
+import { withSelect, useDispatch } from '@wordpress/data';
 
 import { compose } from '@wordpress/compose';
+
+import {
+	__experimentalBlockVariationPicker as BlockVariationPicker,
+} from '@wordpress/block-editor';
 
 const UAGBContainer = ( props ) => {
 	useEffect( () => {
@@ -48,6 +53,56 @@ const UAGBContainer = ( props ) => {
 		}
 	}, [ props ] );
 
+	const blockVariationPickerOnSelect = (
+		nextVariation = props.defaultVariation
+	) => {
+		if ( nextVariation.attributes ) {
+			props.setAttributes( nextVariation.attributes );
+		}
+
+		if ( nextVariation.innerBlocks && 'one-column' !== nextVariation.name ) {
+			props.replaceInnerBlocks(
+				props.clientId,
+				createBlocksFromInnerBlocksTemplate( nextVariation.innerBlocks )
+			);
+		}
+	};
+
+	const createBlocksFromInnerBlocksTemplate = ( innerBlocksTemplate ) => {
+		return innerBlocksTemplate.map(
+			( [ name, attributes, innerBlocks = [] ] ) =>
+				createBlock(
+					name,
+					attributes,
+					createBlocksFromInnerBlocksTemplate( innerBlocks )
+				)
+		);
+	};
+
+	const { variations } = props;
+
+	const { variationSelected } = props.attributes;
+console.log(variations);
+	if ( ! variationSelected ) {
+		
+		return (
+			<div className='uagb-container-variation-picker'>
+				<BlockVariationPicker
+					icon={ '' }
+					label={ uagb_blocks_info.blocks[ 'uagb/container' ].title }
+					instructions={ __(
+						'Select a variation to start with.',
+						'ultimate-addons-for-gutenberg'
+					) }
+					variations={ variations }
+					onSelect={ ( nextVariation ) =>
+						blockVariationPickerOnSelect( nextVariation )
+					}
+				/>
+			</div>
+		);
+	}
+
 	return (
 		<>
 			<Suspense fallback={ lazyLoader() }>
@@ -57,15 +112,35 @@ const UAGBContainer = ( props ) => {
 		</>
 	);
 };
-const applyWithSelect = withSelect( ( select ) => {
+const applyWithSelect = withSelect( ( select, props ) => {
 	const { __experimentalGetPreviewDeviceType = null } = select(
 		'core/edit-post'
 	);
 	const deviceType = __experimentalGetPreviewDeviceType
 		? __experimentalGetPreviewDeviceType()
 		: null;
+		const { getBlocks } = select( 'core/block-editor' );
+	const {
+		getBlockType,
+		getBlockVariations,
+		getDefaultBlockVariation,
+	} = select( 'core/blocks' );
+	const innerBlocks = getBlocks( props.clientId );
+	const { replaceInnerBlocks } = useDispatch( 'core/block-editor' );
 
 	return {
+		// Subscribe to changes of the innerBlocks to control the display of the layout selection placeholder.
+		innerBlocks,
+		blockType: getBlockType( props.name ),
+		defaultVariation:
+			typeof getDefaultBlockVariation === 'undefined'
+				? null
+				: getDefaultBlockVariation( props.name ),
+		variations:
+			typeof getBlockVariations === 'undefined'
+				? null
+				: getBlockVariations( props.name ),
+		replaceInnerBlocks,
 		deviceType,
 	};
 } );
