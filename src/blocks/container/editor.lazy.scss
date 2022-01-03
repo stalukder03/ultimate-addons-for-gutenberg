@@ -17,6 +17,17 @@
 		}
 	}
 }
+.wp-block-uagb-container .block-editor-block-list__layout::before,
+.wp-block-uagb-container .block-editor-block-list__layout > .block-editor-block-list__block::before {
+	content: "";
+    position: absolute;
+    border: 1px dashed #035cff;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
 .uagb-container-variation-picker {
 
 	.components-button,
@@ -24,6 +35,11 @@
 		box-shadow: none;
 		outline: none;
 		color: #d5dadf;
+		svg {
+			width: 100px;
+			height: 50px;
+			color: #d5dadf;
+		}
 	}
 
 	.components-button:hover:not(:disabled) {

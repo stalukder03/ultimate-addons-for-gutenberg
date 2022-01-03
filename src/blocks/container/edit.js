@@ -2,7 +2,7 @@
  * BLOCK: Container
  */
 import styling from './styling';
-import React, { lazy, Suspense, useEffect } from 'react';
+import React, { lazy, Suspense, useEffect, useLayoutEffect } from 'react';
 import lazyLoader from '@Controls/lazy-loader';
 
 const Settings = lazy( () =>
@@ -28,7 +28,21 @@ import {
 	__experimentalBlockVariationPicker as BlockVariationPicker,
 } from '@wordpress/block-editor';
 
+import { createBlock } from '@wordpress/blocks';
+
+import styles from './editor.lazy.scss';
+
 const UAGBContainer = ( props ) => {
+
+	// Add and remove the CSS on the drop and remove of the component.
+	useLayoutEffect( () => {
+		styles.use();
+		return () => {
+			styles.unuse();
+		};
+	}, [] );
+
+
 	useEffect( () => {
 		// Assigning block_id in the attribute.
 		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
@@ -82,7 +96,7 @@ const UAGBContainer = ( props ) => {
 	const { variations } = props;
 
 	const { variationSelected } = props.attributes;
-console.log(variations);
+
 	if ( ! variationSelected ) {
 		
 		return (
