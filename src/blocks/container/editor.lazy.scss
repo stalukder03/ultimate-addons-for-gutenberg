@@ -20,7 +20,7 @@
 	}
 }
 .wp-block-uagb-container > .block-editor-inner-blocks > .block-editor-block-list__layout::before,
-.wp-block-uagb-container .block-editor-block-list__layout > .block-editor-block-list__block::before {
+.wp-block-uagb-container > .block-editor-inner-blocks > .block-editor-block-list__layout > .block-editor-block-list__block::before {
 	content: "";
     position: absolute;
     border: 1px dashed #035cff;

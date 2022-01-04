@@ -14,10 +14,12 @@ import BoxShadowControl from '@Components/box-shadow';
 import SpacingControl from '@Components/spacing-control';
 import Background from '@Components/background';
 import Border from '@Components/border';
-// Extend component
-
-
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
+import MultiButtonsControl from '@Components/multi-buttons-control';
+import {
+	Icon,
+} from '@wordpress/components';
+import renderCustomIcon from '@Controls/renderCustomIcon';
 
 const Settings = ( props ) => {
 	props = props.parentProps;
@@ -125,30 +127,44 @@ const Settings = ( props ) => {
 			],
 		};
 
-		const alignItemsOptions = {
-			desktop: [
-				{
-					value: '',
-					label: __( 'Default', 'ultimate-addons-for-gutenberg' ),
-				},
-				{
-					value: '',
-					label: __( 'Left', 'ultimate-addons-for-gutenberg' ),
-				},
-				{
-					value: 'center',
-					label: __( 'Center', 'ultimate-addons-for-gutenberg' ),
-				},
-				{
-					value: 'flex-end',
-					label: __( 'Right', 'ultimate-addons-for-gutenberg' ),
-				},
-				{
-					value: 'stretch',
-					label: __( 'Stretch', 'ultimate-addons-for-gutenberg' ),
-				},
-			],
-		};
+		const alignItemsOptions = [
+			{
+				value: 'flex-start',
+				tooltip: __( 'Flex Start', 'ultimate-addons-for-gutenberg' ),
+				icon: (
+					<Icon
+						icon={ renderCustomIcon( 'align-left' ) }
+					/>
+				),
+			},
+			{
+				value: 'center',
+				tooltip: __( 'Center', 'ultimate-addons-for-gutenberg' ),
+				icon: (
+					<Icon
+						icon={ renderCustomIcon( 'align-center' ) }
+					/>
+				),
+			},
+			{
+				value: 'flex-end',
+				label: __( 'Flex End', 'ultimate-addons-for-gutenberg' ),
+				icon: (
+					<Icon
+						icon={ renderCustomIcon( 'align-right' ) }
+					/>
+				),
+			},
+			{
+				value: 'stretch',
+				label: __( 'Stretch', 'ultimate-addons-for-gutenberg' ),
+				icon: (
+					<Icon
+						icon={ renderCustomIcon( 'align-center' ) }
+					/>
+				),
+			},
+		];
 
 		const justifyContentOptions = {
 			desktop: [
@@ -306,8 +322,8 @@ const Settings = ( props ) => {
 					options={ directionOptions }
 					setAttributes={ setAttributes }
 				/>
-
-				<ResponsiveSelectControl
+				<MultiButtonsControl
+					setAttributes={ setAttributes }
 					label={ __( 'Align Items', 'ultimate-addons-for-gutenberg' ) }
 					data={ {
 						desktop: {
@@ -324,7 +340,8 @@ const Settings = ( props ) => {
 						},
 					} }
 					options={ alignItemsOptions }
-					setAttributes={ setAttributes }
+					showIcons={ true }
+					responsive={true}
 				/>
 				<ResponsiveSelectControl
 					label={ __( 'Justify Content', 'ultimate-addons-for-gutenberg' ) }
