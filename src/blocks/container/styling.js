@@ -101,13 +101,6 @@ function styling( props ) {
 	}
 	
 	let containerCSS = {
-		'width' : generateCSSUnit( widthDesktop, widthType ),
-		'min-height' : generateCSSUnit( minHeightDesktop, minHeightType ),
-		'flex-direction' : directionDesktop,
-		'align-items' : alignItemsDesktop,
-		'justify-content' : justifyContentDesktop,
-		'flex-wrap' : wrapDesktop,
-		'align-content' : alignContentDesktop,
 		'padding-top': generateCSSUnit( topPaddingDesktop, paddingType ),
 		'padding-bottom': generateCSSUnit( bottomPaddingDesktop, paddingType ),
 		'padding-left': generateCSSUnit( leftPaddingDesktop, paddingType ),
@@ -135,17 +128,33 @@ function styling( props ) {
 				boxShadowPositionCSS,
 	}
 
-	selectors[' > .block-editor-inner-blocks > .block-editor-block-list__layout'] = containerCSS;
-	selectors[' > .block-editor-inner-blocks > .block-editor-block-list__layout:hover'] = {
+	selectors[' > .wp-block-uagb-container'] = containerCSS;
+	selectors[' > .wp-block-uagb-container:hover'] = {
 		'border-color': borderHoverColor,
 	};
 	
-	selectors[' > .block-editor-inner-blocks > .block-editor-block-list__layout .block-list-appender'] = {
+	selectors[' > .wp-block-uagb-container .block-list-appender'] = {
 		'margin': 0,
 	};
-
+	selectors[' > .wp-block-uagb-container > .block-editor-inner-blocks > .block-editor-block-list__layout'] = {
+		'flex-direction' : directionDesktop,
+		'align-items' : alignItemsDesktop,
+		'justify-content' : justifyContentDesktop,
+		'flex-wrap' : wrapDesktop,
+		'align-content' : alignContentDesktop,
+	}
+	selectors['.block-editor-block-list__block'] = {
+		'width' : generateCSSUnit( widthDesktop, widthType ),
+		'min-height' : generateCSSUnit( minHeightDesktop, minHeightType ),
+		'flex-direction' : directionDesktop,
+		'align-items' : alignItemsDesktop,
+		'justify-content' : justifyContentDesktop,
+		'flex-wrap' : wrapDesktop,
+		'align-content' : alignContentDesktop,
+	}
+	
 	const tablet_selectors = {
-		' > .block-editor-inner-blocks > .block-editor-block-list__layout' : {
+		' > .wp-block-uagb-container' : {
 			'width' : generateCSSUnit( widthTablet, widthType ),
 			'min-height' : generateCSSUnit( minHeightTablet, minHeightType ),
 			'flex-direction' : directionTablet,
@@ -165,7 +174,7 @@ function styling( props ) {
 	};
 
 	const mobile_selectors = {
-		' > .block-editor-inner-blocks > .block-editor-block-list__layout' : {
+		' > .wp-block-uagb-container' : {
 			'width' : generateCSSUnit( widthMobile, widthType ),
 			'min-height' : generateCSSUnit( minHeightMobile, minHeightType ),
 			'flex-direction' : directionMobile,
@@ -184,10 +193,7 @@ function styling( props ) {
 		},
 	};
 
-	const base_selector = `.block-editor-page #wpwrap .uagb-block-${ props.clientId.substr(
-		0,
-		8
-	) }`;
+	const base_selector = `.block-editor-page #wpwrap #block-${ props.clientId }`;
 
 	let styling_css = generateCSS( selectors, base_selector );
 
