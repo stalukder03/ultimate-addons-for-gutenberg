@@ -141,9 +141,6 @@ function styling( props ) {
 		'border-color': borderHoverColor,
 	};
 	
-	selectors[' > .wp-block-uagb-container .block-list-appender'] = {
-		'margin': 0,
-	};
 	selectors[' > .wp-block-uagb-container > .block-editor-inner-blocks > .block-editor-block-list__layout'] = {
 		'flex-direction' : directionDesktop,
 		'align-items' : alignItemsDesktop,
