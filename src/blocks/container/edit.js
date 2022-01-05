@@ -82,6 +82,14 @@ const UAGBContainer = ( props ) => {
 				createBlocksFromInnerBlocksTemplate( nextVariation.innerBlocks )
 			);
 		}
+		if ( nextVariation.insideBlocks && 'one-column' !== nextVariation.name ) {
+			let innerBlocks = select( 'core/block-editor' ).getBlock(props.clientId).innerBlocks[nextVariation.insideBlocksIndex];
+
+			props.replaceInnerBlocks(
+				innerBlocks.clientId,
+				createBlocksFromInnerBlocksTemplate( nextVariation.insideBlocks )
+			);
+		}
 	};
 
 	const createBlocksFromInnerBlocksTemplate = ( innerBlocksTemplate ) => {

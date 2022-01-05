@@ -178,6 +178,27 @@ const variations = [
 		],
 		scope: [ 'block' ],
 	},
+	{
+		name: '2-column-2nd-split',
+		label: __(
+			'Two columns; second split',
+			'ultimate-addons-for-gutenberg'
+		),
+		icon: rowIcons.layout50502525,
+		attributes: {
+			variationSelected: true,
+		},
+		innerBlocks: [
+			[ 'uagb/container', { widthDesktop: 50 } ],
+			[ 'uagb/container', { widthDesktop: 50, wrapDesktop: 'wrap' } ],
+		],
+		insideBlocks: [
+			[ 'uagb/container', { widthDesktop: 100 } ],
+			[ 'uagb/container', { widthDesktop: 100 } ],
+		],
+		insideBlocksIndex: 1, // Starts from 0.
+		scope: [ 'block' ],
+	},
 ];
 
 export default variations;

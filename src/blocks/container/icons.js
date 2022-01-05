@@ -36,5 +36,12 @@ rowIcons.layout25252525 = (
 rowIcons.layout2525252525 = (
 	<svg  width="100" height="50" xmlns="http://www.w3.org/1999/xlink" viewBox="0 0 100 50"><path d="M18.4,0V50H0V0Z M38.8,0V50H20.4V0Z M59.2,0V50H40.8V0Z M79.6,0V50H61.2V0Z M100,0V50H81.6V0Z"></path></svg>
 );
+rowIcons.layout50502525 = (
+	<svg viewBox="0 0 90 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<rect x="0.5" width="44" height="44"></rect>
+		<rect x="45.5" width="44" height="21.5"></rect>
+		<rect x="45.5" y="22.5" width="44" height="21.5"></rect>
+	</svg>
+);
 
 export default rowIcons;
