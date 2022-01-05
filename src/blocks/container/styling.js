@@ -77,6 +77,14 @@ function styling( props ) {
 		leftMarginMobile,
 		rightMarginMobile,
 		marginType,
+		rowGapDesktop,
+		rowGapTablet,
+		rowGapMobile,
+		rowGapType,
+		columnGapDesktop,
+		columnGapTablet,
+		columnGapMobile,
+		columnGapType,
 	} = props.attributes;
 
 	let selectors = {};
@@ -142,6 +150,8 @@ function styling( props ) {
 		'justify-content' : justifyContentDesktop,
 		'flex-wrap' : wrapDesktop,
 		'align-content' : alignContentDesktop,
+		'row-gap' : generateCSSUnit( rowGapDesktop, rowGapType ),
+		'column-gap' : generateCSSUnit( columnGapDesktop, columnGapType ),
 	}
 	selectors['.block-editor-block-list__block'] = {
 		'width' : generateCSSUnit( widthDesktop, widthType ),
@@ -155,13 +165,6 @@ function styling( props ) {
 	
 	const tablet_selectors = {
 		' > .wp-block-uagb-container' : {
-			'width' : generateCSSUnit( widthTablet, widthType ),
-			'min-height' : generateCSSUnit( minHeightTablet, minHeightType ),
-			'flex-direction' : directionTablet,
-			'align-items' : alignItemsTablet,
-			'justify-content' : justifyContentTablet,
-			'flex-wrap' : wrapTablet,
-			'align-content' : alignContentTablet,
 			'padding-top': generateCSSUnit( topPaddingTablet, paddingType ),
 			'padding-bottom': generateCSSUnit( bottomPaddingTablet, paddingType ),
 			'padding-left': generateCSSUnit( leftPaddingTablet, paddingType ),
@@ -171,17 +174,30 @@ function styling( props ) {
 			'margin-left': generateCSSUnit( leftMarginTablet, marginType ),
 			'margin-right': generateCSSUnit( rightMarginTablet, marginType ),
 		},
+		' > .wp-block-uagb-container > .block-editor-inner-blocks > .block-editor-block-list__layout' : {
+			'width' : generateCSSUnit( widthTablet, widthType ),
+			'min-height' : generateCSSUnit( minHeightTablet, minHeightType ),
+			'flex-direction' : directionTablet,
+			'align-items' : alignItemsTablet,
+			'justify-content' : justifyContentTablet,
+			'flex-wrap' : wrapTablet,
+			'align-content' : alignContentTablet,
+			'row-gap' : generateCSSUnit( rowGapTablet, rowGapType ),
+			'column-gap' : generateCSSUnit( columnGapTablet, columnGapType ),
+		},
+		'.block-editor-block-list__block' : {
+			'width' : generateCSSUnit( widthTablet, widthType ),
+			'min-height' : generateCSSUnit( minHeightTablet, minHeightType ),
+			'flex-direction' : directionTablet,
+			'align-items' : alignItemsTablet,
+			'justify-content' : justifyContentTablet,
+			'flex-wrap' : wrapTablet,
+			'align-content' : alignContentTablet,
+		}
 	};
 
 	const mobile_selectors = {
 		' > .wp-block-uagb-container' : {
-			'width' : generateCSSUnit( widthMobile, widthType ),
-			'min-height' : generateCSSUnit( minHeightMobile, minHeightType ),
-			'flex-direction' : directionMobile,
-			'align-items' : alignItemsMobile,
-			'justify-content' : justifyContentMobile,
-			'flex-wrap' : wrapMobile,
-			'align-content' : alignContentMobile,
 			'padding-top': generateCSSUnit( topPaddingMobile, paddingType ),
 			'padding-bottom': generateCSSUnit( bottomPaddingMobile, paddingType ),
 			'padding-left': generateCSSUnit( leftPaddingMobile, paddingType ),
@@ -191,6 +207,26 @@ function styling( props ) {
 			'margin-left': generateCSSUnit( leftMarginMobile, marginType ),
 			'margin-right': generateCSSUnit( rightMarginMobile, marginType ),
 		},
+		' > .wp-block-uagb-container > .block-editor-inner-blocks > .block-editor-block-list__layout' : {
+			'width' : generateCSSUnit( widthMobile, widthType ),
+			'min-height' : generateCSSUnit( minHeightMobile, minHeightType ),
+			'flex-direction' : directionMobile,
+			'align-items' : alignItemsMobile,
+			'justify-content' : justifyContentMobile,
+			'flex-wrap' : wrapMobile,
+			'align-content' : alignContentMobile,
+			'row-gap' : generateCSSUnit( rowGapTablet, rowGapType ),
+			'column-gap' : generateCSSUnit( columnGapTablet, columnGapType ),
+		},
+		'.block-editor-block-list__block' : {
+			'width' : generateCSSUnit( widthMobile, widthType ),
+			'min-height' : generateCSSUnit( minHeightMobile, minHeightType ),
+			'flex-direction' : directionMobile,
+			'align-items' : alignItemsMobile,
+			'justify-content' : justifyContentMobile,
+			'flex-wrap' : wrapMobile,
+			'align-content' : alignContentMobile,
+		}
 	};
 
 	const base_selector = `.block-editor-page #wpwrap #block-${ props.clientId }`;

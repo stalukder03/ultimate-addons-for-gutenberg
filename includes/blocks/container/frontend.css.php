@@ -31,6 +31,8 @@ $container_css    = array(
 	'border-color'    => $attr['borderColor'],
 	'border-radius'   => UAGB_Helper::get_css_value( $attr['borderRadius'], 'px' ),
 	'border-width'    => UAGB_Helper::get_css_value( $attr['borderWidth'], 'px' ),
+	'row-gap' => UAGB_Helper::get_css_value( $attr['rowGapDesktop'], $attr['rowGapType'] ),
+	'column-gap' => UAGB_Helper::get_css_value( $attr['columnGapDesktop'], $attr['columnGapType'] ),
 	'box-shadow'      =>
 			UAGB_Helper::get_css_value( $attr['boxShadowHOffset'], 'px' ) .
 			' ' .
@@ -71,6 +73,8 @@ $t_selectors = array(
 		'justify-content' => $attr['justifyContentTablet'],
 		'flex-wrap'       => $attr['wrapTablet'],
 		'align-content'   => $attr['alignContentTablet'],
+		'row-gap' => UAGB_Helper::get_css_value( $attr['rowGapTablet'], $attr['rowGapType'] ),
+		'column-gap' => UAGB_Helper::get_css_value( $attr['columnGapTablet'], $attr['columnGapType'] ),
 		'padding-top'     => UAGB_Helper::get_css_value( $attr['topPaddingTablet'], $attr['paddingType'] ),
 		'padding-bottom'  => UAGB_Helper::get_css_value( $attr['bottomPaddingTablet'], $attr['paddingType'] ),
 		'padding-left'    => UAGB_Helper::get_css_value( $attr['leftPaddingTablet'], $attr['paddingType'] ),
@@ -91,6 +95,8 @@ $m_selectors = array(
 		'justify-content' => $attr['justifyContentMobile'],
 		'flex-wrap'       => $attr['wrapMobile'],
 		'align-content'   => $attr['alignContentMobile'],
+		'row-gap' => UAGB_Helper::get_css_value( $attr['rowGapMobile'], $attr['rowGapType'] ),
+		'column-gap' => UAGB_Helper::get_css_value( $attr['columnGapMobile'], $attr['columnGapType'] ),
 		'padding-top'     => UAGB_Helper::get_css_value( $attr['topPaddingMobile'], $attr['paddingType'] ),
 		'padding-bottom'  => UAGB_Helper::get_css_value( $attr['bottomPaddingMobile'], $attr['paddingType'] ),
 		'padding-left'    => UAGB_Helper::get_css_value( $attr['leftPaddingMobile'], $attr['paddingType'] ),

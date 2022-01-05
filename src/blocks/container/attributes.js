@@ -263,7 +263,33 @@ const attributes = {
 	variationSelected: {
 		type: 'boolean',
 		default: false,
-	}
+	},
+	rowGapDesktop: {
+		type: 'number',
+	},
+	rowGapTablet: {
+		type: 'number',
+	},
+	rowGapMobile: {
+		type: 'number',
+	},
+	rowGapType: {
+		type: 'string',
+		default: 'px',
+	},
+	columnGapDesktop: {
+		type: 'number',
+	},
+	columnGapTablet: {
+		type: 'number',
+	},
+	columnGapMobile: {
+		type: 'number',
+	},
+	columnGapType: {
+		type: 'string',
+		default: 'px',
+	},
 };
 
 export default attributes;

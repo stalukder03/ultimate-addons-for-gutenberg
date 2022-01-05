@@ -98,6 +98,14 @@ const Settings = ( props ) => {
 		rightMarginMobile,
 		marginType,
 		marginLink,
+		rowGapDesktop,
+		rowGapTablet,
+		rowGapMobile,
+		rowGapType,
+		columnGapDesktop,
+		columnGapTablet,
+		columnGapMobile,
+		columnGapType,
 	} = attributes;
 
 	const generalSettings = () => {
@@ -360,6 +368,88 @@ const Settings = ( props ) => {
 						},
 					} }
 					options={ justifyContentOptions }
+					setAttributes={ setAttributes }
+				/>
+				<ResponsiveSlider
+					label={ __( 'Row Gap', 'ultimate	-addons-for-gutenberg' ) }
+					data={ {
+						desktop: {
+							value: rowGapDesktop,
+							label: 'rowGapDesktop',
+						},
+						tablet: {
+							value: rowGapTablet,
+							label: 'rowGapTablet',
+						},
+						mobile: {
+							value: rowGapMobile,
+							label: 'rowGapMobile',
+						},
+					} }
+					min={ 0 }
+					max={ 1600 }
+					unit={ {
+						value: rowGapType,
+						label: 'rowGapType',
+					} }
+					units={ [
+						{
+							name: __(
+								'PX',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'px',
+						},
+						{
+							name: __( '%', 'ultimate-addons-for-gutenberg' ),
+							unitValue: '%',
+						},
+						{
+							name: __( 'VW', 'ultimate-addons-for-gutenberg' ),
+							unitValue: 'vw',
+						},
+					] }
+					setAttributes={ setAttributes }
+				/>
+				<ResponsiveSlider
+					label={ __( 'Column Gap', 'ultimate	-addons-for-gutenberg' ) }
+					data={ {
+						desktop: {
+							value: columnGapDesktop,
+							label: 'columnGapDesktop',
+						},
+						tablet: {
+							value: columnGapTablet,
+							label: 'columnGapTablet',
+						},
+						mobile: {
+							value: columnGapMobile,
+							label: 'columnGapMobile',
+						},
+					} }
+					min={ 0 }
+					max={ 1600 }
+					unit={ {
+						value: columnGapType,
+						label: 'columnGapType',
+					} }
+					units={ [
+						{
+							name: __(
+								'PX',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'px',
+						},
+						{
+							name: __( '%', 'ultimate-addons-for-gutenberg' ),
+							unitValue: '%',
+						},
+						{
+							name: __( 'VW', 'ultimate-addons-for-gutenberg' ),
+							unitValue: 'vw',
+						},
+					] }
 					setAttributes={ setAttributes }
 				/>
 				<ResponsiveSelectControl

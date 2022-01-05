@@ -81,4 +81,12 @@ return array(
 	'rightMarginMobile'     => '',
 	'marginType'            => 'px',
 	'marginLink'            => '',
+	'rowGapDesktop' => '',
+	'rowGapTablet' => '',
+	'rowGapMobile' => '',
+	'rowGapType' => 'px',
+	'columnGapDesktop' => '',
+	'columnGapTablet' => '',
+	'columnGapMobile' => '',
+	'columnGapType' => 'px',
 );

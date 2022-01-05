@@ -73,10 +73,18 @@
 		.block-editor-default-block-appender .block-editor-inserter {
 			right: -30px;
 		}
+		.block-list-appender {
+			position: absolute;
+			right: 0;
+			bottom: -60%;
+		}
 	}
 }
 
 .editor-styles-wrapper .wp-block[data-type="uagb/container"] {
 	margin: 0;
 	max-width: none;
+}
+.block-editor-block-list__layout.is-root-container > .wp-block[data-type="uagb/container"] {
+	margin: 28px auto;
 }
