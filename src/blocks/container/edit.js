@@ -30,6 +30,8 @@ import {
 
 import { createBlock } from '@wordpress/blocks';
 
+import { select } from '@wordpress/data';
+
 import styles from './editor.lazy.scss';
 
 const UAGBContainer = ( props ) => {
@@ -97,7 +99,7 @@ const UAGBContainer = ( props ) => {
 
 	const { variationSelected } = props.attributes;
 
-	if ( ! variationSelected ) {
+	if ( ! variationSelected && 0 === select( 'core/block-editor' ).getBlockParents(props.clientId).length ) {
 		
 		return (
 			<div className='uagb-container-variation-picker'>
