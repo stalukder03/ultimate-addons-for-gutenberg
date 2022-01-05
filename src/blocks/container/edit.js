@@ -20,7 +20,7 @@ const Render = lazy( () =>
 import './style.scss';
 import { __ } from '@wordpress/i18n';
 
-import { withSelect, useDispatch } from '@wordpress/data';
+import { withSelect, useDispatch, select } from '@wordpress/data';
 
 import { compose } from '@wordpress/compose';
 
@@ -29,8 +29,6 @@ import {
 } from '@wordpress/block-editor';
 
 import { createBlock } from '@wordpress/blocks';
-
-import { select } from '@wordpress/data';
 
 import styles from './editor.lazy.scss';
 
@@ -83,7 +81,7 @@ const UAGBContainer = ( props ) => {
 			);
 		}
 		if ( nextVariation.insideBlocks && 'one-column' !== nextVariation.name ) {
-			let innerBlocks = select( 'core/block-editor' ).getBlock(props.clientId).innerBlocks[nextVariation.insideBlocksIndex];
+			const innerBlocks = select( 'core/block-editor' ).getBlock( props.clientId ).innerBlocks[nextVariation.insideBlocksIndex];
 
 			props.replaceInnerBlocks(
 				innerBlocks.clientId,
@@ -107,7 +105,7 @@ const UAGBContainer = ( props ) => {
 
 	const { variationSelected } = props.attributes;
 
-	if ( ! variationSelected && 0 === select( 'core/block-editor' ).getBlockParents(props.clientId).length ) {
+	if ( ! variationSelected && 0 === select( 'core/block-editor' ).getBlockParents( props.clientId ).length ) {
 		
 		return (
 			<div className='uagb-container-variation-picker'>
@@ -136,7 +134,8 @@ const UAGBContainer = ( props ) => {
 		</>
 	);
 };
-const applyWithSelect = withSelect( ( select, props ) => {
+
+const applyWithSelect = withSelect( ( select, props ) => { // eslint-disable-line no-shadow
 	const { __experimentalGetPreviewDeviceType = null } = select(
 		'core/edit-post'
 	);

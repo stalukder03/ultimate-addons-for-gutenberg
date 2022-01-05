@@ -1,6 +1,6 @@
-function generateBackgroundCSS (backgroundAttributes) {
+function generateBackgroundCSS ( backgroundAttributes ) {
 
-    let {
+    const {
         backgroundType,
         backgroundImage,
         backgroundColor,
@@ -11,7 +11,7 @@ function generateBackgroundCSS (backgroundAttributes) {
         backgroundAttachment,
     } = backgroundAttributes;
 
-    let bgCSS = {};
+    const bgCSS = {};
 
     if( undefined !== backgroundType && '' !== backgroundType ) {
 
@@ -24,11 +24,11 @@ function generateBackgroundCSS (backgroundAttributes) {
             }
         } else if ( 'image' === backgroundType ) {
 
-            if ( '' !== backgroundImage && '' !== backgroundColor && undefined !== backgroundColor && 'unset' !== backgroundColor && ! backgroundColor.includes("linear-gradient") && ! backgroundColor.includes("radial-gradient") ) {
+            if ( '' !== backgroundImage && '' !== backgroundColor && undefined !== backgroundColor && 'unset' !== backgroundColor && ! backgroundColor.includes( 'linear-gradient' ) && ! backgroundColor.includes( 'radial-gradient' ) ) {
 
                 bgCSS['background-image'] = 'linear-gradient(to right, ' + backgroundColor + ', ' + backgroundColor + '), url(' + backgroundImage.url + ');';
             }
-            if ( ( undefined === backgroundColor || '' === backgroundColor || 'unset' === backgroundColor || backgroundColor.includes("linear-gradient") || backgroundColor.includes("radial-gradient") ) && '' !== backgroundImage ) {
+            if ( ( undefined === backgroundColor || '' === backgroundColor || 'unset' === backgroundColor || backgroundColor.includes( 'linear-gradient' ) || backgroundColor.includes( 'radial-gradient' ) ) && '' !== backgroundImage ) {
                 bgCSS['background-image'] = 'url(' + backgroundImage.url + ');';
             }
         } else if ( 'gradient' === backgroundType ) {

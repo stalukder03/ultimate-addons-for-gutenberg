@@ -87,20 +87,20 @@ function styling( props ) {
 		columnGapType,
 	} = props.attributes;
 
-	let selectors = {};
+	const selectors = {};
 
-	let backgroundAttributes = {
-        backgroundType,
-        backgroundImage,
-        backgroundColor,
-        gradientValue,
-        backgroundRepeat,
-        backgroundPosition,
-        backgroundSize,
-        backgroundAttachment,
+	const backgroundAttributes = {
+        'backgroundType': backgroundType,
+        'backgroundImage': backgroundImage,
+        'backgroundColor': backgroundColor,
+        'gradientValue': gradientValue,
+        'backgroundRepeat': backgroundRepeat,
+        'backgroundPosition': backgroundPosition,
+        'backgroundSize': backgroundSize,
+        'backgroundAttachment': backgroundAttachment,
     };
 
-	let containerBackgroundCSS = generateBackgroundCSS(backgroundAttributes);
+	const containerBackgroundCSS = generateBackgroundCSS( backgroundAttributes );
 
 	let boxShadowPositionCSS = boxShadowPosition;
 
@@ -108,7 +108,7 @@ function styling( props ) {
 		boxShadowPositionCSS = '';
 	}
 	
-	let containerCSS = {
+	const containerCSS = {
 		'padding-top': generateCSSUnit( topPaddingDesktop, paddingType ),
 		'padding-bottom': generateCSSUnit( bottomPaddingDesktop, paddingType ),
 		'padding-left': generateCSSUnit( leftPaddingDesktop, paddingType ),
@@ -215,8 +215,8 @@ function styling( props ) {
 			'justify-content' : justifyContentMobile,
 			'flex-wrap' : wrapMobile,
 			'align-content' : alignContentMobile,
-			'row-gap' : generateCSSUnit( rowGapTablet, rowGapType ),
-			'column-gap' : generateCSSUnit( columnGapTablet, columnGapType ),
+			'row-gap' : generateCSSUnit( rowGapMobile, rowGapType ),
+			'column-gap' : generateCSSUnit( columnGapMobile, columnGapType ),
 		},
 		'.block-editor-block-list__block' : {
 			'width' : generateCSSUnit( widthMobile, widthType ),
