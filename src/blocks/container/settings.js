@@ -228,12 +228,66 @@ const Settings = ( props ) => {
 			],
 		};
 
+		const widthOptions = [
+			{
+				value: 25,
+				tooltip: __( '25%', 'ultimate-addons-for-gutenberg' ),
+				label: __( '25%', 'ultimate-addons-for-gutenberg' ),
+			},
+			{
+				value: 33,
+				tooltip: __( '33%', 'ultimate-addons-for-gutenberg' ),
+				label: __( '33%', 'ultimate-addons-for-gutenberg' ),
+			},
+			{
+				value: 50,
+				label: __( '50%', 'ultimate-addons-for-gutenberg' ),
+				tooltip: __( '50%', 'ultimate-addons-for-gutenberg' ),
+			},
+			{
+				value: 66,
+				label: __( '66%', 'ultimate-addons-for-gutenberg' ),
+				tooltip: __( '66%', 'ultimate-addons-for-gutenberg' ),
+			},
+			{
+				value: 75,
+				label: __( '75%', 'ultimate-addons-for-gutenberg' ),
+				tooltip: __( '75%', 'ultimate-addons-for-gutenberg' ),
+			},
+			{
+				value: 100,
+				label: __( '100%', 'ultimate-addons-for-gutenberg' ),
+				tooltip: __( '100%', 'ultimate-addons-for-gutenberg' ),
+			},
+		];
+
 		return (
 			<UAGAdvancedPanelBody
 				title={ __( 'Container', 'ultimate-addons-for-gutenberg' ) }
 			>
+				<MultiButtonsControl
+					setAttributes={ setAttributes }
+					label={ __( 'Width', 'ultimate-addons-for-gutenberg' ) }
+					data={ {
+						desktop: {
+							value: widthDesktop,
+							label: 'widthDesktop',
+						},
+						tablet: {
+							value: widthTablet,
+							label: 'widthTablet',
+						},
+						mobile: {
+							value: widthMobile,
+							label: 'widthMobile',
+						},
+					} }
+					options={ widthOptions }
+					showIcons={ false }
+					responsive={true}
+				/>
 				<ResponsiveSlider
-					label={ __( 'Width', 'ultimate	-addons-for-gutenberg' ) }
+					label={ __( 'Custom Width', 'ultimate	-addons-for-gutenberg' ) }
 					data={ {
 						desktop: {
 							value: widthDesktop,
