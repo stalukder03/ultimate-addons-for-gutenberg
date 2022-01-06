@@ -5,34 +5,29 @@ function renderCustomIcon( svg ) {
     switch ( svg ) {
         case 'align-center':
             customSVG = (
-                <svg viewBox="0 0 18 12" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M4 2H14V0H4V2ZM0 7H18V5H0V7ZM4 12H14V10H4V12Z"
-                    />
+                <svg id="icon-format_align_center" viewBox="0 0 24 24">
+                    <path d="M3 3h18v2.016h-18v-2.016zM6.984 6.984h10.031v2.016h-10.031v-2.016zM3 12.984v-1.969h18v1.969h-18zM3 21v-2.016h18v2.016h-18zM6.984 15h10.031v2.016h-10.031v-2.016z"></path>
                 </svg>
             );
             break;
         case 'align-left':
             customSVG = (
-                <svg viewBox="0 0 18 12" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M10 2H0V0H10V2ZM18 7H0V5H18V7ZM10 12H0V10H10V12Z"
-                    />
+                <svg id="icon-format_align_left" viewBox="0 0 24 24">
+                    <path d="M3 3h18v2.016h-18v-2.016zM3 21v-2.016h18v2.016h-18zM3 12.984v-1.969h18v1.969h-18zM15 6.984v2.016h-12v-2.016h12zM15 15v2.016h-12v-2.016h12z"></path>
                 </svg>
             );
             break;
         case 'align-right':
             customSVG = (
-                <svg viewBox="0 0 18 12" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M8 2H18V0H8V2ZM0 7H18V5H0V7ZM8 12H18V10H8V12Z"
-                    />
+                <svg id="icon-format_align_right" viewBox="0 0 24 24">
+                    <path d="M3 3h18v2.016h-18v-2.016zM9 9v-2.016h12v2.016h-12zM3 12.984v-1.969h18v1.969h-18zM9 17.016v-2.016h12v2.016h-12zM3 21v-2.016h18v2.016h-18z"></path>
+                </svg>
+            );
+            break;
+        case 'align-stretch':
+            customSVG = (
+                <svg viewBox="0 0 24 24">
+                    <path d="M3 3h18v2.016h-18v-2.016zM3 9v-2.016h18v2.016h-18zM3 12.984v-1.969h18v1.969h-18zM3 17.016v-2.016h18v2.016h-18zM3 21v-2.016h18v2.016h-18z"></path>
                 </svg>
             );
             break;

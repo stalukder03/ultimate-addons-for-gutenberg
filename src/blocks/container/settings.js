@@ -158,7 +158,7 @@ const Settings = ( props ) => {
 			},
 			{
 				value: 'flex-end',
-				label: __( 'Flex End', 'ultimate-addons-for-gutenberg' ),
+				tooltip: __( 'Flex End', 'ultimate-addons-for-gutenberg' ),
 				icon: (
 					<Icon
 						icon={ renderCustomIcon( 'align-right' ) }
@@ -167,10 +167,10 @@ const Settings = ( props ) => {
 			},
 			{
 				value: 'stretch',
-				label: __( 'Stretch', 'ultimate-addons-for-gutenberg' ),
+				tooltip: __( 'Stretch', 'ultimate-addons-for-gutenberg' ),
 				icon: (
 					<Icon
-						icon={ renderCustomIcon( 'align-center' ) }
+						icon={ renderCustomIcon( 'align-stretch' ) }
 					/>
 				),
 			},
