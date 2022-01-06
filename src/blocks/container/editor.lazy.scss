@@ -73,13 +73,19 @@
 		display: flex;
 		width: 100%;
 		height: 100%;
+
 		.block-list-appender {
 			position: absolute;
+
 			.block-editor-inserter {
-				right: -30px !important;
+				display: none;
 			}
 		}
 	}
+}
+
+.block-editor-block-list__empty-block-inserter .block-editor-inserter {
+	right: -35px;
 }
 
 .editor-styles-wrapper .wp-block[data-type="uagb/container"] {
@@ -89,4 +95,8 @@
 
 .block-editor-block-list__layout.is-root-container > .wp-block[data-type="uagb/container"] {
 	margin: 28px auto;
+}
+
+.uag-container-block-inserter .components-button {
+	color: #4a01e0;
 }
