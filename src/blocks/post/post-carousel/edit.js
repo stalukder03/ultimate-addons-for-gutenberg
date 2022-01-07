@@ -1890,7 +1890,7 @@ export default compose(
 
 		if ( excludeCurrentPost ) {
 			latestPostsQuery.exclude = select(
-				'core/editor'
+				'core/block-editor'
 			).getCurrentPostId();
 		}
 		const category = [];
