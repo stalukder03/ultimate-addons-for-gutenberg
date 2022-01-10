@@ -42,7 +42,13 @@ const UAGBContainer = ( props ) => {
 		};
 	}, [] );
 
-
+	if ( props.isParentOfSelectedBlock ) {
+		let emptyBlockInserter = document.querySelector( '.block-editor-block-list__empty-block-inserter' );
+		if ( emptyBlockInserter ) {
+			emptyBlockInserter.parentNode.removeChild(emptyBlockInserter);
+		}
+	}
+	
 	useEffect( () => {
 		// Assigning block_id in the attribute.
 		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
@@ -165,6 +171,7 @@ const applyWithSelect = withSelect( ( select, props ) => { // eslint-disable-lin
 				: getBlockVariations( props.name ),
 		replaceInnerBlocks,
 		deviceType,
+		isParentOfSelectedBlock: select( 'core/block-editor' ).hasSelectedInnerBlock( props.clientId, true )
 	};
 } );
 export default compose( applyWithSelect )( UAGBContainer );
