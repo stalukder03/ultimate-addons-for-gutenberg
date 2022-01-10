@@ -45,10 +45,10 @@ const UAGBContainer = ( props ) => {
 	if ( props.isParentOfSelectedBlock ) {
 		const emptyBlockInserter = document.querySelector( '.block-editor-block-list__empty-block-inserter' );
 		if ( emptyBlockInserter ) {
-			emptyBlockInserter.parentNode.removeChild( emptyBlockInserter );
+			emptyBlockInserter.style.display = "none";
 		}
 	}
-	
+
 	useEffect( () => {
 		// Assigning block_id in the attribute.
 		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
