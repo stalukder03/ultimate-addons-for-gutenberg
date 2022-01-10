@@ -43,9 +43,9 @@ const UAGBContainer = ( props ) => {
 	}, [] );
 
 	if ( props.isParentOfSelectedBlock ) {
-		let emptyBlockInserter = document.querySelector( '.block-editor-block-list__empty-block-inserter' );
+		const emptyBlockInserter = document.querySelector( '.block-editor-block-list__empty-block-inserter' );
 		if ( emptyBlockInserter ) {
-			emptyBlockInserter.parentNode.removeChild(emptyBlockInserter);
+			emptyBlockInserter.parentNode.removeChild( emptyBlockInserter );
 		}
 	}
 	
