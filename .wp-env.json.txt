@@ -1,7 +1,7 @@
 {
     "core": null,
     "themes": [
-        "brainstormforce/astra"
+        "https://downloads.wordpress.org/theme/astra.zip"
     ],
     "plugins": [
         ".",
