@@ -37,4 +37,3 @@
 	<exclude-pattern>*/admin/assets/*</exclude-pattern>
 	<exclude-pattern>*/admin/bsf-analytics/*</exclude-pattern>
 </ruleset>
-
