@@ -56,9 +56,10 @@ expect.extend( {
  * @param {string} cssValue    CSS Value for the property.
  * @return {string} Sanitized CSS Value.
  */
-const sanitizeValue = ( cssProperty, cssValue ) => {
+ const sanitizeValue = ( cssProperty, cssValue ) => {
 	const SANITIZERS = {
 		'font-family': sanitizeFontFamily,
+		'font-size': sanitizeFontSize,
 	};
 
 	const sanitizer = SANITIZERS[ `${ cssProperty }` ];
@@ -78,4 +79,14 @@ const sanitizeValue = ( cssProperty, cssValue ) => {
  */
 const sanitizeFontFamily = ( fontFamily ) => {
 	return fontFamily.replace( /\\/g, '' ).replace( /"/g, "'" );
+};
+
+const sanitizeFontSize = ( fontSize ) => {
+	const fontSizeNumber = Number( fontSize.replace( /px/, '' ) );
+
+	if ( ! Number.isInteger( fontSizeNumber ) ) {
+		return fontSizeNumber.toFixed( 2 ) + 'px';
+	}
+
+	return `${ fontSizeNumber }px`;
 };
