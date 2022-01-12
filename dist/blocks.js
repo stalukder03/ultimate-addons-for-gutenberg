@@ -29499,25 +29499,23 @@ if ('enabled' === uagb_blocks_info.copy_paste) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Controls_renderIcon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @Controls/renderIcon */ "./blocks-config/uagb-controls/renderIcon.js");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/plugins */ "@wordpress/plugins");
+/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_7__);
-
-/**
- * WordPress dependencies
- */
+/* harmony import */ var _wordpress_keyboard_shortcuts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/keyboard-shortcuts */ "@wordpress/keyboard-shortcuts");
+/* harmony import */ var _wordpress_keyboard_shortcuts__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_keyboard_shortcuts__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _Controls_renderIcon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @Controls/renderIcon */ "./blocks-config/uagb-controls/renderIcon.js");
 
 
 
@@ -29529,14 +29527,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const UAGCopyBlocks = props => {
-  const {
-    onCopy,
-    selectedBlock
-  } = props;
-  const selectedBlocks = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__["select"])('core/block-editor').getMultiSelectedBlocks(); //  if ( ! selectedBlock && size( selectedBlocks ) < 1 ) {
-  //      return false;
-  //  }
-
   const getSelection = () => {
     const {
       selectedBlockCount,
@@ -29546,30 +29536,32 @@ const UAGCopyBlocks = props => {
     const selectedBlocks = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__["select"])('core/block-editor').getMultiSelectedBlocks();
 
     if (selectedBlockCount === 1) {
-      cloned = Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_6__["serialize"])(selectedBlock);
-    } //  if ( size( selectedBlocks ) > 0 ) {
-    //      cloned = serialize( selectedBlocks );
-    //  }
+      cloned = Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_7__["serialize"])(selectedBlock);
+    } // if ( size( selectedBlocks ) > 0 ) {
+    // 	cloned = serialize( selectedBlocks );
+    // }
 
 
     return cloned;
   };
 
-  return /*#__PURE__*/React.createElement(BlockControls, null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["ToolbarGroup"], {
+  return /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__["BlockControls"], null, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["Toolbar"], {
     className: "uag-copy"
-  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["ClipboardButton"], {
+  }, /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["ClipboardButton"], {
     text: getSelection(),
-    icon: Object(_Controls_renderIcon__WEBPACK_IMPORTED_MODULE_0__["default"])(icon),
+    icon: Object(_Controls_renderIcon__WEBPACK_IMPORTED_MODULE_8__["default"])('copy'),
     onCopy: onCopy
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Copy', 'ultimate-addons-for-gutenberg'))));
+  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('Copy', 'block-options'))));
 };
 
-const displayUAGCopySettingConditionally = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_5__["compose"])(Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__["withSelect"])(() => {
+const displayUAGCopySettingConditionally = Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__["compose"])(
+/* eslint-disable no-shadow */
+Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__["withSelect"])(function (select) {
   const {
     getSelectedBlockCount,
     getSelectedBlock,
     getMultiSelectedBlocks
-  } = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__["select"])('core/block-editor');
+  } = select('core/block-editor');
 
   if (!getSelectedBlock()) {
     return {};
@@ -29579,7 +29571,7 @@ const displayUAGCopySettingConditionally = Object(_wordpress_compose__WEBPACK_IM
     selectedBlockCount: getSelectedBlockCount(),
     selectedBlock: getSelectedBlock(),
     selectedBlocks: getMultiSelectedBlocks(),
-    isDisabled: Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__["select"])('core/edit-post').isFeatureActive('disableEditorsKitCopyOptions')
+    isDisabled: select('core/edit-post').isFeatureActive('disableEditorsKitCopyOptions')
   };
 }), Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__["withDispatch"])(dispatch => {
   const {
@@ -29589,9 +29581,9 @@ const displayUAGCopySettingConditionally = Object(_wordpress_compose__WEBPACK_IM
     onCopy() {
       const selectedBlocks = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__["select"])('core/block-editor').getMultiSelectedBlocks();
 
-      let notice = Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Selected block copied.', 'ultimate-addons-for-gutenberg'); //  if ( size( selectedBlocks ) > 0 ) {
-      //      notice = __( 'Selected blocks copied.', 'ultimate-addons-for-gutenberg' );
-      //  }
+      let notice = Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('Selected block copied.', 'block-options'); // if ( size( selectedBlocks ) > 0 ) {
+      // 	notice = __( 'Selected blocks copied.', 'block-options' );
+      // }
 
 
       createNotice('info', notice, {
@@ -29601,10 +29593,12 @@ const displayUAGCopySettingConditionally = Object(_wordpress_compose__WEBPACK_IM
     }
 
   };
-}), Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_5__["ifCondition"])(props => {
+}), Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__["ifCondition"])(props => {
   return !props.isDisabled;
-}), _wordpress_components__WEBPACK_IMPORTED_MODULE_4__["withSpokenMessages"])(UAGCopyBlocks);
-Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_7__["addFilter"])('editor.BlockEdit', 'uag-copy', displayUAGCopySettingConditionally);
+}), _wordpress_components__WEBPACK_IMPORTED_MODULE_6__["withSpokenMessages"])(UAGCopyBlocks);
+Object(_wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__["registerPlugin"])('uag-copy', {
+  render: displayUAGCopySettingConditionally
+});
 
 /***/ }),
 
