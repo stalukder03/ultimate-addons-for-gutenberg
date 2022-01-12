@@ -10,6 +10,7 @@ import { withSpokenMessages, ClipboardButton } from '@wordpress/components';
 import { compose, ifCondition } from '@wordpress/compose';
 import { serialize } from '@wordpress/blocks';
 import { ToolbarGroup } from '@wordpress/components';
+import { addFilter } from '@wordpress/hooks';
 
 const UAGCopyBlocks = (props) => {
 

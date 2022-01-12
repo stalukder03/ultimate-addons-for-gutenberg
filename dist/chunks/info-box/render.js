@@ -1,1 +1,216 @@
-(window.webpackJsonp_ultimate_addons_for_gutenberg=window.webpackJsonp_ultimate_addons_for_gutenberg||[]).push([[65],{223:function(e,t,a){"use strict";var r=a(19),n=a.n(r)()((function(e){return e[1]}));n.push([e.i,"/**\r\n * #.# Editor Styles\r\n *\r\n * CSS for just Backend enqueued after style.scss\r\n * which makes it higher in priority.\r\n */\n.block-editor-page #wpwrap .edit-post-visual-editor a.uagb-infobox-link-wrap {\n  z-index: -1;\n  color: inherit; }\n\n.block-editor-page #wpwrap .uagb-ifb-title-wrap h1,\n.block-editor-page #wpwrap .uagb-ifb-title-wrap h2,\n.block-editor-page #wpwrap .uagb-ifb-title-wrap h3,\n.block-editor-page #wpwrap .uagb-ifb-title-wrap h4,\n.block-editor-page #wpwrap .uagb-ifb-title-wrap h5,\n.block-editor-page #wpwrap .uagb-ifb-title-wrap h6 {\n  margin-top: 0; }\n",""]),t.a=n},465:function(e,t,a){"use strict";a.r(t);var r,n=a(4),l=a.n(n),i=a(93),o=a(1),s=a.n(o),b=a(27),c=a(28),u=a(95),p=a(94),g=a(92),m=a(96),f=a(26),w=a(18),d=a.n(w),E=a(223),h=0,_={injectType:"lazySingletonStyleTag",attributes:{id:"uagb-editor-styles"},insert:"head",singleton:!0},k={};k.locals=E.a.locals||{},k.use=function(){return h++||(r=d()(E.a,_)),k},k.unuse=function(){h>0&&!--h&&(r(),r=null)};var v=k,y=a(24);const x=e=>{Object(o.useLayoutEffect)(()=>(v.use(),()=>{v.unuse()}),[]),e=e.parentProps;const t=Object(y.a)(),{attributes:a,setAttributes:r}=e,{icon:n,iconimgPosition:w,source_type:d,seperatorPosition:E,seperatorStyle:h,ctaType:_,showPrefix:k,showTitle:x,showDesc:F,block_id:N}=a;let S="";S="icon"===d&&""!==n?s.a.createElement(g.a,{attributes:a}):s.a.createElement(m.a,{attributes:a});let j=S,A=E;const P=s.a.createElement(p.a,{attributes:a});let T=!0;"after_icon"!==E||"above-title"!==w&&"below-title"!==w||(T=!1,j=s.a.createElement(s.a.Fragment,null,S,"none"!==h&&P)),"after_icon"!==E||"above-title"===w&&"below-title"===w||(A="after_title"),"below-title"===w&&"after_title"===E&&(T=!1,j=s.a.createElement(s.a.Fragment,null,"none"!==h&&P,S));const L=s.a.createElement(s.a.Fragment,null,"none"!==h&&"after_title"===A&&T&&P,F&&s.a.createElement(c.a,{attributes:a,setAttributes:r,props:e}),"none"!==h&&"after_desc"===A&&P,s.a.createElement(u.a,{attributes:a,setAttributes:r})),O=s.a.createElement("div",{className:"uagb-ifb-title-wrap"},k&&s.a.createElement(f.a,{attributes:a,setAttributes:r,props:e}),"none"!==h&&"after_prefix"===A&&P,x&&s.a.createElement(b.a,{attributes:a,setAttributes:r,props:e})),z=s.a.createElement(s.a.Fragment,null,"left"===w&&j,s.a.createElement("div",{className:"uagb-ifb-content"},"above-title"===w&&j,("above-title"===w||"below-title"===w)&&O,"below-title"===w&&j,("above-title"===w||"below-title"===w)&&L,"left-title"===w&&s.a.createElement(s.a.Fragment,null,s.a.createElement("div",{className:"uagb-ifb-left-title-image"},j,O),L),"right-title"===w&&s.a.createElement(s.a.Fragment,null,s.a.createElement("div",{className:"uagb-ifb-right-title-image"},O,j),L),("left"===w||"right"===w)&&s.a.createElement(s.a.Fragment,null,O,L)),"right"===w&&j);return s.a.createElement("div",{className:l()("uagb-block-"+N,"uagb-editor-preview-mode-"+t.toLowerCase(),"uagb-infobox__content-wrap","all"===_?" uagb-infobox_cta-type-all":"",...Object(i.a)(a))},"all"===_&&s.a.createElement(s.a.Fragment,null,s.a.createElement("a",{className:"uagb-infobox-link-wrap uagb-infbox__link-to-all","aria-label":"Infobox Link",rel:"noopener noreferrer",href:"/"}),z),"all"!==_&&z)};t.default=s.a.memo(x)}}]);
+(window["webpackJsonp_ultimate_addons_for_gutenberg"] = window["webpackJsonp_ultimate_addons_for_gutenberg"] || []).push([["chunks/info-box/render"],{
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/blocks/info-box/editor.lazy.scss":
+/*!*****************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/blocks/info-box/editor.lazy.scss ***!
+  \*****************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/cssWithMappingToString.js */ "./node_modules/css-loader/dist/runtime/cssWithMappingToString.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
+// Module
+___CSS_LOADER_EXPORT___.push([module.i, "/**\r\n * #.# Editor Styles\r\n *\r\n * CSS for just Backend enqueued after style.scss\r\n * which makes it higher in priority.\r\n */\n.block-editor-page #wpwrap .edit-post-visual-editor a.uagb-infobox-link-wrap {\n  z-index: -1;\n  color: inherit; }\n\n.block-editor-page #wpwrap .uagb-ifb-title-wrap h1,\n.block-editor-page #wpwrap .uagb-ifb-title-wrap h2,\n.block-editor-page #wpwrap .uagb-ifb-title-wrap h3,\n.block-editor-page #wpwrap .uagb-ifb-title-wrap h4,\n.block-editor-page #wpwrap .uagb-ifb-title-wrap h5,\n.block-editor-page #wpwrap .uagb-ifb-title-wrap h6 {\n  margin-top: 0; }\n", "",{"version":3,"sources":["webpack://./src/blocks/info-box/editor.lazy.scss"],"names":[],"mappings":"AAAA;;;;;EAKE;AACF;EACE,WAAW;EACX,cAAc,EAAE;;AAElB;;;;;;EAME,aAAa,EAAE","sourcesContent":["/**\r\n * #.# Editor Styles\r\n *\r\n * CSS for just Backend enqueued after style.scss\r\n * which makes it higher in priority.\r\n */\n.block-editor-page #wpwrap .edit-post-visual-editor a.uagb-infobox-link-wrap {\n  z-index: -1;\n  color: inherit; }\n\n.block-editor-page #wpwrap .uagb-ifb-title-wrap h1,\n.block-editor-page #wpwrap .uagb-ifb-title-wrap h2,\n.block-editor-page #wpwrap .uagb-ifb-title-wrap h3,\n.block-editor-page #wpwrap .uagb-ifb-title-wrap h4,\n.block-editor-page #wpwrap .uagb-ifb-title-wrap h5,\n.block-editor-page #wpwrap .uagb-ifb-title-wrap h6 {\n  margin-top: 0; }\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./src/blocks/info-box/editor.lazy.scss":
+/*!**********************************************!*\
+  !*** ./src/blocks/info-box/editor.lazy.scss ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_lib_loader_js_editor_lazy_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/lib/loader.js!./editor.lazy.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/blocks/info-box/editor.lazy.scss");
+
+            
+
+var refs = 0;
+var update;
+var options = {"injectType":"lazySingletonStyleTag","attributes":{"id":"uagb-editor-styles"}};
+
+options.insert = "head";
+options.singleton = true;
+
+var exported = {};
+
+exported.locals = _node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_lib_loader_js_editor_lazy_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {};
+exported.use = function() {
+  if (!(refs++)) {
+    update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_lib_loader_js_editor_lazy_scss__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+  }
+
+  return exported;
+};
+exported.unuse = function() {
+  if (refs > 0 && !--refs) {
+    update();
+    update = null;
+  }
+};
+
+
+
+;
+       /* harmony default export */ __webpack_exports__["default"] = (exported);
+
+
+/***/ }),
+
+/***/ "./src/blocks/info-box/render.js":
+/*!***************************************!*\
+  !*** ./src/blocks/info-box/render.js ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _style_classes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style-classes */ "./src/blocks/info-box/style-classes.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_Title__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Title */ "./src/blocks/info-box/components/Title.js");
+/* harmony import */ var _components_InfoBoxDesc__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/InfoBoxDesc */ "./src/blocks/info-box/components/InfoBoxDesc.js");
+/* harmony import */ var _components_CTA__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/CTA */ "./src/blocks/info-box/components/CTA.js");
+/* harmony import */ var _components_Separator__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Separator */ "./src/blocks/info-box/components/Separator.js");
+/* harmony import */ var _components_Icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Icons */ "./src/blocks/info-box/components/Icons.js");
+/* harmony import */ var _components_IconImages__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/IconImages */ "./src/blocks/info-box/components/IconImages.js");
+/* harmony import */ var _components_Prefix__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Prefix */ "./src/blocks/info-box/components/Prefix.js");
+/* harmony import */ var _editor_lazy_scss__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./editor.lazy.scss */ "./src/blocks/info-box/editor.lazy.scss");
+/* harmony import */ var _Controls_getPreviewType__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @Controls/getPreviewType */ "./blocks-config/uagb-controls/getPreviewType.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+const Render = props => {
+  // Add and remove the CSS on the drop and remove of the component.
+  Object(react__WEBPACK_IMPORTED_MODULE_2__["useLayoutEffect"])(() => {
+    _editor_lazy_scss__WEBPACK_IMPORTED_MODULE_10__["default"].use();
+    return () => {
+      _editor_lazy_scss__WEBPACK_IMPORTED_MODULE_10__["default"].unuse();
+    };
+  }, []);
+  props = props.parentProps;
+  const deviceType = Object(_Controls_getPreviewType__WEBPACK_IMPORTED_MODULE_11__["useDeviceType"])();
+  const {
+    attributes,
+    setAttributes
+  } = props; // Setup the attributes.
+
+  const {
+    icon,
+    iconimgPosition,
+    source_type,
+    seperatorPosition,
+    seperatorStyle,
+    ctaType,
+    showPrefix,
+    showTitle,
+    showDesc,
+    block_id
+  } = attributes; // Get icon/Image components.
+
+  let isImage = '';
+
+  if (source_type === 'icon' && icon !== '') {
+    isImage = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_Icons__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      attributes: attributes
+    });
+  } else {
+    isImage = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_IconImages__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      attributes: attributes
+    });
+  }
+
+  let iconImageHtml = isImage;
+  let seperatorPos = seperatorPosition;
+  const seperatorHtml = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_Separator__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    attributes: attributes
+  });
+  let showSeperator = true;
+
+  if (seperatorPosition === 'after_icon' && (iconimgPosition === 'above-title' || iconimgPosition === 'below-title')) {
+    showSeperator = false;
+    iconImageHtml = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, isImage, 'none' !== seperatorStyle && seperatorHtml);
+  }
+
+  if (seperatorPosition === 'after_icon' && (iconimgPosition !== 'above-title' || iconimgPosition !== 'below-title')) {
+    seperatorPos = 'after_title';
+  }
+
+  if (iconimgPosition === 'below-title' && seperatorPosition === 'after_title') {
+    showSeperator = false;
+    iconImageHtml = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, 'none' !== seperatorStyle && seperatorHtml, isImage);
+  } // Get description and seperator components.
+
+
+  const desc = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, 'none' !== seperatorStyle && seperatorPos === 'after_title' && showSeperator && seperatorHtml, showDesc && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_InfoBoxDesc__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    attributes: attributes,
+    setAttributes: setAttributes,
+    props: props
+  }), 'none' !== seperatorStyle && seperatorPos === 'after_desc' && seperatorHtml, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_CTA__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    attributes: attributes,
+    setAttributes: setAttributes
+  })); // Get Title and Prefix components.
+
+  const titleText = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    className: "uagb-ifb-title-wrap"
+  }, showPrefix && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_Prefix__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    attributes: attributes,
+    setAttributes: setAttributes,
+    props: props
+  }), 'none' !== seperatorStyle && seperatorPos === 'after_prefix' && seperatorHtml, showTitle && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_Title__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    attributes: attributes,
+    setAttributes: setAttributes,
+    props: props
+  }));
+  const output = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, iconimgPosition === 'left' && iconImageHtml, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    className: "uagb-ifb-content"
+  }, iconimgPosition === 'above-title' && iconImageHtml, (iconimgPosition === 'above-title' || iconimgPosition === 'below-title') && titleText, iconimgPosition === 'below-title' && iconImageHtml, (iconimgPosition === 'above-title' || iconimgPosition === 'below-title') && desc, iconimgPosition === 'left-title' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    className: "uagb-ifb-left-title-image"
+  }, iconImageHtml, titleText), desc), iconimgPosition === 'right-title' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    className: "uagb-ifb-right-title-image"
+  }, titleText, iconImageHtml), desc), (iconimgPosition === 'left' || iconimgPosition === 'right') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, titleText, desc)), iconimgPosition === 'right' && iconImageHtml);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()(`uagb-block-${block_id}`, `uagb-editor-preview-mode-${deviceType.toLowerCase()}`, 'uagb-infobox__content-wrap', ctaType === 'all' ? ' uagb-infobox_cta-type-all' : '', ...Object(_style_classes__WEBPACK_IMPORTED_MODULE_1__["default"])(attributes))
+  }, ctaType === 'all' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("a", {
+    // eslint-disable-line jsx-a11y/anchor-has-content
+    className: "uagb-infobox-link-wrap uagb-infbox__link-to-all",
+    "aria-label": 'Infobox Link',
+    rel: "noopener noreferrer",
+    href: "/"
+  }), output), ctaType !== 'all' && output);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.memo(Render));
+
+/***/ })
+
+}]);
+//# sourceMappingURL=render.js.map
