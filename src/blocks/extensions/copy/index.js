@@ -1,16 +1,24 @@
 import { __ } from '@wordpress/i18n';
 import { registerPlugin } from '@wordpress/plugins';
-import { select, dispatch, useDispatch, withSelect, withDispatch } from '@wordpress/data';
-import { store as keyboardShortcutsStore, useShortcut } from '@wordpress/keyboard-shortcuts';
+import { select, withSelect, withDispatch } from '@wordpress/data';
 import { compose, ifCondition } from '@wordpress/compose';
 import {
 	BlockControls,
 } from '@wordpress/block-editor';
-import { Toolbar, ToolbarButton, Popover, MenuItem, ClipboardButton, withSpokenMessages } from '@wordpress/components';
+import { Toolbar, ClipboardButton, withSpokenMessages } from '@wordpress/components';
 import { serialize } from '@wordpress/blocks';
 import renderSVG from '@Controls/renderIcon';
+import editorStyles from './../editor.lazy.scss';
+import { useLayoutEffect } from 'react';
 
-const UAGCopyBlocks = (props) => {
+const UAGCopyBlocks = ( props ) => {
+
+    useLayoutEffect( () => {
+		editorStyles.use();
+		return () => {
+			editorStyles.unuse();
+		};
+	}, [] );
 
     const getSelection = () => {
 		const {
@@ -20,17 +28,16 @@ const UAGCopyBlocks = (props) => {
 
 		let cloned;
 		const selectedBlocks = select( 'core/block-editor' ).getMultiSelectedBlocks();
-
 		if ( selectedBlockCount === 1 ) {
-			cloned = serialize( selectedBlock );
+            cloned = serialize( selectedBlock );
 		}
-
-		// if ( size( selectedBlocks ) > 0 ) {
-		// 	cloned = serialize( selectedBlocks );
-		// }
-
-		return cloned;
-	}
+        
+        if ( selectedBlocks.length > 0 ) {
+            cloned = serialize( selectedBlocks );
+        }
+            
+        return cloned;
+    }
 
     return (
         <BlockControls>
@@ -38,9 +45,10 @@ const UAGCopyBlocks = (props) => {
                 <ClipboardButton
                     text={ getSelection() }
                     icon={ renderSVG( 'copy' ) }
-                    onCopy={ onCopy }
+                    onCopy={ props.onCopy }
+                    className='uag-copy-blocks'
+                    label={ __( 'Copy Block', 'ultimate-addons-for-gutenberg' ) }
                 >
-                    { __( 'Copy', 'block-options' ) }
                 </ClipboardButton>
             </Toolbar>
         </BlockControls>
@@ -68,10 +76,10 @@ const displayUAGCopySettingConditionally = compose(
 		return {
 			onCopy() {
 				const selectedBlocks = select( 'core/block-editor' ).getMultiSelectedBlocks();
-				let notice = __( 'Selected block copied.', 'block-options' );
-				// if ( size( selectedBlocks ) > 0 ) {
-				// 	notice = __( 'Selected blocks copied.', 'block-options' );
-				// }
+				let notice = __( 'Selected block copied to Clipboard.', 'ultimate-addons-for-gutenberg' );
+				if ( selectedBlocks.length > 0 ) {
+					notice = __( 'Selected blocks copied to Clipboard.', 'ultimate-addons-for-gutenberg' );
+				}
 
 				createNotice(
 					'info',
