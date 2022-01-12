@@ -3,25 +3,25 @@ import './expect-extensions';
  * `expect` extension to count the number of elements with a given selector on the page.
  */
 expect.extend( {
-	async countToBe( selector, expected ) {
+	'countToBe': async function( selector, expected ) {
 		const count = await page.$$eval( selector, ( els ) => els.length );
 
 		if ( count !== expected ) {
 			return {
-				pass: false,
-				message: () =>
+				'pass': false,
+				'message': () =>
 					`Expected ${ expected } elements for selector ${ selector }. Received ${ count }.`,
 			};
 		}
 
 		return {
-			pass: true,
-			message: () =>
+			'pass': true,
+			'message': () =>
 				`Expected ${ expected } elements for selector ${ selector }.`,
 		};
 	},
 
-	async cssValueToBe( css, expected ) {
+	'cssValueToBe': async function( css, expected ) {
 		const value = await page.$eval(
 			css.selector,
 			( el, prop, pseudoEl ) =>
@@ -35,15 +35,15 @@ expect.extend( {
 
 		if ( sanitizedValue !== expected ) {
 			return {
-				pass: false,
-				message: () =>
+				'pass': false,
+				'message': () =>
 					`Expected ${ expected } for ${ css.property } of ${ css.selector }. Received ${ sanitizedValue }.`,
 			};
 		}
 
 		return {
-			pass: true,
-			message: () =>
+			'pass': true,
+			'message': () =>
 				`Expected ${ expected } for ${ css.property } of ${ css.selector }.`,
 		};
 	},
