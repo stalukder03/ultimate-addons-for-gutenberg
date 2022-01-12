@@ -11,8 +11,8 @@
     "yoast/phpunit-polyfills": "^1"
   },
   "scripts": {
-    "format": "phpcbf",
-    "lint": "phpcs",
+    "format": "phpcbf --standard=phpcs.xml.dist",
+    "lint": "phpcs --standard=phpcs.xml.dist",
     "test": "vendor/bin/phpunit"
   },
   "require": {
