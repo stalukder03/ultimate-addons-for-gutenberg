@@ -339,12 +339,12 @@ function InfoBoxStyle( props ) {
 			'fill': ctaLinkHoverColor,
 		},
 		' .uagb-ifb-button-wrapper .uagb-infobox-cta-link': {
-			'color': ctaBtnLinkColor,
-			'background-color': ctaBgColor,
 			'border-style': ctaBorderStyle,
 			'border-color': ctaBorderColor,
-			'border-radius': generateCSSUnit( ctaBorderRadius, 'px' ),
 			'border-width': generateCSSUnit( ctaBorderWidth, 'px' ),
+			'color': ctaBtnLinkColor,
+			'background-color': ctaBgColor,
+			'border-radius': generateCSSUnit( ctaBorderRadius, 'px' ),
 			'padding-top': generateCSSUnit( paddingBtnTop, paddingBtnUnit ),
 			'padding-bottom': generateCSSUnit(
 				paddingBtnBottom,
