@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { registerPlugin } from '@wordpress/plugins';
 import { select, withSelect, withDispatch } from '@wordpress/data';
-import { compose, ifCondition } from '@wordpress/compose';
+import { compose } from '@wordpress/compose';
 import {
 	BlockControls,
 } from '@wordpress/block-editor';
@@ -67,7 +67,6 @@ const displayUAGCopySettingConditionally = compose(
 			selectedBlockCount: getSelectedBlockCount(),
 			selectedBlock: getSelectedBlock(),
 			selectedBlocks: getMultiSelectedBlocks(),
-			isDisabled: select( 'core/edit-post' ).isFeatureActive( 'disableEditorsKitCopyOptions' ),
 		};
     } ),
     withDispatch( ( dispatch ) => {
@@ -91,9 +90,6 @@ const displayUAGCopySettingConditionally = compose(
 				);
 			},
 		};
-	} ),
-	ifCondition( ( props ) => {
-		return ! props.isDisabled;
 	} ),
 	withSpokenMessages,
 )( UAGCopyBlocks );
