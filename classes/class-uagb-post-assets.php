@@ -214,8 +214,39 @@ class UAGB_Post_Assets {
 		if ( $this->is_allowed_assets_generation ) {
 			global $post;
 			$this_post = $this->preview ? $post : get_post( $this->post_id );
+			$content   = get_option( 'widget_block' );
+			$this->widget_area_assets( $content );
 			$this->prepare_assets( $this_post );
 		}
+	}
+
+	/**
+	 * Generates stylesheet for widget area.
+	 *
+	 * @param object $content Current Post Object.
+	 * @since x.x.x
+	 */
+	public function widget_area_assets( $content ) {
+
+		if ( empty( $content ) ) {
+			return;
+		}
+
+		foreach ( $content as $key => $value ) {
+			if ( is_array( $value ) && has_blocks( $value['content'] ) && isset( $value['content'] ) ) {
+
+				$blocks            = $this->parse_blocks( $value['content'] );
+				$this->page_blocks = $blocks;
+				if ( ! is_array( $blocks ) || empty( $blocks ) ) {
+					return;
+				}
+				$assets            = $this->get_blocks_assets( $blocks );
+				$this->stylesheet .= $assets['css'];
+				$this->script     .= $assets['js'];
+
+			}
+		}
+
 	}
 
 	/**
