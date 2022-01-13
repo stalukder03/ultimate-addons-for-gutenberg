@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - next-release
+      - milestones
+      - release-candidate
+      - master
+
+# Cancels all previous workflow runs for pull requests that have not completed.
+concurrency:
+    # The concurrency group contains the workflow name and the branch name for pull requests
+    # or the commit hash for any other events.
+    group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.sha }}
+    cancel-in-progress: true
+
+jobs:
+  lint-and-audit:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v2.4.1
+      with:
+        node-version: 12.x
+        cache: 'npm'
+
+    - uses: preactjs/compressed-size-action@v2
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        # Any JS files anywhere within a dist directory:
+        pattern: "{addons/**/assets/**/**/*.js,addons/**/assets/**/**/*.css}"
+
+        # Always ignore SourceMaps and node_modules:
+        exclude: "{**/*.map,**/node_modules/**}"
+        build-script: "test"
+
+    # compressed-size-action checks out to parent branch but does not revert back to source.
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup composer auth
+      run: composer config github-oauth.github.com ${{ secrets.PRIVATE_ACCESS_TOKEN }}
+
+    - name: Composer Install
+      uses: ramsey/composer-install@v1
+
+    - name: PHPCS check
+      if: always()
+      uses: chekalsky/phpcs-action@v1
+      with:
+        phpcs_bin_path: './vendor/bin/phpcs'
