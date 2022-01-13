@@ -17,7 +17,7 @@
     trashAllPosts
  } from '@wordpress/e2e-test-utils';
  
- import './expect-extension';
+ import './expect-extensions';
  
  /**
   * Environment variables

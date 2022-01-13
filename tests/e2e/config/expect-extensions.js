@@ -1,4 +1,3 @@
-import './expect-extensions';
 /**
  * `expect` extension to count the number of elements with a given selector on the page.
  */
