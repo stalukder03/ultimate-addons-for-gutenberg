@@ -33,7 +33,7 @@
   * @type {Object<string,string>}
   */
  const OBSERVED_CONSOLE_MESSAGE_TYPES = {
-     error: 'error',
+     'error': 'error',
  };
  
  /**
@@ -172,17 +172,17 @@
      }
  
      await expect( page ).toPassAxeTests( {
-         options: {
-             runOnly: {
-                 type: 'tag',
-                 values: [ 'wcag2a', 'wcag2aa' ],
+         'options': {
+             'runOnly': {
+                 'type': 'tag',
+                 'values': [ 'wcag2a', 'wcag2aa' ],
              },
          },
-         exclude: [ [
+         'exclude': [ [
              [ '#wpadminbar' ],
              [ '.skip-link' ], // Ignoring "region" requirement for the skip link, This is added to the markup already.
          ] ],
-         disabledRules: [
+         'disabledRules': [
              'landmark-unique', // Error appears in the markup from WordPress core related to individual widgets.
          ],
      } );
@@ -193,8 +193,8 @@
   */
  async function setupBrowser() {
      await setBrowserViewport( {
-         width: 1600,
-         height: 1000,
+         'width': 1600,
+         'height': 1000,
      } );
  }
  
@@ -203,7 +203,7 @@
   */
  async function siteReset() {
      await window.fetch( createURL( '/wp-json/astra/v1/e2e-utils/reset-site' ), {
-         method: 'DELETE',
+         'method': 'DELETE',
      } );
  }
  
