@@ -13,7 +13,7 @@ return array(
 	'widthTablet'           => 100,
 	'widthMobile'           => 100,
 	'widthType'             => '%',
-	'minHeightDesktop'      => '',
+	'minHeightDesktop'      => 120,
 	'minHeightTablet'       => '',
 	'minHeightMobile'       => '',
 	'minHeightType'         => 'px',

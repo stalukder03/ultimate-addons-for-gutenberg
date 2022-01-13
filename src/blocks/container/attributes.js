@@ -20,6 +20,7 @@ const attributes = {
 	},
 	minHeightDesktop: {
 		type: 'number',
+		default: 120,
 	},
 	minHeightTablet: {
 		type: 'number',
