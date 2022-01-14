@@ -174,7 +174,7 @@ class Admin_Menu {
 
 		$admin_slug  = 'uag-admin';
 		$blocks_info = $this->get_blocks_info_for_activation_deactivation();
-		wp_enqueue_style( $admin_slug . '-font', 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap', array(), UAGB_VER );
+		wp_enqueue_style( $admin_slug . '-font', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap', array(), UAGB_VER );
 		// Styles.
 
 		wp_enqueue_style( 'wp-components' );
@@ -184,24 +184,18 @@ class Admin_Menu {
 		$localize = apply_filters(
 			'uag_react_admin_localize',
 			array(
-				'current_user'              => ! empty( wp_get_current_user()->user_firstname ) ? wp_get_current_user()->user_firstname : wp_get_current_user()->display_name,
-				'admin_base_slug'           => $this->menu_slug,
-				'admin_base_url'            => admin_url(),
-				'current_theme'             => $theme->name,
-				'theme_file'                => file_exists( get_theme_root() . '/astra/functions.php' ),
-				'starter_template_activate' => is_plugin_active( 'astra-sites/astra-sites.php' ),
-				'starter_template_path'     => file_exists( ABSPATH . 'wp-content/plugins/astra-sites/astra-sites.php' ),
-				'plugin_dir'                => UAGB_URL,
-				'plugin_ver'                => UAGB_VER,
-				'logo_url'                  => UAGB_URL . 'admin-core/assets/images/uagb_logo.svg',
-				'admin_url'                 => admin_url( 'admin.php' ),
-				'ajax_url'                  => admin_url( 'admin-ajax.php' ),
-				'wp_pages_url'              => admin_url( 'post-new.php?post_type=page' ),
-				'home_slug'                 => $this->menu_slug,
-				'rollback_url'              => esc_url( add_query_arg( 'version', 'VERSION', wp_nonce_url( admin_url( 'admin-post.php?action=uag_rollback' ), 'uag_rollback' ) ) ),
-				'blocks_info'               => $blocks_info,
-				'reusable_url'              => esc_url( admin_url( 'edit.php?post_type=wp_block' ) ),
-				'is_main_site'              => is_main_site(),
+				'current_user'   => ! empty( wp_get_current_user()->user_firstname ) ? wp_get_current_user()->user_firstname : wp_get_current_user()->display_name,
+				'admin_base_url' => admin_url(),
+				'plugin_dir'     => UAGB_URL,
+				'plugin_ver'     => UAGB_VER,
+				'logo_url'       => UAGB_URL . 'admin-core/assets/images/uagb_logo.svg',
+				'admin_url'      => admin_url( 'admin.php' ),
+				'ajax_url'       => admin_url( 'admin-ajax.php' ),
+				'wp_pages_url'   => admin_url( 'post-new.php?post_type=page' ),
+				'home_slug'      => $this->menu_slug,
+				'rollback_url'   => esc_url( add_query_arg( 'version', 'VERSION', wp_nonce_url( admin_url( 'admin-post.php?action=uag_rollback' ), 'uag_rollback' ) ) ),
+				'blocks_info'    => $blocks_info,
+				'reusable_url'   => esc_url( admin_url( 'edit.php?post_type=wp_block' ) ),
 			)
 		);
 
@@ -218,13 +212,19 @@ class Admin_Menu {
 		array_multisort(
 			array_map(
 				function( $element ) {
-					return $element['title'];
+					if ( isset( $element['priority'] ) ) {
+						return $element['priority'];
+					}
+					return;
 				},
 				$blocks
 			),
 			SORT_ASC,
 			$blocks
 		);
+
+		$cf7_status = $this->get_plugin_status( 'contact-form-7/wp-contact-form-7.php' );
+		$gf_status  = $this->get_plugin_status( 'gravityforms/gravityforms.php' );
 
 		if ( is_array( $blocks ) && ! empty( $blocks ) ) {
 
@@ -234,7 +234,7 @@ class Admin_Menu {
 
 				$addon = str_replace( 'uagb/', '', $addon );
 
-				$child_blocks = array(
+				$exclude_blocks = array(
 					'column',
 					'icon-list-child',
 					'social-share-child',
@@ -264,11 +264,20 @@ class Admin_Menu {
 					'how-to-step',
 				);
 
+				if ( ( 'cf7-styler' === $addon && 'active' !== $cf7_status ) || ( 'gf-styler' === $addon && 'active' !== $gf_status ) ) {
+					$exclude_blocks[] = $addon;
+				}
+
+				if ( 'yes' !== get_option( 'uagb-old-user-less-than-2' ) ) {
+					$exclude_blocks[] = 'buttons';
+					$exclude_blocks[] = 'wp-search';
+				}
+
 				if ( array_key_exists( 'extension', $info ) && $info['extension'] ) {
 					continue;
 				}
 
-				if ( in_array( $addon, $child_blocks, true ) ) {
+				if ( in_array( $addon, $exclude_blocks, true ) ) {
 					continue;
 				}
 				$info['slug']   = $addon;
@@ -281,6 +290,27 @@ class Admin_Menu {
 
 		return array();
 
+	}
+
+	/**
+	 * Get plugin status
+	 *
+	 * @since x.x.x
+	 *
+	 * @param  string $plugin_init_file Plguin init file.
+	 * @return mixed
+	 */
+	public function get_plugin_status( $plugin_init_file ) {
+
+		$installed_plugins = get_plugins();
+
+		if ( ! isset( $installed_plugins[ $plugin_init_file ] ) ) {
+			return 'not-installed';
+		} elseif ( is_plugin_active( $plugin_init_file ) ) {
+			return 'active';
+		} else {
+			return 'inactive';
+		}
 	}
 
 	/**

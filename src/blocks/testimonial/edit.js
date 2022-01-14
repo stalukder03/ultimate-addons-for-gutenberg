@@ -10,14 +10,20 @@ const Settings = lazy( () =>
 const Render = lazy( () =>
 	import( /* webpackChunkName: "chunks/testimonial/render" */ './render' )
 );
-import { withSelect } from '@wordpress/data';
+
+import hexToRGBA from '@Controls/hexToRgba';
+
+import maybeGetColorForVariable from '@Controls/maybeGetColorForVariable';
 
 const UAGBtestimonial = ( props ) => {
 	useEffect( () => {
-		// Assigning block_id in the attribute.
-		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
 
-		props.setAttributes( { classMigrate: true } );
+		const { setAttributes, attributes } = props;
+
+		// Assigning block_id in the attribute.
+		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
+
+		setAttributes( { classMigrate: true } );
 
 		// Pushing Style tag for this block css.
 		const $style = document.createElement( 'style' );
@@ -38,38 +44,47 @@ const UAGBtestimonial = ( props ) => {
 			paddingBottom,
 			paddingLeft,
 			paddingRight,
-		} = props.attributes;
+			backgroundOpacity,
+			backgroundImageColor
+		} = attributes;
 
 		if ( imgVrPadding ) {
-			if ( ! imgpaddingTop ) {
-				props.setAttributes( { imgpaddingTop: imgVrPadding } );
+			if ( undefined === imgpaddingTop ) {
+				setAttributes( { imgpaddingTop: imgVrPadding } );
 			}
-			if ( ! imgpaddingBottom ) {
-				props.setAttributes( { imgpaddingBottom: imgVrPadding } );
+			if ( undefined === imgpaddingBottom ) {
+				setAttributes( { imgpaddingBottom: imgVrPadding } );
 			}
 		}
 		if ( imgHrPadding ) {
-			if ( ! imgpaddingRight ) {
-				props.setAttributes( { imgpaddingRight: imgHrPadding } );
+			if ( undefined === imgpaddingRight ) {
+				setAttributes( { imgpaddingRight: imgHrPadding } );
 			}
-			if ( ! imgpaddingLeft ) {
-				props.setAttributes( { imgpaddingLeft: imgHrPadding } );
+			if ( undefined === imgpaddingLeft ) {
+				setAttributes( { imgpaddingLeft: imgHrPadding } );
 			}
 		}
 		if ( contentPadding ) {
-			if ( ! paddingTop ) {
-				props.setAttributes( { paddingTop: contentPadding } );
+			if ( undefined === paddingTop ) {
+				setAttributes( { paddingTop: contentPadding } );
 			}
-			if ( ! paddingBottom ) {
-				props.setAttributes( { paddingBottom: contentPadding } );
+			if ( undefined === paddingBottom ) {
+				setAttributes( { paddingBottom: contentPadding } );
 			}
-			if ( ! paddingLeft ) {
-				props.setAttributes( { paddingLeft: contentPadding } );
+			if ( undefined === paddingLeft ) {
+				setAttributes( { paddingLeft: contentPadding } );
 			}
-			if ( ! paddingRight ) {
-				props.setAttributes( { paddingRight: contentPadding } );
+			if ( undefined === paddingRight ) {
+				setAttributes( { paddingRight: contentPadding } );
 			}
 		}
+
+		if ( 101 !== backgroundOpacity ) {
+			const color = hexToRGBA( maybeGetColorForVariable( backgroundImageColor ), backgroundOpacity );
+			setAttributes( { backgroundImageColor: color } );
+			setAttributes( { backgroundOpacity: 101 } );
+		}
+
 	}, [] );
 
 	useEffect( () => {
@@ -90,16 +105,4 @@ const UAGBtestimonial = ( props ) => {
 	);
 };
 
-export default withSelect( ( select ) => {
-	const { __experimentalGetPreviewDeviceType = null } = select(
-		'core/edit-post'
-	);
-
-	const deviceType = __experimentalGetPreviewDeviceType
-		? __experimentalGetPreviewDeviceType()
-		: null;
-
-	return {
-		deviceType,
-	};
-} )( UAGBtestimonial );
+export default UAGBtestimonial;

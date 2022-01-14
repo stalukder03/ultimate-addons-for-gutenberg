@@ -29,7 +29,7 @@ class Global_Settings {
 						'type'    => 'select',
 						'name'    => 'rollback_to_previous_version',
 						'label'   => __( 'Rollback to Previous Version', 'ultimate-addons-for-gutenberg' ),
-						/* translators: %1$s: link html start, %2$s: link html end*/
+						/* translators: %s: UAG current version */
 						'desc'    => sprintf( __( 'Experiencing an issue with Ultimate Addons for Gutenberg version %s? Roll back to a previous version to help troubleshoot the issue.', 'ultimate-addons-for-gutenberg' ), UAGB_VER ),
 						'options' => Admin_Helper::get_rollback_versions_options(),
 					),
@@ -41,7 +41,6 @@ class Global_Settings {
 						'type'  => 'button',
 						'name'  => 'enable_beta_updates',
 						'label' => __( 'Enable Beta', 'ultimate-addons-for-gutenberg' ),
-						/* translators: %1$s: link html start, %2$s: link html end*/
 						'desc'  => __(
 							'Enable this option to turn on beta updates and be notified when a new beta version of Ultimate Addons for Gutenberg is available. The beta version will not install automatically, you will have to install it when you get a notification. It is recommended to try beta on a test environment only.',
 							'ultimate-addons-for-gutenberg'
@@ -54,8 +53,45 @@ class Global_Settings {
 					'enable_block_condition' => array(
 						'type'  => 'toggle',
 						'name'  => 'enable_block_condition',
-						'label' => __( 'Display Condition', 'ultimate-addons-for-gutenberg' ),
-						/* translators: %1$s: link html start, %2$s: link html end*/
+						'label' => __( 'Display Conditions', 'ultimate-addons-for-gutenberg' ),
+
+					),
+				),
+			),
+			'load_gfonts_locally'          => array(
+				'fields' => array(
+					'load_gfonts_locally' => array(
+						'type'  => 'toggle',
+						'name'  => 'load_gfonts_locally',
+						'label' => __( 'Load Google Fonts Locally', 'ultimate-addons-for-gutenberg' ),
+					),
+				),
+			),
+			'collapse_panels'              => array(
+				'fields' => array(
+					'collapse_panels' => array(
+						'type'  => 'toggle',
+						'name'  => 'collapse_panels',
+						'label' => __( 'Collapse Panel', 'ultimate-addons-for-gutenberg' ),
+					),
+				),
+			),
+			'copy_paste'                   => array(
+				'fields' => array(
+					'copy_paste' => array(
+						'type'  => 'toggle',
+						'name'  => 'copy_paste',
+						'label' => __( 'Copy Paste Styles', 'ultimate-addons-for-gutenberg' ),
+					),
+				),
+			),
+			'preload_local_fonts'          => array(
+				'fields' => array(
+					'preload_local_fonts' => array(
+						'type'  => 'toggle',
+						'name'  => 'preload_local_fonts',
+						'label' => __( 'Preload Local Fonts', 'ultimate-addons-for-gutenberg' ),
+
 					),
 				),
 			),
@@ -65,7 +101,7 @@ class Global_Settings {
 						'type'  => 'toggle',
 						'name'  => 'enable_masonry_gallery',
 						'label' => __( 'Masonry Gallery', 'ultimate-addons-for-gutenberg' ),
-						/* translators: %1$s: link html start, %2$s: link html end*/
+
 					),
 				),
 			),
@@ -76,7 +112,6 @@ class Global_Settings {
 						'name'  => 'enable_file_generation',
 						'label' => __( 'Enable File Generation', 'ultimate-addons-for-gutenberg' ),
 						'desc'  => sprintf(
-							/* translators: %1$s: link html start, %2$s: link html end*/
 							__( 'Ultimate Addons for Gutenberg loads the CSS and JS inline on the page by default. If you want to generate separate CSS and JS files for UAG blocks, enable this option. Please read this article to learn the difference between generating CSS and JS inline and in a separate file.', 'ultimate-addons-for-gutenberg' ),
 							esc_url( 'https://www.ultimategutenberg.com/clean-html-with-uag/?utm_source=uag-dashboard&utm_medium=link&utm_campaign=uag-dashboard' )
 						),
@@ -88,8 +123,26 @@ class Global_Settings {
 					'enable_templates_button' => array(
 						'type'  => 'button',
 						'name'  => 'enable_templates_button',
-						'label' => __( 'Enable UAG Templates Button', 'ultimate-addons-for-gutenberg' ),
-						'desc'  => __( 'Ultimate Addons for Gutenberg comes with a stunning library of page templates and block patterns. This library is accessible with the UAG Templates button while editing the page or post. Manage the visibility of that button with this option. ', 'ultimate-addons-for-gutenberg' ),
+						'label' => __( 'Enable Templates Button', 'ultimate-addons-for-gutenberg' ),
+						'desc'  => __( 'Ultimate Addons for Gutenberg comes with a stunning library of page templates and block patterns. This library is accessible with the Templates button while editing the page or post. Manage the visibility of that button with this option. ', 'ultimate-addons-for-gutenberg' ),
+					),
+				),
+			),
+			'select_font_globally'         => array(
+				'fields' => array(
+					'select_font_globally' => array(
+						'type'  => 'button',
+						'name'  => 'select_font_globally',
+						'label' => __( 'Select Font Globally', 'ultimate-addons-for-gutenberg' ),
+					),
+				),
+			),
+			'load_select_font_globally'    => array(
+				'fields' => array(
+					'load_select_font_globally' => array(
+						'type'  => 'toggle',
+						'name'  => 'load_select_font_globally',
+						'label' => __( 'Display Selected Font Families', 'ultimate-addons-for-gutenberg' ),
 					),
 				),
 			),

@@ -37,62 +37,58 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			$left_padding   = isset( $attr['leftPadding'] ) ? $attr['leftPadding'] : $attr['hPadding'];
 			$right_padding  = isset( $attr['rightPadding'] ) ? $attr['rightPadding'] : $attr['hPadding'];
 
-			if ( ! $attr['inheritFromTheme'] ) {
-				$attr['sizeType']       = isset( $attr['sizeType'] ) ? $attr['sizeType'] : 'px';
-				$attr['lineHeightType'] = isset( $attr['lineHeightType'] ) ? $attr['lineHeightType'] : 'em';
+			$attr['sizeType']       = isset( $attr['sizeType'] ) ? $attr['sizeType'] : 'px';
+			$attr['lineHeightType'] = isset( $attr['lineHeightType'] ) ? $attr['lineHeightType'] : 'em';
 
-				$selectors[ $wrapper ] = array(
-					'font-size'      => UAGB_Helper::get_css_value( $attr['size'], $attr['sizeType'] ),
-					'line-height'    => UAGB_Helper::get_css_value( $attr['lineHeight'], $attr['lineHeightType'] ),
-					'border-width'   => UAGB_Helper::get_css_value( $attr['borderWidth'], 'px' ),
-					'border-color'   => $attr['borderColor'],
-					'border-style'   => $attr['borderStyle'],
-					'border-radius'  => UAGB_Helper::get_css_value( $attr['borderRadius'], 'px' ),
-					'background'     => $attr['background'],
-					'padding-top'    => UAGB_Helper::get_css_value( $top_padding, $attr['paddingUnit'] ),
-					'padding-bottom' => UAGB_Helper::get_css_value( $bottom_padding, $attr['paddingUnit'] ),
-					'padding-left'   => UAGB_Helper::get_css_value( $left_padding, $attr['paddingUnit'] ),
-					'padding-right'  => UAGB_Helper::get_css_value( $right_padding, $attr['paddingUnit'] ),
-					'color'          => $attr['color'],
-				);
+			$selectors[ $wrapper ] = array(
+				'font-size'      => UAGB_Helper::get_css_value( $attr['size'], $attr['sizeType'] ),
+				'line-height'    => UAGB_Helper::get_css_value( $attr['lineHeight'], $attr['lineHeightType'] ),
+				'border-width'   => UAGB_Helper::get_css_value( $attr['borderWidth'], 'px' ),
+				'border-color'   => $attr['borderColor'],
+				'border-style'   => $attr['borderStyle'],
+				'border-radius'  => UAGB_Helper::get_css_value( $attr['borderRadius'], 'px' ),
+				'background'     => $attr['background'],
+				'padding-top'    => UAGB_Helper::get_css_value( $top_padding, $attr['paddingUnit'] ),
+				'padding-bottom' => UAGB_Helper::get_css_value( $bottom_padding, $attr['paddingUnit'] ),
+				'padding-left'   => UAGB_Helper::get_css_value( $left_padding, $attr['paddingUnit'] ),
+				'padding-right'  => UAGB_Helper::get_css_value( $right_padding, $attr['paddingUnit'] ),
+				'color'          => $attr['color'],
+			);
 
-				$selectors[ $wrapper . ':hover' ]                    = array(
-					'background'   => $attr['hBackground'],
-					'border-width' => UAGB_Helper::get_css_value( $attr['borderWidth'], 'px' ),
-					'border-color' => $attr['borderHColor'],
-					'border-style' => $attr['borderStyle'],
-					'color'        => $attr['hColor'],
-				);
-				$selectors[ $wrapper . ':hover .uagb-button__icon' ] = array(
-					'color' => $attr['hColor'],
-				);
+			$selectors[ $wrapper . ':hover' ]                    = array(
+				'background'   => $attr['hBackground'],
+				'border-width' => UAGB_Helper::get_css_value( $attr['borderWidth'], 'px' ),
+				'border-color' => $attr['borderHColor'],
+				'border-style' => $attr['borderStyle'],
+				'color'        => $attr['hColor'],
+			);
+			$selectors[ $wrapper . ':hover .uagb-button__icon' ] = array(
+				'color' => $attr['hColor'],
+			);
 
-				$m_selectors[ $wrapper ] = array(
-					'font-size'      => UAGB_Helper::get_css_value( $attr['sizeMobile'], $attr['sizeType'] ),
-					'line-height'    => UAGB_Helper::get_css_value( $attr['lineHeightMobile'], $attr['lineHeightType'] ),
-					'padding-top'    => UAGB_Helper::get_css_value( $attr['topMobilePadding'], $attr['mobilePaddingUnit'] ),
-					'padding-bottom' => UAGB_Helper::get_css_value( $attr['bottomMobilePadding'], $attr['mobilePaddingUnit'] ),
-					'padding-left'   => UAGB_Helper::get_css_value( $attr['leftMobilePadding'], $attr['mobilePaddingUnit'] ),
-					'padding-right'  => UAGB_Helper::get_css_value( $attr['rightMobilePadding'], $attr['mobilePaddingUnit'] ),
-				);
+			$m_selectors[ $wrapper ] = array(
+				'font-size'      => UAGB_Helper::get_css_value( $attr['sizeMobile'], $attr['sizeType'] ),
+				'line-height'    => UAGB_Helper::get_css_value( $attr['lineHeightMobile'], $attr['lineHeightType'] ),
+				'padding-top'    => UAGB_Helper::get_css_value( $attr['topMobilePadding'], $attr['mobilePaddingUnit'] ),
+				'padding-bottom' => UAGB_Helper::get_css_value( $attr['bottomMobilePadding'], $attr['mobilePaddingUnit'] ),
+				'padding-left'   => UAGB_Helper::get_css_value( $attr['leftMobilePadding'], $attr['mobilePaddingUnit'] ),
+				'padding-right'  => UAGB_Helper::get_css_value( $attr['rightMobilePadding'], $attr['mobilePaddingUnit'] ),
+			);
 
-				$t_selectors[ $wrapper ] = array(
-					'font-size'      => UAGB_Helper::get_css_value( $attr['sizeTablet'], $attr['sizeType'] ),
-					'line-height'    => UAGB_Helper::get_css_value( $attr['lineHeightTablet'], $attr['lineHeightType'] ),
-					'padding-top'    => UAGB_Helper::get_css_value( $attr['topTabletPadding'], $attr['tabletPaddingUnit'] ),
-					'padding-bottom' => UAGB_Helper::get_css_value( $attr['bottomTabletPadding'], $attr['tabletPaddingUnit'] ),
-					'padding-left'   => UAGB_Helper::get_css_value( $attr['leftTabletPadding'], $attr['tabletPaddingUnit'] ),
-					'padding-right'  => UAGB_Helper::get_css_value( $attr['rightTabletPadding'], $attr['tabletPaddingUnit'] ),
-				);
-			}
+			$t_selectors[ $wrapper ] = array(
+				'font-size'      => UAGB_Helper::get_css_value( $attr['sizeTablet'], $attr['sizeType'] ),
+				'line-height'    => UAGB_Helper::get_css_value( $attr['lineHeightTablet'], $attr['lineHeightType'] ),
+				'padding-top'    => UAGB_Helper::get_css_value( $attr['topTabletPadding'], $attr['tabletPaddingUnit'] ),
+				'padding-bottom' => UAGB_Helper::get_css_value( $attr['bottomTabletPadding'], $attr['tabletPaddingUnit'] ),
+				'padding-left'   => UAGB_Helper::get_css_value( $attr['leftTabletPadding'], $attr['tabletPaddingUnit'] ),
+				'padding-right'  => UAGB_Helper::get_css_value( $attr['rightTabletPadding'], $attr['tabletPaddingUnit'] ),
+			);
 
 			$selectors[ $wrapper . ' .uagb-button__icon' ] = array(
 				'width' => UAGB_Helper::get_css_value( $attr['size'], $attr['sizeType'] ),
 			);
 
-			if ( ! $attr['inheritFromTheme'] ) {
-				$selectors[ $wrapper . ' .uagb-button__icon' ]['color'] = $attr['color'];
-			}
+			$selectors[ $wrapper . ' .uagb-button__icon' ]['color'] = $attr['color'];
 
 			$selectors[ $wrapper . ' .uagb-button__icon-position-after' ] = array(
 				'margin-left' => UAGB_Helper::get_css_value( $attr['iconSpace'], 'px' ),
@@ -170,22 +166,15 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 		 */
 		public static function get_icon_list_child_selectors( $attr, $id, $childMigrate ) {
 
-			$wrapper = ( ! $childMigrate ) ? ' .uagb-icon-list-repeater-' . $id : '.uagb-icon-list-repeater';
+			$wrapper = ( ! $childMigrate ) ? ' .uagb-icon-list-repeater-' . $id : '.wp-block-uagb-icon-list-child';
 
-			$selectors[ $wrapper . ' .uagb-icon-list__source-icon' ]           = array(
+			$selectors[ $wrapper . ' .uagb-icon-list__source-wrap svg' ]       = array(
+				'fill'  => $attr['icon_color'],
 				'color' => $attr['icon_color'],
 			);
-			$selectors[ $wrapper . ' .uagb-icon-list__source-icon' ]           = array(
-				'color' => $attr['icon_color'],
-			);
-			$selectors[ $wrapper . ' .uagb-icon-list__source-icon svg' ]       = array(
-				'fill' => $attr['icon_color'],
-			);
-			$selectors[ $wrapper . ':hover .uagb-icon-list__source-icon' ]     = array(
+			$selectors[ $wrapper . ':hover .uagb-icon-list__source-wrap svg' ] = array(
+				'fill'  => $attr['icon_hover_color'],
 				'color' => $attr['icon_hover_color'],
-			);
-			$selectors[ $wrapper . ':hover .uagb-icon-list__source-icon svg' ] = array(
-				'fill' => $attr['icon_hover_color'],
 			);
 			$selectors[ $wrapper . ' .uagb-icon-list__label' ]                 = array(
 				'color' => $attr['label_color'],
@@ -224,89 +213,88 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			$paddingBtnRight  = isset( $attr['paddingBtnRight'] ) ? $attr['paddingBtnRight'] : $attr['btnHPadding'];
 
 			$selectors = array(
-				' .uagb-post__items'         => array(
+				'.uagb-post__items'                        => array(
 					'margin-right' => UAGB_Helper::get_css_value( ( -$attr['rowGap'] / 2 ), $attr['rowGapUnit'] ),
 					'margin-left'  => UAGB_Helper::get_css_value( ( -$attr['rowGap'] / 2 ), $attr['rowGapUnit'] ),
 				),
-				' .uagb-post__items article' => array(
+				'.uagb-post__items article'                => array(
 					'padding-right' => UAGB_Helper::get_css_value( ( $attr['rowGap'] / 2 ), $attr['rowGapUnit'] ),
 					'padding-left'  => UAGB_Helper::get_css_value( ( $attr['rowGap'] / 2 ), $attr['rowGapUnit'] ),
 					'margin-bottom' => UAGB_Helper::get_css_value( ( $attr['columnGap'] ), $attr['columnGapUnit'] ),
 				),
-				' .uagb-post__inner-wrap'    => array(
-					'background'     => $attr['bgColor'],
-					'padding-top'    => UAGB_Helper::get_css_value( $paddingTop, $attr['contentPaddingUnit'] ),
-					'padding-bottom' => UAGB_Helper::get_css_value( $paddingBottom, $attr['contentPaddingUnit'] ),
-					'padding-left'   => UAGB_Helper::get_css_value( $paddingLeft, $attr['contentPaddingUnit'] ),
-					'padding-right'  => UAGB_Helper::get_css_value( $paddingRight, $attr['contentPaddingUnit'] ),
-					'text-align'     => $attr['align'],
+				' .uagb-post__inner-wrap'                  => array(
+					'background' => $attr['bgColor'],
+					'text-align' => $attr['align'],
 				),
-
-				' .uagb-post__cta'           => array(
+				' .uagb-post__inner-wrap .uagb-post__text' => array(
+					'margin-left'  => UAGB_Helper::get_css_value( $paddingLeft, $attr['contentPaddingUnit'] ),
+					'margin-right' => UAGB_Helper::get_css_value( $paddingRight, $attr['contentPaddingUnit'] ),
+				),
+				' .uagb-post__inner-wrap .uagb-post__text:first-child' => array(
+					'margin-top' => UAGB_Helper::get_css_value( $paddingTop, $attr['contentPaddingUnit'] ),
+				),
+				' .uagb-post__inner-wrap .uagb-post__text:last-child' => array(
+					'margin-bottom' => UAGB_Helper::get_css_value( $paddingBottom, $attr['contentPaddingUnit'] ),
+				),
+				' .uagb-post__cta'                         => array(
 					'margin-bottom' => UAGB_Helper::get_css_value( $attr['ctaBottomSpace'], $attr['ctaBottomSpaceUnit'] ),
 				),
-				' .uagb-post__image'         => array(
+				' .uagb-post__image'                       => array(
 					'margin-bottom' => UAGB_Helper::get_css_value( $attr['imageBottomSpace'], $attr['imageBottomSpaceUnit'] ),
 				),
-				' .uagb-post__title'         => array(
+				' .uagb-post__title'                       => array(
 					'margin-bottom' => UAGB_Helper::get_css_value( $attr['titleBottomSpace'], $attr['titleBottomSpaceUnit'] ),
 				),
-				' .uagb-post-grid-byline'    => array(
+				' .uagb-post-grid-byline'                  => array(
 					'margin-bottom' => UAGB_Helper::get_css_value( $attr['metaBottomSpace'], $attr['metaBottomSpaceUnit'] ),
 				),
-				' .uagb-post__excerpt'       => array(
+				' .uagb-post__excerpt'                     => array(
 					'margin-bottom' => UAGB_Helper::get_css_value( $attr['excerptBottomSpace'], $attr['excerptBottomSpaceUnit'] ),
 				),
-				' .uagb-post__image:before'  => array(
+				' .uagb-post__image:before'                => array(
 					'background-color' => $attr['bgOverlayColor'],
 					'opacity'          => ( $attr['overlayOpacity'] / 100 ),
 				),
 			);
-			if ( 'background' !== $attr['imgPosition'] ) {
-				$selectors[' .uagb-post__inner-wrap > .uagb-post__image:first-child'] = array(
-					'margin-top'   => UAGB_Helper::get_css_value( -$paddingTop, $attr['contentPaddingUnit'] ),
-					'margin-left'  => UAGB_Helper::get_css_value( -$paddingLeft, $attr['contentPaddingUnit'] ),
-					'margin-right' => UAGB_Helper::get_css_value( -$paddingRight, $attr['contentPaddingUnit'] ),
-				);
-			}
-			if ( ! $attr['inheritFromTheme'] ) {
-				$selectors[' .uagb-post__text .uagb-post__title']['color']                  = $attr['titleColor'];
-				$selectors[' .uagb-post__text .uagb-post__title a']                         = array(
-					'color' => $attr['titleColor'],
-				);
-				$selectors[' .uagb-post__text .uagb-post-grid-byline']['color']             = $attr['metaColor'];
-				$selectors[' .uagb-post__text .uagb-post-grid-byline .uagb-post__author']   = array(
-					'color' => $attr['metaColor'],
-				);
-				$selectors[' .uagb-post__text .uagb-post-grid-byline .uagb-post__author a'] = array(
-					'color' => $attr['metaColor'],
-				);
-				$selectors[' .uagb-post__text .uagb-post__excerpt']['color']                = $attr['excerptColor'];
-				$selectors[' .uagb-post__text .uagb-post__cta']                             = array(
-					'color'         => $attr['ctaColor'],
-					'background'    => $attr['ctaBgColor'],
-					'border-color'  => $attr['borderColor'],
-					'border-width'  => UAGB_Helper::get_css_value( $attr['borderWidth'], 'px' ),
-					'border-radius' => UAGB_Helper::get_css_value( $attr['borderRadius'], 'px' ),
-					'border-style'  => $attr['borderStyle'],
-				);
-				$selectors[' .uagb-post__text .uagb-post__cta a']                           = array(
-					'color'          => $attr['ctaColor'],
-					'padding-top'    => UAGB_Helper::get_css_value( $paddingBtnTop, $attr['paddingBtnUnit'] ),
-					'padding-bottom' => UAGB_Helper::get_css_value( $paddingBtnBottom, $attr['paddingBtnUnit'] ),
-					'padding-left'   => UAGB_Helper::get_css_value( $paddingBtnLeft, $attr['paddingBtnUnit'] ),
-					'padding-right'  => UAGB_Helper::get_css_value( $paddingBtnRight, $attr['paddingBtnUnit'] ),
 
-				);
-				$selectors[' .uagb-post__text .uagb-post__cta:hover']   = array(
-					'color'        => $attr['ctaHColor'],
-					'background'   => $attr['ctaBgHColor'],
-					'border-color' => $attr['borderHColor'],
-				);
-				$selectors[' .uagb-post__text .uagb-post__cta:hover a'] = array(
-					'color' => $attr['ctaHColor'],
-				);
-			}
+			$selectors[' .uagb-post__text.uagb-post__title']['color']                  = $attr['titleColor'];
+			$selectors[' .uagb-post__text.uagb-post__title a']                         = array(
+				'color' => $attr['titleColor'],
+			);
+			$selectors[' .uagb-post__text.uagb-post-grid-byline']['color']             = $attr['metaColor'];
+			$selectors[' .uagb-post__text.uagb-post-grid-byline .uagb-post__author']   = array(
+				'color' => $attr['metaColor'],
+			);
+			$selectors[' .uagb-post__text.uagb-post-grid-byline .uagb-post__author a'] = array(
+				'color' => $attr['metaColor'],
+			);
+			$selectors[' .uagb-post__text.uagb-post__excerpt']['color']                = $attr['excerptColor'];
+			$selectors[' .uagb-post__text.uagb-post__cta .uagb-text-link']             = array(
+				'color'         => $attr['ctaColor'],
+				'background'    => $attr['ctaBgColor'],
+				'border-color'  => $attr['borderColor'],
+				'border-width'  => UAGB_Helper::get_css_value( $attr['borderWidth'], 'px' ),
+				'border-radius' => UAGB_Helper::get_css_value( $attr['borderRadius'], 'px' ),
+				'border-style'  => $attr['borderStyle'],
+			);
+			$selectors[' .uagb-post__text.uagb-post__cta a']                           = array(
+				'color'          => $attr['ctaColor'],
+				'padding-top'    => UAGB_Helper::get_css_value( $paddingBtnTop, $attr['paddingBtnUnit'] ),
+				'padding-bottom' => UAGB_Helper::get_css_value( $paddingBtnBottom, $attr['paddingBtnUnit'] ),
+				'padding-left'   => UAGB_Helper::get_css_value( $paddingBtnLeft, $attr['paddingBtnUnit'] ),
+				'padding-right'  => UAGB_Helper::get_css_value( $paddingBtnRight, $attr['paddingBtnUnit'] ),
+
+			);
+			$selectors[' .uagb-post__text.uagb-post__cta:hover']   = array(
+				'color'        => $attr['ctaHColor'],
+				'background'   => $attr['ctaBgHColor'],
+				'border-color' => $attr['borderHColor'],
+			);
+			$selectors[' .uagb-post__text.uagb-post__cta:hover a'] = array(
+				'color'        => $attr['ctaHColor'],
+				'background'   => $attr['ctaBgHColor'],
+				'border-color' => $attr['borderHColor'],
+			);
 
 			return $selectors;
 
@@ -343,13 +331,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 					'padding-right'  => UAGB_Helper::get_css_value( $paddingBtnRightMobile, $attr['mobilePaddingBtnUnit'] ),
 				),
 			);
-			if ( 'background' !== $attr['imgPosition'] && '' !== $paddingTopMobile && '' !== $paddingLeftMobile && '' !== $paddingRightMobile ) {
-				$m_selector[' .uagb-post__inner-wrap > .uagb-post__image:first-child'] = array(
-					'margin-top'   => UAGB_Helper::get_css_value( -$paddingTopMobile, $attr['mobilePaddingUnit'] ),
-					'margin-left'  => UAGB_Helper::get_css_value( -$paddingLeftMobile, $attr['mobilePaddingUnit'] ),
-					'margin-right' => UAGB_Helper::get_css_value( -$paddingRightMobile, $attr['mobilePaddingUnit'] ),
-				);
-			}
+
 			return $m_selector;
 		}
 
@@ -381,13 +363,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 					'padding-right'  => UAGB_Helper::get_css_value( $paddingBtnRightTablet, $attr['tabletPaddingBtnUnit'] ),
 				),
 			);
-			if ( 'background' !== $attr['imgPosition'] && '' !== $attr['paddingTopTablet'] && '' !== $attr['paddingLeftTablet'] && '' !== $attr['paddingRightTablet'] ) {
-				$t_selector[' .uagb-post__inner-wrap > .uagb-post__image:first-child'] = array(
-					'margin-top'   => UAGB_Helper::get_css_value( -$attr['paddingTopTablet'], $attr['tabletPaddingUnit'] ),
-					'margin-left'  => UAGB_Helper::get_css_value( -$attr['paddingLeftTablet'], $attr['tabletPaddingUnit'] ),
-					'margin-right' => UAGB_Helper::get_css_value( -$attr['paddingRightTablet'], $attr['tabletPaddingUnit'] ),
-				);
-			}
+
 			return $t_selector;
 		}
 
@@ -411,7 +387,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 
 			$connector_size = UAGB_Helper::get_css_value( $attr['connectorBgsize'], 'px' );
 			$selectors      = array(
-				' .uagb-timeline__heading-text'          => array(
+				' .uagb-timeline__heading'               => array(
 					'margin-bottom' => UAGB_Helper::get_css_value( $attr['headSpace'], 'px' ),
 				),
 				' .uagb-timeline-desc-content'           => array(
@@ -498,23 +474,19 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 					'padding-top'      => UAGB_Helper::get_css_value( $top_padding, $attr['paddingUnit'] ),
 					'padding-bottom'   => UAGB_Helper::get_css_value( $bottom_padding, $attr['paddingUnit'] ),
 				),
-				' .uagb-timeline__main .uagb-timeline__icon-new' => array(
+				' svg'                                   => array(
 					'color'     => $attr['iconColor'],
 					'font-size' => UAGB_Helper::get_css_value( $attr['iconSize'], 'px' ),
 					'width'     => UAGB_Helper::get_css_value( $attr['iconSize'], 'px' ),
+					'fill'      => $attr['iconColor'],
 				),
-				' .uagb-timeline__main .uagb-timeline__marker.uagb-timeline__in-view-icon .uagb-timeline__icon-new svg' => array(
-					'fill' => $attr['iconFocus'],
-				),
-				' .uagb-timeline__main .uagb-timeline__marker.uagb-timeline__in-view-icon .uagb-timeline__icon-new' => array(
+				' .uagb-timeline__marker.uagb-timeline__in-view-icon svg' => array(
+					'fill'  => $attr['iconFocus'],
 					'color' => $attr['iconFocus'],
 				),
-				' .uagb-timeline__main .uagb-timeline__marker.uagb-timeline__in-view-icon' => array(
+				' .uagb-timeline__marker.uagb-timeline__in-view-icon' => array(
 					'background'   => $attr['iconBgFocus'],
 					'border-color' => $attr['borderFocus'],
-				),
-				' .uagb-timeline__main .uagb-timeline__icon-new svg' => array(
-					'fill' => $attr['iconColor'],
 				),
 			);
 
@@ -632,15 +604,25 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 		 * @param string $id The selector ID.
 		 */
 		public static function get_gallery_css( $attr, $id ) {
+
 			if ( isset( $attr['masonry'] ) && true === $attr['masonry'] ) {
 				$col_count = ( isset( $attr['columns'] ) ) ? $attr['columns'] : 3;
 				$selectors = array();
 				if ( isset( $attr['masonryGutter'] ) && '' !== $attr['masonryGutter'] ) {
 					$selectors = array(
-						'.wp-block-gallery.columns-' . $col_count . ' ul.blocks-gallery-grid' => array(
+						'.wp-block-gallery.has-nested-images.columns-' . $col_count => array(
 							'column-gap' => UAGB_Helper::get_css_value( $attr['masonryGutter'], 'px' ),
 						),
-						'.wp-block-gallery ul.blocks-gallery-grid li.blocks-gallery-item' => array(
+						'.wp-block-gallery.has-nested-images.columns-default' => array(
+							'column-gap' => UAGB_Helper::get_css_value( $attr['masonryGutter'], 'px' ),
+						),
+						'.wp-block-gallery.has-nested-images figure.wp-block-image:not(#individual-image) img' => array(
+							'margin-bottom' => UAGB_Helper::get_css_value( $attr['masonryGutter'], 'px' ),
+						),
+						'.wp-block-gallery.columns-' . $col_count . ' ul.blocks-gallery-grid' => array( // For Backword.
+							'column-gap' => UAGB_Helper::get_css_value( $attr['masonryGutter'], 'px' ),
+						),
+						'.wp-block-gallery ul.blocks-gallery-grid li.blocks-gallery-item' => array( // For Backword.
 							'margin-bottom' => UAGB_Helper::get_css_value( $attr['masonryGutter'], 'px' ),
 						),
 					);
@@ -671,6 +653,55 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 		public static function get_masonry_gallery_css() {
 
 			$selectors = array(
+				'.wp-block-gallery.has-nested-images'    => array(
+					'display'      => 'block',
+					'column-count' => '3',
+					'column-gap'   => '1em',
+				),
+				'.wp-block-gallery.has-nested-images figure.wp-block-image:not(#individual-image)' => array(
+					'margin'             => 0,
+					'display'            => 'block',
+					'grid-template-rows' => '1fr auto',
+					'margin-bottom'      => '1em',
+					'break-inside'       => 'avoid',
+					'width'              => 'unset',
+				),
+				'.columns-default.wp-block-gallery.has-nested-images' => array(
+					'column-count' => '3',
+					'width'        => 'unset',
+				),
+				'.columns-1.wp-block-gallery.has-nested-images' => array(
+					'column-count' => '1',
+					'width'        => 'unset',
+				),
+				'.columns-2.wp-block-gallery.has-nested-images' => array(
+					'column-count' => '2',
+				),
+				'.columns-3.wp-block-gallery.has-nested-images' => array(
+					'column-count' => '3',
+					'width'        => 'unset',
+				),
+				'.columns-4.wp-block-gallery.has-nested-images' => array(
+					'column-count' => '4',
+					'width'        => 'unset',
+				),
+				'.columns-5.wp-block-gallery.has-nested-images' => array(
+					'column-count' => '5',
+					'width'        => 'unset',
+				),
+				'.columns-6.wp-block-gallery.has-nested-images' => array(
+					'column-count' => '6',
+					'width'        => 'unset',
+				),
+				'.columns-7.wp-block-gallery.has-nested-images' => array(
+					'column-count' => '7',
+					'width'        => 'unset',
+				),
+				'.columns-8.wp-block-gallery.has-nested-images' => array(
+					'column-count' => '8',
+					'width'        => 'unset',
+				),
+				/* For Backword */
 				' .blocks-gallery-grid .blocks-gallery-item' => array(
 					'margin'             => 0,
 					'display'            => 'block',
@@ -681,7 +712,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 				),
 				'.wp-block-gallery .blocks-gallery-grid' => array(
 					'column-gap' => '1em',
-					'display'    => 'unset',
+					'display'    => 'block',
 				),
 				'.columns-1 .blocks-gallery-grid'        => array(
 					'column-count' => '1',
@@ -707,9 +738,19 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 				'.columns-8 .blocks-gallery-grid'        => array(
 					'column-count' => '8',
 				),
+				/* End Backword */
 			);
 
 			$m_selectors = array(
+				'.wp-block-gallery[class*="columns-"].blocks-gallery-grid' => array(
+					'column-count' => '2',
+					'column-gap'   => '1em',
+					'display'      => 'unset',
+				),
+				'.wp-block-gallery.columns-1.blocks-gallery-grid'        => array(
+					'column-count' => '1',
+				),
+				/* For Backword */
 				'.wp-block-gallery[class*="columns-"] .blocks-gallery-grid' => array(
 					'column-count' => '2',
 					'column-gap'   => '1em',
@@ -718,6 +759,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 				'.wp-block-gallery.columns-1 .blocks-gallery-grid'        => array(
 					'column-count' => '1',
 				),
+				/* End Backword */
 			);
 
 			$combined_selectors = array(

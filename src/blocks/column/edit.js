@@ -13,16 +13,23 @@ const Render = lazy( () =>
 	import( /* webpackChunkName: "chunks/column/render" */ './render' )
 );
 
-import { withSelect } from '@wordpress/data';
+import hexToRGBA from '@Controls/hexToRgba';
+
+import maybeGetColorForVariable from '@Controls/maybeGetColorForVariable';
 
 const ColumnComponent = ( props ) => {
 	useEffect( () => {
+
+		const { setAttributes, attributes } = props;
+
+		const { backgroundOpacity, backgroundImageColor } = attributes;
+
 		// Replacement for componentDidMount.
 
 		// Assigning block_id in the attribute.
-		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
+		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
 
-		props.setAttributes( { classMigrate: true } );
+		setAttributes( { classMigrate: true } );
 
 		// Pushing Style tag for this block css.
 		const $style = document.createElement( 'style' );
@@ -31,6 +38,13 @@ const ColumnComponent = ( props ) => {
 			'uagb-column-style-' + props.clientId.substr( 0, 8 )
 		);
 		document.head.appendChild( $style );
+
+		if ( 101 !== backgroundOpacity ) {
+			const color = hexToRGBA( maybeGetColorForVariable( backgroundImageColor ), backgroundOpacity );
+			setAttributes( { backgroundImageColor: color } );
+			setAttributes( { backgroundOpacity: 101 } );
+		}
+
 	}, [] );
 
 	useEffect( () => {
@@ -52,15 +66,4 @@ const ColumnComponent = ( props ) => {
 	);
 };
 
-export default withSelect( ( select ) => {
-	const { __experimentalGetPreviewDeviceType = null } = select(
-		'core/edit-post'
-	);
-	const deviceType = __experimentalGetPreviewDeviceType
-		? __experimentalGetPreviewDeviceType()
-		: null;
-
-	return {
-		deviceType,
-	};
-} )( ColumnComponent );
+export default ColumnComponent;

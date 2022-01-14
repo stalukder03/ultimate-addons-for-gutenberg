@@ -16,10 +16,9 @@ import InspectorTab, {
 import UAGImage from '@Components/image';
 import SpacingControl from '@Components/spacing-control';
 import MultiButtonsControl from '@Components/multi-buttons-control';
+import { getImageSize } from '@Utils/Helpers';
 
-import jQuery from 'jquery';
 import {
-	PanelBody,
 	SelectControl,
 	ToggleControl,
 	TextControl,
@@ -40,6 +39,10 @@ export const removeFromArray = ( arr, removedElems ) =>
 			? ! removedElems.includes( a )
 			: a !== removedElems
 	);
+
+
+import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
+
 const Settings = ( props ) => {
 	props = props.parentProps;
 	// Setup the attributes
@@ -224,19 +227,9 @@ const Settings = ( props ) => {
 		setAttributes( { ctaTarget: ! ctaTarget } );
 	};
 
-	const getImageSize = ( sizes ) => {
-		const sizeArr = [];
-		jQuery.each( sizes, function ( index ) {
-			const name = index;
-			const p = { value: name, label: name };
-			sizeArr.push( p );
-		} );
-		return sizeArr;
-	};
-
 	const authorSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Author', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -249,13 +242,13 @@ const Settings = ( props ) => {
 						}
 					/>
 				</>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const contentSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Content', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -268,13 +261,13 @@ const Settings = ( props ) => {
 						}
 					/>
 				</>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const summarySettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Summary', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -349,13 +342,13 @@ const Settings = ( props ) => {
 						label: 'contentLineHeightTablet',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const starSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Star', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -389,15 +382,15 @@ const Settings = ( props ) => {
 						setAttributes( { starOutlineColor: value } )
 					}
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const titleSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Title', 'ultimate-addons-for-gutenberg' ) }
-				initialOpen={ true }
+				initialOpen={ false }
 			>
 				<AdvancedPopColorControl
 					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
@@ -467,13 +460,13 @@ const Settings = ( props ) => {
 						label: 'headLineHeightTablet',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const descriptionSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Description', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -555,14 +548,14 @@ const Settings = ( props ) => {
 						/>
 					</>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const schemaSettings = () => {
 		if ( true === enableSchema ) {
 			return (
-				<PanelBody
+				<UAGAdvancedPanelBody
 					title={ __( 'Schema', 'ultimate-addons-for-gutenberg' ) }
 					initialOpen={ false }
 				>
@@ -886,14 +879,14 @@ const Settings = ( props ) => {
 							) }
 						</>
 					) }
-				</PanelBody>
+				</UAGAdvancedPanelBody>
 			);
 		}
 	};
 
 	const overallPadding = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Spacing', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -967,7 +960,7 @@ const Settings = ( props ) => {
 						label: 'spacingLink',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
@@ -977,7 +970,7 @@ const Settings = ( props ) => {
 		}
 
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'General', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ true }
 			>
@@ -1101,12 +1094,12 @@ const Settings = ( props ) => {
 					checked={ ctaTarget }
 					onChange={ toggleTarget }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const imageSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Image', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -1133,7 +1126,7 @@ const Settings = ( props ) => {
 							/>
 						) }
 				</>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 

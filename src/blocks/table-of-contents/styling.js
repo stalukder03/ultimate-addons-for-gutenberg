@@ -20,6 +20,7 @@ function styling( props ) {
 		iconColor,
 		bulletColor,
 		iconSize,
+		align,
 		//Color
 		backgroundColor,
 		linkColor,
@@ -94,7 +95,6 @@ function styling( props ) {
 		headingLineHeightTablet,
 		headingLineHeightMobile,
 		disableBullets,
-		headingAlignment,
 		borderHoverColor,
 		fontStyle,
 		fontTransform,
@@ -108,16 +108,6 @@ function styling( props ) {
 	let tablet_selectors = {};
 	let mobile_selectors = {};
 
-	let alignment = 'center';
-
-	if ( headingAlignment === 'left' ){
-		alignment = 'flex-start';
-	} else if( headingAlignment === 'right' ){
-		alignment = 'flex-end';
-	}else{
-		alignment = 'center';
-	}
-
 	selectors = {
 		' .uagb-toc__list-wrap ol li a': {
 			'font-size': generateCSSUnit( fontSize, fontSizeType ),
@@ -130,10 +120,12 @@ function styling( props ) {
 			'color': linkColor,
 		},
 		' .uagb-toc__title-wrap': {
-			'justify-content': alignment,
+			'justify-content': align,
 			'margin-bottom': generateCSSUnit( headingBottom, 'px' ),
 		},
 		' .uagb-toc__title': {
+			'justify-content': align,
+			'margin-bottom': generateCSSUnit( headingBottom, 'px' ),
 			'font-size': generateCSSUnit(
 				headingFontSize,
 				headingFontSizeType
@@ -178,9 +170,6 @@ function styling( props ) {
 			'margin-top': generateCSSUnit( topMargin, marginTypeDesktop ),
 			'margin-bottom': generateCSSUnit( bottomMargin, marginTypeDesktop ),
 		},
-		' .uagb-toc__list-wrap > ol.uagb-toc__list > li:first-child': {
-			'padding-top': 0,
-		},
 		' .uagb-toc__list-wrap > ol.uagb-toc__list li': {
 			'color': bulletColor,
 		},
@@ -220,6 +209,11 @@ function styling( props ) {
 				' / 2 )',
 		},
 		' .uag-toc__collapsible-wrap svg': {
+			'width': generateCSSUnit( iconSize, 'px' ),
+			'height': generateCSSUnit( iconSize, 'px' ),
+			'fill': iconColor,
+		},
+		' svg': {
 			'width': generateCSSUnit( iconSize, 'px' ),
 			'height': generateCSSUnit( iconSize, 'px' ),
 			'fill': iconColor,

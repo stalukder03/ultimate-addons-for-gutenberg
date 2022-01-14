@@ -19,16 +19,15 @@ const Render = lazy( () =>
 //  Import CSS.
 import './style.scss';
 
-import { withSelect } from '@wordpress/data';
-
-import { compose } from '@wordpress/compose';
-
 const UAGBAdvancedHeading = ( props ) => {
 	useEffect( () => {
-		// Assigning block_id in the attribute.
-		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
 
-		props.setAttributes( { classMigrate: true } );
+		const { setAttributes } = props;
+
+		// Assigning block_id in the attribute.
+		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
+
+		setAttributes( { classMigrate: true } );
 
 		// Pushing Style tag for this block css.
 		const $style = document.createElement( 'style' );
@@ -37,6 +36,7 @@ const UAGBAdvancedHeading = ( props ) => {
 			'uagb-adv-heading-style-' + props.clientId.substr( 0, 8 )
 		);
 		document.head.appendChild( $style );
+
 	}, [] );
 
 	useEffect( () => {
@@ -59,16 +59,4 @@ const UAGBAdvancedHeading = ( props ) => {
 		</>
 	);
 };
-const applyWithSelect = withSelect( ( select ) => {
-	const { __experimentalGetPreviewDeviceType = null } = select(
-		'core/edit-post'
-	);
-	const deviceType = __experimentalGetPreviewDeviceType
-		? __experimentalGetPreviewDeviceType()
-		: null;
-
-	return {
-		deviceType,
-	};
-} );
-export default compose( applyWithSelect )( UAGBAdvancedHeading );
+export default UAGBAdvancedHeading;

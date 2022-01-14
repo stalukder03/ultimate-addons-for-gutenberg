@@ -3,7 +3,6 @@
  */
 import React, { useEffect, lazy, Suspense } from 'react';
 import lazyLoader from '@Controls/lazy-loader';
-import jQuery from 'jquery';
 const Settings = lazy( () =>
 	import(
 		/* webpackChunkName: "chunks/post-timeline/settings" */ './settings'
@@ -16,18 +15,12 @@ const Render = lazy( () =>
 import { withSelect } from '@wordpress/data';
 
 const PostTimelineComponent = ( props ) => {
+	
 	useEffect( () => {
+		
 		// Replacement for componentDidMount.
-		//Store lient id.
+		//Store Client id.
 		props.setAttributes( { block_id: props.clientId } );
-
-		const id = props.clientId;
-		window.addEventListener( 'load', timelineContentBack( id ) );
-		window.addEventListener( 'resize', timelineContentBack( id ) );
-
-		jQuery( '.edit-post-layout__content' ).scroll( function () {
-			timelineContentBack( id );
-		} );
 
 		// Pushing Style tag for this block css.
 		const style = document.createElement( 'style' );
@@ -83,150 +76,13 @@ const PostTimelineComponent = ( props ) => {
 
 	useEffect( () => {
 		// Replacement for componentDidUpdate.
-		const id = props.clientId;
-		window.addEventListener( 'load', timelineContentBack( id ) );
-		window.addEventListener( 'resize', timelineContentBack( id ) );
-
-		jQuery( '.edit-post-layout__content' ).scroll( function () {
-			timelineContentBack( id );
+		const loadPostTimelineEditor = new CustomEvent( 'UAGTimelineEditor', { // eslint-disable-line no-undef
+			detail: {},
 		} );
+		document.dispatchEvent( loadPostTimelineEditor );
 	}, [ props ] );
-
-	/*  Js for timeline line and inner line filler*/
-	const timelineContentBack = ( id ) => {
-		const timeline = jQuery( '.uagb-timeline' ).parents( '#block-' + id );
-		const tmItem = timeline.find( '.uagb-timeline' );
-		const lineInner = timeline.find( '.uagb-timeline__line__inner' );
-		const lineOuter = timeline.find( '.uagb-timeline__line' );
-		const iconClass = timeline.find( '.uagb-timeline__marker' );
-		if ( iconClass.length > 0 ) {
-			const cardLast = timeline.find(
-				'.uagb-timeline__field:last-child'
-			);
-			const timelineStartIcon = iconClass.first().position();
-			const timelineEndIcon = iconClass.last().position();
-			lineOuter.css( 'top', timelineStartIcon.top );
-
-			const timelineCardHeight = cardLast.height();
-			const lastItemTop = cardLast.offset().top - tmItem.offset().top;
-			let lastItem, parentTop;
-			const $document = jQuery( document );
-
-			if ( tmItem.hasClass( 'uagb-timeline__arrow-center' ) ) {
-				lineOuter.css( 'bottom', timelineEndIcon.top );
-
-				parentTop = lastItemTop - timelineStartIcon.top;
-				lastItem = parentTop + timelineEndIcon.top;
-			} else if ( tmItem.hasClass( 'uagb-timeline__arrow-top' ) ) {
-				const topHeight = timelineCardHeight - timelineEndIcon.top;
-				lineOuter.css( 'bottom', topHeight );
-
-				lastItem = lastItemTop;
-			} else if ( tmItem.hasClass( 'uagb-timeline__arrow-bottom' ) ) {
-				const bottomHeight = timelineCardHeight - timelineEndIcon.top;
-				lineOuter.css( 'bottom', bottomHeight );
-
-				parentTop = lastItemTop - timelineStartIcon.top;
-				lastItem = parentTop + timelineEndIcon.top;
-			}
-
-			const elementEnd = lastItem + 20;
-
-			const connectorHeight =
-				3 * timeline.find( '.uagb-timeline__marker:first' ).height();
-			const viewportHeight =
-				document.documentElement.clientHeight + connectorHeight;
-			const viewportHeightHalf = viewportHeight / 2 + connectorHeight;
-
-			let elementPos = tmItem.offset().top;
-
-			const newElementPos = elementPos + timelineStartIcon.top;
-
-			let photoViewportOffsetTop = newElementPos - $document.scrollTop();
-
-			if ( photoViewportOffsetTop < 0 ) {
-				photoViewportOffsetTop = Math.abs( photoViewportOffsetTop );
-			} else {
-				photoViewportOffsetTop = -Math.abs( photoViewportOffsetTop );
-			}
-			if ( elementPos < viewportHeightHalf ) {
-				if (
-					viewportHeightHalf + Math.abs( photoViewportOffsetTop ) <
-					elementEnd
-				) {
-					lineInner.height(
-						viewportHeightHalf + photoViewportOffsetTop
-					);
-				} else if (
-					photoViewportOffsetTop + viewportHeightHalf >=
-					elementEnd
-				) {
-					lineInner.height( elementEnd );
-				}
-			} else if (
-				photoViewportOffsetTop + viewportHeightHalf <
-				elementEnd
-			) {
-				if ( 0 > photoViewportOffsetTop ) {
-					lineInner.height(
-						viewportHeightHalf - Math.abs( photoViewportOffsetTop )
-					);
-				} else {
-					lineInner.height(
-						viewportHeightHalf + photoViewportOffsetTop
-					);
-				}
-			} else if (
-				photoViewportOffsetTop + viewportHeightHalf >=
-				elementEnd
-			) {
-				lineInner.height( elementEnd );
-			}
-
-			//For changing icon background color and icon color.
-			let timelineIconPos, timelineCardPos;
-			let timelineIconTop, timelineCardTop;
-			const timelineIcon = timeline.find( '.uagb-timeline__marker' ),
-				animateBorder = timeline.find( '.uagb-timeline__field-wrap' );
-
-			for ( let i = 0; i < timelineIcon.length; i++ ) {
-				timelineIconPos = jQuery( timelineIcon[ i ] ).offset().top;
-				timelineCardPos = jQuery( animateBorder[ i ] ).offset().top;
-				elementPos = timeline.offset().top;
-
-				timelineIconTop = timelineIconPos - $document.scrollTop();
-				timelineCardTop = timelineCardPos - $document.scrollTop();
-
-				if ( timelineCardTop < viewportHeightHalf ) {
-					animateBorder[ i ].classList.remove( 'out-view' );
-					animateBorder[ i ].classList.add( 'in-view' );
-				} else {
-					// Remove classes if element is below than half of viewport.
-					animateBorder[ i ].classList.add( 'out-view' );
-					animateBorder[ i ].classList.remove( 'in-view' );
-				}
-
-				if ( timelineIconTop < viewportHeightHalf ) {
-					// Add classes if element is above than half of viewport.
-					timelineIcon[ i ].classList.remove(
-						'uagb-timeline__out-view-icon'
-					);
-					timelineIcon[ i ].classList.add(
-						'uagb-timeline__in-view-icon'
-					);
-				} else {
-					// Remove classes if element is below than half of viewport.
-					timelineIcon[ i ].classList.add(
-						'uagb-timeline__out-view-icon'
-					);
-					timelineIcon[ i ].classList.remove(
-						'uagb-timeline__in-view-icon'
-					);
-				}
-			}
-		}
-	};
-
+	
+	
 	return (
 		<Suspense fallback={ lazyLoader() }>
 			<Settings parentProps={ props } />
@@ -246,13 +102,6 @@ export default withSelect( ( select, props ) => {
 		excludeCurrentPost,
 	} = props.attributes;
 	const { getEntityRecords } = select( 'core' );
-
-	const { __experimentalGetPreviewDeviceType = null } = select(
-		'core/edit-post'
-	);
-	const deviceType = __experimentalGetPreviewDeviceType
-		? __experimentalGetPreviewDeviceType()
-		: null;
 
 	const allTaxonomy = uagb_blocks_info.all_taxonomy;
 	const currentTax = allTaxonomy[ postType ];
@@ -304,7 +153,6 @@ export default withSelect( ( select, props ) => {
 				: category;
 	}
 	return {
-		deviceType,
 		latestPosts: getEntityRecords( 'postType', postType, latestPostsQuery ),
 		categoriesList,
 		taxonomyList:

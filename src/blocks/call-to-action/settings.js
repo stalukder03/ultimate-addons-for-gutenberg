@@ -20,7 +20,11 @@ import Border from '@Components/border';
 import SpacingControl from '@Components/spacing-control';
 import UAGTabsControl from '@Components/tabs';
 
-import { PanelBody, ToggleControl, TextControl } from '@wordpress/components';
+import { ToggleControl, TextControl } from '@wordpress/components';
+
+
+
+import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 const Settings = ( props ) => {
 	props = props.parentProps;
@@ -101,7 +105,6 @@ const Settings = ( props ) => {
 		ctaLeftSpace,
 		ctaRightSpace,
 		ctaLinkHoverColor,
-		inheritFromTheme,
 		titleTransform,
 		titleDecoration,
 		descTransform,
@@ -164,7 +167,7 @@ const Settings = ( props ) => {
 	// CTA settings.
 	const ctaSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Button', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -262,22 +265,6 @@ const Settings = ( props ) => {
 						/>
 					</>
 				) }
-				{ ctaType === 'button' && (
-					<>
-						<ToggleControl
-							label={ __(
-								'Inherit from Theme',
-								'ultimate-addons-for-gutenberg'
-							) }
-							checked={ inheritFromTheme }
-							onChange={ () =>
-								setAttributes( {
-									inheritFromTheme: ! inheritFromTheme,
-								} )
-							}
-						/>
-					</>
-				) }
 				{ ctaType !== 'all' && ctaType !== 'none' && (
 					<>
 						<UAGIconPicker
@@ -351,71 +338,66 @@ const Settings = ( props ) => {
 						) }
 					</>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const ctaStyleSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Button', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
 				{ ( ctaType === 'text' || ctaType === 'button' ) && (
-					<>
-						{ ( ! inheritFromTheme && ctaType === 'button' ) ||
-							( ctaType === 'text' && (
-								<TypographyControl
-									label={ __(
-										'Typography',
-										'ultimate-addons-for-gutenberg'
-									) }
-									attributes={ attributes }
-									setAttributes={ setAttributes }
-									loadGoogleFonts={ {
-										value: ctaLoadGoogleFonts,
-										label: 'ctaLoadGoogleFonts',
-									} }
-									fontFamily={ {
-										value: ctaFontFamily,
-										label: 'ctaFontFamily',
-									} }
-									fontWeight={ {
-										value: ctaFontWeight,
-										label: 'ctaFontWeight',
-									} }
-									fontStyle={ {
-										value: ctaFontStyle,
-										label: 'ctaFontStyle',
-									} }
-									transform={ {
-										value: ctaTransform,
-										label: 'ctaTransform',
-									} }
-									decoration={ {
-										value: ctaDecoration,
-										label: 'ctaDecoration',
-									} }
-									fontSizeType={ {
-										value: ctaFontSizeType,
-										label: 'ctaFontSizeType',
-									} }
-									fontSize={ {
-										value: ctaFontSize,
-										label: 'ctaFontSize',
-									} }
-									fontSizeMobile={ {
-										value: ctaFontSizeMobile,
-										label: 'ctaFontSizeMobile',
-									} }
-									fontSizeTablet={ {
-										value: ctaFontSizeTablet,
-										label: 'ctaFontSizeTablet',
-									} }
-									disableLineHeight={ true }
-								/>
-							) ) }
-					</>
+					<TypographyControl
+						label={ __(
+							'Typography',
+							'ultimate-addons-for-gutenberg'
+						) }
+						attributes={ attributes }
+						setAttributes={ setAttributes }
+						loadGoogleFonts={ {
+							value: ctaLoadGoogleFonts,
+							label: 'ctaLoadGoogleFonts',
+						} }
+						fontFamily={ {
+							value: ctaFontFamily,
+							label: 'ctaFontFamily',
+						} }
+						fontWeight={ {
+							value: ctaFontWeight,
+							label: 'ctaFontWeight',
+						} }
+						fontStyle={ {
+							value: ctaFontStyle,
+							label: 'ctaFontStyle',
+						} }
+						transform={ {
+							value: ctaTransform,
+							label: 'ctaTransform',
+						} }
+						decoration={ {
+							value: ctaDecoration,
+							label: 'ctaDecoration',
+						} }
+						fontSizeType={ {
+							value: ctaFontSizeType,
+							label: 'ctaFontSizeType',
+						} }
+						fontSize={ {
+							value: ctaFontSize,
+							label: 'ctaFontSize',
+						} }
+						fontSizeMobile={ {
+							value: ctaFontSizeMobile,
+							label: 'ctaFontSizeMobile',
+						} }
+						fontSizeTablet={ {
+							value: ctaFontSizeTablet,
+							label: 'ctaFontSizeTablet',
+						} }
+						disableLineHeight={ true }
+					/>
 				) }
 				{ ctaType === 'text' && (
 					<UAGTabsControl
@@ -440,7 +422,7 @@ const Settings = ( props ) => {
 						disableBottomSeparator={ true }
 					/>
 				) }
-				{ ctaType === 'button' && ! inheritFromTheme && (
+				{ ctaType === 'button' && (
 					<>
 						<UAGTabsControl
 							tabs={ [
@@ -570,7 +552,7 @@ const Settings = ( props ) => {
 						/>
 					</>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
@@ -662,7 +644,7 @@ const Settings = ( props ) => {
 
 	const headingSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Heading', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -737,12 +719,12 @@ const Settings = ( props ) => {
 						setAttributes( { titleColor: value } )
 					}
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const descriptionSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Description', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -817,13 +799,13 @@ const Settings = ( props ) => {
 						setAttributes( { descColor: value } )
 					}
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	// Margin Settings.
 	const marginSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Spacing', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -841,7 +823,7 @@ const Settings = ( props ) => {
 					max={ 500 }
 					displayUnit={ false }
 				/>
-				{ ctaPosition !== 'right' && 
+				{ ctaPosition !== 'right' &&
 					<Range
 						label={ __(
 							'Description Bottom Margin (px)',
@@ -889,12 +871,12 @@ const Settings = ( props ) => {
 						displayUnit={ false }
 					/>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const layouts = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Layout', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ true }
 			>
@@ -1091,7 +1073,7 @@ const Settings = ( props ) => {
 						) }
 					</>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
@@ -1120,10 +1102,9 @@ const Settings = ( props ) => {
 					<InspectorTab { ...UAGTabs.style }>
 						{ headingSettings() }
 						{ descriptionSettings() }
-						{ ! inheritFromTheme &&
-							ctaType !== 'all' &&
-							ctaType !== 'none' &&
-							ctaStyleSettings() }
+						{ ctaType !== 'all' &&
+						  ctaType !== 'none' &&
+						  ctaStyleSettings() }
 						{ marginSettings() }
 					</InspectorTab>
 					<InspectorTab

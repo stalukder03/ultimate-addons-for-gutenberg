@@ -24,18 +24,11 @@ export default function save( props ) {
 		authorImgPosition,
 		stack,
 	} = props.attributes;
-
 	return (
-		<div
-			className={ classnames(
-				props.className,
-				'uagb-blockquote__outer-wrap',
-				`uagb-block-${ block_id }`
-			) }
-		>
 			<div
 				className={ classnames(
-					'uagb-blockquote__wrap',
+					props.className,
+					`uagb-block-${ block_id }`,
 					`uagb-blockquote__skin-${ skinStyle }`,
 					skinStyle !== 'border'
 						? `uagb-blockquote__align-${ align }`
@@ -51,13 +44,10 @@ export default function save( props ) {
 			>
 				<blockquote className="uagb-blockquote">
 					{ skinStyle === 'quotation' && (
-						<div className="uagb-blockquote__icon-wrap">
-							<span className="uagb-blockquote__icon">
+						<span className="uagb-blockquote__icon">
 								{ UAGB_Block_Icons.quote_inline_icon }
-							</span>
-						</div>
+						</span>
 					) }
-					<div className="uagb-blockquote__content-wrap">
 						{ descriptionText !== '' && (
 							<Description
 								attributes={ props.attributes }
@@ -65,7 +55,9 @@ export default function save( props ) {
 								props={ props }
 							/>
 						) }
+						{ author !== '' || authorImage.url !== '' || enableTweet && (
 						<footer>
+							{ author !== '' || authorImage.url !== '' && (
 							<div
 								className={ classnames(
 									'uagb-blockquote__author-wrap',
@@ -74,11 +66,9 @@ export default function save( props ) {
 										: ''
 								) }
 							>
-								{
-									<AuthorImage
-										attributes={ props.attributes }
-									/>
-								}
+								<AuthorImage
+									attributes={ props.attributes }
+								/>
 								{ author !== '' && (
 									<AuthorText
 										attributes={ props.attributes }
@@ -87,15 +77,15 @@ export default function save( props ) {
 									/>
 								) }
 							</div>
+							)}
 							{ enableTweet && (
 								<TweetButtonCTA
 									attributes={ props.attributes }
 								/>
 							) }
 						</footer>
-					</div>
+						)}
 				</blockquote>
 			</div>
-		</div>
 	);
 }

@@ -38,15 +38,20 @@ class UAGB_Astra_Compatibility {
 	 */
 	public function __construct() {
 
-		$astra_settings = ( defined( 'ASTRA_THEME_SETTINGS' ) ) ? get_option( ASTRA_THEME_SETTINGS ) : '';
+		$uag_load_fonts_locally = UAGB_Admin_Helper::get_admin_settings_option( 'uag_load_gfonts_locally', 'disabled' );
 
-		if ( empty( $astra_settings['load-google-fonts-locally'] ) || false === $astra_settings['load-google-fonts-locally'] ) {
+		if ( 'disabled' === $uag_load_fonts_locally ) {
 
-			// Disabled uag fonts.
-			add_filter( 'uagb_enqueue_google_fonts', '__return_false' );
+			$astra_settings = ( defined( 'ASTRA_THEME_SETTINGS' ) ) ? get_option( ASTRA_THEME_SETTINGS ) : '';
 
-			// Add uag fonts in astra.
-			add_filter( 'astra_google_fonts_selected', array( $this, 'add_google_fonts_in_astra' ) );
+			if ( is_array( $astra_settings ) && empty( $astra_settings['load-google-fonts-locally'] ) || false === $astra_settings['load-google-fonts-locally'] ) {
+
+				// Disabled uag fonts.
+				add_filter( 'uagb_enqueue_google_fonts', '__return_false' );
+
+				// Add uag fonts in astra.
+				add_filter( 'astra_google_fonts_selected', array( $this, 'add_google_fonts_in_astra' ) );
+			}
 		}
 	}
 
@@ -72,6 +77,11 @@ class UAGB_Astra_Compatibility {
 					if ( isset( $gfont_values['fontfamily'] ) && isset( $gfont_values['fontvariants'] ) ) {
 
 						$astra_fonts[ $gfont_values['fontfamily'] ] = $gfont_values['fontvariants'];
+
+						foreach ( $gfont_values['fontvariants'] as $key => $font_variants ) {
+
+							$astra_fonts[ $gfont_values['fontfamily'] ][ $key ] .= ',' . $font_variants . 'italic';
+						}
 					}
 				}
 			}

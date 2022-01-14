@@ -2,7 +2,10 @@ import SettingsPageSkeleton from '@Admin/settings-app/components/settings-page/S
 import React from 'react';
 import { useStateValue } from '@Utils/StateProvider';
 import TemplatesButton from '@SettingsApp/components/settings-page/TemplatesButton';
-import AssetsGeneration from '@SettingsApp/components/tools-page/AssetsGeneration';
+import AssetsGeneration from '@SettingsApp/components/settings-page/AssetsGeneration';
+import VersionControl from '@SettingsApp/components/settings-page/VersionControl';
+import LoadFonts from '@SettingsApp/components/settings-page/LoadFonts';
+import GlobalSettings from '@SettingsApp/components/settings-page/GlobalSettings';
 
 function SettingsPage() {
 	const [ { globaldata } ] = useStateValue();
@@ -15,7 +18,7 @@ function SettingsPage() {
 
 	if ( loading ) {
 		return (
-			<div className="uag-global-settings-metabox">
+			<div className="uag-user-info">
 				<SettingsPageSkeleton />
 			</div>
 		);
@@ -23,9 +26,12 @@ function SettingsPage() {
 
 
 	return (
-		<div className="uag-global-settings-metabox">
+		<div className="uag-user-info">
 			<AssetsGeneration />
 			<TemplatesButton />
+			<VersionControl />
+			<LoadFonts/>
+			<GlobalSettings/>
 		</div>
 	);
 }

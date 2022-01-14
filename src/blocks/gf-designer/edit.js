@@ -3,7 +3,8 @@ import React, { lazy, Suspense, useEffect } from 'react';
 import lazyLoader from '@Controls/lazy-loader';
 import { __ } from '@wordpress/i18n';
 import { SelectControl, Placeholder } from '@wordpress/components';
-import jQuery from 'jquery';
+import apiFetch from '@wordpress/api-fetch';
+
 const Settings = lazy( () =>
 	import( /* webpackChunkName: "chunks/gf-styler/settings" */ './settings' )
 );
@@ -47,19 +48,19 @@ const UAGBGF = ( props ) => {
 		} = props.attributes;
 
 		if ( buttonVrPadding ) {
-			if ( ! buttontopPadding ) {
+			if ( undefined === buttontopPadding ) {
 				props.setAttributes( { buttontopPadding: buttonVrPadding } );
 			}
-			if ( ! buttonbottomPadding ) {
+			if ( undefined === buttonbottomPadding ) {
 				props.setAttributes( { buttonbottomPadding: buttonVrPadding } );
 			}
 		}
 
 		if ( buttonHrPadding ) {
-			if ( ! buttonrightPadding ) {
+			if ( undefined === buttonrightPadding ) {
 				props.setAttributes( { buttonrightPadding: buttonHrPadding } );
 			}
-			if ( ! buttonleftPadding ) {
+			if ( undefined === buttonleftPadding ) {
 				props.setAttributes( { buttonleftPadding: buttonHrPadding } );
 			}
 		}
@@ -83,29 +84,31 @@ const UAGBGF = ( props ) => {
 		}
 
 		if ( fieldVrPadding ) {
-			if ( ! fieldtopPadding ) {
+			if ( undefined === fieldtopPadding ) {
 				props.setAttributes( { fieldtopPadding: fieldVrPadding } );
 			}
-			if ( ! fieldbottomPadding ) {
+			if ( undefined === fieldbottomPadding ) {
 				props.setAttributes( { fieldbottomPadding: fieldVrPadding } );
 			}
 		}
 
 		if ( fieldHrPadding ) {
-			if ( ! fieldrightPadding ) {
+			if ( undefined === fieldrightPadding ) {
 				props.setAttributes( { fieldrightPadding: fieldHrPadding } );
 			}
-			if ( ! fieldleftPadding ) {
+			if ( undefined === fieldleftPadding ) {
 				props.setAttributes( { fieldleftPadding: fieldHrPadding } );
 			}
 		}
 	}, [] );
 
 	useEffect( () => {
-		jQuery( '.wpgf-submit' ).click( function ( event ) {
-			event.preventDefault();
-		} );
-
+		const submitButton = document.querySelector( '.wpgf-submit' );
+		if( submitButton !== null ){
+			submitButton.addEventListener( 'click', function ( event ) {
+				event.preventDefault();
+			} );
+		}
 		const element = document.getElementById(
 			'uagb-gf-styler-' + props.clientId.substr( 0, 8 )
 		);
@@ -162,20 +165,24 @@ export default withSelect( ( select, props ) => {
 	let jsonData = '';
 
 	if ( formId && -1 !== formId && 0 !== formId && ! isHtml ) {
-		jQuery.ajax( {
+
+		const formData = new window.FormData();
+
+		formData.append( 'action', 'uagb_gf_shortcode' );
+		formData.append(
+			'nonce',
+			uagb_blocks_info.uagb_ajax_nonce
+		);
+		formData.append( 'formId', formId );
+
+		apiFetch( {
 			url: uagb_blocks_info.ajax_url,
-			data: {
-				action: 'uagb_gf_shortcode',
-				formId,
-				nonce: uagb_blocks_info.uagb_ajax_nonce,
-			},
-			dataType: 'json',
-			type: 'POST',
-			success( data ) {
-				setAttributes( { isHtml: true } );
-				setAttributes( { formJson: data } );
-				jsonData = data;
-			},
+			method: 'POST',
+			body: formData,
+		} ).then( ( data ) => {
+			setAttributes( { isHtml: true } );
+			setAttributes( { formJson: data } );
+			jsonData = data;
 		} );
 	}
 

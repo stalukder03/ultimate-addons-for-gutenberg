@@ -633,20 +633,16 @@ if ( ! class_exists( 'UAGB_GF_Styler' ) ) {
 							'default' => false,
 						),
 						'buttonleftPadding'             => array(
-							'type'    => 'number',
-							'default' => '',
+							'type' => 'number',
 						),
 						'buttonrightPadding'            => array(
-							'type'    => 'number',
-							'default' => '',
+							'type' => 'number',
 						),
 						'buttontopPadding'              => array(
-							'type'    => 'number',
-							'default' => '',
+							'type' => 'number',
 						),
 						'buttonbottomPadding'           => array(
-							'type'    => 'number',
-							'default' => '',
+							'type' => 'number',
 						),
 						'buttonleftMobilePadding'       => array(
 							'type'    => 'number',
@@ -697,20 +693,16 @@ if ( ! class_exists( 'UAGB_GF_Styler' ) ) {
 							'default' => 'px',
 						),
 						'fieldleftPadding'              => array(
-							'type'    => 'number',
-							'default' => '',
+							'type' => 'number',
 						),
 						'fieldrightPadding'             => array(
-							'type'    => 'number',
-							'default' => '',
+							'type' => 'number',
 						),
 						'fieldtopPadding'               => array(
-							'type'    => 'number',
-							'default' => '',
+							'type' => 'number',
 						),
 						'fieldbottomPadding'            => array(
-							'type'    => 'number',
-							'default' => '',
+							'type' => 'number',
 						),
 						'fieldleftMobilePadding'        => array(
 							'type'    => 'number',

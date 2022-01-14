@@ -7,11 +7,11 @@ import classnames from 'classnames';
 import Prefix from './components/Prefix';
 import Title from './components/Title';
 import InfoBoxDesc from './components/InfoBoxDesc';
-import Icon from './components/Icon';
-import InfoBoxPositionClasses from './classes';
-import InfoBoxSeparator from './components/InfoBoxSeparator';
-import CallToAction from './components/CallToAction';
-import InfoBoxIconImage from './components/IconImage';
+import Icon from './components/Icons';
+import InfoBoxPositionClasses from './style-classes';
+import InfoBoxSeparator from './components/Separator';
+import CallToAction from './components/CTA';
+import InfoBoxIconImage from './components/IconImages';
 
 export default function save( props ) {
 	const {
@@ -22,7 +22,6 @@ export default function save( props ) {
 		ctaType,
 		ctaLink,
 		ctaTarget,
-		className,
 		prefixTitle,
 		infoBoxTitle,
 		headingDesc,
@@ -44,7 +43,7 @@ export default function save( props ) {
 
 	let iconImageHtml = isImage;
 	let position = seperatorPosition;
-	const seperatorHtml = <InfoBoxSeparator attributes={ props.attributes } />;
+	const seperatorHtml = <InfoBoxSeparator attributes={ props.attributes } />
 	let showSeperator = true;
 
 	if (
@@ -84,7 +83,6 @@ export default function save( props ) {
 				position === 'after_title' &&
 				showSeperator &&
 				seperatorHtml }
-			<div className="uagb-ifb-text-wrap">
 				{ showDesc && '' !== headingDesc && (
 					<InfoBoxDesc
 						attributes={ props.attributes }
@@ -97,12 +95,11 @@ export default function save( props ) {
 				{ ctaType !== 'none' && (
 					<CallToAction attributes={ props.attributes } />
 				) }
-			</div>
 		</>
 	);
 
 	// Get Title and Prefix components.
-	const title_text = (
+	const titleText = (
 		<div className="uagb-ifb-title-wrap">
 			{ showPrefix && '' !== prefixTitle && (
 				<Prefix
@@ -123,60 +120,52 @@ export default function save( props ) {
 	);
 
 	const output = (
-		<div
-			className={ classnames(
-				'uagb-infobox__content-wrap',
-				ctaType === 'all' ? ' uagb-infobox_cta-type-all' : '',
-				...InfoBoxPositionClasses( props.attributes )
-			) }
-		>
-			<div className="uagb-ifb-left-right-wrap">
-				{ iconimgPosition === 'left' && isImage }
-				<div className="uagb-ifb-content">
-					{ iconimgPosition === 'above-title' && iconImageHtml }
+		<>
+			{ iconimgPosition === 'left' && iconImageHtml }
+			<div className="uagb-ifb-content">
+				{ iconimgPosition === 'above-title' && iconImageHtml }
 
-					{ ( iconimgPosition === 'above-title' ||
-						iconimgPosition === 'below-title' ) &&
-						title_text }
+				{ ( iconimgPosition === 'above-title' ||
+					iconimgPosition === 'below-title' ) &&
+					titleText }
 
-					{ iconimgPosition === 'below-title' && iconImageHtml }
+				{ iconimgPosition === 'below-title' && iconImageHtml }
 
-					{ ( iconimgPosition === 'above-title' ||
-						iconimgPosition === 'below-title' ) &&
-						desc }
+				{ ( iconimgPosition === 'above-title' ||
+					iconimgPosition === 'below-title' ) &&
+					desc }
 
-					{ iconimgPosition === 'left-title' && (
-						<>
-							<div className="uagb-ifb-left-title-image">
-								{ iconImageHtml }
-								{ title_text }
-							</div>
-							{ desc }
-						</>
-					) }
+				{ iconimgPosition === 'left-title' && (
+					<>
+						<div className="uagb-ifb-left-title-image">
+							{ iconImageHtml }
+							{ titleText }
+						</div>
+						{ desc }
+					</>
+				) }
 
-					{ iconimgPosition === 'right-title' && (
-						<>
-							<div className="uagb-ifb-right-title-image">
-								{ title_text }
-								{ iconImageHtml }
-							</div>
-							{ desc }
-						</>
-					) }
+				{ iconimgPosition === 'right-title' && (
+					<>
+						<div className="uagb-ifb-right-title-image">
+							{ titleText }
+							{ iconImageHtml }
+						</div>
+						{ desc }
+					</>
+				) }
 
-					{ ( iconimgPosition === 'left' ||
-						iconimgPosition === 'right' ) && (
-						<>
-							{ title_text }
-							{ desc }
-						</>
-					) }
-				</div>
-
-				{ iconimgPosition === 'right' && iconImageHtml }
+				{ ( iconimgPosition === 'left' ||
+					iconimgPosition === 'right' ) && (
+					<>
+						{ titleText }
+						{ desc }
+					</>
+				) }
 			</div>
-		</div>
+
+			{ iconimgPosition === 'right' && iconImageHtml }
+		</>
 	);
 
 	let target = '_self';
@@ -187,9 +176,10 @@ export default function save( props ) {
 	return (
 		<div
 			className={ classnames(
-				className,
-				'uagb-infobox__outer-wrap',
-				`uagb-block-${ block_id }`
+				`uagb-block-${ block_id }`,
+				'uagb-infobox__content-wrap',
+				ctaType === 'all' ? ' uagb-infobox_cta-type-all' : '',
+				...InfoBoxPositionClasses( props.attributes )
 			) }
 		>
 			{ ctaType === 'all' && (

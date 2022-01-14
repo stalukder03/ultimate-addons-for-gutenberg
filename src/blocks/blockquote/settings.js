@@ -17,7 +17,6 @@ import UAGImage from '@Components/image';
 import MultiButtonsControl from '@Components/multi-buttons-control';
 import renderSVG from '@Controls/renderIcon';
 import {
-	PanelBody,
 	SelectControl,
 	Button,
 	TextControl,
@@ -32,6 +31,10 @@ import {
 	BlockControls,
 	InspectorControls,
 } from '@wordpress/block-editor';
+
+
+
+import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 const Settings = ( props ) => {
 	props = props.parentProps;
@@ -167,6 +170,7 @@ const Settings = ( props ) => {
 		quoteBottomMarginMobile,
 		quoteLeftMarginMobile,
 		quoteRightMarginMobile,
+		author
 	} = attributes;
 	let loadDescGoogleFonts;
 	let loadAuthorGoogleFonts;
@@ -489,7 +493,7 @@ const Settings = ( props ) => {
 	);
 
 	const skinSettings = (
-		<PanelBody title={ __( 'Layout', 'ultimate-addons-for-gutenberg' ) }>
+		<UAGAdvancedPanelBody title={ __( 'Layout', 'ultimate-addons-for-gutenberg' ) }>
 			<MultiButtonsControl
 				setAttributes={ setAttributes }
 				label={ __( 'Type', 'ultimate-addons-for-gutenberg' ) }
@@ -539,11 +543,11 @@ const Settings = ( props ) => {
 				showIcons={ false }
 			/>
 			<p>Note: Choose on what breakpoint the elements will stack.</p>
-		</PanelBody>
+		</UAGAdvancedPanelBody>
 	);
 
 	const contentStyling = (
-		<PanelBody
+		<UAGAdvancedPanelBody
 			title={ __( 'Content', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ false }
 		>
@@ -615,82 +619,86 @@ const Settings = ( props ) => {
 					setAttributes( { descColor: value } )
 				}
 			/>
-			<TypographyControl
-				label={ __(
-					'Author Typography',
-					'ultimate-addons-for-gutenberg'
-				) }
-				attributes={ attributes }
-				setAttributes={ setAttributes }
-				loadGoogleFonts={ {
-					value: authorLoadGoogleFonts,
-					label: 'authorLoadGoogleFonts',
-				} }
-				fontFamily={ {
-					value: authorFontFamily,
-					label: 'authorFontFamily',
-				} }
-				fontWeight={ {
-					value: authorFontWeight,
-					label: 'authorFontWeight',
-				} }
-				fontStyle={ {
-					value: authorFontStyle,
-					label: 'authorFontStyle',
-				} }
-				fontSizeType={ {
-					value: authorFontSizeType,
-					label: 'authorFontSizeType',
-				} }
-				fontSize={ {
-					value: authorFontSize,
-					label: 'authorFontSize',
-				} }
-				fontSizeMobile={ {
-					value: authorFontSizeMobile,
-					label: 'authorFontSizeMobile',
-				} }
-				fontSizeTablet={ {
-					value: authorFontSizeTablet,
-					label: 'authorFontSizeTablet',
-				} }
-				lineHeightType={ {
-					value: authorLineHeightType,
-					label: 'authorLineHeightType',
-				} }
-				lineHeight={ {
-					value: authorLineHeight,
-					label: 'authorLineHeight',
-				} }
-				lineHeightMobile={ {
-					value: authorLineHeightMobile,
-					label: 'authorLineHeightMobile',
-				} }
-				lineHeightTablet={ {
-					value: authorLineHeightTablet,
-					label: 'authorLineHeightTablet',
-				} }
-				transform={ {
-					value: authorTransform,
-					label: 'authorTransform',
-				} }
-				decoration={ {
-					value: authorDecoration,
-					label: 'authorDecoration',
-				} }
-			/>
-			<AdvancedPopColorControl
-				label={ __( 'Author Color', 'ultimate-addons-for-gutenberg' ) }
-				colorValue={ authorColor ? authorColor : '' }
-				onColorChange={ ( value ) =>
-					setAttributes( { authorColor: value } )
-				}
-			/>
-		</PanelBody>
+			{ author !== '' && (
+				<>
+					<TypographyControl
+						label={ __(
+							'Author Typography',
+							'ultimate-addons-for-gutenberg'
+						) }
+						attributes={ attributes }
+						setAttributes={ setAttributes }
+						loadGoogleFonts={ {
+							value: authorLoadGoogleFonts,
+							label: 'authorLoadGoogleFonts',
+						} }
+						fontFamily={ {
+							value: authorFontFamily,
+							label: 'authorFontFamily',
+						} }
+						fontWeight={ {
+							value: authorFontWeight,
+							label: 'authorFontWeight',
+						} }
+						fontStyle={ {
+							value: authorFontStyle,
+							label: 'authorFontStyle',
+						} }
+						fontSizeType={ {
+							value: authorFontSizeType,
+							label: 'authorFontSizeType',
+						} }
+						fontSize={ {
+							value: authorFontSize,
+							label: 'authorFontSize',
+						} }
+						fontSizeMobile={ {
+							value: authorFontSizeMobile,
+							label: 'authorFontSizeMobile',
+						} }
+						fontSizeTablet={ {
+							value: authorFontSizeTablet,
+							label: 'authorFontSizeTablet',
+						} }
+						lineHeightType={ {
+							value: authorLineHeightType,
+							label: 'authorLineHeightType',
+						} }
+						lineHeight={ {
+							value: authorLineHeight,
+							label: 'authorLineHeight',
+						} }
+						lineHeightMobile={ {
+							value: authorLineHeightMobile,
+							label: 'authorLineHeightMobile',
+						} }
+						lineHeightTablet={ {
+							value: authorLineHeightTablet,
+							label: 'authorLineHeightTablet',
+						} }
+						transform={ {
+							value: authorTransform,
+							label: 'authorTransform',
+						} }
+						decoration={ {
+							value: authorDecoration,
+							label: 'authorDecoration',
+						} }
+					/>
+					<AdvancedPopColorControl
+						label={ __( 'Author Color', 'ultimate-addons-for-gutenberg' ) }
+						colorValue={ authorColor ? authorColor : '' }
+						onColorChange={ ( value ) =>
+							setAttributes( { authorColor: value } )
+						}
+					/>
+				</>
+			)}
+		</UAGAdvancedPanelBody>
 	);
 
 	const twitterSettings = (
-		<PanelBody
+		<UAGAdvancedPanelBody
 			title={ __( 'Twitter Icon', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ false }
 		>
@@ -829,11 +837,11 @@ const Settings = ( props ) => {
 					/>
 				</>
 			) }
-		</PanelBody>
+		</UAGAdvancedPanelBody>
 	);
 
 	const spacingSettings = (
-		<PanelBody
+		<UAGAdvancedPanelBody
 			title={ __( 'Spacing', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ false }
 		>
@@ -987,7 +995,7 @@ const Settings = ( props ) => {
 					/>
 				</>
 			) }
-		</PanelBody>
+		</UAGAdvancedPanelBody>
 	);
 
 	const getTooltipElement = () => {
@@ -1145,7 +1153,7 @@ const Settings = ( props ) => {
 			</>
 		);
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Layout', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -1174,7 +1182,7 @@ const Settings = ( props ) => {
 						disableBottomSeparator={ true }
 					/>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const borderStyleSetting = () => {
@@ -1320,7 +1328,7 @@ const Settings = ( props ) => {
 	};
 	const iconStyleSetting = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Twitter Icon', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -1626,7 +1634,7 @@ const Settings = ( props ) => {
 						disableBottomSeparator={ true }
 					/>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	return (

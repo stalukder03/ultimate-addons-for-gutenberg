@@ -3,7 +3,6 @@
  */
 
 // Import block dependencies and components.
-import { withSelect } from '@wordpress/data';
 import styling from './styling';
 import lazyLoader from '@Controls/lazy-loader';
 import React, { useEffect, Suspense, lazy } from 'react';
@@ -47,35 +46,35 @@ const UAGBInlineNoticeEdit = ( props ) => {
 		} = attributes;
 
 		if ( titleVrPadding ) {
-			if ( ! titleTopPadding ) {
+			if ( undefined === titleTopPadding ) {
 				setAttributes( { titleTopPadding: titleVrPadding } );
 			}
-			if ( ! titleBottomPadding ) {
+			if ( undefined === titleBottomPadding ) {
 				setAttributes( { titleBottomPadding: titleVrPadding } );
 			}
 		}
 		if ( titleHrPadding ) {
-			if ( ! titleRightPadding ) {
+			if ( undefined === titleRightPadding ) {
 				setAttributes( { titleRightPadding: titleHrPadding } );
 			}
-			if ( ! titleLeftPadding ) {
+			if ( undefined === titleLeftPadding ) {
 				setAttributes( { titleLeftPadding: titleHrPadding } );
 			}
 		}
 
 		if ( contentVrPadding ) {
-			if ( ! contentTopPadding ) {
+			if ( undefined === contentTopPadding ) {
 				setAttributes( { contentTopPadding: contentVrPadding } );
 			}
-			if ( ! contentBottomPadding ) {
+			if ( undefined === contentBottomPadding ) {
 				setAttributes( { contentBottomPadding: contentVrPadding } );
 			}
 		}
 		if ( contentHrPadding ) {
-			if ( ! contentRightPadding ) {
+			if ( undefined === contentRightPadding ) {
 				setAttributes( { contentRightPadding: contentHrPadding } );
 			}
-			if ( ! contentLeftPadding ) {
+			if ( undefined === contentLeftPadding ) {
 				setAttributes( { contentLeftPadding: contentHrPadding } );
 			}
 		}
@@ -100,16 +99,4 @@ const UAGBInlineNoticeEdit = ( props ) => {
 	);
 };
 
-export default withSelect( ( select ) => {
-	const { __experimentalGetPreviewDeviceType = null } = select(
-		'core/edit-post'
-	);
-
-	const deviceType = __experimentalGetPreviewDeviceType
-		? __experimentalGetPreviewDeviceType()
-		: null;
-
-	return {
-		deviceType,
-	};
-} )( UAGBInlineNoticeEdit );
+export default UAGBInlineNoticeEdit;

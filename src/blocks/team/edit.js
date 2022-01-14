@@ -14,8 +14,6 @@ const Render = lazy( () =>
 	import( /* webpackChunkName: "chunks/team/render" */ './render' )
 );
 
-import { withSelect } from '@wordpress/data';
-
 const UAGBTeam = ( props ) => {
 	useEffect( () => {
 		const element = document.getElementById(
@@ -71,6 +69,7 @@ const UAGBTeam = ( props ) => {
 				props.setAttributes( { imageRightMargin: imgRightMargin } );
 			}
 		}
+
 	}, [] );
 
 	return (
@@ -81,15 +80,4 @@ const UAGBTeam = ( props ) => {
 	);
 };
 
-export default withSelect( ( select ) => {
-	const { __experimentalGetPreviewDeviceType = null } = select(
-		'core/edit-post'
-	);
-	const deviceType = __experimentalGetPreviewDeviceType
-		? __experimentalGetPreviewDeviceType()
-		: null;
-
-	return {
-		deviceType,
-	};
-} )( UAGBTeam );
+export default UAGBTeam;

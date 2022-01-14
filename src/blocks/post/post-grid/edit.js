@@ -5,8 +5,7 @@ import styling from '.././styling';
 import React, { useEffect, useState, lazy, Suspense } from 'react';
 import lazyLoader from '@Controls/lazy-loader';
 import { __ } from '@wordpress/i18n';
-import jQuery from 'jquery';
-
+import apiFetch from '@wordpress/api-fetch';
 const Settings = lazy( () =>
 	import( /* webpackChunkName: "chunks/post-grid/settings" */ './settings' )
 );
@@ -194,30 +193,27 @@ export default compose(
 		} = props.attributes;
 		const { setAttributes } = props;
 		const { getEntityRecords } = select( 'core' );
-		const { __experimentalGetPreviewDeviceType = null } = select(
-			'core/edit-post'
-		);
-
-		const deviceType = __experimentalGetPreviewDeviceType
-			? __experimentalGetPreviewDeviceType()
-			: null;
 		const allTaxonomy = uagb_blocks_info.all_taxonomy;
 		const currentTax = allTaxonomy[ postType ];
 		let categoriesList = [];
 		let rest_base = '';
+		
 		if ( true === postPagination && 'empty' === paginationMarkup ) {
-			jQuery.ajax( {
+			const formData = new window.FormData();
+
+			formData.append( 'action', 'uagb_post_pagination' );
+			formData.append(
+				'nonce',
+				uagb_blocks_info.uagb_ajax_nonce
+			);
+			formData.append( 'attributes', JSON.stringify( props.attributes ) );
+	
+			apiFetch( {
 				url: uagb_blocks_info.ajax_url,
-				data: {
-					action: 'uagb_post_pagination',
-					attributes: props.attributes,
-					nonce: uagb_blocks_info.uagb_ajax_nonce,
-				},
-				dataType: 'json',
-				type: 'POST',
-				success( data ) {
-					setAttributes( { paginationMarkup: data.data } );
-				},
+				method: 'POST',
+				body: formData,
+			} ).then( ( data ) => {  
+				setAttributes( { paginationMarkup: data.data } );
 			} );
 		}
 		if ( 'undefined' !== typeof currentTax ) {
@@ -274,7 +270,6 @@ export default compose(
 				latestPostsQuery
 			),
 			categoriesList,
-			deviceType,
 			taxonomyList:
 				'undefined' !== typeof currentTax ? currentTax.taxonomy : [],
 			block: getBlocks( props.clientId ),

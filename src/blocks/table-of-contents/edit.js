@@ -32,7 +32,7 @@ const UAGBTableOfContentsEdit = ( props ) => {
 
 		// Pushing Scroll To Top div
 		const scrollToTopSvg =
-			'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="26px" height="16.043px" viewBox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve"><path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"/></svg>';
+			'<svg xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="26px" height="16.043px" viewBox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve"><path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"/></svg>';
 
 		if ( 0 === scroll_element.length ) {
 			jQuery( 'body' ).append(
@@ -95,52 +95,53 @@ const UAGBTableOfContentsEdit = ( props ) => {
 
 		//Padding
 		if ( vPaddingDesktop ) {
-			if ( ! topPadding ) {
+			if ( undefined === topPadding ) {
 				setAttributes( { topPadding: vPaddingDesktop } );
 			}
-			if ( ! bottomPadding ) {
+			if ( undefined === bottomPadding ) {
 				setAttributes( { bottomPadding: vPaddingDesktop } );
 			}
 		}
+		
 		if ( hPaddingDesktop ) {
-			if ( ! rightPadding ) {
+			if ( undefined === rightPadding ) {
 				setAttributes( { rightPadding: hPaddingDesktop } );
 			}
-			if ( ! leftPadding ) {
+			if ( undefined === leftPadding ) {
 				setAttributes( { leftPadding: hPaddingDesktop } );
 			}
 		}
 
 		if ( vPaddingMobile ) {
-			if ( ! topPaddingMobile ) {
+			if ( undefined === topPaddingMobile ) {
 				setAttributes( { topPaddingMobile: vPaddingMobile } );
 			}
-			if ( ! bottomPaddingMobile ) {
+			if ( undefined === bottomPaddingMobile ) {
 				setAttributes( { bottomPaddingMobile: vPaddingMobile } );
 			}
 		}
 		if ( hPaddingMobile ) {
-			if ( ! rightPaddingMobile ) {
+			if ( undefined === rightPaddingMobile ) {
 				setAttributes( { rightPaddingMobile: hPaddingMobile } );
 			}
-			if ( ! leftPaddingMobile ) {
+			if ( undefined === leftPaddingMobile ) {
 				setAttributes( { leftPaddingMobile: hPaddingMobile } );
 			}
 		}
 
 		if ( vPaddingTablet ) {
-			if ( ! topPaddingTablet ) {
+			if ( undefined === topPaddingTablet ) {
 				setAttributes( { topPaddingTablet: vPaddingTablet } );
 			}
-			if ( ! bottomPaddingTablet ) {
+			if ( undefined === bottomPaddingTablet ) {
 				setAttributes( { bottomPaddingTablet: vPaddingTablet } );
 			}
 		}
 		if ( hPaddingTablet ) {
-			if ( ! rightPaddingTablet ) {
+			if ( undefined === rightPaddingTablet ) {
 				setAttributes( { rightPaddingTablet: hPaddingTablet } );
 			}
-			if ( ! leftPaddingTablet ) {
+			if ( undefined === leftPaddingTablet ) {
 				setAttributes( { leftPaddingTablet: hPaddingTablet } );
 			}
 		}
@@ -228,14 +229,7 @@ const UAGBTableOfContentsEdit = ( props ) => {
 };
 
 export default compose(
-	withSelect( ( select ) => {
-		const { __experimentalGetPreviewDeviceType = null } = select(
-			'core/edit-post'
-		);
-
-		const deviceType = __experimentalGetPreviewDeviceType
-			? __experimentalGetPreviewDeviceType()
-			: null;
+	withSelect( () => {
 
 		const parseTocSlug = ( slug ) => {
 			// If not have the element then return false!
@@ -318,7 +312,6 @@ export default compose(
 		}
 
 		return {
-			deviceType,
 			headers,
 		};
 	} )

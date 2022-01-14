@@ -11,7 +11,7 @@ import MasonryExtension from './MasonryExtension';
 const blocksInfo = uag_react.blocks_info;
 
 function BlocksSettings() {
-	
+
 	const [ checkCategory , setcheckCategory ] = useState( 'all' );
 	const [ status , setstatus ] = useState( true );
 	const [ { options }, dispatch ] = useStateValue();
@@ -22,7 +22,40 @@ function BlocksSettings() {
 		return <IndividualBlockSetting key={ index } blockInfo={ block } cat = {checkCategory} status={status}/>}
 	);
 
-	const categories = ['all','creative','content','post','social','forms','seo','extensions'];
+	const categories = [
+							{
+								slug: 'all',
+								label: __( 'All', 'ultimate-addons-for-gutenberg' )
+							},
+							{
+								slug:'creative',
+								label:__( 'Creative', 'ultimate-addons-for-gutenberg' )
+							},
+							{
+								slug:'content',
+								label:__( 'Content', 'ultimate-addons-for-gutenberg' )
+							},
+							{
+								slug:'post',
+								label:__( 'Post', 'ultimate-addons-for-gutenberg' )
+							},
+							{
+								slug:'social',
+								label:__( 'Social', 'ultimate-addons-for-gutenberg' )
+							},
+							{
+								slug:'forms',
+								label:__( 'Form', 'ultimate-addons-for-gutenberg' )
+							},
+							{
+								slug:'seo',
+								label:__( 'SEO', 'ultimate-addons-for-gutenberg' )
+							},
+							{
+								slug:'extensions',
+								label:__( 'Extensions', 'ultimate-addons-for-gutenberg' )
+							},
+						];
 
 	const setCategory = ( data ) => {
 		setcheckCategory( data );
@@ -111,15 +144,15 @@ function BlocksSettings() {
 	return (
 		<>
 			<div className="uag-bulk-blocks-settings-wrap">
-				<ul className="uag-block-cat-list">
-				<span className='uag-block-cat-label'>Filter By:</span>
-					{ categories.map( ( cat , key ) => (
-						<li key={key} className={`uag-block-cat ${cat === 'seo' ? 'uag-uppercase-cat' : ''} ${cat === checkCategory ? 'uag-cat-active' : ''}`}>
-							<a onClick={() => setCategory( cat ) } role = "button" onKeyDown={() => setCategory( cat )} tabIndex={0} // eslint-disable-line jsx-a11y/anchor-is-valid
-							>{cat} </a>
-						</li>
-					) )}
-				</ul>
+				<span className="uag-block-cat-list">
+				<span className='uag-block-cat-label'>Filters:</span>
+				{categories.map( ( block , index ) => {
+						return <a key = {index} className={`uag-block-cat ${ block.slug  === checkCategory ? 'uag-cat-active' : ''}`} onClick={() => setCategory(  block.slug  ) } role = "button" onKeyDown={() => setCategory(  block.slug  )} tabIndex={0} // eslint-disable-line jsx-a11y/anchor-is-valid
+									>{  block.label  }
+								</a>
+						}
+				)}
+				</span>
 				<div className="uag-bulk-blocks-action-btn">
 					<NormalButton
 						buttonText={ __(

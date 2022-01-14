@@ -17,11 +17,6 @@ function NavMenu() {
 			path: 'blocks',
 		},
 		{
-			name: __( 'Tools', 'ultimate-addons-for-gutenberg' ),
-			slug: uag_react.home_slug,
-			path: 'tools',
-		},
-		{
 			name: __( 'Settings', 'ultimate-addons-for-gutenberg' ),
 			slug: uag_react.home_slug,
 			path: 'settings',
@@ -75,9 +70,6 @@ function NavMenu() {
 					</Link>
 				) ) }
 			</div>
-			<span className="uagb-plugin-version">
-				Version { uag_react.plugin_ver }
-			</span>
 		</div>
 	);
 }

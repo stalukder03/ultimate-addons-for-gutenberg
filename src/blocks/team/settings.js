@@ -15,8 +15,7 @@ import SpacingControl from '@Components/spacing-control';
 import MultiButtonsControl from '@Components/multi-buttons-control';
 import UAGImage from '@Components/image';
 import UAGTabsControl from '@Components/tabs';
-import jQuery from 'jquery';
-
+import { getImageSize } from '@Utils/Helpers';
 let imageSizeOptions = [
 	{
 		value: 'thumbnail',
@@ -33,12 +32,15 @@ import {
 } from '@wordpress/block-editor';
 
 import {
-	PanelBody,
 	SelectControl,
 	TextControl,
 	ToggleControl,
 	Icon,
 } from '@wordpress/components';
+
+
+
+import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 const Settings = ( props ) => {
 	props = props.parentProps;
@@ -158,16 +160,6 @@ const Settings = ( props ) => {
 		setAttributes( { image: media } );
 	};
 
-	const getImageSize = ( sizes ) => {
-		const sizeArr = [];
-		jQuery.each( sizes, function ( index ) {
-			const name = index;
-			const p = { value: name, label: name };
-			sizeArr.push( p );
-		} );
-		return sizeArr;
-	};
-
 	/*
 	 * Event to set Image as null while removing.
 	 */
@@ -241,7 +233,7 @@ const Settings = ( props ) => {
 
 	const getImagePanelBody = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Layout', 'ultimate-addons-for-gutenberg' ) }
 			>
 				<MultiButtonsControl
@@ -275,6 +267,14 @@ const Settings = ( props ) => {
 						{
 							value: 'h6',
 							label: __( 'H6', 'ultimate-addons-for-gutenberg' ),
+						},
+						{
+							value: 'span',
+							label: __( 'Span', 'ultimate-addons-for-gutenberg' ),
+						},
+						{
+							value: 'div',
+							label: __( 'Div', 'ultimate-addons-for-gutenberg' ),
 						},
 					] }
 				/>
@@ -508,13 +508,13 @@ const Settings = ( props ) => {
 						/>
 					</>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getSocialLinksPanelBody = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Social Links', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -685,13 +685,13 @@ const Settings = ( props ) => {
 						) }
 					</>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getTitlePanelColorSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Title', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -782,13 +782,13 @@ const Settings = ( props ) => {
 					max={ 50 }
 					displayUnit={ false }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getPrefixPanelColorSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Prefix', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -879,13 +879,13 @@ const Settings = ( props ) => {
 					max={ 50 }
 					displayUnit={ false }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getDescriptionPanelColorSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Description', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -976,13 +976,13 @@ const Settings = ( props ) => {
 					max={ 50 }
 					displayUnit={ false }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getSocialIconPanelColorSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Social Icons', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -1073,13 +1073,13 @@ const Settings = ( props ) => {
 					}
 					disableBottomSeparator={ true }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getSpacingPanelBody = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Spacing', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -1157,7 +1157,7 @@ const Settings = ( props ) => {
 						label: 'spacingLink',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 

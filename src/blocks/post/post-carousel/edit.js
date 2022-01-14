@@ -19,6 +19,8 @@ import Range from '@Components/range/Range.js';
 import ResponsiveSlider from '@Components/responsive-slider';
 import UAGTabsControl from '@Components/tabs';
 import MultiButtonsControl from '@Components/multi-buttons-control';
+import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
+
 const MAX_POSTS_COLUMNS = 8;
 
 const Settings = lazy( () =>
@@ -31,7 +33,6 @@ const Render = lazy( () =>
 );
 
 import {
-	PanelBody,
 	Placeholder,
 	SelectControl,
 	Spinner,
@@ -192,6 +193,7 @@ const UAGBPostCarousel = ( props ) => {
 
 		setAttributes( { postType: value } );
 		setAttributes( { categories: '' } );
+		setAttributes( { taxonomyType: 'category' } );
 	};
 
 	const onSelectTaxonomyType = ( value ) => {
@@ -315,7 +317,6 @@ const UAGBPostCarousel = ( props ) => {
 		postType,
 		taxonomyType,
 		equalHeight,
-		inheritFromTheme,
 		postDisplaytext,
 		displayPostContentRadio,
 		excludeCurrentPost,
@@ -402,7 +403,7 @@ const UAGBPostCarousel = ( props ) => {
 
 	const getGeneralPanelBody = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'General', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ true }
 			>
@@ -575,29 +576,13 @@ const UAGBPostCarousel = ( props ) => {
 						setAttributes( { postDisplaytext: value } )
 					}
 				/>
-				<ToggleControl
-					label={ __(
-						'Inherit Styling from Theme',
-						'ultimate-addons-for-gutenberg'
-					) }
-					checked={ inheritFromTheme }
-					onChange={ () =>
-						setAttributes( {
-							inheritFromTheme: ! inheritFromTheme,
-						} )
-					}
-					help={ __(
-						'This will inherit all the Typography and colors for Title, Meta, Excerpt and Read More button from the theme.',
-						'ultimate-addons-for-gutenberg'
-					) }
-				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getCarouselPanelBody = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Carousel', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -690,13 +675,13 @@ const UAGBPostCarousel = ( props ) => {
 						},
 					] }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getImagePanelBody = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Image', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -763,13 +748,13 @@ const UAGBPostCarousel = ( props ) => {
 						}
 					/>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getContentPanelBody = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Content', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -884,13 +869,13 @@ const UAGBPostCarousel = ( props ) => {
 							displayUnit={ false }
 						/>
 					) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getReadMoreLinkPanelBody = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __(
 					'Read More Link',
 					'ultimate-addons-for-gutenberg'
@@ -931,13 +916,13 @@ const UAGBPostCarousel = ( props ) => {
 						/>
 					</>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const spacingSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Blog Settings', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -1054,16 +1039,16 @@ const UAGBPostCarousel = ( props ) => {
 						label: 'spacingLinkPadding',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const imageStyle = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Image', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
-			> 
+			>
 			{imgPosition === 'background' && (
 				<>
 					<AdvancedPopColorControl
@@ -1110,12 +1095,12 @@ const UAGBPostCarousel = ( props ) => {
 				} }
 			/>
 			)}
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const titleStyle = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Title', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -1164,107 +1149,104 @@ const UAGBPostCarousel = ( props ) => {
 						},
 					] }
 				/>
-				{ ! inheritFromTheme && (
-					<>
-						<AdvancedPopColorControl
-							label={ __(
-								'Color',
-								'ultimate-addons-for-gutenberg'
-							) }
-							colorValue={ titleColor }
-							onColorChange={ ( value ) =>
-								setAttributes( { titleColor: value } )
-							}
-						/>
-						<TypographyControl
-							label={ __(
-								'Typography',
-								'ultimate-addons-for-gutenberg'
-							) }
-							attributes={ attributes }
-							setAttributes={ setAttributes }
-							loadGoogleFonts={ {
-								value: titleLoadGoogleFonts,
-								label: 'titleLoadGoogleFonts',
-							} }
-							fontFamily={ {
-								value: titleFontFamily,
-								label: 'titleFontFamily',
-							} }
-							fontWeight={ {
-								value: titleFontWeight,
-								label: 'titleFontWeight',
-							} }
-							fontStyle={ {
-								value: titleFontStyle,
-								label: 'titleFontStyle',
-							} }
-							fontSizeType={ {
-								value: titleFontSizeType,
-								label: 'titleFontSizeType',
-							} }
-							fontSize={ {
-								value: titleFontSize,
-								label: 'titleFontSize',
-							} }
-							fontSizeMobile={ {
-								value: titleFontSizeMobile,
-								label: 'titleFontSizeMobile',
-							} }
-							fontSizeTablet={ {
-								value: titleFontSizeTablet,
-								label: 'titleFontSizeTablet',
-							} }
-							lineHeightType={ {
-								value: titleLineHeightType,
-								label: 'titleLineHeightType',
-							} }
-							lineHeight={ {
-								value: titleLineHeight,
-								label: 'titleLineHeight',
-							} }
-							lineHeightMobile={ {
-								value: titleLineHeightMobile,
-								label: 'titleLineHeightMobile',
-							} }
-							lineHeightTablet={ {
-								value: titleLineHeightTablet,
-								label: 'titleLineHeightTablet',
-							} }
-							transform={ {
-								value: titleTransform,
-								label: 'titleTransform',
-							} }
-							decoration={ {
-								value: titleDecoration,
-								label: 'titleDecoration',
-							} }
-						/>
-						<Range
-							label={ __(
-								'Bottom Spacing',
-								'ultimate-addons-for-gutenberg'
-							) }
-							setAttributes={ setAttributes }
-							value={ titleBottomSpace }
-							onChange={ ( value ) =>
-								setAttributes( { titleBottomSpace: value } )
-							}
-							min={ 0 }
-							max={ 50 }
-							unit={ {
-								value: titleBottomSpaceUnit,
-								label: 'titleBottomSpaceUnit',
-							} }
-						/>
-					</>
-				) }
-			</PanelBody>
+				<AdvancedPopColorControl
+					label={ __(
+						'Color',
+						'ultimate-addons-for-gutenberg'
+					) }
+					colorValue={ titleColor }
+					onColorChange={ ( value ) =>
+						setAttributes( { titleColor: value } )
+					}
+				/>
+				<TypographyControl
+					label={ __(
+						'Typography',
+						'ultimate-addons-for-gutenberg'
+					) }
+					attributes={ attributes }
+					setAttributes={ setAttributes }
+					loadGoogleFonts={ {
+						value: titleLoadGoogleFonts,
+						label: 'titleLoadGoogleFonts',
+					} }
+					fontFamily={ {
+						value: titleFontFamily,
+						label: 'titleFontFamily',
+					} }
+					fontWeight={ {
+						value: titleFontWeight,
+						label: 'titleFontWeight',
+					} }
+					fontStyle={ {
+						value: titleFontStyle,
+						label: 'titleFontStyle',
+					} }
+					fontSizeType={ {
+						value: titleFontSizeType,
+						label: 'titleFontSizeType',
+					} }
+					fontSize={ {
+						value: titleFontSize,
+						label: 'titleFontSize',
+					} }
+					fontSizeMobile={ {
+						value: titleFontSizeMobile,
+						label: 'titleFontSizeMobile',
+					} }
+					fontSizeTablet={ {
+						value: titleFontSizeTablet,
+						label: 'titleFontSizeTablet',
+					} }
+					lineHeightType={ {
+						value: titleLineHeightType,
+						label: 'titleLineHeightType',
+					} }
+					lineHeight={ {
+						value: titleLineHeight,
+						label: 'titleLineHeight',
+					} }
+					lineHeightMobile={ {
+						value: titleLineHeightMobile,
+						label: 'titleLineHeightMobile',
+					} }
+					lineHeightTablet={ {
+						value: titleLineHeightTablet,
+						label: 'titleLineHeightTablet',
+					} }
+					transform={ {
+						value: titleTransform,
+						label: 'titleTransform',
+					} }
+					decoration={ {
+						value: titleDecoration,
+						label: 'titleDecoration',
+					} }
+				/>
+				<Range
+					label={ __(
+						'Bottom Spacing',
+						'ultimate-addons-for-gutenberg'
+					) }
+					setAttributes={ setAttributes }
+					value={ titleBottomSpace }
+					onChange={ ( value ) =>
+						setAttributes( { titleBottomSpace: value } )
+					}
+					min={ 0 }
+					max={ 50 }
+					unit={ {
+						value: titleBottomSpaceUnit,
+						label: 'titleBottomSpaceUnit',
+					} }
+				/>
+
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const metaStyle = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Meta', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -1358,12 +1340,12 @@ const UAGBPostCarousel = ( props ) => {
 						label: 'metaBottomSpaceUnit',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const excerptStyle = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Excerpt', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -1455,12 +1437,12 @@ const UAGBPostCarousel = ( props ) => {
 						label: 'excerptBottomSpaceUnit',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const readMoreLinkStyleSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __(
 					'Read More Link',
 					'ultimate-addons-for-gutenberg'
@@ -1616,13 +1598,13 @@ const UAGBPostCarousel = ( props ) => {
 					} }
 				/>
 				<Border
-					disableBottomSeparator={ true }
+					disableBottomSeparator={ false }
 					setAttributes={ setAttributes }
 					borderStyle={ {
 						value: borderStyle,
 						label: 'borderStyle',
 						title: __(
-							'Border Style',
+							'Style',
 							'ultimate-addons-for-gutenberg'
 						),
 					} }
@@ -1630,7 +1612,7 @@ const UAGBPostCarousel = ( props ) => {
 						value: borderWidth,
 						label: 'borderWidth',
 						title: __(
-							'Border Width',
+							'Width',
 							'ultimate-addons-for-gutenberg'
 						),
 					} }
@@ -1638,7 +1620,7 @@ const UAGBPostCarousel = ( props ) => {
 						value: borderRadius,
 						label: 'borderRadius',
 						title: __(
-							'Border Radius',
+							'Radius',
 							'ultimate-addons-for-gutenberg'
 						),
 					} }
@@ -1646,7 +1628,7 @@ const UAGBPostCarousel = ( props ) => {
 						value: borderColor,
 						label: 'borderColor',
 						title: __(
-							'Border Color',
+							'Color',
 							'ultimate-addons-for-gutenberg'
 						),
 					} }
@@ -1654,7 +1636,7 @@ const UAGBPostCarousel = ( props ) => {
 						value: borderHColor,
 						label: 'borderHColor',
 						title: __(
-							'Border Hover Color',
+							'Hover Color',
 							'ultimate-addons-for-gutenberg'
 						),
 					} }
@@ -1730,12 +1712,12 @@ const UAGBPostCarousel = ( props ) => {
 						label: 'spacingLink',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const carouselStyle = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Arrow and Dots', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -1749,7 +1731,7 @@ const UAGBPostCarousel = ( props ) => {
 						setAttributes( { arrowColor: value } )
 					}
 				/>
-			{ 'dots' !== arrowDots && 
+			{ 'dots' !== arrowDots &&
 				<>
 				<Range
 					label={ __( 'Size', 'ultimate-addons-for-gutenberg' ) }
@@ -1794,7 +1776,7 @@ const UAGBPostCarousel = ( props ) => {
 				/>
 				</>
 			}
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const inspectorControls = (
@@ -1808,18 +1790,14 @@ const UAGBPostCarousel = ( props ) => {
 					{ getReadMoreLinkPanelBody() }
 				</InspectorTab>
 				<InspectorTab { ...UAGTabs.style }>
-					{ ! inheritFromTheme && (
-						<>
-							{ displayPostTitle && titleStyle() }
-							{ ( displayPostAuthor ||
-								displayPostDate ||
-								displayPostComment ||
-								displayPostTaxonomy ) &&
-								metaStyle() }
-							{ displayPostExcerpt && excerptStyle() }
-							{ displayPostLink && readMoreLinkStyleSettings() }
-						</>
-					) }
+					{ displayPostTitle && titleStyle() }
+					{ ( displayPostAuthor ||
+						displayPostDate ||
+						displayPostComment ||
+						displayPostTaxonomy ) &&
+						metaStyle() }
+					{ displayPostExcerpt && excerptStyle() }
+					{ displayPostLink && readMoreLinkStyleSettings() }
 					{ displayPostImage  && imageStyle() }
 					{ spacingSettings() }
 					{ carouselStyle() }
@@ -1879,13 +1857,6 @@ export default compose(
 			excludeCurrentPost,
 		} = props.attributes;
 		const { getEntityRecords } = select( 'core' );
-		const { __experimentalGetPreviewDeviceType = null } = select(
-			'core/edit-post'
-		);
-
-		const deviceType = __experimentalGetPreviewDeviceType
-			? __experimentalGetPreviewDeviceType()
-			: null;
 		const allTaxonomy = uagb_blocks_info.all_taxonomy;
 		const currentTax = allTaxonomy[ postType ];
 
@@ -1949,7 +1920,6 @@ export default compose(
 				latestPostsQuery
 			),
 			categoriesList,
-			deviceType,
 			taxonomyList:
 				'undefined' !== typeof currentTax ? currentTax.taxonomy : [],
 			block: getBlocks( props.clientId ),

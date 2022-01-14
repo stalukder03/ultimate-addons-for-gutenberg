@@ -14,7 +14,6 @@ const Settings = lazy( () =>
 const Render = lazy( () =>
 	import( /* webpackChunkName: "chunks/review/render" */ './render' )
 );
-import jQuery from 'jquery';
 let prevState;
 
 const ReviewComponent = ( props ) => {
@@ -45,19 +44,19 @@ const ReviewComponent = ( props ) => {
 		} = attributes;
 
 		if ( contentVrPadding ) {
-			if ( ! topPadding ) {
+			if ( undefined === topPadding ) {
 				setAttributes( { topPadding: contentVrPadding } );
 			}
-			if ( ! bottomPadding ) {
+			if ( undefined === bottomPadding ) {
 				setAttributes( { bottomPadding: contentVrPadding } );
 			}
 		}
 
 		if ( contentHrPadding ) {
-			if ( ! rightPadding ) {
+			if ( undefined === rightPadding ) {
 				setAttributes( { rightPadding: contentHrPadding } );
 			}
-			if ( ! leftPadding ) {
+			if ( undefined === leftPadding ) {
 				setAttributes( { leftPadding: contentHrPadding } );
 			}
 		}
@@ -84,10 +83,12 @@ const ReviewComponent = ( props ) => {
 		if ( null !== element && undefined !== element ) {
 			element.innerHTML = styling( props );
 		}
-
-		jQuery( '.uagb-rating-link-wrapper' ).on( 'click', function ( event ) {
-			event.preventDefault();
-		} );
+		const ratingLinkWrapper = document.querySelector( '.uagb-rating-link-wrapper' );
+		if( ratingLinkWrapper !== null ){
+			ratingLinkWrapper.addEventListener( 'click', function ( event ) {
+				event.preventDefault();
+			} );
+		}
 	}, [ props ] );
 
 	// Setup the attributes
@@ -200,14 +201,7 @@ compose( [
 ] );
 
 export default compose(
-	withSelect( ( select, ownProps ) => {
-		const { __experimentalGetPreviewDeviceType = null } = select(
-			'core/edit-post'
-		);
-
-		const deviceType = __experimentalGetPreviewDeviceType
-			? __experimentalGetPreviewDeviceType()
-			: null;
+	withSelect( ( ownProps ) => {
 
 		const newAverage =
 			ownProps.attributes.parts
@@ -231,7 +225,7 @@ export default compose(
 		}
 
 		const jsonData = {
-			'@context': 'http://schema.org/',
+			'@context': 'https://schema.org/',
 			'@type': 'Review',
 			'reviewBody': ownProps.attributes.summaryDescription,
 			'description': ownProps.attributes.rContent,
@@ -239,6 +233,7 @@ export default compose(
 			'reviewRating': {
 				'@type': 'Rating',
 				'ratingValue': newAverage,
+				'worstRating': '0',
 				'bestRating': ownProps.attributes.starCount,
 			},
 			'author': {
@@ -337,7 +332,6 @@ export default compose(
 
 		return {
 			schemaJsonData: jsonData,
-			deviceType,
 		};
 	} )
 )( ReviewComponent );

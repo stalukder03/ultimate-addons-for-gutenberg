@@ -75,20 +75,28 @@ export default function save( props ) {
 		? 'uagb-columns__reverse-mobile'
 		: '';
 
+
 	const colTablet = ( columnsTablet ) ? `uagb-columns__columns-tab-${columnsTablet}` : '';
 
 	const colMobile = ( columnsMobile ) ? `uagb-columns__columns-mob-${columnsMobile}` : '';
+
+	const bgType = ( undefined !== backgroundType ) ? `uagb-columns__background-${ backgroundType }` : '';
+
+	const verticalAlign = ( undefined !== vAlign ) ? `uagb-columns__valign-${ vAlign }` : '';
+
+	const alignType = ( undefined !== align ) ? `align${ align }` : '';
+
 
 	return (
 		<CustomTag
 			className={ classnames(
 				className,
 				'uagb-columns__wrap',
-				`uagb-columns__background-${ backgroundType }`,
+				`${ bgType }`,
 				`uagb-columns__stack-${ stack }`,
-				`uagb-columns__valign-${ vAlign }`,
+				`${ verticalAlign }`,
 				`uagb-columns__gap-${ columnGap }`,
-				`align${ align }`,
+				`${ alignType }`,
 				reverseTabletClass,
 				reverseMobileClass,
 				`uagb-block-${ block_id }`,

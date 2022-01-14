@@ -8,10 +8,11 @@ import edit from './edit';
 import save from './save';
 import './style.scss';
 import { __ } from '@wordpress/i18n';
+import deprecated from './deprecated';
 import { registerBlockType } from '@wordpress/blocks';
 
 registerBlockType( 'uagb/star-rating', {
-	title: __( 'Star Rating', 'ultimate-addons-for-gutenberg' ),
+	title: __( 'Star Ratings', 'ultimate-addons-for-gutenberg' ),
 	description: __(
 		'This block lets you add a star rating.',
 		'ultimate-addons-for-gutenberg'
@@ -34,4 +35,5 @@ registerBlockType( 'uagb/star-rating', {
 	attributes,
 	edit,
 	save,
+	deprecated
 } );

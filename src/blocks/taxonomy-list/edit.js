@@ -4,7 +4,7 @@
 
 import styling from './styling';
 import React, { lazy, Suspense, useEffect } from 'react';
-
+import apiFetch from '@wordpress/api-fetch';
 import lazyLoader from '@Controls/lazy-loader';
 
 const Settings = lazy( () =>
@@ -49,63 +49,78 @@ const UAGBTaxonomyList = ( props ) => {
 		} = props.attributes;
 
 		if ( contentPadding ) {
-			if ( ! contentTopPadding ) {
+			if ( undefined === contentTopPadding ) {
 				props.setAttributes( { contentTopPadding: contentPadding } );
 			}
-			if ( ! contentBottomPadding ) {
+			if ( undefined === contentBottomPadding ) {
 				props.setAttributes( { contentBottomPadding: contentPadding } );
 			}
-			if ( ! contentLeftPadding ) {
+			if ( undefined === contentLeftPadding ) {
 				props.setAttributes( { contentLeftPadding: contentPadding } );
 			}
-			if ( ! contentRightPadding ) {
+			if ( undefined === contentRightPadding ) {
 				props.setAttributes( { contentRightPadding: contentPadding } );
 			}
 		}
 		if ( contentPaddingMobile ) {
-			if ( ! contentTopPaddingMobile ) {
+			if ( undefined === contentTopPaddingMobile ) {
 				props.setAttributes( {
 					contentTopPaddingMobile: contentPaddingMobile,
 				} );
 			}
-			if ( ! contentBottomPaddingMobile ) {
+			if ( undefined === contentBottomPaddingMobile ) {
 				props.setAttributes( {
 					contentBottomPaddingMobile: contentPaddingMobile,
 				} );
 			}
-			if ( ! contentLeftPaddingMobile ) {
+			if ( undefined === contentLeftPaddingMobile ) {
 				props.setAttributes( {
 					contentLeftPaddingMobile: contentPaddingMobile,
 				} );
 			}
-			if ( ! contentRightPaddingMobile ) {
+			if ( undefined === contentRightPaddingMobile ) {
 				props.setAttributes( {
 					contentRightPaddingMobile: contentPaddingMobile,
 				} );
 			}
 		}
 		if ( contentPaddingTablet ) {
-			if ( ! contentTopPaddingTablet ) {
+			if ( undefined === contentTopPaddingTablet ) {
 				props.setAttributes( {
 					contentTopPaddingTablet: contentPaddingTablet,
 				} );
 			}
-			if ( ! contentBottomPaddingTablet ) {
+			if ( undefined === contentBottomPaddingTablet ) {
 				props.setAttributes( {
 					contentBottomPaddingTablet: contentPaddingTablet,
 				} );
 			}
-			if ( ! contentLeftPaddingTablet ) {
+			if ( undefined === contentLeftPaddingTablet ) {
 				props.setAttributes( {
 					contentLeftPaddingTablet: contentPaddingTablet,
 				} );
 			}
-			if ( ! contentRightPaddingTablet ) {
+			if ( undefined === contentRightPaddingTablet ) {
 				props.setAttributes( {
 					contentRightPaddingTablet: contentPaddingTablet,
 				} );
 			}
 		}
+		const formData = new window.FormData();
+
+		formData.append( 'action', 'uagb_get_taxonomy' );
+		formData.append(
+			'nonce',
+			uagb_blocks_info.uagb_ajax_nonce
+		);
+		apiFetch( {
+			url: uagb_blocks_info.ajax_url,
+			method: 'POST',
+			body: formData,
+		} ).then( ( data ) => {  
+			props.setAttributes( { listInJson: data } );
+		} );
+
 	}, [] );
 
 	useEffect( () => {
@@ -129,6 +144,7 @@ const UAGBTaxonomyList = ( props ) => {
 };
 
 export default withSelect( ( select, props ) => {
+	
 	const {
 		postsToShow,
 		order,
@@ -136,45 +152,38 @@ export default withSelect( ( select, props ) => {
 		postType,
 		taxonomyType,
 		showEmptyTaxonomy,
+		listInJson
 	} = props.attributes;
-	const { getEntityRecords } = select( 'core' );
-	const { __experimentalGetPreviewDeviceType = null } = select(
-		'core/edit-post'
-	);
+	
+		const allTaxonomy = ( null !== listInJson ) ? listInJson.data : '';
+		const currentTax = ( '' !== allTaxonomy ) ? allTaxonomy[ postType ] : 'undefined';
 
-	const deviceType = __experimentalGetPreviewDeviceType
-		? __experimentalGetPreviewDeviceType()
-		: null;
+		const listToShowTaxonomy = showEmptyTaxonomy
+			? 'with_empty_taxonomy'
+			: 'without_empty_taxonomy';
 
-	const allTaxonomy = uagb_blocks_info.taxonomy_list;
-	const currentTax = allTaxonomy[ postType ];
-
-	const listToShowTaxonomy = showEmptyTaxonomy
-		? 'with_empty_taxonomy'
-		: 'without_empty_taxonomy';
-
-	let categoriesList = [];
-	if ( 'undefined' !== typeof currentTax ) {
-		if (
-			'undefined' !== typeof currentTax[ listToShowTaxonomy ] &&
-			'undefined' !==
-				typeof currentTax[ listToShowTaxonomy ][ taxonomyType ]
-		) {
-			categoriesList = currentTax[ listToShowTaxonomy ][ taxonomyType ];
+		let categoriesList = [];
+		if ( 'undefined' !== typeof currentTax ) {
+			if (
+				'undefined' !== typeof currentTax[ listToShowTaxonomy ] &&
+				'undefined' !==
+					typeof currentTax[ listToShowTaxonomy ][ taxonomyType ]
+			) {
+				categoriesList = currentTax[ listToShowTaxonomy ][ taxonomyType ];
+			}
 		}
-	}
-	const latestPostsQuery = {
-		order,
-		orderby: orderBy,
-		per_page: postsToShow,
-	};
-
-	return {
-		latestPosts: getEntityRecords( 'postType', postType, latestPostsQuery ),
-		categoriesList,
-		taxonomyList:
-			'undefined' !== typeof currentTax ? currentTax.taxonomy : [],
-		termsList: 'undefined' !== typeof currentTax ? currentTax.terms : [],
-		deviceType,
-	};
+	
+		const latestPostsQuery = {
+			order,
+			orderby: orderBy,
+			per_page: postsToShow,
+		};
+		const { getEntityRecords } = select( 'core' );
+		return {
+			latestPosts: getEntityRecords( 'postType', postType, latestPostsQuery ),
+			categoriesList,
+			taxonomyList:
+				'undefined' !== typeof currentTax ? currentTax.taxonomy : [],
+			termsList: 'undefined' !== typeof currentTax ? currentTax.terms : [],
+		};
 } )( UAGBTaxonomyList );

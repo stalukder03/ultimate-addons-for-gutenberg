@@ -13,7 +13,7 @@ const { updateBlockAttributes, insertBlock, removeBlock } = ! wp.blockEditor
 const { getBlockOrder } = ! wp.blockEditor
 	? select( 'core/editor' )
 	: select( 'core/block-editor' );
-
+import { useDeviceType } from '@Controls/getPreviewType';
 const Render = ( props ) => {
 	// Add and remove the CSS on the drop and remove of the component.
 	useLayoutEffect( () => {
@@ -27,8 +27,6 @@ const Render = ( props ) => {
 	const {
 		attributes,
 		setAttributes,
-		className,
-		deviceType,
 		clientId,
 	} = props;
 	const {
@@ -40,8 +38,10 @@ const Render = ( props ) => {
 		tabAlign,
 		showIcon,
 		icon,
-		iconPosition,
+		iconPosition
 	} = attributes;
+
+	const deviceType = useDeviceType()
 
 	const onMoveForward = ( oldIndex, realTabsCount ) => {
 		return () => {
@@ -133,7 +133,6 @@ const Render = ( props ) => {
 		<>
 			<div
 				className={ classnames(
-					className,
 					`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
 					`uagb-block-${ props.clientId.substr( 0, 8 ) }`,
 					'uagb-tabs__wrap',
@@ -165,7 +164,7 @@ const Render = ( props ) => {
 											<span // eslint-disable-line jsx-a11y/click-events-have-key-events
 												role='button'
 												className="uagb-tab-item__move-back"
-												onClick={ 
+												onClick={
 													index === 0
 														? ' '
 														: onMoveBack(
@@ -280,8 +279,8 @@ const Render = ( props ) => {
 							<span // eslint-disable-line jsx-a11y/click-events-have-key-events
 								role='button'
 								tabIndex='0'
-								onClick={ () => addTab() } 
-							> 
+								onClick={ () => addTab() }
+							>
 								<Dashicon icon="plus" />
 							</span>
 						</Tooltip>

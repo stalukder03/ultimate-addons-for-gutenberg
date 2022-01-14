@@ -4,7 +4,6 @@
 
 // Import classes
 import styling from './styling';
-import { withSelect } from '@wordpress/data';
 import lazyLoader from '@Controls/lazy-loader';
 import React, { useEffect, useState, lazy, Suspense } from 'react';
 
@@ -48,19 +47,19 @@ const ButtonsChildComponent = ( props ) => {
 		} = attributes;
 
 		if ( vPadding ) {
-			if ( ! topPadding ) {
+			if ( undefined === topPadding ) {
 				setAttributes( { topPadding: vPadding } );
 			}
-			if ( ! bottomPadding ) {
+			if ( undefined === bottomPadding ) {
 				setAttributes( { bottomPadding: vPadding } );
 			}
 		}
 
 		if ( hPadding ) {
-			if ( ! rightPadding ) {
+			if ( undefined === rightPadding ) {
 				setAttributes( { rightPadding: hPadding } );
 			}
-			if ( ! leftPadding ) {
+			if ( undefined === leftPadding ) {
 				setAttributes( { leftPadding: hPadding } );
 			}
 		}
@@ -88,16 +87,4 @@ const ButtonsChildComponent = ( props ) => {
 		</Suspense>
 	);
 };
-export default withSelect( ( select ) => {
-	const { __experimentalGetPreviewDeviceType = null } = select(
-		'core/edit-post'
-	);
-
-	const deviceType = __experimentalGetPreviewDeviceType
-		? __experimentalGetPreviewDeviceType()
-		: null;
-
-	return {
-		deviceType,
-	};
-} )( ButtonsChildComponent );
+export default ButtonsChildComponent;

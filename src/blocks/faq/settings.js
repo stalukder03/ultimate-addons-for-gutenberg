@@ -25,11 +25,14 @@ import UAGTabsControl from '@Components/tabs';
 import { InspectorControls } from '@wordpress/block-editor';
 
 import {
-	PanelBody,
 	SelectControl,
 	ToggleControl,
 	Icon,
 } from '@wordpress/components';
+
+
+
+import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 const Settings = ( props ) => {
 	props = props.parentProps;
@@ -177,7 +180,7 @@ const Settings = ( props ) => {
 
 	const faqGeneralSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'General', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ true }
 				className="uagb__url-panel-body"
@@ -342,6 +345,8 @@ const Settings = ( props ) => {
 								max: 2,
 							},
 						} }
+						min={ 1 }
+						max={ 6 }
 						displayUnit={ false }
 						setAttributes={ setAttributes }
 					/>
@@ -403,13 +408,13 @@ const Settings = ( props ) => {
 						showIcons={ true }
 					/>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const faqIconSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Icon', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 				className="uagb__url-panel-body"
@@ -463,12 +468,12 @@ const Settings = ( props ) => {
 					] }
 					showIcons={ true }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const faqQuestionSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Question', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 				className="uagb__url-panel-body"
@@ -664,12 +669,12 @@ const Settings = ( props ) => {
 						},
 					] }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const faqAnswerSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Answer', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 				className="uagb__url-panel-body"
@@ -831,12 +836,12 @@ const Settings = ( props ) => {
 						},
 					] }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const commonStyle = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Container', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 				className="uagb__url-panel-body"
@@ -927,7 +932,7 @@ const Settings = ( props ) => {
 					} }
 					disableBottomSeparator={ true }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const iconStyle = () => {
@@ -935,7 +940,7 @@ const Settings = ( props ) => {
 			return '';
 		}
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Icon', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 				className="uagb__url-panel-body"
@@ -1011,7 +1016,7 @@ const Settings = ( props ) => {
 						setAttributes( { iconActiveColor: value } )
 					}
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 

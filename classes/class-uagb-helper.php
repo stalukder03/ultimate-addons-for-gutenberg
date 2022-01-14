@@ -287,7 +287,7 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 				$view = implode( ' ', $view );
 			}
 			?>
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox= "<?php echo esc_html( $view ); ?>"><path d="<?php echo esc_html( $path ); ?>"></path></svg>
+			<svg xmlns="https://www.w3.org/2000/svg" viewBox= "<?php echo esc_html( $view ); ?>"><path d="<?php echo esc_html( $path ); ?>"></path></svg>
 			<?php
 		}
 
@@ -498,122 +498,6 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 		}
 
 		/**
-		 * Get all taxonomies list.
-		 *
-		 * @since 1.18.0
-		 * @access public
-		 */
-		public static function get_taxonomy_list() {
-
-			$post_types = self::get_post_types();
-
-			$return_array = array();
-
-			foreach ( $post_types as $key => $value ) {
-				$post_type = $value['value'];
-
-				$taxonomies = get_object_taxonomies( $post_type, 'objects' );
-				$data       = array();
-
-				$get_singular_name = get_post_type_object( $post_type );
-				foreach ( $taxonomies as $tax_slug => $tax ) {
-					if ( ! $tax->public || ! $tax->show_ui || ! $tax->show_in_rest ) {
-						continue;
-					}
-
-					$data[ $tax_slug ] = $tax;
-
-					$terms = get_terms( $tax_slug );
-
-					$related_tax_terms = array();
-
-					if ( ! empty( $terms ) ) {
-						foreach ( $terms as $t_index => $t_obj ) {
-							$related_tax_terms[] = array(
-								'id'            => $t_obj->term_id,
-								'name'          => $t_obj->name,
-								'count'         => $t_obj->count,
-								'link'          => get_term_link( $t_obj->term_id ),
-								'singular_name' => $get_singular_name->labels->singular_name,
-							);
-						}
-
-						$return_array[ $post_type ]['terms'][ $tax_slug ] = $related_tax_terms;
-					}
-
-					$newcategoriesList = get_terms(
-						$tax_slug,
-						array(
-							'hide_empty' => true,
-							'parent'     => 0,
-						)
-					);
-
-					$related_tax = array();
-
-					if ( ! empty( $newcategoriesList ) ) {
-						foreach ( $newcategoriesList as $t_index => $t_obj ) {
-							$child_arg     = array(
-								'hide_empty' => true,
-								'parent'     => $t_obj->term_id,
-							);
-							$child_cat     = get_terms( $tax_slug, $child_arg );
-							$child_cat_arr = $child_cat ? $child_cat : null;
-							$related_tax[] = array(
-								'id'            => $t_obj->term_id,
-								'name'          => $t_obj->name,
-								'count'         => $t_obj->count,
-								'link'          => get_term_link( $t_obj->term_id ),
-								'singular_name' => $get_singular_name->labels->singular_name,
-								'children'      => $child_cat_arr,
-							);
-
-						}
-
-						$return_array[ $post_type ]['without_empty_taxonomy'][ $tax_slug ] = $related_tax;
-
-					}
-
-					$newcategoriesList_empty_tax = get_terms(
-						$tax_slug,
-						array(
-							'hide_empty' => false,
-							'parent'     => 0,
-						)
-					);
-
-					$related_tax_empty_tax = array();
-
-					if ( ! empty( $newcategoriesList_empty_tax ) ) {
-						foreach ( $newcategoriesList_empty_tax as $t_index => $t_obj ) {
-							$child_arg_empty_tax     = array(
-								'hide_empty' => false,
-								'parent'     => $t_obj->term_id,
-							);
-							$child_cat_empty_tax     = get_terms( $tax_slug, $child_arg_empty_tax );
-							$child_cat_empty_tax_arr = $child_cat_empty_tax ? $child_cat_empty_tax : null;
-							$related_tax_empty_tax[] = array(
-								'id'            => $t_obj->term_id,
-								'name'          => $t_obj->name,
-								'count'         => $t_obj->count,
-								'link'          => get_term_link( $t_obj->term_id ),
-								'singular_name' => $get_singular_name->labels->singular_name,
-								'children'      => $child_cat_empty_tax_arr,
-							);
-						}
-
-						$return_array[ $post_type ]['with_empty_taxonomy'][ $tax_slug ] = $related_tax_empty_tax;
-
-					}
-				}
-				$return_array[ $post_type ]['taxonomy'] = $data;
-
-			}
-
-			return apply_filters( 'uagb_taxonomies_list', $return_array );
-		}
-
-		/**
 		 *  Get - RGBA Color
 		 *
 		 *  Get HEX color and return RGBA. Default return RGB color.
@@ -757,26 +641,33 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 		 * @since 1.23.0
 		 * @return string
 		 */
-		public static function delete_all_uag_dir_files() {
+		public static function delete_uag_asset_dir() {
 
-			$dir           = self::get_uag_upload_dir_path();
-			$wp_filesystem = uagb_filesystem();
-			$filelist      = $wp_filesystem->dirlist( $dir, true );
-			$retval        = true;
+			// Build the paths.
+			$base_path = self::get_uag_upload_dir_path();
 
-			if ( is_array( $filelist ) ) {
+			$paths_to_delete = array(
+				$base_path . 'assets/fonts',
+				$base_path . 'assets/css',
+				$base_path . 'assets/js',
+			);
 
-				unset( $filelist['index.html'] );
-				unset( $filelist['custom-style-blocks.css'] );
+			foreach ( $paths_to_delete as $path ) {
 
-				foreach ( $filelist as $filename => $fileinfo ) {
-					if ( ! $wp_filesystem->delete( $dir . $filename, true, $fileinfo['type'] ) ) {
-						$retval = false;
-					}
+				// Check the dir if it exists or not.
+				if ( file_exists( $path ) ) {
+
+					$wp_filesystem = uagb_filesystem();
+
+					// Remove the directory.
+					$wp_filesystem->rmdir( $path, true );
 				}
 			}
 
-			return $retval;
+			// Create empty files.
+			uagb_install()->create_files();
+			UAGB_Admin_Helper::create_specific_stylesheet();
+			return true;
 		}
 
 		/**
@@ -1395,6 +1286,41 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 					$this->get_generated_stylesheet( $post );
 				}
 			}
+		}
+
+		/**
+		 * Get the excerpt.
+		 *
+		 * @param int    $post_id for the block.
+		 * @param string $content for post content.
+		 * @param int    $length for excerpt.
+		 *
+		 * @since 2.0.0
+		 */
+		public static function uagb_get_excerpt( $post_id, $content, $length ) {
+
+			// If there's an excerpt provided from meta, use it.
+			$excerpt = get_post_field( 'post_excerpt', $post_id );
+
+			if ( empty( $excerpt ) ) { // If no excerpt provided from meta.
+				$max_excerpt = 100;
+				// If the content present on post, then trim it and use that.
+				if ( ! empty( $content ) ) {
+					$excerpt = apply_filters( 'the_excerpt', wp_trim_words( $content, $max_excerpt ) );
+				}
+			}
+			// Trim the excerpt.
+			if ( ! empty( $excerpt ) ) {
+				$excerpt        = explode( ' ', $excerpt );
+				$trim_to_length = ( isset( $length ) ) ? $length : 15;
+				if ( count( $excerpt ) > $trim_to_length ) {
+					$excerpt = implode( ' ', array_slice( $excerpt, 0, $trim_to_length ) ) . '...';
+				} else {
+					$excerpt = implode( ' ', $excerpt );
+				}
+			}
+
+			return empty( $excerpt ) ? '' : $excerpt;
 		}
 	}
 
