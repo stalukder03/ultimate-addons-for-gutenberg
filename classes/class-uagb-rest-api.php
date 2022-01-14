@@ -54,6 +54,8 @@ if ( ! class_exists( 'UAGB_Rest_API' ) ) {
 		 */
 		public function delete_page_assets( $post_id ) {
 
+			global $wpdb;
+
 			if ( 'enabled' === UAGB_Helper::$file_generation ) {
 
 				$css_asset_info = UAGB_Scripts_Utils::get_asset_info( 'css', $post_id );
@@ -70,9 +72,9 @@ if ( ! class_exists( 'UAGB_Rest_API' ) ) {
 				}
 			}
 
-			delete_post_meta( $post_id, '_uag_page_assets' );
-			delete_post_meta( $post_id, '_uag_css_file_name' );
-			delete_post_meta( $post_id, '_uag_js_file_name' );
+			$table = _get_meta_table( 'post' );
+
+			$wpdb->query( $wpdb->prepare( "DELETE FROM $table WHERE meta_key  IN ( '_uag_page_assets', '_uag_css_file_name', '_uag_js_file_name' ) AND post_id = %d", $post_id ) ); //phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 
 			$does_post_contain_reusable_blocks = $this->does_post_contain_reusable_blocks( $post_id );
 
