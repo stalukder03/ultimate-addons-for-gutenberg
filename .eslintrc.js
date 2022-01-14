@@ -18,15 +18,15 @@ module.exports = {
 				'src/blocks/*/inline-styles.js',
 				'tests/e2e/**/*.js',
 			],
-			extends: [
-				'plugin:@wordpress/eslint-plugin/test-e2e',
-				'plugin:jest/all',
-			],
-			settings: {
-				jest: {
-					version: 26,
-				},
-			},
+			// extends: [
+			// 	'plugin:@wordpress/eslint-plugin/test-e2e',
+			// 	'plugin:jest/all',
+			// ],
+			// settings: {
+			// 	jest: {
+			// 		version: 26,
+			// 	},
+			// },
 			rules: {
 				// 'quotes': [ 'warn', 'single', { allowTemplateLiterals: true, avoidEscape: true } ],
 				'object-shorthand': ['error', 'never'],
