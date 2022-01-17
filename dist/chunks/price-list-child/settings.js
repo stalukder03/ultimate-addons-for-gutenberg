@@ -1,1 +1,112 @@
-(window.webpackJsonp_ultimate_addons_for_gutenberg=window.webpackJsonp_ultimate_addons_for_gutenberg||[]).push([[84],{153:function(e,t,n){"use strict";var a,o=n(2),l=n(7),i=n(5),r=n(1),s=n.n(r),c=n(18),u=n.n(c),g=n(154),m=0,b={injectType:"lazySingletonStyleTag",attributes:{id:"uagb-editor-styles"},insert:"head",singleton:!0},d={};d.locals=g.a.locals||{},d.use=function(){return m++||(a=u()(g.a,b)),d},d.unuse=function(){m>0&&!--m&&(a(),a=null)};var p=d;t.a=e=>{Object(r.useLayoutEffect)(()=>(p.use(),()=>{p.unuse()}),[]);const{onSelectImage:t,backgroundImage:n,onRemoveImage:a,showVideoInput:c,label:u}=e;let g=Object(o.__)("Image","ultimate-addons-for-gutenberg"),m=Object(o.__)("Select Image","ultimate-addons-for-gutenberg"),b=Object(o.__)("Replace Image","ultimate-addons-for-gutenberg"),d=Object(o.__)("Remove Image","ultimate-addons-for-gutenberg"),f=["image"];return c&&(g=Object(o.__)("Video","ultimate-addons-for-gutenberg"),m=Object(o.__)("Select Video","ultimate-addons-for-gutenberg"),b=Object(o.__)("Replace Video","ultimate-addons-for-gutenberg"),d=Object(o.__)("Remove Video","ultimate-addons-for-gutenberg"),f=["video"]),g=u||g,s.a.createElement(l.BaseControl,{className:"editor-bg-image-control",id:"uagb-option-selector-"+u,label:g},s.a.createElement("div",{className:"uagb-bg-image"},s.a.createElement(i.MediaUpload,{title:m,onSelect:t,allowedTypes:f,value:n,render:({open:e})=>s.a.createElement(l.Button,{isSecondary:!0,onClick:e},null!=n&&n.url?b:m)}),(null==n?void 0:n.url)&&s.a.createElement(l.Button,{className:"uagb-rm-btn",onClick:a,isLink:!0,isDestructive:!0},d),e.help&&s.a.createElement("p",{className:"uag-control-help-notice"},e.help)))}},154:function(e,t,n){"use strict";var a=n(19),o=n.n(a)()((function(e){return e[1]}));o.push([e.i,".uagb-bg-image {\n  border-radius: 2px;\n  background-color: #f0f0f0;\n  min-height: 90px;\n  padding: 8px 0;\n  text-align: center;\n  display: flex;\n  width: 100%;\n  transition: all 0.1s ease-out;\n  box-shadow: 0 0 0 0 #0085ba;\n  margin-top: 10px;\n  align-items: center;\n  justify-content: center; }\n  .uagb-bg-image .components-button {\n    margin: 0;\n    padding: 0; }\n  .uagb-bg-image .uagb-rm-btn {\n    margin-left: 10px; }\n\n.uagb-bg-image .components-button:focus:not(:disabled),\n.uagb-bg-image .components-button.is-secondary:hover:not(:disabled),\n.components-button.is-tertiary:hover:not(:disabled),\n.uagb-bg-image .components-button.is-secondary,\n.components-button.is-tertiary {\n  box-shadow: none; }\n",""]),t.a=o},419:function(e,t,n){"use strict";n.r(t);var a=n(2),o=n(1),l=n.n(o),i=n(5),r=n(153),s=n(58),c=n(23),u=n(15);const g=e=>{e=e.parentProps;const{setAttributes:t,attributes:n}=e,{headingAlign:o,imagePosition:g,image:m}=n;return l.a.createElement(l.a.Fragment,null,l.a.createElement(l.a.Fragment,null,"top"===g&&l.a.createElement(i.BlockControls,{key:"controls"},l.a.createElement(i.AlignmentToolbar,{value:o,onChange:e=>t({headingAlign:e})}))),l.a.createElement(i.InspectorControls,null,l.a.createElement(s.a,{tabs:["general","advance"]},l.a.createElement(c.b,c.a.general,l.a.createElement(u.a,{initialOpen:!0},l.a.createElement("p",{className:"uagb-settings-notice"},Object(a.__)("For the common styling options please select the Parent Block of this Price List Item.")),l.a.createElement(r.a,{onSelectImage:e=>{let n=null;n=e&&e.url?e:null,e.type&&"image"===e.type||(n=null),t({image:n})},backgroundImage:m,onRemoveImage:()=>{t({image:null})}}))),l.a.createElement(c.b,c.a.advance))))};t.default=l.a.memo(g)}}]);
+(window["webpackJsonp_ultimate_addons_for_gutenberg"] = window["webpackJsonp_ultimate_addons_for_gutenberg"] || []).push([["chunks/price-list-child/settings"],{
+
+/***/ "./src/blocks/price-list-child/settings.js":
+/*!*************************************************!*\
+  !*** ./src/blocks/price-list-child/settings.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Components_image__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @Components/image */ "./src/components/image/index.js");
+/* harmony import */ var _Components_image__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_Components_image__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Components_inspector_tabs_InspectorTabs_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @Components/inspector-tabs/InspectorTabs.js */ "./src/components/inspector-tabs/InspectorTabs.js");
+/* harmony import */ var _Components_inspector_tabs_InspectorTab_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @Components/inspector-tabs/InspectorTab.js */ "./src/components/inspector-tabs/InspectorTab.js");
+/* harmony import */ var _Components_advanced_panel_body__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @Components/advanced-panel-body */ "./src/components/advanced-panel-body/index.js");
+
+
+
+
+
+
+
+
+const Settings = props => {
+  props = props.parentProps;
+  const {
+    setAttributes,
+    attributes
+  } = props; // Setup the attributes.
+
+  const {
+    headingAlign,
+    imagePosition,
+    image
+  } = attributes;
+
+  const onSelectRestImage = media => {
+    let imageUrl = null;
+
+    if (!media || !media.url) {
+      imageUrl = null;
+    } else {
+      imageUrl = media;
+    }
+
+    if (!media.type || 'image' !== media.type) {
+      imageUrl = null;
+    }
+
+    setAttributes({
+      image: imageUrl
+    });
+  };
+  /*
+   * Event to set Image as null while removing.
+   */
+
+
+  const onRemoveRestImage = () => {
+    setAttributes({
+      image: null
+    });
+  };
+
+  const blockControls = () => {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, imagePosition === 'top' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["BlockControls"], {
+      key: "controls"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["AlignmentToolbar"], {
+      value: headingAlign,
+      onChange: value => setAttributes({
+        headingAlign: value
+      })
+    })));
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, blockControls(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["InspectorControls"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Components_inspector_tabs_InspectorTabs_js__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    tabs: ['general', 'advance']
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Components_inspector_tabs_InspectorTab_js__WEBPACK_IMPORTED_MODULE_5__["default"], _Components_inspector_tabs_InspectorTab_js__WEBPACK_IMPORTED_MODULE_5__["UAGTabs"].general, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Components_advanced_panel_body__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    initialOpen: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+    className: "uagb-settings-notice"
+  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('For the common styling options please select the Parent Block of this Price List Item.')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Components_image__WEBPACK_IMPORTED_MODULE_3___default.a, {
+    onSelectImage: onSelectRestImage,
+    backgroundImage: image,
+    onRemoveImage: onRemoveRestImage
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Components_inspector_tabs_InspectorTab_js__WEBPACK_IMPORTED_MODULE_5__["default"], _Components_inspector_tabs_InspectorTab_js__WEBPACK_IMPORTED_MODULE_5__["UAGTabs"].advance))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.memo(Settings));
+
+/***/ }),
+
+/***/ "./src/components/image/index.js":
+/*!***************************************!*\
+  !*** ./src/components/image/index.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\Users\\aksha\\Local Sites\\competition-analysis-gb\\app\\public\\wp-content\\plugins\\ultimate-addons-for-gutenberg\\node_modules\\babel-loader\\lib\\index.js'\n    at Object.openSync (fs.js:498:3)\n    at Object.readFileSync (fs.js:394:35)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1099:18)\n    at Module.load (internal/modules/cjs/loader.js:937:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:778:12)\n    at Module.require (internal/modules/cjs/loader.js:961:19)\n    at require (internal/modules/cjs/helpers.js:92:18)\n    at loadLoader (C:\\Users\\aksha\\Local Sites\\competition-analysis-gb\\app\\public\\wp-content\\plugins\\ultimate-addons-for-gutenberg\\node_modules\\webpack\\node_modules\\loader-runner\\lib\\loadLoader.js:18:17)\n    at iteratePitchingLoaders (C:\\Users\\aksha\\Local Sites\\competition-analysis-gb\\app\\public\\wp-content\\plugins\\ultimate-addons-for-gutenberg\\node_modules\\webpack\\node_modules\\loader-runner\\lib\\LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (C:\\Users\\aksha\\Local Sites\\competition-analysis-gb\\app\\public\\wp-content\\plugins\\ultimate-addons-for-gutenberg\\node_modules\\webpack\\node_modules\\loader-runner\\lib\\LoaderRunner.js:165:10)");
+
+/***/ })
+
+}]);
+//# sourceMappingURL=settings.js.map
