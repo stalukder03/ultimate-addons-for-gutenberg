@@ -9,12 +9,10 @@
  import {
     activatePlugin,
 	activateTheme,
-    createURL,
     clearLocalStorage,
     enablePageDialogAccept,
     isOfflineMode,
     setBrowserViewport,
-    trashAllPosts
  } from '@wordpress/e2e-test-utils';
  
  import './expect-extensions';
