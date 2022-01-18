@@ -167,9 +167,6 @@
   * @return {?Promise} Promise resolving once Axe texts are finished.
   */
  async function runAxeTests() {
-     if ( await page.$( 'body.wp-admin' ) ) {
-         return;
-     }
  
      await expect( page ).toPassAxeTests( {
          'options': {
@@ -199,15 +196,6 @@
  }
  
  /**
-  * Reset the site to default settings.
-  */
- async function siteReset() {
-     await window.fetch( createURL( '/wp-json/astra/v1/e2e-utils/reset-site' ), {
-         'method': 'DELETE',
-     } );
- }
- 
- /**
   * Before every test suite run, delete all content created by the test. This ensures
   * other posts/comments/etc. aren't dirtying tests and tests don't depend on
   * each other's side-effects.
@@ -219,10 +207,6 @@
      observeConsoleLogging();
      await activateTheme( 'astra' );
      await activatePlugin( 'ultimate-addons-for-gutenberg' );
-     await setupBrowser();
-     await trashAllPosts();
-     await trashAllPosts( 'page' );
-     await siteReset();
      await page.setDefaultNavigationTimeout( 10000 );
      await page.setDefaultTimeout( 10000 );
  } );
@@ -234,8 +218,3 @@
      await setupBrowser();
  } );
  
- // eslint-disable-next-line jest/require-top-level-describe
- afterAll( async () => {
-     removePageEvents();
-     await siteReset();
- } );
