@@ -8,7 +8,7 @@
   */
  import {
     activatePlugin,
-	activateTheme,
+    activateTheme,
     clearLocalStorage,
     enablePageDialogAccept,
     isOfflineMode,
