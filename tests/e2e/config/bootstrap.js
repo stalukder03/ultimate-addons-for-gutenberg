@@ -13,6 +13,7 @@
     enablePageDialogAccept,
     isOfflineMode,
     setBrowserViewport,
+    trashAllPosts,
  } from '@wordpress/e2e-test-utils';
  
  import './expect-extensions';
@@ -54,6 +55,15 @@
      } );
  }
  
+/**
+ * * Removes all bound page event handlers.
+ * */
+   function removePageEvents() {
+    pageEvents.forEach( ( [ eventName, handler ] ) => {
+        page.removeListener( eventName, handler );
+    } );
+}
+
  /**
   * Adds a page event handler to emit uncaught exception to process if one of
   * the observed console logging types is encountered.
@@ -191,6 +201,9 @@
   */
  // eslint-disable-next-line jest/require-top-level-describe
  beforeAll( async () => {
+    await setupBrowser();
+    await trashAllPosts();
+    await trashAllPosts( 'page' );
      capturePageEventsForTearDown();
      enablePageDialogAccept();
      observeConsoleLogging();
@@ -202,6 +215,7 @@
  
  // eslint-disable-next-line jest/require-top-level-describe
  afterEach( async () => {
+    removePageEvents();
      await clearLocalStorage();
      await runAxeTests();
      await setupBrowser();
