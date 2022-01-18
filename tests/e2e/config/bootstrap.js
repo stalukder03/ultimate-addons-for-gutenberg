@@ -55,15 +55,6 @@
  }
  
  /**
-  * Removes all bound page event handlers.
-  */
- function removePageEvents() {
-     pageEvents.forEach( ( [ eventName, handler ] ) => {
-         page.removeListener( eventName, handler );
-     } );
- }
- 
- /**
   * Adds a page event handler to emit uncaught exception to process if one of
   * the observed console logging types is encountered.
   */
