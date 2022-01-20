@@ -13,7 +13,7 @@ import AdvancedPopColorControl from '@Components/color-control/advanced-pop-colo
 import Range from '@Components/range/Range.js';
 import SpacingControl from '@Components/spacing-control';
 import MultiButtonsControl from '@Components/multi-buttons-control';
-import UAGImage from '@Components/image';
+import UAGExtenderImage from '@Components/extender-image';
 import UAGTabsControl from '@Components/tabs';
 import { getImageSize } from '@Utils/Helpers';
 let imageSizeOptions = [
@@ -137,7 +137,7 @@ const Settings = ( props ) => {
 		prefixDecoration,
 		titleFontStyle,
 		descFontStyle,
-		prefixFontStyle,
+		prefixFontStyle
 	} = attributes;
 
 	/*
@@ -270,7 +270,7 @@ const Settings = ( props ) => {
 						},
 					] }
 				/>
-				<UAGImage
+				<UAGExtenderImage
 					onSelectImage={ onSelectImage }
 					backgroundImage={ image }
 					onRemoveImage={ onRemoveImage }
