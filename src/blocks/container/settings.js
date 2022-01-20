@@ -5,7 +5,6 @@ import InspectorTab, {
 	UAGTabs,
 } from '@Components/inspector-tabs/InspectorTab.js';
 import ResponsiveSlider from '@Components/responsive-slider';
-import ResponsiveSelectControl from '@Components/responsive-select';
 import { __ } from '@wordpress/i18n';
 
 import {
@@ -110,32 +109,53 @@ const Settings = ( props ) => {
 		columnGapType,
 	} = attributes;
 
+	let currentDirection = 'row';
+
+	if ( attributes[ 'direction' + deviceType ].split( '-' )[0] ) {
+
+		currentDirection = attributes[ 'direction' + deviceType ].split( '-' )[0];
+	}
+
 	const generalSettings = () => {
 
-		const directionOptions = {
-			desktop: [
-				{
-					value: '',
-					label: __( 'Default', 'ultimate-addons-for-gutenberg' ),
-				},
-				{
-					value: 'row',
-					label: __( 'Row', 'ultimate-addons-for-gutenberg' ),
-				},
-				{
-					value: 'column',
-					label: __( 'Column', 'ultimate-addons-for-gutenberg' ),
-				},
-				{
-					value: 'row-reverse',
-					label: __( 'Row Reverse', 'ultimate-addons-for-gutenberg' ),
-				},
-				{
-					value: 'column-reverse',
-					label: __( 'Column Reverse', 'ultimate-addons-for-gutenberg' ),
-				},
-			],
-		};
+		const directionOptions = [
+			{
+				value: 'row',
+				tooltip: __( 'Row', 'ultimate-addons-for-gutenberg' ),
+				icon: (
+					<Icon
+						icon={ renderCustomIcon( 'flex-direction-row' ) }
+					/>
+				),
+			},
+			{
+				value: 'column',
+				tooltip: __( 'Column', 'ultimate-addons-for-gutenberg' ),
+				icon: (
+					<Icon
+						icon={ renderCustomIcon( 'flex-direction-column' ) }
+					/>
+				),
+			},
+			{
+				value: 'row-reverse',
+				tooltip: __( 'Row Reverse', 'ultimate-addons-for-gutenberg' ),
+				icon: (
+					<Icon
+						icon={ renderCustomIcon( 'flex-direction-row-reverse' ) }
+					/>
+				),
+			},
+			{
+				value: 'column-reverse',
+				tooltip: __( 'Column Reverse', 'ultimate-addons-for-gutenberg' ),
+				icon: (
+					<Icon
+						icon={ renderCustomIcon( 'flex-direction-column-reverse' ) }
+					/>
+				),
+			},
+		];
 
 		const alignItemsOptions = [
 			{
@@ -143,7 +163,7 @@ const Settings = ( props ) => {
 				tooltip: __( 'Flex Start', 'ultimate-addons-for-gutenberg' ),
 				icon: (
 					<Icon
-						icon={ renderCustomIcon( 'align-left' ) }
+						icon={ renderCustomIcon( `flex-${currentDirection}-start` ) }
 					/>
 				),
 			},
@@ -152,7 +172,7 @@ const Settings = ( props ) => {
 				tooltip: __( 'Center', 'ultimate-addons-for-gutenberg' ),
 				icon: (
 					<Icon
-						icon={ renderCustomIcon( 'align-center' ) }
+						icon={ renderCustomIcon( `flex-${currentDirection}-center` ) }
 					/>
 				),
 			},
@@ -161,7 +181,7 @@ const Settings = ( props ) => {
 				tooltip: __( 'Flex End', 'ultimate-addons-for-gutenberg' ),
 				icon: (
 					<Icon
-						icon={ renderCustomIcon( 'align-right' ) }
+						icon={ renderCustomIcon( `flex-${currentDirection}-end` ) }
 					/>
 				),
 			},
@@ -170,65 +190,98 @@ const Settings = ( props ) => {
 				tooltip: __( 'Stretch', 'ultimate-addons-for-gutenberg' ),
 				icon: (
 					<Icon
-						icon={ renderCustomIcon( 'align-stretch' ) }
+						icon={ renderCustomIcon( `flex-${currentDirection}-strech` ) }
 					/>
 				),
 			},
 		];
 
-		const justifyContentOptions = {
-			desktop: [
-				{
-					value: '',
-					label: __( 'Default', 'ultimate-addons-for-gutenberg' ),
-				},
-				{
-					value: 'flex-start',
-					label: __( 'Left', 'ultimate-addons-for-gutenberg' ),
-				},
-				{
-					value: 'center',
-					label: __( 'Center', 'ultimate-addons-for-gutenberg' ),
-				},
-				{
-					value: 'flex-end',
-					label: __( 'Right', 'ultimate-addons-for-gutenberg' ),
-				},
-				{
-					value: 'space-between',
-					label: __( 'Space Between', 'ultimate-addons-for-gutenberg' ),
-				},
-				{
-					value: 'space-around',
-					label: __( 'Space Around', 'ultimate-addons-for-gutenberg' ),
-				},
-				{
-					value: 'space-evenly',
-					label: __( 'Space Evenly', 'ultimate-addons-for-gutenberg' ),
-				},
-			],
-		};
+		const justifyContentOptions = [
+			{
+				value: 'flex-start',
+				tooltip: __( 'Left', 'ultimate-addons-for-gutenberg' ),
+				icon: (
+					<Icon
+						icon={ renderCustomIcon( `flex-${currentDirection}-start` ) }
+					/>
+				),
+			},
+			{
+				value: 'center',
+				tooltip: __( 'Center', 'ultimate-addons-for-gutenberg' ),
+				icon: (
+					<Icon
+						icon={ renderCustomIcon( `flex-${currentDirection}-center` ) }
+					/>
+				),
+			},
+			{
+				value: 'flex-end',
+				tooltip: __( 'Right', 'ultimate-addons-for-gutenberg' ),
+				icon: (
+					<Icon
+						icon={ renderCustomIcon( `flex-${currentDirection}-end` ) }
+					/>
+				),
+			},
+			{
+				value: 'space-between',
+				tooltip: __( 'Space Between', 'ultimate-addons-for-gutenberg' ),
+				icon: (
+					<Icon
+						icon={ renderCustomIcon( `flex-${currentDirection}-space-between` ) }
+					/>
+				),
+			},
+			{
+				value: 'space-around',
+				tooltip: __( 'Space Around', 'ultimate-addons-for-gutenberg' ),
+				icon: (
+					<Icon
+						icon={ renderCustomIcon( `flex-${currentDirection}-space-around` ) }
+					/>
+				),
+			},
+			{
+				value: 'space-evenly',
+				tooltip: __( 'Space Evenly', 'ultimate-addons-for-gutenberg' ),
+				icon: (
+					<Icon
+						icon={ renderCustomIcon( `flex-${currentDirection}-space-evenly` ) }
+					/>
+				),
+			},
+		];
 
-		const wrapOptions = {
-			desktop: [
-				{
-					value: '',
-					label: __( 'Default', 'ultimate-addons-for-gutenberg' ),
-				},
-				{
-					value: 'wrap',
-					label: __( 'Wrap', 'ultimate-addons-for-gutenberg' ),
-				},
-				{
-					value: 'nowrap',
-					label: __( 'No Wrap', 'ultimate-addons-for-gutenberg' ),
-				},
-				{
-					value: 'wrap-reverse',
-					label: __( 'Wrap Reverse', 'ultimate-addons-for-gutenberg' ),
-				},
-			],
-		};
+		const wrapOptions = [
+			{
+				value: 'wrap',
+				tooltip: __( 'Wrap', 'ultimate-addons-for-gutenberg' ),
+				icon: (
+					<Icon
+						icon={ renderCustomIcon( 'flex-wrap' ) }
+					/>
+				),
+			},
+			{
+				value: 'nowrap',
+				tooltip: __( 'No Wrap', 'ultimate-addons-for-gutenberg' ),
+				icon: (
+					<Icon
+						icon={ renderCustomIcon( 'flex-no-wrap' ) }
+					/>
+				),
+			},
+			{
+				value: 'wrap-reverse',
+				tooltip: __( 'Wrap Reverse', 'ultimate-addons-for-gutenberg' ),
+				icon: (
+					<Icon
+						icon={ renderCustomIcon( 'flex-wrap-reverse' ) }
+					/>
+				),
+			},
+		];
 
 		const widthOptions = [
 			{
@@ -367,7 +420,8 @@ const Settings = ( props ) => {
 					setAttributes={ setAttributes }
 				/>
 				
-				<ResponsiveSelectControl
+				<MultiButtonsControl
+					setAttributes={ setAttributes }
 					label={ __( 'Direction', 'ultimate-addons-for-gutenberg' ) }
 					data={ {
 						desktop: {
@@ -384,8 +438,10 @@ const Settings = ( props ) => {
 						},
 					} }
 					options={ directionOptions }
-					setAttributes={ setAttributes }
+					showIcons={ true }
+					responsive={true}
 				/>
+				
 				<MultiButtonsControl
 					setAttributes={ setAttributes }
 					label={ __( 'Align Items', 'ultimate-addons-for-gutenberg' ) }
@@ -407,7 +463,8 @@ const Settings = ( props ) => {
 					showIcons={ true }
 					responsive={true}
 				/>
-				<ResponsiveSelectControl
+				<MultiButtonsControl
+					setAttributes={ setAttributes }
 					label={ __( 'Justify Content', 'ultimate-addons-for-gutenberg' ) }
 					data={ {
 						desktop: {
@@ -424,7 +481,8 @@ const Settings = ( props ) => {
 						},
 					} }
 					options={ justifyContentOptions }
-					setAttributes={ setAttributes }
+					showIcons={ true }
+					responsive={true}
 				/>
 				<ResponsiveSlider
 					label={ __( 'Row Gap', 'ultimate	-addons-for-gutenberg' ) }
@@ -508,7 +566,8 @@ const Settings = ( props ) => {
 					] }
 					setAttributes={ setAttributes }
 				/>
-				<ResponsiveSelectControl
+				<MultiButtonsControl
+					setAttributes={ setAttributes }
 					label={ __( 'Wrap', 'ultimate-addons-for-gutenberg' ) }
 					data={ {
 						desktop: {
@@ -525,10 +584,12 @@ const Settings = ( props ) => {
 						},
 					} }
 					options={ wrapOptions }
-					setAttributes={ setAttributes }
+					showIcons={ true }
+					responsive={true}
 				/>
 				{ 'wrap' === attributes[ 'wrap' + deviceType ] &&
-					<ResponsiveSelectControl
+					<MultiButtonsControl
+						setAttributes={ setAttributes }
 						label={ __( 'Align Content', 'ultimate-addons-for-gutenberg' ) }
 						data={ {
 							desktop: {
@@ -545,7 +606,8 @@ const Settings = ( props ) => {
 							},
 						} }
 						options={ justifyContentOptions }
-						setAttributes={ setAttributes }
+						showIcons={ true }
+						responsive={true}
 					/>
 				}
 			</UAGAdvancedPanelBody>

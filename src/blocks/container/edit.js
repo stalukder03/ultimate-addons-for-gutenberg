@@ -45,7 +45,7 @@ const UAGBContainer = ( props ) => {
 	if ( props.isParentOfSelectedBlock ) {
 		const emptyBlockInserter = document.querySelector( '.block-editor-block-list__empty-block-inserter' );
 		if ( emptyBlockInserter ) {
-			emptyBlockInserter.style.display = "none";
+			emptyBlockInserter.style.display = 'none';
 		}
 	}
 
