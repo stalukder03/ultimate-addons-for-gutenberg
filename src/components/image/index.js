@@ -57,7 +57,7 @@ const UAGImage = ( props ) => {
 	}
 	labelText = label ? label : labelText;
 
-	let registerImageExtender = wp.hooks.applyFilters('uagb.registerImageExtender', '')
+	let registerImageExtender = wp.hooks.applyFilters('uagb.registerImageExtender', '', onSelectImage)
 
 	const isShowImageUploader = () => {
 		if(dynamicContent && dynamicContent.bgImage && dynamicContent.bgImage.enable === true) {
