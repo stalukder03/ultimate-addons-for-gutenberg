@@ -28,8 +28,8 @@ function generateBackgroundCSS ( backgroundAttributes ) {
 
                 bgCSS['background-image'] = 'linear-gradient(to right, ' + backgroundColor + ', ' + backgroundColor + '), url(' + backgroundImage.url + ');';
             }
-            if ( ( undefined === backgroundColor || '' === backgroundColor || 'unset' === backgroundColor || backgroundColor.includes( 'linear-gradient' ) || backgroundColor.includes( 'radial-gradient' ) ) && '' !== backgroundImage ) {
-                bgCSS['background-image'] = 'url(' + backgroundImage.url + ');';
+            if ( ( undefined === backgroundColor || '' === backgroundColor || 'unset' === backgroundColor || backgroundColor.includes( 'linear-gradient' ) || backgroundColor.includes( 'radial-gradient' ) ) && '' !== backgroundImage && backgroundImage ) {
+                bgCSS['background-image'] = 'url(' + backgroundImage?.url + ');';
             }
         } else if ( 'gradient' === backgroundType ) {
             if ( '' !== gradientValue && 'unset' !== gradientValue ) {
