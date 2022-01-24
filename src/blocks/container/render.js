@@ -26,6 +26,7 @@ const Render = ( props ) => {
 				`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
 				`uagb-block-${ block_id }`
 			) }
+			key = { block_id }
 		>
 			<InnerBlocks
 				__experimentalMoverDirection={ moverDirection }

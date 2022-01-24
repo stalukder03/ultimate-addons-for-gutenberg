@@ -4,11 +4,6 @@
 import rowIcons from './icons';
 
 /**
- * WordPress dependencies
- */
-import { __ } from '@wordpress/i18n';
-
-/**
  * Template option choices for predefined form layouts.
  *
  * @constant
@@ -17,8 +12,7 @@ import { __ } from '@wordpress/i18n';
 const variations = [
 	{
 		name: 'one-column',
-		label: __( 'One column', 'ultimate-addons-for-gutenberg' ),
-		icon: rowIcons.colOne,
+		icon: rowIcons['100'],
 		attributes: {
 			variationSelected: true,
 		},
@@ -26,11 +20,7 @@ const variations = [
 	},
 	{
 		name: 'two-column-split',
-		label: __(
-			'Two columns; equal split',
-			'ultimate-addons-for-gutenberg'
-		),
-		icon: rowIcons.layout5050,
+		icon: rowIcons['50-50'],
 		attributes: {
 			variationSelected: true,
 		},
@@ -43,43 +33,31 @@ const variations = [
 	},
 	{
 		name: 'two-columns-one-third-two-thirds',
-		label: __(
-			'Two columns; one-third, two-thirds split',
-			'ultimate-addons-for-gutenberg'
-		),
-		icon: rowIcons.layout3366,
+		icon: rowIcons['25-75'],
 		attributes: {
 			variationSelected: true,
 		},
 		innerBlocks: [
-			[ 'uagb/container', { widthDesktop: 33.33 } ],
-			[ 'uagb/container', { widthDesktop: 66.66 } ],
+			[ 'uagb/container', { widthDesktop: 25 } ],
+			[ 'uagb/container', { widthDesktop: 75 } ],
 		],
 		scope: [ 'block' ],
 	},
 	{
 		name: 'two-columns-two-thirds-one-third',
-		label: __(
-			'Two columns; two-thirds, one-third split',
-			'ultimate-addons-for-gutenberg'
-		),
-		icon: rowIcons.layout6633,
+		icon: rowIcons['75-25'],
 		attributes: {
 			variationSelected: true,
 		},
 		innerBlocks: [
-			[ 'uagb/container', { widthDesktop: 66.66 } ],
-			[ 'uagb/container', { widthDesktop: 33.33 } ],
+			[ 'uagb/container', { widthDesktop: 75 } ],
+			[ 'uagb/container', { widthDesktop: 25 } ],
 		],
 		scope: [ 'block' ],
 	},
 	{
 		name: 'three-columns-equal',
-		label: __(
-			'Three columns; equal split',
-			'ultimate-addons-for-gutenberg'
-		),
-		icon: rowIcons.layout333333,
+		icon: rowIcons['33-33-33'],
 		attributes: {
 			variationSelected: true,
 		},
@@ -92,11 +70,7 @@ const variations = [
 	},
 	{
 		name: 'three-column-first-half',
-		label: __(
-			'Three columns; equal split',
-			'ultimate-addons-for-gutenberg'
-		),
-		icon: rowIcons.layout252550,
+		icon: rowIcons['25-25-50'],
 		attributes: {
 			variationSelected: true,
 		},
@@ -109,11 +83,7 @@ const variations = [
 	},
 	{
 		name: 'three-column',
-		label: __(
-			'Three columns; equal split',
-			'ultimate-addons-for-gutenberg'
-		),
-		icon: rowIcons.layout502525,
+		icon: rowIcons['50-25-25'],
 		attributes: {
 			variationSelected: true,
 		},
@@ -126,11 +96,7 @@ const variations = [
 	},
 	{
 		name: 'three-columns-wider-center',
-		label: __(
-			'Three columns; wide center column',
-			'ultimate-addons-for-gutenberg'
-		),
-		icon: rowIcons.layout255025,
+		icon: rowIcons['25-50-25'],
 		attributes: {
 			variationSelected: true,
 		},
@@ -143,11 +109,7 @@ const variations = [
 	},
 	{
 		name: 'four-column',
-		label: __(
-			'Four columns; equal split',
-			'ultimate-addons-for-gutenberg'
-		),
-		icon: rowIcons.layout25252525,
+		icon: rowIcons['25-25-25-25'],
 		attributes: {
 			variationSelected: true,
 		},
@@ -161,42 +123,284 @@ const variations = [
 	},
 	{
 		name: 'five-column',
-		label: __(
-			'Five columns; equal split',
-			'ultimate-addons-for-gutenberg'
-		),
-		icon: rowIcons.layout2525252525,
+		icon: rowIcons['20-20-20-20-20'],
 		attributes: {
 			variationSelected: true,
 		},
 		innerBlocks: [
-			[ 'uagb/container', { widthDesktop: 25 } ],
-			[ 'uagb/container', { widthDesktop: 25 } ],
-			[ 'uagb/container', { widthDesktop: 25 } ],
-			[ 'uagb/container', { widthDesktop: 25 } ],
-			[ 'uagb/container', { widthDesktop: 25 } ],
+			[ 'uagb/container', { widthDesktop: 20 } ],
+			[ 'uagb/container', { widthDesktop: 20 } ],
+			[ 'uagb/container', { widthDesktop: 20 } ],
+			[ 'uagb/container', { widthDesktop: 20 } ],
+			[ 'uagb/container', { widthDesktop: 20 } ],
 		],
 		scope: [ 'block' ],
 	},
 	{
 		name: '2-column-2nd-split',
-		label: __(
-			'Two columns; second split',
-			'ultimate-addons-for-gutenberg'
-		),
-		icon: rowIcons.layout50502525,
+		icon: rowIcons['50-50+100_100'],
 		attributes: {
 			variationSelected: true,
 		},
 		innerBlocks: [
 			[ 'uagb/container', { widthDesktop: 50 } ],
-			[ 'uagb/container', { widthDesktop: 50, wrapDesktop: 'wrap' } ],
+			[ 
+				'uagb/container',
+				{ widthDesktop: 50, wrapDesktop: 'wrap' },
+				[
+					[ 'uagb/container', { widthDesktop: 100 } ],
+					[ 'uagb/container', { widthDesktop: 100 } ],
+				]
+			],
 		],
-		insideBlocks: [
+		scope: [ 'block' ],
+	},
+	{
+		name: '100_50-50',
+		icon: rowIcons['100_50-50'],
+		attributes: {
+			variationSelected: true,
+			wrapDesktop: 'wrap'
+		},
+		innerBlocks: [
 			[ 'uagb/container', { widthDesktop: 100 } ],
+			[ 
+				'uagb/container', 
+				{ widthDesktop: 100 },
+				[
+					[ 'uagb/container', { widthDesktop: 50 } ],
+					[ 'uagb/container', { widthDesktop: 50 } ],
+				]
+			],
+		],
+		scope: [ 'block' ],
+	},
+	{
+		name: '75+100_100+50-50-25',
+		icon: rowIcons['75+100_100+50-50-25'],
+		attributes: {
+			variationSelected: true,
+		},
+		innerBlocks: [
+			[ 
+				'uagb/container', 
+				{ widthDesktop: 75, wrapDesktop: 'wrap' }, 
+				[ 
+					[ 'uagb/container', { widthDesktop: 100 } ],
+					[ 
+						'uagb/container',
+						{ widthDesktop: 100 },
+						[
+							[ 'uagb/container', { widthDesktop: 50 } ],
+							[ 'uagb/container', { widthDesktop: 50 } ],
+						]
+					] 
+				] 
+			],
+			[ 'uagb/container', { widthDesktop: 25 } ],
+		],
+		scope: [ 'block' ],
+	},
+	{
+		name: '75-25_25_75',
+		icon: rowIcons['75-25_25_75'],
+		attributes: {
+			variationSelected: true,
+			wrapDesktop: 'wrap'
+		},
+		innerBlocks: [
+			[ 'uagb/container', { widthDesktop: 75 } ],
+			[ 'uagb/container', { widthDesktop: 25 } ],
+			[ 'uagb/container', { widthDesktop: 25 } ],
+			[ 'uagb/container', { widthDesktop: 75 } ],
+
+		],
+		scope: [ 'block' ],
+	},
+	{
+		name: '50+100_100+50-50-50+50-50',
+		icon: rowIcons['50+100_100+50-50-50+50-50'],
+		attributes: {
+			variationSelected: true,
+		},
+		innerBlocks: [
+			[ 
+				'uagb/container', 
+				{ widthDesktop: 50, wrapDesktop: 'wrap' }, 
+				[ 
+					[ 'uagb/container', { widthDesktop: 100 } ],
+					[ 
+						'uagb/container',
+						{ widthDesktop: 100 },
+						[
+							[ 'uagb/container', { widthDesktop: 50 } ],
+							[ 'uagb/container', { widthDesktop: 50 } ],
+						]
+					] 
+				] 
+			],
+			[ 
+				'uagb/container', 
+				{ widthDesktop: 50, wrapDesktop: 'wrap' }, 
+				[ 
+					[ 'uagb/container', { widthDesktop: 50 } ],
+					[ 'uagb/container', { widthDesktop: 50 } ], 
+				] 
+			],
+		],
+		scope: [ 'block' ],
+	},
+	{
+		name: '50+100_100-50',
+		icon: rowIcons['50+100_100-50'],
+		attributes: {
+			variationSelected: true,
+		},
+		innerBlocks: [
+			[ 
+				'uagb/container', 
+				{ widthDesktop: 50, wrapDesktop: 'wrap' },
+				[
+					[ 'uagb/container', { widthDesktop: 100 } ],
+					[ 'uagb/container', { widthDesktop: 100 } ],
+				] 
+			],
+			[ 'uagb/container', { widthDesktop: 50 } ],
+		],
+		scope: [ 'block' ],
+	},
+	{
+		name: '50-50_100',
+		icon: rowIcons['50-50_100'],
+		attributes: {
+			variationSelected: true,
+			wrapDesktop: 'wrap'
+		},
+		innerBlocks: [
+			[ 
+				'uagb/container', 
+				{ widthDesktop: 100 },
+				[
+					[ 'uagb/container', { widthDesktop: 50 } ],
+					[ 'uagb/container', { widthDesktop: 50 } ],
+				] 
+			],
 			[ 'uagb/container', { widthDesktop: 100 } ],
 		],
-		insideBlocksIndex: 1, // Starts from 0.
+		scope: [ 'block' ],
+	},
+	{
+		name: '50-50_50-50',
+		icon: rowIcons['50-50_50-50'],
+		attributes: {
+			variationSelected: true,
+			wrapDesktop: 'wrap'
+		},
+		innerBlocks: [
+			[ 'uagb/container', { widthDesktop: 50 } ],
+			[ 'uagb/container', { widthDesktop: 50 } ],
+			[ 'uagb/container', { widthDesktop: 50 } ],
+			[ 'uagb/container', { widthDesktop: 50 } ],
+		],
+		scope: [ 'block' ],
+	},
+	{
+		name: '33-33+100_100-33',
+		icon: rowIcons['33-33+100_100-33'],
+		attributes: {
+			variationSelected: true
+		},
+		innerBlocks: [
+			[ 'uagb/container', { widthDesktop: 33 } ],
+			[ 
+				'uagb/container', 
+				{ widthDesktop: 33, wrapDesktop: 'wrap' },
+				[
+					[ 'uagb/container', { widthDesktop: 100 } ],
+					[ 'uagb/container', { widthDesktop: 100 } ]
+				] 
+			],
+			[ 'uagb/container', { widthDesktop: 33 } ],
+		],
+		scope: [ 'block' ],
+	},
+	{
+		name: '33-33-33+100_100',
+		icon: rowIcons['33-33-33+100_100'],
+		attributes: {
+			variationSelected: true
+		},
+		innerBlocks: [
+			[ 'uagb/container', { widthDesktop: 33 } ],
+			[ 'uagb/container', { widthDesktop: 33 } ],
+			[ 
+				'uagb/container', 
+				{ widthDesktop: 33, wrapDesktop: 'wrap' },
+				[
+					[ 'uagb/container', { widthDesktop: 100 } ],
+					[ 'uagb/container', { widthDesktop: 100 } ]
+				] 
+			],
+		],
+		scope: [ 'block' ],
+	},
+	{
+		name: '33-33-33_33-33-33',
+		icon: rowIcons['33-33-33_33-33-33'],
+		attributes: {
+			variationSelected: true,
+			wrapDesktop: 'wrap'
+		},
+		innerBlocks: [
+			[ 'uagb/container', { widthDesktop: 33 } ],
+			[ 'uagb/container', { widthDesktop: 33 } ],
+			[ 'uagb/container', { widthDesktop: 33 } ],
+			[ 'uagb/container', { widthDesktop: 33 } ],
+			[ 'uagb/container', { widthDesktop: 33 } ],
+			[ 'uagb/container', { widthDesktop: 33 } ],
+		],
+		scope: [ 'block' ],
+	},
+	{
+		name: '25-75+100+50-50_100',
+		icon: rowIcons['25-75+100+50-50_100'],
+		attributes: {
+			variationSelected: true,
+		},
+		innerBlocks: [
+			[ 'uagb/container', { widthDesktop: 25 } ],
+			[ 
+				'uagb/container', 
+				{ widthDesktop: 75, wrapDesktop: 'wrap' },
+				[
+					[ 
+						'uagb/container', 
+						{ widthDesktop: 100 },
+						[
+							[ 'uagb/container', { widthDesktop: 50 } ],
+							[ 'uagb/container', { widthDesktop: 50 } ],
+						]
+					],
+					[ 'uagb/container', { widthDesktop: 100 } ],
+				]
+			],
+		],
+		scope: [ 'block' ],
+	},
+	{
+		name: '25-75_75-25',
+		icon: rowIcons['25-75_75-25'],
+		attributes: {
+			variationSelected: true,
+			wrapDesktop: 'wrap'
+		},
+		innerBlocks: [
+			[ 'uagb/container', { widthDesktop: 25 } ],
+			[ 'uagb/container', { widthDesktop: 75 } ],
+			[ 'uagb/container', { widthDesktop: 75 } ],
+			[ 'uagb/container', { widthDesktop: 25 } ],
+
+		],
 		scope: [ 'block' ],
 	},
 ];
