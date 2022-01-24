@@ -7,7 +7,7 @@ import styles from './editor.lazy.scss';
 
 const UAGImage = ( props ) => {
 	const { getSelectedBlock } = select( 'core/block-editor' );
-	const { attributes } = getSelectedBlock();
+	const { name, attributes } = getSelectedBlock();
 	const {dynamicContent} = attributes
 	// Add and remove the CSS on the drop and remove of the component.
 	useLayoutEffect( () => {
@@ -57,7 +57,7 @@ const UAGImage = ( props ) => {
 	}
 	labelText = label ? label : labelText;
 
-	let registerImageExtender = wp.hooks.applyFilters('uagb.registerImageExtender', '', onSelectImage)
+	let registerImageExtender = wp.hooks.applyFilters('uagb.registerImageExtender', '', name, onSelectImage)
 
 	const isShowImageUploader = () => {
 		if(dynamicContent && dynamicContent.bgImage && dynamicContent.bgImage.enable === true) {
