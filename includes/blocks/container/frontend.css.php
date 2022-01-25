@@ -18,6 +18,12 @@ $bg_obj = array(
 	'backgroundAttachment' => $attr['backgroundAttachment'],
 );
 
+$box_shadow_position_css = $attr['boxShadowPosition'];
+
+if ( 'outset' === $attr['boxShadowPosition'] ) {
+	$box_shadow_position_css = '';
+}
+
 $container_bg_css = UAGB_Block_Helper::uag_get_background_obj( $bg_obj );
 $container_css    = array(
 	'width'           => UAGB_Helper::get_css_value( $attr['widthDesktop'], $attr['widthType'] ),
@@ -44,7 +50,7 @@ $container_css    = array(
 			' ' .
 			$attr['boxShadowColor'] .
 			' ' .
-			$attr['boxShadowPositionCSS'],
+			$box_shadow_position_css,
 	'padding-top'     => UAGB_Helper::get_css_value( $attr['topPaddingDesktop'], $attr['paddingType'] ),
 	'padding-bottom'  => UAGB_Helper::get_css_value( $attr['bottomPaddingDesktop'], $attr['paddingType'] ),
 	'padding-left'    => UAGB_Helper::get_css_value( $attr['leftPaddingDesktop'], $attr['paddingType'] ),
