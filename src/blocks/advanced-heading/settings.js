@@ -9,20 +9,18 @@ import InspectorTab, {
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
 import Range from '@Components/range/Range.js';
 import MultiButtonsControl from '@Components/multi-buttons-control';
-
 import { __ } from '@wordpress/i18n';
-
+import presets from './presets';
+import UAGPresets from '@Components/presets';
 import {
 	AlignmentToolbar,
 	BlockControls,
 	InspectorControls,
 } from '@wordpress/block-editor';
-
-import { SelectControl } from '@wordpress/components';
+import renderSVG from '@Controls/renderIcon';
+import { SelectControl, Icon } from '@wordpress/components';
 
 // Extend component
-
-
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 const Settings = ( props ) => {
@@ -67,7 +65,7 @@ const Settings = ( props ) => {
 		headSpace,
 		separatorSpace,
 		headLoadGoogleFonts,
-		subHeadLoadGoogleFonts,
+		subHeadLoadGoogleFonts
 	} = attributes;
 
 	let loadHeadingGoogleFonts;
@@ -117,8 +115,57 @@ const Settings = ( props ) => {
 	};
 
 	const generalPanel = () => {
+
 		return (
 			<UAGAdvancedPanelBody>
+				<MultiButtonsControl
+					setAttributes={ setAttributes }
+					label={ __( 'Alignment', 'ultimate-addons-for-gutenberg' ) }
+					data={ {
+						value: headingAlign,
+						label: 'headingAlign',
+					} }
+					className="uagb-multi-button-alignment-control"
+					options={ [
+						{
+							value: 'left',
+							icon: (
+								<Icon
+									icon={ renderSVG( 'fa fa-align-left' ) }
+								/>
+							),
+							tooltip: __(
+								'Left',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'center',
+							icon: (
+								<Icon
+									icon={ renderSVG( 'fa fa-align-center' ) }
+								/>
+							),
+							tooltip: __(
+								'Center',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'right',
+							icon: (
+								<Icon
+									icon={ renderSVG( 'fa fa-align-right' ) }
+								/>
+							),
+							tooltip: __(
+								'Right',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+					] }
+					showIcons={ true }
+				/>
 				<MultiButtonsControl
 					setAttributes={ setAttributes }
 					label={ __(
@@ -153,6 +200,50 @@ const Settings = ( props ) => {
 						{
 							value: 'h6',
 							label: __( 'H6', 'ultimate-addons-for-gutenberg' ),
+						},
+					] }
+				/>
+				<SelectControl
+					label={ __( 'Separator Style', 'ultimate-addons-for-gutenberg' ) }
+					value={ seperatorStyle }
+					onChange={ ( value ) =>
+						setAttributes( { seperatorStyle: value } )
+					}
+					options={ [
+						{
+							value: 'none',
+							label: __(
+								'None',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'solid',
+							label: __(
+								'Solid',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'double',
+							label: __(
+								'Double',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'dashed',
+							label: __(
+								'Dashed',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'dotted',
+							label: __(
+								'Dotted',
+								'ultimate-addons-for-gutenberg'
+							),
 						},
 					] }
 				/>
@@ -346,150 +437,114 @@ const Settings = ( props ) => {
 				title={ __( 'Separator', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
-				<SelectControl
-					label={ __( 'Style', 'ultimate-addons-for-gutenberg' ) }
-					value={ seperatorStyle }
+
+				<Range
+					label={ __(
+						'Width',
+						'ultimate-addons-for-gutenberg'
+					) }
+					setAttributes={ setAttributes }
+					value={ separatorWidth }
 					onChange={ ( value ) =>
-						setAttributes( { seperatorStyle: value } )
+						setAttributes( {
+							separatorWidth: value,
+						} )
 					}
-					options={ [
+					min={ 0 }
+					max={ '%' === separatorWidthType ? 100 : 500 }
+					unit={ {
+						value: separatorWidthType,
+						label: 'separatorWidthType',
+					} }
+					units={ [
 						{
-							value: 'none',
-							label: __(
-								'None',
+							name: __(
+								'Pixel',
 								'ultimate-addons-for-gutenberg'
 							),
+							unitValue: 'px',
 						},
 						{
-							value: 'solid',
-							label: __(
-								'Solid',
+							name: __(
+								'%',
 								'ultimate-addons-for-gutenberg'
 							),
-						},
-						{
-							value: 'double',
-							label: __(
-								'Double',
-								'ultimate-addons-for-gutenberg'
-							),
-						},
-						{
-							value: 'dashed',
-							label: __(
-								'Dashed',
-								'ultimate-addons-for-gutenberg'
-							),
-						},
-						{
-							value: 'dotted',
-							label: __(
-								'Dotted',
-								'ultimate-addons-for-gutenberg'
-							),
+							unitValue: '%',
 						},
 					] }
 				/>
-				{ 'none' !== seperatorStyle && (
-					<>
-						<Range
-							label={ __(
-								'Width',
-								'ultimate-addons-for-gutenberg'
-							) }
-							setAttributes={ setAttributes }
-							value={ separatorWidth }
-							onChange={ ( value ) =>
-								setAttributes( {
-									separatorWidth: value,
-								} )
-							}
-							min={ 0 }
-							max={ '%' === separatorWidthType ? 100 : 500 }
-							unit={ {
-								value: separatorWidthType,
-								label: 'separatorWidthType',
-							} }
-							units={ [
-								{
-									name: __(
-										'Pixel',
-										'ultimate-addons-for-gutenberg'
-									),
-									unitValue: 'px',
-								},
-								{
-									name: __(
-										'%',
-										'ultimate-addons-for-gutenberg'
-									),
-									unitValue: '%',
-								},
-							] }
-						/>
-						<Range
-							label={ __(
-								'Thickness(px)',
-								'ultimate-addons-for-gutenberg'
-							) }
-							setAttributes={ setAttributes }
-							value={ separatorHeight }
-							onChange={ ( value ) =>
-								setAttributes( {
-									separatorHeight: value,
-								} )
-							}
-							min={ 0 }
-							max={ 20 }
-							displayUnit={ false }
-						/>
-						<AdvancedPopColorControl
-							label={ __(
-								'Color',
-								'ultimate-addons-for-gutenberg'
-							) }
-							colorValue={
-								separatorColor ? separatorColor : ''
-							}
-							onColorChange={ ( value ) =>
-								setAttributes( {
-									separatorColor: value,
-								} )
-							}
-						/>
-					</>
-				) }
-				{ seperatorStyle !== 'none' && (
-					<Range
-						label={ __(
-							'Bottom Spacing (px)',
-							'ultimate-addons-for-gutenberg'
-						) }
-						setAttributes={ setAttributes }
-						value={ separatorSpace }
-						onChange={ ( value ) =>
-							setAttributes( { separatorSpace: value } )
-						}
-						min={ 0 }
-						max={ 500 }
-						displayUnit={ false }
-					/>
-				) }
+				<Range
+					label={ __(
+						'Thickness(px)',
+						'ultimate-addons-for-gutenberg'
+					) }
+					setAttributes={ setAttributes }
+					value={ separatorHeight }
+					onChange={ ( value ) =>
+						setAttributes( {
+							separatorHeight: value,
+						} )
+					}
+					min={ 0 }
+					max={ 20 }
+					displayUnit={ false }
+				/>
+				<AdvancedPopColorControl
+					label={ __(
+						'Color',
+						'ultimate-addons-for-gutenberg'
+					) }
+					colorValue={
+						separatorColor ? separatorColor : ''
+					}
+					onColorChange={ ( value ) =>
+						setAttributes( {
+							separatorColor: value,
+						} )
+					}
+				/>
+				<Range
+					label={ __(
+						'Bottom Spacing (px)',
+						'ultimate-addons-for-gutenberg'
+					) }
+					setAttributes={ setAttributes }
+					value={ separatorSpace }
+					onChange={ ( value ) =>
+						setAttributes( { separatorSpace: value } )
+					}
+					min={ 0 }
+					max={ 500 }
+					displayUnit={ false }
+				/>
 			</UAGAdvancedPanelBody>
 		);
 	};
 
+	const presetSettings = () => {
+		return <UAGAdvancedPanelBody
+					title={ __( 'Presets', 'ultimate-addons-for-gutenberg' ) }
+					initialOpen={ true }
+				>
+					<UAGPresets
+						setAttributes = { setAttributes }
+						presets = { presets }
+						presetInputType = 'radioImage'
+					/>
+				</UAGAdvancedPanelBody>
+	};
 	return (
 		<div>
 			{ blockControlSettings() }
 			<InspectorControls>
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>
+						{ presetSettings() }
 						{ generalPanel() }
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
 						{ headingPanel() }
-						{ seperatorSettings() }
+						{ 'none' !== seperatorStyle && seperatorSettings() }
 						{ subheadingPanel() }
 					</InspectorTab>
 					<InspectorTab

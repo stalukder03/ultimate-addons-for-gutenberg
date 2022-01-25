@@ -29,9 +29,8 @@ import {
 	ToggleControl,
 	Icon,
 } from '@wordpress/components';
-
-
-
+import presets from './presets';
+import UAGPresets from '@Components/presets';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 const Settings = ( props ) => {
@@ -345,6 +344,8 @@ const Settings = ( props ) => {
 								max: 2,
 							},
 						} }
+						min={ 1 }
+						max={ 6 }
 						displayUnit={ false }
 						setAttributes={ setAttributes }
 					/>
@@ -1050,12 +1051,25 @@ const Settings = ( props ) => {
 			<WebfontLoader config={ aconfig }></WebfontLoader>
 		);
 	}
+	const presetSettings = () => {
+		return <UAGAdvancedPanelBody
+					title={ __( 'Presets', 'ultimate-addons-for-gutenberg' ) }
+					initialOpen={ true }
+				>
+					<UAGPresets
+						setAttributes = { setAttributes }
+						presets = { presets }
+						presetInputType = 'radioImage'
+					/>
+				</UAGAdvancedPanelBody>
+	};
 
 	return (
 		<Suspense fallback={ lazyLoader() }>
 			<InspectorControls>
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>
+						{ presetSettings() }
 						{ faqGeneralSettings() }
 						{ 'accordion' === layout && faqIconSettings() }
 					</InspectorTab>

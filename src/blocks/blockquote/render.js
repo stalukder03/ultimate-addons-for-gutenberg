@@ -6,6 +6,7 @@ import AuthorImage from './components/AuthorImage';
 import AuthorText from './components/AuthorText';
 import TweetButtonCTA from './components/TweetButtonCTA';
 import styles from './editor.lazy.scss';
+import { useDeviceType } from '@Controls/getPreviewType';
 
 const Render = ( props ) => {
 	// Add and remove the CSS on the drop and remove of the component.
@@ -18,7 +19,7 @@ const Render = ( props ) => {
 
 	props = props.parentProps;
 
-	const { className, setAttributes, attributes, deviceType } = props;
+	const { className, setAttributes, attributes } = props;
 
 	const {
 		skinStyle,
@@ -31,6 +32,8 @@ const Render = ( props ) => {
 		authorImage,
 		authorImgPosition,
 	} = attributes;
+
+	const deviceType = useDeviceType();
 
 	return (
 			<div
@@ -57,14 +60,11 @@ const Render = ( props ) => {
 								{ UAGB_Block_Icons.quote_inline_icon }
 						</span>
 					) }
-						{
-							<Description
-								attributes={ attributes }
-								setAttributes={ setAttributes }
-								props={ props }
-							/>
-						}
-
+						<Description
+							attributes={ attributes }
+							setAttributes={ setAttributes }
+							props={ props }
+						/>
 						<footer>
 							<div
 								className={ classnames(
@@ -74,14 +74,13 @@ const Render = ( props ) => {
 										: ''
 								) }
 							>
-								{ <AuthorImage attributes={ attributes } /> }
-								{
-									<AuthorText
+								<AuthorImage attributes={ attributes } />
+
+								<AuthorText
 										attributes={ attributes }
 										setAttributes={ setAttributes }
 										props={ props }
 									/>
-								}
 							</div>
 							{ enableTweet && (
 								<TweetButtonCTA attributes={ attributes } />

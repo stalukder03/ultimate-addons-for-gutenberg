@@ -14,16 +14,17 @@ import InspectorTab, {
 	UAGTabs,
 } from '@Components/inspector-tabs/InspectorTab.js';
 import UAGTabsControl from '@Components/tabs';
-
+import renderSVG from '@Controls/renderIcon';
 import {
 	BlockControls,
-	BlockAlignmentToolbar,
+	AlignmentToolbar,
 	InspectorControls,
 } from '@wordpress/block-editor';
-
+import MultiButtonsControl from '@Components/multi-buttons-control';
 import {
 	PanelRow,
 	ToggleControl,
+	Icon
 } from '@wordpress/components';
 
 
@@ -376,6 +377,61 @@ const Settings = ( props ) => {
 				title={ __( 'Content', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
+				<MultiButtonsControl
+					setAttributes={ setAttributes }
+					label={ __(
+						'Alignment',
+						'ultimate-addons-for-gutenberg'
+					) }
+					data={ {
+						value: align,
+						label: 'align',
+					} }
+					className="uagb-multi-button-alignment-control"
+					options={ [
+						{
+							value: 'left',
+							icon: (
+								<Icon
+									icon={ renderSVG( 'fa fa-align-left' ) }
+								/>
+							),
+							tooltip: __(
+								'Left',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'center',
+							icon: (
+								<Icon
+									icon={ renderSVG(
+										'fa fa-align-center'
+									) }
+								/>
+							),
+							tooltip: __(
+								'Center',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'right',
+							icon: (
+								<Icon
+									icon={ renderSVG(
+										'fa fa-align-right'
+									) }
+								/>
+							),
+							tooltip: __(
+								'Right',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+					] }
+					showIcons={ true }
+				/>
 				<ResponsiveSlider
 					label={ __( 'Columns', 'ultimate-addons-for-gutenberg' ) }
 					data={ {
@@ -430,12 +486,11 @@ const Settings = ( props ) => {
 					} }
 					min={ 0 }
 					max={ 100 }
+					limitMin={ { 'px': 0, '%': 0 } }
+					limitMax={ { 'px': 1500, '%': 100 } }
 					units={ [
 						{
-							name: __(
-								'Pixel',
-								'ultimate-addons-for-gutenberg'
-							),
+							name: __( 'Pixel', 'ultimate-addons-for-gutenberg' ),
 							unitValue: 'px',
 						},
 						{
@@ -494,6 +549,8 @@ const Settings = ( props ) => {
 								max: maxMob,
 							},
 						} }
+						min={ 0 }
+						max={ 100 }
 						units={ [
 							{
 								name: __(
@@ -982,7 +1039,7 @@ const Settings = ( props ) => {
 		<Suspense fallback={ lazyLoader() }>
 			{ ! customWidth && (
 				<BlockControls>
-					<BlockAlignmentToolbar
+					<AlignmentToolbar
 						value={ align }
 						onChange={ ( value ) => {
 							setAttributes( { align: value } );

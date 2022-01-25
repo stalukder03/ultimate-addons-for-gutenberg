@@ -13,7 +13,7 @@ const Render = ( props ) => {
 	const { className, setAttributes, attributes } = props;
 
 	// Setup the attributes.
-	const { imagePosition } = attributes;
+	const { imagePosition, headingAlign } = attributes;
 
 	const parentClientId = select(
 		'core/block-editor'
@@ -21,10 +21,9 @@ const Render = ( props ) => {
 	const parentAttributes = select( 'core/block-editor' ).getBlockAttributes(
 		parentClientId
 	);
-
-	const position = parentAttributes
-		? parentAttributes.imagePosition
-		: imagePosition;
+	
+	const position = ( parentAttributes ) ? ( ( parentAttributes.imagePosition ) ?  parentAttributes.imagePosition : imagePosition ) : imagePosition; // eslint-disable-line no-nested-ternary
+	const align = ( parentAttributes ) ? ( ( parentAttributes.headingAlign ) ?  parentAttributes.headingAlign : headingAlign ) : headingAlign; // eslint-disable-line no-nested-ternary
 
 	return (
 		<div
@@ -64,6 +63,13 @@ const Render = ( props ) => {
 							) }
 							{ ( position === 'top' || position === 'left' ) && (
 								<>
+								{ ( align === 'right' ) && (
+								<Price
+									attributes={ attributes }
+									setAttributes={ setAttributes }
+									props={ props }
+								/>
+								)}
 								<Title
 									attributes={ attributes }
 									setAttributes={ setAttributes }
@@ -74,11 +80,13 @@ const Render = ( props ) => {
 									setAttributes={ setAttributes }
 									props={ props }
 								/>
+								{ ( align !== 'right' ) && (
 								<Price
 									attributes={ attributes }
 									setAttributes={ setAttributes }
 									props={ props }
 								/>
+								)}
 								</>
 							)}
 							</div>

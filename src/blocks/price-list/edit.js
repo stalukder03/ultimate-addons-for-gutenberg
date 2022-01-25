@@ -3,7 +3,7 @@
  */
 
 import RestMenuStyle from './inline-styles';
-import { select, withSelect } from '@wordpress/data';
+import { select } from '@wordpress/data';
 import React, { lazy, Suspense, useEffect } from 'react';
 import lazyLoader from '@Controls/lazy-loader';
 const Settings = lazy( () =>
@@ -32,6 +32,7 @@ const UAGBRestaurantMenu = ( props ) => {
 			imgPaddingRight,
 			imgPaddingBottom,
 			imgPaddingLeft,
+			imagePosition
 		} = props.attributes;
 
 		if ( imgVrPadding ) {
@@ -70,6 +71,21 @@ const UAGBRestaurantMenu = ( props ) => {
 				props.setAttributes( { contentPaddingLeft: contentHrPadding } );
 			}
 		}
+		if( imagePosition ){
+			if( 'left' === imagePosition ){
+				props.setAttributes( { imgAlign: 'side' } );
+				props.setAttributes( { imagePosition: 'left' } );
+			}
+			if( 'right' === imagePosition ){
+				props.setAttributes( { imgAlign: 'side' } );
+				props.setAttributes( { imagePosition: 'right' } );
+			}
+			if( 'top' === imagePosition ){
+				props.setAttributes( { imgAlign: 'top' } );
+				props.setAttributes( { imagePosition: 'top' } );
+			}
+		}
+
 		// Pushing Style tag for this block css.
 		const $style = document.createElement( 'style' );
 		$style.setAttribute(
@@ -86,6 +102,7 @@ const UAGBRestaurantMenu = ( props ) => {
 			pricelistChild.attributes.imageAlignment =
 				props.attributes.imageAlignment;
 		} );
+		
 	
 	}, [] );
 
@@ -102,6 +119,13 @@ const UAGBRestaurantMenu = ( props ) => {
 			props.clientId
 		);
 
+		if( 'side' === props.attributes.imgAlign && 'right' !== props.attributes.imagePosition ){
+			props.setAttributes( { imagePosition : 'left' } );
+			props.setAttributes( { headingAlign : 'left' } );
+		} 
+		if( 'top' === props.attributes.imgAlign ){
+			props.setAttributes( { imagePosition : 'top' } );
+		}
 		getChildBlocks.forEach( ( pricelistChild ) => {
 			pricelistChild.attributes.imagePosition =props.attributes.imagePosition;
 			pricelistChild.attributes.columns = props.attributes.columns;
@@ -109,7 +133,10 @@ const UAGBRestaurantMenu = ( props ) => {
 			pricelistChild.attributes.mcolumns = props.attributes.mcolumns;
 			pricelistChild.attributes.headingTag = props.attributes.headingTag;
 			pricelistChild.attributes.imageSize = props.attributes.imageSize;
+			pricelistChild.attributes.headingAlign = props.attributes.headingAlign;
 		} );
+
+	
 	}, [ props ] );
 
 	return (
@@ -122,16 +149,4 @@ const UAGBRestaurantMenu = ( props ) => {
 	);
 };
 
-export default withSelect( () => {
-	const { __experimentalGetPreviewDeviceType = null } = select(
-		'core/edit-post'
-	);
-
-	const deviceType = __experimentalGetPreviewDeviceType
-		? __experimentalGetPreviewDeviceType()
-		: null;
-
-	return {
-		deviceType,
-	};
-} )( UAGBRestaurantMenu );
+export default UAGBRestaurantMenu;

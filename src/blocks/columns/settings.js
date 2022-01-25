@@ -17,7 +17,6 @@ import InspectorTab, {
 } from '@Components/inspector-tabs/InspectorTab.js';
 import ResponsiveSlider from '@Components/responsive-slider';
 import UAGTabsControl from '@Components/tabs';
-
 import {
 	BlockControls,
 	BlockAlignmentToolbar,
@@ -154,6 +153,56 @@ const Settings = ( props ) => {
 					min={ 0 }
 					max={ 6 }
 					displayUnit={ false }
+				/>
+				<MultiButtonsControl
+					setAttributes={ setAttributes }
+					label={ __(
+						'Content Width',
+						'ultimate-addons-for-gutenberg'
+					) }
+					data={ {
+						value: align,
+						label: 'align',
+					} }
+					className="uagb-multi-button-alignment-control"
+					options={ [
+						{
+							value: 'wide',
+							label: 'Wide',
+						},
+						{
+							value: 'full',
+							label: 'Full Width',
+						},
+					] }
+					showIcons={ false }
+				/>
+				<MultiButtonsControl
+					setAttributes={ setAttributes }
+					label={ __(
+						'Vertical Alignment',
+						'ultimate-addons-for-gutenberg'
+					) }
+					data={ {
+						value: vAlign,
+						label: 'vAlign',
+					} }
+					className="uagb-multi-button-alignment-control"
+					options={ [
+						{
+							value: 'top',
+							label: 'Top',
+						},
+						{
+							value: 'center',
+							label: 'Middle',
+						},
+						{
+							value: 'bottom',
+							label: 'Bottom',
+						},
+					] }
+					showIcons={ false }
 				/>
 				<MultiButtonsControl
 					setAttributes={ setAttributes }

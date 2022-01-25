@@ -9,6 +9,7 @@ import Icon from './components/Icons';
 import InfoBoxIconImage from './components/IconImages';
 import Prefix from './components/Prefix';
 import styles from './editor.lazy.scss';
+import { useDeviceType } from '@Controls/getPreviewType';
 
 const Render = ( props ) => {
 	// Add and remove the CSS on the drop and remove of the component.
@@ -20,7 +21,8 @@ const Render = ( props ) => {
 	}, [] );
 
 	props = props.parentProps;
-	const { attributes, setAttributes, deviceType } = props;
+	const deviceType = useDeviceType();
+	const { attributes, setAttributes } = props;
 
 	// Setup the attributes.
 	const {
@@ -34,6 +36,8 @@ const Render = ( props ) => {
 		showTitle,
 		showDesc,
 		block_id,
+		prefixTitle,
+		infoBoxTitle
 	} = attributes;
 	// Get icon/Image components.
 	let isImage = '';
@@ -49,7 +53,7 @@ const Render = ( props ) => {
 	let showSeperator = true;
 
 	if (
-		seperatorPosition === 'after_icon' &&
+		seperatorPos === 'after_icon' &&
 		( iconimgPosition === 'above-title' || iconimgPosition === 'below-title' )
 	) {
 		showSeperator = false;
@@ -62,7 +66,7 @@ const Render = ( props ) => {
 	}
 
 	if (
-		seperatorPosition === 'after_icon' &&
+		seperatorPos === 'after_icon' &&
 		( iconimgPosition !== 'above-title' ||
 			iconimgPosition !== 'below-title' )
 	) {
@@ -71,7 +75,7 @@ const Render = ( props ) => {
 
 	if (
 		iconimgPosition === 'below-title' &&
-		seperatorPosition === 'after_title'
+		seperatorPos === 'after_title'
 	) {
 		showSeperator = false;
 		iconImageHtml = (
@@ -99,17 +103,19 @@ const Render = ( props ) => {
 				{ 'none' !== seperatorStyle &&
 					seperatorPos === 'after_desc' &&
 					seperatorHtml }
-				<CallToAction
-					attributes={ attributes }
-					setAttributes={ setAttributes }
-				/>
+					{ ctaType !== 'none' && (
+						<CallToAction
+							attributes={ attributes }
+							setAttributes={ setAttributes }
+						/>
+					)}
 		</>
 	);
 
 	// Get Title and Prefix components.
 	const titleText = (
 		<div className="uagb-ifb-title-wrap">
-			{ showPrefix && (
+			{ showPrefix && '' !== prefixTitle && (
 				<Prefix
 					attributes={ attributes }
 					setAttributes={ setAttributes }
@@ -119,7 +125,7 @@ const Render = ( props ) => {
 			{ 'none' !== seperatorStyle &&
 				seperatorPos === 'after_prefix' &&
 				seperatorHtml }
-			{ showTitle && (
+			{ showTitle && '' !== infoBoxTitle && (
 				<Title
 					attributes={ attributes }
 					setAttributes={ setAttributes }
@@ -189,17 +195,14 @@ const Render = ( props ) => {
 			) }
 		>
 			{ ctaType === 'all' && (
-				<>
-					<a // eslint-disable-line jsx-a11y/anchor-has-content
-						className="uagb-infobox-link-wrap uagb-infbox__link-to-all"
-						aria-label={ 'Infobox Link' }
-						rel="noopener noreferrer"
-						href="/"
-					></a>
-					{ output }
-				</>
+				<a // eslint-disable-line jsx-a11y/anchor-has-content
+					className="uagb-infobox-link-wrap uagb-infbox__link-to-all"
+					aria-label={ 'Infobox Link' }
+					rel="noopener noreferrer"
+					href="/"
+				></a>
 			) }
-			{ ctaType !== 'all' && output }
+			{ output }
 		</div>
 	);
 };

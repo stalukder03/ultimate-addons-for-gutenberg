@@ -20,7 +20,7 @@ import ResponsiveSlider from '@Components/responsive-slider';
 import UAGTabsControl from '@Components/tabs';
 import MultiButtonsControl from '@Components/multi-buttons-control';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
-
+import renderSVG from '@Controls/renderIcon';
 const MAX_POSTS_COLUMNS = 8;
 
 const Settings = lazy( () =>
@@ -39,6 +39,7 @@ import {
 	ToggleControl,
 	TextControl,
 	RadioControl,
+	Icon
 } from '@wordpress/components';
 
 import { InspectorControls } from '@wordpress/block-editor';
@@ -193,6 +194,7 @@ const UAGBPostCarousel = ( props ) => {
 
 		setAttributes( { postType: value } );
 		setAttributes( { categories: '' } );
+		setAttributes( { taxonomyType: 'category' } );
 	};
 
 	const onSelectTaxonomyType = ( value ) => {
@@ -211,6 +213,7 @@ const UAGBPostCarousel = ( props ) => {
 		taxonomyList,
 	} = props;
 	const {
+		align,
 		displayPostTitle,
 		displayPostDate,
 		displayPostComment,
@@ -406,6 +409,54 @@ const UAGBPostCarousel = ( props ) => {
 				title={ __( 'General', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ true }
 			>
+				<MultiButtonsControl
+					setAttributes={ setAttributes }
+					label={ __( 'Text Alignment', 'ultimate-addons-for-gutenberg' ) }
+					data={ {
+						value: align,
+						label: 'align',
+					} }
+					className="uagb-multi-button-alignment-control"
+					options={ [
+						{
+							value: 'left',
+							icon: (
+								<Icon
+									icon={ renderSVG( 'fa fa-align-left' ) }
+								/>
+							),
+							tooltip: __(
+								'Left',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'center',
+							icon: (
+								<Icon
+									icon={ renderSVG( 'fa fa-align-center' ) }
+								/>
+							),
+							tooltip: __(
+								'Center',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'right',
+							icon: (
+								<Icon
+									icon={ renderSVG( 'fa fa-align-right' ) }
+								/>
+							),
+							tooltip: __(
+								'Right',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+					] }
+					showIcons={ true }
+				/>
 				<SelectControl
 					label={ __( 'Post Type', 'ultimate-addons-for-gutenberg' ) }
 					value={ postType }
@@ -1856,13 +1907,6 @@ export default compose(
 			excludeCurrentPost,
 		} = props.attributes;
 		const { getEntityRecords } = select( 'core' );
-		const { __experimentalGetPreviewDeviceType = null } = select(
-			'core/edit-post'
-		);
-
-		const deviceType = __experimentalGetPreviewDeviceType
-			? __experimentalGetPreviewDeviceType()
-			: null;
 		const allTaxonomy = uagb_blocks_info.all_taxonomy;
 		const currentTax = allTaxonomy[ postType ];
 
@@ -1926,7 +1970,6 @@ export default compose(
 				latestPostsQuery
 			),
 			categoriesList,
-			deviceType,
 			taxonomyList:
 				'undefined' !== typeof currentTax ? currentTax.taxonomy : [],
 			block: getBlocks( props.clientId ),

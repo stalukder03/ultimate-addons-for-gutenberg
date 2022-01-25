@@ -5,8 +5,6 @@ import React, { lazy, Suspense, useEffect } from 'react';
 import lazyLoader from '@Controls/lazy-loader';
 import InfoBoxStyle from './inline-styles';
 
-import { withSelect } from '@wordpress/data';
-
 const Render = lazy( () =>
 	import( /* webpackChunkName: "chunks/info-box/render" */ './render' )
 );
@@ -16,10 +14,12 @@ const Settings = lazy( () =>
 
 const UAGBInfoBox = ( props ) => {
 	useEffect( () => {
-		// Assigning block_id in the attribute.
-		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
 
-		props.setAttributes( { classMigrate: true } );
+		const { setAttributes } = props;
+		// Assigning block_id in the attribute.
+		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
+
+		setAttributes( { classMigrate: true } );
 
 		// Pushing Style tag for this block css.
 		const $style = document.createElement( 'style' );
@@ -54,6 +54,7 @@ const UAGBInfoBox = ( props ) => {
 				props.setAttributes( { paddingBtnLeft: ctaBtnHrPadding } );
 			}
 		}
+
 	}, [] );
 
 	useEffect( () => {
@@ -77,15 +78,4 @@ const UAGBInfoBox = ( props ) => {
 	);
 };
 
-export default withSelect( ( select ) => {
-	const { __experimentalGetPreviewDeviceType = null } = select(
-		'core/edit-post'
-	);
-	const deviceType = __experimentalGetPreviewDeviceType
-		? __experimentalGetPreviewDeviceType()
-		: null;
-
-	return {
-		deviceType,
-	};
-} )( UAGBInfoBox );
+export default UAGBInfoBox;

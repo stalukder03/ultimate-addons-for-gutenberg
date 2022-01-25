@@ -4,6 +4,7 @@ import Title from './components/Title';
 import Description from './components/Description';
 import CTA from './components/CallToActionNew';
 import styles from './editor.lazy.scss';
+import { useDeviceType } from '@Controls/getPreviewType';
 
 const Render = ( props ) => {
 	// Add and remove the CSS on the drop and remove of the component.
@@ -15,7 +16,8 @@ const Render = ( props ) => {
 	}, [] );
 
 	props = props.parentProps;
-	const { setAttributes, attributes, deviceType } = props;
+	const { setAttributes, attributes } = props;
+	const deviceType = useDeviceType();
 
 	// Setup the attributes.
 	const { block_id, ctaPosition, ctaType, stack  } = attributes;
@@ -77,6 +79,7 @@ const Render = ( props ) => {
 				) }
 			>
 				{ ctaType === 'all' && (
+					<>
 					<a
 						href="/"
 						className="uagb-cta__link-to-all"
@@ -84,8 +87,10 @@ const Render = ( props ) => {
 					>
 						{ ' ' }
 					</a>
+					{ output() }
+					</>
 				) }
-				{ output() }
+				{ ctaType !== 'all' && output() }
 			</div>
 	);
 };

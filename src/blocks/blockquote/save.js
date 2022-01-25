@@ -24,7 +24,6 @@ export default function save( props ) {
 		authorImgPosition,
 		stack,
 	} = props.attributes;
-
 	return (
 			<div
 				className={ classnames(
@@ -55,7 +54,7 @@ export default function save( props ) {
 								setAttributes="not_set"
 								props={ props }
 							/>
-						) }
+						) }					
 						<footer>
 							<div
 								className={ classnames(
@@ -65,11 +64,9 @@ export default function save( props ) {
 										: ''
 								) }
 							>
-								{
-									<AuthorImage
-										attributes={ props.attributes }
-									/>
-								}
+								<AuthorImage
+									attributes={ props.attributes }
+								/>
 								{ author !== '' && (
 									<AuthorText
 										attributes={ props.attributes }

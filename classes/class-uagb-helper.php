@@ -287,7 +287,7 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 				$view = implode( ' ', $view );
 			}
 			?>
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox= "<?php echo esc_html( $view ); ?>"><path d="<?php echo esc_html( $path ); ?>"></path></svg>
+			<svg xmlns="https://www.w3.org/2000/svg" viewBox= "<?php echo esc_html( $view ); ?>"><path d="<?php echo esc_html( $path ); ?>"></path></svg>
 			<?php
 		}
 
@@ -650,7 +650,6 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 				$base_path . 'assets/fonts',
 				$base_path . 'assets/css',
 				$base_path . 'assets/js',
-
 			);
 
 			foreach ( $paths_to_delete as $path ) {
@@ -667,7 +666,7 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 
 			// Create empty files.
 			uagb_install()->create_files();
-
+			UAGB_Admin_Helper::create_specific_stylesheet();
 			return true;
 		}
 

@@ -231,27 +231,21 @@ function testimonialStyle( props ) {
 			'height': generateCSSUnit( arrowSize, arrowSizeType ),
 			'width': generateCSSUnit( arrowSize, arrowSizeType ),
 		},
+		' .uagb-testimonial__wrap .uagb-tm__content': {
+			'border-color': borderColor,
+			'border-style': borderStyle,
+			'border-width': generateCSSUnit( borderWidth, 'px' ),
+			'border-radius': generateCSSUnit( borderRadius, 'px' ),
+		},
+		' .uagb-testimonial__wrap .uagb-tm__content:hover': {
+			'border-color': borderHoverColor,
+		}
+
 	};
 
 	if ( test_item_count === columns ) {
 		selectors[ '.uagb-slick-carousel' ] = {
 			'padding': '0',
-		};
-	}
-
-	if ( borderStyle !== 'none' ) {
-		selectors[ ' .uagb-testimonial__wrap .uagb-tm__content' ] = {
-			'border-color': borderColor,
-			'border-style': borderStyle,
-			'border-width': generateCSSUnit( borderWidth, 'px' ),
-			'border-radius': generateCSSUnit( borderRadius, 'px' ),
-		};
-		selectors[ ' .uagb-testimonial__wrap .uagb-tm__content:hover' ] = {
-			'border-color': borderHoverColor,
-		};
-	} else {
-		selectors[ ' .uagb-testimonial__wrap .uagb-tm__content' ] = {
-			'border-radius': generateCSSUnit( borderRadius, 'px' ),
 		};
 	}
 
@@ -407,7 +401,7 @@ function testimonialStyle( props ) {
 	};
 	if ( 'gradient' === backgroundType ) {
 		selectors[ ' .uagb-tm__content' ][ 'background-color' ] = 'transparent';
-		
+
 		if ( gradientValue ) {
 			selectors[ ' .uagb-tm__content' ][
 				'background-image'

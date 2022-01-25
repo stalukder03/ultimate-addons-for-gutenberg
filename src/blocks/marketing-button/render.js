@@ -4,6 +4,7 @@ import React, { useLayoutEffect } from 'react';
 import { __ } from '@wordpress/i18n';
 import { RichText } from '@wordpress/block-editor';
 import styles from './editor.lazy.scss';
+import { useDeviceType } from '@Controls/getPreviewType';
 
 const Render = ( props ) => {
 	// Add and remove the CSS on the drop and remove of the component.
@@ -15,11 +16,11 @@ const Render = ( props ) => {
 	}, [] );
 
 	props = props.parentProps;
+	const deviceType = useDeviceType();
 	const {
 		attributes,
 		setAttributes,
 		className,
-		deviceType,
 		mergeBlocks,
 		insertBlocksAfter,
 		createBlock,
@@ -92,18 +93,18 @@ const Render = ( props ) => {
 				`uagb-marketing-btn__align-text-${ textAlign }`,
 				`uagb-marketing-btn__icon-${ iconPosition }`,
 				`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
-				`uagb-block-${ block_id }`
+				`uagb-block-${ block_id }`,
 			) }
 		>
 				<a // eslint-disable-line jsx-a11y/anchor-is-valid
 				 className="uagb-marketing-btn__link">
-						{ 'before' === iconPosition && 
+						{ 'before' === iconPosition &&
 							<>
 							{ iconHTML }
 							{ titleHTML }
 							</>
 						}
-						{ 'after' === iconPosition && 
+						{ 'after' === iconPosition &&
 							<>
 							{ titleHTML }
 							{ iconHTML }

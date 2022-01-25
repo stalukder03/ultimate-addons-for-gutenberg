@@ -52,10 +52,23 @@ const ColumnsComponent = ( props ) => {
 			bottomMargin,
 			topMarginDesktop,
 			bottomMarginDesktop,
-			vAlign,
 			backgroundOpacity,
+			align,
+			vAlign,
 			backgroundImageColor
 		} = attributes
+
+		if ( 'middle' === vAlign ) {
+			setAttributes( { vAlign: 'center' } );
+		}
+
+		if ( undefined === align ){
+			setAttributes( { align: 'wide' } );
+		}
+
+		if ( undefined === vAlign ){
+			setAttributes( { vAlign: 'top' } );
+		}
 
 		// Replacement for componentDidMount.
 		// Assigning block_id in the attribute.
@@ -63,9 +76,6 @@ const ColumnsComponent = ( props ) => {
 
 		setAttributes( { classMigrate: true } );
 
-		if ( 'middle' === vAlign ) {
-			setAttributes( { vAlign: 'center' } );
-		}
 		// Pushing Style tag for this block css.
 		const $style = document.createElement( 'style' );
 		$style.setAttribute(
@@ -175,13 +185,6 @@ const applyWithSelect = withSelect( ( select, props ) => {
 	} = select( 'core/blocks' );
 	const innerBlocks = getBlocks( props.clientId );
 	const { replaceInnerBlocks } = useDispatch( 'core/block-editor' );
-	const { __experimentalGetPreviewDeviceType = null } = select(
-		'core/edit-post'
-	);
-
-	const deviceType = __experimentalGetPreviewDeviceType
-		? __experimentalGetPreviewDeviceType()
-		: null;
 
 	return {
 		// Subscribe to changes of the innerBlocks to control the display of the layout selection placeholder.
@@ -200,7 +203,6 @@ const applyWithSelect = withSelect( ( select, props ) => {
 				? null
 				: getBlockVariations( props.name ),
 		replaceInnerBlocks,
-		deviceType,
 	};
 } );
 

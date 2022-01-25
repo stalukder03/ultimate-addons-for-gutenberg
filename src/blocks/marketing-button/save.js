@@ -58,13 +58,13 @@ export default function save( props ) {
 					target={ target }
 					rel="noopener noreferrer"
 				>
-						{ 'before' === iconPosition && 
+						{ 'before' === iconPosition &&
 							<>
 							{ iconHTML }
 							{ titleHTML }
 							</>
 						}
-						{ 'after' === iconPosition && 
+						{ 'after' === iconPosition &&
 							<>
 							{ titleHTML }
 							{ iconHTML }

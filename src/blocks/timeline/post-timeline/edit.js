@@ -15,7 +15,9 @@ const Render = lazy( () =>
 import { withSelect } from '@wordpress/data';
 
 const PostTimelineComponent = ( props ) => {
+	
 	useEffect( () => {
+		
 		// Replacement for componentDidMount.
 		//Store Client id.
 		props.setAttributes( { block_id: props.clientId } );
@@ -72,6 +74,15 @@ const PostTimelineComponent = ( props ) => {
 		}
 	}, [] );
 
+	useEffect( () => {
+		// Replacement for componentDidUpdate.
+		const loadPostTimelineEditor = new CustomEvent( 'UAGTimelineEditor', { // eslint-disable-line no-undef
+			detail: {},
+		} );
+		document.dispatchEvent( loadPostTimelineEditor );
+	}, [ props ] );
+	
+	
 	return (
 		<Suspense fallback={ lazyLoader() }>
 			<Settings parentProps={ props } />
@@ -91,13 +102,6 @@ export default withSelect( ( select, props ) => {
 		excludeCurrentPost,
 	} = props.attributes;
 	const { getEntityRecords } = select( 'core' );
-
-	const { __experimentalGetPreviewDeviceType = null } = select(
-		'core/edit-post'
-	);
-	const deviceType = __experimentalGetPreviewDeviceType
-		? __experimentalGetPreviewDeviceType()
-		: null;
 
 	const allTaxonomy = uagb_blocks_info.all_taxonomy;
 	const currentTax = allTaxonomy[ postType ];
@@ -149,7 +153,6 @@ export default withSelect( ( select, props ) => {
 				: category;
 	}
 	return {
-		deviceType,
 		latestPosts: getEntityRecords( 'postType', postType, latestPostsQuery ),
 		categoriesList,
 		taxonomyList:

@@ -31,7 +31,6 @@ function contentTimelineStyle( props ) {
 		dateLineHeightMobile,
 		dateColor,
 		iconSize,
-		iconFocus,
 		iconBgFocus,
 		headFontSizeType,
 		headFontSize,
@@ -96,6 +95,7 @@ function contentTimelineStyle( props ) {
 		headDecoration,
 		subHeadDecoration,
 		dateDecoration,
+		iconFocus,
 	} = props.attributes;
 
 	const respSelectors = 'left';
@@ -129,7 +129,7 @@ function contentTimelineStyle( props ) {
 			'text-decoration': headDecoration,
 			'text-transform': headTransform,
 		},
-		' .uagb-timeline__heading-text': {
+		' .uagb-timeline__heading': {
 			'margin-bottom': generateCSSUnit( headSpace, 'px' ),
 		},
 		' p.uagb-timeline-desc-content': {
@@ -269,12 +269,7 @@ function contentTimelineStyle( props ) {
 			'padding-top': generateCSSUnit( topPadding, paddingUnit ),
 			'padding-bottom': generateCSSUnit( bottomPadding, paddingUnit ),
 		},
-		' .uagb-timeline__icon-new': {
-			'color': iconColor,
-			'font-size': generateCSSUnit( iconSize, 'px' ),
-			'width': generateCSSUnit( iconSize, 'px' ),
-		},
-		' .uagb-timeline__icon-new svg': {
+		' svg': {
 			'fill': iconColor,
 			'font-size': generateCSSUnit( iconSize, 'px' ),
 			'width': generateCSSUnit( iconSize, 'px' ),
@@ -283,14 +278,8 @@ function contentTimelineStyle( props ) {
 			'background': iconBgFocus,
 			'border-color': borderFocus,
 		},
-		' .uagb-timeline__main .uagb-timeline__marker.uagb-timeline__in-view-icon .uagb-timeline__icon-new': {
-			'color': iconFocus,
-		},
-		' .uagb-timeline__main .uagb-timeline__marker.uagb-timeline__in-view-icon .uagb-timeline__icon-new svg': {
+		' .uagb-timeline__marker.uagb-timeline__in-view-icon svg': {
 			'fill': iconFocus,
-		},
-		' .uagb-timeline__marker.uagb-timeline__in-view-icon .uagb-timeline__icon-new svg': {
-			'fill': iconColor,
 		},
 	};
 
@@ -398,13 +387,16 @@ function contentTimelineStyle( props ) {
 		' .uagb-timeline__center-block .uagb-timeline__day-right .uagb-timeline__arrow:after': {
 			'border-right-color': backgroundColor,
 		},
-		' .uagb-timeline__center-block .uagb-timeline__author': {
+		' .uagb-timeline__center-block .uagb-timeline__author-link': {
 			'text-align': respSelectors,
 		},
 		' .uagb-timeline__center-block .uagb-timeline__link_parent': {
 			'text-align': respSelectors,
 		},
 		' .uagb-timeline__center-block .uagb-timeline__image a': {
+			'text-align': respSelectors,
+		},
+		' .uagb-timeline__center-block a.uagb-timeline__image': {
 			'text-align': respSelectors,
 		},
 		' .uagb-timeline__events-inner-new': {
@@ -530,13 +522,16 @@ function contentTimelineStyle( props ) {
 		'.uagb-timeline__center-block .uagb-timeline__day-right .uagb-timeline__arrow:after': {
 			'border-right-color': backgroundColor,
 		},
-		'.uagb-timeline__center-block .uagb-timeline__author': {
+		'.uagb-timeline__center-block .uagb-timeline__author-link': {
 			'text-align': respSelectors,
 		},
 		'.uagb-timeline__center-block .uagb-timeline__link_parent': {
 			'text-align': respSelectors,
 		},
 		'.uagb-timeline__center-block .uagb-timeline__image a': {
+			'text-align': respSelectors,
+		},
+		'.uagb-timeline__center-block a.uagb-timeline__image': {
 			'text-align': respSelectors,
 		},
 		' .uagb-timeline__events-inner-new': {
@@ -560,7 +555,7 @@ function contentTimelineStyle( props ) {
 	};
 
 	let stylingCss = '';
-	const id = `.uagb-block-${ props.clientId }`;
+	const id = `.uagb-block-${ props.clientId }.uagb-timeline__outer-wrap`;
 
 	stylingCss = generateCSS( selectors, id );
 
