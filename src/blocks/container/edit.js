@@ -60,6 +60,18 @@ const UAGBContainer = ( props ) => {
 			'uagb-container-style-' + props.clientId.substr( 0, 8 )
 		);
 		document.head.appendChild( $style );
+
+		const element = document.getElementById(
+			'block-' + props.clientId
+		);
+		
+		if ( element ) {
+			element.classList.remove(`uagb-editor-preview-mode-desktop`);
+			element.classList.remove(`uagb-editor-preview-mode-tablet`);
+			element.classList.remove(`uagb-editor-preview-mode-mobile`);
+			element.classList.add(`uagb-editor-preview-mode-${ props.deviceType.toLowerCase() }`);
+		}
+
 	}, [] );
 
 	useEffect( () => {
@@ -72,6 +84,20 @@ const UAGBContainer = ( props ) => {
 			element.innerHTML = styling( props );
 		}
 	}, [ props ] );
+
+	useEffect( () => {
+		const element = document.getElementById(
+			'block-' + props.clientId
+		);
+		
+		if ( element ) {
+			element.classList.remove(`uagb-editor-preview-mode-desktop`);
+			element.classList.remove(`uagb-editor-preview-mode-tablet`);
+			element.classList.remove(`uagb-editor-preview-mode-mobile`);
+			element.classList.add(`uagb-editor-preview-mode-${ props.deviceType.toLowerCase() }`);
+		}
+
+	}, [ props.deviceType ] );
 
 	const blockVariationPickerOnSelect = (
 		nextVariation = props.defaultVariation

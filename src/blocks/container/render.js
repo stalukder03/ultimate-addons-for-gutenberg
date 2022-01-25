@@ -23,7 +23,6 @@ const Render = ( props ) => {
 		<div
 			className={ classnames(
 				className,
-				`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
 				`uagb-block-${ block_id }`
 			) }
 			key = { block_id }
