@@ -358,7 +358,7 @@ const Settings = ( props ) => {
 						},
 					} }
 					min={ 0 }
-					max={ 1600 }
+					limitMax={ { 'px': 1600, '%': 100 } }
 					unit={ {
 						value: widthType,
 						label: 'widthType',
