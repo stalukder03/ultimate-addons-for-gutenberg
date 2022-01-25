@@ -34,51 +34,51 @@ const attributes = {
 	},
 	directionDesktop: {
 		type: 'string',
-		default: '',
+		default: 'row',
 	},
 	directionTablet: {
 		type: 'string',
-		default: '',
+		default: 'row',
 	},
 	directionMobile: {
 		type: 'string',
-		default: '',
+		default: 'row',
 	},
 	alignItemsDesktop: {
 		type: 'string',
-		default: '',
+		default: 'stretch',
 	},
 	alignItemsTablet: {
 		type: 'string',
-		default: '',
+		default: 'stretch',
 	},
 	alignItemsMobile: {
 		type: 'string',
-		default: '',
+		default: 'stretch',
 	},
 	justifyContentDesktop: {
 		type: 'string',
-		default: '',
+		default: 'flex-start',
 	},
 	justifyContentTablet: {
 		type: 'string',
-		default: '',
+		default: 'flex-start',
 	},
 	justifyContentMobile: {
 		type: 'string',
-		default: '',
+		default: 'flex-start',
 	},
 	wrapDesktop: {
 		type: 'string',
-		default: '',
+		default: 'nowrap',
 	},
 	wrapTablet: {
 		type: 'string',
-		default: '',
+		default: 'nowrap',
 	},
 	wrapMobile: {
 		type: 'string',
-		default: '',
+		default: 'nowrap',
 	},
 	alignContentDesktop: {
 		type: 'string',
