@@ -1,6 +1,6 @@
 module.exports = {
   content: [
-      './app/**/*.@(js|jsx)'
+      './assets/src/dashboard-app/**/*.{html,js}'
   ],
   theme: {
     extend: {},

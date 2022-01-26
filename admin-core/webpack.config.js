@@ -29,6 +29,10 @@ module.exports = {
 				__dirname,
 				'assets/src/settings-app/'
 			),
+			'@DashboardApp': path.resolve(
+				__dirname,
+				'assets/src/dashboard-app/'
+			),
 			'@Controls': path.resolve(
 				newPath,
 				'blocks-config/uagb-controls/'
