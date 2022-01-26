@@ -32,13 +32,11 @@
 		"@wordpress/i18n": "^3.16.0",
 		"@wordpress/notices": "^2.10.0",
 		"@wordpress/prettier-config": "^0.4.0",
-		"@wordpress/scripts": "^12.5.0",
 		"autoprefixer": "^10.4.2",
 		"file-loader": "^6.2.0",
 		"loadash": "^1.0.0",
-		"postcss": "^8.4.5",
-		"shelljs": "^0.8.4",
-		"tailwindcss": "^3.0.16"
+		"tailwindcss": "^3.0.16",
+		"@wordpress/scripts": "^19.2.2"
 	},
 	"repository": {
 		"type": "git",
