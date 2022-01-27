@@ -420,12 +420,12 @@ class UAGB_Init_Blocks {
 				'dependencies' => array(),
 				'version'      => UAGB_VER,
 			);
-		$script_dep      = array_merge( $script_info['dependencies'], array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-components', 'wp-api-fetch', 'uagb-cross-site-cp-helper-js' ) );
-		if ( version_compare( get_bloginfo( 'version' ), '5.8', '<' ) ) {
+		global $pagenow;
+		$script_dep = array_merge( $script_info['dependencies'], array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-components', 'wp-api-fetch', 'uagb-cross-site-cp-helper-js' ) );
+		if ( 'widgets.php' !== $pagenow ) {
 			$script_dep = array_merge( $script_info['dependencies'], array( 'wp-editor' ) );
-		} else {
-			$script_dep = array_merge( $script_info['dependencies'], array( 'wp-edit-widgets' ) );
 		}
+
 		wp_enqueue_script( 'uagb-cross-site-cp-helper-js', UAGB_URL . 'assets/js/cross-site-cp-helper.js', array(), UAGB_VER, true ); // 3rd Party Library JS for Cross-Domain Local Storage usage for the Copy/Paste styles feature.
 
 		// Scripts.

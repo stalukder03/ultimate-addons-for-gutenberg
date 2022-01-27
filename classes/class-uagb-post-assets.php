@@ -343,7 +343,6 @@ class UAGB_Post_Assets {
 			$this->generate_assets();
 			$this->generate_asset_files();
 		}
-
 		if ( $this->uag_flag ) {
 
 			// Register Assets for Frontend & Enqueue for Editor.
@@ -856,7 +855,7 @@ class UAGB_Post_Assets {
 	}
 
 	/**
-	 * Common function to genrate stylesheet.
+	 * Common function to generate stylesheet.
 	 *
 	 * @param array $post_content Current Post Object.
 	 * @since x.x.x
