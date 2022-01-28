@@ -214,9 +214,9 @@ class UAGB_Post_Assets {
 		if ( $this->is_allowed_assets_generation ) {
 			global $post;
 			$this_post = $this->preview ? $post : get_post( $this->post_id );
-			$content   = get_option( 'widget_block' );
-			$this->widget_area_assets( $content );
 			$this->prepare_assets( $this_post );
+			$content = get_option( 'widget_block' );
+			$this->widget_area_assets( $content );
 		}
 	}
 
@@ -298,6 +298,10 @@ class UAGB_Post_Assets {
 			if ( ! empty( $js_file_path ) && ! file_exists( $js_file_path ) ) {
 				return true;
 			}
+		}
+
+		if ( is_active_sidebar( 'sidebar-1' ) || is_active_sidebar( 'header-widget' ) || is_active_sidebar( 'footer-widget-1' ) || is_active_sidebar( 'footer-widget-2' ) ) {
+			return true;
 		}
 
 		// If version is updated, return true.

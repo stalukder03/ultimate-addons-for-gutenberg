@@ -67,6 +67,13 @@ class UAGB_Front_Assets {
 	 * @since 1.23.0
 	 */
 	public function set_initial_variables() {
+		// var_dump(get_sidebar());
+		// var_dump(wp_get_widget_defaults());
+		// echo '<br>';
+		// var_dump(is_active_sidebar( "sidebar-1" ));
+		// var_dump(is_active_sidebar( "header-widget" ));
+		// var_dump(is_active_sidebar( "footer-widget-1" ));
+		// var_dump(is_active_sidebar( "footer-widget-2" ));
 
 		$this->post_id = false;
 
