@@ -10,6 +10,7 @@
  */
 __webpack_public_path__ = uagb_blocks_info.uagb_url + 'dist/';
 
+import './blocks/count-down-timer/block.js';
 import './blocks/extensions/attributes.js';
 import './blocks/advanced-heading/block.js';
 import './blocks/post/block.js';
