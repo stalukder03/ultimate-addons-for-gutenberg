@@ -317,7 +317,6 @@ class UAGB_Post_Assets {
 
 			// Prepare font css and files.
 			$this->generate_fonts();
-
 			$this->generate_assets();
 			$this->generate_asset_files();
 		}

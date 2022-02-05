@@ -5,6 +5,7 @@ import { __ } from '@wordpress/i18n';
 import { SelectControl } from '@wordpress/components';
 import googleFonts from '@Controls/fonts';
 import Select from 'react-select';
+import { checkPropTypes } from 'prop-types';
 
 const { uag_select_font_globally , uag_load_select_font_globally } = uagb_blocks_info;
 
@@ -13,13 +14,15 @@ function FontFamilyControl( props ) {
 	const fonts = [];
 
 	let fontWeight = '';
+	let fontVariant = '';
 
 	//Push Google Fonts into stytem fonts object
 	Object.keys( googleFonts ).map( ( k ) => {  // eslint-disable-line array-callback-return
-		fonts.push( { value: k, label: k, weight: googleFonts[ k ].weight } );
+		fonts.push( { value: k, label: k, weight: googleFonts[ k ].weight, v: googleFonts[ k ].v } );
 
 		if ( k === props.fontFamily.value ) {
 			fontWeight = googleFonts[ k ].weight;
+			fontVariant = googleFonts[ k ].v;
 		}
 	} );
 
@@ -35,15 +38,51 @@ function FontFamilyControl( props ) {
 	} );
 
 
+	const fontVariantObj = [];
+
+	const defaultVariantValues = [
+		{ value: '100'       , label : 'Thin 100' },
+		{ value: '100italic' , label : '100 Italic' },
+		{ value: '200'       , label :  'Extra-Light 200'  },
+		{ value: '200italic' , label : '200 Italic' },
+		{ value: '300'       , label : 'Light 300' },
+		{ value: '300italic' , label : '300 Italic' },
+		{ value: '400'       , label : 'Normal 400' },
+		{ value: 'italic'    , label : '400 Italic' },
+		{ value: '500'       , label : 'Medium 500' },
+		{ value: '500italic' , label : '500 Italic' },
+		{ value: '600'       , label :  'Semi-Bold 600'  },
+		{ value: '600italic' , label : '600 Italic' },
+		{ value: '700'       , label : 'Bold 700' },
+		{ value: '700italic' , label : '700 Italic' },
+		{ value: '800'       , label : 'Extra-Bold 800'  },
+		{ value: '800italic' , label : '800 Italic' },
+		{ value: '900'       , label :  'Ultra-Bold 900'  },
+		{ value: '900italic' , label : '900 Italic' }
+	]
+
+	if( fontVariant !== undefined ){
+		fontVariant.forEach( function ( item ) {
+			defaultVariantValues.forEach( function ( i ){
+				if( item == i.value ){
+					fontVariantObj.push( { value: item, label: i.label } );
+				}
+			})
+		} );
+	}
+
+
+	console.log(props.fontVariant.value);
+
 	const onFontfamilyChange = ( value ) => {
 		const font = value.value;
-		const { loadGoogleFonts, fontFamily, fontWeight } = props; // eslint-disable-line no-shadow
+		const { loadGoogleFonts, fontFamily, fontWeight, fontVariant } = props; // eslint-disable-line no-shadow
 		props.setAttributes( { [ fontFamily.label ]: font } );
 		onLoadGoogleFonts( loadGoogleFonts, font );
-		onFontChange( fontWeight, font );
+		onFontChange( fontWeight, font, fontVariant );
 	};
 
-	const onFontChange = ( fontWeight, fontFamily ) => { // eslint-disable-line no-shadow
+	const onFontChange = ( fontWeight, fontFamily, fontVariant ) => { // eslint-disable-line no-shadow
 		let font_flag;  // eslint-disable-line no-unused-vars
 		let new_value;
 
@@ -59,6 +98,23 @@ function FontFamilyControl( props ) {
 						font_flag = true;
 						props.setAttributes( {
 							[ props.fontWeight.label ]: new_value,
+						} );
+					}
+				} );
+			}
+		}
+		if ( typeof googleFonts[ fontFamily ] === 'object' ) {
+			const gfontsObj = googleFonts[ fontFamily ].v;
+
+			if ( typeof gfontsObj === 'object' ) {
+				gfontsObj.forEach( function ( item ) {
+					if ( fontVariant.value === item ) {
+						font_flag = false;
+					} else {
+						new_value = item;
+						font_flag = true;
+						props.setAttributes( {
+							[ props.fontVariant.label ]: new_value,
 						} );
 					}
 				} );
@@ -123,14 +179,13 @@ function FontFamilyControl( props ) {
 			height: '30px',
 		} ),
 	}
-	
 	let fontFamilyValue;
 	//Push Google Fonts into stytem fonts object
 	if ( gFonts ) {
 		gFonts.map( ( font ) => {  // eslint-disable-line array-callback-return
-			
+
 			if ( ! props.fontFamily.weight && font.value === props.fontFamily.value ) {
-				fontFamilyValue = { ...props.fontFamily, weight: font.weight, label: font.value };
+				fontFamilyValue = { ...props.fontFamily, weight: font.weight, label: font.value, v: font.v };
 			}
 		} );
 	}
@@ -204,6 +259,20 @@ function FontFamilyControl( props ) {
 					</div>
 				}
 			</div>
+			{ props.fontVariant && 0 !== fontVariantObj.length &&
+				<div className="uag-typography-font-family">
+					<SelectControl
+						label={ __( 'Variant', 'ultimate-addons-for-gutenberg' ) }
+						onChange={ ( value ) =>
+							props.setAttributes( {
+								[ props.fontVariant.label ]: value,
+							} )
+						}
+						options={ fontVariantObj }
+						value={ props.fontVariant.value }
+					/>
+				</div>
+			}
 		</div>
 	);
 }

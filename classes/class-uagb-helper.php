@@ -226,13 +226,13 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 		 * @param array $font_family the blocks attr.
 		 * @param array $font_weight the blocks attr.
 		 */
-		public static function blocks_google_font( $load_google_font, $font_family, $font_weight ) {
+		public static function blocks_google_font( $load_google_font, $font_family, $font_weight, $font_variant = '') {
 
 			if ( true === $load_google_font ) {
 				if ( ! array_key_exists( $font_family, self::$gfonts ) ) {
 					$add_font                     = array(
 						'fontfamily'   => $font_family,
-						'fontvariants' => ( isset( $font_weight ) && ! empty( $font_weight ) ? array( $font_weight ) : array() ),
+						'fontvariants' => ( isset( $font_variant ) && ! empty( $font_variant ) ? array( $font_variant ) : array() ),
 					);
 					self::$gfonts[ $font_family ] = $add_font;
 				} else {
@@ -827,6 +827,7 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 			$transform_slug  = ( '' === $slug ) ? 'fontTransform' : $slug . 'Transform';
 			$decoration_slug = ( '' === $slug ) ? 'fontDecoration' : $slug . 'Decoration';
 			$style_slug      = ( '' === $slug ) ? 'fontStyle' : $slug . 'FontStyle';
+			$FontVariant     = ( '' === $slug ) ? 'fontVariant' : $slug . 'fontVariant';
 
 			$l_ht_slug      = ( '' === $slug ) ? 'lineHeight' : $slug . 'LineHeight';
 			$f_sz_slug      = ( '' === $slug ) ? 'fontSize' : $slug . 'FontSize';
@@ -842,6 +843,7 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 				'text-transform'  => $text_transform,
 				'text-decoration' => $text_decoration . '!important',
 				'font-style'      => $font_style,
+				'font-variant' => $FontVariant,
 				'font-weight'     => $attr[ $weight_slug ],
 				'font-size'       => ( isset( $attr[ $f_sz_slug ] ) ) ? self::get_css_value( $attr[ $f_sz_slug ], $attr[ $f_sz_type_slug ] ) : '',
 				'line-height'     => ( isset( $attr[ $l_ht_slug ] ) ) ? self::get_css_value( $attr[ $l_ht_slug ], $attr[ $l_ht_type_slug ] ) : '',

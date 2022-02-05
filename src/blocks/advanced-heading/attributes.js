@@ -96,6 +96,10 @@ const attributes = {
 		default: 'px',
 		isUAGStyle: true,
 	},
+	headFontVariant: {
+		type: 'string',
+		isUAGStyle: true,
+	},
 	headLineHeightType: {
 		type: 'string',
 		default: 'em',
@@ -131,6 +135,10 @@ const attributes = {
 		isUAGStyle: true,
 	},
 	subHeadFontWeight: {
+		type: 'string',
+		isUAGStyle: true,
+	},
+	subHeadFontVariant: {
 		type: 'string',
 		isUAGStyle: true,
 	},

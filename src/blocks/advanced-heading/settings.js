@@ -1,3 +1,4 @@
+
 import React, { Suspense } from 'react';
 import lazyLoader from '@Controls/lazy-loader';
 import TypographyControl from '@Components/typography';
@@ -54,6 +55,7 @@ const Settings = ( props ) => {
 		subHeadLineHeightType,
 		subHeadLineHeightMobile,
 		subHeadLineHeightTablet,
+		subHeadFontVariant,
 		headTransform,
 		headDecoration,
 		subHeadTransform,
@@ -65,7 +67,8 @@ const Settings = ( props ) => {
 		headSpace,
 		separatorSpace,
 		headLoadGoogleFonts,
-		subHeadLoadGoogleFonts
+		subHeadLoadGoogleFonts,
+		headFontVariant
 	} = attributes;
 
 	let loadHeadingGoogleFonts;
@@ -321,6 +324,10 @@ const Settings = ( props ) => {
 							value: headLineHeightTablet,
 							label: 'headLineHeightTablet',
 						} }
+						fontVariant={ {
+							value: headFontVariant,
+							label: 'headFontVariant',
+						} }
 					/>
 				</Suspense>
 				<AdvancedPopColorControl
@@ -417,6 +424,10 @@ const Settings = ( props ) => {
 						lineHeightTablet={ {
 							value: subHeadLineHeightTablet,
 							label: 'subHeadLineHeightTablet',
+						} }
+						fontVariant={ {
+							value: subHeadFontVariant,
+							label: 'subHeadFontVariant',
 						} }
 					/>
 				</Suspense>
