@@ -159,6 +159,40 @@ function FontFamilyControl( props ) {
 			height: '30px',
 		} ),
 	}
+	const customSelectVariant = {
+		container: ( provided ) => ( {
+			...provided,
+			width: '100%',
+		} ),
+		control: ( provided ) => ( {
+			...provided,
+			border: '1px solid #757575',
+			boxShadow: 'none',
+			borderRadius: '2px',
+		} ),
+		placeholder: ( provided ) => ( {
+			...provided,
+			color: '#000',
+		} ),
+		menu: ( provided ) => ( {
+			...provided,
+			color: '#000',
+		} ),
+		singleValue: ( provided ) => ( {
+			...provided,
+			color: '#000',
+			top: '50%',
+			transform: 'translateY(-61%);',
+		} ),
+		indicatorSeparator: ( provided ) => ( {
+			...provided,
+			display: 'none',
+		} ),
+		dropdownIndicator: ( provided ) => ( {
+			...provided,
+			color: '#000',
+		} ),
+	}
 	let fontFamilyValue;
 	//Push Google Fonts into stytem fonts object
 	if ( gFonts ) {
@@ -170,15 +204,6 @@ function FontFamilyControl( props ) {
 		} );
 	}
 
-	const setVariant = ( value ) => {
-		const variant = [];
-		value.forEach(function (arrayItem) {
-			variant.push(arrayItem.value);
-		});
-		props.setAttributes( {
-			[ props.fontVariant.label ]: variant,
-		} )
-	}
 	return (
 		<div className="uag-typography-font-family-options">
 			<div className="uag-typography-font-family">
@@ -250,16 +275,19 @@ function FontFamilyControl( props ) {
 				}
 			</div>
 			{ props.fontVariant && 0 !== fontVariantObj.length &&
-				<div className="uag-typography-font-variant">
+				<>
 					<label htmlFor="font-variant">{ __( 'Variant' ) }</label>
 					<Select
+						styles={customSelectVariant}
 					 	isMulti
 						placeholder={ __( 'Select' ) }
-						onChange={ ( value ) => setVariant( value ) }
+						onChange={ ( value ) => props.setAttributes( {
+							[ props.fontVariant.label ]: value,
+						} )}
 						defaultValue = { props.fontVariant.value }
 						options={ fontVariantObj }
 					/>
-				</div>
+				</>
 			}
 		</div>
 	);

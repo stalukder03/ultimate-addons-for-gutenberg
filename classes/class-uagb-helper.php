@@ -248,10 +248,6 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 						$font_variant[] = '400italic';
 					}
 				}
-			} elseif ( 'regular' === $font_variant ) {
-				$font_variant = 400;
-			} elseif ( 'italic' === $font_variant ) {
-				$font_variant = '400italic';
 			}
 
 			if ( true === $load_google_font ) {
