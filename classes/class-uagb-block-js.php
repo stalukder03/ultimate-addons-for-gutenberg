@@ -27,7 +27,7 @@ if ( ! class_exists( 'UAGB_Block_JS' ) ) {
 			$head_load_google_font = isset( $attr['headLoadGoogleFonts'] ) ? $attr['headLoadGoogleFonts'] : '';
 			$head_font_family      = isset( $attr['headFontFamily'] ) ? $attr['headFontFamily'] : '';
 			$head_font_weight      = isset( $attr['headFontWeight'] ) ? $attr['headFontWeight'] : '';
-			$head_font_variant      = isset( $attr['headFontVariant'] ) ? $attr['headFontVariant'] : '';
+			$head_font_variant     = isset( $attr['headFontVariant'] ) ? $attr['headFontVariant'] : '';
 
 			$subhead_load_google_font = isset( $attr['subHeadLoadGoogleFonts'] ) ? $attr['subHeadLoadGoogleFonts'] : '';
 			$subhead_font_family      = isset( $attr['subHeadFontFamily'] ) ? $attr['subHeadFontFamily'] : '';

@@ -251,9 +251,10 @@ function FontFamilyControl( props ) {
 			</div>
 			{ props.fontVariant && 0 !== fontVariantObj.length &&
 				<div className="uag-typography-font-variant">
+					<label htmlFor="font-variant">{ __( 'Variant' ) }</label>
 					<Select
 					 	isMulti
-						placeholder={ __( 'Select Variant' ) }
+						placeholder={ __( 'Select' ) }
 						onChange={ ( value ) => setVariant( value ) }
 						defaultValue = { props.fontVariant.value }
 						options={ fontVariantObj }
