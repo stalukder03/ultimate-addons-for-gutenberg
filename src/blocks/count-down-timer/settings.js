@@ -49,227 +49,247 @@ const Settings = ( props ) => {
 			>
 				<MultiButtonsControl
 					setAttributes={ setAttributes }
-					label={ __( 'Layout', 'ultimate-addons-for-gutenberg' ) }
+					label={ __( 'Display Type', 'ultimate-addons-for-gutenberg' ) }
 					data={ {
-						value: layout,
-						label: 'layout',
+						value: displayType,
+						label: 'displayType',
 					} }
 					onChange={ onchangeLayout }
 					options={ [
 						{
-							value: 'accordion',
+							value: 'fixed',
 							label: __(
-								'Accordion',
+								'Fixed',
 								'ultimate-addons-for-gutenberg'
 							),
 						},
 						{
-							value: 'grid',
+							value: 'evergreen',
 							label: __(
-								'Grid',
+								'Evergreen',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'recurring',
+							label: __(
+								'Recurring',
 								'ultimate-addons-for-gutenberg'
 							),
 						},
 					] }
 				/>
-				{ 'accordion' === layout && (
+				{ 'fixed' === displayType && (
 					<>
-						<ToggleControl
-							label={ __(
-								'Collapse other items',
+						<h2>
+							{ __(
+								'Due Date and Time',
 								'ultimate-addons-for-gutenberg'
 							) }
-							checked={ inactiveOtherItems }
-							onChange={ () =>
-								setAttributes( {
-									inactiveOtherItems: ! inactiveOtherItems,
-								} )
+						</h2>
+						<DateTimePicker
+							className="uagb-date-picker"
+							currentDate={ datepublish }
+							onChange={ ( value ) =>
+								setAttributes( { datepublish: value } )
+							}
+							is12Hour={ true }
+						/>
+					</>
+				) }
+				{ 'evergreen' === displayType && (
+					<>
+						<TextControl
+							label={ __(
+								'Days',
+								'ultimate-addons-for-gutenberg'
+							) }
+							value={ days }
+							onChange={ ( value ) =>
+								setAttributes( { days: value } )
 							}
 						/>
-						{ true === inactiveOtherItems && (
-							<ToggleControl
-								label={ __(
-									'Expand First Item',
-									'ultimate-addons-for-gutenberg'
-								) }
-								checked={ expandFirstItem }
-								onChange={ () =>
-									setAttributes( {
-										expandFirstItem: ! expandFirstItem,
-									} )
-								}
-							/>
-						) }
-						<ToggleControl
+						<TextControl
 							label={ __(
-								'Enable Toggle',
+								'Hours',
 								'ultimate-addons-for-gutenberg'
 							) }
-							checked={ enableToggle }
-							onChange={ () =>
-								setAttributes( {
-									enableToggle: ! enableToggle,
-								} )
+							value={ hours }
+							onChange={ ( value ) =>
+								setAttributes( { hours: value } )
+							}
+						/>
+						<TextControl
+							label={ __(
+								'Minutes',
+								'ultimate-addons-for-gutenberg'
+							) }
+							value={ minutes }
+							onChange={ ( value ) =>
+								setAttributes( { minutes: value } )
+							}
+						/>
+						<TextControl
+							label={ __(
+								'Reset Timer',
+								'ultimate-addons-for-gutenberg'
+							) }
+							value={ repeatDays }
+							onChange={ ( value ) =>
+								setAttributes( { repeatDays: value } )
+							}
+						/>
+					</>
+				) }
+				{ 'recurring' === displayType && (
+					<>
+						<TextControl
+							label={ __(
+								'Days',
+								'ultimate-addons-for-gutenberg'
+							) }
+							value={ days }
+							onChange={ ( value ) =>
+								setAttributes( { days: value } )
+							}
+						/>
+						<TextControl
+							label={ __(
+								'Hours',
+								'ultimate-addons-for-gutenberg'
+							) }
+							value={ hours }
+							onChange={ ( value ) =>
+								setAttributes( { hours: value } )
+							}
+						/>
+						<TextControl
+							label={ __(
+								'Minutes',
+								'ultimate-addons-for-gutenberg'
+							) }
+							value={ minutes }
+							onChange={ ( value ) =>
+								setAttributes( { minutes: value } )
+							}
+						/>
+						<TextControl
+							label={ __(
+								'Repeat Timer after ( days )',
+								'ultimate-addons-for-gutenberg'
+							) }
+							value={ repeatDays }
+							onChange={ ( value ) =>
+								setAttributes( { repeatDays: value } )
 							}
 						/>
 					</>
 				) }
 				<ToggleControl
 					label={ __(
-						'Enable Schema Support',
+						'Display Days',
 						'ultimate-addons-for-gutenberg'
 					) }
-					checked={ enableSchemaSupport }
+					checked={ displayDays }
 					onChange={ () =>
 						setAttributes( {
-							enableSchemaSupport: ! enableSchemaSupport,
+							displayDays: ! displayDays,
 						} )
 					}
 				/>
 				<ToggleControl
 					label={ __(
-						'Enable Separator',
+						'Display Hours',
 						'ultimate-addons-for-gutenberg'
 					) }
-					checked={ enableSeparator }
+					checked={ displayHours }
 					onChange={ () =>
-						setAttributes( { enableSeparator: ! enableSeparator } )
+						setAttributes( {
+							displayHours: ! displayHours,
+						} )
 					}
 				/>
-				<SelectControl
+				<ToggleControl
 					label={ __(
-						'Question Tag',
+						'Display Minutes',
 						'ultimate-addons-for-gutenberg'
 					) }
-					value={ headingTag }
-					onChange={ ( value ) => onchangeTag( value ) }
+					checked={ displayMinutes }
+					onChange={ () =>
+						setAttributes( {
+							displayMinutes: ! displayMinutes,
+						} )
+					}
+				/>
+				<ToggleControl
+					label={ __(
+						'Display Seconds',
+						'ultimate-addons-for-gutenberg'
+					) }
+					checked={ displaySeconds }
+					onChange={ () =>
+						setAttributes( {
+							displaySeconds: ! displaySeconds,
+						} )
+					}
+				/>
+				<ToggleControl
+					label={ __(
+						'Display Divider',
+						'ultimate-addons-for-gutenberg'
+					) }
+					checked={ displayDivider }
+					onChange={ () =>
+						setAttributes( {
+							displayDivider: ! displayDivider,
+						} )
+					}
+				/>
+				<TextControl
+					label={ __(
+						'Counter pre text',
+						'ultimate-addons-for-gutenberg'
+					) }
+					value={ preText }
+					onChange={ ( value ) =>
+						setAttributes( { preText: value } )
+					}
+				/>
+				<TextControl
+					label={ __(
+						'Counter Post text',
+						'ultimate-addons-for-gutenberg'
+					) }
+					value={ postText }
+					onChange={ ( value ) =>
+						setAttributes( { postText: value } )
+					}
+				/>
+				<MultiButtonsControl
+					setAttributes={ setAttributes }
+					label={ __( 'Countdown Layout', 'ultimate-addons-for-gutenberg' ) }
+					data={ {
+						value: countdownLayout,
+						label: 'countdownLayout',
+					} }
+					onChange={ onchangeLayout }
 					options={ [
 						{
-							value: 'span',
+							value: 'inline',
 							label: __(
-								'Span',
+								'Inline',
 								'ultimate-addons-for-gutenberg'
 							),
 						},
 						{
-							value: 'p',
-							label: __( 'P', 'ultimate-addons-for-gutenberg' ),
-						},
-						{
-							value: 'h1',
-							label: __( 'H1', 'ultimate-addons-for-gutenberg' ),
-						},
-						{
-							value: 'h2',
-							label: __( 'H2', 'ultimate-addons-for-gutenberg' ),
-						},
-						{
-							value: 'h3',
-							label: __( 'H3', 'ultimate-addons-for-gutenberg' ),
-						},
-						{
-							value: 'h4',
-							label: __( 'H4', 'ultimate-addons-for-gutenberg' ),
-						},
-						{
-							value: 'h5',
-							label: __( 'H5', 'ultimate-addons-for-gutenberg' ),
-						},
-						{
-							value: 'h6',
-							label: __( 'H6', 'ultimate-addons-for-gutenberg' ),
+							value: 'Block',
+							label: __(
+								'Block',
+								'ultimate-addons-for-gutenberg'
+							),
 						},
 					] }
 				/>
-				{ 'grid' === layout && (
-					<ResponsiveSlider
-						label={ __(
-							'Columns',
-							'ultimate-addons-for-gutenberg'
-						) }
-						data={ {
-							desktop: {
-								value: columns,
-								label: 'columns',
-								min: 1,
-								max: 6,
-							},
-							tablet: {
-								value: tcolumns,
-								label: 'tcolumns',
-								min: 1,
-								max: 4,
-							},
-							mobile: {
-								value: mcolumns,
-								label: 'mcolumns',
-								min: 1,
-								max: 2,
-							},
-						} }
-						min={ 1 }
-						max={ 6 }
-						displayUnit={ false }
-						setAttributes={ setAttributes }
-					/>
-				) }
-				{ 'grid' === layout && (
-					<MultiButtonsControl
-						setAttributes={ setAttributes }
-						label={ __(
-							'Alignment',
-							'ultimate-addons-for-gutenberg'
-						) }
-						data={ {
-							value: align,
-							label: 'align',
-						} }
-						className="uagb-multi-button-alignment-control"
-						options={ [
-							{
-								value: 'left',
-								icon: (
-									<Icon
-										icon={ renderSVG( 'fa fa-align-left' ) }
-									/>
-								),
-								tooltip: __(
-									'Left',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-							{
-								value: 'center',
-								icon: (
-									<Icon
-										icon={ renderSVG(
-											'fa fa-align-center'
-										) }
-									/>
-								),
-								tooltip: __(
-									'Center',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-							{
-								value: 'right',
-								icon: (
-									<Icon
-										icon={ renderSVG(
-											'fa fa-align-right'
-										) }
-									/>
-								),
-								tooltip: __(
-									'Right',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-						] }
-						showIcons={ true }
-					/>
-				) }
 			</UAGAdvancedPanelBody>
 		);
 	};

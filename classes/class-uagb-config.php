@@ -168,6 +168,9 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 					'uagb/advanced-heading'       => array(
 						'name' => 'advanced-heading',
 					),
+					'uagb/count-down-timer'       => array(
+						'name' => 'advanced-heading',
+					),
 					'uagb/blockquote'             => array(
 						'name' => 'blockquote',
 					),
