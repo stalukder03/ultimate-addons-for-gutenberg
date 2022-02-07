@@ -78,10 +78,6 @@ class UAGB_Astra_Compatibility {
 
 						$astra_fonts[ $gfont_values['fontfamily'] ] = $gfont_values['fontvariants'];
 
-						foreach ( $gfont_values['fontvariants'] as $key => $font_variants ) {
-
-							$astra_fonts[ $gfont_values['fontfamily'] ][ $key ] .= ',' . $font_variants . 'italic';
-						}
 					}
 				}
 			}

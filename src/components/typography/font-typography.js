@@ -5,7 +5,6 @@ import { __ } from '@wordpress/i18n';
 import { SelectControl } from '@wordpress/components';
 import googleFonts from '@Controls/fonts';
 import Select from 'react-select';
-import { checkPropTypes } from 'prop-types';
 
 const { uag_select_font_globally , uag_load_select_font_globally } = uagb_blocks_info;
 
@@ -47,7 +46,7 @@ function FontFamilyControl( props ) {
 		{ value: '200italic' , label : '200 Italic' },
 		{ value: '300'       , label : 'Light 300' },
 		{ value: '300italic' , label : '300 Italic' },
-		{ value: '400'       , label : 'Normal 400' },
+		{ value: 'regular'   , label : 'Normal 400' },
 		{ value: 'italic'    , label : '400 Italic' },
 		{ value: '500'       , label : 'Medium 500' },
 		{ value: '500italic' , label : '500 Italic' },
@@ -71,18 +70,16 @@ function FontFamilyControl( props ) {
 		} );
 	}
 
-
-	console.log(props.fontVariant.value);
-
 	const onFontfamilyChange = ( value ) => {
 		const font = value.value;
 		const { loadGoogleFonts, fontFamily, fontWeight, fontVariant } = props; // eslint-disable-line no-shadow
 		props.setAttributes( { [ fontFamily.label ]: font } );
+		props.setAttributes( { [ fontVariant.label ]: [] } );
 		onLoadGoogleFonts( loadGoogleFonts, font );
-		onFontChange( fontWeight, font, fontVariant );
+		onFontChange( fontWeight, font );
 	};
 
-	const onFontChange = ( fontWeight, fontFamily, fontVariant ) => { // eslint-disable-line no-shadow
+	const onFontChange = ( fontWeight, fontFamily ) => { // eslint-disable-line no-shadow
 		let font_flag;  // eslint-disable-line no-unused-vars
 		let new_value;
 
@@ -98,23 +95,6 @@ function FontFamilyControl( props ) {
 						font_flag = true;
 						props.setAttributes( {
 							[ props.fontWeight.label ]: new_value,
-						} );
-					}
-				} );
-			}
-		}
-		if ( typeof googleFonts[ fontFamily ] === 'object' ) {
-			const gfontsObj = googleFonts[ fontFamily ].v;
-
-			if ( typeof gfontsObj === 'object' ) {
-				gfontsObj.forEach( function ( item ) {
-					if ( fontVariant.value === item ) {
-						font_flag = false;
-					} else {
-						new_value = item;
-						font_flag = true;
-						props.setAttributes( {
-							[ props.fontVariant.label ]: new_value,
 						} );
 					}
 				} );
@@ -189,6 +169,16 @@ function FontFamilyControl( props ) {
 			}
 		} );
 	}
+
+	const setVariant = ( value ) => {
+		const variant = [];
+		value.forEach(function (arrayItem) {
+			variant.push(arrayItem.value);
+		});
+		props.setAttributes( {
+			[ props.fontVariant.label ]: variant,
+		} )
+	}
 	return (
 		<div className="uag-typography-font-family-options">
 			<div className="uag-typography-font-family">
@@ -260,16 +250,13 @@ function FontFamilyControl( props ) {
 				}
 			</div>
 			{ props.fontVariant && 0 !== fontVariantObj.length &&
-				<div className="uag-typography-font-family">
-					<SelectControl
-						label={ __( 'Variant', 'ultimate-addons-for-gutenberg' ) }
-						onChange={ ( value ) =>
-							props.setAttributes( {
-								[ props.fontVariant.label ]: value,
-							} )
-						}
+				<div className="uag-typography-font-variant">
+					<Select
+					 	isMulti
+						placeholder={ __( 'Select Variant' ) }
+						onChange={ ( value ) => setVariant( value ) }
+						defaultValue = { props.fontVariant.value }
 						options={ fontVariantObj }
-						value={ props.fontVariant.value }
 					/>
 				</div>
 			}

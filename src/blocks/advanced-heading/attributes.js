@@ -97,7 +97,7 @@ const attributes = {
 		isUAGStyle: true,
 	},
 	headFontVariant: {
-		type: 'string',
+		type: 'array',
 		isUAGStyle: true,
 	},
 	headLineHeightType: {

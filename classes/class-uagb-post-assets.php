@@ -557,9 +557,6 @@ class UAGB_Post_Assets {
 			if ( ! empty( $gfont_values['fontvariants'] ) ) {
 				$fonts_attr .= ':';
 				$fonts_attr .= implode( ',', $gfont_values['fontvariants'] );
-				foreach ( $gfont_values['fontvariants'] as $key => $font_variants ) {
-					$fonts_attr .= ',' . $font_variants . 'italic';
-				}
 			}
 		}
 
