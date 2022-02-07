@@ -227,7 +227,7 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 		 * @param array $font_weight the blocks attr.
 		 * @param array $font_variant the blocks attr.
 		 */
-		public static function blocks_google_font( $load_google_font, $font_family, $font_weight, $font_variant = array() ) {
+		public static function blocks_google_font( $load_google_font, $font_family, $font_weight, $font_variant = '' ) {
 
 			if ( is_array( $font_variant ) ) {
 				$regularKey = array_search( 'regular', $font_variant, true );

@@ -276,15 +276,12 @@ function FontFamilyControl( props ) {
 			</div>
 			{ props.fontVariant && 0 !== fontVariantObj.length &&
 				<>
-					<label htmlFor="font-variant">{ __( 'Variant' ) }</label>
-					<Select
-						styles={customSelectVariant}
-					 	isMulti
-						placeholder={ __( 'Select' ) }
+					<SelectControl
+					 	label={ __( 'Variant', 'ultimate-addons-for-gutenberg' ) }
 						onChange={ ( value ) => props.setAttributes( {
 							[ props.fontVariant.label ]: value,
 						} )}
-						defaultValue = { props.fontVariant.value }
+						value = { props.fontVariant.value }
 						options={ fontVariantObj }
 					/>
 				</>
