@@ -1,6 +1,6 @@
 import { SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { useEffect, useState } from '@wordpress/element';
+import { useState } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 import styles from './editor.lazy.scss';
 import React, { useLayoutEffect } from 'react';

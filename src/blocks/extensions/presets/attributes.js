@@ -4,10 +4,6 @@ const UAGPROPresetsAttribute = (settings, name) => {
 			defaultPreset: {
 				type: 'string',
 				default: ''
-			},
-			presets: {
-				type: 'array',
-				default: []
 			}
 		});
 	}

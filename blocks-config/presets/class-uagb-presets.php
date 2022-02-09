@@ -5,7 +5,6 @@
  * @package UAGB
  */
 
-use PhpParser\Node\Expr\Print_;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.

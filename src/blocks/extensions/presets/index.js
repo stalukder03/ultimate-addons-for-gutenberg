@@ -6,7 +6,7 @@ import { select } from '@wordpress/data';
 import './attributes'
 
 const getChangeAttributes = (defaultAttributes, attributes) => {
-	const excludeAttributeList = ['block_id', 'presets', 'dynamicContent']
+	const excludeAttributeList = ['block_id', 'dynamicContent']
 	return Object.entries(attributes).reduce((acc, entry) => {
 		if(!excludeAttributeList.includes(entry[0])){
 			const currentValue = defaultAttributes[entry[0]]
@@ -48,6 +48,7 @@ const UAGPRORegisterPresets = (content, defaultAttributes, setPresets, setAttrib
 			},
 		} ).then( ( preset ) => {
 			setPresets((prevState) => [...prevState, preset])
+			setPresetName('')
 			closeModal();
 		} );
 	}
