@@ -36,6 +36,38 @@ const Settings = ( props ) => {
 
 	const { attributes, setAttributes } = props;
 	const {
+		displayType,
+		datePublish,
+		days,
+		hours,
+		minutes,
+		repeatDays,
+		displayDays,
+		displayHours,
+		displayMinutes,
+		displaySeconds,
+		displayDivider,
+		preText,
+		postText,
+		countdownLayout,
+		counterStyle,
+		borderStyle,
+		borderWidth,
+		borderRadius,
+		borderColor,
+		borderHoverColor,
+		separator,
+		flashAnimation,
+		separatorColor,
+		align,
+		widthSize,
+		widthSizeTablet,
+		widthSizeMobile,
+		widthType,
+		spacingBetweenItems,
+		spacingDigitItems,
+		paddingSpacingLink,
+		answerTextColor,
 
 	} = attributes;
 
@@ -89,9 +121,9 @@ const Settings = ( props ) => {
 						</h2>
 						<DateTimePicker
 							className="uagb-date-picker"
-							currentDate={ datepublish }
+							currentDate={ datePublish }
 							onChange={ ( value ) =>
-								setAttributes( { datepublish: value } )
+								setAttributes( { datePublish: value } )
 							}
 							is12Hour={ true }
 						/>
@@ -301,10 +333,10 @@ const Settings = ( props ) => {
 			>
 				<SelectControl
 					label={ __(
-						'Question Tag',
+						'Select Style',
 						'ultimate-addons-for-gutenberg'
 					) }
-					value={ headingTag }
+					value={ counterStyle }
 					onChange={ ( value ) => onchangeTag( value ) }
 					options={ [
 						{
@@ -364,10 +396,10 @@ const Settings = ( props ) => {
 						'Separator',
 						'ultimate-addons-for-gutenberg'
 					) }
-					checked={ displayHours }
+					checked={ separator }
 					onChange={ () =>
 						setAttributes( {
-							displayHours: ! displayHours,
+							separator: ! separator,
 						} )
 					}
 				/>
@@ -376,21 +408,21 @@ const Settings = ( props ) => {
 						'Flash Animation',
 						'ultimate-addons-for-gutenberg'
 					) }
-					checked={ displayHours }
+					checked={ flashAnimation }
 					onChange={ () =>
 						setAttributes( {
-							displayHours: ! displayHours,
+							flashAnimation: ! flashAnimation,
 						} )
 					}
 				/>
 				<AdvancedPopColorControl
 					label={ __(
-						'Text Color',
+						'Separator Color',
 						'ultimate-addons-for-gutenberg'
 					) }
-					colorValue={ questionTextColor }
+					colorValue={ separatorColor }
 					onColorChange={ ( value ) =>
-						setAttributes( { questionTextColor: value } )
+						setAttributes( { separatorColor: value } )
 					}
 				/>
 				<MultiButtonsControl
@@ -457,26 +489,26 @@ const Settings = ( props ) => {
 				className="uagb__url-panel-body"
 			>
 				<ResponsiveSlider
-					label={ __( 'Size', 'ultimate-addons-for-gutenberg' ) }
+					label={ __( 'Container width', 'ultimate-addons-for-gutenberg' ) }
 					data={ {
 						desktop: {
-							value: iconSize,
-							label: 'iconSize',
+							value: widthSize,
+							label: 'widthSize',
 						},
 						tablet: {
-							value: iconSizeTablet,
-							label: 'iconSizeTablet',
+							value: widthSizeTablet,
+							label: 'widthSizeTablet',
 						},
 						mobile: {
-							value: iconSizeMobile,
-							label: 'iconSizeMobile',
+							value: widthSizeMobile,
+							label: 'widthSizeMobile',
 						},
 					} }
 					min={ 0 }
 					max={ 100 }
 					unit={ {
-						value: iconSizeType,
-						label: 'iconSizeType',
+						value: widthType,
+						label: 'widthType',
 					} }
 					units={ [
 						{
@@ -495,13 +527,13 @@ const Settings = ( props ) => {
 				/>
 				<Range
 					label={ __(
-						'Gap between Icon and Question',
+						'Spacing between items',
 						'ultimate-addons-for-gutenberg'
 					) }
 					setAttributes={ setAttributes }
-					value={ gapBtwIconQUestion }
+					value={ spacingBetweenItems }
 					onChange={ ( value ) =>
-						setAttributes( { gapBtwIconQUestion: value } )
+						setAttributes( { spacingBetweenItems: value } )
 					}
 					min={ 0 }
 					max={ 100 }
@@ -509,13 +541,13 @@ const Settings = ( props ) => {
 				/>
 				<Range
 					label={ __(
-						'Gap between Icon and Question',
+						'Spacing between digits and items',
 						'ultimate-addons-for-gutenberg'
 					) }
 					setAttributes={ setAttributes }
-					value={ gapBtwIconQUestion }
+					value={ spacingDigitItems }
 					onChange={ ( value ) =>
-						setAttributes( { gapBtwIconQUestion: value } )
+						setAttributes( { spacingDigitItems: value } )
 					}
 					min={ 0 }
 					max={ 100 }
@@ -525,70 +557,70 @@ const Settings = ( props ) => {
 					{ ...props }
 					label={ __( 'Padding', 'ultimate-addons-for-gutenberg' ) }
 					valueTop={ {
-						value: vquestionPaddingDesktop,
-						label: 'vquestionPaddingDesktop',
+						value: paddingTop,
+						label: 'paddingTop',
 					} }
 					valueRight={ {
-						value: hquestionPaddingDesktop,
-						label: 'hquestionPaddingDesktop',
+						value: paddingRight,
+						label: 'paddingRight',
 					} }
 					valueBottom={ {
-						value: questionBottomPaddingDesktop,
-						label: 'questionBottomPaddingDesktop',
+						value: paddingBottom,
+						label: 'paddingBottom',
 					} }
 					valueLeft={ {
-						value: questionLeftPaddingDesktop,
-						label: 'questionLeftPaddingDesktop',
+						value: paddingLeft,
+						label: 'paddingLeft',
 					} }
 					valueTopTablet={ {
-						value: vquestionPaddingTablet,
-						label: 'vquestionPaddingTablet',
+						value: paddingTopTablet,
+						label: 'paddingTopTablet',
 					} }
 					valueRightTablet={ {
-						value: hquestionPaddingTablet,
-						label: 'hquestionPaddingTablet',
+						value: paddingRightTablet,
+						label: 'paddingRightTablet',
 					} }
 					valueBottomTablet={ {
-						value: questionBottomPaddingTablet,
-						label: 'questionBottomPaddingTablet',
+						value: paddingBottomTablet,
+						label: 'paddingBottomTablet',
 					} }
 					valueLeftTablet={ {
-						value: questionLeftPaddingTablet,
-						label: 'questionLeftPaddingTablet',
+						value: paddingLeftTablet,
+						label: 'paddingLeftTablet',
 					} }
 					valueTopMobile={ {
-						value: vquestionPaddingMobile,
-						label: 'vquestionPaddingMobile',
+						value: paddingTopMobile,
+						label: 'paddingTopMobile',
 					} }
 					valueRightMobile={ {
-						value: hquestionPaddingMobile,
-						label: 'hquestionPaddingMobile',
+						value: paddingRightMobile,
+						label: 'paddingRightMobile',
 					} }
 					valueBottomMobile={ {
-						value: questionBottomPaddingMobile,
-						label: 'questionBottomPaddingMobile',
+						value: paddingBottomMobile,
+						label: 'paddingBottomMobile',
 					} }
 					valueLeftMobile={ {
-						value: questionLeftPaddingMobile,
-						label: 'questionLeftPaddingMobile',
+						value: paddingLeftMobile,
+						label: 'paddingLeftMobile',
 					} }
 					unit={ {
-						value: questionPaddingTypeDesktop,
-						label: 'questionPaddingTypeDesktop',
+						value: paddingTypeDesktop,
+						label: 'paddingTypeDesktop',
 					} }
 					mUnit={ {
-						value: questionPaddingTypeMobile,
-						label: 'questionPaddingTypeMobile',
+						value: paddingTypeMobile,
+						label: 'paddingTypeMobile',
 					} }
 					tUnit={ {
-						value: questionPaddingTypeTablet,
-						label: 'questionPaddingTypeTablet',
+						value: paddingTypeTablet,
+						label: 'paddingTypeTablet',
 					} }
 					attributes={ attributes }
 					setAttributes={ setAttributes }
 					link={ {
-						value: questionSpacingLink,
-						label: 'questionSpacingLink',
+						value: paddingSpacingLink,
+						label: 'paddingSpacingLink',
 					} }
 					units={ [
 						{
@@ -609,7 +641,7 @@ const Settings = ( props ) => {
 	const preTextSettings = () => {
 		return (
 			<UAGAdvancedPanelBody
-				title={ __( 'Answer', 'ultimate-addons-for-gutenberg' ) }
+				title={ __( 'Pre', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 				className="uagb__url-panel-body"
 			>
@@ -618,9 +650,9 @@ const Settings = ( props ) => {
 						'Text Color',
 						'ultimate-addons-for-gutenberg'
 					) }
-					colorValue={ answerTextColor }
+					colorValue={ preTextColor }
 					onColorChange={ ( value ) =>
-						setAttributes( { answerTextColor: value } )
+						setAttributes( { preTextColor: value } )
 					}
 				/>
 				<TypographyControl
