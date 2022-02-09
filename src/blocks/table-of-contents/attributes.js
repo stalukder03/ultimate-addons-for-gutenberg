@@ -67,7 +67,6 @@ const attributes = {
 	},
 	align: {
 		type: 'string',
-		default: 'left',
 		isUAGStyle: true,
 	},
 	headerLinks: {

@@ -90,7 +90,10 @@ const UAGBTableOfContentsEdit = ( props ) => {
 			rightPaddingMobile,
 			bottomPaddingMobile,
 			leftPaddingMobile,
+			align,
 		} = attributes;
+
+		console.log(align)
 
 		//Padding
 		if ( vPaddingDesktop ) {
@@ -101,7 +104,7 @@ const UAGBTableOfContentsEdit = ( props ) => {
 				setAttributes( { bottomPadding: vPaddingDesktop } );
 			}
 		}
-		
+
 		if ( hPaddingDesktop ) {
 			if ( undefined === rightPadding ) {
 				setAttributes( { rightPadding: hPaddingDesktop } );
@@ -203,7 +206,7 @@ const UAGBTableOfContentsEdit = ( props ) => {
 		const blockStyling = styling( props );
 
 		addBlockEditorDynamicStyles( 'uagb-style-toc-' + props.clientId.substr( 0, 8 ), blockStyling );
-		
+
 	}, [ props ] );
 
 	useEffect( () => {
@@ -211,7 +214,7 @@ const UAGBTableOfContentsEdit = ( props ) => {
 		const blockStyling = styling( props );
 
 		addBlockEditorDynamicStyles( 'uagb-style-toc-' + props.clientId.substr( 0, 8 ), blockStyling );
-		
+
 	}, [ deviceType ] );
 
 	const { scrollToTop } = props.attributes;
