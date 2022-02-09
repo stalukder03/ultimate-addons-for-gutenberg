@@ -32,7 +32,6 @@ const UAGPresets = ( props ) => {
 
 
     const updatePresets = ( selectedPreset ) => {
-
         setPreset( selectedPreset );
         if ( availablePresets ) {
             availablePresets.map( ( preset ) => {
@@ -95,10 +94,17 @@ const UAGPresets = ( props ) => {
 		return (
             <>
                 <input key={key} className="uag-presets-radio-input" type="radio" value={key} checked={checked} onChange={() => updatePresets( key )} onClick={() => updatePresets( key )}/>
-                <label htmlFor={key} className="uag-presets-radio-input-label">
-                    <span dangerouslySetInnerHTML={{
-                        __html: preset.icon
-                    }}/>
+				<label htmlFor={key} className="uag-presets-radio-input-label">
+                    {
+						preset.icon ? (
+								<span dangerouslySetInnerHTML={{
+								__html: preset.icon
+									}}
+								/>
+							) : (
+							<span className='custom-preset'>{preset.label}</span>
+						)
+					}
                     <span className="uag-presets-radio-image-clickable" onClick={() => updatePresets( key )} title={preset.label}></span> { /* eslint-disable-line */ }
                 </label>
             </>

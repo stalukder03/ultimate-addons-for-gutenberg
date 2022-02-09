@@ -5,6 +5,8 @@
  * @package UAGB
  */
 
+use PhpParser\Node\Expr\Print_;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
@@ -32,6 +34,9 @@ if ( ! class_exists( 'UAGB_Presets' ) ) {
 		 * @since 0.0.1
 		 */
 		private $namespace = 'uagpro/v1';
+
+
+		private $option_key = 'uagpro_presets';
 
 
 		/**
@@ -85,6 +90,9 @@ if ( ! class_exists( 'UAGB_Presets' ) ) {
 							return current_user_can( 'edit_posts' );
 						},
 						'args'                => array(
+							'block_name' => array(
+								'sanitize_callback' => 'sanitize_text_field',
+							),
 							'label' => array(
 								'sanitize_callback' => 'sanitize_text_field',
 							),
@@ -115,15 +123,37 @@ if ( ! class_exists( 'UAGB_Presets' ) ) {
 			);
 		}
 
-		public function get_presets(){
+		public function get_presets($request){
+			$block_name = $request->get_param('block_name');
+			$response = [];
+			if($block_name){
+				$presets = json_decode(get_option($this->option_key, '{}'), true);
+				$response = (isset($presets[$block_name]) ? $presets[$block_name] : []);
+			}
+			return new \WP_REST_Response( $response, 200 );
+		}
+
+		public function create_preset($request){
+			$params = $request->get_params();
+			$block_name = (isset($params['block_name']) ? sanitize_text_field($params['block_name']) : '');
+			$label = (isset($params['label']) ? sanitize_text_field($params['label']) : '');
+			$value = (isset($params['value']) ? sanitize_text_field($params['value']) : '');
+			$attributes = (isset($params['attributes']) ? rest_sanitize_array($params['attributes']) : []);
+			if($block_name){
+				$current_value = json_decode(get_option($this->option_key, '{}'), true);
+				$preset = array(
+					'label' 		=> $label,
+					'value' 		=> $value,
+					'attributes' 	=> $attributes,
+				);
+				$current_value[$block_name][] = $preset;
+				update_option($this->option_key, json_encode($current_value));
+				return new \WP_REST_Response( $preset, 200 );
+			}
 			return new \WP_REST_Response( [], 200 );
 		}
 
-		public function create_preset(){
-			return new \WP_REST_Response( [], 200 );
-		}
-
-		public function delete_preset(){
+		public function delete_preset($request){
 			return new \WP_REST_Response( [], 200 );
 		}
 
