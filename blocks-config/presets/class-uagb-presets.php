@@ -114,8 +114,8 @@ if ( ! class_exists( 'UAGB_Presets' ) ) {
 							'block_name' => array(
 								'sanitize_callback' => 'sanitize_text_field',
 							),
-							'preset_id' => array(
-								'sanitize_callback' => 'absint',
+							'preset_key' => array(
+								'sanitize_callback' => 'sanitize_text_field',
 							),
 						),
 					)
@@ -154,7 +154,24 @@ if ( ! class_exists( 'UAGB_Presets' ) ) {
 		}
 
 		public function delete_preset($request){
-			return new \WP_REST_Response( [], 200 );
+			$params = $request->get_params();
+			$block_name = (isset($params['block_name']) ? $params['block_name'] : '');
+			$preset_key = (isset($params['preset_key']) ? $params['preset_key'] : '');
+			$is_delete = false;
+			if($block_name && $preset_key){
+				$current_value = json_decode(get_option($this->option_key, '{}'), true);
+				$selected_block_preset = [];
+				if(is_array($current_value[$block_name])){
+					foreach($current_value[$block_name] as $item){
+						if($item['value'] !== $preset_key){
+							$selected_block_preset[] = $item;
+						}
+					}
+				}
+				$current_value[$block_name] = $selected_block_preset;
+				$is_delete = update_option($this->option_key, wp_json_encode($current_value));
+			}
+			return new \WP_REST_Response( $is_delete, 200 );
 		}
 
 	}

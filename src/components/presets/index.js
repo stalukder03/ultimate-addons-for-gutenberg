@@ -1,6 +1,7 @@
 import { SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useEffect, useState } from '@wordpress/element';
+import apiFetch from '@wordpress/api-fetch';
 import styles from './editor.lazy.scss';
 import React, { useLayoutEffect } from 'react';
 import { select, dispatch } from '@wordpress/data';
@@ -24,7 +25,7 @@ const UAGPresets = ( props ) => {
     } = props;
 
 	const { getSelectedBlock } = select("core/block-editor");
-	const { attributes } = getSelectedBlock();
+	const { name, attributes } = getSelectedBlock();
 
 	const [availablePresets, setAvailablePresets] = useState(attributes.presets ? [...attributes.presets, ...presets] : presets);
 	const [ selectedPresetState, setPreset ] = useState( '' );
@@ -55,6 +56,28 @@ const UAGPresets = ( props ) => {
             } );
         }
     }
+
+	const deletePreset = (key) => {
+		if(confirm('Are you sure?')){
+			apiFetch( {
+				path: '/uagpro/v1/presets',
+				method: 'DELETE',
+				data: {
+					block_name: name,
+					preset_key: key,
+				},
+			} ).then( ( status ) => {
+				if(status){
+					setAvailablePresets(availablePresets.reduce((acc, item) => {
+						if(item.value !== key){
+							acc.push(item)
+						}
+						return acc;
+					}, []))
+				}
+			} );
+		}
+	}
 
     const updateChildBlockAttributes = ( preset ) => {
 
@@ -102,7 +125,12 @@ const UAGPresets = ( props ) => {
 									}}
 								/>
 							) : (
-							<span className='custom-preset'>{preset.label}</span>
+							<span className='custom-preset'>
+								<span className='custom-preset__icon'>
+									<span className="dashicons dashicons-trash" onClick={() => deletePreset(key)}></span>
+								</span>
+								<span className='custom-preset__text'>{preset.label}</span>
+							</span>
 						)
 					}
                     <span className="uag-presets-radio-image-clickable" onClick={() => updatePresets( key )} title={preset.label}></span> { /* eslint-disable-line */ }
