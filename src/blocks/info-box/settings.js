@@ -31,7 +31,9 @@ import {
 	Icon
 } from '@wordpress/components';
 import renderSVG from '@Controls/renderIcon';
-let imageSizeOptions = [
+import defaultAttributes from './attributes';
+
+ let imageSizeOptions = [
 	{
 		value: 'thumbnail',
 		label: __( 'Thumbnail', 'ultimate-addons-for-gutenberg' ),
@@ -2118,6 +2120,7 @@ const Settings = ( props ) => {
 					initialOpen={ true }
 				>
 					<UAGPresets
+						defaultAttributes = { defaultAttributes }
 						setAttributes = { setAttributes }
 						presets = { presets }
 						presetInputType = 'radioImage'
