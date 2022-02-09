@@ -429,6 +429,10 @@ if ( ! class_exists( 'UAGB_Table_Of_Content' ) ) {
 				return $value;
 			};
 
+			$align;
+
+			var_dump(isset( $attributes['headingAlignment'] ));
+
 			$wrap = array(
 				'wp-block-uagb-table-of-contents',
 				'uagb-toc__align-' . $attributes['align'],
@@ -537,6 +541,9 @@ if ( ! class_exists( 'UAGB_Table_Of_Content' ) ) {
 									'align'                => array(
 										'type'    => 'string',
 										'default' => 'left',
+									),
+									'headingAlignment'                => array(
+										'type'    => 'string',
 									),
 									'heading'              => array(
 										'type'     => 'string',

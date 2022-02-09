@@ -90,10 +90,12 @@ const UAGBTableOfContentsEdit = ( props ) => {
 			rightPaddingMobile,
 			bottomPaddingMobile,
 			leftPaddingMobile,
-			align,
+			headingAlignment
 		} = attributes;
 
-		console.log(align)
+		if( headingAlignment ){
+			setAttributes( { align: headingAlignment } );
+		}
 
 		//Padding
 		if ( vPaddingDesktop ) {

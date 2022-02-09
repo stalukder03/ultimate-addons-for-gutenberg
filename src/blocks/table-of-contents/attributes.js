@@ -67,6 +67,7 @@ const attributes = {
 	},
 	align: {
 		type: 'string',
+		default: 'left',
 		isUAGStyle: true,
 	},
 	headerLinks: {
@@ -620,6 +621,10 @@ const attributes = {
 	headingDecoration: {
 		type: 'string',
 		isUAGStyle: true,
+	},
+	headingAlignment: {
+		type: 'string',
+		default: 'left'
 	},
 };
 
