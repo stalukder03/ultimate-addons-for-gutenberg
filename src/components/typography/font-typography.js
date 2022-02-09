@@ -144,7 +144,7 @@ function FontFamilyControl( props ) {
 			...provided,
 			color: '#000',
 			top: '50%',
-			transform: 'translateY(-50%);',
+			transform: 'translateY(-61%);',
 		} ),
 		indicatorSeparator: ( provided ) => ( {
 			...provided,
@@ -159,40 +159,7 @@ function FontFamilyControl( props ) {
 			height: '30px',
 		} ),
 	}
-	const customSelectVariant = {
-		container: ( provided ) => ( {
-			...provided,
-			width: '100%',
-		} ),
-		control: ( provided ) => ( {
-			...provided,
-			border: '1px solid #757575',
-			boxShadow: 'none',
-			borderRadius: '2px',
-		} ),
-		placeholder: ( provided ) => ( {
-			...provided,
-			color: '#000',
-		} ),
-		menu: ( provided ) => ( {
-			...provided,
-			color: '#000',
-		} ),
-		singleValue: ( provided ) => ( {
-			...provided,
-			color: '#000',
-			top: '50%',
-			transform: 'translateY(-61%);',
-		} ),
-		indicatorSeparator: ( provided ) => ( {
-			...provided,
-			display: 'none',
-		} ),
-		dropdownIndicator: ( provided ) => ( {
-			...provided,
-			color: '#000',
-		} ),
-	}
+
 	let fontFamilyValue;
 	//Push Google Fonts into stytem fonts object
 	if ( gFonts ) {

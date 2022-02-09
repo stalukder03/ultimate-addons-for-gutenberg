@@ -228,8 +228,9 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 		 * @param array $font_variant the blocks attr.
 		 */
 		public static function blocks_google_font( $load_google_font, $font_family, $font_weight, $font_variant = '' ) {
+			$fontVariant = array();
 
-			if( isset( $font_variant ) ){
+			if( isset( $font_variant ) && '' !== $font_variant ){
 				if( 'regular' === $font_variant ) {
 					$fontVariant[] = 400;
 				}else if( 'italic' === $font_variant ){
@@ -246,9 +247,10 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 					if ( ! in_array( $font_weight, $fontVariant ) ) {
 						$fontVariant[] = $font_weight;
 					}
+
 					$add_font                     = array(
 						'fontfamily'   => $font_family,
-						'fontvariants' => ( isset( $fontVariant ) && ! empty( $fontVariant ) ? $fontVariant : array() ),
+						'fontvariants' => ( isset( $fontVariant ) && ! empty( $fontVariant ) ? $fontVariant : '' ),
 					);
 					self::$gfonts[ $font_family ] = $add_font;
 				} else {
@@ -840,7 +842,7 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 			$transform_slug  = ( '' === $slug ) ? 'fontTransform' : $slug . 'Transform';
 			$decoration_slug = ( '' === $slug ) ? 'fontDecoration' : $slug . 'Decoration';
 			$style_slug      = ( '' === $slug ) ? 'fontStyle' : $slug . 'FontStyle';
-			$FontVariant     = ( '' === $slug ) ? 'fontVariant' : $slug . 'fontVariant';
+			$font_variant     = ( '' === $slug ) ? 'fontVariant' : $slug . 'fontVariant';
 
 			$l_ht_slug      = ( '' === $slug ) ? 'lineHeight' : $slug . 'LineHeight';
 			$f_sz_slug      = ( '' === $slug ) ? 'fontSize' : $slug . 'FontSize';
@@ -856,7 +858,7 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 				'text-transform'  => $text_transform,
 				'text-decoration' => $text_decoration . '!important',
 				'font-style'      => $font_style,
-				'font-variant'    => $FontVariant,
+				'font-variant'    => $font_variant,
 				'font-weight'     => $attr[ $weight_slug ],
 				'font-size'       => ( isset( $attr[ $f_sz_slug ] ) ) ? self::get_css_value( $attr[ $f_sz_slug ], $attr[ $f_sz_type_slug ] ) : '',
 				'line-height'     => ( isset( $attr[ $l_ht_slug ] ) ) ? self::get_css_value( $attr[ $l_ht_slug ], $attr[ $l_ht_type_slug ] ) : '',
