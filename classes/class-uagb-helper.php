@@ -228,15 +228,15 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 		 * @param array $font_variant the blocks attr.
 		 */
 		public static function blocks_google_font( $load_google_font, $font_family, $font_weight, $font_variant = '' ) {
-			$fontVariant = array();
+			$font_attr = array();
 
 			if( isset( $font_variant ) && '' !== $font_variant ){
 				if( 'regular' === $font_variant ) {
-					$fontVariant[] = 400;
+					$font_attr[] = 400;
 				}else if( 'italic' === $font_variant ){
-					$fontVariant[] = '400italic';
+					$font_attr[] = '400italic';
 				}else{
-					$fontVariant[] = $font_variant;
+					$font_attr[] = $font_variant;
 				}
 			}
 
@@ -244,13 +244,13 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 
 				if ( ! array_key_exists( $font_family, self::$gfonts ) ) {
 
-					if ( ! in_array( $font_weight, $fontVariant ) ) {
-						$fontVariant[] = $font_weight;
+					if ( ! in_array( $font_weight, $font_attr ) ) {
+						$font_attr[] = $font_weight;
 					}
 
 					$add_font                     = array(
 						'fontfamily'   => $font_family,
-						'fontvariants' => ( isset( $fontVariant ) && ! empty( $fontVariant ) ? $fontVariant : '' ),
+						'fontvariants' => ( isset( $font_attr ) && ! empty( $font_attr ) ? $font_attr : '' ),
 					);
 					self::$gfonts[ $font_family ] = $add_font;
 				} else {
