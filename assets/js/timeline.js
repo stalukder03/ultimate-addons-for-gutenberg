@@ -5,7 +5,14 @@ document.addEventListener( 'UAGTimelineEditor', uagbTimelineInit );
 // Callback function for all event listeners.
 function uagbTimelineInit() {
 
-	const timeline = document.querySelectorAll( '.uagb-timeline' );
+	const iframeEl = document.querySelector( `iframe[name='editor-canvas']` );
+	let mainDiv;
+	if( iframeEl ){
+		mainDiv = iframeEl.contentDocument.querySelectorAll( '.uagb-timeline' );
+	} else {
+		mainDiv = document.querySelectorAll( '.uagb-timeline' );
+	}
+	const timeline = mainDiv;
 	if ( timeline.length === 0 ) {
 		return;
 	}
@@ -31,7 +38,7 @@ function uagbTimelineInit() {
 
 			lineOuter.style.bottom = timelineEndIcon?.offsetTop + 'px';
 			parentTop = lastItemTop - timelineStartIcon?.offsetTop;
-			lastItem = parentTop + timelineEndIcon?.offsetTop;
+			lastItem = parentTop + timelineEndIcon?.getBoundingClientRect().top;
 
 		} else if ( content.classList.contains( 'uagb-timeline__arrow-top' ) ) {
 
@@ -53,11 +60,11 @@ function uagbTimelineInit() {
 		const viewportHeight = document.documentElement.clientHeight;
 
 		const viewportHeightHalf = viewportHeight / 2 + connectorHeight;
-		const elementPos = content.offsetTop;
+		const elementPos = ( content.getBoundingClientRect().top + document.documentElement.scrollTop + content.offsetTop );
 
 		const newElementPos = elementPos + timelineStartIcon?.offsetTop;
 
-		let photoViewportOffsetTop = newElementPos - window.pageYOffset;
+		let photoViewportOffsetTop = newElementPos - document.documentElement.scrollTop;
 
 		if ( photoViewportOffsetTop < 0 ) {
 			photoViewportOffsetTop = Math.abs( photoViewportOffsetTop );
@@ -87,7 +94,7 @@ function uagbTimelineInit() {
 			elementEnd
 		) {
 			if ( 0 > photoViewportOffsetTop ) {
-				lineInner.style.height = ( viewportHeightHalf - Math.abs( photoViewportOffsetTop ) ) + 'px';
+				lineInner.style.height = ( viewportHeightHalf - Math.abs( photoViewportOffsetTop ) ) + 'px';	
 			} else {
 				lineInner.style.height = ( viewportHeightHalf + photoViewportOffsetTop ) + 'px';
 			}
@@ -113,8 +120,8 @@ function uagbTimelineInit() {
 			timelineIconPos = timelineIcon[j].lastElementChild.getBoundingClientRect().top + window.scrollY;
 			timelineCardPos = animateBorder[j].lastElementChild.getBoundingClientRect().top + window.scrollY;
 			
-			timelineIconTop = timelineIconPos - window.pageYOffset;
-			timelineCardTop = timelineCardPos - window.pageYOffset;
+			timelineIconTop = timelineIconPos - document.documentElement.scrollTop;
+			timelineCardTop = timelineCardPos - document.documentElement.scrollTop;
 
 			if ( ( timelineCardTop ) < ( viewportHeightHalf ) ) {
 				animateBorder[j].classList.remove( 'out-view' );

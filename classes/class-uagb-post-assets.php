@@ -300,9 +300,6 @@ class UAGB_Post_Assets {
 			}
 		}
 
-		if ( is_active_sidebar( 'sidebar-1' ) || is_active_sidebar( 'header-widget' ) || is_active_sidebar( 'footer-widget-1' ) || is_active_sidebar( 'footer-widget-2' ) ) {
-			return true;
-		}
 
 		// If version is updated, return true.
 		if ( $version_updated ) {
@@ -995,8 +992,9 @@ class UAGB_Post_Assets {
 			$file_name = $old_file_name;
 		}
 
-		$base_file_path = $uploads_dir['path'] . 'assets/' . $type . '/';
-		$file_path      = $uploads_dir['path'] . 'assets/' . $type . '/' . $file_name;
+		$folder_name    = UAGB_Scripts_Utils::get_asset_folder_name( $this->post_id );
+		$base_file_path = $uploads_dir['path'] . 'assets/' . $folder_name . '/';
+		$file_path      = $uploads_dir['path'] . 'assets/' . $folder_name . '/' . $file_name;
 
 		$result = false;
 
