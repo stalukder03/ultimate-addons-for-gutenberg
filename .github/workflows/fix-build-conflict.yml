@@ -1,7 +1,7 @@
 name: Fix build conflict - Run build commands
 on:
   pull_request:
-  types: [ labeled ]
+    types: [ labeled ]
 
 jobs:
     build-run:
