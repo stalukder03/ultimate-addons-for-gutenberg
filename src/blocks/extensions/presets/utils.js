@@ -106,23 +106,29 @@ export const importPresets = (blockName, files, createNotice, setPresets) => {
 					action: 'uagb_import_block_presets',
 					block_name: blockName,
 					presets: data.presets
-				}, function({data}) {
-					setPresets( ( prevState ) => {
-						const existingPreset = prevState.reduce((acc, item) => {
-							if(item.icon){
-								acc.push(item)
+				}, function({data, status}) {
+					if(status){
+						setPresets( ( prevState ) => {
+							const existingPreset = prevState.reduce((acc, item) => {
+								if(item.icon){
+									acc.push(item)
+								}
+								return acc;
+							}, [])
+							return [...existingPreset, ...data]
+						} )
+						createNotice(
+							'success',
+							__( 'Presets import successfully.', 'uag-pro' ),
+							{
+								type: 'snackbar'
 							}
-							return acc;
-						}, [])
-						return [...existingPreset, ...data]
-					} )
-					createNotice(
-						'success',
-						__( 'Presets import successfully.', 'uag-pro' ),
-						{
+						);
+					} else {
+						createNotice( 'error', data, {
 							type: 'snackbar'
-						}
-					);
+						} );
+					}
 				});
 			} else {
 				createNotice( 'error', __(

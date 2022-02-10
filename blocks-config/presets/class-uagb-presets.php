@@ -147,8 +147,13 @@ if ( ! class_exists( 'UAGB_Presets' ) ) {
 					'attributes' 	=> $attributes,
 				);
 				$current_value[$block_name][] = $preset;
-				update_option($this->option_key, json_encode($current_value));
-				return new \WP_REST_Response( $preset, 200 );
+				error_log(print_r(count($current_value[$block_name]), true));
+				if(count($current_value[$block_name]) <= 5){
+					update_option($this->option_key, json_encode($current_value));
+					return new \WP_REST_Response( $preset, 200 );
+				} else {
+					return new \WP_REST_Response( esc_html__('Exceed maximum preset create limit', 'uag-pro'), 200 );
+				}
 			}
 			return new \WP_REST_Response( [], 200 );
 		}
@@ -187,10 +192,16 @@ if ( ! class_exists( 'UAGB_Presets' ) ) {
 					$unique_presets[$preset_item['value']] = $preset_item;
 				}
 				$unique_presets = array_values($unique_presets);
-				$current_value[$block_name] = $unique_presets;
-				update_option($this->option_key, json_encode($current_value));
+				if(count($unique_presets) <= 5){
+					$current_value[$block_name] = $unique_presets;
+					update_option($this->option_key, json_encode($current_value));
+					wp_send_json_success($unique_presets);
+				} else {
+					wp_send_json_error(esc_html__('Exceed maximum preset create limit', 'uag-pro'));
+					wp_die();
+				}
 			}
-			wp_send_json_success($unique_presets);
+			wp_send_json_error(esc_html__('Invalied user role', 'uag-pro'));
 			wp_die();
 		}
 

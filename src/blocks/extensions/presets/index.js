@@ -37,7 +37,20 @@ const UAGPRORegisterPresets = ( content, defaultAttributes, setPresets ) => {
 				...preset
 			},
 		} ).then( ( res ) => {
-			setPresets( ( prevState ) => [...prevState, res] )
+			if(typeof res === 'object'){
+				setPresets( ( prevState ) => [...prevState, res] )
+				createNotice(
+					'success',
+					__( 'Preset created successfully.', 'uag-pro' ),
+					{
+						type: 'snackbar'
+					}
+				);
+			} else {
+				createNotice( 'error', res, {
+					type: 'snackbar'
+				} );
+			}
 			setPresetName( '' )
 			closeModal();
 		} );
