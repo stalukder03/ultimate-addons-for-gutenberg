@@ -61,6 +61,6 @@ jobs:
                   echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
                   echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
-            - uses: andymckay/labeler@v1
+            - uses: andymckay/labeler@1.0.4
               with:
                 remove-labels: "conflict"
