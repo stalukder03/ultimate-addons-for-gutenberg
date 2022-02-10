@@ -69,3 +69,63 @@ export const exportPresets = async( blockName, createNotice ) => {
 
 	download( fileName, fileContent, 'application/json' );
 };
+
+
+export const importPresets = (blockName, files, createNotice, setPresets) => {
+		const fileTobeRead = files[ 0 ];
+
+		if ( 'application/json' !== fileTobeRead.type ) {
+			createNotice( 'error', __(
+				'Sorry, only JSON files are supported here.',
+				'uag-pro'
+			), {
+				type: 'snackbar'
+			} );
+			return;
+		}
+
+		const fileReader = new FileReader();
+
+		fileReader.onload = async() => {
+			let data;
+			try {
+				data = JSON.parse( fileReader.result );
+			} catch ( error ) {
+				createNotice( 'error', __(
+					'Invalid JSON file',
+					'uag-pro'
+				), {
+					type: 'snackbar'
+				} );
+				return;
+			}
+
+			if ( data.__file && data.presets && 'uagpro_presets' === data.__file ) {
+				jQuery.post(ajaxurl, {
+					action: 'uagb_import_block_presets',
+					block_name: blockName,
+					presets: data.presets
+				}, function({data}) {
+					setPresets( ( prevState ) => {
+						const existingPreset = prevState.reduce((acc, item) => {
+							if(item.icon){
+								acc.push(item)
+							}
+							return acc;
+						}, [])
+						return [...existingPreset, ...data]
+					} )
+					createNotice(
+						'success',
+						__( 'Presets import successfully.', 'uag-pro' ),
+						{
+							type: 'snackbar'
+						}
+					);
+				});
+			}
+		};
+
+		fileReader.readAsText( fileTobeRead );
+
+}

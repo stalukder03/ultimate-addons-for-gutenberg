@@ -55,6 +55,7 @@ if ( ! class_exists( 'UAGB_Presets' ) ) {
 		 */
 		public function __construct() {
 			add_action( 'rest_api_init', [ $this, 'register_routes' ] );
+			add_action( 'wp_ajax_uagb_import_block_presets', [$this, 'uagb_import_block_presets'] );
 		}
 
 		/**
@@ -171,6 +172,26 @@ if ( ! class_exists( 'UAGB_Presets' ) ) {
 				$is_delete = update_option($this->option_key, wp_json_encode($current_value));
 			}
 			return new \WP_REST_Response( $is_delete, 200 );
+		}
+
+		public function uagb_import_block_presets(){
+			// verfiy nonce later
+			$unique_presets = [];
+			if(current_user_can('edit_posts')){
+				$block_name = (isset($_POST['block_name']) ? sanitize_text_field($_POST['block_name']) : '');
+				$presets = (isset($_POST['presets']) ? rest_sanitize_array($_POST['presets']) : []);
+				$current_value = json_decode(get_option($this->option_key, '{}'), true);
+				$all_presets = (is_array($current_value[$block_name]) ? array_merge($current_value[$block_name], $presets) : []);
+				// remove duplicate presets
+				foreach($all_presets as $preset_item) {
+					$unique_presets[$preset_item['value']] = $preset_item;
+				}
+				$unique_presets = array_values($unique_presets);
+				$current_value[$block_name] = $unique_presets;
+				update_option($this->option_key, json_encode($current_value));
+			}
+			wp_send_json_success($unique_presets);
+			wp_die();
 		}
 
 	}

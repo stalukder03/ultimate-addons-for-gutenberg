@@ -1,10 +1,10 @@
 import { useEffect, useState } from '@wordpress/element';
-import { Button, Modal, TextControl } from '@wordpress/components';
+import { Button, Modal, TextControl, FormFileUpload } from '@wordpress/components';
 import {__} from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
 import { select, useDispatch } from '@wordpress/data';
 
-import {exportPresets, getChangeAttributes} from './utils'
+import {exportPresets, getChangeAttributes, importPresets} from './utils'
 import './attributes'
 
 
@@ -43,8 +43,12 @@ const UAGPRORegisterPresets = ( content, defaultAttributes, setPresets ) => {
 		} );
 	}
 
-	const exportPresetHandler = () => {
+	const onExportPresetHandler = () => {
 		exportPresets( name, createNotice );
+	}
+
+	const onUploadPresetHandler = (files) => {
+		importPresets( name, files, createNotice, setPresets )
 	}
 
 	return (
@@ -53,9 +57,17 @@ const UAGPRORegisterPresets = ( content, defaultAttributes, setPresets ) => {
                 {__( 'Create Preset', 'uag' )}
             </Button>
 
-			<Button variant="secondary" onClick={ exportPresetHandler }>
+			<Button variant="secondary" onClick={ onExportPresetHandler }>
                 {__( 'Export Preset', 'uag' )}
             </Button>
+
+			<FormFileUpload
+				accept="text/json"
+				onChange={ ( e ) => onUploadPresetHandler(e.target.files) }
+				isSecondary
+			>
+				{ __( 'Upload Preset' ) }
+			</FormFileUpload>
 
             { isOpen && (
                 <Modal title="Create Preset" onRequestClose={ closeModal }>
