@@ -24,10 +24,10 @@ const UAGPresets = ( props ) => {
         label
     } = props;
 
-	const { getSelectedBlock } = select("core/block-editor");
+	const { getSelectedBlock } = select( 'core/block-editor' );
 	const { name, attributes } = getSelectedBlock();
 
-	const [availablePresets, setAvailablePresets] = useState(attributes.presets ? [...attributes.presets, ...presets] : presets);
+	const [availablePresets, setAvailablePresets] = useState( attributes.presets ? [...attributes.presets, ...presets] : presets );
 	const [ selectedPresetState, setPreset ] = useState( '' );
 
 
@@ -57,8 +57,8 @@ const UAGPresets = ( props ) => {
         }
     }
 
-	const deletePreset = (key) => {
-		if(confirm('Are you sure?')){
+	const deletePreset = ( key ) => {
+		if( confirm( 'Are you sure?' ) ){
 			apiFetch( {
 				path: '/uagpro/v1/presets',
 				method: 'DELETE',
@@ -67,13 +67,13 @@ const UAGPresets = ( props ) => {
 					preset_key: key,
 				},
 			} ).then( ( status ) => {
-				if(status){
-					setAvailablePresets(availablePresets.reduce((acc, item) => {
-						if(item.value !== key){
-							acc.push(item)
+				if( status ){
+					setAvailablePresets( availablePresets.reduce( ( acc, item ) => {
+						if( item.value !== key ){
+							acc.push( item )
 						}
 						return acc;
-					}, []))
+					}, [] ) )
 				}
 			} );
 		}
@@ -127,7 +127,7 @@ const UAGPresets = ( props ) => {
 							) : (
 							<span className='custom-preset'>
 								<span className='custom-preset__icon'>
-									<span className="dashicons dashicons-trash" onClick={() => deletePreset(key)}></span>
+									<span className="dashicons dashicons-trash" onClick={() => deletePreset( key )}></span>
 								</span>
 								<span className='custom-preset__text'>{preset.label}</span>
 							</span>
@@ -157,7 +157,7 @@ const UAGPresets = ( props ) => {
         </>
     );
 
-	let registerPresets = wp.hooks.applyFilters('uagb.registerPresets', '', defaultAttributes, setAvailablePresets, setAttributes)
+	const registerPresets = wp.hooks.applyFilters( 'uagb.registerPresets', '', defaultAttributes, setAvailablePresets, setAttributes )
 
     return (
         <div className="uagb-presets-main-wrap">

@@ -1,11 +1,11 @@
-const UAGPROPresetsAttribute = (settings, name) => {
-	if (name.match(/uagb/)) {
-		settings.attributes = Object.assign(settings.attributes, {
+const UAGPROPresetsAttribute = ( settings, name ) => {
+	if ( name.match( /uagb/ ) ) {
+		settings.attributes = Object.assign( settings.attributes, {
 			defaultPreset: {
 				type: 'string',
 				default: ''
 			}
-		});
+		} );
 	}
 	return settings;
 }

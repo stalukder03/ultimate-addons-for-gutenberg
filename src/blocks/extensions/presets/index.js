@@ -2,42 +2,32 @@ import { useEffect, useState } from '@wordpress/element';
 import { Button, Modal, TextControl } from '@wordpress/components';
 import {__} from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
-import { select } from '@wordpress/data';
+import { select, useDispatch } from '@wordpress/data';
+
+import {exportPresets, getChangeAttributes} from './utils'
 import './attributes'
 
-const getChangeAttributes = (defaultAttributes, attributes) => {
-	const excludeAttributeList = ['block_id', 'dynamicContent']
-	return Object.entries(attributes).reduce((acc, entry) => {
-		if(!excludeAttributeList.includes(entry[0])){
-			const currentValue = defaultAttributes[entry[0]]
-			if(currentValue){
-				if(currentValue.default === undefined || (currentValue.default !== undefined && currentValue.default !== entry[1])){
-					acc.push({label: entry[0], value: entry[1]})
-				}
-			}
-		}
-		return acc;
-	}, []);
-}
 
-const UAGPRORegisterPresets = (content, defaultAttributes, setPresets, setAttributes) => {
+
+const UAGPRORegisterPresets = ( content, defaultAttributes, setPresets ) => {
 	const [ isOpen, setOpen ] = useState( false );
 	const [ presetName, setPresetName ] = useState( '' );
-	const { getSelectedBlock } = select("core/block-editor");
+	const { createNotice } = useDispatch( 'core/notices' );
+	const { getSelectedBlock } = select( 'core/block-editor' );
 	const { name, attributes } = getSelectedBlock();
-	useEffect(() => {
+	useEffect( () => {
 		apiFetch( { path: '/uagpro/v1/presets?block_name=' + name } ).then( ( presets ) => {
-			setPresets((prevState) => [...prevState, ...presets])
+			setPresets( ( prevState ) => [...prevState, ...presets] )
 		} );
-	}, [])
+	}, [] )
 
     const openModal = () => setOpen( true );
     const closeModal = () => setOpen( false );
 	const onPresetSaveHandler = () => {
 		const preset = {
-			value: presetName.toLowerCase().replace(/ /g, '-'),
+			value: presetName.toLowerCase().replace( / /g, '-' ),
 			label: presetName,
-			attributes: getChangeAttributes(defaultAttributes, attributes),
+			attributes: getChangeAttributes( defaultAttributes, attributes ),
 		};
 		apiFetch( {
 			path: '/uagpro/v1/presets',
@@ -46,18 +36,27 @@ const UAGPRORegisterPresets = (content, defaultAttributes, setPresets, setAttrib
 				block_name: name,
 				...preset
 			},
-		} ).then( ( preset ) => {
-			setPresets((prevState) => [...prevState, preset])
-			setPresetName('')
+		} ).then( ( res ) => {
+			setPresets( ( prevState ) => [...prevState, res] )
+			setPresetName( '' )
 			closeModal();
 		} );
+	}
+
+	const exportPresetHandler = () => {
+		exportPresets( name, createNotice );
 	}
 
 	return (
 		<>
 			<Button variant="secondary" onClick={ openModal }>
-                {__('Create Preset', 'uag')}
+                {__( 'Create Preset', 'uag' )}
             </Button>
+
+			<Button variant="secondary" onClick={ exportPresetHandler }>
+                {__( 'Export Preset', 'uag' )}
+            </Button>
+
             { isOpen && (
                 <Modal title="Create Preset" onRequestClose={ closeModal }>
                     <TextControl
@@ -73,7 +72,7 @@ const UAGPRORegisterPresets = (content, defaultAttributes, setPresets, setAttrib
 }
 
 wp.hooks.addFilter(
-	"uagb.registerPresets",
-	"uagpro/customPresets",
+	'uagb.registerPresets',
+	'uagpro/customPresets',
 	UAGPRORegisterPresets
 );
