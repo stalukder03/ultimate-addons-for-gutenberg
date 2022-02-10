@@ -147,7 +147,6 @@ if ( ! class_exists( 'UAGB_Presets' ) ) {
 					'attributes' 	=> $attributes,
 				);
 				$current_value[$block_name][] = $preset;
-				error_log(print_r(count($current_value[$block_name]), true));
 				if(count($current_value[$block_name]) <= 5){
 					update_option($this->option_key, json_encode($current_value));
 					return new \WP_REST_Response( $preset, 200 );

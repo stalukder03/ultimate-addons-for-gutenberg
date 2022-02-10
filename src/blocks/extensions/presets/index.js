@@ -37,7 +37,7 @@ const UAGPRORegisterPresets = ( content, defaultAttributes, setPresets ) => {
 				...preset
 			},
 		} ).then( ( res ) => {
-			if(typeof res === 'object'){
+			if( typeof res === 'object' ){
 				setPresets( ( prevState ) => [...prevState, res] )
 				createNotice(
 					'success',
@@ -60,7 +60,7 @@ const UAGPRORegisterPresets = ( content, defaultAttributes, setPresets ) => {
 		exportPresets( name, createNotice );
 	}
 
-	const onUploadPresetHandler = (files) => {
+	const onUploadPresetHandler = ( files ) => {
 		importPresets( name, files, createNotice, setPresets )
 	}
 
@@ -76,7 +76,7 @@ const UAGPRORegisterPresets = ( content, defaultAttributes, setPresets ) => {
 
 			<FormFileUpload
 				accept="text/json"
-				onChange={ ( e ) => onUploadPresetHandler(e.target.files) }
+				onChange={ ( e ) => onUploadPresetHandler( e.target.files ) }
 				isSecondary
 			>
 				{ __( 'Upload Preset' ) }

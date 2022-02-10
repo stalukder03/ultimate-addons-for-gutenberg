@@ -72,7 +72,7 @@ export const exportPresets = async( blockName, createNotice ) => {
 };
 
 
-export const importPresets = (blockName, files, createNotice, setPresets) => {
+export const importPresets = ( blockName, files, createNotice, setPresets ) => {
 		const fileTobeRead = files[ 0 ];
 
 		if ( 'application/json' !== fileTobeRead.type ) {
@@ -88,9 +88,9 @@ export const importPresets = (blockName, files, createNotice, setPresets) => {
 		const fileReader = new FileReader();
 
 		fileReader.onload = async() => {
-			let data;
+			let fileContent;
 			try {
-				data = JSON.parse( fileReader.result );
+				fileContent = JSON.parse( fileReader.result );
 			} catch ( error ) {
 				createNotice( 'error', __(
 					'Invalid JSON file',
@@ -101,20 +101,20 @@ export const importPresets = (blockName, files, createNotice, setPresets) => {
 				return;
 			}
 
-			if ( data.__file && data.block_name === blockName && data.presets && 'uagpro_presets' === data.__file ) {
-				jQuery.post(ajaxurl, {
+			if ( fileContent.__file && fileContent.block_name === blockName && fileContent.presets && 'uagpro_presets' === fileContent.__file ) {
+				jQuery.post( ajaxurl, {
 					action: 'uagb_import_block_presets',
 					block_name: blockName,
-					presets: data.presets
-				}, function({data, status}) {
-					if(status){
+					presets: fileContent.presets
+				}, function( {data} ) {
+					if( Array.isArray( data )  ){
 						setPresets( ( prevState ) => {
-							const existingPreset = prevState.reduce((acc, item) => {
-								if(item.icon){
-									acc.push(item)
+							const existingPreset = prevState.reduce( ( acc, item ) => {
+								if( item.icon ){
+									acc.push( item )
 								}
 								return acc;
-							}, [])
+							}, [] )
 							return [...existingPreset, ...data]
 						} )
 						createNotice(
@@ -129,7 +129,7 @@ export const importPresets = (blockName, files, createNotice, setPresets) => {
 							type: 'snackbar'
 						} );
 					}
-				});
+				} );
 			} else {
 				createNotice( 'error', __(
 					'Invalid JSON file',
