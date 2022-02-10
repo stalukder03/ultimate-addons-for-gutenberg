@@ -856,7 +856,7 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 			$typo_css_desktop[ $selector ] = array(
 				'font-family'     => $attr[ $family_slug ],
 				'text-transform'  => $text_transform,
-				'text-decoration' => $text_decoration . '!important',
+				'text-decoration' => $text_decoration,
 				'font-style'      => $font_style,
 				'font-variant'    => $font_variant,
 				'font-weight'     => $attr[ $weight_slug ],
