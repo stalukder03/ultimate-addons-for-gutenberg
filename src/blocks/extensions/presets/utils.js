@@ -52,6 +52,7 @@ export const exportPresets = async( blockName, createNotice ) => {
 
 	const data = {
 		__file: 'uagpro_presets',
+		block_name: blockName,
 		version: 1,
 		presets
 	};
@@ -100,7 +101,7 @@ export const importPresets = (blockName, files, createNotice, setPresets) => {
 				return;
 			}
 
-			if ( data.__file && data.presets && 'uagpro_presets' === data.__file ) {
+			if ( data.__file && data.block_name === blockName && data.presets && 'uagpro_presets' === data.__file ) {
 				jQuery.post(ajaxurl, {
 					action: 'uagb_import_block_presets',
 					block_name: blockName,
@@ -123,6 +124,13 @@ export const importPresets = (blockName, files, createNotice, setPresets) => {
 						}
 					);
 				});
+			} else {
+				createNotice( 'error', __(
+					'Invalid JSON file',
+					'uag-pro'
+				), {
+					type: 'snackbar'
+				} );
 			}
 		};
 

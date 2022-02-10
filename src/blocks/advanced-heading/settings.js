@@ -19,6 +19,7 @@ import {
 } from '@wordpress/block-editor';
 import renderSVG from '@Controls/renderIcon';
 import { SelectControl, Icon } from '@wordpress/components';
+import defaultAttributes from './attributes';
 
 // Extend component
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
@@ -527,6 +528,7 @@ const Settings = ( props ) => {
 					initialOpen={ true }
 				>
 					<UAGPresets
+						defaultAttributes = { defaultAttributes }
 						setAttributes = { setAttributes }
 						presets = { presets }
 						presetInputType = 'radioImage'
