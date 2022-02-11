@@ -4,15 +4,16 @@ import classnames from 'classnames';
  * WordPress dependencies
  */
 import { isBlobURL, revokeBlobURL } from '@wordpress/blob';
-import { withNotices } from '@wordpress/components';
-import { useSelect } from '@wordpress/data';
+import { withNotices, ToolbarButton } from '@wordpress/components';
+import { useSelect, select, useDispatch  } from '@wordpress/data';
+import { upload } from '@wordpress/icons';
 import {
 	BlockAlignmentControl,
 	BlockControls,
+	store as blockEditorStore,
 	BlockIcon,
 	MediaPlaceholder,
-	useBlockProps,
-	store as blockEditorStore,
+	useBlockProps
 } from '@wordpress/block-editor';
 import { useEffect, useRef, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
@@ -48,7 +49,6 @@ const render = (props) => {
 		className,
 		isSelected,
 		insertBlocksAfter,
-		noticeOperations,
 		onReplace,
 		context,
 		clientId,
@@ -69,8 +69,9 @@ const render = (props) => {
 		linkTarget,
 		sizeSlug} = attributes
 
-		const [ temporaryURL, setTemporaryURL ] = useState();
-
+	const { createNotice } = useDispatch( 'core/notices' );
+	const [ temporaryURL, setTemporaryURL ] = useState();
+	const [ externalBlob, setExternalBlob ] = useState();
 
 	const altRef = useRef();
 	useEffect( () => {
@@ -117,8 +118,13 @@ const render = (props) => {
 	}
 
 	function onUploadError( message ) {
-		noticeOperations.removeAllNotices();
-		noticeOperations.createErrorNotice( message );
+		createNotice(
+			'error',
+			message,
+			{
+				type: 'snackbar'
+			}
+		);
 	}
 
 	function onSelectImage( media ) {
@@ -254,7 +260,13 @@ const render = (props) => {
 				allowedTypes: ALLOWED_MEDIA_TYPES,
 				onError: ( message ) => {
 					isTemp = false;
-					noticeOperations.createErrorNotice( message );
+					createNotice(
+						'error',
+						message,
+						{
+							type: 'snackbar'
+						}
+					);
 					setAttributes( {
 						src: undefined,
 						id: undefined,
@@ -286,6 +298,65 @@ const render = (props) => {
 		/>
 	);
 
+
+	// If an image is externally hosted, try to fetch the image data. This may
+	// fail if the image host doesn't allow CORS with the domain. If it works,
+	// we can enable a button in the toolbar to upload the image.
+	useEffect( () => {
+		if ( ! isExternalImage( id, url ) || ! isSelected || externalBlob ) {
+			return;
+		}
+
+		window
+			.fetch( url )
+			.then( ( response ) => response.blob() )
+			.then( ( blob ) => setExternalBlob( blob ) )
+			// Do nothing, cannot upload.
+			.catch( () => {} );
+	}, [ id, url, isSelected, externalBlob ] );
+
+	function updateAlignment( nextAlign ) {
+		const extraUpdatedAttributes = [ 'wide', 'full' ].includes( nextAlign )
+			? { width: undefined, height: undefined }
+			: {};
+		setAttributes( {
+			...extraUpdatedAttributes,
+			align: nextAlign,
+		} );
+	}
+
+	function uploadExternal() {
+		mediaUpload( {
+			filesList: [ externalBlob ],
+			onFileChange( [ img ] ) {
+				onSelectImage( img );
+
+				if ( isBlobURL( img?.url ) ) {
+					return;
+				}
+
+				setExternalBlob();
+				createNotice(
+					'success',
+					__( 'Image uploaded.' ),
+					{
+						type: 'snackbar'
+					}
+				);
+			},
+			allowedTypes: ALLOWED_MEDIA_TYPES,
+			onError( message ) {
+				createNotice(
+					'error',
+					message,
+					{
+						type: 'snackbar'
+					}
+				);
+			},
+		} );
+	}
+
 	const classes = classnames( className, {
 		'is-transient': temporaryURL,
 		'is-resized': !! width || !! height,
@@ -299,6 +370,20 @@ const render = (props) => {
 
 	return (
 		<React.Fragment>
+			<BlockControls group="block">
+				<BlockAlignmentControl
+					value={ align }
+					onChange={ updateAlignment }
+				/>
+				{ externalBlob && (
+					<ToolbarButton
+						onClick={ uploadExternal }
+						icon={ upload }
+						label={ __( 'Upload external image' ) }
+					/>
+				) }
+
+			</BlockControls>
 			<figure {...blockProps}>
 				{ ( temporaryURL || url ) && (
 					<Image
@@ -346,4 +431,4 @@ const render = (props) => {
 render.propTypes = propTypes;
 render.defaultProps = defaultProps;
 
-export default withNotices(render)
+export default render
