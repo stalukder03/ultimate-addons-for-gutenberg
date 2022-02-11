@@ -1,0 +1,1 @@
+(window.webpackJsonp_ultimate_addons_for_gutenberg=window.webpackJsonp_ultimate_addons_for_gutenberg||[]).push([[68],{454:function(n,e,t){"use strict";t.r(e),t.d(e,"default",(function(){return a}));var r=t(0),u=t.n(r);function a(n){return u.a.createElement(u.a.Fragment,null)}t(23),a.propTypes={},a.defaultProps={}}}]);
