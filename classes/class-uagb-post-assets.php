@@ -216,7 +216,7 @@ class UAGB_Post_Assets {
 			$this_post = $this->preview ? $post : get_post( $this->post_id );
 			$this->prepare_assets( $this_post );
 			$content = get_option( 'widget_block' );
-			$this->widget_area_assets( $content );
+			$this->prepare_widget_area_assets( $content );
 		}
 	}
 
@@ -226,7 +226,7 @@ class UAGB_Post_Assets {
 	 * @param object $content Current Post Object.
 	 * @since x.x.x
 	 */
-	public function widget_area_assets( $content ) {
+	public function prepare_widget_area_assets( $content ) {
 
 		if ( empty( $content ) ) {
 			return;
