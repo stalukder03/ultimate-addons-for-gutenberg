@@ -300,7 +300,6 @@ class UAGB_Post_Assets {
 			}
 		}
 
-
 		// If version is updated, return true.
 		if ( $version_updated ) {
 			// Delete cached meta.
