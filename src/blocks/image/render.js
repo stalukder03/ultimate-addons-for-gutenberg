@@ -4,12 +4,8 @@ import classnames from 'classnames';
  * WordPress dependencies
  */
 import { isBlobURL, revokeBlobURL } from '@wordpress/blob';
-import { ToolbarButton } from '@wordpress/components';
 import { useSelect, useDispatch  } from '@wordpress/data';
-import { upload } from '@wordpress/icons';
 import {
-	BlockAlignmentControl,
-	BlockControls,
 	store as blockEditorStore,
 	BlockIcon,
 	MediaPlaceholder,
@@ -23,7 +19,7 @@ import Image from './image'
 /**
  * Internal dependencies
  */
-import {pickRelevantMediaFiles, isTemporaryImage, isExternalImage, hasDefaultSize, isMediaDestroyed} from './utils'
+import {pickRelevantMediaFiles, isTemporaryImage, isExternalImage, hasDefaultSize, isMediaDestroyed, onSelectImage} from './utils'
 
 
 /**
@@ -57,16 +53,9 @@ const render = (props) => {
 	const {url,
 		alt,
 		caption,
-		align,
 		id,
-		href,
-		rel,
-		linkClass,
-		linkDestination,
-		title,
 		width,
 		height,
-		linkTarget,
 		sizeSlug} = attributes
 
 	const { createNotice } = useDispatch( 'core/notices' );
@@ -127,98 +116,6 @@ const render = (props) => {
 		);
 	}
 
-	function onSelectImage( media ) {
-		if ( ! media || ! media.url ) {
-			setAttributes( {
-				url: undefined,
-				alt: undefined,
-				id: undefined,
-				title: undefined,
-				caption: undefined,
-			} );
-
-			return;
-		}
-
-		if ( isBlobURL( media.url ) ) {
-			setTemporaryURL( media.url );
-			return;
-		}
-
-		setTemporaryURL();
-
-		let mediaAttributes = pickRelevantMediaFiles( media, imageDefaultSize );
-
-		// If a caption text was meanwhile written by the user,
-		// make sure the text is not overwritten by empty captions.
-		if ( captionRef.current && ! get( mediaAttributes, [ 'caption' ] ) ) {
-			mediaAttributes = omit( mediaAttributes, [ 'caption' ] );
-		}
-
-		let additionalAttributes;
-		// Reset the dimension attributes if changing to a different image.
-		if ( ! media.id || media.id !== id ) {
-			additionalAttributes = {
-				width: undefined,
-				height: undefined,
-				// Fallback to size "full" if there's no default image size.
-				// It means the image is smaller, and the block will use a full-size URL.
-				sizeSlug: hasDefaultSize( media, imageDefaultSize )
-					? imageDefaultSize
-					: 'full',
-			};
-		} else {
-			// Keep the same url when selecting the same file, so "Image Size"
-			// option is not changed.
-			additionalAttributes = { url };
-		}
-
-		// Check if default link setting should be used.
-		let linkDestination = attributes.linkDestination;
-		if ( ! linkDestination ) {
-			// Use the WordPress option to determine the proper default.
-			// The constants used in Gutenberg do not match WP options so a little more complicated than ideal.
-			// TODO: fix this in a follow up PR, requires updating media-text and ui component.
-			switch (
-				wp?.media?.view?.settings?.defaultProps?.link ||
-				LINK_DESTINATION_NONE
-			) {
-				case 'file':
-				case LINK_DESTINATION_MEDIA:
-					linkDestination = LINK_DESTINATION_MEDIA;
-					break;
-				case 'post':
-				case LINK_DESTINATION_ATTACHMENT:
-					linkDestination = LINK_DESTINATION_ATTACHMENT;
-					break;
-				case LINK_DESTINATION_CUSTOM:
-					linkDestination = LINK_DESTINATION_CUSTOM;
-					break;
-				case LINK_DESTINATION_NONE:
-					linkDestination = LINK_DESTINATION_NONE;
-					break;
-			}
-		}
-
-		// Check if the image is linked to it's media.
-		let href;
-		switch ( linkDestination ) {
-			case LINK_DESTINATION_MEDIA:
-				href = media.url;
-				break;
-			case LINK_DESTINATION_ATTACHMENT:
-				href = media.link;
-				break;
-		}
-		mediaAttributes.href = href;
-
-		setAttributes( {
-			...mediaAttributes,
-			...additionalAttributes,
-			linkDestination,
-		} );
-	}
-
 	function onSelectURL( newURL ) {
 		if ( newURL !== url ) {
 			setAttributes( {
@@ -229,16 +126,6 @@ const render = (props) => {
 				sizeSlug: imageDefaultSize,
 			} );
 		}
-	}
-
-	function updateAlignment( nextAlign ) {
-		const extraUpdatedAttributes = [ 'wide', 'full' ].includes( nextAlign )
-			? { width: undefined, height: undefined }
-			: {};
-		setAttributes( {
-			...extraUpdatedAttributes,
-			align: nextAlign,
-		} );
 	}
 
 	let isTemp = isTemporaryImage( id, url );
@@ -255,7 +142,7 @@ const render = (props) => {
 			mediaUpload( {
 				filesList: [ file ],
 				onFileChange: ( [ img ] ) => {
-					onSelectImage( img );
+					onSelectImage( img, setAttributes, setTemporaryURL, createNotice );
 				},
 				allowedTypes: ALLOWED_MEDIA_TYPES,
 				onError: ( message ) => {
@@ -298,65 +185,6 @@ const render = (props) => {
 		/>
 	);
 
-
-	// If an image is externally hosted, try to fetch the image data. This may
-	// fail if the image host doesn't allow CORS with the domain. If it works,
-	// we can enable a button in the toolbar to upload the image.
-	useEffect( () => {
-		if ( ! isExternalImage( id, url ) || ! isSelected || externalBlob ) {
-			return;
-		}
-
-		window
-			.fetch( url )
-			.then( ( response ) => response.blob() )
-			.then( ( blob ) => setExternalBlob( blob ) )
-			// Do nothing, cannot upload.
-			.catch( () => {} );
-	}, [ id, url, isSelected, externalBlob ] );
-
-	function updateAlignment( nextAlign ) {
-		const extraUpdatedAttributes = [ 'wide', 'full' ].includes( nextAlign )
-			? { width: undefined, height: undefined }
-			: {};
-		setAttributes( {
-			...extraUpdatedAttributes,
-			align: nextAlign,
-		} );
-	}
-
-	function uploadExternal() {
-		mediaUpload( {
-			filesList: [ externalBlob ],
-			onFileChange( [ img ] ) {
-				onSelectImage( img );
-
-				if ( isBlobURL( img?.url ) ) {
-					return;
-				}
-
-				setExternalBlob();
-				createNotice(
-					'success',
-					__( 'Image uploaded.' ),
-					{
-						type: 'snackbar'
-					}
-				);
-			},
-			allowedTypes: ALLOWED_MEDIA_TYPES,
-			onError( message ) {
-				createNotice(
-					'error',
-					message,
-					{
-						type: 'snackbar'
-					}
-				);
-			},
-		} );
-	}
-
 	const classes = classnames( className, {
 		'is-transient': temporaryURL,
 		'is-resized': !! width || !! height,
@@ -370,20 +198,6 @@ const render = (props) => {
 
 	return (
 		<React.Fragment>
-			<BlockControls group="block">
-				<BlockAlignmentControl
-					value={ align }
-					onChange={ updateAlignment }
-				/>
-				{ externalBlob && (
-					<ToolbarButton
-						onClick={ uploadExternal }
-						icon={ upload }
-						label={ __( 'Upload external image' ) }
-					/>
-				) }
-
-			</BlockControls>
 			<figure {...blockProps}>
 				{ ( temporaryURL || url ) && (
 					<Image
@@ -393,7 +207,7 @@ const render = (props) => {
 						isSelected={ isSelected }
 						insertBlocksAfter={ insertBlocksAfter }
 						onReplace={ onReplace }
-						onSelectImage={ onSelectImage }
+						onSelectImage={ (image) => onSelectImage(image, setAttributes, setTemporaryURL, createNotice) }
 						onSelectURL={ onSelectURL }
 						onUploadError={ onUploadError }
 						containerRef={ ref }
@@ -403,17 +217,9 @@ const render = (props) => {
 						onImageLoadError={ onImageError }
 					/>
 				) }
-				{ ! url && (
-					<BlockControls group="block">
-						<BlockAlignmentControl
-							value={ align }
-							onChange={ updateAlignment }
-						/>
-					</BlockControls>
-				) }
 				<MediaPlaceholder
 					icon={ <BlockIcon icon={ icon } /> }
-					onSelect={ onSelectImage }
+					onSelect={ (image) => onSelectImage(image, setAttributes, setTemporaryURL, createNotice) }
 					onSelectURL={ onSelectURL }
 					onError={ onUploadError }
 					onClose={ onCloseModal }
