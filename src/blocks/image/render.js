@@ -4,8 +4,8 @@ import classnames from 'classnames';
  * WordPress dependencies
  */
 import { isBlobURL, revokeBlobURL } from '@wordpress/blob';
-import { withNotices, ToolbarButton } from '@wordpress/components';
-import { useSelect, select, useDispatch  } from '@wordpress/data';
+import { ToolbarButton } from '@wordpress/components';
+import { useSelect, useDispatch  } from '@wordpress/data';
 import { upload } from '@wordpress/icons';
 import {
 	BlockAlignmentControl,
