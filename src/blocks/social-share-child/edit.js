@@ -1,4 +1,3 @@
-
 /**
  * BLOCK: Social Share Child - Edit Class
  */
