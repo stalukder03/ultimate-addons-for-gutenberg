@@ -215,26 +215,43 @@ class UAGB_Post_Assets {
 			global $post;
 			$this_post = $this->preview ? $post : get_post( $this->post_id );
 			$this->prepare_assets( $this_post );
-			$content = get_option( 'widget_block' );
-			$this->prepare_widget_area_assets( $content );
 		}
+		global $wp_registered_widgets, $wp_registered_sidebars;
+		// echo "<pre>"; print_r($wp_registered_widgets); echo "</pre>";
+		// echo "<pre>"; print_r($wp_registered_sidebars); echo "</pre>";
+
+		add_action( 'wp_register_sidebar_widget', 'my_function' );
+
+function my_function( $widget ) {
+   var_dump($widget);
+   die();
+}
+
+		add_action( 'dynamic_sidebar', array( $this, 'prepare_widget_area_assets'), 999999999999999 );
 	}
 
 	/**
 	 * Generates stylesheet for widget area.
 	 *
-	 * @param object $content Current Post Object.
+	 * @param object $index Current Widget Area.
 	 * @since x.x.x
 	 */
-	public function prepare_widget_area_assets( $content ) {
+	public function prepare_widget_area_assets( $index ) {
+		// var_dump(round(microtime(true) * 1000));
+		// var_dump($index);
+		$sidebars_widgets = get_option( 'sidebars_widgets' );
+		$content = get_option( 'widget_block' );
 
-		if ( empty( $content ) ) {
-			return;
-		}
+		if ( isset($index) && isset($sidebars_widgets) && isset( $sidebars_widgets[$index] ) && is_array( $sidebars_widgets[$index] ) && ! empty( $content ) ) {
 
-		foreach ( $content as $key => $value ) {
-			if ( is_array( $value ) && has_blocks( $value['content'] ) && isset( $value['content'] ) ) {
-				$this->common_function_for_assets_preparation( $value['content'] );
+			foreach ( $content as $key => $value ) {
+
+				if ( in_array( 'block-' . $key, $sidebars_widgets[$index] ) && is_array( $value ) && has_blocks( $value['content'] ) && isset( $value['content'] ) ) {
+
+					// echo "<pre>"; print_r($sidebars_widgets[$index]); echo "</pre>";
+					// echo "<pre>"; print_r($key); echo "</pre>";
+					$this->common_function_for_assets_preparation( $value['content'] );
+				}
 			}
 		}
 
@@ -844,7 +861,7 @@ class UAGB_Post_Assets {
 	 * @since 1.7.0
 	 */
 	public function prepare_assets( $this_post ) {
-
+		// var_dump(round(microtime(true) * 1000));
 		if ( empty( $this_post ) || empty( $this_post->ID ) ) {
 			return;
 		}
@@ -869,7 +886,6 @@ class UAGB_Post_Assets {
 		}
 
 		$assets = $this->get_blocks_assets( $blocks );
-
 		$this->stylesheet .= $assets['css'];
 		$this->script     .= $assets['js'];
 
