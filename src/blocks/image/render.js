@@ -361,10 +361,6 @@ const render = (props) => {
 	return (
 		<React.Fragment>
 			<BlockControls group="block">
-				<BlockAlignmentControl
-					value={ align }
-					onChange={ updateAlignment }
-				/>
 				{ externalBlob && (
 					<ToolbarButton
 						onClick={ uploadExternal }

@@ -22,6 +22,20 @@ registerBlockType( 'uagb/image', {
 		__( 'caption', 'ultimate-addons-for-gutenberg' ),
 	],
 	example: {},
+	supports: {
+		anchor: true,
+		color: {
+			__experimentalDuotone: "img",
+			text: false,
+			background: false
+		},
+		__experimentalBorder: {
+			radius: true,
+			__experimentalDefaultControls: {
+				radius: true
+			}
+		}
+	},
 	category: uagb_blocks_info.category,
 	attributes,
 	edit,
