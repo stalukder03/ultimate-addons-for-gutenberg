@@ -142,6 +142,7 @@ export default function Image( {
 		setLoadedNaturalSize,
 	] = useState( {} );
 	const [ isEditingImage, setIsEditingImage ] = useState( false );
+	const [ externalBlob, setExternalBlob ] = useState();
 	const clientWidth = useClientWidth( containerRef, [ align ] );
 	const isResizable = allowResize && ! ( isWideAligned && isLargeViewport );
 	// const imageSizeOptions = map(
@@ -270,6 +271,7 @@ export default function Image( {
 		let showLeftHandle = false;
 
 		/* eslint-disable no-lonely-if */
+		// See https://github.com/WordPress/gutenberg/issues/7584.
 		if ( align === 'center' ) {
 			// When the image is centered, show both handles.
 			showRightHandle = true;
