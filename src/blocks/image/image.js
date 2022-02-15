@@ -174,7 +174,6 @@ export default function Image( {
 	] );
 
 
-
 	const filename = getFilename( url );
 	let defaultedAlt;
 
@@ -328,6 +327,20 @@ export default function Image( {
 		);
 	}
 
+	const controls = (
+		<>
+			<BlockControls group="block">
+				{ allowCrop && (
+					<ToolbarButton
+						onClick={ () => setIsEditingImage( true ) }
+						icon={ crop }
+						label={ __( 'Crop' ) }
+					/>
+				) }
+			</BlockControls>
+		</>
+	);
+
 	return (
 		<>
 			<ImageEditingProvider
@@ -342,6 +355,9 @@ export default function Image( {
 				isEditing={ isEditingImage }
 				onFinishEditing={ () => setIsEditingImage( false ) }
 			>
+				{ /* Hide controls during upload to avoid component remount,
+				which causes duplicated image upload. */ }
+				{ ! temporaryURL && controls }
 				{ img }
 			</ImageEditingProvider>
 		</>

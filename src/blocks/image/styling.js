@@ -11,6 +11,7 @@ export default function styling(props) {
 	const {
 		width,
 		height,
+		align,
 	} = props.attributes;
 
 	const selectors = {
@@ -18,6 +19,12 @@ export default function styling(props) {
 			'width': width || 'inherit',
 			'height': height || 'inherit',
 		},
+	}
+
+	if(align === 'right'){
+		selectors[ '.wp-block-uagb-image-align-right' ] = {
+			'float': 'right'
+		}
 	}
 
 	const base_selector = `.editor-styles-wrapper .uagb-block-${ props.clientId.substr(

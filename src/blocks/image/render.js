@@ -70,7 +70,8 @@ const render = (props) => {
 		width,
 		height,
 		linkTarget,
-		sizeSlug} = attributes
+		sizeSlug
+	} = attributes
 
 	const deviceType = useDeviceType();
 	const { createNotice } = useDispatch( 'core/notices' );
@@ -106,9 +107,9 @@ const render = (props) => {
 	}
 
 	/*
-		 Runs an error callback if the image does not load.
-		 If the error callback is triggered, we infer that that image
-		 has been deleted.
+		Runs an error callback if the image does not load.
+		If the error callback is triggered, we infer that that image
+		has been deleted.
 	*/
 	function onImageError( isReplaced = false ) {
 		// If the image block was not replaced with an embed,
@@ -380,12 +381,12 @@ const render = (props) => {
 						label={ __( 'Upload external image' ) }
 					/>
 				) }
-
 			</BlockControls>
 			<figure {...blockProps} className={ classnames(
 				className,
 				`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
-				`uagb-block-${ block_id }`
+				`uagb-block-${ block_id }`,
+				`wp-block-uagb-image-align-${align}`
 			) }>
 				{ ( temporaryURL || url ) && (
 					<Image
