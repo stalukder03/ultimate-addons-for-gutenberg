@@ -1,6 +1,9 @@
 import { __ } from '@wordpress/i18n';
 
 const attributes = {
+	block_id: {
+		type: 'string',
+	},
 	url: {
 		type: 'string',
 		default: '',
@@ -42,11 +45,11 @@ const attributes = {
 		default: '',
 	},
 	width: {
-		type: 'string',
+		type: 'integer',
 		default: '',
 	},
 	height: {
-		type: 'string',
+		type: 'integer',
 		default: '',
 	},
 	linkTarget: {

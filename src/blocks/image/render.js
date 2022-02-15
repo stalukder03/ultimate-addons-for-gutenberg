@@ -17,6 +17,7 @@ import {
 } from '@wordpress/block-editor';
 import { useEffect, useRef, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import { useDeviceType } from '@Controls/getPreviewType';
 import { image as icon } from '@wordpress/icons';
 import Image from './image'
 
@@ -51,10 +52,12 @@ const render = (props) => {
 		insertBlocksAfter,
 		onReplace,
 		context,
-		clientId,
+		clientId
 	} = props;
 
-	const {url,
+	const {
+		block_id,
+		url,
 		alt,
 		caption,
 		align,
@@ -69,6 +72,7 @@ const render = (props) => {
 		linkTarget,
 		sizeSlug} = attributes
 
+	const deviceType = useDeviceType();
 	const { createNotice } = useDispatch( 'core/notices' );
 	const [ temporaryURL, setTemporaryURL ] = useState();
 	const [ externalBlob, setExternalBlob ] = useState();
@@ -357,15 +361,9 @@ const render = (props) => {
 		} );
 	}
 
-	const classes = classnames( className, {
-		'is-transient': temporaryURL,
-		'is-resized': !! width || !! height,
-		[ `size-${ sizeSlug }` ]: sizeSlug,
-	} );
 
 	const blockProps = useBlockProps( {
 		ref,
-		className: classes,
 	} );
 
 	return (
@@ -384,7 +382,11 @@ const render = (props) => {
 				) }
 
 			</BlockControls>
-			<figure {...blockProps}>
+			<figure {...blockProps} className={ classnames(
+				className,
+				`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
+				`uagb-block-${ block_id }`
+			) }>
 				{ ( temporaryURL || url ) && (
 					<Image
 						temporaryURL={ temporaryURL }
