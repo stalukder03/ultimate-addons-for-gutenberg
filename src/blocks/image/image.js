@@ -1,46 +1,23 @@
-/**
- * WordPress dependencies
- */
-import { isBlobURL } from '@wordpress/blob';
 import {
-	ExternalLink,
-	PanelBody,
 	ResizableBox,
 	Spinner,
-	TextareaControl,
-	TextControl,
 	ToolbarButton,
 } from '@wordpress/components';
 import { useViewportMatch, usePrevious } from '@wordpress/compose';
 import { useSelect, useDispatch } from '@wordpress/data';
 import {
 	BlockControls,
-	InspectorControls,
-	RichText,
-	__experimentalImageSizeControl as ImageSizeControl,
-	__experimentalImageURLInputUI as ImageURLInputUI,
 	MediaReplaceFlow,
 	store as blockEditorStore,
-	BlockAlignmentControl,
 	__experimentalImageEditor as ImageEditor,
 	__experimentalImageEditingProvider as ImageEditingProvider,
 } from '@wordpress/block-editor';
-import { useEffect, useMemo, useState, useRef } from '@wordpress/element';
+import { useMemo, useState, useRef } from '@wordpress/element';
 import { __, sprintf, isRTL } from '@wordpress/i18n';
 import { getFilename } from '@wordpress/url';
-import { crop, overlayText, upload } from '@wordpress/icons';
-import { store as noticesStore } from '@wordpress/notices';
+import { crop } from '@wordpress/icons';
 import { store as coreStore } from '@wordpress/core-data';
-
-/**
- * Internal dependencies
- */
 import useClientWidth from './use-client-width';
-import { isExternalImage, isMediaDestroyed } from './utils';
-
-/**
- * Module constants
- */
 import { MIN_SIZE, ALLOWED_MEDIA_TYPES } from './constants';
 
 
@@ -49,23 +26,13 @@ export default function Image( {
 	attributes: {
 		url = '',
 		alt,
-		caption,
 		align,
 		id,
-		href,
-		rel,
-		linkClass,
-		linkDestination,
-		title,
 		width,
 		height,
-		linkTarget,
-		sizeSlug,
 	},
 	setAttributes,
 	isSelected,
-	insertBlocksAfter,
-	onReplace,
 	onCloseModal,
 	onSelectImage,
 	onSelectURL,
@@ -73,16 +40,14 @@ export default function Image( {
 	containerRef,
 	context,
 	clientId,
-	onImageLoadError,
 } ) {
 	const imageRef = useRef();
 	const captionRef = useRef();
 	const prevUrl = usePrevious( url );
 	const { allowResize = true } = context;
-	const { getBlock } = useSelect( blockEditorStore );
-	const { replaceBlocks, toggleSelection } = useDispatch( blockEditorStore );
+	const { toggleSelection } = useDispatch( blockEditorStore );
 
-	const { image, multiImageSelection } = useSelect(
+	const { multiImageSelection } = useSelect(
 		( select ) => {
 			const { getMedia } = select( coreStore );
 			const { getMultiSelectedBlockClientIds, getBlockName } = select(
@@ -103,11 +68,8 @@ export default function Image( {
 	);
 
 	const {
-		canInsertCover,
 		imageEditing,
-		imageSizes,
-		maxWidth,
-		mediaUpload,
+		maxWidth
 	} = useSelect(
 		( select ) => {
 			const {
@@ -142,15 +104,9 @@ export default function Image( {
 		setLoadedNaturalSize,
 	] = useState( {} );
 	const [ isEditingImage, setIsEditingImage ] = useState( false );
-	const [ externalBlob, setExternalBlob ] = useState();
 	const clientWidth = useClientWidth( containerRef, [ align ] );
 	const isResizable = allowResize && ! ( isWideAligned && isLargeViewport );
-	// const imageSizeOptions = map(
-	// 	filter( imageSizes, ( { slug } ) =>
-	// 		get( image, [ 'media_details', 'sizes', slug, 'source_url' ] )
-	// 	),
-	// 	( { name, slug } ) => ( { value: slug, label: name } )
-	// );
+
 
 
 	// Get naturalWidth and naturalHeight from image ref, and fall back to loaded natural

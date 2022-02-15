@@ -62,15 +62,6 @@ const render = (props) => {
 		caption,
 		align,
 		id,
-		href,
-		rel,
-		linkClass,
-		linkDestination,
-		title,
-		width,
-		height,
-		linkTarget,
-		sizeSlug
 	} = attributes
 
 	const deviceType = useDeviceType();
