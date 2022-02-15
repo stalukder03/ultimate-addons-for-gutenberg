@@ -338,6 +338,20 @@ export default function Image( {
 					/>
 				) }
 			</BlockControls>
+			{ ! multiImageSelection && ! isEditingImage && (
+				<BlockControls group="other">
+					<MediaReplaceFlow
+						mediaId={ id }
+						mediaURL={ url }
+						allowedTypes={ ALLOWED_MEDIA_TYPES }
+						accept="image/*"
+						onSelect={ onSelectImage }
+						onSelectURL={ onSelectURL }
+						onError={ onUploadError }
+						onCloseModal={ onCloseModal }
+					/>
+				</BlockControls>
+			) }
 		</>
 	);
 
