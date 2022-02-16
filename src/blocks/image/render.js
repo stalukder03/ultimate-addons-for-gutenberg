@@ -361,6 +361,10 @@ const render = ( props ) => {
 	return (
 		<React.Fragment>
 			<BlockControls group="block">
+				<BlockAlignmentControl
+					value={ align }
+					onChange={ updateAlignment }
+				/>
 				{ externalBlob && (
 					<ToolbarButton
 						onClick={ uploadExternal }
@@ -392,14 +396,6 @@ const render = ( props ) => {
 						onCloseModal={ onCloseModal }
 						onImageLoadError={ onImageError }
 					/>
-				) }
-				{ ! url && (
-					<BlockControls group="block">
-						<BlockAlignmentControl
-							value={ align }
-							onChange={ updateAlignment }
-						/>
-					</BlockControls>
 				) }
 				<MediaPlaceholder
 					icon={ <BlockIcon icon={ UAGB_Block_Icons.post_masonry } /> }

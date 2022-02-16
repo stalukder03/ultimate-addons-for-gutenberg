@@ -18,7 +18,7 @@ const attributes = {
 	},
 	align: {
 		type: 'string',
-		default: '',
+		default: 'left',
 	},
 	id: {
 		type: 'integer',
