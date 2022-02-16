@@ -18,7 +18,7 @@ import {
 import { useEffect, useRef, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { useDeviceType } from '@Controls/getPreviewType';
-import { image as icon } from '@wordpress/icons';
+import UAGB_Block_Icons from '@Controls/block-icons';
 import Image from './image'
 
 /**
@@ -402,7 +402,13 @@ const render = (props) => {
 					</BlockControls>
 				) }
 				<MediaPlaceholder
-					icon={ <BlockIcon icon={ icon } /> }
+					icon={ <BlockIcon icon={ UAGB_Block_Icons.post_masonry } /> }
+					labels={
+						{
+							title: __('Advanced Image', 'ultimate-addons-for-gutenberg'),
+							instructions: __('Upload an image file, pick one from your media library, or add one with a URL.', 'ultimate-addons-for-gutenberg')
+						}
+					}
 					onSelect={ onSelectImage }
 					onSelectURL={ onSelectURL }
 					onError={ onUploadError }
