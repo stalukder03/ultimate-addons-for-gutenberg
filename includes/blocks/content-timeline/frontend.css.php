@@ -135,7 +135,7 @@ $selectors = array(
 		'margin-top'    => UAGB_Helper::get_css_value( $top_margin, $attr['marginUnit'] ),
 		'margin-bottom' => UAGB_Helper::get_css_value( $bottom_margin, $attr['marginUnit'] ),
 	),
-	' .uagb-timeline__date-hide.uagb-timeline__date-inner' => array(
+	' .uagb-timeline__date-hide.uagb-timeline__inner-date-new' => array(
 		'margin-bottom' => UAGB_Helper::get_css_value( $attr['dateBottomspace'], 'px' ),
 		'color'         => $attr['dateColor'],
 		'text-align'    => $attr['align'],
@@ -156,10 +156,10 @@ $selectors = array(
 		'color'     => $attr['dateColor'],
 		'font-size' => UAGB_Helper::get_css_value( $attr['dateFontsize'], $attr['dateFontsizeType'] ),
 	),
-	'.uagb-timeline__right-block .uagb-timeline__date-hide.uagb-timeline__date-inner' => array(
+	'.uagb-timeline__right-block .uagb-timeline__date-hide.uagb-timeline__inner-date-new' => array(
 		'font-size' => UAGB_Helper::get_css_value( $attr['dateFontsize'], $attr['dateFontsizeType'] ),
 	),
-	'.uagb-timeline__left-block .uagb-timeline__date-hide.uagb-timeline__date-inner' => array(
+	'.uagb-timeline__left-block .uagb-timeline__date-hide.uagb-timeline__inner-date-new' => array(
 		'font-size' => UAGB_Helper::get_css_value( $attr['dateFontsize'], $attr['dateFontsizeType'] ),
 	),
 	' .uagb-timeline__events-inner-new'                    => array(
@@ -246,6 +246,6 @@ $selectors = array(
 	$base_selector      = ( $attr['classMigrate'] ) ? '.uagb-block-' : '#uagb-ctm-';
 	$combined_selectors = UAGB_Helper::get_typography_css( $attr, 'head', ' .uagb-timeline__heading', $combined_selectors );
 	$combined_selectors = UAGB_Helper::get_typography_css( $attr, 'date', ' .uagb-timeline__date-new', $combined_selectors );
-	$combined_selectors = UAGB_Helper::get_typography_css( $attr, 'date', ' .uagb-timeline__date-hide.uagb-timeline__date-inner', $combined_selectors );
+	$combined_selectors = UAGB_Helper::get_typography_css( $attr, 'date', ' .uagb-timeline__date-hide.uagb-timeline__inner-date-new', $combined_selectors );
 	$combined_selectors = UAGB_Helper::get_typography_css( $attr, 'subHead', ' .uagb-timeline-desc-content', $combined_selectors );
 	return UAGB_Helper::generate_all_css( $combined_selectors, $base_selector . $id . '.uagb-timeline__outer-wrap' );

@@ -221,7 +221,7 @@ function contentTimelineStyle( props ) {
 			'margin-top': generateCSSUnit( topMargin, marginUnit ),
 			'margin-bottom': generateCSSUnit( bottomMargin, marginUnit ),
 		},
-		' .uagb-timeline__date-hide.uagb-timeline__date-inner': {
+		' .uagb-timeline__date-hide.uagb-timeline__inner-date-new': {
 			'margin-bottom': generateCSSUnit( dateBottomspace, 'px' ),
 			'color': dateColor,
 			'font-size': generateCSSUnit( dateFontsize, dateFontsizeType ),
@@ -285,7 +285,7 @@ function contentTimelineStyle( props ) {
 
 	/* Generate Responsive CSS for timeline */
 	const tabletSelectors = {
-		' .uagb-timeline__date-hide.uagb-timeline__date-inner': {
+		' .uagb-timeline__date-hide.uagb-timeline__inner-date-new': {
 			'font-size': generateCSSUnit(
 				dateFontsizeTablet,
 				dateFontsizeType
@@ -381,7 +381,7 @@ function contentTimelineStyle( props ) {
 		' .uagb-timeline__center-block .uagb-timeline__date-inner': {
 			'text-align': respSelectors,
 		},
-		' .uagb-timeline__center-block .uagb-timeline__date-hide.uagb-timeline__date-inner': {
+		' .uagb-timeline__center-block .uagb-timeline__date-hide.uagb-timeline__inner-date-new': {
 			'text-align': respSelectors,
 		},
 		' .uagb-timeline__center-block .uagb-timeline__day-right .uagb-timeline__arrow:after': {
@@ -420,7 +420,7 @@ function contentTimelineStyle( props ) {
 	};
 
 	const mobileSelectors = {
-		' .uagb-timeline__date-hide.uagb-timeline__date-inner': {
+		' .uagb-timeline__date-hide.uagb-timeline__inner-date-new': {
 			'font-size': generateCSSUnit(
 				dateFontsizeMobile,
 				dateFontsizeType
@@ -516,7 +516,7 @@ function contentTimelineStyle( props ) {
 		'.uagb-timeline__center-block .uagb-timeline__date-inner': {
 			'text-align': respSelectors,
 		},
-		'.uagb-timeline__center-block .uagb-timeline__date-hide.uagb-timeline__date-inner': {
+		'.uagb-timeline__center-block .uagb-timeline__date-hide.uagb-timeline__inner-date-new': {
 			'text-align': respSelectors,
 		},
 		'.uagb-timeline__center-block .uagb-timeline__day-right .uagb-timeline__arrow:after': {
