@@ -22,7 +22,7 @@ const propTypes = {};
 
 const defaultProps = {};
 
-export default function edit(props) {
+export default function edit( props ) {
 	useEffect( () => {
 
 		const { setAttributes } = props;

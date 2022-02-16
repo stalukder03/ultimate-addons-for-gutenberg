@@ -25,7 +25,7 @@ registerBlockType( 'uagb/image', {
 	supports: {
 		anchor: true,
 		color: {
-			__experimentalDuotone: "img",
+			__experimentalDuotone: 'img',
 			text: false,
 			background: false
 		},

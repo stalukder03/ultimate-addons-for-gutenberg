@@ -3,7 +3,7 @@ import {
 	Spinner,
 	ToolbarButton,
 } from '@wordpress/components';
-import { useViewportMatch, usePrevious } from '@wordpress/compose';
+import { useViewportMatch } from '@wordpress/compose';
 import { useSelect, useDispatch } from '@wordpress/data';
 import {
 	BlockControls,
@@ -17,7 +17,6 @@ import { useMemo, useState, useRef } from '@wordpress/element';
 import { __, sprintf, isRTL } from '@wordpress/i18n';
 import { getFilename } from '@wordpress/url';
 import { crop } from '@wordpress/icons';
-import { store as coreStore } from '@wordpress/core-data';
 import useClientWidth from './use-client-width';
 import { MIN_SIZE, ALLOWED_MEDIA_TYPES } from './constants';
 
@@ -45,24 +44,21 @@ export default function Image( {
 } ) {
 	const imageRef = useRef();
 	const captionRef = useRef();
-	const prevUrl = usePrevious( url );
 	const { allowResize = true } = context;
 	const { toggleSelection } = useDispatch( blockEditorStore );
 
 	const { multiImageSelection } = useSelect(
 		( select ) => {
-			const { getMedia } = select( coreStore );
 			const { getMultiSelectedBlockClientIds, getBlockName } = select(
 				blockEditorStore
 			);
 			const multiSelectedClientIds = getMultiSelectedBlockClientIds();
 			return {
-				image: id && isSelected ? getMedia( id ) : null,
 				multiImageSelection:
 					multiSelectedClientIds.length &&
 					multiSelectedClientIds.every(
 						( _clientId ) =>
-							getBlockName( _clientId ) === 'core/image'
+							getBlockName( _clientId ) === 'uagb/image'
 					),
 			};
 		},
@@ -75,23 +71,13 @@ export default function Image( {
 	} = useSelect(
 		( select ) => {
 			const {
-				getBlockRootClientId,
-				getSettings,
-				canInsertBlockType,
+				getSettings
 			} = select( blockEditorStore );
-
-			const rootClientId = getBlockRootClientId( clientId );
-			const {imageEditing, imageSizes, maxWidth, mediaUpload} = getSettings()
+			const {imageEditing, maxWidth} = getSettings()
 
 			return {
 				imageEditing,
-				imageSizes,
 				maxWidth,
-				mediaUpload,
-				canInsertCover: canInsertBlockType(
-					'core/cover',
-					rootClientId
-				),
 			};
 		},
 		[ clientId ]
@@ -100,7 +86,7 @@ export default function Image( {
 
 
 	const isLargeViewport = useViewportMatch( 'medium' );
-	const isWideAligned = [ 'wide', 'full' ].includes(align);
+	const isWideAligned = [ 'wide', 'full' ].includes( align );
 	const [
 		{ loadedNaturalWidth, loadedNaturalHeight },
 		setLoadedNaturalSize,
@@ -228,7 +214,6 @@ export default function Image( {
 		let showLeftHandle = false;
 
 		/* eslint-disable no-lonely-if */
-		// See https://github.com/WordPress/gutenberg/issues/7584.
 		if ( align === 'center' ) {
 			// When the image is centered, show both handles.
 			showRightHandle = true;

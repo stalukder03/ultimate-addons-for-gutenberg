@@ -42,7 +42,7 @@ const propTypes = {};
 
 const defaultProps = {};
 
-const render = (props) => {
+const render = ( props ) => {
 	props = props.parentProps;
 	const {
 		attributes,
@@ -405,8 +405,8 @@ const render = (props) => {
 					icon={ <BlockIcon icon={ UAGB_Block_Icons.post_masonry } /> }
 					labels={
 						{
-							title: __('Advanced Image', 'ultimate-addons-for-gutenberg'),
-							instructions: __('Upload an image file, pick one from your media library, or add one with a URL.', 'ultimate-addons-for-gutenberg')
+							title: __( 'Advanced Image', 'ultimate-addons-for-gutenberg' ),
+							instructions: __( 'Upload an image file, pick one from your media library, or add one with a URL.', 'ultimate-addons-for-gutenberg' )
 						}
 					}
 					onSelect={ onSelectImage }

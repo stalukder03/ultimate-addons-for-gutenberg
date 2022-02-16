@@ -5,7 +5,7 @@ const propTypes = {};
 
 const defaultProps = {};
 
-export default function save(props) {
+export default function save( props ) {
 	return (
 		<React.Fragment>
 			saved mode

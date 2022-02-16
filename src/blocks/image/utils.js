@@ -39,7 +39,7 @@ export const isExternalImage = ( id, url ) => url && ! id && ! isBlobURL( url );
  * @return {boolean} Whether or not it has default image size.
  */
 export const hasDefaultSize = ( image, defaultSize ) => {
-	return image.hasOwnProperty('sizes') || image.hasOwnProperty('url') || image.hasOwnProperty('media_details') || image.hasOwnProperty('source_url') || image[defaultSize] !== undefined
+	return image.hasOwnProperty( 'sizes' ) || image.hasOwnProperty( 'url' ) || image.hasOwnProperty( 'media_details' ) || image.hasOwnProperty( 'source_url' ) || image[defaultSize] !== undefined
 }
 
 /**

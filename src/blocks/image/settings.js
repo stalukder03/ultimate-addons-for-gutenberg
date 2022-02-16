@@ -25,7 +25,7 @@ const propTypes = {};
 
 const defaultProps = {};
 
-export default function settings(props) {
+export default function settings( props ) {
 	props = props.parentProps;
 	const { attributes, setAttributes, deviceType, context, isSelected, clientId } = props;
 	const {
@@ -88,12 +88,12 @@ export default function settings(props) {
 
 	const { allowResize = true } = context;
 	const isLargeViewport = useViewportMatch( 'medium' );
-	const isWideAligned = [ 'wide', 'full' ].includes(align);
+	const isWideAligned = [ 'wide', 'full' ].includes( align );
 	const isResizable = allowResize && ! ( isWideAligned && isLargeViewport );
-	const imageSizeOptions = imageSizes.reduce((acc, item) => {
-		acc.push({ value: item.slug, label: item.name })
+	const imageSizeOptions = imageSizes.reduce( ( acc, item ) => {
+		acc.push( { value: item.slug, label: item.name } )
 		return acc;
-	}, []);
+	}, [] );
 
 
 	function updateImage( newSizeSlug ) {
@@ -114,22 +114,28 @@ export default function settings(props) {
 			title={ __( 'Image settings', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ true }
 		>
-			<TextareaControl
-				label={ __( 'Alt text (alternative text)' ) }
-				value={ alt }
-				onChange={ (value) => setAttributes( { alt: value } ) }
-			/>
-			<ImageSizeControl
-				onChangeImage={ updateImage }
-				onChange={ ( value ) => setAttributes( value ) }
-				slug={ sizeSlug }
-				width={ width }
-				height={ height }
-				imageSizeOptions={ imageSizeOptions }
-				isResizable={ isResizable }
-				imageWidth={ image?.media_details?.width }
-				imageHeight={ image?.media_details?.height }
-			/>
+			{
+				id && isSelected && (
+					<>
+						<TextareaControl
+							label={ __( 'Alt text (alternative text)' ) }
+							value={ alt }
+							onChange={ ( value ) => setAttributes( { alt: value } ) }
+						/>
+						<ImageSizeControl
+							onChangeImage={ updateImage }
+							onChange={ ( value ) => setAttributes( value ) }
+							slug={ sizeSlug }
+							width={ width }
+							height={ height }
+							imageSizeOptions={ imageSizeOptions }
+							isResizable={ isResizable }
+							imageWidth={ image?.media_details?.width }
+							imageHeight={ image?.media_details?.height }
+						/>
+					</>
+				)
+			}
 		</UAGAdvancedPanelBody>
 	)
 

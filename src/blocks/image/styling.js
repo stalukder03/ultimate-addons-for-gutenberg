@@ -7,7 +7,7 @@ import generateCSSUnit from '@Controls/generateCSSUnit';
 
 
 
-export default function styling(props) {
+export default function styling( props ) {
 	const {
 		width,
 		height,
@@ -21,7 +21,7 @@ export default function styling(props) {
 		},
 	}
 
-	if(align === 'right'){
+	if( align === 'right' ){
 		selectors[ '.wp-block-uagb-image-align-right' ] = {
 			'float': 'right'
 		}
@@ -32,7 +32,7 @@ export default function styling(props) {
 		8
 	) }`;
 
-	let styling_css = generateCSS( selectors, base_selector );
+	const styling_css = generateCSS( selectors, base_selector );
 
 
 	const tablet_selectors = {};
