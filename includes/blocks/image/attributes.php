@@ -16,6 +16,7 @@ return array(
 	'captionFontSizeType' => 'px',
 	'captionLineHeightType' => 'em',
 	'captionFontSize' => '',
+	'captionFontWeight' => '',
 	'captionFontSizeTablet' => '',
 	'captionFontSizeMobile' => '',
 	'captionLineHeight' => '',
