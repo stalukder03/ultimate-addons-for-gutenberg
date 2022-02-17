@@ -15,7 +15,7 @@ import {
 	__experimentalImageSizeControl as ImageSizeControl,
 	InspectorControls,
 } from '@wordpress/block-editor';
-import { TextareaControl } from '@wordpress/components';
+import { TextControl } from '@wordpress/components';
 import { store as coreStore } from '@wordpress/core-data';
 // Extend component
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
@@ -117,11 +117,6 @@ export default function settings( props ) {
 			{
 				id && isSelected && (
 					<>
-						<TextareaControl
-							label={ __( 'Alt text (alternative text)' ) }
-							value={ alt }
-							onChange={ ( value ) => setAttributes( { alt: value } ) }
-						/>
 						<ImageSizeControl
 							onChangeImage={ updateImage }
 							onChange={ ( value ) => setAttributes( value ) }
@@ -132,6 +127,11 @@ export default function settings( props ) {
 							isResizable={ isResizable }
 							imageWidth={ image?.media_details?.width }
 							imageHeight={ image?.media_details?.height }
+						/>
+						<TextControl
+							label={ __( 'Alt text (alternative text)' ) }
+							value={ alt }
+							onChange={ ( value ) => setAttributes( { alt: value } ) }
 						/>
 					</>
 				)

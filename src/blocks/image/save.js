@@ -60,7 +60,7 @@ export default function save( props ) {
 				props.className,
 				`uagb-block-${ block_id }`,
 				'wp-block-uagb-image',
-				`wp-block-uagb-image-align-${align}`
+				`${align ? 'wp-block-uagb-image--align-' + align : ''}`
 			) }>
 				{ figure }
 			</figure>

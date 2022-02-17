@@ -44,10 +44,6 @@ export default function styling( props ) {
 	} = props.attributes;
 
 	const selectors = {
-		'.wp-block-uagb-image img ':{
-			'width': width || 'inherit',
-			'height': height || 'inherit',
-		},
 		'.wp-block-uagb-image figcaption': {
 			'font-family': captionFontFamily,
 			'font-style' : captionFontStyle,
@@ -79,12 +75,6 @@ export default function styling( props ) {
 				captionLeftMargin,
 				captionMarginUnit
 			),
-		}
-	}
-
-	if( align === 'right' ){
-		selectors[ '.wp-block-uagb-image-align-right' ] = {
-			'float': 'right'
 		}
 	}
 

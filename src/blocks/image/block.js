@@ -6,9 +6,8 @@ import edit from './edit';
 import save from './save';
 import attributes from './attributes'
 import UAGB_Block_Icons from '@Controls/block-icons';
-
 import { __ } from '@wordpress/i18n';
-
+import './style.scss';
 import { registerBlockType } from '@wordpress/blocks';
 
 
@@ -35,6 +34,11 @@ registerBlockType( 'uagb/image', {
 				radius: true
 			}
 		}
+	},
+	getEditWrapperProps( attributes ) {
+		return {
+			'data-align': attributes.align,
+		};
 	},
 	category: uagb_blocks_info.category,
 	attributes,

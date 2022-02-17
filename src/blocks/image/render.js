@@ -377,7 +377,7 @@ const render = ( props ) => {
 				className,
 				`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
 				`uagb-block-${ block_id }`,
-				`wp-block-uagb-image-align-${align}`
+				`${align ? 'wp-block-uagb-image--align-' + align : ''}`
 			) }>
 				{ ( temporaryURL || url ) && (
 					<Image
