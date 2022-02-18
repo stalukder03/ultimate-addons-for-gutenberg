@@ -4,6 +4,10 @@ const attributes = {
 	block_id: {
 		type: 'string',
 	},
+	layout: {
+		type: 'string',
+		default: 'default',
+	},
 	url: {
 		type: 'string',
 		default: '',
@@ -194,6 +198,144 @@ const attributes = {
 		isUAGStyle: true,
 	},
 	captionMarginLink: {
+		type: 'boolean',
+		default: false,
+		isUAGStyle: true,
+	},
+	// heading
+	heading: {
+		type: 'string',
+		default: '',
+	},
+	headingLoadGoogleFonts: {
+		type: 'boolean',
+		default: false,
+		isUAGStyle: true,
+	},
+	headingColor: {
+		type: 'string',
+		isUAGStyle: true,
+	},
+	headingFontFamily: {
+		type: 'string',
+		default: 'Default',
+		isUAGStyle: true,
+	},
+	headingFontWeight: {
+		type: 'string',
+		isUAGStyle: true,
+	},
+	headingFontStyle: {
+		type: 'string',
+		default: 'normal',
+		isUAGStyle: true,
+	},
+	headingTransform: {
+		type: 'string',
+		isUAGStyle: true,
+	},
+	headingDecoration: {
+		type: 'string',
+		isUAGStyle: true,
+	},
+	headingFontSizeType: {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+	},
+	headingLineHeightType: {
+		type: 'string',
+		default: 'em',
+		isUAGStyle: true,
+	},
+	headingFontSize: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	headingFontSizeTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	headingFontSizeMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	headingLineHeight: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	headingLineHeightTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	headingLineHeightMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	headingTopMargin : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	headingRightMargin : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	headingLeftMargin : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	headingBottomMargin : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	headingTopMarginTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	headingRightMarginTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	headingLeftMarginTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	headingBottomMarginTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	headingTopMarginMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	headingRightMarginMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	headingLeftMarginMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	headingBottomMarginMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	headingMarginUnit : {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+	},
+	headingMarginUnitTablet: {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+	},
+	headingMarginUnitMobile : {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+	},
+	headingMarginLink: {
 		type: 'boolean',
 		default: false,
 		isUAGStyle: true,

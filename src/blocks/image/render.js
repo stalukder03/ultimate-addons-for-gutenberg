@@ -20,6 +20,7 @@ import { __ } from '@wordpress/i18n';
 import { useDeviceType } from '@Controls/getPreviewType';
 import UAGB_Block_Icons from '@Controls/block-icons';
 import Image from './image'
+import Layout from './layout'
 
 /**
  * Internal dependencies
@@ -57,6 +58,7 @@ const render = ( props ) => {
 
 	const {
 		block_id,
+		layout,
 		url,
 		alt,
 		caption,
@@ -377,25 +379,34 @@ const render = ( props ) => {
 				className,
 				`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
 				`uagb-block-${ block_id }`,
+				`wp-block-uagb-image--layout-${ layout }`,
 				`${align ? 'wp-block-uagb-image--align-' + align : ''}`
 			) }>
 				{ ( temporaryURL || url ) && (
-					<Image
-						temporaryURL={ temporaryURL }
-						attributes={ attributes }
-						setAttributes={ setAttributes }
-						isSelected={ isSelected }
-						insertBlocksAfter={ insertBlocksAfter }
-						onReplace={ onReplace }
-						onSelectImage={ onSelectImage }
-						onSelectURL={ onSelectURL }
-						onUploadError={ onUploadError }
-						containerRef={ ref }
-						context={ context }
-						clientId={ clientId }
-						onCloseModal={ onCloseModal }
-						onImageLoadError={ onImageError }
-					/>
+					<>
+						<Image
+							temporaryURL={ temporaryURL }
+							attributes={ attributes }
+							setAttributes={ setAttributes }
+							isSelected={ isSelected }
+							insertBlocksAfter={ insertBlocksAfter }
+							onReplace={ onReplace }
+							onSelectImage={ onSelectImage }
+							onSelectURL={ onSelectURL }
+							onUploadError={ onUploadError }
+							containerRef={ ref }
+							context={ context }
+							clientId={ clientId }
+							onCloseModal={ onCloseModal }
+							onImageLoadError={ onImageError }
+						/>
+						<Layout
+							captionRef={captionRef}
+							attributes={ attributes }
+							setAttributes={ setAttributes }
+							isSelected={ isSelected }
+						/>
+					</>
 				) }
 				<MediaPlaceholder
 					icon={ <BlockIcon icon={ UAGB_Block_Icons.post_masonry } /> }

@@ -10,6 +10,7 @@ const defaultProps = {};
 export default function save( props ) {
 	const {
 		block_id,
+		layout,
 		url,
 		alt,
 		caption,
@@ -60,6 +61,7 @@ export default function save( props ) {
 				props.className,
 				`uagb-block-${ block_id }`,
 				'wp-block-uagb-image',
+				`wp-block-uagb-image--layout-${ layout }`,
 				`${align ? 'wp-block-uagb-image--align-' + align : ''}`
 			) }>
 				{ figure }

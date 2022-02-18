@@ -15,7 +15,7 @@ import {
 	__experimentalImageSizeControl as ImageSizeControl,
 	InspectorControls,
 } from '@wordpress/block-editor';
-import { TextControl } from '@wordpress/components';
+import { TextControl, RadioControl } from '@wordpress/components';
 import { store as coreStore } from '@wordpress/core-data';
 // Extend component
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
@@ -29,6 +29,7 @@ export default function settings( props ) {
 	props = props.parentProps;
 	const { attributes, setAttributes, deviceType, context, isSelected, clientId } = props;
 	const {
+		layout,
 		id,
 		width,
 		height,
@@ -114,6 +115,15 @@ export default function settings( props ) {
 			title={ __( 'Image settings', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ true }
 		>
+			<RadioControl
+				label="Layout"
+				selected={ layout }
+				options={ [
+					{ label: 'Normal View', value: 'default' },
+					{ label: 'Overlay View', value: 'overlay' },
+				] }
+				onChange={ ( value ) => setAttributes({ layout: value}) }
+			/>
 			{
 				id && isSelected && (
 					<>

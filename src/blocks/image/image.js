@@ -8,7 +8,6 @@ import { useSelect, useDispatch } from '@wordpress/data';
 import {
 	BlockControls,
 	MediaReplaceFlow,
-	RichText,
 	store as blockEditorStore,
 	__experimentalImageEditor as ImageEditor,
 	__experimentalImageEditingProvider as ImageEditingProvider,
@@ -316,19 +315,6 @@ export default function Image( {
 				which causes duplicated image upload. */ }
 				{ ! temporaryURL && controls }
 				{ img }
-				{ ( ! RichText.isEmpty( caption ) || isSelected ) && (
-					<RichText
-						ref={ captionRef }
-						tagName="figcaption"
-						aria-label={ __( 'Image caption text' ) }
-						placeholder={ __( 'Add caption' ) }
-						value={ caption }
-						onChange={ ( value ) =>
-							setAttributes( { caption: value } )
-						}
-						inlineToolbar
-					/>
-				) }
 			</ImageEditingProvider>
 		</>
 	);
