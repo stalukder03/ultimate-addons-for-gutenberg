@@ -340,6 +340,11 @@ const attributes = {
 		default: false,
 		isUAGStyle: true,
 	},
+	// overlay
+	overlayContentPosition: {
+		type: 'string',
+		default: 'center center',
+	},
 };
 
 export default attributes;

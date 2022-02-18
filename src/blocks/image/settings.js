@@ -15,7 +15,13 @@ import {
 	__experimentalImageSizeControl as ImageSizeControl,
 	InspectorControls,
 } from '@wordpress/block-editor';
-import { TextControl, RadioControl } from '@wordpress/components';
+import {
+	TextControl,
+	RadioControl,
+	__experimentalAlignmentMatrixControl as AlignmentMatrixControl
+} from '@wordpress/components';
+
+
 import { store as coreStore } from '@wordpress/core-data';
 // Extend component
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
@@ -99,7 +105,9 @@ export default function settings( props ) {
 		headingMarginUnit,
 		headingMarginUnitTablet,
 		headingMarginUnitMobile,
-		headingMarginLink
+		headingMarginLink,
+		// overlay
+		overlayContentPosition
 	} = attributes;
 	const {imageSizes} = useSelect(
 		( select ) => {
@@ -146,7 +154,7 @@ export default function settings( props ) {
 	const generalPanel = (
 		<UAGAdvancedPanelBody
 			title={ __( 'Image settings', 'ultimate-addons-for-gutenberg' ) }
-			initialOpen={ true }
+			initialOpen={ false }
 		>
 			<RadioControl
 				label="Layout"
@@ -185,7 +193,7 @@ export default function settings( props ) {
 	const headingStylePanel =  (
 		<UAGAdvancedPanelBody
 			title={ __( 'Title', 'ultimate-addons-for-gutenberg' ) }
-			initialOpen={ true }
+			initialOpen={ false }
 		>
 			<Suspense fallback={ lazyLoader() }>
 				<TypographyControl
@@ -487,6 +495,19 @@ export default function settings( props ) {
 			/>
 		</UAGAdvancedPanelBody>
 	)
+
+	const overlayStylePanel = (
+		<UAGAdvancedPanelBody
+			title={ __( 'Overlay Settings', 'ultimate-addons-for-gutenberg' ) }
+			initialOpen={ false }
+		>
+			<AlignmentMatrixControl
+				label={__('Content Postion', 'ultimate-addons-for-gutenberg')}
+				value={ overlayContentPosition }
+				onChange={ ( newAlignment ) =>  setAttributes({overlayContentPosition: newAlignment}) }
+			/>
+		</UAGAdvancedPanelBody>
+	)
 	return (
 		<React.Fragment>
 			<InspectorControls>
@@ -495,7 +516,14 @@ export default function settings( props ) {
 						{generalPanel}
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
-						{ layout === 'overlay' && headingStylePanel }
+						{
+							layout === 'overlay' && (
+								<>
+									{overlayStylePanel}
+									{headingStylePanel}
+								</>
+							)
+						}
 						{ captionStylePanel }
 					</InspectorTab>
 					<InspectorTab

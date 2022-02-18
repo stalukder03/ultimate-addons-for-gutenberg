@@ -35,6 +35,8 @@
 	}
 	&--layout-overlay {
 		position: relative;
+		display: inline-block;
+		max-width: 100%;
 		&__inner {
 			position: absolute;
 			left: 0;
@@ -46,6 +48,26 @@
 			align-items: center;
 			justify-content: center;
 			flex-direction: column;
+			&.top-left,
+			&.top-center,
+			&.top-right {
+				justify-content: flex-start;
+			}
+			&.bottom-left,
+			&.bottom-center,
+			&.bottom-right {
+				justify-content: flex-end;
+			}
+			&.top-left,
+			&.center-left,
+			&.bottom-left {
+				align-items: flex-start;
+			}
+			&.top-right,
+			&.center-right,
+			&.bottom-right {
+				align-items: flex-end;
+			}
 		}
 	}
 }

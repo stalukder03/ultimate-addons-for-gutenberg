@@ -8,7 +8,7 @@ const propTypes = {};
 const defaultProps = {};
 
 export default function Layout({attributes, isSelected, setAttributes, captionRef}) {
-	const {caption, heading, layout} = attributes
+	const {caption, heading, layout, overlayContentPosition} = attributes
 	const headingRef = useRef();
 	useEffect( () => {
 		headingRef.current = heading;
@@ -52,12 +52,14 @@ export default function Layout({attributes, isSelected, setAttributes, captionRe
 		</>
 	)
 
+
+
 	return (
 		<React.Fragment>
 			{
 				layout === 'overlay' ? (
 					<>
-						<div className='wp-block-uagb-image--layout-overlay__inner'>
+						<div className={`wp-block-uagb-image--layout-overlay__inner ${overlayContentPosition.replace(' ', '-')}`}>
 							{imageHeading}
 							{imageCaption}
 						</div>
