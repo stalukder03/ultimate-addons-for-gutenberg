@@ -36,6 +36,7 @@ export default function settings( props ) {
 		align,
 		alt,
 		sizeSlug,
+		// caption
 		captionLoadGoogleFonts,
 		captionFontFamily,
 		captionFontWeight,
@@ -66,7 +67,39 @@ export default function settings( props ) {
 		captionMarginUnit,
 		captionMarginUnitTablet,
 		captionMarginUnitMobile,
-		captionMarginLink
+		captionMarginLink,
+		// heading
+		headingLoadGoogleFonts,
+		headingFontFamily,
+		headingFontWeight,
+		headingFontStyle,
+		headingFontSize,
+		headingColor,
+		headingTransform,
+		headingDecoration,
+		headingFontSizeType,
+		headingFontSizeMobile,
+		headingFontSizeTablet,
+		headingLineHeight,
+		headingLineHeightType,
+		headingLineHeightMobile,
+		headingLineHeightTablet,
+		headingTopMargin,
+		headingRightMargin,
+		headingLeftMargin,
+		headingBottomMargin,
+		headingTopMarginTablet,
+		headingRightMarginTablet,
+		headingLeftMarginTablet,
+		headingBottomMarginTablet,
+		headingTopMarginMobile,
+		headingRightMarginMobile,
+		headingLeftMarginMobile,
+		headingBottomMarginMobile,
+		headingMarginUnit,
+		headingMarginUnitTablet,
+		headingMarginUnitMobile,
+		headingMarginLink
 	} = attributes;
 	const {imageSizes} = useSelect(
 		( select ) => {
@@ -149,9 +182,162 @@ export default function settings( props ) {
 		</UAGAdvancedPanelBody>
 	)
 
-	const stylePanel =  (
+	const headingStylePanel =  (
 		<UAGAdvancedPanelBody
-			title={ __( 'Caption', 'ultimate-addons-for-gutenberg' ) }
+			title={ __( 'Title', 'ultimate-addons-for-gutenberg' ) }
+			initialOpen={ true }
+		>
+			<Suspense fallback={ lazyLoader() }>
+				<TypographyControl
+					label={ __(
+						'Typography',
+						'ultimate-addons-for-gutenberg'
+					) }
+					setAttributes={ setAttributes }
+					loadGoogleFonts={ {
+						value: headingLoadGoogleFonts,
+						label: 'headingLoadGoogleFonts',
+					} }
+					fontFamily={ {
+						value: headingFontFamily,
+						label: 'headingFontFamily',
+					} }
+					fontWeight={ {
+						value: headingFontWeight,
+						label: 'headingFontWeight',
+					} }
+					fontStyle={ {
+						value: headingFontStyle,
+						label: 'headingFontStyle',
+					} }
+					transform={ {
+						value: headingTransform,
+						label: 'headingTransform',
+					} }
+					decoration={ {
+						value: headingDecoration,
+						label: 'headingDecoration',
+					} }
+					fontSizeType={ {
+						value: headingFontSizeType,
+						label: 'headingFontSizeType',
+					} }
+					fontSize={ {
+						value: headingFontSize,
+						label: 'headingFontSize',
+					} }
+					fontSizeMobile={ {
+						value: headingFontSizeMobile,
+						label: 'headingFontSizeMobile',
+					} }
+					fontSizeTablet={ {
+						value: headingFontSizeTablet,
+						label: 'headingFontSizeTablet',
+					} }
+					lineHeightType={ {
+						value: headingLineHeightType,
+						label: 'headingLineHeightType',
+					} }
+					lineHeight={ {
+						value: headingLineHeight,
+						label: 'headingLineHeight',
+					} }
+					lineHeightMobile={ {
+						value: headingLineHeightMobile,
+						label: 'headingLineHeightMobile',
+					} }
+					lineHeightTablet={ {
+						value: headingLineHeightTablet,
+						label: 'headingLineHeightTablet',
+					} }
+				/>
+			</Suspense>
+			<AdvancedPopColorControl
+				label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
+				colorValue={ headingColor ? headingColor : '' }
+				onColorChange={ ( value ) =>
+					setAttributes( { headingColor: value } )
+				}
+			/>
+			<SpacingControl
+				label={ __(
+					'Margin',
+					'ultimate-addons-for-gutenberg'
+				) }
+				valueTop={ {
+					value: headingTopMargin,
+					label: 'headingTopMargin',
+				} }
+				valueRight={ {
+					value: headingRightMargin,
+					label: 'headingRightMargin',
+				} }
+				valueBottom={ {
+					value: headingBottomMargin,
+					label: 'headingBottomMargin',
+				} }
+				valueLeft={ {
+					value: headingLeftMargin,
+					label: 'headingLeftMargin',
+				} }
+				valueTopTablet={ {
+					value: headingTopMarginTablet,
+					label: 'headingTopMarginTablet',
+				} }
+				valueRightTablet={ {
+					value: headingRightMarginTablet,
+					label: 'headingRightMarginTablet',
+				} }
+				valueBottomTablet={ {
+					value: headingBottomMarginTablet,
+					label: 'headingBottomMarginTablet',
+				} }
+				valueLeftTablet={ {
+					value: headingLeftMarginTablet,
+					label: 'headingLeftMarginTablet',
+				} }
+				valueTopMobile={ {
+					value: headingTopMarginMobile,
+					label: 'headingTopMarginMobile',
+				} }
+				valueRightMobile={ {
+					value: headingRightMarginMobile,
+					label: 'headingRightMarginMobile',
+				} }
+				valueBottomMobile={ {
+					value: headingBottomMarginMobile,
+					label: 'headingBottomMarginMobile',
+				} }
+				valueLeftMobile={ {
+					value: headingLeftMarginMobile,
+					label: 'headingLeftMarginMobile',
+				} }
+				unit={ {
+					value: headingMarginUnit,
+					label: 'headingMarginUnit',
+				} }
+				mUnit={ {
+					value: headingMarginUnitMobile,
+					label: 'headingMarginUnitMobile',
+				} }
+				tUnit={ {
+					value: headingMarginUnitTablet,
+					label: 'headingMarginUnitTablet',
+				} }
+				deviceType={ deviceType }
+				attributes={ attributes }
+				setAttributes={ setAttributes }
+				link={ {
+					value: headingMarginLink,
+					label: 'headingMarginLink',
+				} }
+			/>
+		</UAGAdvancedPanelBody>
+	)
+
+	const captionStylePanel =  (
+		<UAGAdvancedPanelBody
+			title={ layout === 'overlay' ?  __( 'Sub Title', 'ultimate-addons-for-gutenberg' ) : __( 'Caption', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ true }
 		>
 			<Suspense fallback={ lazyLoader() }>
@@ -309,7 +495,8 @@ export default function settings( props ) {
 						{generalPanel}
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
-						{ stylePanel }
+						{ layout === 'overlay' && headingStylePanel }
+						{ captionStylePanel }
 					</InspectorTab>
 					<InspectorTab
 						{ ...UAGTabs.advance }

@@ -41,12 +41,42 @@ export default function styling( props ) {
 		captionMarginUnit,
 		captionMarginUnitTablet,
 		captionMarginUnitMobile,
+		// heading
+		headingFontFamily,
+		headingFontWeight,
+		headingFontStyle,
+		headingFontSize,
+		headingColor,
+		headingTransform,
+		headingDecoration,
+		headingFontSizeType,
+		headingFontSizeMobile,
+		headingFontSizeTablet,
+		headingLineHeight,
+		headingLineHeightType,
+		headingLineHeightMobile,
+		headingLineHeightTablet,
+		headingTopMargin,
+		headingRightMargin,
+		headingLeftMargin,
+		headingBottomMargin,
+		headingTopMarginTablet,
+		headingRightMarginTablet,
+		headingLeftMarginTablet,
+		headingBottomMarginTablet,
+		headingTopMarginMobile,
+		headingRightMarginMobile,
+		headingLeftMarginMobile,
+		headingBottomMarginMobile,
+		headingMarginUnit,
+		headingMarginUnitTablet,
+		headingMarginUnitMobile,
 	} = props.attributes;
 
 	const selectors = {
-		'.wp-block-uagb-image img ':{
-			'width': width || 'inherit',
-			'height': height || 'inherit',
+		' .wp-block-uagb-image img':{
+			'width': 'inherit',
+			'height': 'inherit',
 		},
 		'.wp-block-uagb-image figcaption': {
 			'font-family': captionFontFamily,
@@ -78,6 +108,38 @@ export default function styling( props ) {
 			'margin-left': generateCSSUnit(
 				captionLeftMargin,
 				captionMarginUnit
+			),
+		},
+		' .wp-block-uagb-image--layout-overlay__inner .uagb-image-heading': {
+			'font-family': headingFontFamily,
+			'font-style' : headingFontStyle,
+			'text-decoration': headingDecoration,
+			'text-transform': headingTransform,
+			'font-weight': headingFontWeight,
+			'font-size': generateCSSUnit(
+				headingFontSize,
+				headingFontSizeType
+			),
+			'line-height': generateCSSUnit(
+				headingLineHeight,
+				headingLineHeightType
+			),
+			'color': headingColor,
+			'margin-top': generateCSSUnit(
+				headingTopMargin,
+				headingMarginUnit
+			),
+			'margin-right': generateCSSUnit(
+				headingRightMargin,
+				headingMarginUnit
+			),
+			'margin-bottom': generateCSSUnit(
+				headingBottomMargin,
+				headingMarginUnit
+			),
+			'margin-left': generateCSSUnit(
+				headingLeftMargin,
+				headingMarginUnit
 			),
 		}
 	}
@@ -117,6 +179,33 @@ export default function styling( props ) {
 		),
     }
 
+	tablet_selectors[' .wp-block-uagb-image--layout-overlay__inner .uagb-image-heading'] = {
+        'font-size': generateCSSUnit(
+            headingFontSizeTablet,
+            headingFontSizeType
+        ),
+        'line-height': generateCSSUnit(
+            headingLineHeightTablet,
+            headingLineHeightType
+        ),
+		'margin-top': generateCSSUnit(
+			headingTopMarginTablet,
+			headingMarginUnitTablet
+		),
+		'margin-right': generateCSSUnit(
+			headingRightMarginTablet,
+			headingMarginUnitTablet
+		),
+		'margin-bottom': generateCSSUnit(
+			headingBottomMarginTablet,
+			headingMarginUnitTablet
+		),
+		'margin-left': generateCSSUnit(
+			headingLeftMarginTablet,
+			headingMarginUnitTablet
+		),
+    }
+
 	mobile_selectors[' .wp-block-uagb-image figcaption'] = {
         'font-size': generateCSSUnit(
             captionFontSizeMobile,
@@ -141,6 +230,33 @@ export default function styling( props ) {
 		'margin-left': generateCSSUnit(
 			captionLeftMarginMobile,
 			captionMarginUnitMobile
+		),
+    }
+
+	mobile_selectors[' .wp-block-uagb-image--layout-overlay__inner .uagb-image-heading'] = {
+        'font-size': generateCSSUnit(
+            headingFontSizeMobile,
+            headingFontSizeType
+        ),
+        'line-height': generateCSSUnit(
+            headingLineHeightMobile,
+            headingLineHeightType
+        ),
+		'margin-top': generateCSSUnit(
+			headingTopMarginMobile,
+			headingMarginUnitMobile
+		),
+		'margin-right': generateCSSUnit(
+			headingRightMarginMobile,
+			headingMarginUnitMobile
+		),
+		'margin-bottom': generateCSSUnit(
+			headingBottomMarginMobile,
+			headingMarginUnitMobile
+		),
+		'margin-left': generateCSSUnit(
+			headingLeftMarginMobile,
+			headingMarginUnitMobile
 		),
     }
 
