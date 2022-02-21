@@ -149,8 +149,13 @@ const render = ( props ) => {
 
 		// If a caption text was meanwhile written by the user,
 		// make sure the text is not overwritten by empty captions.
-		if ( captionRef.current && ! get( mediaAttributes, [ 'caption' ] ) ) {
-			mediaAttributes = omit( mediaAttributes, [ 'caption' ] );
+		if ( captionRef.current && ! mediaAttributes.caption ) {
+			mediaAttributes = {
+				...mediaAttributes,
+				alt: mediaAttributes.alt,
+				id: mediaAttributes.id,
+				link: mediaAttributes.link
+			};
 		}
 
 		let additionalAttributes;

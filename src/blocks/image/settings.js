@@ -796,7 +796,13 @@ export default function settings( props ) {
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>
 						{generalPanel}
-						{seperatorGeneralPanel}
+						{
+							layout === 'overlay' && (
+								<>
+									{seperatorGeneralPanel}
+								</>
+							)
+						}
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
 						{
