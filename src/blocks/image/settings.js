@@ -8,6 +8,7 @@ import InspectorTab, {
 } from '@Components/inspector-tabs/InspectorTab.js';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
 import SpacingControl from '@Components/spacing-control';
+import Range from '@Components/range/Range.js';
 import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 import {
@@ -18,6 +19,7 @@ import {
 import {
 	TextControl,
 	RadioControl,
+	SelectControl,
 	__experimentalAlignmentMatrixControl as AlignmentMatrixControl
 } from '@wordpress/components';
 
@@ -107,7 +109,32 @@ export default function settings( props ) {
 		headingMarginUnitMobile,
 		headingMarginLink,
 		// overlay
-		overlayContentPosition
+		overlayContentPosition,
+		overlayBackground,
+		// seperator
+		seperatorStyle,
+		seperatorWidth,
+		separatorWidthType,
+		seperatorThickness,
+		seperatorThicknessUnit,
+		seperatorPosition,
+		seperatorColor,
+		seperatorTopMargin,
+		seperatorRightMargin,
+		seperatorLeftMargin,
+		seperatorBottomMargin,
+		seperatorTopMarginTablet,
+		seperatorRightMarginTablet,
+		seperatorLeftMarginTablet,
+		seperatorBottomMarginTablet,
+		seperatorTopMarginMobile,
+		seperatorRightMarginMobile,
+		seperatorLeftMarginMobile,
+		seperatorBottomMarginMobile,
+		seperatorMarginUnit,
+		seperatorMarginUnitTablet,
+		seperatorMarginUnitMobile,
+		seperatorMarginLink,
 	} = attributes;
 	const {imageSizes} = useSelect(
 		( select ) => {
@@ -154,7 +181,7 @@ export default function settings( props ) {
 	const generalPanel = (
 		<UAGAdvancedPanelBody
 			title={ __( 'Image settings', 'ultimate-addons-for-gutenberg' ) }
-			initialOpen={ false }
+			initialOpen={ true }
 		>
 			<RadioControl
 				label="Layout"
@@ -189,6 +216,95 @@ export default function settings( props ) {
 			}
 		</UAGAdvancedPanelBody>
 	)
+
+	// Separator settings.
+	const seperatorGeneralPanel = (
+			<UAGAdvancedPanelBody
+				title={ __( 'Separator', 'ultimate-addons-for-gutenberg' ) }
+				initialOpen={ false }
+			>
+				<SelectControl
+					label={ __( 'Style' ) }
+					value={ seperatorStyle }
+					onChange={ ( value ) =>
+						setAttributes( { seperatorStyle: value } )
+					}
+					options={ [
+						{
+							value: 'none',
+							label: __(
+								'None',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'solid',
+							label: __(
+								'Solid',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'double',
+							label: __(
+								'Double',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'dashed',
+							label: __(
+								'Dashed',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'dotted',
+							label: __(
+								'Dotted',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+					] }
+				/>
+				{ 'none' !== seperatorStyle && (
+					<SelectControl
+						label={ __(
+							'Position',
+							'ultimate-addons-for-gutenberg'
+						) }
+						value={ seperatorPosition }
+						onChange={ ( value ) =>
+							setAttributes( { seperatorPosition: value } )
+						}
+						options={ [
+							{
+								value: 'before_title',
+								label: __(
+									'Before Title',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+							{
+								value: 'after_title',
+								label: __(
+									'After Title',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+							{
+								value: 'after_sub_title',
+								label: __(
+									'After Sub Title',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+						] }
+					/>
+				) }
+			</UAGAdvancedPanelBody>
+	);
+
 
 	const headingStylePanel =  (
 		<UAGAdvancedPanelBody
@@ -501,19 +617,186 @@ export default function settings( props ) {
 			title={ __( 'Overlay Settings', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ false }
 		>
-			<AlignmentMatrixControl
-				label={__('Content Postion', 'ultimate-addons-for-gutenberg')}
-				value={ overlayContentPosition }
-				onChange={ ( newAlignment ) =>  setAttributes({overlayContentPosition: newAlignment}) }
+			<AdvancedPopColorControl
+				label={ __( 'Background Color', 'ultimate-addons-for-gutenberg' ) }
+				colorValue={ overlayBackground ? overlayBackground : '' }
+				onColorChange={ ( value ) =>
+					setAttributes( { overlayBackground: value } )
+				}
+			/>
+			<label>
+				{__('Content Postion', 'ultimate-addons-for-gutenberg')}
+				<AlignmentMatrixControl
+					value={ overlayContentPosition }
+					onChange={ ( newAlignment ) =>  setAttributes({overlayContentPosition: newAlignment}) }
+				/>
+			</label>
+		</UAGAdvancedPanelBody>
+	)
+
+	const seperatorStylePanel = (
+		<UAGAdvancedPanelBody title="Separator" initialOpen={ false }>
+			<Range
+				label={ __(
+					'Width',
+					'ultimate-addons-for-gutenberg'
+				) }
+				setAttributes={ setAttributes }
+				value={ seperatorWidth }
+				onChange={ ( value ) =>
+					setAttributes( {
+						seperatorWidth: value,
+					} )
+				}
+				min={ 0 }
+				max={
+					'%' === separatorWidthType
+						? 100
+						: 500
+				}
+				unit={ {
+					value: separatorWidthType,
+					label: 'separatorWidthType',
+				} }
+				units={ [
+					{
+						name: __(
+							'Pixel',
+							'ultimate-addons-for-gutenberg'
+						),
+						unitValue: 'px',
+					},
+					{
+						name: __(
+							'Em',
+							'ultimate-addons-for-gutenberg'
+						),
+						unitValue: 'em',
+					},
+					{
+						name: __(
+							'%',
+							'ultimate-addons-for-gutenberg'
+						),
+						unitValue: '%',
+					},
+				] }
+			/>
+			<Range
+				label={ __(
+					'Thickness',
+					'ultimate-addons-for-gutenberg'
+				) }
+				setAttributes={ setAttributes }
+				value={ seperatorThickness }
+				onChange={ ( value ) =>
+					setAttributes( {
+						seperatorThickness: value,
+					} )
+				}
+				min={ 0 }
+				max={ 10 }
+				unit={ {
+					value: seperatorThicknessUnit,
+					label: 'seperatorThicknessUnit',
+				} }
+			/>
+			<AdvancedPopColorControl
+				label={ __(
+					'Color',
+					'ultimate-addons-for-gutenberg'
+				) }
+				colorValue={
+					seperatorColor ? seperatorColor : ''
+				}
+				onColorChange={ ( value ) =>
+					setAttributes( { seperatorColor: value } )
+				}
+			/>
+			<SpacingControl
+				{ ...props }
+				label={ __(
+					'Margin',
+					'ultimate-addons-for-gutenberg'
+				) }
+				valueTop={ {
+					value: seperatorTopMargin,
+					label: 'seperatorTopMargin',
+				} }
+				valueRight={ {
+					value: seperatorRightMargin,
+					label: 'seperatorRightMargin',
+				} }
+				valueBottom={ {
+					value: seperatorBottomMargin,
+					label: 'seperatorBottomMargin',
+				} }
+				valueLeft={ {
+					value: seperatorLeftMargin,
+					label: 'seperatorLeftMargin',
+				} }
+				valueTopTablet={ {
+					value: seperatorTopMarginTablet,
+					label: 'seperatorTopMarginTablet',
+				} }
+				valueRightTablet={ {
+					value: seperatorRightMarginTablet,
+					label: 'seperatorRightMarginTablet',
+				} }
+				valueBottomTablet={ {
+					value: seperatorBottomMarginTablet,
+					label: 'seperatorBottomMarginTablet',
+				} }
+				valueLeftTablet={ {
+					value: seperatorLeftMarginTablet,
+					label: 'seperatorLeftMarginTablet',
+				} }
+				valueTopMobile={ {
+					value: seperatorTopMarginMobile,
+					label: 'seperatorTopMarginMobile',
+				} }
+				valueRightMobile={ {
+					value: seperatorRightMarginMobile,
+					label: 'seperatorRightMarginMobile',
+				} }
+				valueBottomMobile={ {
+					value: seperatorBottomMarginMobile,
+					label: 'seperatorBottomMarginMobile',
+				} }
+				valueLeftMobile={ {
+					value: seperatorLeftMarginMobile,
+					label: 'seperatorLeftMarginMobile',
+				} }
+				unit={ {
+					value: seperatorMarginUnit,
+					label: 'seperatorMarginUnit',
+				} }
+				mUnit={ {
+					value: seperatorMarginUnitMobile,
+					label: 'seperatorMarginUnitMobile',
+				} }
+				tUnit={ {
+					value: seperatorMarginUnitTablet,
+					label: 'seperatorMarginUnitTablet',
+				} }
+				deviceType={ deviceType }
+				attributes={ attributes }
+				setAttributes={ setAttributes }
+				link={ {
+					value: seperatorMarginLink,
+					label: 'seperatorMarginLink',
+				} }
 			/>
 		</UAGAdvancedPanelBody>
 	)
+
 	return (
 		<React.Fragment>
 			<InspectorControls>
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>
 						{generalPanel}
+						{seperatorGeneralPanel}
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
 						{
@@ -521,6 +804,7 @@ export default function settings( props ) {
 								<>
 									{overlayStylePanel}
 									{headingStylePanel}
+									{seperatorStylePanel}
 								</>
 							)
 						}

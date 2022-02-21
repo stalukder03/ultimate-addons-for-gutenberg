@@ -68,6 +68,13 @@
 			&.bottom-right {
 				align-items: flex-end;
 			}
+			.uagb-image-separator {
+				width: 30%;
+				border-top-width: 2px;
+				border-top-color: #333;
+				border-top-style: solid;
+				margin-bottom: 10px;
+			}
 		}
 	}
 }

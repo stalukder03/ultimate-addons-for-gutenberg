@@ -345,6 +345,107 @@ const attributes = {
 		type: 'string',
 		default: 'center center',
 	},
+	overlayBackground: {
+		type: 'string',
+		default: '',
+	},
+	// seperator
+	seperatorStyle: {
+		type: 'string',
+		default: 'none',
+	},
+	seperatorColor: {
+		type: 'string',
+		default: '#333',
+	},
+	seperatorPosition: {
+		type: 'string',
+		default: 'after_title',
+	},
+	seperatorWidth: {
+		type: 'number',
+		default: 30,
+	},
+	separatorWidthType: {
+		type: 'string',
+		default: '%',
+	},
+	seperatorThickness: {
+		type: 'number',
+		default: 2,
+	},
+	seperatorThicknessUnit: {
+		type: 'string',
+		default: 'px',
+	},
+	seperatorTopMargin : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	seperatorRightMargin : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	seperatorLeftMargin : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	seperatorBottomMargin : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	seperatorTopMarginTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	seperatorRightMarginTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	seperatorLeftMarginTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	seperatorBottomMarginTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	seperatorTopMarginMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	seperatorRightMarginMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	seperatorLeftMarginMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	seperatorBottomMarginMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	seperatorMarginUnit : {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+	},
+	seperatorMarginUnitTablet: {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+	},
+	seperatorMarginUnitMobile : {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+	},
+	seperatorMarginLink: {
+		type: 'boolean',
+		default: false,
+		isUAGStyle: true,
+	},
 };
 
 export default attributes;

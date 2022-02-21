@@ -8,7 +8,7 @@ const propTypes = {};
 const defaultProps = {};
 
 export default function Layout({attributes, isSelected, setAttributes, captionRef}) {
-	const {caption, heading, layout, overlayContentPosition} = attributes
+	const {caption, heading, layout, overlayContentPosition, seperatorStyle, seperatorPosition} = attributes
 	const headingRef = useRef();
 	useEffect( () => {
 		headingRef.current = heading;
@@ -52,6 +52,9 @@ export default function Layout({attributes, isSelected, setAttributes, captionRe
 		</>
 	)
 
+	const separator = 'none' !== seperatorStyle && (
+		<div className="uagb-image-separator"></div>
+	)
 
 
 	return (
@@ -60,8 +63,11 @@ export default function Layout({attributes, isSelected, setAttributes, captionRe
 				layout === 'overlay' ? (
 					<>
 						<div className={`wp-block-uagb-image--layout-overlay__inner ${overlayContentPosition.replace(' ', '-')}`}>
+							{ 'before_title' === seperatorPosition && separator}
 							{imageHeading}
+							{ 'after_title' === seperatorPosition && separator}
 							{imageCaption}
+							{ 'after_sub_title' === seperatorPosition && separator}
 						</div>
 					</>
 				) : (

@@ -9,9 +9,6 @@ import generateCSSUnit from '@Controls/generateCSSUnit';
 
 export default function styling( props ) {
 	const {
-		width,
-		height,
-		align,
 		captionFontFamily,
 		captionFontWeight,
 		captionFontStyle,
@@ -71,6 +68,32 @@ export default function styling( props ) {
 		headingMarginUnit,
 		headingMarginUnitTablet,
 		headingMarginUnitMobile,
+		// overlay
+		overlayBackground,
+		// seperator
+		seperatorStyle,
+		seperatorWidth,
+		separatorWidthType,
+		seperatorThickness,
+		seperatorThicknessUnit,
+		seperatorPosition,
+		seperatorColor,
+		seperatorTopMargin,
+		seperatorRightMargin,
+		seperatorLeftMargin,
+		seperatorBottomMargin,
+		seperatorTopMarginTablet,
+		seperatorRightMarginTablet,
+		seperatorLeftMarginTablet,
+		seperatorBottomMarginTablet,
+		seperatorTopMarginMobile,
+		seperatorRightMarginMobile,
+		seperatorLeftMarginMobile,
+		seperatorBottomMarginMobile,
+		seperatorMarginUnit,
+		seperatorMarginUnitTablet,
+		seperatorMarginUnitMobile,
+		seperatorMarginLink,
 	} = props.attributes;
 
 	const selectors = {
@@ -141,7 +164,24 @@ export default function styling( props ) {
 				headingLeftMargin,
 				headingMarginUnit
 			),
-		}
+		},
+		' .wp-block-uagb-image--layout-overlay__inner': {
+			'background': overlayBackground
+		},
+		// Seperator
+		' .wp-block-uagb-image--layout-overlay__inner .uagb-image-separator': {
+			'width': generateCSSUnit( seperatorWidth, separatorWidthType ),
+			'border-top-width': generateCSSUnit(
+				seperatorThickness,
+				seperatorThicknessUnit
+			),
+			'border-top-color': seperatorColor,
+			'border-top-style': seperatorStyle,
+			'margin-bottom': generateCSSUnit( seperatorBottomMargin, seperatorMarginUnit ),
+			'margin-top': generateCSSUnit( seperatorTopMargin, seperatorMarginUnit ),
+			'margin-left': generateCSSUnit( seperatorLeftMargin, seperatorMarginUnit ),
+			'margin-right': generateCSSUnit( seperatorRightMargin, seperatorMarginUnit ),
+		},
 	}
 
 	const base_selector = `.editor-styles-wrapper .uagb-block-${ props.clientId.substr(
