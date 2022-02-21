@@ -64,6 +64,7 @@ const render = ( props ) => {
 		caption,
 		align,
 		id,
+		imageHoverEffect,
 	} = attributes
 
 	const deviceType = useDeviceType();
@@ -385,6 +386,7 @@ const render = ( props ) => {
 				`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
 				`uagb-block-${ block_id }`,
 				`wp-block-uagb-image--layout-${ layout }`,
+				`wp-block-uagb-image--effect-${imageHoverEffect}`,
 				`${align ? 'wp-block-uagb-image--align-' + align : ''}`
 			) }>
 				{ ( temporaryURL || url ) && (

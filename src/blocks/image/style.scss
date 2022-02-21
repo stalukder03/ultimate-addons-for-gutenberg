@@ -1,4 +1,6 @@
 .wp-block-uagb-image {
+	display: inline-block;
+	max-width: 100%;
 	&--align-left,
 	&--align-right,
 	&--align-center {
@@ -35,8 +37,6 @@
 	}
 	&--layout-overlay {
 		position: relative;
-		display: inline-block;
-		max-width: 100%;
 		&__inner {
 			position: absolute;
 			left: 0;
@@ -74,6 +74,57 @@
 				border-top-color: #333;
 				border-top-style: solid;
 				margin-bottom: 10px;
+			}
+		}
+	}
+	// hover effect
+	&--effect {
+		&-zoomin {
+			overflow: hidden;
+			img {
+				transform: scale(1);
+				transition: transform .35s ease-in-out;
+			}
+			&:hover {
+				img {
+					transform: scale(1.05);
+				}
+			}
+		}
+		&-slide {
+			overflow: hidden;
+			img {
+				width: calc(100% + 40px);
+				max-width: none !important;
+				transform: translate3d(-40px, 0, 0);
+				transition: transform .35s ease-in-out;
+			}
+			&:hover {
+				img {
+					transform: translate3d(0, 0, 0);
+				}
+			}
+		}
+		&-grayscale {
+			img {
+				filter: grayscale(0%);
+				transition: .35s ease-in-out;
+			}
+			&:hover {
+				img {
+					filter: grayscale(100%);
+				}
+			}
+		}
+		&-blur {
+			img {
+				filter: blur(0px);
+				transition: .35s ease-in-out;
+			}
+			&:hover {
+				img {
+					filter: blur(3px);
+				}
 			}
 		}
 	}

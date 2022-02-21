@@ -446,6 +446,11 @@ const attributes = {
 		default: false,
 		isUAGStyle: true,
 	},
+	// effect
+	imageHoverEffect: {
+		type: 'string',
+		default: 'static',
+	},
 };
 
 export default attributes;

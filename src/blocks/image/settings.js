@@ -135,6 +135,8 @@ export default function settings( props ) {
 		seperatorMarginUnitTablet,
 		seperatorMarginUnitMobile,
 		seperatorMarginLink,
+		// effect
+		imageHoverEffect
 	} = attributes;
 	const {imageSizes} = useSelect(
 		( select ) => {
@@ -214,6 +216,53 @@ export default function settings( props ) {
 					</>
 				)
 			}
+			<SelectControl
+				label={ __(
+					'On Hover Image',
+					'ultimate-addons-for-gutenberg'
+				) }
+				value={ imageHoverEffect }
+				onChange={ ( value ) =>
+					setAttributes( { imageHoverEffect: value } )
+				}
+				options={ [
+					{
+						value: 'static',
+						label: __(
+							'Static',
+							'ultimate-addons-for-gutenberg'
+						),
+					},
+					{
+						value: 'zoomin',
+						label: __(
+							'Zoom In',
+							'ultimate-addons-for-gutenberg'
+						),
+					},
+					{
+						value: 'slide',
+						label: __(
+							'Slide',
+							'ultimate-addons-for-gutenberg'
+						),
+					},
+					{
+						value: 'grayscale',
+						label: __(
+							'Gray Scale',
+							'ultimate-addons-for-gutenberg'
+						),
+					},
+					{
+						value: 'blur',
+						label: __(
+							'Blur',
+							'ultimate-addons-for-gutenberg'
+						),
+					},
+				] }
+			/>
 		</UAGAdvancedPanelBody>
 	)
 
@@ -612,13 +661,22 @@ export default function settings( props ) {
 		</UAGAdvancedPanelBody>
 	)
 
+	const ImageStylePanel = (
+		<UAGAdvancedPanelBody
+			title={ __( 'Image Style', 'ultimate-addons-for-gutenberg' ) }
+			initialOpen={ false }
+		>
+
+		</UAGAdvancedPanelBody>
+	)
+
 	const overlayStylePanel = (
 		<UAGAdvancedPanelBody
 			title={ __( 'Overlay Settings', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ false }
 		>
 			<AdvancedPopColorControl
-				label={ __( 'Background Color', 'ultimate-addons-for-gutenberg' ) }
+				label={ __( 'Background', 'ultimate-addons-for-gutenberg' ) }
 				colorValue={ overlayBackground ? overlayBackground : '' }
 				onColorChange={ ( value ) =>
 					setAttributes( { overlayBackground: value } )
@@ -805,6 +863,7 @@ export default function settings( props ) {
 						}
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
+						{ImageStylePanel}
 						{
 							layout === 'overlay' && (
 								<>
