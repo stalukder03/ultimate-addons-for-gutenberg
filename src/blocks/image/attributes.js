@@ -451,6 +451,31 @@ const attributes = {
 		type: 'string',
 		default: 'static',
 	},
+	// image border
+	imageBorderWidth: {
+		type: 'number',
+		isUAGStyle: true,
+		default: '',
+	},
+	imageBorderStyle: {
+		type: 'string',
+		isUAGStyle: true,
+		default: 'none',
+	},
+	imageBorderRadius: {
+		type: 'number',
+		isUAGStyle: true,
+		default: '',
+	},
+	imageBorderColor: {
+		type: 'string',
+		isUAGStyle: true,
+	},
+	imageBorderhoverColor: {
+		type: 'string',
+		isUAGStyle: true,
+		default: '',
+	},
 };
 
 export default attributes;

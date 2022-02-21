@@ -9,6 +9,7 @@ import InspectorTab, {
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
 import SpacingControl from '@Components/spacing-control';
 import Range from '@Components/range/Range.js';
+import Border from '@Components/border';
 import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 import {
@@ -136,7 +137,13 @@ export default function settings( props ) {
 		seperatorMarginUnitMobile,
 		seperatorMarginLink,
 		// effect
-		imageHoverEffect
+		imageHoverEffect,
+		// border
+		imageBorderWidth,
+		imageBorderStyle,
+		imageBorderRadius,
+		imageBorderColor,
+		imageBorderhoverColor,
 	} = attributes;
 	const {imageSizes} = useSelect(
 		( select ) => {
@@ -666,7 +673,38 @@ export default function settings( props ) {
 			title={ __( 'Image Style', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ false }
 		>
-
+			<Border
+				setAttributes={ setAttributes }
+				borderStyle={ {
+					value: imageBorderStyle,
+					label: 'imageBorderStyle',
+					title: __( 'Style', 'ultimate-addons-for-gutenberg' ),
+				} }
+				borderWidth={ {
+					value: imageBorderWidth,
+					label: 'imageBorderWidth',
+					title: __( 'Width', 'ultimate-addons-for-gutenberg' ),
+				} }
+				borderRadius={ {
+					value: imageBorderRadius,
+					label: 'imageBorderRadius',
+					title: __( 'Radius', 'ultimate-addons-for-gutenberg' ),
+				} }
+				borderColor={ {
+					value: imageBorderColor,
+					label: 'imageBorderColor',
+					title: __( 'Color', 'ultimate-addons-for-gutenberg' ),
+				} }
+				borderHoverColor={ {
+					value: imageBorderhoverColor,
+					label: 'imageBorderhoverColor',
+					title: __(
+						'Hover Color',
+						'ultimate-addons-for-gutenberg'
+					),
+				} }
+				disableBottomSeparator={ true }
+			/>
 		</UAGAdvancedPanelBody>
 	)
 

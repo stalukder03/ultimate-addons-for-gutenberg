@@ -94,12 +94,25 @@ export default function styling( props ) {
 		seperatorMarginUnitTablet,
 		seperatorMarginUnitMobile,
 		seperatorMarginLink,
+		// border
+		imageBorderWidth,
+		imageBorderStyle,
+		imageBorderRadius,
+		imageBorderColor,
+		imageBorderhoverColor,
 	} = props.attributes;
 
 	const selectors = {
 		' .wp-block-uagb-image img':{
 			'width': 'inherit',
 			'height': 'inherit',
+			'border-style': imageBorderStyle,
+			'border-color': imageBorderColor,
+			'border-radius': generateCSSUnit( imageBorderRadius, 'px' ),
+			'border-width': generateCSSUnit( imageBorderWidth, 'px' ),
+		},
+		' .wp-block-uagb-image img:hover':{
+			'border-color': imageBorderhoverColor
 		},
 		'.wp-block-uagb-image figcaption': {
 			'font-family': captionFontFamily,
