@@ -341,6 +341,14 @@ const attributes = {
 		isUAGStyle: true,
 	},
 	// overlay
+	overlayPositionFromEdge: {
+		type: 'number',
+		default: 0,
+	},
+	overlayPositionFromEdgeUnit: {
+		type: 'string',
+		default: 'px',
+	},
 	overlayContentPosition: {
 		type: 'string',
 		default: 'center center',

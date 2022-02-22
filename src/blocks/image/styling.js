@@ -69,6 +69,8 @@ export default function styling( props ) {
 		headingMarginUnitTablet,
 		headingMarginUnitMobile,
 		// overlay
+		overlayPositionFromEdge,
+		overlayPositionFromEdgeUnit,
 		overlayBackground,
 		overlayHoverBackground,
 		overlayBorderStyle,
@@ -159,6 +161,10 @@ export default function styling( props ) {
 			'border-color': overlayBorderColor,
 			'border-radius': generateCSSUnit( overlayBorderRadius, 'px' ),
 			'border-width': generateCSSUnit( overlayBorderWidth, 'px' ),
+			'left': generateCSSUnit( overlayPositionFromEdge, overlayPositionFromEdgeUnit ),
+			'right': generateCSSUnit( overlayPositionFromEdge, overlayPositionFromEdgeUnit ),
+			'top': generateCSSUnit( overlayPositionFromEdge, overlayPositionFromEdgeUnit ),
+			'bottom': generateCSSUnit( overlayPositionFromEdge, overlayPositionFromEdgeUnit ),
 		},
 		' .wp-block-uagb-image--layout-overlay__inner .uagb-image-heading': {
 			'font-family': headingFontFamily,

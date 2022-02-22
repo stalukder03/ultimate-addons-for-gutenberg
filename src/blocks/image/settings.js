@@ -111,6 +111,8 @@ export default function settings( props ) {
 		headingMarginUnitMobile,
 		headingMarginLink,
 		// overlay
+		overlayPositionFromEdge,
+		overlayPositionFromEdgeUnit,
 		overlayContentPosition,
 		overlayBackground,
 		overlayHoverBackground,
@@ -758,6 +760,25 @@ export default function settings( props ) {
 					),
 				} }
 				disableBottomSeparator={ false }
+			/>
+			<Range
+				label={ __(
+					'Overlay Position From EDGE',
+					'ultimate-addons-for-gutenberg'
+				) }
+				setAttributes={ setAttributes }
+				value={ overlayPositionFromEdge }
+				onChange={ ( value ) =>
+					setAttributes( {
+						overlayPositionFromEdge: value,
+					} )
+				}
+				min={ 0 }
+				max={ 100 }
+				unit={ {
+					value: overlayPositionFromEdgeUnit,
+					label: 'overlayPositionFromEdgeUnit',
+				} }
 			/>
 			<UAGTabsControl
 				tabs={ [
