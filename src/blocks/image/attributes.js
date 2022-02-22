@@ -349,6 +349,28 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
+	overlayHoverBackground: {
+		type: 'string',
+		default: '',
+	},
+	overlayBorderStyle: {
+		type: 'string',
+		isUAGStyle: true,
+		default: 'none',
+	},
+	overlayBorderRadius: {
+		type: 'number',
+		isUAGStyle: true,
+		default: '',
+	},
+	overlayBorderColor: {
+		type: 'string',
+		isUAGStyle: true,
+	},
+	overlayBorderHoverColor: {
+		type: 'string',
+		isUAGStyle: true,
+	},
 	// seperator
 	seperatorStyle: {
 		type: 'string',

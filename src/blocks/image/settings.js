@@ -23,6 +23,7 @@ import {
 	SelectControl,
 	__experimentalAlignmentMatrixControl as AlignmentMatrixControl
 } from '@wordpress/components';
+import UAGTabsControl from '@Components/tabs';
 
 
 import { store as coreStore } from '@wordpress/core-data';
@@ -112,6 +113,12 @@ export default function settings( props ) {
 		// overlay
 		overlayContentPosition,
 		overlayBackground,
+		overlayHoverBackground,
+		overlayBorderStyle,
+		overlayBorderWidth,
+		overlayBorderRadius,
+		overlayBorderColor,
+		overlayBorderHoverColor,
 		// seperator
 		seperatorStyle,
 		seperatorWidth,
@@ -713,13 +720,6 @@ export default function settings( props ) {
 			title={ __( 'Overlay Settings', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ false }
 		>
-			<AdvancedPopColorControl
-				label={ __( 'Background', 'ultimate-addons-for-gutenberg' ) }
-				colorValue={ overlayBackground ? overlayBackground : '' }
-				onColorChange={ ( value ) =>
-					setAttributes( { overlayBackground: value } )
-				}
-			/>
 			<label>
 				{__('Content Postion', 'ultimate-addons-for-gutenberg')}
 				<AlignmentMatrixControl
@@ -727,6 +727,79 @@ export default function settings( props ) {
 					onChange={ ( newAlignment ) =>  setAttributes({overlayContentPosition: newAlignment}) }
 				/>
 			</label>
+			<Border
+				setAttributes={ setAttributes }
+				borderStyle={ {
+					value: overlayBorderStyle,
+					label: 'overlayBorderStyle',
+					title: __( 'Style', 'ultimate-addons-for-gutenberg' ),
+				} }
+				borderWidth={ {
+					value: overlayBorderWidth,
+					label: 'overlayBorderWidth',
+					title: __( 'Width', 'ultimate-addons-for-gutenberg' ),
+				} }
+				borderRadius={ {
+					value: overlayBorderRadius,
+					label: 'overlayBorderRadius',
+					title: __( 'Radius', 'ultimate-addons-for-gutenberg' ),
+				} }
+				borderColor={ {
+					value: overlayBorderColor,
+					label: 'overlayBorderColor',
+					title: __( 'Color', 'ultimate-addons-for-gutenberg' ),
+				} }
+				borderHoverColor={ {
+					value: overlayBorderHoverColor,
+					label: 'overlayBorderHoverColor',
+					title: __(
+						'Hover Color',
+						'ultimate-addons-for-gutenberg'
+					),
+				} }
+				disableBottomSeparator={ false }
+			/>
+			<UAGTabsControl
+				tabs={ [
+					{
+						name: 'normal',
+						title: __(
+							'Normal',
+							'ultimate-addons-for-gutenberg'
+						),
+					},
+					{
+						name: 'hover',
+						title: __(
+							'Hover',
+							'ultimate-addons-for-gutenberg'
+						),
+					},
+				] }
+				normal={
+					<>
+						<AdvancedPopColorControl
+							label={ __( 'Background', 'ultimate-addons-for-gutenberg' ) }
+							colorValue={ overlayBackground ? overlayBackground : '' }
+							onColorChange={ ( value ) =>
+								setAttributes( { overlayBackground: value } )
+							}
+						/>
+					</>
+				}
+				hover={
+					<>
+						<AdvancedPopColorControl
+							label={ __( 'Background', 'ultimate-addons-for-gutenberg' ) }
+							colorValue={ overlayHoverBackground ? overlayHoverBackground : '' }
+							onColorChange={ ( value ) =>
+								setAttributes( { overlayHoverBackground: value } )
+							}
+						/>
+					</>
+					}
+				disableBottomSeparator={ false }
+			/>
 		</UAGAdvancedPanelBody>
 	)
 

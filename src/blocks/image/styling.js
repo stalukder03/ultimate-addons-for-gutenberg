@@ -70,6 +70,12 @@ export default function styling( props ) {
 		headingMarginUnitMobile,
 		// overlay
 		overlayBackground,
+		overlayHoverBackground,
+		overlayBorderStyle,
+		overlayBorderWidth,
+		overlayBorderRadius,
+		overlayBorderColor,
+		overlayBorderHoverColor,
 		// seperator
 		seperatorStyle,
 		seperatorWidth,
@@ -146,6 +152,14 @@ export default function styling( props ) {
 				captionMarginUnit
 			),
 		},
+		// overlay
+		' .wp-block-uagb-image--layout-overlay__inner': {
+			'background': overlayBackground,
+			'border-style': overlayBorderStyle,
+			'border-color': overlayBorderColor,
+			'border-radius': generateCSSUnit( overlayBorderRadius, 'px' ),
+			'border-width': generateCSSUnit( overlayBorderWidth, 'px' ),
+		},
 		' .wp-block-uagb-image--layout-overlay__inner .uagb-image-heading': {
 			'font-family': headingFontFamily,
 			'font-style' : headingFontStyle,
@@ -178,8 +192,9 @@ export default function styling( props ) {
 				headingMarginUnit
 			),
 		},
-		' .wp-block-uagb-image--layout-overlay__inner': {
-			'background': overlayBackground
+		'.wp-block-uagb-image:hover .wp-block-uagb-image--layout-overlay__inner': {
+			'background': overlayHoverBackground,
+			'border-color': overlayBorderHoverColor,
 		},
 		// Seperator
 		' .wp-block-uagb-image--layout-overlay__inner .uagb-image-separator': {
