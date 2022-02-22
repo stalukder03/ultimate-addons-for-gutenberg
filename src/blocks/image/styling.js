@@ -103,7 +103,7 @@ export default function styling( props ) {
 	} = props.attributes;
 
 	const selectors = {
-		' .wp-block-uagb-image img':{
+		'.wp-block-uagb-image img':{
 			'width': 'inherit',
 			'height': 'inherit',
 			'border-style': imageBorderStyle,
@@ -111,7 +111,7 @@ export default function styling( props ) {
 			'border-radius': generateCSSUnit( imageBorderRadius, 'px' ),
 			'border-width': generateCSSUnit( imageBorderWidth, 'px' ),
 		},
-		' .wp-block-uagb-image img:hover':{
+		'.wp-block-uagb-image img:hover':{
 			'border-color': imageBorderhoverColor
 		},
 		'.wp-block-uagb-image figcaption': {
@@ -205,7 +205,7 @@ export default function styling( props ) {
 	const tablet_selectors = {};
 	const mobile_selectors = {};
 
-	tablet_selectors[' .wp-block-uagb-image figcaption'] = {
+	tablet_selectors['.wp-block-uagb-image figcaption'] = {
         'font-size': generateCSSUnit(
             captionFontSizeTablet,
             captionFontSizeType
@@ -259,7 +259,7 @@ export default function styling( props ) {
 		),
     }
 
-	mobile_selectors[' .wp-block-uagb-image figcaption'] = {
+	mobile_selectors['.wp-block-uagb-image figcaption'] = {
         'font-size': generateCSSUnit(
             captionFontSizeMobile,
             captionFontSizeType
