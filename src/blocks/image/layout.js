@@ -62,6 +62,7 @@ export default function Layout({attributes, isSelected, setAttributes, captionRe
 			{
 				layout === 'overlay' ? (
 					<>
+						<div className='wp-block-uagb-image--layout-overlay__color-wrapper'></div>
 						<div className={`wp-block-uagb-image--layout-overlay__inner ${overlayContentPosition.replace(' ', '-')}`}>
 							{ 'before_title' === seperatorPosition && separator}
 							{imageHeading}

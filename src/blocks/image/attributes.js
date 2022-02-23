@@ -214,7 +214,7 @@ const attributes = {
 	},
 	headingColor: {
 		type: 'string',
-		isUAGStyle: true,
+		default: '#fff'
 	},
 	headingFontFamily: {
 		type: 'string',
@@ -343,7 +343,7 @@ const attributes = {
 	// overlay
 	overlayPositionFromEdge: {
 		type: 'number',
-		default: 0,
+		default: 15,
 	},
 	overlayPositionFromEdgeUnit: {
 		type: 'string',
@@ -357,14 +357,17 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
-	overlayHoverBackground: {
-		type: 'string',
-		default: '',
+	overlayOpacity: {
+		type: 'number',
+		default: 0.2,
+	},
+	overlayHoverOpacity: {
+		type: 'number',
+		default: 1,
 	},
 	overlayBorderStyle: {
 		type: 'string',
-		isUAGStyle: true,
-		default: 'none',
+		default: 'solid',
 	},
 	overlayBorderRadius: {
 		type: 'number',
@@ -373,7 +376,7 @@ const attributes = {
 	},
 	overlayBorderColor: {
 		type: 'string',
-		isUAGStyle: true,
+		default: '#fff'
 	},
 	overlayBorderHoverColor: {
 		type: 'string',
@@ -386,7 +389,7 @@ const attributes = {
 	},
 	seperatorColor: {
 		type: 'string',
-		default: '#333',
+		default: '#fff',
 	},
 	seperatorPosition: {
 		type: 'string',

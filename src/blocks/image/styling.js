@@ -69,10 +69,11 @@ export default function styling( props ) {
 		headingMarginUnitTablet,
 		headingMarginUnitMobile,
 		// overlay
+		overlayOpacity,
+		overlayHoverOpacity,
 		overlayPositionFromEdge,
 		overlayPositionFromEdgeUnit,
 		overlayBackground,
-		overlayHoverBackground,
 		overlayBorderStyle,
 		overlayBorderWidth,
 		overlayBorderRadius,
@@ -155,8 +156,11 @@ export default function styling( props ) {
 			),
 		},
 		// overlay
-		' .wp-block-uagb-image--layout-overlay__inner': {
+		' .wp-block-uagb-image--layout-overlay__color-wrapper': {
 			'background': overlayBackground,
+			'opacity': overlayOpacity,
+		},
+		' .wp-block-uagb-image--layout-overlay__inner': {
 			'border-style': overlayBorderStyle,
 			'border-color': overlayBorderColor,
 			'border-radius': generateCSSUnit( overlayBorderRadius, 'px' ),
@@ -199,8 +203,10 @@ export default function styling( props ) {
 			),
 		},
 		'.wp-block-uagb-image:hover .wp-block-uagb-image--layout-overlay__inner': {
-			'background': overlayHoverBackground,
 			'border-color': overlayBorderHoverColor,
+		},
+		'.wp-block-uagb-image:hover .wp-block-uagb-image--layout-overlay__color-wrapper': {
+			'opacity': overlayHoverOpacity,
 		},
 		// Seperator
 		' .wp-block-uagb-image--layout-overlay__inner .uagb-image-separator': {
