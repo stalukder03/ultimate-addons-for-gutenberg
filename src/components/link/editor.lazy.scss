@@ -1,0 +1,11 @@
+.uag-link-control {
+	&__link {
+		display: flex;
+		margin-bottom: 10px;
+	}
+	&__options {
+		.block-editor-block-inspector .components-base-control {
+			margin-bottom: 10px !important;
+		}
+	}
+}
