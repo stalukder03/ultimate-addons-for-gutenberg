@@ -1,10 +1,39 @@
 .uag-link-control {
+	margin-bottom: 15px;
+	> label {
+		display: inline-block;
+		margin-bottom: 5px;
+	}
 	&__link {
 		display: flex;
+		column-gap: 5px;
 		margin-bottom: 10px;
+		input {
+			width: 100%;
+			padding: 6px 8px;
+			box-shadow: 0 0 0 transparent;
+			transition: box-shadow 0.1s linear;
+			border-radius: 2px;
+			border: 1px solid #757575;
+			font-size: 16px;
+			line-height: normal;
+		}
+		button {
+			background: #fff;
+			border: 1px solid #757575;
+			min-height: 26px;
+			display: inline-flex;
+			align-items: center;
+			padding: 3px 8px;
+			text-align: center;
+			color: #1e1e1e;
+			transition: all 400ms;
+			border-radius: 3px;
+			cursor: pointer;
+		}
 	}
 	&__options {
-		.block-editor-block-inspector .components-base-control {
+		.components-base-control {
 			margin-bottom: 10px !important;
 		}
 	}

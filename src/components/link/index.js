@@ -6,19 +6,21 @@ import styles from './editor.lazy.scss';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-	setAttributes: PropTypes.func,
+	label: PropTypes.string,
 	link: PropTypes.object,
 	target: PropTypes.object,
-	noFollow: PropTypes.object
+	noFollow: PropTypes.object,
+	setAttributes: PropTypes.func
 };
 
 const defaultProps = {
-	setAttributes: () => {},
+	label: 'URL',
 	link: {},
-	target: {}
+	target: {},
+	setAttributes: () => {},
 };
 
-export default function Link({ setAttributes, link, target, noFollow }) {
+export default function Link({ setAttributes, label, link, target, noFollow }) {
 	const [isShowOptions, setShowOptions] = useState(false)
 	// Add and remove the CSS on the drop and remove of the component.
 	useLayoutEffect( () => {
@@ -31,7 +33,7 @@ export default function Link({ setAttributes, link, target, noFollow }) {
 	return (
 		<React.Fragment>
 			<div className='uag-link-control'>
-				<label>{link.label}</label>
+				<label>{label}</label>
 				<div className='uag-link-control__link'>
 					<input type='url' value={link.value} placeholder={__('https://', 'ultimate-addons-for-gutenberg')} onChange={ ( e ) => setAttributes( {[link.label]: e.target.value} ) } />
 					<button onClick={() => setShowOptions(!isShowOptions)}><span className="dashicons dashicons-admin-generic"></span></button>
@@ -40,12 +42,12 @@ export default function Link({ setAttributes, link, target, noFollow }) {
 					isShowOptions && (
 						<div className='uag-link-control__options'>
 							<CheckboxControl
-								label="Open in new window"
+								label={__('Open in new window', 'ultimate-addons-for-gutenberg')}
 								checked={ target.value }
 								onChange={ (value) => setAttributes( {[target.label]: value} ) }
 							/>
 							<CheckboxControl
-								label="Add Nofollow"
+								label={__('Add Nofollow', 'ultimate-addons-for-gutenberg')}
 								checked={ noFollow.value }
 								onChange={ (value) => setAttributes( {[noFollow.label]: value} ) }
 							/>

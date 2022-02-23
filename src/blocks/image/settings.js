@@ -241,6 +241,7 @@ export default function settings( props ) {
 			}
 			<Link
 				setAttributes={setAttributes}
+				label={__('Image URL', 'ultimate-addons-for-gutenberg')}
 				link={
 					{
 						label: 'imageLink',
