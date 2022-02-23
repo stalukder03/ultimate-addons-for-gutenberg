@@ -14,6 +14,9 @@ import InspectorTab, {
 	UAGTabs,
 } from '@Components/inspector-tabs/InspectorTab.js';
 import renderSVG from '@Controls/renderIcon';
+import presets from './presets';
+import UAGPresets from '@Components/presets';
+
 const maxColumns = 3;
 
 import { InspectorControls } from '@wordpress/block-editor';
@@ -129,8 +132,10 @@ const Settings = ( props ) => {
 		descDecoration,
 		priceTransform,
 		priceDecoration,
+		headingAlign,
+		imgAlign
 	} = attributes;
-	
+
 	const setimageSize = ( value ) => {
 		const getChildBlocks = select( 'core/block-editor' ).getBlocks(
 			props.clientId
@@ -305,6 +310,7 @@ const Settings = ( props ) => {
 		{ value: 'medium', label: __( 'Medium' ) },
 		{ value: 'full', label: __( 'Large' ) },
 	];
+
 	//Image Setting
 	const imageSettings = () => {
 		return (
@@ -312,7 +318,31 @@ const Settings = ( props ) => {
 				<MultiButtonsControl
 					setAttributes={ setAttributes }
 					label={ __(
-						'Image Position',
+						'Position',
+						'ultimate-addons-for-gutenberg'
+					) }
+					data={ {
+						value: imgAlign,
+						label: 'imgAlign',
+					} }
+					className="uagb-multi-button-alignment-control"
+					options={ [
+						{
+							value: 'top',
+							label: 'Top',
+						},
+						{
+							value: 'side',
+							label: 'Side',
+						},
+					] }
+					showIcons={ false }
+				/>
+				{ ( imgAlign === 'side' ) && (
+					<MultiButtonsControl
+					setAttributes={ setAttributes }
+					label={ __(
+						'Alignment',
 						'ultimate-addons-for-gutenberg'
 					) }
 					data={ {
@@ -334,14 +364,52 @@ const Settings = ( props ) => {
 							),
 						},
 						{
-							value: 'top',
+							value: 'right',
+							icon: (
+								<Icon
+									icon={ renderSVG( 'fa fa-align-right' ) }
+								/>
+							),
+							tooltip: __(
+								'Right',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+					] }
+					showIcons={ true }
+				/>
+				)}
+				{ ( imgAlign === 'top' ) && (
+				<MultiButtonsControl
+					setAttributes={ setAttributes }
+					label={ __( 'Alignment', 'ultimate-addons-for-gutenberg' ) }
+					data={ {
+						value: headingAlign,
+						label: 'headingAlign',
+					} }
+					className="uagb-multi-button-alignment-control"
+					options={ [
+						{
+							value: 'left',
+							icon: (
+								<Icon
+									icon={ renderSVG( 'fa fa-align-left' ) }
+								/>
+							),
+							tooltip: __(
+								'Left',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'center',
 							icon: (
 								<Icon
 									icon={ renderSVG( 'fa fa-align-center' ) }
 								/>
 							),
 							tooltip: __(
-								'Top',
+								'Center',
 								'ultimate-addons-for-gutenberg'
 							),
 						},
@@ -360,6 +428,7 @@ const Settings = ( props ) => {
 					] }
 					showIcons={ true }
 				/>
+				)}
 				{ ( imagePosition === 'left' || imagePosition === 'right' ) && (
 					<>
 						<MultiButtonsControl
@@ -854,11 +923,24 @@ const Settings = ( props ) => {
 			</UAGAdvancedPanelBody>
 		);
 	};
+	const presetSettings = () => {
+		return <UAGAdvancedPanelBody
+					title={ __( 'Presets', 'ultimate-addons-for-gutenberg' ) }
+					initialOpen={ true }
+				>
+					<UAGPresets
+						setAttributes = { setAttributes }
+						presets = { presets }
+						presetInputType = 'radioImage'
+					/>
+				</UAGAdvancedPanelBody>
+	};
 	const inspectControl = () => {
 		return (
 			<InspectorControls>
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>
+						{ presetSettings() }
 						<UAGAdvancedPanelBody
 							title={ __( 'General' ) }
 							initialOpen={ true }

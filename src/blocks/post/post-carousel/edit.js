@@ -8,6 +8,7 @@ import { __ } from '@wordpress/i18n';
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import lazyLoader from '@Controls/lazy-loader';
 import TypographyControl from '@Components/typography';
+import { decodeEntities } from '@wordpress/html-entities';
 import Border from '@Components/border';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
 import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
@@ -21,6 +22,10 @@ import UAGTabsControl from '@Components/tabs';
 import MultiButtonsControl from '@Components/multi-buttons-control';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import renderSVG from '@Controls/renderIcon';
+import presets from './presets';
+import UAGPresets from '@Components/presets';
+import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
+
 const MAX_POSTS_COLUMNS = 8;
 
 const Settings = lazy( () =>
@@ -47,6 +52,7 @@ import { InspectorControls } from '@wordpress/block-editor';
 import { withSelect, withDispatch } from '@wordpress/data';
 
 const UAGBPostCarousel = ( props ) => {
+
 	const [ state, setState ] = useState( {
 		isEditing: false,
 		innerBlocks: [],
@@ -154,12 +160,6 @@ const UAGBPostCarousel = ( props ) => {
 				} );
 			}
 		}
-		const $style = document.createElement( 'style' );
-		$style.setAttribute(
-			'id',
-			'uagb-post-carousel-style-' + props.clientId.substr( 0, 8 )
-		);
-		document.head.appendChild( $style );
 	}, [] );
 
 	useEffect( () => {
@@ -170,14 +170,8 @@ const UAGBPostCarousel = ( props ) => {
 			uagb_carousel_unset_height( props.clientId.substr( 0, 8 ) ); // eslint-disable-line no-undef
 		}
 
-		const element = document.getElementById(
-			'uagb-post-carousel-style-' + props.clientId.substr( 0, 8 )
-		);
-		let css = '';
-
-		if ( null !== element && undefined !== element ) {
-			css = styling( props );
-			css +=
+		let blockStyling = styling( props );
+		blockStyling +=
 				'.uagb-block-' +
 				props.clientId.substr( 0, 8 ) +
 				'.uagb-post-grid ul.slick-dots li.slick-active button:before, .uagb-block-' +
@@ -185,9 +179,26 @@ const UAGBPostCarousel = ( props ) => {
 				'.uagb-slick-carousel ul.slick-dots li button:before { color: ' +
 				props.attributes.arrowColor +
 				'; }';
-			element.innerHTML = css;
-		}
+
+		addBlockEditorDynamicStyles( 'uagb-post-carousel-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+
 	}, [ props ] );
+
+	useEffect( () => {
+
+		let blockStyling = styling( props );
+		blockStyling +=
+				'.uagb-block-' +
+				props.clientId.substr( 0, 8 ) +
+				'.uagb-post-grid ul.slick-dots li.slick-active button:before, .uagb-block-' +
+				props.clientId.substr( 0, 8 ) +
+				'.uagb-slick-carousel ul.slick-dots li button:before { color: ' +
+				props.attributes.arrowColor +
+				'; }';
+
+		addBlockEditorDynamicStyles( 'uagb-post-carousel-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+
+	}, [ props.deviceType ] );
 
 	const onSelectPostType = ( value ) => {
 		const { setAttributes } = props;
@@ -380,7 +391,7 @@ const UAGBPostCarousel = ( props ) => {
 		Object.keys( taxonomyList ).map( ( item ) => {
 			return taxonomyListOptions.push( {
 				value: taxonomyList[ item ].name,
-				label: taxonomyList[ item ].label,
+				label: decodeEntities( taxonomyList[ item ].label ),
 			} );
 		} );
 	}
@@ -389,11 +400,22 @@ const UAGBPostCarousel = ( props ) => {
 		Object.keys( categoriesList ).map( ( item ) => {
 			return categoryListOptions.push( {
 				value: categoriesList[ item ].id,
-				label: categoriesList[ item ].name,
+				label: decodeEntities( categoriesList[ item ].name ),
 			} );
 		} );
 	}
-
+	const presetSettings = () => {
+		return <UAGAdvancedPanelBody
+					title={ __( 'Presets', 'ultimate-addons-for-gutenberg' ) }
+					initialOpen={ true }
+				>
+					<UAGPresets
+						setAttributes = { setAttributes }
+						presets = { presets }
+						presetInputType = 'radioImage'
+					/>
+				</UAGAdvancedPanelBody>
+	};
 	const togglePreview = () => {
 		setState( { isEditing: ! state.isEditing } );
 		if ( ! state.isEditing ) {
@@ -987,7 +1009,7 @@ const UAGBPostCarousel = ( props ) => {
 					}
 				/>
 				<Range
-					label={ __( 'Column Gap', 'ultimate-addons-for-gutenberg' ) }
+					label={ __( 'Row Gap', 'ultimate-addons-for-gutenberg' ) }
 					setAttributes={ setAttributes }
 					value={ rowGap }
 					onChange={ ( value ) => setAttributes( { rowGap: value } ) }
@@ -1000,7 +1022,7 @@ const UAGBPostCarousel = ( props ) => {
 				/>
 				<Range
 					label={ __(
-						'Row Gap',
+						'Column Gap',
 						'ultimate-addons-for-gutenberg'
 					) }
 					setAttributes={ setAttributes }
@@ -1833,6 +1855,7 @@ const UAGBPostCarousel = ( props ) => {
 		<InspectorControls>
 			<InspectorTabs>
 				<InspectorTab { ...UAGTabs.general }>
+					{ presetSettings() }
 					{ getGeneralPanelBody() }
 					{ getCarouselPanelBody() }
 					{ getImagePanelBody() }
@@ -1940,7 +1963,7 @@ export default compose(
 
 		if ( excludeCurrentPost ) {
 			latestPostsQuery.exclude = select(
-				'core/editor'
+				'core/block-editor'
 			).getCurrentPostId();
 		}
 		const category = [];

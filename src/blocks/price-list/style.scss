@@ -4,7 +4,8 @@
  * CSS for both Frontend+Backend.
  */
 
-.wp-block-uagb-restaurant-menu {
+.wp-block-uagb-restaurant-menu,
+.uagb-rest_menu__wrap {
 	position: relative;
 
 	&::after {
@@ -29,7 +30,6 @@
 			display: table;
 			width: 100%;
 			padding: 15px;
-			padding: 5px;
 			border-radius: inherit;
 			text-align: left;
 			word-break: break-word;
@@ -103,7 +103,7 @@
 
 		&.uagb-rm__align-right .uagb-rm-details {
 			display: flex;
-			flex-direction: row-reverse;
+			flex-direction: column;
 			width: 100%;
 		}
 
@@ -157,9 +157,26 @@
 		}
 	}
 
+	&.uagb-rm__image-aligned-middle img,
+	.uagb-rm__image-aligned-middle .uagb-rm__image-content {
+		-ms-flex-item-align: center;
+		align-self: center;
+	}
+
+	&.uagb-rm__image-aligned-top img {
+		-ms-flex-item-align: flex-start;
+		align-self: flex-start;
+	}
+
 	.uagb-rm__align-left .uagb-rm__content span.uagb-rm__price {
 		display: table-cell;
 		text-align: right;
+	}
+
+	.uagb-rm__text-wrap {
+		position: relative;
+		display: block;
+		width: 100%;
 	}
 
 	.uagb-rm__image-position-center {
@@ -180,6 +197,10 @@
 			display: -ms-flexbox;
 			display: flex;
 			-js-display: flex;
+		}
+
+		&.uagb-rm__align-left .uagb-rm-details {
+			flex-direction: unset;
 		}
 
 		&.uagb-rm__align-left .uagb-rm__price,
@@ -203,6 +224,28 @@
 		}
 	}
 
+	.uagb-rm__image-aligned-middle .uagb-rm__content img,
+	.uagb-rm__image-aligned-middle .uagb-rm__content .uagb-rm__image-content {
+		-ms-flex-item-align: center;
+		align-self: center;
+	}
+
+	.uagb-rm__image-aligned-top .uagb-rm__content img,
+	.uagb-rm__image-aligned-top .uagb-rm__content .uagb-rm__image-content {
+		-ms-flex-item-align: flex-start;
+		align-self: flex-start;
+	}
+
+	&.uagb-rm__image-aligned-middle .uagb-rm__content img {
+		-ms-flex-item-align: center;
+		align-self: center;
+	}
+
+	&.uagb-rm__image-aligned-top .uagb-rm__content img {
+		-ms-flex-item-align: flex-start;
+		align-self: flex-start;
+	}
+
 	/*CSS for image position right with all alignment*/
 	.uagb-rm__image-position-right {
 
@@ -216,6 +259,11 @@
 		&.uagb-rm__align-right .uagb-rm-details,
 		&.uagb-rm__align-center .uagb-rm-details {
 			text-align: right;
+		}
+
+		&.uagb-rm__align-left .uagb-rm__text-wrap .uagb-rm-details {
+			display: flex;
+			flex-direction: row-reverse;
 		}
 
 		&.uagb-rm__align-left .uagb-rm__price,
@@ -236,6 +284,13 @@
 
 		img {
 			margin-left: 10px;
+		}
+	}
+
+	.uagb-rm__image-position-top {
+
+		&.uagb-rm__align-right .uagb-rm-details {
+			display: inline-table;
 		}
 	}
 }

@@ -31,7 +31,7 @@ const attributes = { // eslint-disable-line no-unused-vars
 	},
 	separatorFillColor      : {
 		type    : 'string',
-		default : '#61ce70',
+		default : '#0693e3',
 		isUAGStyle: true,
 	},
 	separatorBorder         : {
@@ -156,7 +156,7 @@ const attributes = { // eslint-disable-line no-unused-vars
 	},
 	iconBgFocus             : {
 		type    : 'string',
-		default : '#61ce70',
+		default : '#0693e3',
 		isUAGStyle: true,
 	},
 	authorColor             : {
@@ -678,6 +678,14 @@ const attributes = { // eslint-disable-line no-unused-vars
 	ctaDecoration           : {
 		type : 'string',
 		isUAGStyle: true,
+	},
+	ctaBottomSpacing : {
+		type: 'number',
+		isUAGStyle: true
+	},
+	headTopSpacing : {
+		type: 'number',
+		isUAGStyle: true
 	},
 }
 

@@ -1,3 +1,4 @@
+
 /**
  * BLOCK: Columns - Editor Render.
  */
@@ -10,7 +11,7 @@ const ALLOWED_BLOCKS = [ 'uagb/column' ];
 import { InnerBlocks } from '@wordpress/block-editor';
 
 const Render = ( props ) => {
-	
+
 	const { attributes, isSelected, className } = props.parentProps;
 	const deviceType = useDeviceType();
 	const {
@@ -84,7 +85,7 @@ const Render = ( props ) => {
 	const reverseMobileClass = reverseMobile
 		? 'uagb-columns__reverse-mobile'
 		: '';
-	
+
 	const colTablet = ( columnsTablet ) ? `uagb-columns__columns-tab-${columnsTablet}` : '';
 
 	const colMobile = ( columnsMobile ) ? `uagb-columns__columns-mob-${columnsMobile}` : '';

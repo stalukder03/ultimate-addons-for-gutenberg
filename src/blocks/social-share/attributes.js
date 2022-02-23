@@ -2,7 +2,7 @@
  * BLOCK: UAGB Social Share Attributes
  */
 
-const itemCount = 1;
+const itemCount = 3;
 
 const socials = [];
 
@@ -49,7 +49,7 @@ const attributes = {
 	},
 	gap: {
 		type: 'number',
-		default: 15,
+		default: 10,
 		isUAGStyle: true,
 	},
 	size: {

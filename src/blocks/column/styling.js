@@ -1,3 +1,4 @@
+
 /**
  * Returns Dynamic Generated CSS
  */
@@ -95,6 +96,7 @@ function styling( props ) {
 
 	const selectors = {
 		':before': inlineStyles( props ),
+		':after': inlineStyles( props ),
 		'': style,
 	};
 
@@ -167,7 +169,9 @@ function styling( props ) {
 	};
 
 	if ( colWidth !== '' && colWidth !== 0 ) {
-		selectors['.block-editor-block-list__block'] = { 'width' : colWidth + '%' }
+		selectors[ '.block-editor-block-list__block' ] = {
+			'width': colWidth + '%',
+		};
 	}
 
 	if ( 'none' !== borderStyle ) {
@@ -176,27 +180,28 @@ function styling( props ) {
 		};
 	}
 
-	const id = `#wpwrap .edit-post-visual-editor #block-${ props.clientId }`;
+	const id = `#block-${ props.clientId }`;
+
 	stylingCss = generateCSS( selectors, id );
-	
+
 	if ( colWidthTablet !== '' && colWidthTablet !== 0 ) {
 
 		selectorsTab = {
 			'.block-editor-block-list__block' : { 'width' : colWidthTablet + '%' },
 			'' : ''
 		}
-		const tabId = `#wpwrap .edit-post-visual-editor .uagb-editor-preview-mode-tablet #block-${ props.clientId }`;
+		const tabId = `.editor-styles-wrapper .uagb-editor-preview-mode-tablet #block-${ props.clientId }`;
 
 		stylingCss += generateCSS( selectorsTab, tabId );
 	}
-	
+
 	if ( colWidthMobile !== '' && colWidthMobile !== 0 ) {
-		
+
 		selectorsMob = {
 			'.block-editor-block-list__block' : { 'width' : colWidthMobile + '%' },
 			'' : ''
 		}
-		const mobId = `#wpwrap .edit-post-visual-editor .uagb-editor-preview-mode-mobile #block-${ props.clientId }`;
+		const mobId = `.editor-styles-wrapper .uagb-editor-preview-mode-mobile #block-${ props.clientId }`;
 
 		stylingCss += generateCSS( selectorsMob, mobId );
 	}

@@ -1,3 +1,4 @@
+
 /**
  * BLOCK: Columns - Attributes
  */
@@ -22,10 +23,12 @@ const attributes = {
 	},
 	align: {
 		type: 'string',
+		default: 'wide',
 		isUAGStyle: true,
 	},
 	vAlign: {
 		type: 'string',
+		default: 'top',
 		isUAGStyle: true,
 	},
 	stack: {

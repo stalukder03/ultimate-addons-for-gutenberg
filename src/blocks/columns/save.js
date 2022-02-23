@@ -75,7 +75,6 @@ export default function save( props ) {
 		? 'uagb-columns__reverse-mobile'
 		: '';
 
-
 	const colTablet = ( columnsTablet ) ? `uagb-columns__columns-tab-${columnsTablet}` : '';
 
 	const colMobile = ( columnsMobile ) ? `uagb-columns__columns-mob-${columnsMobile}` : '';
@@ -85,7 +84,6 @@ export default function save( props ) {
 	const verticalAlign = ( undefined !== vAlign ) ? `uagb-columns__valign-${ vAlign }` : '';
 
 	const alignType = ( undefined !== align ) ? `align${ align }` : '';
-
 
 	return (
 		<CustomTag

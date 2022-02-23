@@ -152,6 +152,10 @@ function RestMenuStyle( props ) {
 				contentPaddingUnit
 			),
 		},
+		'.uagb-rm__align-center  .uagb-rest_menu__wrap .uagb-rm__content .uagb-rm__price': {
+			'text-align': headingAlign,
+			'display': 'inline-table',
+		},
 		// Prefix Style
 		' .uagb-rm__title': {
 			'font-size': generateCSSUnit( titleFontSize, titleFontSizeType ),
@@ -401,7 +405,7 @@ function RestMenuStyle( props ) {
 	};
 
 	let stylingCss = '';
-	const id = `#wpwrap .uagb-block-${ props.clientId.substr( 0, 8 ) }`;
+	const id = `.editor-styles-wrapper .uagb-block-${ props.clientId.substr( 0, 8 ) }`;
 
 	stylingCss = generateCSS( selectors, id );
 
