@@ -13,8 +13,10 @@ import {
 	store as blockEditorStore,
 	BlockIcon,
 	MediaPlaceholder,
-	useBlockProps
+	useBlockProps,
+	__experimentalImageURLInputUI as ImageURLInputUI
 } from '@wordpress/block-editor';
+import { store as coreStore } from '@wordpress/core-data';
 import { useEffect, useRef, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { useDeviceType } from '@Controls/getPreviewType';
@@ -64,7 +66,12 @@ const render = ( props ) => {
 		caption,
 		align,
 		id,
+		linkDestination,
+		linkTarget,
+		linkClass,
+		rel,
 		imageHoverEffect,
+		href,
 	} = attributes
 
 	const deviceType = useDeviceType();
@@ -88,6 +95,16 @@ const render = ( props ) => {
 		const {imageDefaultSize, mediaUpload} = getSettings();
 		return {imageDefaultSize, mediaUpload}
 	}, [] );
+
+	const { image } = useSelect(
+		( select ) => {
+			const { getMedia } = select( coreStore );
+			return {
+				image: id && isSelected ? getMedia( id ) : null
+			};
+		},
+		[ id, isSelected ]
+	);
 
 	// A callback passed to MediaUpload,
 	// fired when the media modal closes.
@@ -361,6 +378,9 @@ const render = ( props ) => {
 		} );
 	}
 
+	function onSetHref( props ) {
+		setAttributes( props );
+	}
 
 	const blockProps = useBlockProps( {
 		ref,
@@ -372,6 +392,16 @@ const render = ( props ) => {
 				<BlockAlignmentControl
 					value={ align }
 					onChange={ updateAlignment }
+				/>
+				<ImageURLInputUI
+					url={ href || '' }
+					onChangeUrl={ onSetHref }
+					linkDestination={ linkDestination }
+					mediaUrl={ ( image && image.source_url ) || url }
+					mediaLink={ image && image.link }
+					linkTarget={ linkTarget }
+					linkClass={ linkClass }
+					rel={ rel }
 				/>
 				{ externalBlob && (
 					<ToolbarButton

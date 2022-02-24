@@ -64,19 +64,6 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
-	// link
-	imageLink: {
-		type: 'string',
-		default: '',
-	},
-	imageLinkTarget: {
-		type: 'boolean',
-		default: true,
-	},
-	imageLinkNoFollow: {
-		type: 'boolean',
-		default: true,
-	},
 	// caption
 	captionText: {
 		type: 'string',

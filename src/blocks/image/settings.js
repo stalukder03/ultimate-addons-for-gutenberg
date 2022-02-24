@@ -9,7 +9,6 @@ import InspectorTab, {
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
 import SpacingControl from '@Components/spacing-control';
 import Range from '@Components/range/Range.js';
-import Link from '@Components/link';
 import Border from '@Components/border';
 import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
@@ -25,8 +24,6 @@ import {
 	SelectControl,
 	__experimentalAlignmentMatrixControl as AlignmentMatrixControl
 } from '@wordpress/components';
-import UAGTabsControl from '@Components/tabs';
-
 
 import { store as coreStore } from '@wordpress/core-data';
 // Extend component
@@ -48,10 +45,6 @@ export default function settings( props ) {
 		align,
 		alt,
 		sizeSlug,
-		// link
-		imageLink,
-		imageLinkTarget,
-		imageLinkNoFollow,
 		// caption
 		captionLoadGoogleFonts,
 		captionFontFamily,
@@ -239,28 +232,6 @@ export default function settings( props ) {
 					</>
 				)
 			}
-			<Link
-				setAttributes={setAttributes}
-				label={__('Image URL', 'ultimate-addons-for-gutenberg')}
-				link={
-					{
-						label: 'imageLink',
-						value: imageLink
-					}
-				}
-				target={
-					{
-						label: 'imageLinkTarget',
-						value: imageLinkTarget
-					}
-				}
-				noFollow={
-					{
-						label: 'imageLinkNoFollow',
-						value: imageLinkNoFollow
-					}
-				}
-			/>
 			<SelectControl
 				label={ __(
 					'On Hover Image',

@@ -21,10 +21,9 @@ export default function save( props ) {
 		align,
 		id,
 		linkTarget,
-		title,
+		rel,
+		title
 	} = props.attributes;
-
-
 	const image = (
 		<img
 			src={ url }
@@ -35,7 +34,13 @@ export default function save( props ) {
 			title={ title }
 		/>
 	);
-
+	// block validation issue fixing - ImageURLInputUI components automatic provide "noopener"
+	const getRel = () => {
+		if(rel){
+			return rel + ' noopener';
+		}
+		return 'noopener';
+	}
 	const figure = (
 		<>
 			{ href ? (
@@ -43,6 +48,7 @@ export default function save( props ) {
 					className={ linkClass }
 					href={ href }
 					target={ linkTarget }
+					rel={getRel()}
 				>
 					{ image }
 				</a>
