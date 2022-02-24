@@ -54,14 +54,16 @@
 		}
 		&__inner {
 			position: absolute;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			top: 0;
+			left: 15px;
+			right: 15px;
+			bottom: 15px;
+			top: 15px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			flex-direction: column;
+			border-style: solid;
+			border-color: #fff;
 			&.top-left,
 			&.top-center,
 			&.top-right {

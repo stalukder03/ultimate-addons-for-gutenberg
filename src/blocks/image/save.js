@@ -22,7 +22,11 @@ export default function save( props ) {
 		id,
 		linkTarget,
 		rel,
-		title
+		title,
+		heading,
+		overlayContentPosition,
+		seperatorStyle,
+		seperatorPosition
 	} = props.attributes;
 	const image = (
 		<img
@@ -41,7 +45,7 @@ export default function save( props ) {
 		}
 		return 'noopener';
 	}
-	const figure = (
+	const figureImage = (
 		<>
 			{ href ? (
 				<a
@@ -55,11 +59,28 @@ export default function save( props ) {
 			) : (
 				image
 			) }
-			{ ! RichText.isEmpty( caption ) && (
-				<RichText.Content tagName="figcaption" value={ caption } />
-			) }
 		</>
 	);
+
+	const imageHeading = (
+		<>
+			{ ( ! RichText.isEmpty( heading ) ) && (
+				<RichText.Content tagName="h2" className='uagb-image-heading' value={ heading } />
+			) }
+		</>
+	)
+
+	const imageCaption = (
+		<>
+			{ ! RichText.isEmpty( caption ) && (
+				<RichText.Content tagName="figcaption" className='uagb-image-caption' value={ caption } />
+			) }
+		</>
+	)
+
+	const separator = 'none' !== seperatorStyle && (
+		<div className="uagb-image-separator"></div>
+	)
 
 	return (
 		<>
@@ -70,7 +91,23 @@ export default function save( props ) {
 				`wp-block-uagb-image--layout-${ layout }`,
 				`${align ? 'wp-block-uagb-image--align-' + align : ''}`
 			) }>
-				{ figure }
+				{ figureImage }
+				{
+					layout === 'overlay' ? (
+						<>
+							<div className='wp-block-uagb-image--layout-overlay__color-wrapper'></div>
+							<div className={`wp-block-uagb-image--layout-overlay__inner ${overlayContentPosition.replace(' ', '-')}`}>
+								{ 'before_title' === seperatorPosition && separator}
+								{imageHeading}
+								{ 'after_title' === seperatorPosition && separator}
+								{imageCaption}
+								{ 'after_sub_title' === seperatorPosition && separator}
+							</div>
+						</>
+					) : (
+						imageCaption
+					)
+				}
 			</figure>
 		</>
 	);
