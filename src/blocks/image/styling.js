@@ -7,6 +7,7 @@ import generateCSSUnit from '@Controls/generateCSSUnit';
 
 
 
+
 export default function styling( props ) {
 	const {
 		captionFontFamily,
@@ -109,6 +110,11 @@ export default function styling( props ) {
 		imageBorderRadius,
 		imageBorderColor,
 		imageBorderhoverColor,
+		// shape
+		maskShape,
+		maskSize,
+		maskPosition,
+		maskRepeat
 	} = props.attributes;
 
 	const selectors = {
@@ -223,6 +229,18 @@ export default function styling( props ) {
 			'margin-right': generateCSSUnit( seperatorRightMargin, seperatorMarginUnit ),
 		},
 	}
+
+	if(maskShape !== 'none'){
+		const imagePath = `url(${window?.uagb_blocks_info?.uagb_url}assets/images/masks/${maskShape}.svg)`;
+		selectors['.wp-block-uagb-image img'] = {
+			'mask-image': imagePath,
+			'-webkit-mask-image': imagePath,
+			'-webkit-mask-size': maskSize,
+			'-webkit-mask-repeat': maskRepeat,
+			'-webkit-mask-position': maskPosition
+		}
+	}
+
 
 	const base_selector = `.editor-styles-wrapper .uagb-block-${ props.clientId.substr(
 		0,

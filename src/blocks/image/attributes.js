@@ -509,6 +509,23 @@ const attributes = {
 		isUAGStyle: true,
 		default: '',
 	},
+	// mask
+	maskShape: {
+		type: 'string',
+		default: 'none'
+	},
+	maskSize: {
+		type: 'string',
+		default: 'auto'
+	},
+	maskPosition: {
+		type: 'string',
+		default: 'center center'
+	},
+	maskRepeat: {
+		type: 'string',
+		default: 'no-repeat'
+	}
 };
 
 export default attributes;
