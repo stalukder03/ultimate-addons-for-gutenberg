@@ -86,7 +86,6 @@ export default function styling( props ) {
 		separatorWidthType,
 		seperatorThickness,
 		seperatorThicknessUnit,
-		seperatorPosition,
 		seperatorColor,
 		seperatorTopMargin,
 		seperatorRightMargin,
@@ -103,14 +102,13 @@ export default function styling( props ) {
 		seperatorMarginUnit,
 		seperatorMarginUnitTablet,
 		seperatorMarginUnitMobile,
-		seperatorMarginLink,
 		// border
 		imageBorderWidth,
 		imageBorderStyle,
 		imageBorderRadius,
 		imageBorderColor,
 		imageBorderhoverColor,
-		// shape
+		// mask
 		maskShape,
 		maskCustomShape,
 		maskSize,
@@ -312,6 +310,13 @@ export default function styling( props ) {
 			headingMarginUnitTablet
 		),
     }
+	// separator
+	tablet_selectors[' .wp-block-uagb-image--layout-overlay__inner .uagb-image-separator'] = {
+		'margin-bottom': generateCSSUnit( seperatorBottomMarginTablet, seperatorMarginUnitTablet ),
+		'margin-top': generateCSSUnit( seperatorTopMarginTablet, seperatorMarginUnitTablet ),
+		'margin-left': generateCSSUnit( seperatorLeftMarginTablet, seperatorMarginUnitTablet ),
+		'margin-right': generateCSSUnit( seperatorRightMarginTablet, seperatorMarginUnitTablet ),
+	}
 
 	mobile_selectors['.wp-block-uagb-image figcaption'] = {
         'font-size': generateCSSUnit(
@@ -366,6 +371,13 @@ export default function styling( props ) {
 			headingMarginUnitMobile
 		),
     }
+
+	mobile_selectors[' .wp-block-uagb-image--layout-overlay__inner .uagb-image-separator'] = {
+		'margin-bottom': generateCSSUnit( seperatorBottomMarginMobile, seperatorMarginUnitMobile ),
+		'margin-top': generateCSSUnit( seperatorTopMarginMobile, seperatorMarginUnitMobile ),
+		'margin-left': generateCSSUnit( seperatorLeftMarginMobile, seperatorMarginUnitMobile ),
+		'margin-right': generateCSSUnit( seperatorRightMarginMobile, seperatorMarginUnitMobile ),
+	}
 
 	let styling_css = generateCSS( selectors, base_selector );
 

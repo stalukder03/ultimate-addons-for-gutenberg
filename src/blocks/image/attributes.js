@@ -365,6 +365,10 @@ const attributes = {
 		type: 'number',
 		default: 1,
 	},
+	overlayBorderWidth: {
+		type: 'number',
+		default: 30,
+	},
 	overlayBorderStyle: {
 		type: 'string',
 		default: 'solid',
