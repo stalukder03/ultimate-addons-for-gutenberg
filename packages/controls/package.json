@@ -1,0 +1,41 @@
+{
+	"name": "@spectra/controls",
+	"version": "0.0.1",
+	"description": "Control for Blocks.",
+	"author": "Brainstorm Force",
+	"license": "GPL-2.0-or-later",
+	"keywords": [
+		"gutenberg",
+		"controls"
+	],
+	"homepage": "https://github.com/brainstormforce/ultimate-addons-for-gutenberg/tree/HEAD/packages/controls/README.md",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/brainstormforce/ultimate-addons-for-gutenberg.git",
+		"directory": "packages/components"
+	},
+	"bugs": {
+		"url": "https://github.com/brainstormforce/ultimate-addons-for-gutenberg/issues"
+	},
+	"engines": {
+		"node": ">=14"
+	},
+	"main": "src/index.js",
+	"module": "build-module/index.js",
+	"react-native": "src/index",
+	"sideEffects": [
+		"build-style/**",
+		"src/**/*.scss"
+	],
+	"dependencies": {
+		"@babel/runtime": "^7.16.0",
+		"@wordpress/components": "^19.5.0",
+		"@wordpress/element": "^4.1.1"
+	},
+	"peerDependencies": {
+		"react": "^17.0.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}

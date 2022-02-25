@@ -21,7 +21,7 @@ import renderSVG from '@Controls/renderIcon';
 import { SelectControl, Icon } from '@wordpress/components';
 
 // Extend component
-import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
+import { UAGAdvancedPanelBody } from '@spectra/controls';
 
 const Settings = ( props ) => {
 	props = props.parentProps;

@@ -3,9 +3,9 @@ const uagb_deactivated_blocks = uagb_deactivate_blocks.deactivated_blocks;
 if ( uagb_deactivated_blocks.length ) {
 	if ( typeof wp.blocks.unregisterBlockType !== 'undefined' ) {
 		for ( const block_index in uagb_deactivated_blocks ) {
-			wp.blocks.unregisterBlockType(
-				uagb_deactivated_blocks[ block_index ]
-			);
+			// wp.blocks.unregisterBlockType(
+			// 	uagb_deactivated_blocks[ block_index ]
+			// );
 		}
 	}
 }

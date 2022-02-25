@@ -34,7 +34,8 @@
     "react-select": "^2.2.0",
     "react-slick": "^0.24.0",
     "react-transition-group": "^2.4.0",
-    "striptags": "^3.2.0"
+    "striptags": "^3.2.0",
+    "@spectra/controls": "file:packages/controls"
   },
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
@@ -52,6 +53,7 @@
     "grunt-wp-i18n": "^1.0.3",
     "grunt-wp-readme-to-markdown": "^2.0.1",
     "install": "^0.13.0",
+    "lerna": "^4.0.0",
     "node-sass": "^4.14.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^2.0.0",
