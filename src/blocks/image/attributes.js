@@ -513,6 +513,33 @@ const attributes = {
 		isUAGStyle: true,
 		default: '',
 	},
+	imageBoxShadowColor: {
+		type: 'string',
+		isUAGStyle: true,
+	},
+	imageBoxShadowHOffset: {
+		type: 'number',
+		isUAGStyle: true,
+		default: 0,
+	},
+	imageBoxShadowVOffset: {
+		type: 'number',
+		default: 0,
+		isUAGStyle: true,
+	},
+	imageBoxShadowBlur: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	imageBoxShadowSpread: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	imageBoxShadowPosition: {
+		type: 'string',
+		default: 'outset',
+		isUAGStyle: true,
+	},
 	// mask
 	maskShape: {
 		type: 'string',

@@ -6,6 +6,12 @@ UAGB_Block_JS::blocks_advanced_heading_gfont( $attr );
 $m_selectors = array();
 $t_selectors = array();
 
+
+$imageBoxShadowPosition = $attr['imageBoxShadowPosition'];
+if ( 'outset' === $attr['imageBoxShadowPosition'] ) {
+	$imageBoxShadowPosition = '';
+}
+
 $selectors = array(
 	'.wp-block-uagb-image img'   => array(
 		'width' => (isset($attr['width']) ? $attr['width'] : 'inherit'),
@@ -14,6 +20,7 @@ $selectors = array(
 		'border-color' => $attr['imageBorderColor'],
 		'border-radius' => UAGB_Helper::get_css_value( $attr['imageBorderRadius'], 'px' ),
 		'border-width' => UAGB_Helper::get_css_value( $attr['imageBorderWidth'], 'px' ),
+		'box-shadow'    => UAGB_Helper::get_css_value( $attr['imageBoxShadowHOffset'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['imageBoxShadowVOffset'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['imageBoxShadowBlur'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['imageBoxShadowSpread'], 'px' ) . ' ' . $attr['imageBoxShadowColor'] . ' ' . $imageBoxShadowPosition,
 	),
 	'.wp-block-uagb-image img:hover' => array(
 		'border-color' => $attr['imageBorderhoverColor']

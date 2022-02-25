@@ -108,6 +108,13 @@ return array(
 	'imageBorderRadius' => '',
 	'imageBorderColor' => '',
 	'imageBorderhoverColor' => '',
+	// image shadow
+	'imageBoxShadowColor' => '',
+	'imageBoxShadowHOffset' => 0,
+	'imageBoxShadowVOffset' => 0,
+	'imageBoxShadowBlur' => '',
+	'imageBoxShadowSpread' => '',
+	'imageBoxShadowPosition' => 'outset',
 	// mask
 	'maskShape' 	=> 'none',
 	'maskSize'		=> 'auto',

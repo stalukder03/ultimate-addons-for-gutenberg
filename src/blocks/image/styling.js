@@ -108,6 +108,13 @@ export default function styling( props ) {
 		imageBorderRadius,
 		imageBorderColor,
 		imageBorderhoverColor,
+		// shadow
+		imageBoxShadowColor,
+		imageBoxShadowHOffset,
+		imageBoxShadowVOffset,
+		imageBoxShadowBlur,
+		imageBoxShadowSpread,
+		imageBoxShadowPosition,
 		// mask
 		maskShape,
 		maskCustomShape,
@@ -115,6 +122,8 @@ export default function styling( props ) {
 		maskPosition,
 		maskRepeat
 	} = props.attributes;
+
+	const getImageShadowPosition = imageBoxShadowPosition !== 'outset' ? imageBoxShadowPosition : ''
 
 	const selectors = {
 		'.wp-block-uagb-image img':{
@@ -124,6 +133,7 @@ export default function styling( props ) {
 			'border-color': imageBorderColor,
 			'border-radius': generateCSSUnit( imageBorderRadius, 'px' ),
 			'border-width': generateCSSUnit( imageBorderWidth, 'px' ),
+			'box-shadow': generateCSSUnit( imageBoxShadowHOffset, 'px' ) + ' ' + generateCSSUnit( imageBoxShadowVOffset, 'px' ) +	' ' + generateCSSUnit( imageBoxShadowBlur, 'px' ) + ' ' +	generateCSSUnit( imageBoxShadowSpread, 'px' ) + ' ' + imageBoxShadowColor + ' ' + getImageShadowPosition,
 		},
 		'.wp-block-uagb-image img:hover':{
 			'border-color': imageBorderhoverColor

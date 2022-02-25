@@ -11,6 +11,7 @@ import SpacingControl from '@Components/spacing-control';
 import Range from '@Components/range/Range.js';
 import Border from '@Components/border';
 import UAGImage from '@Components/image';
+import BoxShadowControl from '@Components/box-shadow';
 import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 import {
@@ -154,6 +155,13 @@ export default function settings( props ) {
 		imageBorderRadius,
 		imageBorderColor,
 		imageBorderhoverColor,
+		// shadow
+		imageBoxShadowColor,
+		imageBoxShadowHOffset,
+		imageBoxShadowVOffset,
+		imageBoxShadowBlur,
+		imageBoxShadowSpread,
+		imageBoxShadowPosition,
 		// mask
 		maskShape,
 		maskCustomShape,
@@ -991,6 +999,52 @@ export default function settings( props ) {
 					),
 				} }
 				disableBottomSeparator={ true }
+			/>
+			<BoxShadowControl
+				setAttributes={ setAttributes }
+				label={ __(
+					'Box Shadow',
+					'ultimate-addons-for-gutenberg'
+				) }
+				boxShadowColor={ {
+					value: imageBoxShadowColor,
+					label: 'imageBoxShadowColor',
+					title: __( 'Color', 'ultimate-addons-for-gutenberg' ),
+				} }
+				boxShadowHOffset={ {
+					value: imageBoxShadowHOffset,
+					label: 'imageBoxShadowHOffset',
+					title: __(
+						'Horizontal',
+						'ultimate-addons-for-gutenberg'
+					),
+				} }
+				boxShadowVOffset={ {
+					value: imageBoxShadowVOffset,
+					label: 'imageBoxShadowVOffset',
+					title: __(
+						'Vertical',
+						'ultimate-addons-for-gutenberg'
+					),
+				} }
+				boxShadowBlur={ {
+					value: imageBoxShadowBlur,
+					label: 'imageBoxShadowBlur',
+					title: __( 'Blur', 'ultimate-addons-for-gutenberg' ),
+				} }
+				boxShadowSpread={ {
+					value: imageBoxShadowSpread,
+					label: 'imageBoxShadowSpread',
+					title: __( 'Spread', 'ultimate-addons-for-gutenberg' ),
+				} }
+				boxShadowPosition={ {
+					value: imageBoxShadowPosition,
+					label: 'imageBoxShadowPosition',
+					title: __(
+						'Position',
+						'ultimate-addons-for-gutenberg'
+					),
+				} }
 			/>
 		</UAGAdvancedPanelBody>
 	)
