@@ -37,4 +37,9 @@ return array(
 	'captionMarginUnit' => 'px',
 	'captionMarginUnitTablet' => 'px',
 	'captionMarginUnitMobile' => 'px',
+	// mask
+	'maskShape' 	=> 'none',
+	'maskSize'		=> 'auto',
+	'maskPosition'	=> 'center center',
+	'maskRepeat'	=> 'no-repeat',
 );

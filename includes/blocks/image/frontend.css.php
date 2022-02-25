@@ -7,7 +7,7 @@ $m_selectors = array();
 $t_selectors = array();
 
 $selectors = array(
-	' .wp-block-uagb-image img'   => array(
+	'.wp-block-uagb-image img'   => array(
 		'width' => (isset($attr['width']) ? $attr['width'] : 'inherit'),
 		'height' => (isset($attr['height']) ? $attr['height'] : 'inherit'),
 	),
@@ -26,6 +26,25 @@ $selectors = array(
 		'margin-left' => UAGB_Helper::get_css_value( $attr['captionLeftMargin'], $attr['captionMarginUnit'] ),
 	),
 );
+
+if($attr['maskShape'] !== 'none'){
+	$imagePath = UAGB_URL . 'assets/images/masks/' . $attr['maskShape']  . '.svg';
+	if($attr['maskShape'] === 'custom'){
+		$imagePath = $attr['maskCustomShape']['url'];
+	}
+	if(!empty($imagePath)){
+		$selectors['.wp-block-uagb-image img'] = array(
+			'mask-image' =>  'url('.$imagePath.')',
+			'-webkit-mask-image' => 'url('.$imagePath.')',
+			'mask-size' => $attr['maskSize'],
+			'-webkit-mask-size' => $attr['maskSize'],
+			'mask-repeat' => $attr['maskRepeat'],
+			'-webkit-mask-repeat' => $attr['maskRepeat'],
+			'mask-position' => $attr['maskPosition'],
+			'-webkit-mask-position' => $attr['maskPosition']
+		);
+	}
+}
 
 
 
