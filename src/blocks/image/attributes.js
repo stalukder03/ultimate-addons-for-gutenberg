@@ -514,6 +514,13 @@ const attributes = {
 		type: 'string',
 		default: 'none'
 	},
+	maskCustomShape: {
+		type: 'object',
+		default: {
+			url: '',
+			alt: 'mask shape',
+		},
+	},
 	maskSize: {
 		type: 'string',
 		default: 'auto'

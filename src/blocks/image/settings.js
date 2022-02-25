@@ -10,6 +10,7 @@ import AdvancedPopColorControl from '@Components/color-control/advanced-pop-colo
 import SpacingControl from '@Components/spacing-control';
 import Range from '@Components/range/Range.js';
 import Border from '@Components/border';
+import UAGImage from '@Components/image';
 import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 import {
@@ -155,6 +156,7 @@ export default function settings( props ) {
 		imageBorderhoverColor,
 		// mask
 		maskShape,
+		maskCustomShape,
 		maskSize,
 		maskPosition,
 		maskRepeat
@@ -200,6 +202,28 @@ export default function settings( props ) {
 			sizeSlug: newSizeSlug,
 		} );
 	}
+
+	/*
+	 * Event to set Image as while adding.
+	 */
+	const onSelectCustomMaskShape = ( media ) => {
+		if ( ! media || ! media.url ) {
+			setAttributes( { maskCustomShape: null } );
+			return;
+		}
+
+		if ( ! media.type || 'image' !== media.type ) {
+			return;
+		}
+
+		setAttributes( { maskCustomShape: media } );
+	};
+
+	const onRemoveMaskCustomShape = () => {
+		setAttributes( { maskCustomShape: null });
+	};
+
+
 
 	const generalPanel = (
 		<UAGAdvancedPanelBody
@@ -368,154 +392,171 @@ export default function settings( props ) {
 					},
 				] }
 			/>
-			<SelectControl
-				label={ __(
-					'Mask Size',
-					'ultimate-addons-for-gutenberg'
-				) }
-				value={ maskSize }
-				onChange={ ( value ) =>
-					setAttributes( { maskSize: value } )
-				}
-				options={ [
-					{
-						value: 'auto',
-						label: __(
-							'Auto',
-							'ultimate-addons-for-gutenberg'
-						),
-					},
-					{
-						value: 'contain',
-						label: __(
-							'Contain',
-							'ultimate-addons-for-gutenberg'
-						),
-					},
-					{
-						value: 'cover',
-						label: __(
-							'Cover',
-							'ultimate-addons-for-gutenberg'
-						),
-					},
-				] }
-			/>
-			<SelectControl
-				label={ __(
-					'Mask Position',
-					'ultimate-addons-for-gutenberg'
-				) }
-				value={ maskPosition }
-				onChange={ ( value ) =>
-					setAttributes( { maskPosition: value } )
-				}
-				options={ [
-					{
-						value: 'center top',
-						label: __(
-							'Center Top',
-							'ultimate-addons-for-gutenberg'
-						),
-					},
-					{
-						value: 'center center',
-						label: __(
-							'Center Center',
-							'ultimate-addons-for-gutenberg'
-						),
-					},
-					{
-						value: 'center bottom',
-						label: __(
-							'Center Bottom',
-							'ultimate-addons-for-gutenberg'
-						),
-					},
-					{
-						value: 'left top',
-						label: __(
-							'Left Top',
-							'ultimate-addons-for-gutenberg'
-						),
-					},
-					{
-						value: 'left center',
-						label: __(
-							'Left Center',
-							'ultimate-addons-for-gutenberg'
-						),
-					},
-					{
-						value: 'left bottom',
-						label: __(
-							'Left Bottom',
-							'ultimate-addons-for-gutenberg'
-						),
-					},
-					{
-						value: 'right top',
-						label: __(
-							'Right Top',
-							'ultimate-addons-for-gutenberg'
-						),
-					},
-					{
-						value: 'right center',
-						label: __(
-							'Right Center',
-							'ultimate-addons-for-gutenberg'
-						),
-					},
-					{
-						value: 'right bottom',
-						label: __(
-							'Right Bottom',
-							'ultimate-addons-for-gutenberg'
-						),
-					},
-				] }
-			/>
-			<SelectControl
-				label={ __(
-					'Mask Repeat',
-					'ultimate-addons-for-gutenberg'
-				) }
-				value={ maskRepeat }
-				onChange={ ( value ) =>
-					setAttributes( { maskRepeat: value } )
-				}
-				options={ [
-					{
-						value: 'no repeat',
-						label: __(
-							'No Repeat',
-							'ultimate-addons-for-gutenberg'
-						),
-					},
-					{
-						value: 'repeat',
-						label: __(
-							'Repeat',
-							'ultimate-addons-for-gutenberg'
-						),
-					},
-					{
-						value: 'repeat-x',
-						label: __(
-							'Repeat-X',
-							'ultimate-addons-for-gutenberg'
-						),
-					},
-					{
-						value: 'repeat-y',
-						label: __(
-							'Repeat-Y',
-							'ultimate-addons-for-gutenberg'
-						),
-					},
-				] }
-			/>
+			{
+				maskShape === 'custom' && (
+					<UAGImage
+						label={ __( 'Custom Mask Image', 'ultimate-addons-for-gutenberg' ) }
+						onSelectImage={ onSelectCustomMaskShape }
+						backgroundImage={ maskCustomShape }
+						onRemoveImage={ onRemoveMaskCustomShape }
+					/>
+				)
+			}
+			{
+				maskShape !== 'none' && (
+					<>
+						<SelectControl
+							label={ __(
+								'Mask Size',
+								'ultimate-addons-for-gutenberg'
+							) }
+							value={ maskSize }
+							onChange={ ( value ) =>
+								setAttributes( { maskSize: value } )
+							}
+							options={ [
+								{
+									value: 'auto',
+									label: __(
+										'Auto',
+										'ultimate-addons-for-gutenberg'
+									),
+								},
+								{
+									value: 'contain',
+									label: __(
+										'Contain',
+										'ultimate-addons-for-gutenberg'
+									),
+								},
+								{
+									value: 'cover',
+									label: __(
+										'Cover',
+										'ultimate-addons-for-gutenberg'
+									),
+								},
+							] }
+						/>
+						<SelectControl
+							label={ __(
+								'Mask Position',
+								'ultimate-addons-for-gutenberg'
+							) }
+							value={ maskPosition }
+							onChange={ ( value ) =>
+								setAttributes( { maskPosition: value } )
+							}
+							options={ [
+								{
+									value: 'center top',
+									label: __(
+										'Center Top',
+										'ultimate-addons-for-gutenberg'
+									),
+								},
+								{
+									value: 'center center',
+									label: __(
+										'Center Center',
+										'ultimate-addons-for-gutenberg'
+									),
+								},
+								{
+									value: 'center bottom',
+									label: __(
+										'Center Bottom',
+										'ultimate-addons-for-gutenberg'
+									),
+								},
+								{
+									value: 'left top',
+									label: __(
+										'Left Top',
+										'ultimate-addons-for-gutenberg'
+									),
+								},
+								{
+									value: 'left center',
+									label: __(
+										'Left Center',
+										'ultimate-addons-for-gutenberg'
+									),
+								},
+								{
+									value: 'left bottom',
+									label: __(
+										'Left Bottom',
+										'ultimate-addons-for-gutenberg'
+									),
+								},
+								{
+									value: 'right top',
+									label: __(
+										'Right Top',
+										'ultimate-addons-for-gutenberg'
+									),
+								},
+								{
+									value: 'right center',
+									label: __(
+										'Right Center',
+										'ultimate-addons-for-gutenberg'
+									),
+								},
+								{
+									value: 'right bottom',
+									label: __(
+										'Right Bottom',
+										'ultimate-addons-for-gutenberg'
+									),
+								},
+							] }
+						/>
+						<SelectControl
+							label={ __(
+								'Mask Repeat',
+								'ultimate-addons-for-gutenberg'
+							) }
+							value={ maskRepeat }
+							onChange={ ( value ) =>
+								setAttributes( { maskRepeat: value } )
+							}
+							options={ [
+								{
+									value: 'no-repeat',
+									label: __(
+										'No Repeat',
+										'ultimate-addons-for-gutenberg'
+									),
+								},
+								{
+									value: 'repeat',
+									label: __(
+										'Repeat',
+										'ultimate-addons-for-gutenberg'
+									),
+								},
+								{
+									value: 'repeat-x',
+									label: __(
+										'Repeat-X',
+										'ultimate-addons-for-gutenberg'
+									),
+								},
+								{
+									value: 'repeat-y',
+									label: __(
+										'Repeat-Y',
+										'ultimate-addons-for-gutenberg'
+									),
+								},
+							] }
+						/>
+					</>
+				)
+			}
+
 		</UAGAdvancedPanelBody>
 	)
 

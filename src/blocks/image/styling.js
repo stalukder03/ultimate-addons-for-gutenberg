@@ -112,6 +112,7 @@ export default function styling( props ) {
 		imageBorderhoverColor,
 		// shape
 		maskShape,
+		maskCustomShape,
 		maskSize,
 		maskPosition,
 		maskRepeat
@@ -231,13 +232,21 @@ export default function styling( props ) {
 	}
 
 	if(maskShape !== 'none'){
-		const imagePath = `url(${window?.uagb_blocks_info?.uagb_url}assets/images/masks/${maskShape}.svg)`;
-		selectors['.wp-block-uagb-image img'] = {
-			'mask-image': imagePath,
-			'-webkit-mask-image': imagePath,
-			'-webkit-mask-size': maskSize,
-			'-webkit-mask-repeat': maskRepeat,
-			'-webkit-mask-position': maskPosition
+		let imagePath =  `${window?.uagb_blocks_info?.uagb_url}assets/images/masks/${maskShape}.svg`;
+		if(maskShape === 'custom'){
+			imagePath = `${maskCustomShape?.url}`
+		}
+		if(typeof imagePath !== 'undefined' && imagePath){
+			selectors['.wp-block-uagb-image img'] = {
+				'mask-image': `url(${imagePath})`,
+				'-webkit-mask-image': `url(${imagePath})`,
+				'mask-size': maskSize,
+				'-webkit-mask-size': maskSize,
+				'mask-repeat': maskRepeat,
+				'-webkit-mask-repeat': maskRepeat,
+				'mask-position': maskPosition,
+				'-webkit-mask-position': maskPosition
+			}
 		}
 	}
 
