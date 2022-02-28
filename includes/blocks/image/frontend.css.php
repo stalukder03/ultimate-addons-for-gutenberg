@@ -1,4 +1,11 @@
 <?php
+/**
+ * Frontend CSS & Google Fonts loading File.
+ *
+ * @since 2.0.0
+ *
+ * @package uagb
+ */
 
 // Add fonts.
 UAGB_Block_JS::blocks_advanced_heading_gfont( $attr );
@@ -13,60 +20,60 @@ if ( 'outset' === $attr['imageBoxShadowPosition'] ) {
 }
 
 $selectors = array(
-	'.wp-block-uagb-image img'   => array(
-		'width' => (isset($attr['width']) ? $attr['width'] : 'inherit'),
-		'height' => (isset($attr['height']) ? $attr['height'] : 'inherit'),
-		'border-style' => $attr['imageBorderStyle'],
-		'border-color' => $attr['imageBorderColor'],
+	'.wp-block-uagb-image img'                             => array(
+		'width'         => ( isset( $attr['width'] ) ? $attr['width'] : 'inherit' ),
+		'height'        => ( isset( $attr['height'] ) ? $attr['height'] : 'inherit' ),
+		'border-style'  => $attr['imageBorderStyle'],
+		'border-color'  => $attr['imageBorderColor'],
 		'border-radius' => UAGB_Helper::get_css_value( $attr['imageBorderRadius'], 'px' ),
-		'border-width' => UAGB_Helper::get_css_value( $attr['imageBorderWidth'], 'px' ),
+		'border-width'  => UAGB_Helper::get_css_value( $attr['imageBorderWidth'], 'px' ),
 		'box-shadow'    => UAGB_Helper::get_css_value( $attr['imageBoxShadowHOffset'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['imageBoxShadowVOffset'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['imageBoxShadowBlur'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['imageBoxShadowSpread'], 'px' ) . ' ' . $attr['imageBoxShadowColor'] . ' ' . $imageBoxShadowPosition,
 	),
-	'.wp-block-uagb-image img:hover' => array(
-		'border-color' => $attr['imageBorderhoverColor']
+	'.wp-block-uagb-image img:hover'                       => array(
+		'border-color' => $attr['imageBorderhoverColor'],
 	),
-	'.wp-block-uagb-image figcaption' => array(
-		'font-family' => $attr['captionFontFamily'],
-		'font-style' => $attr['captionFontStyle'],
+	'.wp-block-uagb-image figcaption'                      => array(
+		'font-family'     => $attr['captionFontFamily'],
+		'font-style'      => $attr['captionFontStyle'],
 		'text-decoration' => $attr['captionDecoration'],
-		'text-transform' => $attr['captionTransform'],
-		'font-weight' => $attr['captionFontWeight'],
-		'font-size' => UAGB_Helper::get_css_value( $attr['captionFontSize'], $attr['captionFontSizeType'] ),
-		'line-height' => UAGB_Helper::get_css_value( $attr['captionLineHeight'], $attr['captionLineHeightType'] ),
-		'color' =>  $attr['captionColor'],
-		'margin-top' => UAGB_Helper::get_css_value( $attr['captionTopMargin'], $attr['captionMarginUnit'] ),
-		'margin-right' => UAGB_Helper::get_css_value( $attr['captionRightMargin'], $attr['captionMarginUnit'] ),
-		'margin-bottom' => UAGB_Helper::get_css_value( $attr['captionBottomMargin'], $attr['captionMarginUnit'] ),
-		'margin-left' => UAGB_Helper::get_css_value( $attr['captionLeftMargin'], $attr['captionMarginUnit'] ),
+		'text-transform'  => $attr['captionTransform'],
+		'font-weight'     => $attr['captionFontWeight'],
+		'font-size'       => UAGB_Helper::get_css_value( $attr['captionFontSize'], $attr['captionFontSizeType'] ),
+		'line-height'     => UAGB_Helper::get_css_value( $attr['captionLineHeight'], $attr['captionLineHeightType'] ),
+		'color'           => $attr['captionColor'],
+		'margin-top'      => UAGB_Helper::get_css_value( $attr['captionTopMargin'], $attr['captionMarginUnit'] ),
+		'margin-right'    => UAGB_Helper::get_css_value( $attr['captionRightMargin'], $attr['captionMarginUnit'] ),
+		'margin-bottom'   => UAGB_Helper::get_css_value( $attr['captionBottomMargin'], $attr['captionMarginUnit'] ),
+		'margin-left'     => UAGB_Helper::get_css_value( $attr['captionLeftMargin'], $attr['captionMarginUnit'] ),
 	),
-	// overlay
+	// overlay.
 	' .wp-block-uagb-image--layout-overlay__color-wrapper' => array(
 		'background' => $attr['overlayBackground'],
-		'opacity' => $attr['overlayOpacity'],
+		'opacity'    => $attr['overlayOpacity'],
 	),
-	' .wp-block-uagb-image--layout-overlay__inner' => array(
-		'border-style' => $attr['overlayBorderStyle'],
-		'border-color' => $attr['overlayBorderColor'],
+	' .wp-block-uagb-image--layout-overlay__inner'         => array(
+		'border-style'  => $attr['overlayBorderStyle'],
+		'border-color'  => $attr['overlayBorderColor'],
 		'border-radius' => UAGB_Helper::get_css_value( $attr['overlayBorderRadius'], 'px' ),
-		'border-width' => UAGB_Helper::get_css_value( $attr['overlayBorderWidth'], 'px' ),
-		'left' => UAGB_Helper::get_css_value( $attr['overlayPositionFromEdge'], $attr['overlayPositionFromEdgeUnit'] ),
-		'right' => UAGB_Helper::get_css_value( $attr['overlayPositionFromEdge'], $attr['overlayPositionFromEdgeUnit'] ),
-		'top' => UAGB_Helper::get_css_value( $attr['overlayPositionFromEdge'], $attr['overlayPositionFromEdgeUnit'] ),
-		'bottom' => UAGB_Helper::get_css_value( $attr['overlayPositionFromEdge'], $attr['overlayPositionFromEdgeUnit'] ),
+		'border-width'  => UAGB_Helper::get_css_value( $attr['overlayBorderWidth'], 'px' ),
+		'left'          => UAGB_Helper::get_css_value( $attr['overlayPositionFromEdge'], $attr['overlayPositionFromEdgeUnit'] ),
+		'right'         => UAGB_Helper::get_css_value( $attr['overlayPositionFromEdge'], $attr['overlayPositionFromEdgeUnit'] ),
+		'top'           => UAGB_Helper::get_css_value( $attr['overlayPositionFromEdge'], $attr['overlayPositionFromEdgeUnit'] ),
+		'bottom'        => UAGB_Helper::get_css_value( $attr['overlayPositionFromEdge'], $attr['overlayPositionFromEdgeUnit'] ),
 	),
 	' .wp-block-uagb-image--layout-overlay__inner .uagb-image-heading' => array(
-		'font-family' => $attr['headingFontFamily'],
-		'font-style' => $attr['headingFontStyle'],
+		'font-family'     => $attr['headingFontFamily'],
+		'font-style'      => $attr['headingFontStyle'],
 		'text-decoration' => $attr['headingDecoration'],
-		'text-transform' => $attr['headingTransform'],
-		'font-weight' => $attr['headingFontWeight'],
-		'font-size' => UAGB_Helper::get_css_value( $attr['headingFontSize'], $attr['headingFontSizeType'] ),
-		'line-height' => UAGB_Helper::get_css_value( $attr['headingLineHeight'], $attr['headingLineHeightType'] ),
-		'color' => $attr['headingColor'],
-		'margin-top' => UAGB_Helper::get_css_value( $attr['headingTopMargin'], $attr['headingMarginUnit'] ),
-		'margin-right' => UAGB_Helper::get_css_value( $attr['headingRightMargin'], $attr['headingMarginUnit'] ),
-		'margin-bottom' => UAGB_Helper::get_css_value( $attr['headingBottomMargin'], $attr['headingMarginUnit'] ),
-		'margin-left'  => UAGB_Helper::get_css_value( $attr['headingLeftMargin'], $attr['headingMarginUnit'] ),
+		'text-transform'  => $attr['headingTransform'],
+		'font-weight'     => $attr['headingFontWeight'],
+		'font-size'       => UAGB_Helper::get_css_value( $attr['headingFontSize'], $attr['headingFontSizeType'] ),
+		'line-height'     => UAGB_Helper::get_css_value( $attr['headingLineHeight'], $attr['headingLineHeightType'] ),
+		'color'           => $attr['headingColor'],
+		'margin-top'      => UAGB_Helper::get_css_value( $attr['headingTopMargin'], $attr['headingMarginUnit'] ),
+		'margin-right'    => UAGB_Helper::get_css_value( $attr['headingRightMargin'], $attr['headingMarginUnit'] ),
+		'margin-bottom'   => UAGB_Helper::get_css_value( $attr['headingBottomMargin'], $attr['headingMarginUnit'] ),
+		'margin-left'     => UAGB_Helper::get_css_value( $attr['headingLeftMargin'], $attr['headingMarginUnit'] ),
 	),
 	'.wp-block-uagb-image:hover .wp-block-uagb-image--layout-overlay__inner' => array(
 		'border-color' => $attr['overlayBorderHoverColor'],
@@ -74,87 +81,87 @@ $selectors = array(
 	'.wp-block-uagb-image:hover .wp-block-uagb-image--layout-overlay__color-wrapper' => array(
 		'opacity' => $attr['overlayHoverOpacity'],
 	),
-	// Seperator
+	// Seperator.
 	' .wp-block-uagb-image--layout-overlay__inner .uagb-image-separator' => array(
-		'width' => UAGB_Helper::get_css_value( $attr['seperatorWidth'], $attr['separatorWidthType'] ),
+		'width'            => UAGB_Helper::get_css_value( $attr['seperatorWidth'], $attr['separatorWidthType'] ),
 		'border-top-width' => UAGB_Helper::get_css_value( $attr['seperatorThickness'], $attr['seperatorThicknessUnit'] ),
 		'border-top-color' => $attr['seperatorColor'],
 		'border-top-style' => $attr['seperatorStyle'],
-		'margin-bottom' => UAGB_Helper::get_css_value( $attr['seperatorBottomMargin'], $attr['seperatorMarginUnit'] ),
-		'margin-top' => UAGB_Helper::get_css_value( $attr['seperatorTopMargin'], $attr['seperatorMarginUnit'] ),
-		'margin-left' => UAGB_Helper::get_css_value( $attr['seperatorLeftMargin'], $attr['seperatorMarginUnit'] ),
-		'margin-right' => UAGB_Helper::get_css_value( $attr['seperatorRightMargin'], $attr['seperatorMarginUnit'] ),
-	)
+		'margin-bottom'    => UAGB_Helper::get_css_value( $attr['seperatorBottomMargin'], $attr['seperatorMarginUnit'] ),
+		'margin-top'       => UAGB_Helper::get_css_value( $attr['seperatorTopMargin'], $attr['seperatorMarginUnit'] ),
+		'margin-left'      => UAGB_Helper::get_css_value( $attr['seperatorLeftMargin'], $attr['seperatorMarginUnit'] ),
+		'margin-right'     => UAGB_Helper::get_css_value( $attr['seperatorRightMargin'], $attr['seperatorMarginUnit'] ),
+	),
 );
 
 
-if($attr['maskShape'] !== 'none'){
-	$imagePath = UAGB_URL . 'assets/images/masks/' . $attr['maskShape']  . '.svg';
-	if($attr['maskShape'] === 'custom'){
+if ( 'none' !== $attr['maskShape'] ) {
+	$imagePath = UAGB_URL . 'assets/images/masks/' . $attr['maskShape'] . '.svg';
+	if ( 'custom' === $attr['maskShape'] ) {
 		$imagePath = $attr['maskCustomShape']['url'];
 	}
-	if(!empty($imagePath)){
+	if ( ! empty( $imagePath ) ) {
 		$selectors['.wp-block-uagb-image img'] = array(
-			'mask-image' =>  'url('.$imagePath.')',
-			'-webkit-mask-image' => 'url('.$imagePath.')',
-			'mask-size' => $attr['maskSize'],
-			'-webkit-mask-size' => $attr['maskSize'],
-			'mask-repeat' => $attr['maskRepeat'],
-			'-webkit-mask-repeat' => $attr['maskRepeat'],
-			'mask-position' => $attr['maskPosition'],
-			'-webkit-mask-position' => $attr['maskPosition']
+			'mask-image'            => 'url(' . $imagePath . ')',
+			'-webkit-mask-image'    => 'url(' . $imagePath . ')',
+			'mask-size'             => $attr['maskSize'],
+			'-webkit-mask-size'     => $attr['maskSize'],
+			'mask-repeat'           => $attr['maskRepeat'],
+			'-webkit-mask-repeat'   => $attr['maskRepeat'],
+			'mask-position'         => $attr['maskPosition'],
+			'-webkit-mask-position' => $attr['maskPosition'],
 		);
 	}
 }
 
-// tablet
-$t_selectors['.wp-block-uagb-image figcaption'] = array(
-	'font-size' => UAGB_Helper::get_css_value( $attr['captionFontSizeTablet'], $attr['captionFontSizeType'] ),
-	'line-height' => UAGB_Helper::get_css_value( $attr['captionLineHeightTablet'], $attr['captionLineHeightType'] ),
-	'margin-top' => UAGB_Helper::get_css_value( $attr['captionTopMarginTablet'], $attr['captionMarginUnitTablet'] ),
-	'margin-right' =>  UAGB_Helper::get_css_value( $attr['captionRightMarginTablet'], $attr['captionMarginUnitTablet'] ),
+// tablet.
+$t_selectors['.wp-block-uagb-image figcaption']                                    = array(
+	'font-size'     => UAGB_Helper::get_css_value( $attr['captionFontSizeTablet'], $attr['captionFontSizeType'] ),
+	'line-height'   => UAGB_Helper::get_css_value( $attr['captionLineHeightTablet'], $attr['captionLineHeightType'] ),
+	'margin-top'    => UAGB_Helper::get_css_value( $attr['captionTopMarginTablet'], $attr['captionMarginUnitTablet'] ),
+	'margin-right'  => UAGB_Helper::get_css_value( $attr['captionRightMarginTablet'], $attr['captionMarginUnitTablet'] ),
 	'margin-bottom' => UAGB_Helper::get_css_value( $attr['captionBottomMarginTablet'], $attr['captionMarginUnitTablet'] ),
-	'margin-left' => UAGB_Helper::get_css_value( $attr['captionLeftMarginTablet'], $attr['captionMarginUnitTablet'] )
+	'margin-left'   => UAGB_Helper::get_css_value( $attr['captionLeftMarginTablet'], $attr['captionMarginUnitTablet'] ),
 );
-$t_selectors[' .wp-block-uagb-image--layout-overlay__inner .uagb-image-heading'] =  array(
-	'font-size' => UAGB_Helper::get_css_value( $attr['headingFontSizeTablet'], $attr['headingFontSizeType'] ),
-	'line-height' => UAGB_Helper::get_css_value( $attr['headingLineHeightTablet'], $attr['headingLineHeightType'] ),
-	'margin-top' => UAGB_Helper::get_css_value( $attr['headingTopMarginTablet'], $attr['headingMarginUnitTablet'] ),
-	'margin-right' =>  UAGB_Helper::get_css_value( $attr['headingRightMarginTablet'], $attr['headingMarginUnitTablet'] ),
+$t_selectors[' .wp-block-uagb-image--layout-overlay__inner .uagb-image-heading']   = array(
+	'font-size'     => UAGB_Helper::get_css_value( $attr['headingFontSizeTablet'], $attr['headingFontSizeType'] ),
+	'line-height'   => UAGB_Helper::get_css_value( $attr['headingLineHeightTablet'], $attr['headingLineHeightType'] ),
+	'margin-top'    => UAGB_Helper::get_css_value( $attr['headingTopMarginTablet'], $attr['headingMarginUnitTablet'] ),
+	'margin-right'  => UAGB_Helper::get_css_value( $attr['headingRightMarginTablet'], $attr['headingMarginUnitTablet'] ),
 	'margin-bottom' => UAGB_Helper::get_css_value( $attr['headingBottomMarginTablet'], $attr['headingMarginUnitTablet'] ),
-	'margin-left' => UAGB_Helper::get_css_value( $attr['headingLeftMarginTablet'], $attr['headingMarginUnitTablet'] )
+	'margin-left'   => UAGB_Helper::get_css_value( $attr['headingLeftMarginTablet'], $attr['headingMarginUnitTablet'] ),
 );
 $t_selectors[' .wp-block-uagb-image--layout-overlay__inner .uagb-image-separator'] = array(
 	'margin-bottom' => UAGB_Helper::get_css_value( $attr['seperatorBottomMarginTablet'], $attr['seperatorMarginUnitTablet'] ),
-	'margin-top' => UAGB_Helper::get_css_value( $attr['seperatorTopMarginTablet'], $attr['seperatorMarginUnitTablet'] ),
-	'margin-left' =>  UAGB_Helper::get_css_value( $attr['seperatorLeftMarginTablet'], $attr['seperatorMarginUnitTablet'] ),
-	'margin-right' => UAGB_Helper::get_css_value( $attr['seperatorRightMarginTablet'], $attr['seperatorMarginUnitTablet'] ),
+	'margin-top'    => UAGB_Helper::get_css_value( $attr['seperatorTopMarginTablet'], $attr['seperatorMarginUnitTablet'] ),
+	'margin-left'   => UAGB_Helper::get_css_value( $attr['seperatorLeftMarginTablet'], $attr['seperatorMarginUnitTablet'] ),
+	'margin-right'  => UAGB_Helper::get_css_value( $attr['seperatorRightMarginTablet'], $attr['seperatorMarginUnitTablet'] ),
 );
 
-// mobile
+// mobile.
 $m_selectors['.wp-block-uagb-image figcaption'] = array(
-	'font-size' => UAGB_Helper::get_css_value( $attr['captionFontSizeMobile'], $attr['captionFontSizeType'] ),
-	'line-height' => UAGB_Helper::get_css_value( $attr['captionLineHeightMobile'], $attr['captionLineHeightType'] ),
-	'margin-top' => UAGB_Helper::get_css_value( $attr['captionTopMarginMobile'], $attr['captionMarginUnitMobile'] ),
-	'margin-right' =>  UAGB_Helper::get_css_value( $attr['captionRightMarginMobile'], $attr['captionMarginUnitMobile'] ),
+	'font-size'     => UAGB_Helper::get_css_value( $attr['captionFontSizeMobile'], $attr['captionFontSizeType'] ),
+	'line-height'   => UAGB_Helper::get_css_value( $attr['captionLineHeightMobile'], $attr['captionLineHeightType'] ),
+	'margin-top'    => UAGB_Helper::get_css_value( $attr['captionTopMarginMobile'], $attr['captionMarginUnitMobile'] ),
+	'margin-right'  => UAGB_Helper::get_css_value( $attr['captionRightMarginMobile'], $attr['captionMarginUnitMobile'] ),
 	'margin-bottom' => UAGB_Helper::get_css_value( $attr['captionBottomMarginMobile'], $attr['captionMarginUnitMobile'] ),
-	'margin-left' => UAGB_Helper::get_css_value( $attr['captionLeftMarginMobile'], $attr['captionMarginUnitMobile'] )
+	'margin-left'   => UAGB_Helper::get_css_value( $attr['captionLeftMarginMobile'], $attr['captionMarginUnitMobile'] ),
 );
 
 $m_selectors[' .wp-block-uagb-image--layout-overlay__inner .uagb-image-heading'] = array(
-	'font-size' => UAGB_Helper::get_css_value( $attr['headingFontSizeMobile'], $attr['headingFontSizeType'] ),
-	'line-height' => UAGB_Helper::get_css_value( $attr['headingLineHeightMobile'], $attr['headingLineHeightType'] ),
-	'margin-top' => UAGB_Helper::get_css_value( $attr['headingTopMarginMobile'], $attr['headingMarginUnitMobile'] ),
-	'margin-right' =>  UAGB_Helper::get_css_value( $attr['headingRightMarginMobile'], $attr['headingMarginUnitMobile'] ),
+	'font-size'     => UAGB_Helper::get_css_value( $attr['headingFontSizeMobile'], $attr['headingFontSizeType'] ),
+	'line-height'   => UAGB_Helper::get_css_value( $attr['headingLineHeightMobile'], $attr['headingLineHeightType'] ),
+	'margin-top'    => UAGB_Helper::get_css_value( $attr['headingTopMarginMobile'], $attr['headingMarginUnitMobile'] ),
+	'margin-right'  => UAGB_Helper::get_css_value( $attr['headingRightMarginMobile'], $attr['headingMarginUnitMobile'] ),
 	'margin-bottom' => UAGB_Helper::get_css_value( $attr['headingBottomMarginMobile'], $attr['headingMarginUnitMobile'] ),
-	'margin-left' => UAGB_Helper::get_css_value( $attr['headingLeftMarginMobile'], $attr['headingMarginUnitMobile'] )
+	'margin-left'   => UAGB_Helper::get_css_value( $attr['headingLeftMarginMobile'], $attr['headingMarginUnitMobile'] ),
 );
 
 $m_selectors[' .wp-block-uagb-image--layout-overlay__inner .uagb-image-separator'] = array(
 	'margin-bottom' => UAGB_Helper::get_css_value( $attr['seperatorBottomMarginMobile'], $attr['seperatorMarginUnitMobile'] ),
-	'margin-top' => UAGB_Helper::get_css_value( $attr['seperatorTopMarginMobile'], $attr['seperatorMarginUnitMobile'] ),
-	'margin-left' => UAGB_Helper::get_css_value( $attr['seperatorLeftMarginMobile'], $attr['seperatorMarginUnitMobile'] ),
-	'margin-right' => UAGB_Helper::get_css_value( $attr['seperatorRightMarginMobile'], $attr['seperatorMarginUnitMobile'] ),
+	'margin-top'    => UAGB_Helper::get_css_value( $attr['seperatorTopMarginMobile'], $attr['seperatorMarginUnitMobile'] ),
+	'margin-left'   => UAGB_Helper::get_css_value( $attr['seperatorLeftMarginMobile'], $attr['seperatorMarginUnitMobile'] ),
+	'margin-right'  => UAGB_Helper::get_css_value( $attr['seperatorRightMarginMobile'], $attr['seperatorMarginUnitMobile'] ),
 );
 
 $combined_selectors = array(

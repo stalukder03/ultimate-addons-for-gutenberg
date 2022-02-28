@@ -165,7 +165,7 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 					'uagb/table-of-contents'      => array(
 						'name' => 'table-of-contents',
 					),
-					'uagb/container'      => array(
+					'uagb/container'              => array(
 						'name' => 'container',
 					),
 					'uagb/advanced-heading'       => array(
@@ -288,7 +288,7 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 					'uagb/wp-search'              => array(
 						'name' => 'wp-search',
 					),
-					'uagb/image'              => array(
+					'uagb/image'                  => array(
 						'name' => 'image',
 					),
 				);
