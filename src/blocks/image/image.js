@@ -29,7 +29,6 @@ export default function Image( {
 		id,
 		width,
 		height,
-		caption
 	},
 	setAttributes,
 	isSelected,
@@ -42,7 +41,6 @@ export default function Image( {
 	clientId,
 } ) {
 	const imageRef = useRef();
-	const captionRef = useRef();
 	const { allowResize = true } = context;
 	const { toggleSelection } = useDispatch( blockEditorStore );
 
@@ -72,8 +70,8 @@ export default function Image( {
 			const {
 				getSettings
 			} = select( blockEditorStore );
+			// eslint-disable-next-line no-shadow
 			const {imageEditing, maxWidth} = getSettings()
-
 			return {
 				imageEditing,
 				maxWidth,
@@ -139,7 +137,6 @@ export default function Image( {
 			<img
 				src={ temporaryURL || url }
 				alt={ defaultedAlt }
-				onError={ () => onImageError() }
 				onLoad={ ( event ) => {
 					setLoadedNaturalSize( {
 						loadedNaturalWidth: event.target?.naturalWidth,
@@ -259,8 +256,8 @@ export default function Image( {
 				onResizeStop={ ( event, direction, elt, delta ) => {
 					onResizeStop();
 					setAttributes( {
-						width:  Math.abs(parseInt( currentWidth + delta.width, 10 )),
-						height: Math.abs(parseInt( currentHeight + delta.height, 10 )),
+						width:  Math.abs( parseInt( currentWidth + delta.width, 10 ) ),
+						height: Math.abs( parseInt( currentHeight + delta.height, 10 ) ),
 					} );
 				} }
 			>

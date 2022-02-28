@@ -1,5 +1,3 @@
-import { __ } from '@wordpress/i18n';
-
 const attributes = {
 	block_id: {
 		type: 'string',
@@ -64,7 +62,7 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
-	// caption
+	// caption.
 	captionText: {
 		type: 'string',
 		default: '',
@@ -202,7 +200,7 @@ const attributes = {
 		default: false,
 		isUAGStyle: true,
 	},
-	// heading
+	// heading.
 	heading: {
 		type: 'string',
 		default: '',
@@ -340,7 +338,7 @@ const attributes = {
 		default: false,
 		isUAGStyle: true,
 	},
-	// overlay
+	// overlay.
 	overlayPositionFromEdge: {
 		type: 'number',
 		default: 15,
@@ -367,7 +365,7 @@ const attributes = {
 	},
 	overlayBorderWidth: {
 		type: 'number',
-		default: 30,
+		default: 2,
 	},
 	overlayBorderStyle: {
 		type: 'string',
@@ -386,7 +384,7 @@ const attributes = {
 		type: 'string',
 		isUAGStyle: true,
 	},
-	// seperator
+	// seperator.
 	seperatorStyle: {
 		type: 'string',
 		default: 'none',
@@ -483,12 +481,12 @@ const attributes = {
 		default: false,
 		isUAGStyle: true,
 	},
-	// effect
+	// effect.
 	imageHoverEffect: {
 		type: 'string',
 		default: 'static',
 	},
-	// image border
+	// image border.
 	imageBorderWidth: {
 		type: 'number',
 		isUAGStyle: true,

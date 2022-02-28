@@ -2,7 +2,6 @@ import React, { lazy, Suspense, useEffect } from 'react';
 import lazyLoader from '@Controls/lazy-loader';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import styling from './styling';
-import PropTypes from 'prop-types';
 
 const Settings = lazy( () =>
 	import(
@@ -18,11 +17,8 @@ const Render = lazy( () =>
 //  Import CSS.
 import './style.scss';
 
-const propTypes = {};
 
-const defaultProps = {};
-
-export default function edit( props ) {
+export default function UAGBImageEdit( props ) {
 	useEffect( () => {
 
 		const { setAttributes } = props;
@@ -48,6 +44,3 @@ export default function edit( props ) {
 		</React.Fragment>
 	);
 }
-
-edit.propTypes = propTypes;
-edit.defaultProps = defaultProps;

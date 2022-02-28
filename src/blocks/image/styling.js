@@ -239,12 +239,12 @@ export default function styling( props ) {
 		},
 	}
 
-	if(maskShape !== 'none'){
+	if( maskShape !== 'none' ){
 		let imagePath =  `${window?.uagb_blocks_info?.uagb_url}assets/images/masks/${maskShape}.svg`;
-		if(maskShape === 'custom'){
+		if( maskShape === 'custom' ){
 			imagePath = `${maskCustomShape?.url}`
 		}
-		if(typeof imagePath !== 'undefined' && imagePath){
+		if( typeof imagePath !== 'undefined' && imagePath ){
 			selectors['.wp-block-uagb-image img'] = {
 				'mask-image': `url(${imagePath})`,
 				'-webkit-mask-image': `url(${imagePath})`,

@@ -1,9 +1,6 @@
+import React, { useEffect, useRef, useState } from 'react';
 import classnames from 'classnames';
-
-/**
- * WordPress dependencies
- */
-import { isBlobURL, revokeBlobURL } from '@wordpress/blob';
+import { isBlobURL, getBlobByURL, revokeBlobURL } from '@wordpress/blob';
 import { ToolbarButton } from '@wordpress/components';
 import { useSelect, useDispatch  } from '@wordpress/data';
 import { upload } from '@wordpress/icons';
@@ -17,7 +14,6 @@ import {
 	__experimentalImageURLInputUI as ImageURLInputUI
 } from '@wordpress/block-editor';
 import { store as coreStore } from '@wordpress/core-data';
-import { useEffect, useRef, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { useDeviceType } from '@Controls/getPreviewType';
 import UAGB_Block_Icons from '@Controls/block-icons';
@@ -45,8 +41,7 @@ const propTypes = {};
 
 const defaultProps = {};
 
-const render = ( props ) => {
-	props = props.parentProps;
+const Render = ( props ) => {
 	const {
 		attributes,
 		setAttributes,
@@ -56,7 +51,7 @@ const render = ( props ) => {
 		onReplace,
 		context,
 		clientId
-	} = props;
+	} = props.parentProps;
 
 	const {
 		block_id,
@@ -66,12 +61,12 @@ const render = ( props ) => {
 		caption,
 		align,
 		id,
-		linkDestination,
 		linkTarget,
 		linkClass,
 		rel,
 		imageHoverEffect,
 		href,
+		linkDestination,
 	} = attributes
 
 	const deviceType = useDeviceType();
@@ -92,6 +87,7 @@ const render = ( props ) => {
 	const ref = useRef();
 	const { imageDefaultSize, mediaUpload } = useSelect( ( select ) => {
 		const { getSettings } = select( blockEditorStore );
+		// eslint-disable-next-line no-shadow
 		const {imageDefaultSize, mediaUpload} = getSettings();
 		return {imageDefaultSize, mediaUpload}
 	}, [] );
@@ -195,6 +191,7 @@ const render = ( props ) => {
 		}
 
 		// Check if default link setting should be used.
+		// eslint-disable-next-line no-shadow
 		let linkDestination = attributes.linkDestination;
 		if ( ! linkDestination ) {
 			// Use the WordPress option to determine the proper default.
@@ -222,6 +219,7 @@ const render = ( props ) => {
 		}
 
 		// Check if the image is linked to it's media.
+		// eslint-disable-next-line no-shadow
 		let href;
 		switch ( linkDestination ) {
 			case LINK_DESTINATION_MEDIA:
@@ -336,16 +334,6 @@ const render = ( props ) => {
 			.catch( () => {} );
 	}, [ id, url, isSelected, externalBlob ] );
 
-	function updateAlignment( nextAlign ) {
-		const extraUpdatedAttributes = [ 'wide', 'full' ].includes( nextAlign )
-			? { width: undefined, height: undefined }
-			: {};
-		setAttributes( {
-			...extraUpdatedAttributes,
-			align: nextAlign,
-		} );
-	}
-
 	function uploadExternal() {
 		mediaUpload( {
 			filesList: [ externalBlob ],
@@ -377,7 +365,7 @@ const render = ( props ) => {
 			},
 		} );
 	}
-
+	// eslint-disable-next-line no-shadow
 	function onSetHref( props ) {
 		setAttributes( props );
 	}
@@ -468,7 +456,7 @@ const render = ( props ) => {
 	);
 }
 
-render.propTypes = propTypes;
-render.defaultProps = defaultProps;
+Render.propTypes = propTypes;
+Render.defaultProps = defaultProps;
 
-export default render
+export default Render

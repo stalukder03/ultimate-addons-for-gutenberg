@@ -20,8 +20,8 @@ const defaultProps = {
 	setAttributes: () => {},
 };
 
-export default function Link({ setAttributes, label, link, target, noFollow }) {
-	const [isShowOptions, setShowOptions] = useState(false)
+export default function Link( { setAttributes, label, link, target, noFollow } ) {
+	const [isShowOptions, setShowOptions] = useState( false )
 	// Add and remove the CSS on the drop and remove of the component.
 	useLayoutEffect( () => {
 		styles.use();
@@ -33,23 +33,23 @@ export default function Link({ setAttributes, label, link, target, noFollow }) {
 	return (
 		<React.Fragment>
 			<div className='uag-link-control'>
-				<label>{label}</label>
-				<div className='uag-link-control__link'>
-					<input type='url' value={link.value} placeholder={__('https://', 'ultimate-addons-for-gutenberg')} onChange={ ( e ) => setAttributes( {[link.label]: e.target.value} ) } />
-					<button onClick={() => setShowOptions(!isShowOptions)}><span className="dashicons dashicons-admin-generic"></span></button>
+				<label htmlFor={link.label}>{label}</label>
+				<div className='uag-link-control__link' id={link.label}>
+					<input type='url' value={link.value} placeholder={__( 'https://', 'ultimate-addons-for-gutenberg' )} onChange={ ( e ) => setAttributes( {[link.label]: e.target.value} ) } />
+					<button onClick={() => setShowOptions( !isShowOptions )}><span className="dashicons dashicons-admin-generic"></span></button>
 				</div>
 				{
 					isShowOptions && (
 						<div className='uag-link-control__options'>
 							<CheckboxControl
-								label={__('Open in new window', 'ultimate-addons-for-gutenberg')}
+								label={__( 'Open in new window', 'ultimate-addons-for-gutenberg' )}
 								checked={ target.value }
-								onChange={ (value) => setAttributes( {[target.label]: value} ) }
+								onChange={ ( value ) => setAttributes( {[target.label]: value} ) }
 							/>
 							<CheckboxControl
-								label={__('Add Nofollow', 'ultimate-addons-for-gutenberg')}
+								label={__( 'Add Nofollow', 'ultimate-addons-for-gutenberg' )}
 								checked={ noFollow.value }
-								onChange={ (value) => setAttributes( {[noFollow.label]: value} ) }
+								onChange={ ( value ) => setAttributes( {[noFollow.label]: value} ) }
 							/>
 						</div>
 					)

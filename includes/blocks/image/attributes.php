@@ -80,7 +80,7 @@ return array(
 	'captionMarginUnit'           => 'px',
 	'captionMarginUnitTablet'     => 'px',
 	'captionMarginUnitMobile'     => 'px',
-	// seperator
+	// seperator.
 	'seperatorStyle'              => '',
 	'seperatorColor'              => '#fff',
 	'seperatorWidth'              => 30,

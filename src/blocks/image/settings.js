@@ -30,15 +30,10 @@ import {
 import { store as coreStore } from '@wordpress/core-data';
 // Extend component
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
-import PropTypes from 'prop-types';
 
-const propTypes = {};
 
-const defaultProps = {};
-
-export default function settings( props ) {
-	props = props.parentProps;
-	const { attributes, setAttributes, deviceType, context, isSelected, clientId } = props;
+export default function Settings( props ) {
+	const { attributes, setAttributes, deviceType, context, isSelected, clientId } = props.parentProps;
 	const {
 		layout,
 		id,
@@ -172,6 +167,7 @@ export default function settings( props ) {
 	const {imageSizes} = useSelect(
 		( select ) => {
 			const {getSettings} = select( blockEditorStore );
+			// eslint-disable-next-line no-shadow
 			const {imageSizes} = getSettings()
 			return {imageSizes};
 		},
@@ -228,7 +224,7 @@ export default function settings( props ) {
 	};
 
 	const onRemoveMaskCustomShape = () => {
-		setAttributes( { maskCustomShape: null });
+		setAttributes( { maskCustomShape: null } );
 	};
 
 
@@ -245,7 +241,7 @@ export default function settings( props ) {
 					{ label: 'Normal View', value: 'default' },
 					{ label: 'Overlay View', value: 'overlay' },
 				] }
-				onChange={ ( value ) => setAttributes({ layout: value}) }
+				onChange={ ( value ) => setAttributes( { layout: value} ) }
 			/>
 			{
 				id && isSelected && (
@@ -1089,13 +1085,15 @@ export default function settings( props ) {
 				min={ 0 }
 				max={ 1 }
 			/>
-			<label>
-				{__('Content Postion', 'ultimate-addons-for-gutenberg')}
-				<AlignmentMatrixControl
-					value={ overlayContentPosition }
-					onChange={ ( newAlignment ) =>  setAttributes({overlayContentPosition: newAlignment}) }
-				/>
+			<label htmlFor='overlayContentAlign'>
+				{__( 'Content Postion', 'ultimate-addons-for-gutenberg' )}
+
 			</label>
+			<AlignmentMatrixControl
+				id="overlayContentAlign"
+				value={ overlayContentPosition }
+				onChange={ ( newAlignment ) =>  setAttributes( {overlayContentPosition: newAlignment} ) }
+			/>
 			<Border
 				setAttributes={ setAttributes }
 				borderStyle={ {
@@ -1328,7 +1326,7 @@ export default function settings( props ) {
 								<>
 									{overlayStylePanel}
 									{headingStylePanel}
-									{seperatorStylePanel}
+									{ 'none' !== seperatorStyle && seperatorStylePanel}
 								</>
 							)
 						}
@@ -1343,6 +1341,3 @@ export default function settings( props ) {
 		</React.Fragment>
 	);
 }
-
-settings.propTypes = propTypes;
-settings.defaultProps = defaultProps;

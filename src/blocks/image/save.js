@@ -1,13 +1,8 @@
 import React from 'react';
 import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
-import PropTypes from 'prop-types';
 
-const propTypes = {};
-
-const defaultProps = {};
-
-export default function save( props ) {
+export default function Save( props ) {
 	const {
 		block_id,
 		layout,
@@ -40,7 +35,7 @@ export default function save( props ) {
 	);
 	// block validation issue fixing - ImageURLInputUI components automatic provide "noopener"
 	const getRel = () => {
-		if(rel){
+		if( rel ){
 			return rel + ' noopener';
 		}
 		return 'noopener';
@@ -96,7 +91,7 @@ export default function save( props ) {
 					layout === 'overlay' ? (
 						<>
 							<div className='wp-block-uagb-image--layout-overlay__color-wrapper'></div>
-							<div className={`wp-block-uagb-image--layout-overlay__inner ${overlayContentPosition.replace(' ', '-')}`}>
+							<div className={`wp-block-uagb-image--layout-overlay__inner ${overlayContentPosition.replace( ' ', '-' )}`}>
 								{ 'before_title' === seperatorPosition && separator}
 								{imageHeading}
 								{ 'after_title' === seperatorPosition && separator}
@@ -112,6 +107,3 @@ export default function save( props ) {
 		</>
 	);
 }
-
-save.propTypes = propTypes;
-save.defaultProps = defaultProps;
