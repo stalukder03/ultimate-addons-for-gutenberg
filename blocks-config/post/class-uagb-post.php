@@ -157,6 +157,10 @@ if ( ! class_exists( 'UAGB_Post' ) ) {
 								'type'    => 'string',
 								'default' => 'grid',
 							),
+							'highlighFirstPost'                 => array(
+								'type'    => 'boolean',
+								'default' => false,
+							),
 						)
 					),
 					'render_callback' => array( $this, 'post_grid_callback' ),

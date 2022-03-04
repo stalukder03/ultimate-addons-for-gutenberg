@@ -215,7 +215,8 @@ const Settings = ( props ) => {
 		paddingLeftMobile,
 		mobilePaddingUnit,
 		tabletPaddingUnit,
-		postsOffset
+		postsOffset,
+		highlighFirstPost
 	} = attributes;
 
 	const onSelectPostType = ( value ) => {
@@ -546,6 +547,18 @@ const Settings = ( props ) => {
 							),
 						},
 					] }
+				/>
+				<ToggleControl
+					label={ __(
+						'Highlight First Post',
+						'ultimate-addons-for-gutenberg'
+					) }
+					checked={ highlighFirstPost }
+					onChange={ () =>
+						setAttributes( {
+							highlighFirstPost: ! highlighFirstPost,
+						} )
+					}
 				/>
 				<ResponsiveSlider
 					label={ __( 'Columns', 'ultimate-addons-for-gutenberg' ) }

@@ -20,7 +20,8 @@ const Blog = ( props ) => {
 		paginationMarkup,
 		postPagination,
 		layoutConfig,
-		rowGap
+		rowGap,
+		highlighFirstPost
 	} = attributes;
 
 	const updateImageBgWidth = () => {
@@ -63,6 +64,7 @@ const Blog = ( props ) => {
 			? latestPosts.slice( 0, postsToShow )
 			: latestPosts;
 
+			let highlighPost = highlighFirstPost
 	return (
 		<div
 			className={ classnames(
@@ -84,7 +86,21 @@ const Blog = ( props ) => {
 				parentClassName="uagb-block-grid"
 			>
 				{ displayPosts.map( ( post = {}, i ) => (
-					<article ref={article} key={ i } className="uagb-post__inner-wrap">
+					<>
+					{ 0 === i &&74
+					(
+						<article ref={article} key={ i } className="uagb-post__inner-wrap uagb-highlight-first-post">
+							{ renderPostLayout(
+								'uagb/post-grid',
+								post,
+								layoutConfig,
+								props.attributes,
+								props.categoriesList,
+								article
+							) }
+						</article>
+					) ||
+					( <article ref={article} key={ i } className="uagb-post__inner-wrap">
 						{ renderPostLayout(
 							'uagb/post-grid',
 							post,
@@ -93,7 +109,8 @@ const Blog = ( props ) => {
 							props.categoriesList,
 							article
 						) }
-					</article>
+					</article> )}
+					</>
 				) ) }
 			</InnerBlockLayoutContextProvider>
 			{ postPagination === true && 'empty' !== paginationMarkup && (

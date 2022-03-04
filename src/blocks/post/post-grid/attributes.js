@@ -716,7 +716,11 @@ const attributes = {
 	postsOffset: {
 		type    : 'number',
 		default : 0,
-	}
+	},
+	highlighFirstPost      : {
+		type    : 'boolean',
+		default : false,
+	},
 }
 
 export default attributes;
