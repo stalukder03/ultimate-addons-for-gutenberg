@@ -44,7 +44,7 @@ if ( ! class_exists( 'UAGB_Rest_API' ) ) {
 			add_filter( 'register_post_type_args', array( $this, 'add_cpts_to_api' ), 10, 2 );
 
 			// We have added this action here to support both the ways of post updations, Rest API & Normal.
-			add_action( 'save_post', array( $this, 'delete_page_assets' ), 10, 1 );
+			add_action( 'save_post', array( $this, 'save_post_handler' ), 10, 1 );
 			add_action( 'rest_after_save_widget', array( $this, 'after_widget_save_action' ) );
 		}
 
@@ -64,7 +64,7 @@ if ( ! class_exists( 'UAGB_Rest_API' ) ) {
 		 * @param int $post_id Post Id.
 		 * @since 1.23.0
 		 */
-		public function delete_page_assets( $post_id ) {
+		public function save_post_handler( $post_id ) {
 
 			if ( 'enabled' === UAGB_Helper::$file_generation ) {
 
@@ -92,6 +92,47 @@ if ( ! class_exists( 'UAGB_Rest_API' ) ) {
 
 				/* Update the asset version */
 				update_option( '__uagb_asset_version', time() );
+			}
+
+			$this->check_for_adding_notice();
+		}
+
+		/**
+		 * Get flag if more than 5 pages are build using UAG.
+		 *
+		 * @since x.x.x
+		 */
+		public function check_for_adding_notice() {
+
+			if ( false === $posts_created_with_uag || 5 > $posts_created_with_uag ) {
+
+				$query_args = array(
+					'posts_per_page' => 100,
+					'post_status'    => 'publish',
+					'post_type'      => 'any',
+				);
+
+				$query = new WP_Query( $query_args );
+
+				$uag_post_count = 0;
+
+				if ( isset( $query->post_count ) && $query->post_count > 0 ) {
+					foreach ( $query->posts as $key => $post ) {
+						if ( $uag_post_count >= 5 ) {
+							break;
+						}
+
+						if ( false !== strpos( $post->post_content, '<!-- wp:uagb/' ) ) {
+							$uag_post_count++;
+						}
+					}
+				}
+
+				if ( $uag_post_count >= 5 ) {
+					update_option( 'posts-created-with-uagb', $uag_post_count );
+
+					$posts_created_with_uag = $uag_post_count;
+				}
 			}
 		}
 
