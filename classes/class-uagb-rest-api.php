@@ -94,47 +94,36 @@ if ( ! class_exists( 'UAGB_Rest_API' ) ) {
 				update_option( '__uagb_asset_version', time() );
 			}
 
-			$this->check_for_adding_notice();
+			$this->check_for_adding_notice( $post_id );
 		}
 
 		/**
 		 * Get flag if more than 5 pages are build using UAG.
 		 *
+		 * @param int $post_id Post Id.
+		 *
 		 * @since x.x.x
 		 */
-		public function check_for_adding_notice() {
+		public function check_for_adding_notice( $post_id ) {
 
 			$posts_created_with_uag = get_option( 'posts-created-with-uagb' );
 
-			if ( false === $posts_created_with_uag || 5 > $posts_created_with_uag ) {
+			if ( false === $posts_created_with_uag || ! is_array( $posts_created_with_uag ) || 5 > count( $posts_created_with_uag ) ) {
 
-				$query_args = array(
-					'posts_per_page' => 100,
-					'post_status'    => 'publish',
-					'post_type'      => 'any',
-				);
+				$post = get_post( $post_id );
 
-				$query = new WP_Query( $query_args );
+				if ( false !== strpos( $post->post_content, '<!-- wp:uagb/' ) ) {
+					if ( is_array( $posts_created_with_uag ) && ! in_array( $post_id, $posts_created_with_uag, true ) ) {
 
-				$uag_post_count = 0;
-
-				if ( isset( $query->post_count ) && $query->post_count > 0 ) {
-					foreach ( $query->posts as $key => $post ) {
-						if ( $uag_post_count >= 5 ) {
-							break;
-						}
-
-						if ( false !== strpos( $post->post_content, '<!-- wp:uagb/' ) ) {
-							$uag_post_count++;
-						}
+						$posts_created_with_uag[] = $post_id;
+					} else {
+						$posts_created_with_uag = array(
+							$post_id,
+						);
 					}
 				}
 
-				if ( $uag_post_count >= 5 ) {
-					update_option( 'posts-created-with-uagb', $uag_post_count );
-
-					$posts_created_with_uag = $uag_post_count;
-				}
+				update_option( 'posts-created-with-uagb', $posts_created_with_uag );
 			}
 		}
 

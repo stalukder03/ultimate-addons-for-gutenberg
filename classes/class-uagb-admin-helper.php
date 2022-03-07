@@ -150,6 +150,10 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 
 			$posts_created_with_uag = get_option( 'posts-created-with-uagb' );
 
+			if ( is_array( $posts_created_with_uag ) ) {
+				return ( count( $posts_created_with_uag ) >= 5 );
+			}
+
 			return ( $posts_created_with_uag >= 5 );
 		}
 
