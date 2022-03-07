@@ -104,6 +104,8 @@ if ( ! class_exists( 'UAGB_Rest_API' ) ) {
 		 */
 		public function check_for_adding_notice() {
 
+			$posts_created_with_uag = get_option( 'posts-created-with-uagb' );
+
 			if ( false === $posts_created_with_uag || 5 > $posts_created_with_uag ) {
 
 				$query_args = array(
