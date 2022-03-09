@@ -64,7 +64,7 @@ const Blog = ( props ) => {
 			? latestPosts.slice( 0, postsToShow )
 			: latestPosts;
 
-			let highlighPost = highlighFirstPost
+	const highlighPost = highlighFirstPost ? `uagb-post__inner-wrap uagb-highlight-first-post` : `uagb-post__inner-wrap`;
 	return (
 		<div
 			className={ classnames(
@@ -87,9 +87,9 @@ const Blog = ( props ) => {
 			>
 				{ displayPosts.map( ( post = {}, i ) => (
 					<>
-					{ 0 === i &&74
+					{ 0 === i &&
 					(
-						<article ref={article} key={ i } className="uagb-post__inner-wrap uagb-highlight-first-post">
+						<article ref={article} key={ i } className={ `${ highlighPost }`}>
 							{ renderPostLayout(
 								'uagb/post-grid',
 								post,

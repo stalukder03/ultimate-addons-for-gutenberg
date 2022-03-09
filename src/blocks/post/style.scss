@@ -73,6 +73,18 @@
 		vertical-align: bottom;
 	}
 
+	&.uagb-post__columns-3 article.uagb-post__inner-wrap.uagb-highlight-first-post {
+		width: 65%;
+	}
+
+	&.uagb-post__columns-2 article.uagb-post__inner-wrap.uagb-highlight-first-post {
+		width: 100%;
+	}
+
+	&.uagb-post__columns-4 article.uagb-post__inner-wrap.uagb-highlight-first-post {
+		width: 50%;
+	}
+
 	&.uagb-post__columns-8 article {
 		width: 12.5%;
 	}
