@@ -1224,10 +1224,20 @@ if ( ! class_exists( 'UAGB_Post' ) ) {
 				$post_class_enabled = apply_filters( 'uagb_enable_post_class', false, $attributes );
 
 				do_action( "uagb_post_before_article_{$attributes['post_type']}", get_the_ID(), $attributes );
-				$highlighPost = ( $attributes['highlighFirstPost'] ) ? 'class=uagb-post__inner-wrap uagb-highlight-first-post' : 'class=uagb-post__inner-wrap';
+				$show_first_post = ( $attributes['highlighFirstPost'] ) ? 'uagb-highlight-first-post' : '';
 				?>
 				<?php do_action( "uagb_post_before_inner_wrap_{$attributes['post_type']}", get_the_ID(), $attributes ); ?>
-				<article <?php ( $post_class_enabled ) ? post_class( 'uagb-post__inner-wrap' ) : ( 1 === $iteration ) ? esc_html_e( $highlighPost ) : esc_html_e( 'class=uagb-post__inner-wrap' ); ?>>
+				<article
+					<?php
+					if ( $post_class_enabled ) {
+						post_class( 'uagb-post__inner-wrap' );
+					} else {
+						?>
+							class="<?php echo 1 === $iteration ? 'uagb-post__inner-wrap ' . esc_attr( $show_first_post ) : esc_html_e( 'uagb-post__inner-wrap' ); ?> "
+						<?php
+					}
+					?>
+				>
 					<?php $this->render_complete_box_link( $attributes ); ?>
 					<?php $this->render_innerblocks( $attributes ); ?>
 				</article>
