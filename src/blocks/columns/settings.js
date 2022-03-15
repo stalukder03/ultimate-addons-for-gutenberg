@@ -17,14 +17,12 @@ import InspectorTab, {
 } from '@Components/inspector-tabs/InspectorTab.js';
 import ResponsiveSlider from '@Components/responsive-slider';
 import UAGTabsControl from '@Components/tabs';
-
 import {
-	BlockControls,
-	BlockAlignmentToolbar,
-	BlockVerticalAlignmentToolbar,
 	InspectorControls,
 } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, ToggleControl } from '@wordpress/components';
+import { SelectControl, ToggleControl } from '@wordpress/components';
+
+import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 const Settings = ( props ) => {
 	props = props.parentProps;
@@ -116,28 +114,9 @@ const Settings = ( props ) => {
 		boxShadowPosition,
 	} = attributes;
 
-	const blockControlSettings = () => {
-		return (
-			<BlockControls>
-				<BlockAlignmentToolbar
-					value={ align }
-					onChange={ ( value ) => {
-						setAttributes( { align: value } );
-					} }
-					controls={ [ 'wide', 'full' ] }
-				/>
-				<BlockVerticalAlignmentToolbar
-					value={ vAlign }
-					onChange={ ( value ) => {
-						setAttributes( { vAlign: value } );
-					} }
-				/>
-			</BlockControls>
-		);
-	};
 	const layoutSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Layout', 'ultimate-addons-for-gutenberg' ) }
 			>
 				<Range
@@ -152,6 +131,60 @@ const Settings = ( props ) => {
 					min={ 0 }
 					max={ 6 }
 					displayUnit={ false }
+				/>
+				<MultiButtonsControl
+					setAttributes={ setAttributes }
+					label={ __(
+						'Content Width',
+						'ultimate-addons-for-gutenberg'
+					) }
+					data={ {
+						value: align,
+						label: 'align',
+					} }
+					className="uagb-multi-button-alignment-control"
+					options={ [
+						{
+							value: '',
+							label: 'None',
+						},
+						{
+							value: 'wide',
+							label: 'Wide',
+						},
+						{
+							value: 'full',
+							label: 'Full Width',
+						},
+					] }
+					showIcons={ false }
+				/>
+				<MultiButtonsControl
+					setAttributes={ setAttributes }
+					label={ __(
+						'Vertical Alignment',
+						'ultimate-addons-for-gutenberg'
+					) }
+					data={ {
+						value: vAlign,
+						label: 'vAlign',
+					} }
+					className="uagb-multi-button-alignment-control"
+					options={ [
+						{
+							value: 'top',
+							label: 'Top',
+						},
+						{
+							value: 'center',
+							label: 'Middle',
+						},
+						{
+							value: 'bottom',
+							label: 'Bottom',
+						},
+					] }
+					showIcons={ false }
 				/>
 				<MultiButtonsControl
 					setAttributes={ setAttributes }
@@ -423,12 +456,12 @@ const Settings = ( props ) => {
 						setAttributes( { reverseMobile: ! reverseMobile } )
 					}
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const spacingSettings = () => {
 		return (
-			<PanelBody title={ __( 'Spacing' ) } initialOpen={ false }>
+			<UAGAdvancedPanelBody title={ __( 'Spacing' ) } initialOpen={ false }>
 				<SpacingControl
 					{ ...props }
 					label={ __( 'Padding', 'ultimate-addons-for-gutenberg' ) }
@@ -569,12 +602,12 @@ const Settings = ( props ) => {
 						label: 'marginLink',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const backgroundSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Background', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -638,7 +671,7 @@ const Settings = ( props ) => {
 					onOpacityChange = { ( opacity ) => setAttributes( { backgroundVideoOpacity: opacity } ) }
 					{ ...props }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const shapeDividersSettings = () => {
@@ -913,7 +946,7 @@ const Settings = ( props ) => {
 		);
 
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __(
 					'Shape Dividers',
 					'ultimate-addons-for-gutenberg'
@@ -938,12 +971,12 @@ const Settings = ( props ) => {
 					bottom={ bottomSettings }
 					disableBottomSeparator={ true }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const borderSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Border', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -1024,13 +1057,12 @@ const Settings = ( props ) => {
 						),
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	return (
 		<Suspense fallback={ lazyLoader() }>
-			{ blockControlSettings() }
 			<InspectorControls>
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>

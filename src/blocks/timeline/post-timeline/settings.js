@@ -3,6 +3,7 @@ import TypographyControl from '@Components/typography';
 import WebfontLoader from '@Components/typography/fontloader';
 import React from 'react';
 import { __ } from '@wordpress/i18n';
+import { decodeEntities } from '@wordpress/html-entities';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
 import Range from '@Components/range/Range.js';
 import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
@@ -15,7 +16,6 @@ import UAGTabsControl from '@Components/tabs';
 import SpacingControl from '@Components/spacing-control';
 import { dateI18n } from '@wordpress/date';
 import {
-	PanelBody,
 	QueryControls,
 	SelectControl,
 	ToggleControl,
@@ -25,8 +25,11 @@ import {
 import {
 	InspectorControls,
 	BlockAlignmentToolbar,
+	AlignmentToolbar,
 	BlockControls,
 } from '@wordpress/block-editor';
+
+import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 const Settings = ( props ) => {
 	props = props.parentProps;
@@ -133,7 +136,6 @@ const Settings = ( props ) => {
 		iconSize,
 		exerptLength,
 		borderRadius,
-		contentPadding,
 		iconFocus,
 		iconBgFocus,
 		stack,
@@ -183,7 +185,10 @@ const Settings = ( props ) => {
 		authorDecoration,
 		subHeadDecoration,
 		dateDecoration,
-		ctaDecoration
+		ctaDecoration,
+
+		ctaBottomSpacing,
+		headTopSpacing
 	} = attributes;
 
 	const onSelectPostType = ( value ) => {
@@ -210,7 +215,7 @@ const Settings = ( props ) => {
 		Object.keys( taxonomyList ).map( ( item ) => {
 			return taxonomyListOptions.push( {
 				value: taxonomyList[ item ].name,
-				label: taxonomyList[ item ].label,
+				label: decodeEntities( taxonomyList[ item ].label ),
 			} );
 		} );
 	}
@@ -219,7 +224,7 @@ const Settings = ( props ) => {
 		Object.keys( categoriesList ).map( ( item ) => {
 			return categoryListOptions.push( {
 				value: categoriesList[ item ].id,
-				label: categoriesList[ item ].name,
+				label: decodeEntities( categoriesList[ item ].name ),
 			} );
 		} );
 	}
@@ -309,7 +314,7 @@ const Settings = ( props ) => {
 
 	const querySettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Query', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ true }
 			>
@@ -427,12 +432,12 @@ const Settings = ( props ) => {
 					] }
 					showIcons={ false }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const layoutSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Layout', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -445,6 +450,54 @@ const Settings = ( props ) => {
 					data={ {
 						value: timelinAlignment,
 						label: 'timelinAlignment',
+					} }
+					className="uagb-multi-button-alignment-control"
+					options={ [
+						{
+							value: 'left',
+							icon: (
+								<Icon
+									icon={ renderSVG( 'fa fa-align-left' ) }
+								/>
+							),
+							tooltip: __(
+								'Left',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'center',
+							icon: (
+								<Icon
+									icon={ renderSVG( 'fa fa-align-center' ) }
+								/>
+							),
+							tooltip: __(
+								'Center',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'right',
+							icon: (
+								<Icon
+									icon={ renderSVG( 'fa fa-align-right' ) }
+								/>
+							),
+							tooltip: __(
+								'Right',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+					] }
+					showIcons={ true }
+				/>
+				<MultiButtonsControl
+					setAttributes={ setAttributes }
+					label={ __( 'Text Alignment', 'ultimate-addons-for-gutenberg' ) }
+					data={ {
+						value: align,
+						label: 'align',
 					} }
 					className="uagb-multi-button-alignment-control"
 					options={ [
@@ -572,12 +625,12 @@ const Settings = ( props ) => {
 						'ultimate-addons-for-gutenberg'
 					) }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const ImageSetting = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Image', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -606,12 +659,12 @@ const Settings = ( props ) => {
 						}
 					/>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const contentSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Content', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -810,7 +863,7 @@ const Settings = ( props ) => {
 				) }
 				<ToggleControl
 					label={ __(
-						'Open links in New Tab',
+						'Open link in New Tab',
 						'ultimate-addons-for-gutenberg'
 					) }
 					checked={ linkTarget }
@@ -832,12 +885,12 @@ const Settings = ( props ) => {
 					max={ 50 }
 					displayUnit={ false }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const connectorSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Connector', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -904,7 +957,7 @@ const Settings = ( props ) => {
 					max={ 10 }
 					displayUnit={ false }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const connectorColorsSettings = () => {
@@ -999,7 +1052,7 @@ const Settings = ( props ) => {
 		);
 
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Connector', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -1024,14 +1077,14 @@ const Settings = ( props ) => {
 					focus={ iconFocusSettings }
 					disableBottomSeparator={ true }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const headingStyleSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Heading', 'ultimate-addons-for-gutenberg' ) }
-				initialOpen={ true }
+				initialOpen={ false }
 			>
 				<AdvancedPopColorControl
 					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
@@ -1103,6 +1156,20 @@ const Settings = ( props ) => {
 				/>
 				<Range
 					label={ __(
+						'Top Spacing',
+						'ultimate-addons-for-gutenberg'
+					) }
+					setAttributes={ setAttributes }
+					value={ headTopSpacing }
+					onChange={ ( value ) =>
+						setAttributes( { headTopSpacing: value } )
+					}
+					min={ 1 }
+					max={ 50 }
+					displayUnit={ false }
+				/>
+				<Range
+					label={ __(
 						'Bottom Spacing',
 						'ultimate-addons-for-gutenberg'
 					) }
@@ -1115,12 +1182,12 @@ const Settings = ( props ) => {
 					max={ 100 }
 					displayUnit={ false }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const authorStyleSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Author', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -1209,12 +1276,12 @@ const Settings = ( props ) => {
 					max={ 50 }
 					displayUnit={ false }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const contentStyleSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Content', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -1305,12 +1372,12 @@ const Settings = ( props ) => {
 						displayUnit={ false }
 					/>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const dateStyleSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Date', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -1401,12 +1468,12 @@ const Settings = ( props ) => {
 						displayUnit={ false }
 					/>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const ctaStyleSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'CTA', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -1491,12 +1558,26 @@ const Settings = ( props ) => {
 						label: 'ctaDecoration',
 					} }
 				/>
-			</PanelBody>
+				<Range
+					label={ __(
+						'Bottom Spacing',
+						'ultimate-addons-for-gutenberg'
+					) }
+					setAttributes={ setAttributes }
+					value={ ctaBottomSpacing }
+					onChange={ ( value ) =>
+						setAttributes( { ctaBottomSpacing: value } )
+					}
+					min={ 1 }
+					max={ 50 }
+					displayUnit={ false }
+				/>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const backgroundColorSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Background', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -1507,29 +1588,15 @@ const Settings = ( props ) => {
 						setAttributes( { backgroundColor: value } )
 					}
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const spacingSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Spacing', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
-				<Range
-					label={ __(
-						'Content Padding',
-						'ultimate-addons-for-gutenberg'
-					) }
-					setAttributes={ setAttributes }
-					value={ contentPadding }
-					onChange={ ( value ) =>
-						setAttributes( { contentPadding: value } )
-					}
-					min={ 1 }
-					max={ 50 }
-					displayUnit={ false }
-				/>
 				<SpacingControl
 					{ ...props }
 					label={ __(
@@ -1676,18 +1743,25 @@ const Settings = ( props ) => {
 						label: 'marginLink',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const blockControls = () => {
 		return (
 			<BlockControls>
 				<BlockAlignmentToolbar
+					value={ timelinAlignment }
+					onChange={ ( value ) => {
+						setAttributes( { timelinAlignment: value } );
+					} }
+					controls={ [ 'left', 'center', 'right' ] }
+				/>
+				<AlignmentToolbar
 					value={ align }
 					onChange={ ( value ) => {
 						setAttributes( { align: value } );
 					} }
-					controls={ [ 'center', 'left', 'right' ] }
+					controls={ [ 'left', 'center', 'right' ] }
 				/>
 			</BlockControls>
 		);

@@ -46,9 +46,9 @@ class UAGB_Init_Blocks {
 		add_action( 'enqueue_block_editor_assets', array( $this, 'editor_assets' ) );
 
 		if ( version_compare( get_bloginfo( 'version' ), '5.8', '>=' ) ) {
-			add_filter( 'block_categories_all', array( $this, 'register_block_category' ), 10, 2 );
+			add_filter( 'block_categories_all', array( $this, 'register_block_category' ), 999999, 2 );
 		} else {
-			add_filter( 'block_categories', array( $this, 'register_block_category' ), 10, 2 );
+			add_filter( 'block_categories', array( $this, 'register_block_category' ), 999999, 2 );
 		}
 
 		add_action( 'wp_ajax_uagb_get_taxonomy', array( $this, 'get_taxonomy' ) );
@@ -394,13 +394,13 @@ class UAGB_Init_Blocks {
 	 */
 	public function register_block_category( $categories, $post ) {
 		return array_merge(
-			$categories,
 			array(
 				array(
 					'slug'  => 'uagb',
-					'title' => __( 'Ultimate Addons Blocks', 'ultimate-addons-for-gutenberg' ),
+					'title' => __( 'Spectra', 'ultimate-addons-for-gutenberg' ),
 				),
-			)
+			),
+			$categories
 		);
 	}
 
@@ -420,7 +420,14 @@ class UAGB_Init_Blocks {
 				'dependencies' => array(),
 				'version'      => UAGB_VER,
 			);
-		$script_dep      = array_merge( $script_info['dependencies'], array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-components', 'wp-editor', 'wp-api-fetch' ) );
+		global $pagenow;
+		$script_dep = array_merge( $script_info['dependencies'], array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-components', 'wp-api-fetch', 'uagb-cross-site-cp-helper-js' ) );
+		if ( 'widgets.php' !== $pagenow ) {
+			$script_dep = array_merge( $script_info['dependencies'], array( 'wp-editor' ) );
+		}
+
+		$js_ext = ( SCRIPT_DEBUG ) ? '.js' : '.min.js';
+		wp_enqueue_script( 'uagb-cross-site-cp-helper-js', UAGB_URL . 'assets/js/cross-site-cp-helper' . $js_ext, array(), UAGB_VER, true ); // 3rd Party Library JS for Cross-Domain Local Storage usage for the Copy/Paste styles feature.
 
 		// Scripts.
 		wp_enqueue_script(
@@ -512,33 +519,38 @@ class UAGB_Init_Blocks {
 			}
 		}
 
+		$uagb_exclude_blocks_from_extension = array( 'core/archives', 'core/calendar', 'core/latest-comments', 'core/tag-cloud', 'core/rss' );
+
 		wp_localize_script(
 			'uagb-block-editor-js',
 			'uagb_blocks_info',
 			array(
-				'blocks'                            => UAGB_Config::get_block_attributes(),
-				'category'                          => 'uagb',
-				'ajax_url'                          => admin_url( 'admin-ajax.php' ),
-				'cf7_forms'                         => $this->get_cf7_forms(),
-				'gf_forms'                          => $this->get_gravity_forms(),
-				'tablet_breakpoint'                 => UAGB_TABLET_BREAKPOINT,
-				'mobile_breakpoint'                 => UAGB_MOBILE_BREAKPOINT,
-				'image_sizes'                       => UAGB_Helper::get_image_sizes(),
-				'post_types'                        => UAGB_Helper::get_post_types(),
-				'all_taxonomy'                      => UAGB_Helper::get_related_taxonomy(),
-				'uagb_ajax_nonce'                   => $uagb_ajax_nonce,
-				'uagb_home_url'                     => home_url(),
-				'user_role'                         => $this->get_user_role(),
-				'uagb_url'                          => UAGB_URL,
-				'uagb_mime_type'                    => UAGB_Helper::get_mime_type(),
-				'uagb_site_url'                     => UAGB_URI,
-				'enableConditions'                  => apply_filters_deprecated( 'enable_block_condition', array( $displayCondition ), '1.23.4', 'uag_enable_block_condition' ),
-				'enableMasonryGallery'              => apply_filters( 'uag_enable_masonry_gallery', UAGB_Admin_Helper::get_admin_settings_option( 'uag_enable_masonry_gallery', 'enabled' ) ),
-				'uagb_svg_icons'                    => UAGB_Helper::backend_load_font_awesome_icons(),
-				'uagb_enable_extensions_for_blocks' => apply_filters( 'uagb_enable_extensions_for_blocks', array() ),
-				'uag_load_select_font_globally'     => $enable_selected_fonts,
-				'uag_select_font_globally'          => $selected_fonts,
-				'uagb_old_user_less_than_2'         => get_option( 'uagb-old-user-less-than-2' ),
+				'blocks'                             => UAGB_Config::get_block_attributes(),
+				'category'                           => 'uagb',
+				'ajax_url'                           => admin_url( 'admin-ajax.php' ),
+				'cf7_forms'                          => $this->get_cf7_forms(),
+				'gf_forms'                           => $this->get_gravity_forms(),
+				'tablet_breakpoint'                  => UAGB_TABLET_BREAKPOINT,
+				'mobile_breakpoint'                  => UAGB_MOBILE_BREAKPOINT,
+				'image_sizes'                        => UAGB_Helper::get_image_sizes(),
+				'post_types'                         => UAGB_Helper::get_post_types(),
+				'all_taxonomy'                       => UAGB_Helper::get_related_taxonomy(),
+				'uagb_ajax_nonce'                    => $uagb_ajax_nonce,
+				'uagb_home_url'                      => home_url(),
+				'user_role'                          => $this->get_user_role(),
+				'uagb_url'                           => UAGB_URL,
+				'uagb_mime_type'                     => UAGB_Helper::get_mime_type(),
+				'uagb_site_url'                      => UAGB_URI,
+				'enableConditions'                   => apply_filters_deprecated( 'enable_block_condition', array( $displayCondition ), '1.23.4', 'uag_enable_block_condition' ),
+				'enableMasonryGallery'               => apply_filters( 'uag_enable_masonry_gallery', UAGB_Admin_Helper::get_admin_settings_option( 'uag_enable_masonry_gallery', 'enabled' ) ),
+				'uagb_svg_icons'                     => UAGB_Helper::backend_load_font_awesome_icons(),
+				'uagb_enable_extensions_for_blocks'  => apply_filters( 'uagb_enable_extensions_for_blocks', array() ),
+				'uagb_exclude_blocks_from_extension' => $uagb_exclude_blocks_from_extension,
+				'uag_load_select_font_globally'      => $enable_selected_fonts,
+				'uag_select_font_globally'           => $selected_fonts,
+				'uagb_old_user_less_than_2'          => get_option( 'uagb-old-user-less-than-2' ),
+				'collapse_panels'                    => UAGB_Admin_Helper::get_admin_settings_option( 'uag_collapse_panels', 'enabled' ),
+				'copy_paste'                         => UAGB_Admin_Helper::get_admin_settings_option( 'uag_copy_paste', 'enabled' ),
 			)
 		);
 		// To match the editor with frontend.

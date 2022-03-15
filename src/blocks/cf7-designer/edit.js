@@ -2,6 +2,9 @@ import styling from './styling';
 import React, { lazy, useEffect, Suspense } from 'react';
 import lazyLoader from '@Controls/lazy-loader';
 import apiFetch from '@wordpress/api-fetch';
+
+import { useDeviceType } from '@Controls/getPreviewType';
+import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 const Settings = lazy( () =>
 	import( /* webpackChunkName: "chunks/cf7-styler/settings" */ './settings' )
 );
@@ -12,17 +15,13 @@ const Render = lazy( () =>
 import { withSelect } from '@wordpress/data';
 
 const UAGBCF7 = ( props ) => {
+
+	const deviceType = useDeviceType();
+
 	useEffect( () => {
 		// Assigning block_id in the attribute.
 		props.setAttributes( { isHtml: false } );
 		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
-		// Pushing Style tag for this block css.
-		const $style = document.createElement( 'style' );
-		$style.setAttribute(
-			'id',
-			'uagb-cf7-styler-' + props.clientId.substr( 0, 8 )
-		);
-		document.head.appendChild( $style );
 
 		const { attributes, setAttributes } = props;
 		const {
@@ -64,56 +63,61 @@ const UAGBCF7 = ( props ) => {
 		}
 
 		if ( buttonVrPadding ) {
-			if ( ! buttonTopPaddingDesktop ) {
+			if ( undefined === buttonTopPaddingDesktop ) {
 				setAttributes( { buttonTopPaddingDesktop: buttonVrPadding } );
 			}
-			if ( ! buttonBottomPaddingDesktop ) {
+			if ( undefined === buttonBottomPaddingDesktop ) {
 				setAttributes( {
 					buttonBottomPaddingDesktop: buttonVrPadding,
 				} );
 			}
 		}
 		if ( buttonHrPadding ) {
-			if ( ! buttonRightPaddingDesktop ) {
+			if ( undefined === buttonRightPaddingDesktop ) {
 				setAttributes( { buttonRightPaddingDesktop: buttonHrPadding } );
 			}
-			if ( ! buttonLeftPaddingDesktop ) {
+			if ( undefined === buttonLeftPaddingDesktop ) {
 				setAttributes( { buttonLeftPaddingDesktop: buttonHrPadding } );
 			}
 		}
 
 		if ( fieldVrPadding ) {
-			if ( ! fieldTopPaddingDesktop ) {
+			if ( undefined === fieldTopPaddingDesktop ) {
 				setAttributes( { fieldTopPaddingDesktop: fieldVrPadding } );
 			}
-			if ( ! fieldBottomPaddingDesktop ) {
+			if ( undefined === fieldBottomPaddingDesktop ) {
 				setAttributes( { fieldBottomPaddingDesktop: fieldVrPadding } );
 			}
 		}
 		if ( fieldHrPadding ) {
-			if ( ! fieldRightPaddingDesktop ) {
+			if ( undefined === fieldRightPaddingDesktop ) {
 				setAttributes( { fieldRightPaddingDesktop: fieldHrPadding } );
 			}
-			if ( ! fieldLeftPaddingDesktop ) {
+			if ( undefined === fieldLeftPaddingDesktop ) {
 				setAttributes( { fieldLeftPaddingDesktop: fieldHrPadding } );
 			}
 		}
 	}, [] );
 
 	useEffect( () => {
-		if( document.querySelector( '.wpcf7-submit' ) !== null ){
-			document.querySelector( '.wpcf7-submit' ).addEventListener( 'click', function ( event ) {
+		const submitButton = document.querySelector( '.wpcf7-submit' );
+		if( submitButton !== null ){
+			submitButton.addEventListener( 'click', function ( event ) {
 				event.preventDefault();
 			} );
 		}
-		const element = document.getElementById(
-			'uagb-cf7-styler-' + props.clientId.substr( 0, 8 )
-		);
 
-		if ( null !== element && undefined !== element ) {
-			element.innerHTML = styling( props );
-		}
+		const blockStyling = styling( props );
+
+		addBlockEditorDynamicStyles( 'uagb-cf7-styler-' + props.clientId.substr( 0, 8 ), blockStyling );
 	}, [ props ] );
+
+	useEffect( () => {
+		// Replacement for componentDidUpdate.
+		const blockStyling = styling( props );
+
+		addBlockEditorDynamicStyles( 'uagb-cf7-styler-' + props.clientId.substr( 0, 8 ), blockStyling );
+	}, [deviceType] );
 
 	return (
 		<Suspense fallback={ lazyLoader() }>
@@ -142,7 +146,7 @@ export default withSelect( ( select, props ) => {
 			url: uagb_blocks_info.ajax_url,
 			method: 'POST',
 			body: formData,
-		} ).then( ( data ) => {  
+		} ).then( ( data ) => {
 			setAttributes( { isHtml: true } );
 			setAttributes( { formJson: data } );
 			jsonData = data;

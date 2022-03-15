@@ -1,15 +1,14 @@
 let scrollData = true;
 let scrollOffset = 30;
-let scrollDelay;
 let scrolltoTop = false;
 let scrollElement = null;
 
 
 UAGBTableOfContents = { // eslint-disable-line no-undef
 	init() {
-		if( document.querySelector( '.uagb-toc__list a' ) !== null ){
-			document.querySelector( '.uagb-toc__list a' ).addEventListener( 'click',
-				UAGBTableOfContents._scroll// eslint-disable-line no-undef
+		if( document.querySelector( '.uagb-toc__list' ) !== null ){
+			document.querySelector( '.uagb-toc__list' ).addEventListener( 'click',
+				UAGBTableOfContents._scroll // eslint-disable-line no-undef
 			);
 		}
 		if( document.querySelector( '.uagb-toc__scroll-top' ) !== null ){
@@ -17,20 +16,16 @@ UAGBTableOfContents = { // eslint-disable-line no-undef
 				UAGBTableOfContents._scrollTop// eslint-disable-line no-undef
 			);
 		}
-		if( document.querySelector( '.uagb-toc__title-wrap' ) !== null ){
-			document.querySelector( '.uagb-toc__title-wrap' ).addEventListener( 'click', function(){
 
-				const collapsible = this.querySelector( '.uag-toc__collapsible-wrap' );
+		if( document.querySelector( '.uagb-toc__wrap svg' ) !== null ){
 
-				if ( collapsible !== null ) {
+			document.querySelector( '.uagb-toc__wrap svg' ).addEventListener( 'click', function(){
+				const $root = this.closest( '.wp-block-uagb-table-of-contents' );
 
-					const $root = this.closest( '.wp-block-uagb-table-of-contents' );
-
-					if ( $root.classList.contains( 'uagb-toc__collapse' ) ) {
-						$root.classList.remove( 'uagb-toc__collapse' );
-					} else {
-						$root.classList.add( 'uagb-toc__collapse' );
-					}
+				if ( $root.classList.contains( 'uagb-toc__collapse' ) ) {
+					$root.classList.remove( 'uagb-toc__collapse' );
+				} else {
+					$root.classList.add( 'uagb-toc__collapse' );
 				}
 			} );
 		}
@@ -53,14 +48,13 @@ UAGBTableOfContents = { // eslint-disable-line no-undef
 
 		scrollOffset = node.getAttribute( 'data-offset' );
 
-		const offset = decodeURIComponent( hash ).offset;
+		const offset = document.querySelector( hash ).offsetTop;
 
-		scrollDelay = node.getAttribute( 'data-delay' );
-		if ( 'undefined' !== typeof offset ) {
-			document.getElementsByTagName( 'html' ).animate( [
-				{ scrollTop: offset.top - scrollOffset}],
-				scrollDelay
-			);
+		if ( null !== offset ) {
+			scroll( { // eslint-disable-line no-undef
+				top: offset - scrollOffset,
+				behavior: 'smooth'
+			} );
 		}
 	},
 
@@ -81,28 +75,34 @@ UAGBTableOfContents = { // eslint-disable-line no-undef
 	},
 
 	_scrollTop() {
-		document.body.animate( [
-			{ scrollTop: 0}],
-			800
-		);
+		window.scrollTo( {
+			top: 0,
+			behavior: 'smooth',
+		} );
 	},
 
-	_scroll() {
+	_scroll( e ) {
 
-		if ( window.location.hash !== '' ) {
-			const hash = window.location.hash;
-			const node = list.closest( '.wp-block-uagb-table-of-contents' ); // eslint-disable-line no-undef
+		e.preventDefault();
+
+		const hash = e.target.getAttribute( 'href' );
+		if ( hash !== '' ) {
+			const node = document.querySelector( '.wp-block-uagb-table-of-contents' ); // eslint-disable-line no-undef
 
 			scrollData = node.getAttribute( 'data-scroll' );
 			scrollOffset = node.getAttribute( 'data-offset' );
-			scrollDelay = node.getAttribute( 'data-delay' );
 			if ( scrollData ) {
-				const offset =  decodeURIComponent( hash ).offset;
-				if ( 'undefined' !== typeof offset ) {
-					document.body.animate( [
-						{ scrollTop: offset.top - scrollOffset}],
-						scrollDelay
-					);
+				let offset = null;
+				if ( document.querySelector( hash ) ) {
+
+					offset = document.querySelector( hash ).getBoundingClientRect().top + window.scrollY;
+				}
+
+				if ( null !== offset ) {
+					scroll( { // eslint-disable-line no-undef
+						top: offset - scrollOffset,
+						behavior: 'smooth'
+					} );
 				}
 			}
 		}
@@ -163,17 +163,17 @@ UAGBTableOfContents = { // eslint-disable-line no-undef
 
 			const divsArr = Array.from( allHeader );
 
-				for ( let i = 0; i < divsArr.length; i++ ) {
+			for ( let i = 0; i < divsArr.length; i++ ) {
 
 				let headerText = parseTocSlug( divsArr[i].innerText );
 
 				if ( headerText.length < 1 ) {
-					const listHeading = tocListWrap.querySelector( 'a:contains("' + divsArr[i].innerText + '")' );
-
-					if ( listHeading.length > 0 ) {
-						headerText = listHeading
-							.attr( 'href' )
-							.replace( /#/g, '' );
+					const aTags = tocListWrap.getElementsByTagName( 'a' );
+					const searchText = divsArr[i].innerText;
+					for ( let j = 0; j < aTags.length; j++ ) {
+						if ( aTags[j].textContent === searchText ) {
+							headerText = aTags[j].setAttribute( 'href' , ' ' );
+						}
 					}
 				}
 				const span = document.createElement( 'span' );
@@ -185,24 +185,23 @@ UAGBTableOfContents = { // eslint-disable-line no-undef
 
 		scrolltoTop = attr.scrollToTop;
 
-		const scrollToTopSvg = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="26px" height="16.043px" viewBox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve"><path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"/></svg>';
+		const scrollToTopSvg = '<svg xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="26px" height="16.043px" viewBox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve"><path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"/></svg>';
 
 		scrollElement = document.querySelector( '.uagb-toc__scroll-top' );
 
 		if ( scrollElement === null ) {
 
-			document.body.innerHTML = document.body.innerHTML + '<div class="uagb-toc__scroll-top"> ' + scrollToTopSvg + '</div>';
+			const scrollToTopDiv = document.createElement( 'div' );
+			scrollToTopDiv.classList.add( 'uagb-toc__scroll-top' );
+			scrollToTopDiv.innerHTML = scrollToTopSvg;
+			document.body.appendChild( scrollToTopDiv );
 		}
 
 		if ( scrollElement !== null ) {
 			scrollElement.classList.add( 'uagb-toc__show-scroll' );
 		}
-
 		UAGBTableOfContents._showHideScroll(); // eslint-disable-line no-undef
 		UAGBTableOfContents.hyperLinks(); // eslint-disable-line no-undef
+		UAGBTableOfContents.init(); // eslint-disable-line no-undef
 	},
 };
-
-document.addEventListener( 'DOMContentLoaded', function(){
-	UAGBTableOfContents.init(); // eslint-disable-line no-undef
-} );

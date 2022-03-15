@@ -5,7 +5,8 @@
 import styling from './styling';
 import React, { useEffect, lazy, Suspense } from 'react';
 import lazyLoader from '@Controls/lazy-loader';
-
+import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
+import { useDeviceType } from '@Controls/getPreviewType';
 const Settings = lazy( () =>
 	import( /* webpackChunkName: "chunks/column/settings" */ './settings' )
 );
@@ -13,13 +14,12 @@ const Render = lazy( () =>
 	import( /* webpackChunkName: "chunks/column/render" */ './render' )
 );
 
-import { withSelect } from '@wordpress/data';
-
 import hexToRGBA from '@Controls/hexToRgba';
 
 import maybeGetColorForVariable from '@Controls/maybeGetColorForVariable';
 
 const ColumnComponent = ( props ) => {
+	const deviceType = useDeviceType();
 	useEffect( () => {
 
 		const { setAttributes, attributes } = props;
@@ -33,13 +33,6 @@ const ColumnComponent = ( props ) => {
 
 		setAttributes( { classMigrate: true } );
 
-		// Pushing Style tag for this block css.
-		const $style = document.createElement( 'style' );
-		$style.setAttribute(
-			'id',
-			'uagb-column-style-' + props.clientId.substr( 0, 8 )
-		);
-		document.head.appendChild( $style );
 
 		if ( 101 !== backgroundOpacity ) {
 			const color = hexToRGBA( maybeGetColorForVariable( backgroundImageColor ), backgroundOpacity );
@@ -51,14 +44,17 @@ const ColumnComponent = ( props ) => {
 
 	useEffect( () => {
 		// Replacement for componentDidUpdate.
-		const element = document.getElementById(
-			'uagb-column-style-' + props.clientId.substr( 0, 8 )
-		);
+		const blockStyling = styling( props );
 
-		if ( null !== element && undefined !== element ) {
-			element.innerHTML = styling( props );
-		}
+        addBlockEditorDynamicStyles( 'uagb-column-style-' + props.clientId.substr( 0, 8 ), blockStyling );
 	}, [ props ] );
+
+	useEffect( () => {
+		// Replacement for componentDidUpdate.
+	    const blockStyling = styling( props );
+
+        addBlockEditorDynamicStyles( 'uagb-column-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+	}, [deviceType] );
 
 	return (
 		<Suspense fallback={ lazyLoader() }>
@@ -68,15 +64,4 @@ const ColumnComponent = ( props ) => {
 	);
 };
 
-export default withSelect( ( select ) => {
-	const { __experimentalGetPreviewDeviceType = null } = select(
-		'core/edit-post'
-	);
-	const deviceType = __experimentalGetPreviewDeviceType
-		? __experimentalGetPreviewDeviceType()
-		: null;
-
-	return {
-		deviceType,
-	};
-} )( ColumnComponent );
+export default ColumnComponent;

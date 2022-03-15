@@ -5,6 +5,8 @@
 import styling from './styling';
 import React, { useEffect, lazy, Suspense } from 'react';
 import lazyLoader from '@Controls/lazy-loader';
+import { useDeviceType } from '@Controls/getPreviewType';
+import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 
 const Settings = lazy( () =>
 	import( /* webpackChunkName: "chunks/faq/settings" */ './settings' )
@@ -19,6 +21,9 @@ import { select, withSelect } from '@wordpress/data';
 let prevState;
 
 const FaqComponent = ( props ) => {
+
+	const deviceType = useDeviceType();
+
 	useEffect( () => {
 		// Replacement for componentDidMount.
 
@@ -61,13 +66,6 @@ const FaqComponent = ( props ) => {
 		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
 
 		setAttributes( { schema: JSON.stringify( props.schemaJsonData ) } );
-		// Pushing Style tag for this block css.
-		const $style = document.createElement( 'style' );
-		$style.setAttribute(
-			'id',
-			'uagb-style-faq-' + props.clientId.substr( 0, 8 )
-		);
-		document.head.appendChild( $style );
 
 		if (
 			10 === questionBottomPaddingDesktop &&
@@ -121,41 +119,41 @@ const FaqComponent = ( props ) => {
 		}
 
 		if ( vanswerPaddingDesktop ) {
-			if ( ! answerTopPadding ) {
+			if ( undefined === answerTopPadding ) {
 				setAttributes( { answerTopPadding: vanswerPaddingDesktop } );
 			}
-			if ( ! answerBottomPadding ) {
+			if ( undefined === answerBottomPadding ) {
 				setAttributes( { answerBottomPadding: vanswerPaddingDesktop } );
 			}
 		}
 		if ( hanswerPaddingDesktop ) {
-			if ( ! answerRightPadding ) {
+			if ( undefined === answerRightPadding ) {
 				setAttributes( { answerRightPadding: hanswerPaddingDesktop } );
 			}
-			if ( ! answerLeftPadding ) {
+			if ( undefined === answerLeftPadding ) {
 				setAttributes( { answerLeftPadding: hanswerPaddingDesktop } );
 			}
 		}
 
 		if ( vanswerPaddingTablet ) {
-			if ( ! answerTopPaddingTablet ) {
+			if ( undefined === answerTopPaddingTablet ) {
 				setAttributes( {
 					answerTopPaddingTablet: vanswerPaddingTablet,
 				} );
 			}
-			if ( ! answerBottomPaddingTablet ) {
+			if ( undefined === answerBottomPaddingTablet ) {
 				setAttributes( {
 					answerBottomPaddingTablet: vanswerPaddingTablet,
 				} );
 			}
 		}
 		if ( hanswerPaddingTablet ) {
-			if ( ! answerRightPaddingTablet ) {
+			if ( undefined === answerRightPaddingTablet ) {
 				setAttributes( {
 					answerRightPaddingTablet: hanswerPaddingTablet,
 				} );
 			}
-			if ( ! answerLeftPaddingTablet ) {
+			if ( undefined === answerLeftPaddingTablet ) {
 				setAttributes( {
 					answerLeftPaddingTablet: hanswerPaddingTablet,
 				} );
@@ -163,24 +161,24 @@ const FaqComponent = ( props ) => {
 		}
 
 		if ( vanswerPaddingMobile ) {
-			if ( ! answerTopPaddingMobile ) {
+			if ( undefined === answerTopPaddingMobile ) {
 				setAttributes( {
 					answerTopPaddingMobile: vanswerPaddingMobile,
 				} );
 			}
-			if ( ! answerBottomPaddingMobile ) {
+			if ( undefined === answerBottomPaddingMobile ) {
 				setAttributes( {
 					answerBottomPaddingMobile: vanswerPaddingMobile,
 				} );
 			}
 		}
 		if ( hanswerPaddingMobile ) {
-			if ( ! answerRightPaddingMobile ) {
+			if ( undefined === answerRightPaddingMobile ) {
 				setAttributes( {
 					answerRightPaddingMobile: hanswerPaddingMobile,
 				} );
 			}
-			if ( ! answerLeftPaddingMobile ) {
+			if ( undefined === answerLeftPaddingMobile ) {
 				setAttributes( {
 					answerLeftPaddingMobile: hanswerPaddingMobile,
 				} );
@@ -191,15 +189,10 @@ const FaqComponent = ( props ) => {
 	}, [] );
 
 	useEffect( () => {
-		// Replacement for componentDidUpdate.
 
-		const element = document.getElementById(
-			'uagb-style-faq-' + props.clientId.substr( 0, 8 )
-		);
+		const blockStyling = styling( props );
 
-		if ( null !== element && undefined !== element ) {
-			element.innerHTML = styling( props );
-		}
+		addBlockEditorDynamicStyles( 'uagb-style-faq-' + props.clientId.substr( 0, 8 ), blockStyling );
 
 		const getChildBlocks = select( 'core/block-editor' ).getBlocks(
 			props.clientId
@@ -221,6 +214,13 @@ const FaqComponent = ( props ) => {
 		}
 	}, [ props ] );
 
+	useEffect( () => {
+		// Replacement for componentDidUpdate.
+		const blockStyling = styling( props );
+
+		addBlockEditorDynamicStyles( 'uagb-style-faq-' + props.clientId.substr( 0, 8 ), blockStyling );
+	}, [deviceType] );
+
 	return (
 		<Suspense fallback={ lazyLoader() }>
 			<Settings parentProps={ props } />
@@ -231,14 +231,10 @@ const FaqComponent = ( props ) => {
 
 export default compose(
 	withSelect( ( ownProps ) => {
-		const page_url = select( 'core/editor' ).getPermalink();
-		const { __experimentalGetPreviewDeviceType = null } = select(
-			'core/edit-post'
-		);
-
-		const deviceType = __experimentalGetPreviewDeviceType
-			? __experimentalGetPreviewDeviceType()
-			: null;
+		let page_url = '';
+		if ( select( 'core/editor' ) ) {
+			page_url = select( 'core/editor' ).getPermalink();
+		}
 
 		let faq_data = {};
 		const json_data = {
@@ -264,7 +260,6 @@ export default compose(
 		} );
 
 		return {
-			deviceType,
 			schemaJsonData: json_data,
 		};
 	} )

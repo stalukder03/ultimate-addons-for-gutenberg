@@ -15,7 +15,9 @@ import SpacingControl from '@Components/spacing-control';
 import MultiButtonsControl from '@Components/multi-buttons-control';
 import UAGImage from '@Components/image';
 import UAGTabsControl from '@Components/tabs';
-
+import { getImageSize } from '@Utils/Helpers';
+import presets from './presets';
+import UAGPresets from '@Components/presets';
 let imageSizeOptions = [
 	{
 		value: 'thumbnail',
@@ -26,18 +28,16 @@ let imageSizeOptions = [
 ];
 
 import {
-	AlignmentToolbar,
-	BlockControls,
 	InspectorControls,
 } from '@wordpress/block-editor';
 
 import {
-	PanelBody,
 	SelectControl,
 	TextControl,
 	ToggleControl,
 	Icon,
 } from '@wordpress/components';
+import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 const Settings = ( props ) => {
 	props = props.parentProps;
@@ -157,16 +157,18 @@ const Settings = ( props ) => {
 		setAttributes( { image: media } );
 	};
 
-	const getImageSize = ( sizes ) => {
-		const sizeArr = [];
-		const arr = Object.keys( sizes );
-		for( let i = 0; i < arr.length; i++ ) {
-			const p = { value: arr[i], label: arr[i] };
-			sizeArr.push( p );
-		}
-		return sizeArr;
+	const presetSettings = () => {
+		return <UAGAdvancedPanelBody
+					title={ __( 'Presets', 'ultimate-addons-for-gutenberg' ) }
+					initialOpen={ true }
+				>
+					<UAGPresets
+						setAttributes = { setAttributes }
+						presets = { presets }
+						presetInputType = 'radioImage'
+					/>
+				</UAGAdvancedPanelBody>
 	};
-
 	/*
 	 * Event to set Image as null while removing.
 	 */
@@ -227,20 +229,9 @@ const Settings = ( props ) => {
 		);
 	}
 
-	const getBlockControls = () => {
-		return (
-			<BlockControls key="controls">
-				<AlignmentToolbar
-					value={ align }
-					onChange={ ( value ) => setAttributes( { align: value } ) }
-				/>
-			</BlockControls>
-		);
-	};
-
 	const getImagePanelBody = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Layout', 'ultimate-addons-for-gutenberg' ) }
 			>
 				<MultiButtonsControl
@@ -275,8 +266,73 @@ const Settings = ( props ) => {
 							value: 'h6',
 							label: __( 'H6', 'ultimate-addons-for-gutenberg' ),
 						},
+						{
+							value: 'span',
+							label: __( 'Span', 'ultimate-addons-for-gutenberg' ),
+						},
+						{
+							value: 'div',
+							label: __( 'Div', 'ultimate-addons-for-gutenberg' ),
+						},
 					] }
 				/>
+				{ imgPosition === 'above' &&
+					<MultiButtonsControl
+						setAttributes={ setAttributes }
+						label={ __(
+							'Alignment',
+							'ultimate-addons-for-gutenberg'
+						) }
+						data={ {
+							value: align,
+							label: 'align',
+						} }
+						className="uagb-multi-button-alignment-control"
+						options={ [
+							{
+								value: 'left',
+								icon: (
+									<Icon
+										icon={ renderSVG( 'fa fa-align-left' ) }
+									/>
+								),
+								tooltip: __(
+									'Left',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+							{
+								value: 'center',
+								icon: (
+									<Icon
+										icon={ renderSVG(
+											'fa fa-align-center'
+										) }
+									/>
+								),
+								tooltip: __(
+									'Center',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+							{
+								value: 'right',
+								icon: (
+									<Icon
+										icon={ renderSVG(
+											'fa fa-align-right'
+										) }
+									/>
+								),
+								tooltip: __(
+									'Right',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+						] }
+						showIcons={ true }
+					/>
+				}
 				<UAGImage
 					onSelectImage={ onSelectImage }
 					backgroundImage={ image }
@@ -507,13 +563,13 @@ const Settings = ( props ) => {
 						/>
 					</>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getSocialLinksPanelBody = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Social Links', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -684,13 +740,13 @@ const Settings = ( props ) => {
 						) }
 					</>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getTitlePanelColorSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Title', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -781,13 +837,13 @@ const Settings = ( props ) => {
 					max={ 50 }
 					displayUnit={ false }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getPrefixPanelColorSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Prefix', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -878,13 +934,13 @@ const Settings = ( props ) => {
 					max={ 50 }
 					displayUnit={ false }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getDescriptionPanelColorSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Description', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -975,13 +1031,13 @@ const Settings = ( props ) => {
 					max={ 50 }
 					displayUnit={ false }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getSocialIconPanelColorSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Social Icons', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -1072,13 +1128,13 @@ const Settings = ( props ) => {
 					}
 					disableBottomSeparator={ true }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getSpacingPanelBody = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Spacing', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -1156,7 +1212,7 @@ const Settings = ( props ) => {
 						label: 'spacingLink',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
@@ -1165,6 +1221,7 @@ const Settings = ( props ) => {
 			<InspectorControls>
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>
+						{ presetSettings() }
 						{ getImagePanelBody() }
 						{ getSocialLinksPanelBody() }
 					</InspectorTab>
@@ -1196,7 +1253,6 @@ const Settings = ( props ) => {
 
 	return (
 		<>
-			{ imgPosition === 'above' && getBlockControls() }
 			{ getInspectorControls() }
 			{ getFontSettings() }
 		</>

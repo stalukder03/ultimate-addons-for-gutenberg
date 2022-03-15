@@ -16,7 +16,6 @@ import { InspectorControls } from '@wordpress/block-editor';
 import renderSVG from '@Controls/renderIcon';
 import UAGTabsControl from '@Components/tabs';
 import {
-	PanelBody,
 	SelectControl,
 	TextControl,
 	ToggleControl,
@@ -24,6 +23,10 @@ import {
 	ExternalLink,
 	Icon,
 } from '@wordpress/components';
+
+import presets from './presets';
+import UAGPresets from '@Components/presets';
+import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 const Settings = ( props ) => {
 	props = props.parentProps;
@@ -168,10 +171,21 @@ const Settings = ( props ) => {
 		inputFontStyle,
 		hideLabels,
 	} = attributes;
-
+	const presetSettings = () => {
+		return <UAGAdvancedPanelBody
+					title={ __( 'Presets', 'ultimate-addons-for-gutenberg' ) }
+					initialOpen={ true }
+				>
+					<UAGPresets
+						setAttributes = { setAttributes }
+						presets = { presets }
+						presetInputType = 'radioImage'
+					/>
+				</UAGAdvancedPanelBody>
+	};
 	const generalSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'General', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ true }
 				className="uagb__url-panel-body"
@@ -347,12 +361,12 @@ const Settings = ( props ) => {
 						}
 					/>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const successMessageStyle = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __(
 					'Success Message',
 					'ultimate-addons-for-gutenberg'
@@ -440,12 +454,12 @@ const Settings = ( props ) => {
 						/>
 					</>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const failedMessageStyle = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Error Message', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 				className="uagb__url-panel-body"
@@ -526,13 +540,13 @@ const Settings = ( props ) => {
 						/>
 					</>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const submitButtonStyle = () => {
 		return (
-			<PanelBody
-				title={ __( 'Submit Button', 'ultimate-addons-for-gutenberg' ) }
+			<UAGAdvancedPanelBody
+				title={ __( 'Submit', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 				className="uagb__url-panel-body"
 			>
@@ -883,14 +897,14 @@ const Settings = ( props ) => {
 						label: 'submitTextDecoration',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const afterSubmitActions = () => {
 		return (
-			<PanelBody
-				title={ __( 'After Submit Actions' ) }
+			<UAGAdvancedPanelBody
+				title={ __( 'Actions' ) }
 				initialOpen={ false }
 				className="uagb__url-panel-body"
 			>
@@ -991,13 +1005,13 @@ const Settings = ( props ) => {
 						/>
 					</>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const labelSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Label', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 				className="uagb__url-panel-body"
@@ -1073,12 +1087,12 @@ const Settings = ( props ) => {
 						label: 'labelDecoration',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const inputSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Input', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 				className="uagb__url-panel-body"
@@ -1112,6 +1126,7 @@ const Settings = ( props ) => {
 						setAttributes( { inputactiveColor: value } )
 					}
 				/>
+				{ 'underlined' !== formStyle && (
 				<AdvancedPopColorControl
 					label={ __(
 						'Background Color',
@@ -1122,6 +1137,7 @@ const Settings = ( props ) => {
 						setAttributes( { bgColor: value } )
 					}
 				/>
+				)}
 				<TypographyControl
 					label={ __(
 						'Typography',
@@ -1221,12 +1237,12 @@ const Settings = ( props ) => {
 					} }
 					disableBottomSeparator={ true }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const fieldSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Field', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 				className="uagb__url-panel-body"
@@ -1322,12 +1338,12 @@ const Settings = ( props ) => {
 						label: 'paddingFieldLink',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const checkboxSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __(
 					'Checkbox / Toggle',
 					'ultimate-addons-for-gutenberg'
@@ -1396,13 +1412,13 @@ const Settings = ( props ) => {
 						setAttributes( { toggleActiveColor: value } )
 					}
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const googleReCaptcha = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __(
 					'Google reCAPTCHA',
 					'ultimate-addons-for-gutenberg'
@@ -1555,7 +1571,7 @@ const Settings = ( props ) => {
 						'ultimate-addons-for-gutenberg'
 					) }
 				</ExternalLink>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
@@ -1614,6 +1630,7 @@ const Settings = ( props ) => {
 			<InspectorControls>
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>
+						{ presetSettings() }
 						{ generalSettings() }
 						{ afterSubmitActions() }
 						{ googleReCaptcha() }

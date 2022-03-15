@@ -4,7 +4,8 @@ import lazyLoader from '@Controls/lazy-loader';
 import { __ } from '@wordpress/i18n';
 import { SelectControl, Placeholder } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
-
+import { useDeviceType } from '@Controls/getPreviewType';
+import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 const Settings = lazy( () =>
 	import( /* webpackChunkName: "chunks/gf-styler/settings" */ './settings' )
 );
@@ -14,17 +15,11 @@ const Render = lazy( () =>
 import { withSelect } from '@wordpress/data';
 
 const UAGBGF = ( props ) => {
+	const deviceType = useDeviceType();
 	useEffect( () => {
 		// Assigning block_id in the attribute.
 		props.setAttributes( { isHtml: false } );
 		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
-		// Pushing Style tag for this block css.
-		const $style = document.createElement( 'style' );
-		$style.setAttribute(
-			'id',
-			'uagb-gf-styler-' + props.clientId.substr( 0, 8 )
-		);
-		document.head.appendChild( $style );
 
 		const {
 			msgVrPadding,
@@ -48,19 +43,19 @@ const UAGBGF = ( props ) => {
 		} = props.attributes;
 
 		if ( buttonVrPadding ) {
-			if ( ! buttontopPadding ) {
+			if ( undefined === buttontopPadding ) {
 				props.setAttributes( { buttontopPadding: buttonVrPadding } );
 			}
-			if ( ! buttonbottomPadding ) {
+			if ( undefined === buttonbottomPadding ) {
 				props.setAttributes( { buttonbottomPadding: buttonVrPadding } );
 			}
 		}
 
 		if ( buttonHrPadding ) {
-			if ( ! buttonrightPadding ) {
+			if ( undefined === buttonrightPadding ) {
 				props.setAttributes( { buttonrightPadding: buttonHrPadding } );
 			}
-			if ( ! buttonleftPadding ) {
+			if ( undefined === buttonleftPadding ) {
 				props.setAttributes( { buttonleftPadding: buttonHrPadding } );
 			}
 		}
@@ -84,38 +79,44 @@ const UAGBGF = ( props ) => {
 		}
 
 		if ( fieldVrPadding ) {
-			if ( ! fieldtopPadding ) {
+			if ( undefined === fieldtopPadding ) {
 				props.setAttributes( { fieldtopPadding: fieldVrPadding } );
 			}
-			if ( ! fieldbottomPadding ) {
+			if ( undefined === fieldbottomPadding ) {
 				props.setAttributes( { fieldbottomPadding: fieldVrPadding } );
 			}
 		}
 
 		if ( fieldHrPadding ) {
-			if ( ! fieldrightPadding ) {
+			if ( undefined === fieldrightPadding ) {
 				props.setAttributes( { fieldrightPadding: fieldHrPadding } );
 			}
-			if ( ! fieldleftPadding ) {
+			if ( undefined === fieldleftPadding ) {
 				props.setAttributes( { fieldleftPadding: fieldHrPadding } );
 			}
 		}
 	}, [] );
 
 	useEffect( () => {
-		if( document.querySelector( '.wpgf-submit' ) !== null ){
-			document.querySelector( '.wpgf-submit' ).addEventListener( 'click', function ( event ) {
+
+		const submitButton = document.querySelector( '.wpgf-submit' );
+		if( submitButton !== null ){
+			submitButton.addEventListener( 'click', function ( event ) {
 				event.preventDefault();
 			} );
 		}
-		const element = document.getElementById(
-			'uagb-gf-styler-' + props.clientId.substr( 0, 8 )
-		);
 
-		if ( null !== element && undefined !== element ) {
-			element.innerHTML = styling( props );
-		}
+		const blockStyling = styling( props );
+
+		addBlockEditorDynamicStyles( 'uagb-gf-styler-' + props.clientId.substr( 0, 8 ), blockStyling );
 	}, [ props ] );
+
+	useEffect( () => {
+		// Replacement for componentDidUpdate.
+		const blockStyling = styling( props );
+
+		addBlockEditorDynamicStyles( 'uagb-gf-styler-' + props.clientId.substr( 0, 8 ), blockStyling );
+	}, [deviceType] );
 
 	const { formId } = props.attributes;
 	/*
@@ -178,7 +179,7 @@ export default withSelect( ( select, props ) => {
 			url: uagb_blocks_info.ajax_url,
 			method: 'POST',
 			body: formData,
-		} ).then( ( data ) => {  
+		} ).then( ( data ) => {
 			setAttributes( { isHtml: true } );
 			setAttributes( { formJson: data } );
 			jsonData = data;

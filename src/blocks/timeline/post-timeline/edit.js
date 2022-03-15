@@ -3,6 +3,10 @@
  */
 import React, { useEffect, lazy, Suspense } from 'react';
 import lazyLoader from '@Controls/lazy-loader';
+import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
+import { useDeviceType } from '@Controls/getPreviewType';
+// Import css for timeline.
+import contentTimelineStyle from '.././inline-styles';
 const Settings = lazy( () =>
 	import(
 		/* webpackChunkName: "chunks/post-timeline/settings" */ './settings'
@@ -15,15 +19,12 @@ const Render = lazy( () =>
 import { withSelect } from '@wordpress/data';
 
 const PostTimelineComponent = ( props ) => {
+	const deviceType = useDeviceType();
 	useEffect( () => {
+
 		// Replacement for componentDidMount.
 		//Store Client id.
 		props.setAttributes( { block_id: props.clientId } );
-
-		// Pushing Style tag for this block css.
-		const style = document.createElement( 'style' );
-		style.setAttribute( 'id', 'uagb-timeline-style-' + props.clientId );
-		document.head.appendChild( style );
 
 		const {
 			verticalSpace,
@@ -37,6 +38,9 @@ const PostTimelineComponent = ( props ) => {
 			rightPadding,
 			bottomPadding,
 			leftPadding,
+			contentPadding,
+			ctaBottomSpacing,
+			headTopSpacing
 		} = props.attributes;
 
 		if ( bgPadding ) {
@@ -54,6 +58,14 @@ const PostTimelineComponent = ( props ) => {
 			}
 		}
 
+		if ( contentPadding ){
+			if ( ! ctaBottomSpacing ) {
+				props.setAttributes( { ctaBottomSpacing: contentPadding } );
+			}
+			if ( ! headTopSpacing ) {
+				props.setAttributes( { headTopSpacing: contentPadding } );
+			}
+		}
 		if ( verticalSpace ) {
 			if ( ! topMargin ) {
 				props.setAttributes( { topMargin: verticalSpace } );
@@ -71,6 +83,25 @@ const PostTimelineComponent = ( props ) => {
 			}
 		}
 	}, [] );
+
+	useEffect( () => {
+		// Replacement for componentDidUpdate.
+		const blockStyling = contentTimelineStyle( props );
+
+        addBlockEditorDynamicStyles( 'uagb-timeline-style-' + props.clientId, blockStyling );
+		const loadPostTimelineEditor = new CustomEvent( 'UAGTimelineEditor', { // eslint-disable-line no-undef
+			detail: {},
+		} );
+		document.dispatchEvent( loadPostTimelineEditor );
+	}, [ props ] );
+
+
+	useEffect( () => {
+		// Replacement for componentDidUpdate.
+	    const blockStyling = contentTimelineStyle( props );
+
+        addBlockEditorDynamicStyles( 'uagb-timeline-style-' + props.clientId, blockStyling );
+	}, [deviceType] );
 
 	return (
 		<Suspense fallback={ lazyLoader() }>
@@ -91,13 +122,6 @@ export default withSelect( ( select, props ) => {
 		excludeCurrentPost,
 	} = props.attributes;
 	const { getEntityRecords } = select( 'core' );
-
-	const { __experimentalGetPreviewDeviceType = null } = select(
-		'core/edit-post'
-	);
-	const deviceType = __experimentalGetPreviewDeviceType
-		? __experimentalGetPreviewDeviceType()
-		: null;
 
 	const allTaxonomy = uagb_blocks_info.all_taxonomy;
 	const currentTax = allTaxonomy[ postType ];
@@ -127,7 +151,7 @@ export default withSelect( ( select, props ) => {
 	};
 
 	if ( excludeCurrentPost ) {
-		latestPostsQuery.exclude = select( 'core/editor' ).getCurrentPostId();
+		latestPostsQuery.exclude = select( 'core/block-editor' ).getCurrentPostId();
 	}
 	const category = [];
 	const temp = parseInt( categories );
@@ -149,7 +173,6 @@ export default withSelect( ( select, props ) => {
 				: category;
 	}
 	return {
-		deviceType,
 		latestPosts: getEntityRecords( 'postType', postType, latestPostsQuery ),
 		categoriesList,
 		taxonomyList:

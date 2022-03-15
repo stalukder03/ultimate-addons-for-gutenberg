@@ -6,7 +6,8 @@ import styling from './styling';
 import React, { lazy, Suspense, useEffect } from 'react';
 import apiFetch from '@wordpress/api-fetch';
 import lazyLoader from '@Controls/lazy-loader';
-
+import { useDeviceType } from '@Controls/getPreviewType';
+import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 const Settings = lazy( () =>
 	import(
 		/* webpackChunkName: "chunks/taxonomy-list/settings" */ './settings'
@@ -19,16 +20,10 @@ const Render = lazy( () =>
 import { withSelect } from '@wordpress/data';
 
 const UAGBTaxonomyList = ( props ) => {
+	const deviceType = useDeviceType();
 	useEffect( () => {
 		// Assigning block_id in the attribute.
 		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
-		// Pushing Style tag for this block css.
-		const $style = document.createElement( 'style' );
-		$style.setAttribute(
-			'id',
-			'uagb-style-taxonomy-list-' + props.clientId.substr( 0, 8 )
-		);
-		document.head.appendChild( $style );
 
 		const {
 			contentPadding,
@@ -49,58 +44,58 @@ const UAGBTaxonomyList = ( props ) => {
 		} = props.attributes;
 
 		if ( contentPadding ) {
-			if ( ! contentTopPadding ) {
+			if ( undefined === contentTopPadding ) {
 				props.setAttributes( { contentTopPadding: contentPadding } );
 			}
-			if ( ! contentBottomPadding ) {
+			if ( undefined === contentBottomPadding ) {
 				props.setAttributes( { contentBottomPadding: contentPadding } );
 			}
-			if ( ! contentLeftPadding ) {
+			if ( undefined === contentLeftPadding ) {
 				props.setAttributes( { contentLeftPadding: contentPadding } );
 			}
-			if ( ! contentRightPadding ) {
+			if ( undefined === contentRightPadding ) {
 				props.setAttributes( { contentRightPadding: contentPadding } );
 			}
 		}
 		if ( contentPaddingMobile ) {
-			if ( ! contentTopPaddingMobile ) {
+			if ( undefined === contentTopPaddingMobile ) {
 				props.setAttributes( {
 					contentTopPaddingMobile: contentPaddingMobile,
 				} );
 			}
-			if ( ! contentBottomPaddingMobile ) {
+			if ( undefined === contentBottomPaddingMobile ) {
 				props.setAttributes( {
 					contentBottomPaddingMobile: contentPaddingMobile,
 				} );
 			}
-			if ( ! contentLeftPaddingMobile ) {
+			if ( undefined === contentLeftPaddingMobile ) {
 				props.setAttributes( {
 					contentLeftPaddingMobile: contentPaddingMobile,
 				} );
 			}
-			if ( ! contentRightPaddingMobile ) {
+			if ( undefined === contentRightPaddingMobile ) {
 				props.setAttributes( {
 					contentRightPaddingMobile: contentPaddingMobile,
 				} );
 			}
 		}
 		if ( contentPaddingTablet ) {
-			if ( ! contentTopPaddingTablet ) {
+			if ( undefined === contentTopPaddingTablet ) {
 				props.setAttributes( {
 					contentTopPaddingTablet: contentPaddingTablet,
 				} );
 			}
-			if ( ! contentBottomPaddingTablet ) {
+			if ( undefined === contentBottomPaddingTablet ) {
 				props.setAttributes( {
 					contentBottomPaddingTablet: contentPaddingTablet,
 				} );
 			}
-			if ( ! contentLeftPaddingTablet ) {
+			if ( undefined === contentLeftPaddingTablet ) {
 				props.setAttributes( {
 					contentLeftPaddingTablet: contentPaddingTablet,
 				} );
 			}
-			if ( ! contentRightPaddingTablet ) {
+			if ( undefined === contentRightPaddingTablet ) {
 				props.setAttributes( {
 					contentRightPaddingTablet: contentPaddingTablet,
 				} );
@@ -117,21 +112,25 @@ const UAGBTaxonomyList = ( props ) => {
 			url: uagb_blocks_info.ajax_url,
 			method: 'POST',
 			body: formData,
-		} ).then( ( data ) => {  
+		} ).then( ( data ) => {
 			props.setAttributes( { listInJson: data } );
 		} );
 
 	}, [] );
 
 	useEffect( () => {
-		const element = document.getElementById(
-			'uagb-style-taxonomy-list-' + props.clientId.substr( 0, 8 )
-		);
+		const blockStyling = styling( props );
 
-		if ( null !== element && 'undefined' !== typeof element ) {
-			element.innerHTML = styling( props );
-		}
+		addBlockEditorDynamicStyles( 'uagb-style-taxonomy-list-' + props.clientId.substr( 0, 8 ), blockStyling );
+
 	}, [ props ] );
+
+	useEffect( () => {
+		// Replacement for componentDidUpdate.
+		const blockStyling = styling( props );
+
+		addBlockEditorDynamicStyles( 'uagb-style-taxonomy-list-' + props.clientId.substr( 0, 8 ), blockStyling );
+	}, [deviceType] );
 
 	return (
 		<>
@@ -144,7 +143,7 @@ const UAGBTaxonomyList = ( props ) => {
 };
 
 export default withSelect( ( select, props ) => {
-	
+
 	const {
 		postsToShow,
 		order,
@@ -154,14 +153,7 @@ export default withSelect( ( select, props ) => {
 		showEmptyTaxonomy,
 		listInJson
 	} = props.attributes;
-	
-	const { __experimentalGetPreviewDeviceType = null } = select(
-		'core/edit-post'
-	);
-	const deviceType = __experimentalGetPreviewDeviceType
-		? __experimentalGetPreviewDeviceType()
-		: null;
-	
+
 		const allTaxonomy = ( null !== listInJson ) ? listInJson.data : '';
 		const currentTax = ( '' !== allTaxonomy ) ? allTaxonomy[ postType ] : 'undefined';
 
@@ -179,7 +171,7 @@ export default withSelect( ( select, props ) => {
 				categoriesList = currentTax[ listToShowTaxonomy ][ taxonomyType ];
 			}
 		}
-	
+
 		const latestPostsQuery = {
 			order,
 			orderby: orderBy,
@@ -192,6 +184,5 @@ export default withSelect( ( select, props ) => {
 			taxonomyList:
 				'undefined' !== typeof currentTax ? currentTax.taxonomy : [],
 			termsList: 'undefined' !== typeof currentTax ? currentTax.terms : [],
-			deviceType,
 		};
 } )( UAGBTaxonomyList );

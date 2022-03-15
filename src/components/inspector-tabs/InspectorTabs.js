@@ -10,6 +10,8 @@ import {
 	useEffect,
 } from '@wordpress/element';
 
+import getUAGEditorStateLocalStorage from '@Controls/getUAGEditorStateLocalStorage';
+
 const LAYOUT = 'general',
 	STYLE = 'style',
 	ADVANCE = 'advance';
@@ -23,8 +25,8 @@ const InspectorTabs = ( props ) => {
 		};
 	}, [] );
 
+	const uagLastOpenedState = getUAGEditorStateLocalStorage( 'uagLastOpenedState' );
 	const { defaultTab, children, tabs } = props;
-
 	const [ currentTab, setCurrentTab ] = useState( defaultTab ? defaultTab : tabs[ 0 ] );
 
 	const tabContainer = useRef();
@@ -44,6 +46,26 @@ const InspectorTabs = ( props ) => {
 		{ threshold: [ 1 ] }
 	);
 
+	const renderUAGTabsSettingsInOrder = () => {
+
+		// Inspector Tabs Priority Rendering Code. (Conflicts with 3rd Party plugin panels in Inspector Panel)
+		const tabsContainer = document.querySelector( '.uagb-inspector-tabs-container' );
+		let tabsGeneralContainer = document.querySelector( '.uagb-tab-content-general' );
+		let tabsStyleContainer = document.querySelector( '.uagb-tab-content-style' );
+		let tabsAdvanceContainer = document.querySelector( '.uagb-tab-content-advance' );
+
+		if ( tabsContainer ) {
+			const tabsParent = tabsContainer.parentElement;
+
+			if ( tabsParent ) {
+				tabsGeneralContainer = tabsGeneralContainer ? tabsGeneralContainer : '';
+				tabsStyleContainer = tabsStyleContainer ? tabsStyleContainer : '';
+				tabsAdvanceContainer = tabsAdvanceContainer ? tabsAdvanceContainer : '';
+				tabsParent.prepend( tabsContainer,tabsGeneralContainer,tabsStyleContainer,tabsAdvanceContainer );
+			}
+		}
+	};
+
 	// component did mount
 	useEffect( () => {
 		// sticky tabs menu
@@ -53,7 +75,13 @@ const InspectorTabs = ( props ) => {
 		if ( container ) {
 			observer.observe( container );
 		}
+		renderUAGTabsSettingsInOrder();
 
+		// This code is to fix the side-effect of the editor responsive click settings panel refresh issue.
+		if ( uagLastOpenedState && uagLastOpenedState?.inspectorTabName && currentTab !== uagLastOpenedState?.inspectorTabName ) {
+			setCurrentTab( uagLastOpenedState?.inspectorTabName )
+		}
+		// Above Section Ends.
 		// component will unmount
 		return () => {
 
@@ -67,6 +95,7 @@ const InspectorTabs = ( props ) => {
 				}
 			}
 		};
+
 	}, [] );
 
 	useEffect( () => {
@@ -76,6 +105,7 @@ const InspectorTabs = ( props ) => {
 	}, [ defaultTab ] );
 
 	const _onTabChange = ( tab ) => {
+		renderUAGTabsSettingsInOrder();
 		setCurrentTab( tab );
 
 		if ( sidebarPanel ) {
@@ -105,7 +135,7 @@ const InspectorTabs = ( props ) => {
 							onClick={ () => _onTabChange( LAYOUT ) }
 						>
 							<svg
-								xmlns="http://www.w3.org/2000/svg"
+								xmlns="https://www.w3.org/2000/svg"
 								width="16"
 								height="15"
 							>
@@ -126,7 +156,7 @@ const InspectorTabs = ( props ) => {
 							onClick={ () => _onTabChange( STYLE ) }
 						>
 							<svg
-								xmlns="http://www.w3.org/2000/svg"
+								xmlns="https://www.w3.org/2000/svg"
 								width="18"
 								height="21"
 							>
@@ -146,7 +176,7 @@ const InspectorTabs = ( props ) => {
 							onClick={ () => _onTabChange( ADVANCE ) }
 						>
 							<svg
-								xmlns="http://www.w3.org/2000/svg"
+								xmlns="https://www.w3.org/2000/svg"
 								width="17"
 								height="16"
 							>

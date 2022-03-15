@@ -287,7 +287,7 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 				$view = implode( ' ', $view );
 			}
 			?>
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox= "<?php echo esc_html( $view ); ?>"><path d="<?php echo esc_html( $path ); ?>"></path></svg>
+			<svg xmlns="https://www.w3.org/2000/svg" viewBox= "<?php echo esc_html( $view ); ?>"><path d="<?php echo esc_html( $path ); ?>"></path></svg>
 			<?php
 		}
 
@@ -315,6 +315,7 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 
 			// Block type is grid/masonry/carousel/timeline.
 			$query_args = array(
+				'offset'              => ( isset( $attributes['postsOffset'] ) ) ? $attributes['postsOffset'] : 0,
 				'posts_per_page'      => ( isset( $attributes['postsToShow'] ) ) ? $attributes['postsToShow'] : 6,
 				'post_status'         => 'publish',
 				'post_type'           => ( isset( $attributes['postType'] ) ) ? $attributes['postType'] : 'post',
@@ -646,14 +647,10 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 			// Build the paths.
 			$base_path = self::get_uag_upload_dir_path();
 
-			$paths_to_delete = array(
-				$base_path . 'assets/fonts',
-				$base_path . 'assets/css',
-				$base_path . 'assets/js',
+			// Get all files.
+			$paths = glob( $base_path . 'assets/*' );
 
-			);
-
-			foreach ( $paths_to_delete as $path ) {
+			foreach ( $paths as $path ) {
 
 				// Check the dir if it exists or not.
 				if ( file_exists( $path ) ) {
@@ -667,7 +664,7 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 
 			// Create empty files.
 			uagb_install()->create_files();
-
+			UAGB_Admin_Helper::create_specific_stylesheet();
 			return true;
 		}
 
@@ -841,7 +838,7 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 			$typo_css_desktop[ $selector ] = array(
 				'font-family'     => $attr[ $family_slug ],
 				'text-transform'  => $text_transform,
-				'text-decoration' => $text_decoration . '!important',
+				'text-decoration' => $text_decoration,
 				'font-style'      => $font_style,
 				'font-weight'     => $attr[ $weight_slug ],
 				'font-size'       => ( isset( $attr[ $f_sz_slug ] ) ) ? self::get_css_value( $attr[ $f_sz_slug ], $attr[ $f_sz_type_slug ] ) : '',

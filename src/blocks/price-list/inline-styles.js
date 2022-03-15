@@ -116,7 +116,7 @@ function RestMenuStyle( props ) {
 			'padding-right': generateCSSUnit( columnGap / 2, columnGapType ),
 			'margin-bottom': generateCSSUnit( rowGap, rowGapType ),
 		},
-		" [data-type='uagb/restaurant-menu-child'] .uagb-rm__image-content": {
+		" [data-type='uagb/restaurant-menu-child'] img": {
 			'padding-left': generateCSSUnit( imgPaddingLeft, imgPaddingUnit ),
 			'padding-right': generateCSSUnit( imgPaddingRight, imgPaddingUnit ),
 			'padding-top': generateCSSUnit( imgPaddingTop, imgPaddingUnit ),
@@ -126,11 +126,11 @@ function RestMenuStyle( props ) {
 			),
 		},
 		// Image
-		' .uagb-rm__image img': {
+		' img': {
 			'width': generateCSSUnit( imageWidth, imageWidthType ),
 			'max-width': generateCSSUnit( imageWidth, imageWidthType ),
 		},
-		' .uagb-rm__separator-parent': {
+		' .uagb-rm__separator': {
 			'justify-content': align,
 		},
 		' .uagb-rm__content': {
@@ -151,6 +151,10 @@ function RestMenuStyle( props ) {
 				contentPaddingBottom,
 				contentPaddingUnit
 			),
+		},
+		'.uagb-rm__align-center  .uagb-rest_menu__wrap .uagb-rm__content .uagb-rm__price': {
+			'text-align': headingAlign,
+			'display': 'inline-table',
 		},
 		// Prefix Style
 		' .uagb-rm__title': {
@@ -249,7 +253,7 @@ function RestMenuStyle( props ) {
 				priceLineHeightType
 			),
 		},
-		" [data-type='uagb/restaurant-menu-child'] .uagb-rm__image-content": {
+		" [data-type='uagb/restaurant-menu-child'] img": {
 			'padding-left': generateCSSUnit(
 				imgPaddingLeftTablet,
 				imgTabletPaddingUnit
@@ -340,7 +344,7 @@ function RestMenuStyle( props ) {
 				priceLineHeightType
 			),
 		},
-		" [data-type='uagb/restaurant-menu-child'] .uagb-rm__image-content": {
+		" [data-type='uagb/restaurant-menu-child'] img": {
 			'padding-left': generateCSSUnit(
 				imgPaddingLeftMobile,
 				imgMobilePaddingUnit
@@ -401,7 +405,7 @@ function RestMenuStyle( props ) {
 	};
 
 	let stylingCss = '';
-	const id = `#wpwrap .uagb-block-${ props.clientId.substr( 0, 8 ) }`;
+	const id = `.editor-styles-wrapper .uagb-block-${ props.clientId.substr( 0, 8 ) }`;
 
 	stylingCss = generateCSS( selectors, id );
 

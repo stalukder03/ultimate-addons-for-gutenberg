@@ -1,23 +1,11 @@
 const { enableMasonryGallery } = uagb_blocks_info;
 
 function addAttributes( settings ) {
-	const excludeBlock = [
-		'wpforms/form-selector',
-		'formidable/simple-form',
-		'formidable/calculator',
-		'llms/lesson-navigation',
-		'llms/pricing-table',
-		'llms/course-syllabus',
-		'llms/instructors',
-		'core/archives',
-		'core/calendar',
-		'core/latest-comments',
-		'core/tag-cloud',
-		'core/rss',
-		'real-media-library/gallery',
-	];
+
+	const excludeBlock = uagb_blocks_info.uagb_exclude_blocks_from_extension;
 
 	if ( ! excludeBlock.includes( settings.name ) ) {
+
 		if ( settings.attributes ) {
 			settings.attributes = Object.assign( settings.attributes, {
 				UAGUserRole: {

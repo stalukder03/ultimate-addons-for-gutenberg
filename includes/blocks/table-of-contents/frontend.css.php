@@ -42,10 +42,8 @@ $tablet_top_margin    = isset( $attr['topMarginTablet'] ) ? $attr['topMarginTabl
 $tablet_bottom_margin = isset( $attr['bottomMarginTablet'] ) ? $attr['bottomMarginTablet'] : $attr['vMarginTablet'];
 $tablet_left_margin   = isset( $attr['leftMarginTablet'] ) ? $attr['leftMarginTablet'] : $attr['hMarginTablet'];
 $tablet_right_margin  = isset( $attr['rightMarginTablet'] ) ? $attr['rightMarginTablet'] : $attr['hMarginTablet'];
-
-$alignment = ( 'left' === $attr['headingAlignment'] ) ? 'flex-start' : ( ( 'right' === $attr['headingAlignment'] ) ? 'flex-end' : 'center' );
-
-$selectors = array(
+$iconSize             = isset( $attr['iconSize'] ) ? UAGB_Helper::get_css_value( $attr['iconSize'], 'px' ) : '20px';
+$selectors            = array(
 	' .uagb-toc__list-wrap li a:hover'                    => array(
 		'color' => $attr['linkHoverColor'],
 	),
@@ -53,11 +51,13 @@ $selectors = array(
 		'color' => $attr['linkColor'],
 	),
 	' .uagb-toc__title-wrap'                              => array(
-		'justify-content' => $alignment,
+		'justify-content' => $attr['align'],
 		'margin-bottom'   => UAGB_Helper::get_css_value( $attr['headingBottom'], 'px' ),
 	),
 	' .uagb-toc__title'                                   => array(
-		'color' => $attr['headingColor'],
+		'color'           => $attr['headingColor'],
+		'justify-content' => $attr['headingAlignment'],
+		'margin-bottom'   => UAGB_Helper::get_css_value( $attr['headingBottom'], 'px' ),
 	),
 	' .uagb-toc__wrap'                                    => array(
 		'border-style'   => $attr['borderStyle'],
@@ -96,8 +96,13 @@ $selectors = array(
 		'padding-bottom' => 0,
 	),
 	' .uag-toc__collapsible-wrap svg'                     => array(
-		'width'  => UAGB_Helper::get_css_value( $attr['iconSize'], 'px' ),
-		'height' => UAGB_Helper::get_css_value( $attr['iconSize'], 'px' ),
+		'width'  => $iconSize,
+		'height' => $iconSize,
+		'fill'   => $attr['iconColor'],
+	),
+	' svg'                                                => array(
+		'width'  => $iconSize,
+		'height' => $iconSize,
 		'fill'   => $attr['iconColor'],
 	),
 );

@@ -1,144 +1,120 @@
-// Listen for events.
-window.addEventListener( 'load', uagbTimelineInit );
+window.addEventListener( 'DOMContentLoaded', uagbTimelineInit );
 window.addEventListener( 'resize', uagbTimelineInit );
 window.addEventListener( 'scroll', uagbTimelineInit );
-
+document.addEventListener( 'UAGTimelineEditor', uagbTimelineInit );
 // Callback function for all event listeners.
 function uagbTimelineInit() {
-	const timeline = document.querySelectorAll( '.uagb-timeline' );
+
+	const iframeEl = document.querySelector( `iframe[name='editor-canvas']` );
+	let mainDiv;
+	if( iframeEl ){
+		mainDiv = iframeEl.contentDocument.querySelectorAll( '.uagb-timeline' );
+	} else {
+		mainDiv = document.querySelectorAll( '.uagb-timeline' );
+	}
+	const timeline = mainDiv;
 	if ( timeline.length === 0 ) {
 		return;
 	}
-	for ( let i = 0; i < timeline.length; i++ ) {
 
-		const line_inner = timeline[i].querySelector( '.uagb-timeline__line__inner' );
-		const line_outer = timeline[i].querySelector( '.uagb-timeline__line' );
+	for ( const content of timeline ) {
 
-		const $icon_class = timeline[i].querySelectorAll( '.uagb-timeline__marker' );
-		const $card_last = timeline[i].querySelector( '.uagb-timeline__field:last-child' );
+		const lineInner = content.querySelector( '.uagb-timeline__line__inner' );
+		const lineOuter = content.querySelector( '.uagb-timeline__line' );
+		const iconClass = content.querySelectorAll( '.uagb-timeline__marker' );
+		const timelineField = content.querySelector( '.uagb-timeline__field:nth-last-child(2)' );
+		const cardLast =  timelineField ? timelineField : content.querySelector( '.block-editor-block-list__block:last-child' );
+		const timelineStartIcon = iconClass[0];
+		const timelineEndIcon = iconClass[iconClass.length - 1];
 
-		const timeline_start_icon = $icon_class[0];
-		const timeline_end_icon = $icon_class[$icon_class.length - 1];
+		lineOuter.style.top = timelineStartIcon?.offsetTop + 'px';
+		const timelineCardHeight = cardLast?.offsetHeight;
 
-		line_outer.style.top = timeline_start_icon.offsetTop + 'px';
-		const timeline_card_height = $card_last.offsetHeight;
+		if ( content.classList.contains( 'uagb-timeline__arrow-center' ) ) {
 
-		const last_item_top = $card_last.offsetTop;
+			lineOuter.style.bottom = timelineEndIcon?.offsetTop + 'px';
+		} else if ( content.classList.contains( 'uagb-timeline__arrow-top' ) ) {
 
-		let $last_item, parent_top;
+			const topHeight = timelineCardHeight - timelineEndIcon?.offsetTop;
+			lineOuter.style.bottom = topHeight + 'px';
 
-		if ( timeline[i].classList.contains( 'uagb-timeline__arrow-center' ) ) {
+		} else if ( content.classList.contains( 'uagb-timeline__arrow-bottom' ) ) {
 
-			line_outer.style.bottom = timeline_end_icon.offsetTop + 'px';
-			parent_top = last_item_top - timeline_start_icon.offsetTop;
-			$last_item = parent_top + timeline_end_icon.offsetTop;
-
-		} else if ( timeline[i].classList.contains( 'uagb-timeline__arrow-top' ) ) {
-
-			const top_height = timeline_card_height - timeline_end_icon.offsetTop;
-			line_outer.style.bottom = top_height + 'px';
-			$last_item = last_item_top;
-
-		} else if ( timeline[i].classList.contains( 'uagb-timeline__arrow-bottom' ) ) {
-
-			const bottom_height = timeline_card_height - timeline_end_icon.offsetTop;
-			line_outer.style.bottom = bottom_height + 'px';
-			parent_top = last_item_top - timeline_start_icon.offsetTop;
-			$last_item = parent_top + timeline_end_icon.offsetTop;
+			const bottomHeight = timelineCardHeight - timelineEndIcon?.offsetTop;
+			lineOuter.style.bottom = bottomHeight + 'px';
 		}
-		const elementEnd = $last_item + 20;
 
-		const connectorHeight = 3 * $icon_class[0].offsetHeight;
+		const connectorHeight = 3 * iconClass[0]?.offsetHeight;
 
-		const viewportHeight = document.documentElement.clientHeight;
+		const viewportHeight = document?.documentElement?.clientHeight;
 
 		const viewportHeightHalf = viewportHeight / 2 + connectorHeight;
-		const elementPos = timeline[i].offsetTop;
 
-		const new_elementPos = elementPos + timeline_start_icon.offsetTop;
 
-		let photoViewportOffsetTop = new_elementPos - window.screenY;
+		const body = document.body;
+    	const html = document.documentElement;
 
-		if ( photoViewportOffsetTop < 0 ) {
-			photoViewportOffsetTop = Math.abs( photoViewportOffsetTop );
+		const height = Math.max( body.scrollHeight, body.offsetHeight,
+                       html.clientHeight, html.scrollHeight, html.offsetHeight );
 
-		} else {
-			photoViewportOffsetTop = -Math.abs(
-				photoViewportOffsetTop
-			);
-		}
 
-		if ( elementPos < viewportHeightHalf ) {
-			if (
-				viewportHeightHalf +
-				Math.abs( photoViewportOffsetTop ) <
-				elementEnd
-			) {
-				line_inner.style.height = viewportHeightHalf + photoViewportOffsetTop;
+		const timelineEndIconOffsetBottom = height - timelineEndIcon?.getBoundingClientRect()?.top;
 
-			} else if (
-				photoViewportOffsetTop + viewportHeightHalf >=
-				elementEnd
-			) {
-				line_inner.style.height = elementEnd;
+		const totalTimelineLineHeight = height - timelineStartIcon?.getBoundingClientRect()?.top - timelineEndIconOffsetBottom;
+
+		const startFlag = timelineStartIcon?.getBoundingClientRect()?.top +  window?.scrollY - ( window?.innerHeight - ( window?.innerHeight / 3 ) );
+
+		if ( startFlag <  document?.documentElement?.scrollTop ) {
+			const tscrollPerc = ( ( ( document?.documentElement?.scrollTop - startFlag ) / totalTimelineLineHeight ) * 100 );
+			const percHeight = ( totalTimelineLineHeight / 100 ) * tscrollPerc;
+
+			if ( percHeight < totalTimelineLineHeight + 60 ) {
+				lineInner.style.height = percHeight + 'px';
 			}
-		} else if (
-			photoViewportOffsetTop + viewportHeightHalf <
-			elementEnd
-		) {
-			if ( 0 > photoViewportOffsetTop ) {
-				line_inner.style.height = viewportHeightHalf - Math.abs( photoViewportOffsetTop );
-			} else {
-				line_inner.style.height = viewportHeightHalf + photoViewportOffsetTop;
-			}
-		} else if (
-			photoViewportOffsetTop + viewportHeightHalf >= elementEnd
-		) {
-			line_inner.style.height = elementEnd;
 		}
 
 		// Icon bg color and icon color
-		let timeline_icon_pos, timeline_card_pos;
-		let timeline_icon_top, timeline_card_top;
-		const timeline_icon = timeline[i].querySelectorAll( '.uagb-timeline__marker' );
 
-		let animate_border = timeline[i].querySelectorAll( '.uagb-timeline__field-wrap' );
+		let timelineIconPos, timelineCardPos;
+		let timelineIconTop, timelineCardTop;
+		const timelineIcon = content.querySelectorAll( '.uagb-timeline__marker' );
 
-		if ( animate_border.length === 0 ) {
-			animate_border = timeline[i].querySelectorAll( '.uagb-timeline__animate-border' );
+		let animateBorder = content.querySelectorAll( '.uagb-timeline__field' );
+
+		if ( animateBorder.length === 0 ) {
+			animateBorder = content.querySelectorAll( '.uagb-timeline__animate-border' );
 		}
 
-		for ( let j = 0; j < timeline_icon.length; j++ ) {
-			timeline_icon_pos = timeline_icon[j].offsetTop;
+		for ( let j = 0; j < timelineIcon.length; j++ ) {
+			timelineIconPos = timelineIcon[j].lastElementChild.getBoundingClientRect().top + window.scrollY;
+			timelineCardPos = animateBorder[j].lastElementChild.getBoundingClientRect().top + window.scrollY;
 
-			timeline_card_pos = animate_border[j].offsetTop;
+			timelineIconTop = timelineIconPos - document.documentElement.scrollTop;
+			timelineCardTop = timelineCardPos - document.documentElement.scrollTop;
 
-			timeline_icon_top = timeline_icon_pos;
-			timeline_card_top = timeline_card_pos;
-
-			if ( timeline_card_top < viewportHeightHalf ) {
-				animate_border[j].classList.remove( 'out-view' );
-				animate_border[j].classList.add( 'in-view' );
+			if ( ( timelineCardTop ) < ( viewportHeightHalf ) ) {
+				animateBorder[j].classList.remove( 'out-view' );
+				animateBorder[j].classList.add( 'in-view' );
 			} else {
 				// Remove classes if element is below than half of viewport.
-				animate_border[j].classList.add( 'out-view' );
-				animate_border[j].classList.remove( 'in-view' );
+				animateBorder[j].classList.add( 'out-view' );
+				animateBorder[j].classList.remove( 'in-view' );
 			}
 
-			if ( timeline_icon_top < viewportHeightHalf ) {
+			if ( timelineIconTop < viewportHeightHalf ) {
 				// Add classes if element is above than half of viewport.
-				timeline_icon[j].classList.remove(
+				timelineIcon[j].classList.remove(
 					'uagb-timeline__out-view-icon'
 				);
-				timeline_icon[j].classList.add(
+				timelineIcon[j].classList.add(
 					'uagb-timeline__in-view-icon'
 				);
 			} else {
 				// Remove classes if element is below than half of viewport.
-				timeline_icon[j].classList.add(
+				timelineIcon[j].classList.add(
 					'uagb-timeline__out-view-icon'
 				);
-				timeline_icon[j].classList.remove(
+				timelineIcon[j].classList.remove(
 					'uagb-timeline__in-view-icon'
 				);
 			}

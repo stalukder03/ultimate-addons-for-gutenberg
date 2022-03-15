@@ -168,6 +168,68 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 			}
 
 			require_once UAGB_DIR . 'admin-core/admin-loader.php';
+
+			add_filter( 'rest_pre_dispatch', array( $this, 'rest_pre_dispatch' ), 10, 3 );
+		}
+
+		/**
+		 * Fix REST API issue with blocks registered via PHP register_block_type.
+		 *
+		 * @since 1.25.2
+		 *
+		 * @param mixed  $result  Response to replace the requested version with.
+		 * @param object $server  Server instance.
+		 * @param object $request Request used to generate the response.
+		 *
+		 * @return array Returns updated results.
+		 */
+		public function rest_pre_dispatch( $result, $server, $request ) {
+
+			if ( strpos( $request->get_route(), '/wp/v2/block-renderer' ) !== false && isset( $request['attributes'] ) ) {
+
+					$attributes = $request['attributes'];
+
+				if ( isset( $attributes['UAGUserRole'] ) ) {
+					unset( $attributes['UAGUserRole'] );
+				}
+
+				if ( isset( $attributes['UAGBrowser'] ) ) {
+					unset( $attributes['UAGBrowser'] );
+				}
+
+				if ( isset( $attributes['UAGSystem'] ) ) {
+					unset( $attributes['UAGSystem'] );
+				}
+
+				if ( isset( $attributes['UAGDisplayConditions'] ) ) {
+					unset( $attributes['UAGDisplayConditions'] );
+				}
+
+				if ( isset( $attributes['UAGHideDesktop'] ) ) {
+					unset( $attributes['UAGHideDesktop'] );
+				}
+
+				if ( isset( $attributes['UAGHideMob'] ) ) {
+					unset( $attributes['UAGHideMob'] );
+				}
+
+				if ( isset( $attributes['UAGHideTab'] ) ) {
+					unset( $attributes['UAGHideTab'] );
+				}
+
+				if ( isset( $attributes['UAGLoggedIn'] ) ) {
+					unset( $attributes['UAGLoggedIn'] );
+				}
+
+				if ( isset( $attributes['UAGLoggedOut'] ) ) {
+					unset( $attributes['UAGLoggedOut'] );
+				}
+
+					$request['attributes'] = $attributes;
+
+			}
+
+			return $result;
 		}
 
 		/**
@@ -217,7 +279,7 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 
 			$class = 'notice notice-error';
 			/* translators: %s: html tags */
-			$message = sprintf( __( 'The %1$sUltimate Addon for Gutenberg%2$s plugin requires %1$sGutenberg%2$s plugin installed & activated.', 'ultimate-addons-for-gutenberg' ), '<strong>', '</strong>' );
+			$message = sprintf( __( 'The %1$sSpectra%2$s plugin requires %1$sGutenberg%2$s plugin installed & activated.', 'ultimate-addons-for-gutenberg' ), '<strong>', '</strong>' );
 
 			$action_url   = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=gutenberg' ), 'install-plugin_gutenberg' );
 			$button_label = __( 'Install Gutenberg', 'ultimate-addons-for-gutenberg' );

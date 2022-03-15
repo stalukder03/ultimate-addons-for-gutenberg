@@ -8,6 +8,8 @@ import React, { lazy, useEffect, Suspense } from 'react';
 import lazyLoader from '@Controls/lazy-loader';
 import { withState, compose } from '@wordpress/compose';
 import { withSelect } from '@wordpress/data';
+import { useDeviceType } from '@Controls/getPreviewType';
+import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 const Settings = lazy( () =>
 	import( /* webpackChunkName: "chunks/review/settings" */ './settings' )
 );
@@ -17,6 +19,9 @@ const Render = lazy( () =>
 let prevState;
 
 const ReviewComponent = ( props ) => {
+
+	const deviceType = useDeviceType();
+
 	useEffect( () => {
 		// Assigning block_id in the attribute.
 		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
@@ -25,13 +30,6 @@ const ReviewComponent = ( props ) => {
 			schema: JSON.stringify( props.schemaJsonData ),
 		} );
 
-		// Pushing Style tag for this block css.
-		const $style = document.createElement( 'style' );
-		$style.setAttribute(
-			'id',
-			'uagb-ratings-style-' + props.clientId.substr( 0, 8 )
-		);
-		document.head.appendChild( $style );
 		prevState = props.schemaJsonData;
 		const { attributes, setAttributes } = props;
 		const {
@@ -44,19 +42,19 @@ const ReviewComponent = ( props ) => {
 		} = attributes;
 
 		if ( contentVrPadding ) {
-			if ( ! topPadding ) {
+			if ( undefined === topPadding ) {
 				setAttributes( { topPadding: contentVrPadding } );
 			}
-			if ( ! bottomPadding ) {
+			if ( undefined === bottomPadding ) {
 				setAttributes( { bottomPadding: contentVrPadding } );
 			}
 		}
 
 		if ( contentHrPadding ) {
-			if ( ! rightPadding ) {
+			if ( undefined === rightPadding ) {
 				setAttributes( { rightPadding: contentHrPadding } );
 			}
-			if ( ! leftPadding ) {
+			if ( undefined === leftPadding ) {
 				setAttributes( { leftPadding: contentHrPadding } );
 			}
 		}
@@ -76,19 +74,24 @@ const ReviewComponent = ( props ) => {
 			prevState = props.schemaJsonData;
 		}
 
-		const element = document.getElementById(
-			'uagb-ratings-style-' + props.clientId.substr( 0, 8 )
-		);
+		const blockStyling = styling( props );
 
-		if ( null !== element && undefined !== element ) {
-			element.innerHTML = styling( props );
-		}
-		if( document.querySelector( '.uagb-rating-link-wrapper' )!== null ){
-			document.querySelector( '.uagb-rating-link-wrapper' ).addEventListener( 'click', function ( event ) {
+		addBlockEditorDynamicStyles( 'uagb-ratings-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+
+		const ratingLinkWrapper = document.querySelector( '.uagb-rating-link-wrapper' );
+		if( ratingLinkWrapper !== null ){
+			ratingLinkWrapper.addEventListener( 'click', function ( event ) {
 				event.preventDefault();
 			} );
 		}
 	}, [ props ] );
+
+	useEffect( () => {
+		// Replacement for componentDidUpdate.
+		const blockStyling = styling( props );
+
+		addBlockEditorDynamicStyles( 'uagb-ratings-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+	}, [deviceType] );
 
 	// Setup the attributes
 	const { attributes, setAttributes } = props;
@@ -200,25 +203,18 @@ compose( [
 ] );
 
 export default compose(
-	withSelect( ( select, ownProps ) => {
-		const { __experimentalGetPreviewDeviceType = null } = select(
-			'core/edit-post'
-		);
-
-		const deviceType = __experimentalGetPreviewDeviceType
-			? __experimentalGetPreviewDeviceType()
-			: null;
+	withSelect( ( ownProps ) => {
 
 		const newAverage =
-			ownProps.attributes.parts
+			ownProps.attributes?.parts
 				.map( ( i ) => i.value )
 				.reduce( ( total, v ) => total + v ) /
-			ownProps.attributes.parts.length;
+			ownProps.attributes?.parts.length;
 		let itemtype = '';
 
 		if (
 			[ 'Product', 'SoftwareApplication', 'Book' ].includes(
-				ownProps.attributes.itemType
+				ownProps.attributes?.itemType
 			)
 		) {
 			itemtype =
@@ -227,62 +223,62 @@ export default compose(
 					? ownProps.attributes.itemSubtype
 					: ownProps.attributes.itemType;
 		} else {
-			itemtype = ownProps.attributes.itemType;
+			itemtype = ownProps.attributes?.itemType;
 		}
 
 		const jsonData = {
-			'@context': 'http://schema.org/',
+			'@context': 'https://schema.org/',
 			'@type': 'Review',
-			'reviewBody': ownProps.attributes.summaryDescription,
-			'description': ownProps.attributes.rContent,
+			'reviewBody': ownProps.attributes?.summaryDescription,
+			'description': ownProps.attributes?.rContent,
 			'itemReviewed': [],
 			'reviewRating': {
 				'@type': 'Rating',
 				'ratingValue': newAverage,
 				'worstRating': '0',
-				'bestRating': ownProps.attributes.starCount,
+				'bestRating': ownProps.attributes?.starCount,
 			},
 			'author': {
 				'@type': 'Person',
-				'name': ownProps.attributes.rAuthor,
+				'name': ownProps.attributes?.rAuthor,
 			},
-			'publisher': ownProps.attributes.reviewPublisher,
-			'datePublished': ownProps.attributes.datepublish,
-			'url': ownProps.attributes.ctaLink,
+			'publisher': ownProps.attributes?.reviewPublisher,
+			'datePublished': ownProps.attributes?.datepublish,
+			'url': ownProps.attributes?.ctaLink,
 		};
 
-		switch ( ownProps.attributes.itemType ) {
+		switch ( ownProps.attributes?.itemType ) {
 			case 'Book':
 				jsonData.itemReviewed = {
 					'@type': itemtype,
-					'name': ownProps.attributes.rTitle,
-					'description': ownProps.attributes.rContent,
+					'name': ownProps.attributes?.rTitle,
+					'description': ownProps.attributes?.rContent,
 					'image': [],
-					'author': ownProps.attributes.rAuthor,
-					'isbn': ownProps.attributes.isbn,
+					'author': ownProps.attributes?.rAuthor,
+					'isbn': ownProps.attributes?.isbn,
 				};
 				break;
 
 			case 'Course':
 				jsonData.itemReviewed = {
-					'@type': ownProps.attributes.itemType,
-					'name': ownProps.attributes.rTitle,
-					'description': ownProps.attributes.rContent,
+					'@type': ownProps.attributes?.itemType,
+					'name': ownProps.attributes?.rTitle,
+					'description': ownProps.attributes?.rContent,
 					'image': [],
-					'provider': ownProps.attributes.provider,
+					'provider': ownProps.attributes?.provider,
 				};
 				break;
 
 			case 'Product':
 				jsonData.itemReviewed = {
 					'@type': itemtype,
-					'name': ownProps.attributes.rTitle,
-					'description': ownProps.attributes.rContent,
+					'name': ownProps.attributes?.rTitle,
+					'description': ownProps.attributes?.rContent,
 					'image': [],
-					'sku': ownProps.attributes.sku,
+					'sku': ownProps.attributes?.sku,
 					'brand': {
 						'@type': 'Brand',
-						'name': ownProps.attributes.brand,
+						'name': ownProps.attributes?.brand,
 					},
 					'offers': [],
 				};
@@ -290,12 +286,12 @@ export default compose(
 
 			case 'Movie':
 				jsonData.itemReviewed = {
-					'@type': ownProps.attributes.itemType,
-					'name': ownProps.attributes.rTitle,
-					'dateCreated': ownProps.attributes.datecreated,
+					'@type': ownProps.attributes?.itemType,
+					'name': ownProps.attributes?.rTitle,
+					'dateCreated': ownProps.attributes?.datecreated,
 					'director': {
 						'@type': 'Person',
-						'name': ownProps.attributes.directorname,
+						'name': ownProps.attributes?.directorname,
 					},
 				};
 				break;
@@ -303,14 +299,14 @@ export default compose(
 			case 'SoftwareApplication':
 				jsonData.itemReviewed = {
 					'@type': itemtype,
-					'name': ownProps.attributes.rTitle,
-					'applicationCategory': ownProps.attributes.appCategory,
-					'operatingSystem': ownProps.attributes.operatingSystem,
+					'name': ownProps.attributes?.rTitle,
+					'applicationCategory': ownProps.attributes?.appCategory,
+					'operatingSystem': ownProps.attributes?.operatingSystem,
 					'offers': {
-						'@type': ownProps.attributes.offerType,
-						'price': ownProps.attributes.offerPrice,
-						'url': ownProps.attributes.ctaLink,
-						'priceCurrency': ownProps.attributes.offerCurrency,
+						'@type': ownProps.attributes?.offerType,
+						'price': ownProps.attributes?.offerPrice,
+						'url': ownProps.attributes?.ctaLink,
+						'priceCurrency': ownProps.attributes?.offerCurrency,
 					},
 				};
 				break;
@@ -319,11 +315,11 @@ export default compose(
 				break;
 		}
 
-		if ( ownProps.attributes.mainimage ) {
+		if ( ownProps.attributes?.mainimage ) {
 			jsonData.itemReviewed.image = ownProps.attributes.mainimage.url;
 		}
 
-		if ( ownProps.attributes.itemType === 'Product' ) {
+		if ( ownProps.attributes?.itemType === 'Product' ) {
 			jsonData.itemReviewed[ ownProps.attributes.identifierType ] =
 				ownProps.attributes.identifier;
 			jsonData.itemReviewed.offers = {
@@ -338,7 +334,6 @@ export default compose(
 
 		return {
 			schemaJsonData: jsonData,
-			deviceType,
 		};
 	} )
 )( ReviewComponent );

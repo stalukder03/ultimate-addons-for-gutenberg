@@ -190,20 +190,20 @@ UAGBForms = { // eslint-disable-line no-undef
 
 		const postData = {};
 
+		postData.id = attr.block_id;
 		for ( let i = 0; i < originalSerialized.length; i++ ) {
 			const inputname = document.getElementById( originalSerialized[ i ].name );
 			if ( originalSerialized[ i ].name.endsWith( '[]' ) ) {
 				//For checkbox element
-				const name = originalSerialized[ i ].name;
-				
+				const name = document.getElementById( originalSerialized[ i ].name );
 				if ( ! ( name in postData ) ) {
 					postData[ name ] = [];
 				}
-				
 				postData[ name ].push( originalSerialized[ i ].value );
 			} else if ( originalSerialized[ i ].value.startsWith( '+' ) ) {
 				//For phone element.
-				const name = originalSerialized[ i ].name;
+				let name = originalSerialized[ i ].name;
+				name = name.substring( 0, name.length - 2 );
 				if ( ! ( name in postData ) ) {
 					postData[ name ] = [];
 				}
@@ -212,7 +212,7 @@ UAGBForms = { // eslint-disable-line no-undef
 				if( '' !== inputname.innerHTML ){
 					postData[ inputname.innerHTML ] = originalSerialized[ i ].value;
 				}
-			}  else {	
+			}  else {
 				const key = originalSerialized[ i ].name;
 				postData[ key ] = originalSerialized[ i ].value;
 			}
@@ -287,7 +287,7 @@ UAGBForms = { // eslint-disable-line no-undef
 				  obj
 			  )(
 				{
-				  id: x.id, name: x.name, value: x.value
+					name: x.name, value: x.value
 				}
 			  )
 			)

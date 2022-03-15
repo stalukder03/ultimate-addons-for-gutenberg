@@ -18,8 +18,9 @@ import {
 } from '@wordpress/block-editor';
 
 import { select } from '@wordpress/data';
-
-import { PanelBody, ToggleControl } from '@wordpress/components';
+import renderSVG from '@Controls/renderIcon';
+import { ToggleControl, Icon } from '@wordpress/components';
+import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 const Settings = ( props ) => {
 	props = props.parentProps;
@@ -133,7 +134,7 @@ const Settings = ( props ) => {
 	}
 
 	const updateCookieId = ( value ) => {
-		const { getCurrentPostId } = select( 'core/editor' );
+		const { getCurrentPostId } = select( 'core/block-editor' );
 		const post_id = getCurrentPostId().toString();
 		const timestamp = new Date().getTime();
 
@@ -168,7 +169,7 @@ const Settings = ( props ) => {
 
 	const inlineGeneralSettings = () => {
 		return (
-			<PanelBody initialOpen={ true }>
+			<UAGAdvancedPanelBody initialOpen={ true }>
 				<MultiButtonsControl
 					setAttributes={ setAttributes }
 					label={ __( 'Layout', 'ultimate-addons-for-gutenberg' ) }
@@ -196,6 +197,61 @@ const Settings = ( props ) => {
 						},
 					] }
 					showIcons={ false }
+				/>
+				<MultiButtonsControl
+					setAttributes={ setAttributes }
+					label={ __(
+						'Alignment',
+						'ultimate-addons-for-gutenberg'
+					) }
+					data={ {
+						value: noticeAlignment,
+						label: 'noticeAlignment',
+					} }
+					className="uagb-multi-button-alignment-control"
+					options={ [
+						{
+							value: 'left',
+							icon: (
+								<Icon
+									icon={ renderSVG( 'fa fa-align-left' ) }
+								/>
+							),
+							tooltip: __(
+								'Left',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'center',
+							icon: (
+								<Icon
+									icon={ renderSVG(
+										'fa fa-align-center'
+									) }
+								/>
+							),
+							tooltip: __(
+								'Center',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'right',
+							icon: (
+								<Icon
+									icon={ renderSVG(
+										'fa fa-align-right'
+									) }
+								/>
+							),
+							tooltip: __(
+								'Right',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+					] }
+					showIcons={ true }
 				/>
 
 				{ 'simple' === layout && (
@@ -309,15 +365,15 @@ const Settings = ( props ) => {
 						displayUnit={ false }
 					/>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const inlineTitleSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Title', 'ultimate-addons-for-gutenberg' ) }
-				initialOpen={ true }
+				initialOpen={ false }
 			>
 				<AdvancedPopColorControl
 					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
@@ -484,13 +540,13 @@ const Settings = ( props ) => {
 						label: 'titlePaddingLink',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const inlineContentSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Content', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -645,7 +701,7 @@ const Settings = ( props ) => {
 						label: 'contentPaddingLink',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 

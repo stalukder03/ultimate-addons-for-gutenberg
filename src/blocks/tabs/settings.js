@@ -15,15 +15,17 @@ import UAGTabsControl from '@Components/tabs';
 
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-
-import { InspectorControls } from '@wordpress/block-editor';
+import { InspectorControls, BlockAlignmentToolbar, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 
 import {
-	PanelBody,
 	SelectControl,
 	ToggleControl,
 	Icon,
 } from '@wordpress/components';
+
+import presets from './presets';
+import UAGPresets from '@Components/presets';
+import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 const Settings = ( props ) => {
 	props = props.parentProps;
@@ -383,7 +385,7 @@ const Settings = ( props ) => {
 			],
 		};
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Layout', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ true }
 			>
@@ -406,12 +408,12 @@ const Settings = ( props ) => {
 					options={ tabsStyleOptions }
 					setAttributes={ setAttributes }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const tabTitleSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Tabs Title', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -596,12 +598,12 @@ const Settings = ( props ) => {
 						/>
 					</>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const tabBorderSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Border', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -637,12 +639,12 @@ const Settings = ( props ) => {
 					} }
 					disableBottomSeparator={ true }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const tabBodySettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Body', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -806,10 +808,21 @@ const Settings = ( props ) => {
 						label: 'tabBodyPaddingLink',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
-
+	const presetSettings = () => {
+		return <UAGAdvancedPanelBody
+					title={ __( 'Presets', 'ultimate-addons-for-gutenberg' ) }
+					initialOpen={ true }
+				>
+					<UAGPresets
+						setAttributes = { setAttributes }
+						presets = { presets }
+						presetInputType = 'radioImage'
+					/>
+				</UAGAdvancedPanelBody>
+	};
 	const tabTitleStyle = () => {
 		const tabOutputNormal = (
 			<>
@@ -860,7 +873,7 @@ const Settings = ( props ) => {
 			</>
 		);
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Title', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -1088,7 +1101,7 @@ const Settings = ( props ) => {
 						label: 'tabTitlePaddingLink',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
@@ -1115,7 +1128,7 @@ const Settings = ( props ) => {
 			/>
 		);
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Icon', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -1127,7 +1140,7 @@ const Settings = ( props ) => {
 						setAttributes( { iconSpacing: value } )
 					}
 					min={ 0 }
-					max={ 500 }
+					max={ 100 }
 					displayUnit={ false }
 				/>
 				<UAGTabsControl
@@ -1158,16 +1171,33 @@ const Settings = ( props ) => {
 						setAttributes( { iconSize: value } )
 					}
 					min={ 0 }
-					max={ 500 }
+					max={ 100 }
 					displayUnit={ false }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	return (
 		<InspectorControls>
+			<BlockControls key="controls">
+				<BlockAlignmentToolbar
+					value={ tabAlign }
+					onChange={ ( value ) =>
+						setAttributes( { tabAlign: value } )
+					}
+					controls={ [ 'left', 'center', 'right' ] }
+				/>
+				<AlignmentToolbar
+					value={ titleAlign }
+					onChange={ ( value ) =>
+						setAttributes( { titleAlign: value } )
+					}
+					controls={ [ 'left', 'center', 'right' ] }
+				/>
+			</BlockControls>
 			<InspectorTabs>
 				<InspectorTab { ...UAGTabs.general }>
+					{ presetSettings() }
 					{ tabStyleSettings() }
 					{ tabTitleSettings() }
 				</InspectorTab>
