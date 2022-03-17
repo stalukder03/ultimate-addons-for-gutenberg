@@ -82,10 +82,9 @@ const Settings = ( props ) => {
 				title={ __( 'Layout', 'ultimate-addons-for-gutenberg' ) }
 			>
 				<ResponsiveSlider
-					label={ __(
-						'Content Width (%)',
-						'ultimate-addons-for-gutenberg'
-					) }
+					label={ __( 'Content Width (%)', 'ultimate-addons-for-gutenberg' ) }
+					setAttributes={ setAttributes }
+					value={ colWidth }
 					data={ {
 						desktop: {
 							value: colWidth,
@@ -103,7 +102,6 @@ const Settings = ( props ) => {
 					min={ 0 }
 					max={ 100 }
 					displayUnit={ false }
-					setAttributes={ setAttributes }
 				/>
 			</UAGAdvancedPanelBody>
 		);

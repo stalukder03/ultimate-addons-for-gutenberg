@@ -168,15 +168,27 @@ function styling( props ) {
 		},
 	};
 
+	if ( 'none' !== borderStyle ) {
+		selectors[ '.block-editor-block-list__block:hover' ] = {
+			'border-color': borderHoverColor,
+		};
+	}
+
 	if ( colWidth !== '' && colWidth !== 0 ) {
 		selectors[ '.block-editor-block-list__block' ] = {
 			'width': colWidth + '%',
 		};
 	}
 
-	if ( 'none' !== borderStyle ) {
-		selectors[ '.block-editor-block-list__block:hover' ] = {
-			'border-color': borderHoverColor,
+	if ( colWidthTablet !== '' && colWidthTablet !== 0 ) {
+		tabletSelectors[ '.block-editor-block-list__block' ] = {
+			'width': colWidthTablet + '%',
+		};
+	}
+
+	if ( colWidthMobile !== '' && colWidthMobile !== 0 ) {
+		mobileSelectors[ '.block-editor-block-list__block' ] = {
+			'width': colWidthMobile + '%',
 		};
 	}
 
@@ -184,38 +196,38 @@ function styling( props ) {
 
 	stylingCss = generateCSS( selectors, id );
 
-	if ( colWidthTablet !== '' && colWidthTablet !== 0 ) {
+	// if ( colWidthTablet !== '' && colWidthTablet !== 0 ) {
 
-		selectorsTab = {
-			'.block-editor-block-list__block' : { 'width' : colWidthTablet + '%' },
-			'' : ''
-		}
-		const tabId = `.editor-styles-wrapper .uagb-editor-preview-mode-tablet #block-${ props.clientId }`;
+	// 	tabletSelectors = {
+	// 		'.block-editor-block-list__block' : { 'width' : colWidthTablet + '%' },
+	// 		'' : ''
+	// 	}
+	// 	const tabId = `.editor-styles-wrapper .uagb-editor-preview-mode-tablet #block-${ props.clientId }`;
 
-		stylingCss += generateCSS( selectorsTab, tabId );
-	}
+	// 	stylingCss += generateCSS( selectorsTab, tabId );
+	// }
 
-	if ( colWidthMobile !== '' && colWidthMobile !== 0 ) {
+	// if ( colWidthMobile !== '' && colWidthMobile !== 0 ) {
 
-		selectorsMob = {
-			'.block-editor-block-list__block' : { 'width' : colWidthMobile + '%' },
-			'' : ''
-		}
-		const mobId = `.editor-styles-wrapper .uagb-editor-preview-mode-mobile #block-${ props.clientId }`;
+	// 	mobileSelectors = {
+	// 		'.block-editor-block-list__block' : { 'width' : colWidthMobile + '%' },
+	// 		'' : ''
+	// 	}
+	// 	const mobId = `.editor-styles-wrapper .uagb-editor-preview-mode-mobile #block-${ props.clientId }`;
 
-		stylingCss += generateCSS( selectorsMob, mobId );
-	}
+	// 	stylingCss += generateCSS( selectorsMob, mobId );
+	// }
 
 	stylingCss += generateCSS(
 		tabletSelectors,
-		`${ id }.uagb-editor-preview-mode-tablet`,
+		`.uagb-editor-preview-mode-tablet ${ id }`,
 		true,
 		'tablet'
 	);
 
 	stylingCss += generateCSS(
 		mobileSelectors,
-		`${ id }.uagb-editor-preview-mode-mobile`,
+		`.uagb-editor-preview-mode-mobile ${ id }`,
 		true,
 		'mobile'
 	);
