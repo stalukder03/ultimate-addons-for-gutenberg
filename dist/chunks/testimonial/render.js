@@ -107,7 +107,7 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 
 
-const Slider = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_3__["lazy"])(() => __webpack_require__.e(/*! import() | chunks/testimonial/react-slick */ "vendors~chunks/testimonial/react-slick").then(__webpack_require__.t.bind(null, /*! react-slick */ "./node_modules/react-slick/lib/index.js", 7)));
+const Slider = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_3__["lazy"])(() => Promise.all(/*! import() | chunks/testimonial/react-slick */[__webpack_require__.e("vendors~chunks/blockquote/render~chunks/testimonial/react-slick"), __webpack_require__.e("vendors~chunks/testimonial/react-slick")]).then(__webpack_require__.t.bind(null, /*! react-slick */ "./node_modules/react-slick/lib/index.js", 7)));
 
 const Render = props => {
   // Add and remove the CSS on the drop and remove of the component.

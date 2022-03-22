@@ -199,6 +199,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _Controls_getPreviewType__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @Controls/getPreviewType */ "./blocks-config/uagb-controls/getPreviewType.js");
 /* harmony import */ var _Components_image__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @Components/image */ "./src/components/image/index.js");
+/* harmony import */ var react_slick_lib_utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-slick/lib/utils/innerSliderUtils */ "./node_modules/react-slick/lib/utils/innerSliderUtils.js");
+/* harmony import */ var react_slick_lib_utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_slick_lib_utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_6__);
+
 
 
 
@@ -214,7 +217,8 @@ const render = props => {
       priceCardHeadingTitle,
       priceCardDesc,
       priceCardHeadingTag,
-      seperatorStyle
+      seperatorStyle,
+      image
     },
     setAttributes,
     className
@@ -249,25 +253,26 @@ const render = props => {
   });
 
   const onSelectImage = media => {
+    let imageUrl = null;
+
     if (!media || !media.url) {
-      setAttributes({
-        [backgroundImage.label]: null
-      });
-      return;
+      imageUrl = null;
+    } else {
+      imageUrl = media;
     }
 
     if (!media.type || 'image' !== media.type) {
-      return;
+      imageUrl = null;
     }
 
     setAttributes({
-      [backgroundImage.label]: media
+      image: imageUrl
     });
   };
 
   const onRemoveImage = () => {
     setAttributes({
-      [backgroundImage.label]: null
+      image: null
     });
   };
 
@@ -275,7 +280,7 @@ const render = props => {
     className: classnames__WEBPACK_IMPORTED_MODULE_0___default()(className, `uagb-editor-preview-mode-${deviceType.toLowerCase()}`, `uagb-block-${block_id}`)
   }, headingText, separator, descText, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_Components_image__WEBPACK_IMPORTED_MODULE_5__["default"], {
     onSelectImage: onSelectImage,
-    backgroundImage: '',
+    backgroundImage: image,
     onRemoveImage: onRemoveImage
   }));
 };

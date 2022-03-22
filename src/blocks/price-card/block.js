@@ -1,5 +1,6 @@
 import { registerBlockType } from '@wordpress/blocks'
 import edit from './edit'
+import save from './save'
 import attributes from './attributes'
 import { __ } from '@wordpress/i18n';
 
@@ -8,7 +9,5 @@ registerBlockType('uagb/price-card', {
 	attributes,
 	edit,
 	category: uagb_blocks_info.category,
-	save: function () {
-		return <p> Price Card (from the frontend)</p>;
-	},
+	save,
 })

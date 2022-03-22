@@ -1194,6 +1194,28 @@ const Settings = props => {
 
 /***/ }),
 
+/***/ "./src/blocks/price-card/settings.js":
+/*!*******************************************!*\
+  !*** ./src/blocks/price-card/settings.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+const Settings = props => {
+  props = props.parentProps;
+  const {
+    seperatorStyle,
+    priceCardHeadingTag
+  } = props;
+  return /*#__PURE__*/React.createElement(React.Fragment, null);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Settings);
+
+/***/ }),
+
 /***/ "./src/components/image/editor.lazy.scss":
 /*!***********************************************!*\
   !*** ./src/components/image/editor.lazy.scss ***!

@@ -4,6 +4,7 @@ import { __ } from '@wordpress/i18n';
 import React from 'react';
 import { useDeviceType } from '@Controls/getPreviewType';
 import UAGImage from '@Components/image';
+import { getOnDemandLazySlides } from 'react-slick/lib/utils/innerSliderUtils';
 
 const render = (props) => {
 	props = props.parentProps;
@@ -14,6 +15,7 @@ const render = (props) => {
 			priceCardDesc,
 			priceCardHeadingTag,
 			seperatorStyle,
+			image
 		},
 		setAttributes,
 		className,
@@ -57,20 +59,26 @@ const render = (props) => {
 	);
 
 	const onSelectImage = ( media ) => {
+		let imageUrl = null;
 		if ( ! media || ! media.url ) {
-			setAttributes( { [ backgroundImage.label ]: null } );
-			return;
+			imageUrl = null;
+		} else {
+			imageUrl = media;
 		}
 
 		if ( ! media.type || 'image' !== media.type ) {
-			return;
+			imageUrl = null;
 		}
 
-		setAttributes( { [ backgroundImage.label ]: media } );
+		setAttributes( {
+			image: imageUrl,
+		} );
 	};
 
 	const onRemoveImage = () => {
-		setAttributes( { [ backgroundImage.label ]: null } );
+		setAttributes( {
+			image: null,
+		} );
 	};
 
 	return (
@@ -86,7 +94,7 @@ const render = (props) => {
 			{descText}
 			<UAGImage
 				onSelectImage={onSelectImage}
-				backgroundImage={''}
+				backgroundImage={image}
 				onRemoveImage={onRemoveImage}
 			/>
 		</div>
