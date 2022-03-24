@@ -6238,5 +6238,23 @@ select::before {
   display: flex;
   box-sizing: border-box;
 }
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+.wp-block-uagb-advanced-heading {
+  padding: 0;
+  margin: 0 auto;
+}
+.wp-block-uagb-advanced-heading .uagb-heading-text {
+  margin: 0;
+}
+.wp-block-uagb-advanced-heading .uagb-separator {
+  font-size: 0;
+  border-top-style: solid;
+  display: inline-block;
+  margin: 0 0 10px 0;
+}
 
 /*# sourceMappingURL=style-blocks.css.map*/

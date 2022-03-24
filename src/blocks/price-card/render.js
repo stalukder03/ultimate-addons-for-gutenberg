@@ -92,11 +92,11 @@ const render = (props) => {
 			{headingText}
 			{separator}
 			{descText}
-			<UAGImage
+			{/* <UAGImage
 				onSelectImage={onSelectImage}
 				backgroundImage={image}
 				onRemoveImage={onRemoveImage}
-			/>
+			/> */}
 		</div>
 	)
 }

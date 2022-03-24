@@ -1,0 +1,100 @@
+/**
+ * Returns Dynamic Generated CSS
+ */
+
+ import generateCSS from '@Controls/generateCSS';
+ import generateCSSUnit from '@Controls/generateCSSUnit';
+
+ function styling( props ) {
+	 const {
+		 headingAlign,
+		 priceCardHeadingTag,
+		 seperatorStyle,
+	 } = props.attributes;
+
+	//  const tablet_selectors = {};
+	 const mobile_selectors = {};
+
+	 const selectors = {
+		 '.wp-block-uagb-price-card ':{
+			 'text-align': headingAlign,
+		 }
+	 };
+
+	 selectors[ ' ' + priceCardHeadingTag + '.uagb-heading-text' ] = {
+
+	 };
+
+	//  if ( seperatorStyle !== 'none' ) {
+	// 	 selectors[ ' .uagb-separator' ] = {
+	// 		 'border-top-style': seperatorStyle,
+	// 		 'border-top-width': generateCSSUnit( 5, 'px' ),
+	// 		 'width': generateCSSUnit( 5, 5 ),
+	// 		 'border-color': separatorColor,
+	// 		 'margin-bottom': generateCSSUnit( 5, 'px' ),
+	// 	 };
+	//  }
+
+	//  tablet_selectors[ ' ' + priceCardHeadingTag + '.uagb-heading-text' ] = {
+	// 	 'font-size': generateCSSUnit( headFontSizeTablet, headFontSizeType ),
+	// 	 'line-height': generateCSSUnit(
+	// 		 headLineHeightTablet,
+	// 		 headLineHeightType
+	// 	 ),
+	//  };
+	//  tablet_selectors[ ' .uagb-desc-text' ] = {
+	// 	 'font-size': generateCSSUnit(
+	// 		 subHeadFontSizeTablet,
+	// 		 subHeadFontSizeType
+	// 	 ),
+	// 	 'line-height': generateCSSUnit(
+	// 		 subHeadLineHeightTablet,
+	// 		 subHeadLineHeightType
+	// 	 ),
+	//  };
+
+	//  mobile_selectors[ ' ' + priceCardHeadingTag + '.uagb-heading-text' ] = {
+	// 	 'font-size': generateCSSUnit( headFontSizeMobile, headFontSizeType ),
+	// 	 'line-height': generateCSSUnit(
+	// 		 headLineHeightMobile,
+	// 		 headLineHeightType
+	// 	 ),
+	//  };
+	//  mobile_selectors[ ' .uagb-desc-text' ] = {
+	// 	 'font-size': generateCSSUnit(
+	// 		 subHeadFontSizeMobile,
+	// 		 subHeadFontSizeType
+	// 	 ),
+	// 	 'line-height': generateCSSUnit(
+	// 		 subHeadLineHeightMobile,
+	// 		 subHeadLineHeightType
+	// 	 ),
+	//  };
+
+	 const base_selector = `.editor-styles-wrapper .uagb-block-${ props.clientId.substr(
+		 0,
+		 8
+	 ) }`;
+
+	const tablet_selectors = {}
+
+	 let styling_css = generateCSS( selectors, base_selector );
+
+	 styling_css += generateCSS(
+		 tablet_selectors,
+		 `${ base_selector }.uagb-editor-preview-mode-tablet`,
+		 true,
+		 'tablet'
+	 );
+
+	 styling_css += generateCSS(
+		 {},
+		 `${ base_selector }.uagb-editor-preview-mode-mobile`,
+		 true,
+		 'mobile'
+	 );
+
+	 return styling_css;
+ }
+
+ export default styling;

@@ -278,11 +278,7 @@ const render = props => {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
     className: classnames__WEBPACK_IMPORTED_MODULE_0___default()(className, `uagb-editor-preview-mode-${deviceType.toLowerCase()}`, `uagb-block-${block_id}`)
-  }, headingText, separator, descText, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_Components_image__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    onSelectImage: onSelectImage,
-    backgroundImage: image,
-    onRemoveImage: onRemoveImage
-  }));
+  }, headingText, separator, descText);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (render);

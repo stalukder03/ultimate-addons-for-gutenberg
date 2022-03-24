@@ -36,6 +36,12 @@ const attributes = {
 		default: 'thumbnail',
 		isUAGStyle: true,
 	},
+	//setting style props
+	headingAlign: {
+		type: 'string',
+		default: 'center',
+		isUAGStyle: true,
+	},
 }
 
 export default attributes;
