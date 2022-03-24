@@ -10,6 +10,32 @@
 		 headingAlign,
 		 priceCardHeadingTag,
 		 seperatorStyle,
+		 headFontFamily,
+		headFontWeight,
+		headFontStyle,
+		headFontSizeType,
+		headFontSize,
+		headFontSizeMobile,
+		headFontSizeTablet,
+		headLineHeightType,
+		headLineHeight,
+		headTransform,
+		headDecoration,
+		headLineHeightMobile,
+		headLineHeightTablet,
+		headLoadGoogleFonts,
+		subHeadLoadGoogleFonts,
+		subHeadFontFamily,
+		subHeadFontWeight,
+		subHeadFontStyle,
+		subHeadFontSize,
+		subHeadFontSizeType,
+		subHeadFontSizeMobile,
+		subHeadFontSizeTablet,
+		subHeadLineHeight,
+		subHeadLineHeightType,
+		subHeadLineHeightMobile,
+		subHeadLineHeightTablet,
 	 } = props.attributes;
 
 	//  const tablet_selectors = {};
@@ -21,9 +47,18 @@
 		 }
 	 };
 
-	 selectors[ ' ' + priceCardHeadingTag + '.uagb-heading-text' ] = {
 
-	 };
+	 selectors[ ' ' + priceCardHeadingTag + '.uagb-heading-text' ] = {
+		'font-family': headFontFamily,
+		'font-style' : headFontStyle,
+		'text-decoration': headDecoration,
+		'text-transform': headTransform,
+		'font-weight': headFontWeight,
+		'font-size': generateCSSUnit( headFontSize, headFontSizeType ),
+		'line-height': generateCSSUnit( headLineHeight, headLineHeightType ),
+		// 'color': headingColor,
+		// 'margin-bottom': generateCSSUnit( headSpace, 'px' ),
+	};
 
 	//  if ( seperatorStyle !== 'none' ) {
 	// 	 selectors[ ' .uagb-separator' ] = {

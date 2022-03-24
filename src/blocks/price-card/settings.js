@@ -1,3 +1,5 @@
+import React, { Suspense } from 'react'
+import lazyLoader from '@Controls/lazy-loader';
 import { __ } from '@wordpress/i18n';
 import {
 	AlignmentToolbar,
@@ -15,6 +17,9 @@ import renderSVG from '@Controls/renderIcon';
 import presets from './presets';
 import UAGPresets from '@Components/presets';
 import UAGImage from '@Components/image';
+import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
+import WebfontLoader from '@Components/typography/fontloader';
+import TypographyControl from '@Components/typography';
 
 const Settings = (props) => {
 	props = props.parentProps;
@@ -23,7 +28,33 @@ const Settings = (props) => {
 		seperatorStyle,
 		priceCardHeadingTag,
 		headingAlign,
-		image
+		image,
+		headFontFamily,
+		headFontWeight,
+		headFontStyle,
+		headFontSizeType,
+		headFontSize,
+		headFontSizeMobile,
+		headFontSizeTablet,
+		headLineHeightType,
+		headLineHeight,
+		headTransform,
+		headDecoration,
+		headLineHeightMobile,
+		headLineHeightTablet,
+		headLoadGoogleFonts,
+		subHeadLoadGoogleFonts,
+		subHeadFontFamily,
+		subHeadFontWeight,
+		subHeadFontStyle,
+		subHeadFontSize,
+		subHeadFontSizeType,
+		subHeadFontSizeMobile,
+		subHeadFontSizeTablet,
+		subHeadLineHeight,
+		subHeadLineHeightType,
+		subHeadLineHeightMobile,
+		subHeadLineHeightTablet,
 	} = attributes
 
 	const generalPanel = () => {
@@ -189,27 +220,27 @@ const Settings = (props) => {
 		</UAGAdvancedPanelBody>
 	};
 
-	const onSelectImage = ( media ) => {
+	const onSelectImage = (media) => {
 		let imageUrl = null;
-		if ( ! media || ! media.url ) {
+		if (!media || !media.url) {
 			imageUrl = null;
 		} else {
 			imageUrl = media;
 		}
 
-		if ( ! media.type || 'image' !== media.type ) {
+		if (!media.type || 'image' !== media.type) {
 			imageUrl = null;
 		}
 
-		setAttributes( {
+		setAttributes({
 			image: imageUrl,
-		} );
+		});
 	};
 
 	const onRemoveImage = () => {
-		setAttributes( {
+		setAttributes({
 			image: null,
-		} );
+		});
 	};
 	const imageSettings = () => {
 		return <UAGAdvancedPanelBody
@@ -224,6 +255,119 @@ const Settings = (props) => {
 		</UAGAdvancedPanelBody>
 	};
 
+
+	// work on style part
+	// font loading
+	let loadHeadingGoogleFonts;
+	let loadSubHeadingGoogleFonts;
+
+	if (headLoadGoogleFonts === true) {
+		const hconfig = {
+			google: {
+				families: [
+					headFontFamily +
+					(headFontWeight ? ':' + headFontWeight : ''),
+				],
+			},
+		};
+
+		loadHeadingGoogleFonts = (
+			<WebfontLoader config={hconfig}></WebfontLoader>
+		);
+	}
+
+	if (subHeadLoadGoogleFonts === true) {
+		const sconfig = {
+			google: {
+				families: [
+					subHeadFontFamily +
+					(subHeadFontWeight ? ':' + subHeadFontWeight : ''),
+				],
+			},
+		};
+
+		loadSubHeadingGoogleFonts = (
+			<WebfontLoader config={sconfig}></WebfontLoader>
+		);
+	}
+
+	const headingPanel = () => {
+		return (
+			<UAGAdvancedPanelBody
+				title={__('Heading', 'ultimate-addons-for-gutenberg')}
+				initialOpen={false}
+			>
+				<Suspense fallback={lazyLoader()}>
+					<TypographyControl
+						label={__(
+							'Typography',
+							'ultimate-addons-for-gutenberg'
+						)}
+						attributes={attributes}
+						setAttributes={setAttributes}
+						loadGoogleFonts={{
+							value: subHeadLoadGoogleFonts,
+							label: 'subHeadLoadGoogleFonts',
+						}}
+						fontFamily={{
+							value: headFontFamily,
+							label: 'headFontFamily',
+						}}
+						fontWeight={{
+							value: headFontWeight,
+							label: 'headFontWeight',
+						}}
+						fontStyle={{
+							value: headFontStyle,
+							label: 'headFontStyle',
+						}}
+						transform={{
+							value: headTransform,
+							label: 'headTransform',
+						}}
+						decoration={{
+							value: headDecoration,
+							label: 'headDecoration',
+						}}
+						fontSizeType={{
+							value: headFontSizeType,
+							label: 'headFontSizeType',
+						}}
+						fontSize={{
+							value: headFontSize,
+							label: 'headFontSize',
+						}}
+						fontSizeMobile={{
+							value: headFontSizeMobile,
+							label: 'headFontSizeMobile',
+						}}
+						fontSizeTablet={{
+							value: headFontSizeTablet,
+							label: 'headFontSizeTablet',
+						}}
+						lineHeightType={{
+							value: headLineHeightType,
+							label: 'headLineHeightType',
+						}}
+						lineHeight={{
+							value: headLineHeight,
+							label: 'headLineHeight',
+						}}
+						lineHeightMobile={{
+							value: headLineHeightMobile,
+							label: 'headLineHeightMobile',
+						}}
+						lineHeightTablet={{
+							value: headLineHeightTablet,
+							label: 'headLineHeightTablet',
+						}}
+					>
+
+					</TypographyControl>
+				</Suspense>
+			</UAGAdvancedPanelBody>
+		)
+	}
 	return (
 		<>
 			{blockControlSettings()}
@@ -234,7 +378,7 @@ const Settings = (props) => {
 						{generalPanel()}
 					</InspectorTab>
 					<InspectorTab {...UAGTabs.style}>
-
+						{headingPanel()}
 					</InspectorTab>
 					<InspectorTab {...UAGTabs.advance}
 						parentProps={props}>
@@ -242,7 +386,12 @@ const Settings = (props) => {
 					</InspectorTab>
 
 				</InspectorTabs>
+
 			</InspectorControls>
+			<Suspense fallback={lazyLoader()}>
+				{loadHeadingGoogleFonts}
+				{loadSubHeadingGoogleFonts}
+			</Suspense>
 		</>
 	)
 }
