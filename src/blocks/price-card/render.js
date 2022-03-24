@@ -81,6 +81,22 @@ const render = (props) => {
 		} );
 	};
 
+	let img_url = '';
+	if (image) {
+		img_url = image.url;
+	}
+	let image_html = '';
+
+	if ( '' !== img_url ) {
+		image_html = (
+				<img
+					className={`uagb-team__image-crop-`}
+					src={ img_url }
+					alt={ image.alt ? image.alt : '' }
+				/>
+		);
+	}
+
 	return (
 		<div
 			className={classnames(
@@ -97,6 +113,7 @@ const render = (props) => {
 				backgroundImage={image}
 				onRemoveImage={onRemoveImage}
 			/> */}
+			{image_html}
 		</div>
 	)
 }

@@ -276,9 +276,25 @@ const render = props => {
     });
   };
 
+  let img_url = '';
+
+  if (image) {
+    img_url = image.url;
+  }
+
+  let image_html = '';
+
+  if ('' !== img_url) {
+    image_html = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("img", {
+      className: `uagb-team__image-crop-`,
+      src: img_url,
+      alt: image.alt ? image.alt : ''
+    });
+  }
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
     className: classnames__WEBPACK_IMPORTED_MODULE_0___default()(className, `uagb-editor-preview-mode-${deviceType.toLowerCase()}`, `uagb-block-${block_id}`)
-  }, headingText, separator, descText);
+  }, headingText, separator, descText, image_html);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (render);

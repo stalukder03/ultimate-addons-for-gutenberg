@@ -1306,7 +1306,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Controls_renderIcon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @Controls/renderIcon */ "./blocks-config/uagb-controls/renderIcon.js");
 /* harmony import */ var _presets__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./presets */ "./src/blocks/price-card/presets.js");
 /* harmony import */ var _Components_presets__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @Components/presets */ "./src/components/presets/index.js");
+/* harmony import */ var _Components_image__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @Components/image */ "./src/components/image/index.js");
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 
 
 
@@ -1328,7 +1330,8 @@ const Settings = props => {
   const {
     seperatorStyle,
     priceCardHeadingTag,
-    headingAlign
+    headingAlign,
+    image
   } = attributes;
 
   const generalPanel = () => {
@@ -1433,7 +1436,42 @@ const Settings = props => {
     }));
   };
 
-  return /*#__PURE__*/React.createElement(React.Fragment, null, blockControlSettings(), /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__["InspectorControls"], null, /*#__PURE__*/React.createElement(_Components_inspector_tabs_InspectorTabs_js__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/React.createElement(_Components_inspector_tabs_InspectorTab_js__WEBPACK_IMPORTED_MODULE_2__["default"], _Components_inspector_tabs_InspectorTab_js__WEBPACK_IMPORTED_MODULE_2__["UAGTabs"].general, presetSettings(), generalPanel()), /*#__PURE__*/React.createElement(_Components_inspector_tabs_InspectorTab_js__WEBPACK_IMPORTED_MODULE_2__["default"], _Components_inspector_tabs_InspectorTab_js__WEBPACK_IMPORTED_MODULE_2__["UAGTabs"].style), /*#__PURE__*/React.createElement(_Components_inspector_tabs_InspectorTab_js__WEBPACK_IMPORTED_MODULE_2__["default"], _extends({}, _Components_inspector_tabs_InspectorTab_js__WEBPACK_IMPORTED_MODULE_2__["UAGTabs"].advance, {
+  const onSelectImage = media => {
+    let imageUrl = null;
+
+    if (!media || !media.url) {
+      imageUrl = null;
+    } else {
+      imageUrl = media;
+    }
+
+    if (!media.type || 'image' !== media.type) {
+      imageUrl = null;
+    }
+
+    setAttributes({
+      image: imageUrl
+    });
+  };
+
+  const onRemoveImage = () => {
+    setAttributes({
+      image: null
+    });
+  };
+
+  const imageSettings = () => {
+    return /*#__PURE__*/React.createElement(_Components_advanced_panel_body__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('Image', 'ultimate-addons-for-gutenberg'),
+      initialOpen: true
+    }, /*#__PURE__*/React.createElement(_Components_image__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      onSelectImage: onSelectImage,
+      backgroundImage: image,
+      onRemoveImage: onRemoveImage
+    }));
+  };
+
+  return /*#__PURE__*/React.createElement(React.Fragment, null, blockControlSettings(), /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__["InspectorControls"], null, /*#__PURE__*/React.createElement(_Components_inspector_tabs_InspectorTabs_js__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/React.createElement(_Components_inspector_tabs_InspectorTab_js__WEBPACK_IMPORTED_MODULE_2__["default"], _Components_inspector_tabs_InspectorTab_js__WEBPACK_IMPORTED_MODULE_2__["UAGTabs"].general, imageSettings(), generalPanel()), /*#__PURE__*/React.createElement(_Components_inspector_tabs_InspectorTab_js__WEBPACK_IMPORTED_MODULE_2__["default"], _Components_inspector_tabs_InspectorTab_js__WEBPACK_IMPORTED_MODULE_2__["UAGTabs"].style), /*#__PURE__*/React.createElement(_Components_inspector_tabs_InspectorTab_js__WEBPACK_IMPORTED_MODULE_2__["default"], _extends({}, _Components_inspector_tabs_InspectorTab_js__WEBPACK_IMPORTED_MODULE_2__["UAGTabs"].advance, {
     parentProps: props
   })))));
 };

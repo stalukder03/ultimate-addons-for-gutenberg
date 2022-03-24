@@ -14,6 +14,7 @@ import { SelectControl, Icon } from '@wordpress/components';
 import renderSVG from '@Controls/renderIcon';
 import presets from './presets';
 import UAGPresets from '@Components/presets';
+import UAGImage from '@Components/image';
 
 const Settings = (props) => {
 	props = props.parentProps;
@@ -22,6 +23,7 @@ const Settings = (props) => {
 		seperatorStyle,
 		priceCardHeadingTag,
 		headingAlign,
+		image
 	} = attributes
 
 	const generalPanel = () => {
@@ -187,13 +189,48 @@ const Settings = (props) => {
 		</UAGAdvancedPanelBody>
 	};
 
+	const onSelectImage = ( media ) => {
+		let imageUrl = null;
+		if ( ! media || ! media.url ) {
+			imageUrl = null;
+		} else {
+			imageUrl = media;
+		}
+
+		if ( ! media.type || 'image' !== media.type ) {
+			imageUrl = null;
+		}
+
+		setAttributes( {
+			image: imageUrl,
+		} );
+	};
+
+	const onRemoveImage = () => {
+		setAttributes( {
+			image: null,
+		} );
+	};
+	const imageSettings = () => {
+		return <UAGAdvancedPanelBody
+			title={__('Image', 'ultimate-addons-for-gutenberg')}
+			initialOpen={true}
+		>
+			<UAGImage
+				onSelectImage={onSelectImage}
+				backgroundImage={image}
+				onRemoveImage={onRemoveImage}
+			/>
+		</UAGAdvancedPanelBody>
+	};
+
 	return (
 		<>
 			{blockControlSettings()}
 			<InspectorControls>
 				<InspectorTabs>
 					<InspectorTab {...UAGTabs.general}>
-						{presetSettings()}
+						{imageSettings()}
 						{generalPanel()}
 					</InspectorTab>
 					<InspectorTab {...UAGTabs.style}>

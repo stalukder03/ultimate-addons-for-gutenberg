@@ -46,7 +46,7 @@ export default function save(props) {
 	}
 
 	let image_html = '';
-	console.log(img_url)
+
 	if ( '' !== img_url ) {
 		image_html = (
 				<img
