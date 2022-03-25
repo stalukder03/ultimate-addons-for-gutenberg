@@ -285,6 +285,9 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 					'uagb/wp-search'              => array(
 						'name' => 'wp-search',
 					),
+					'uagb/price-card' => array(
+						'name' => 'price-card',
+					)
 				);
 			}
 			return self::$block_assets_css;
