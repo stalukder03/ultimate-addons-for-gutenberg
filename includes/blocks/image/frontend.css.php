@@ -21,8 +21,6 @@ if ( 'outset' === $attr['imageBoxShadowPosition'] ) {
 
 $selectors = array(
 	'.wp-block-uagb-image img'                             => array(
-		'width'         =>  ( isset( $attr['width'] ) ? UAGB_Helper::get_css_value( $attr['width'], 'px' ) : '' ),
-		'height'        => ( isset( $attr['height'] ) ? UAGB_Helper::get_css_value( $attr['height'], 'px' ) : '' ),
 		'border-style'  => $attr['imageBorderStyle'],
 		'border-color'  => $attr['imageBorderColor'],
 		'border-radius' => UAGB_Helper::get_css_value( $attr['imageBorderRadius'], 'px' ),
@@ -93,6 +91,20 @@ $selectors = array(
 		'margin-right'     => UAGB_Helper::get_css_value( $attr['seperatorRightMargin'], $attr['seperatorMarginUnit'] ),
 	),
 );
+error_log(print_r($attr['layout'], true));
+if($attr['layout'] === 'overlay'){
+	$selectors['.wp-block-uagb-image--layout-overlay'] =  array(
+		'width'         =>  ( isset( $attr['width'] ) ? UAGB_Helper::get_css_value( $attr['width'], 'px' ) : '' ),
+		'height'        => ( isset( $attr['height'] ) ? UAGB_Helper::get_css_value( $attr['height'], 'px' ) : '' )
+	);
+
+} else {
+	$selectors['.wp-block-uagb-image img'] =  array(
+		'width'         =>  ( isset( $attr['width'] ) ? UAGB_Helper::get_css_value( $attr['width'], 'px' ) : '' ),
+		'height'        => ( isset( $attr['height'] ) ? UAGB_Helper::get_css_value( $attr['height'], 'px' ) : '' )
+	);
+}
+
 
 
 if ( 'none' !== $attr['maskShape'] ) {

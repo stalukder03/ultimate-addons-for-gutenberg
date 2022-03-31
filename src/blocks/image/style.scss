@@ -6,6 +6,14 @@ html :where(.editor-styles-wrapper) .block-editor-block-list__block > .wp-block[
     height: auto;
     width: 100%;
 }
+.wp-block-uagb-image .components-resizable-box__container {
+	display: inline-block;
+	max-width: 100% !important;
+	img {
+		max-width: 100%;
+	}
+}
+
 .wp-block-uagb-image {
 	margin: 0;
 	&--align-none {
