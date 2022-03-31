@@ -127,8 +127,6 @@ export default function styling( props ) {
 
 	const selectors = {
 		'.wp-block-uagb-image img':{
-			'width': 'inherit',
-			'height': 'inherit',
 			'border-style': imageBorderStyle,
 			'border-color': imageBorderColor,
 			'border-radius': generateCSSUnit( imageBorderRadius, 'px' ),

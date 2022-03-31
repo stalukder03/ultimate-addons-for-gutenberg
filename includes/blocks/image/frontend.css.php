@@ -21,8 +21,8 @@ if ( 'outset' === $attr['imageBoxShadowPosition'] ) {
 
 $selectors = array(
 	'.wp-block-uagb-image img'                             => array(
-		'width'         => ( isset( $attr['width'] ) ? $attr['width'] : 'inherit' ),
-		'height'        => ( isset( $attr['height'] ) ? $attr['height'] : 'inherit' ),
+		'width'         =>  ( isset( $attr['width'] ) ? UAGB_Helper::get_css_value( $attr['width'], 'px' ) : '' ),
+		'height'        => ( isset( $attr['height'] ) ? UAGB_Helper::get_css_value( $attr['height'], 'px' ) : '' ),
 		'border-style'  => $attr['imageBorderStyle'],
 		'border-color'  => $attr['imageBorderColor'],
 		'border-radius' => UAGB_Helper::get_css_value( $attr['imageBorderRadius'], 'px' ),

@@ -1,4 +1,13 @@
+html :where(.editor-styles-wrapper) .block-editor-block-list__block > .wp-block[data-align=full] {
+    margin-left: -8px;
+    margin-right: -8px;
+}
+[data-align=wide] > .wp-block-uagb-image img, [data-align=full] > .wp-block-uagb-image img {
+    height: auto;
+    width: 100%;
+}
 .wp-block-uagb-image {
+	margin: 0;
 	&--align-none {
 		margin-left: auto;
 		margin-right: auto;
@@ -17,8 +26,14 @@
 		margin-top: 0.5em;
 		margin-bottom: 1em;
 	}
-	&--align-wide,
 	&--align-full {
+		max-width: none !important;
+		img {
+			height: auto;
+			width: 100%;
+		}
+	}
+	&--align-wide {
 		img {
 			height: auto;
 			width: 100%;
@@ -38,7 +53,12 @@
 		text-align: center;
 	}
 	&--layout-overlay {
+		display: inline-block;
 		position: relative;
+		img {
+			width: 100%;
+			height: auto;
+		}
 		&__color-wrapper {
 			position: absolute;
 			left: 0;
