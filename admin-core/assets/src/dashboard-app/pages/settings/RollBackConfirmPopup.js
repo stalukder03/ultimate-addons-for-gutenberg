@@ -53,7 +53,7 @@ const RollBackConfirmPopup = ( props ) => {
               >
                 <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
               </Transition.Child>
-    
+
               {/* This element is to trick the browser into centering the modal contents. */}
               <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">
                 &#8203;
@@ -78,9 +78,9 @@ const RollBackConfirmPopup = ( props ) => {
                       </Dialog.Title>
                       <div className="mt-2">
                         <p className="text-sm ">
-                        { 
+                        {
                           // eslint-disable-next-line @wordpress/i18n-no-variables
-                          __( `Are you sure you want to rollback to UAG v${previousVersionSelect}?`, 'ultimate-addons-for-gutenberg' ) 
+                          __( `Are you sure you want to rollback to Spectra v${previousVersionSelect}?`, 'ultimate-addons-for-gutenberg' )
                         }
                         </p>
                       </div>

@@ -29,44 +29,67 @@ const ChangeLogPopup = () =>{
                 />
               </Popover.Button>
 
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-200"
-                enterFrom="opacity-0 translate-y-1"
-                enterTo="opacity-100 translate-y-0"
-                leave="transition ease-in duration-150"
-                leaveFrom="opacity-100 translate-y-0"
-                leaveTo="opacity-0 translate-y-1"
-              >
-                <Popover.Panel className="absolute z-10 left-0 transform -translate-x-1/2 mt-3 px-2 w-screen max-w-xs sm:px-0">
-                  <div className="rounded-[0.2rem] shadow-lg ring-1 ring-black ring-opacity-5 overflow-y-auto max-h-screen">
-                    <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                      {dynamicUAGChangelogRSSFeed.map( ( item, index ) => {
-                          const title = dynamicUAGChangelogRSSFeed[index].title;
-                          const description = dynamicUAGChangelogRSSFeed[index].description;
-                          const link = dynamicUAGChangelogRSSFeed[index].link;
-                          const pubDate = dynamicUAGChangelogRSSFeed[index].date;
+				<div className="fixed inset-y-0 right-0 pl-10 max-w-full flex sm:mt-[2rem]">
+					<Transition.Child
+					as={Fragment}
+					enter="transform transition ease-in-out duration-150 sm:duration-150"
+					enterFrom="translate-x-full"
+					enterTo="translate-x-0"
+					leave="transform transition ease-in-out duration-300 sm:duration-300"
+					leaveFrom="translate-x-0"
+					leaveTo="translate-x-full"
+					>
+					<div className="w-screen max-w-md">
+						<div className="h-full flex flex-col py-6 bg-white shadow-xl overflow-y-scroll">
+						<div className="px-4 sm:px-6 pb-4 border-b border-gray-200">
+							<div className="flex items-start justify-between">
+							<Dialog.Title className="text-lg font-medium text-gray-900"> { __( 'Changelog', 'ultimate-addons-for-gutenberg' ) } </Dialog.Title>
+							<div className="h-7 flex items-center">
+								<button
+								type="button"
+								className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none"
+								onClick={() => setOpen( false )}
+								>
+								<XIcon className="h-6 w-6" aria-hidden="true" />
+								</button>
+							</div>
+							</div>
+						</div>
+						<div className="mt-6 relative flex-1 px-4 sm:px-6">
+							{/* Replace with your content */}
+							<div className="relative grid bg-white divide-y divide-gray-200">
+								{dynamicUAGChangelogRSSFeed.map( ( item, index ) => {
+									const title = dynamicUAGChangelogRSSFeed[index].title;
+									const description = dynamicUAGChangelogRSSFeed[index].description;
+									const link = 'https://ultimategutenberg.com/changelog/';
+									const pubDate = dynamicUAGChangelogRSSFeed[index].date;
 
-                        return (
-                            <a
-                            key={title}
-                            href={link}
-                            className="-m-3 p-3 block rounded-[0.2rem] hover:bg-gray-50 transition ease-in-out duration-150"
-                            >
-                            <p className="text-base font-medium text-gray-900" dangerouslySetInnerHTML={{__html: title}}></p>
-                            <p className="mt-1 text-sm text-gray-500" dangerouslySetInnerHTML={{__html: pubDate}}></p>
-                            <p className="mt-1 text-sm text-gray-500" dangerouslySetInnerHTML={{__html: description}}></p>
-                            </a>
-                        );
-                     } )}
-                    </div>
-                  </div>
-                </Popover.Panel>
-              </Transition>
-            </>
-          )}
-        </Popover>
-      )
+									return (
+										<a
+											key={title}
+											href={link}
+											className="-m-3 p-3 block rounded-[0.2rem] transition ease-in-out duration-150 mb-1"
+											target={'_blank'}
+											rel={'noreferrer noopener'}
+										>
+										<p className="text-base font-medium text-gray-900" dangerouslySetInnerHTML={{__html: title}}></p>
+										<p className="mt-1 text-sm text-gray-500" dangerouslySetInnerHTML={{__html: pubDate}}></p>
+										<p className="mt-3 text-sm text-gray-500" dangerouslySetInnerHTML={{__html: description}}></p>
+										</a>
+									);
+								} )}
+							</div>
+							{/* /End replace */}
+						</div>
+						</div>
+					</div>
+					</Transition.Child>
+				</div>
+				</div>
+			</Dialog>
+		</Transition.Root>
+	</>
+	)
 };
 
 export default ChangeLogPopup;

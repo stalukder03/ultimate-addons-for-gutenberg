@@ -24,17 +24,23 @@ const attributes = {
 	imagePosition: {
 		type: 'string',
 		default: 'top',
-		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'image-position'
+		},
 	},
 	imageAlignment: {
 		type: 'string',
 		default: 'top',
-		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'image-align'
+		},
 	},
 	imageSize: {
 		type: 'string',
 		default: 'medium',
-		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'image-size'
+		},
 	},
 	headingTag: {
 		type: 'string',
@@ -43,22 +49,21 @@ const attributes = {
 	columns: {
 		type: 'number',
 		default: 2,
-		isUAGStyle: true,
 	},
 	tcolumns: {
 		type: 'number',
 		default: 2,
-		isUAGStyle: true,
 	},
 	mcolumns: {
 		type: 'number',
 		default: 1,
-		isUAGStyle: true,
 	},
 	headingAlign: {
 		type: 'string',
 		default: 'left',
-		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'main-title-align'
+		},
 	},
 };
 

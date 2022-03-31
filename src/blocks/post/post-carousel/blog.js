@@ -19,6 +19,7 @@ function Blog( props ) {
 	const deviceType = useDeviceType();
 
 	const {
+		isPreview,
 		columns,
 		tcolumns,
 		mcolumns,
@@ -166,9 +167,11 @@ function Blog( props ) {
 			</div>
 		);
 	}
-
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/post-carousel.png`;
 	return (
 		<Suspense fallback={ lazyLoader() }>
+			{ isPreview ? <img width='100%' src={previewImageData} alt=''/> :
+			<>
 			<Slider
 				className={ classnames(
 					'is-carousel',
@@ -188,6 +191,8 @@ function Blog( props ) {
 			>
 				{ all_posts }
 			</Slider>
+			</>
+			}
 		</Suspense>
 	);
 }

@@ -11,6 +11,62 @@ import Description from './components/Description';
 import PositionClasses from '../price-list/classes';
 import RestMenuImage from './components/RestMenuImageOld';
 
+const attributes = {
+	block_id: {
+		type: 'string',
+	},
+	description: {
+		type: 'string',
+		default: __(
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+		),
+	},
+	title: {
+		type: 'string',
+		default: __( 'Menu Item' ),
+	},
+	price: {
+		type: 'string',
+		default: __( '$9' ),
+	},
+	image: {
+		type: 'object',
+		default: null
+	},
+	imagePosition: {
+		type: 'string',
+		default: 'top',
+	},
+	imageAlignment: {
+		type: 'string',
+		default: 'top',
+	},
+	imageSize: {
+		type: 'string',
+		default: 'medium',
+	},
+	headingTag: {
+		type: 'string',
+		default: 'h4',
+	},
+	columns: {
+		type: 'number',
+		default: 2,
+	},
+	tcolumns: {
+		type: 'number',
+		default: 2,
+	},
+	mcolumns: {
+		type: 'number',
+		default: 1,
+	},
+	headingAlign: {
+		type: 'string',
+		default: 'left',
+	},
+};
+
 const deprecated = [
 	{
 		attributes,
