@@ -405,7 +405,7 @@ const Render = ( props ) => {
 				`uagb-block-${ block_id }`,
 				`wp-block-uagb-image--layout-${ layout }`,
 				`wp-block-uagb-image--effect-${imageHoverEffect}`,
-				`${align ? 'wp-block-uagb-image--align-' + align : ''}`
+				`wp-block-uagb-image--align-${align ? align : 'none'}`
 			) }>
 				{ ( temporaryURL || url ) && (
 					<>

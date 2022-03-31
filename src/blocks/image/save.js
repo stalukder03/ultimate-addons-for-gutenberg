@@ -84,7 +84,7 @@ export default function Save( props ) {
 				`uagb-block-${ block_id }`,
 				'wp-block-uagb-image',
 				`wp-block-uagb-image--layout-${ layout }`,
-				`${align ? 'wp-block-uagb-image--align-' + align : ''}`
+				`wp-block-uagb-image--align-${align ? align : 'none'}`
 			) }>
 				{ figureImage }
 				{
