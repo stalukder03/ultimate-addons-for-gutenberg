@@ -44,6 +44,7 @@ const UAGAdvancedPanelBody = ( props ) => {
             { ...props }
             onToggle={onPanelToggle}
             ref={panelRef}
+			className={`uag-advance-panel-body-${panelTitle}`}
         >
             { children }
         </PanelBody>

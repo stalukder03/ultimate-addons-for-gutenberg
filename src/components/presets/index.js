@@ -1,4 +1,4 @@
-import { SelectControl } from '@wordpress/components';
+import { SelectControl, Button, Dashicon } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import styles from './editor.lazy.scss';

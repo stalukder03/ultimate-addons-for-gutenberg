@@ -76,6 +76,14 @@ const SelectedFontFamilies = () => {
 		}
 	};
 
+	const customStyles = {
+		control: ( provided ) => ( {
+		  ...provided,
+		  cursor: 'pointer',
+		} ),
+
+	}
+
     return (
         <section className='flex border-b border-solid border-slate-200'>
             <div className='pr-16 pb-8 w-[78%]'>
