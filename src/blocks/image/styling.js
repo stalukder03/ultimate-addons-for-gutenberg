@@ -10,6 +10,9 @@ import generateCSSUnit from '@Controls/generateCSSUnit';
 
 export default function styling( props ) {
 	const {
+		width,
+		height,
+		// cpation
 		captionFontFamily,
 		captionFontWeight,
 		captionFontStyle,
@@ -126,6 +129,10 @@ export default function styling( props ) {
 	const getImageShadowPosition = imageBoxShadowPosition !== 'outset' ? imageBoxShadowPosition : ''
 
 	const selectors = {
+		'.wp-block-uagb-image--layout-overlay':{
+			'width': generateCSSUnit( width, 'px' ),
+			'height': generateCSSUnit( height, 'px' ),
+		},
 		'.wp-block-uagb-image img':{
 			'border-style': imageBorderStyle,
 			'border-color': imageBorderColor,
@@ -236,6 +243,7 @@ export default function styling( props ) {
 			'margin-right': generateCSSUnit( seperatorRightMargin, seperatorMarginUnit ),
 		},
 	}
+
 
 	if( maskShape !== 'none' ){
 		let imagePath =  `${window?.uagb_blocks_info?.uagb_url}assets/images/masks/${maskShape}.svg`;
