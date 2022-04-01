@@ -129,21 +129,21 @@ export default function styling( props ) {
 	const getImageShadowPosition = imageBoxShadowPosition !== 'outset' ? imageBoxShadowPosition : ''
 
 	const selectors = {
-		'.wp-block-uagb-image--layout-overlay':{
+		'.wp-block-uagb-image .wp-block-uagb-image__figure img':{
 			'width': generateCSSUnit( width, 'px' ),
 			'height': generateCSSUnit( height, 'px' ),
 		},
-		'.wp-block-uagb-image img':{
+		'.wp-block-uagb-image .wp-block-uagb-image__figure img':{
 			'border-style': imageBorderStyle,
 			'border-color': imageBorderColor,
 			'border-radius': generateCSSUnit( imageBorderRadius, 'px' ),
 			'border-width': generateCSSUnit( imageBorderWidth, 'px' ),
 			'box-shadow': generateCSSUnit( imageBoxShadowHOffset, 'px' ) + ' ' + generateCSSUnit( imageBoxShadowVOffset, 'px' ) +	' ' + generateCSSUnit( imageBoxShadowBlur, 'px' ) + ' ' +	generateCSSUnit( imageBoxShadowSpread, 'px' ) + ' ' + imageBoxShadowColor + ' ' + getImageShadowPosition,
 		},
-		'.wp-block-uagb-image img:hover':{
+		'.wp-block-uagb-image .wp-block-uagb-image__figure img:hover':{
 			'border-color': imageBorderhoverColor
 		},
-		'.wp-block-uagb-image figcaption': {
+		'.wp-block-uagb-image .wp-block-uagb-image__figure figcaption': {
 			'font-family': captionFontFamily,
 			'font-style' : captionFontStyle,
 			'text-decoration': captionDecoration,
@@ -176,11 +176,11 @@ export default function styling( props ) {
 			),
 		},
 		// overlay
-		' .wp-block-uagb-image--layout-overlay__color-wrapper': {
+		'.wp-block-uagb-image .wp-block-uagb-image--layout-overlay__color-wrapper': {
 			'background': overlayBackground,
 			'opacity': overlayOpacity,
 		},
-		' .wp-block-uagb-image--layout-overlay__inner': {
+		'.wp-block-uagb-image .wp-block-uagb-image--layout-overlay__inner': {
 			'border-style': overlayBorderStyle,
 			'border-color': overlayBorderColor,
 			'border-radius': generateCSSUnit( overlayBorderRadius, 'px' ),
@@ -190,7 +190,7 @@ export default function styling( props ) {
 			'top': generateCSSUnit( overlayPositionFromEdge, overlayPositionFromEdgeUnit ),
 			'bottom': generateCSSUnit( overlayPositionFromEdge, overlayPositionFromEdgeUnit ),
 		},
-		' .wp-block-uagb-image--layout-overlay__inner .uagb-image-heading': {
+		'.wp-block-uagb-image .wp-block-uagb-image--layout-overlay__inner .uagb-image-heading': {
 			'font-family': headingFontFamily,
 			'font-style' : headingFontStyle,
 			'text-decoration': headingDecoration,
@@ -222,14 +222,14 @@ export default function styling( props ) {
 				headingMarginUnit
 			),
 		},
-		'.wp-block-uagb-image:hover .wp-block-uagb-image--layout-overlay__inner': {
+		'.wp-block-uagb-image .wp-block-uagb-image__figure:hover .wp-block-uagb-image--layout-overlay__inner': {
 			'border-color': overlayBorderHoverColor,
 		},
-		'.wp-block-uagb-image:hover .wp-block-uagb-image--layout-overlay__color-wrapper': {
+		'.wp-block-uagb-image .wp-block-uagb-image__figure:hover .wp-block-uagb-image--layout-overlay__color-wrapper': {
 			'opacity': overlayHoverOpacity,
 		},
 		// Seperator
-		' .wp-block-uagb-image--layout-overlay__inner .uagb-image-separator': {
+		'.wp-block-uagb-image .wp-block-uagb-image--layout-overlay__inner .uagb-image-separator': {
 			'width': generateCSSUnit( seperatorWidth, separatorWidthType ),
 			'border-top-width': generateCSSUnit(
 				seperatorThickness,
@@ -251,7 +251,7 @@ export default function styling( props ) {
 			imagePath = `${maskCustomShape?.url}`
 		}
 		if( typeof imagePath !== 'undefined' && imagePath ){
-			selectors['.wp-block-uagb-image img'] = {
+			selectors['.wp-block-uagb-image .wp-block-uagb-image__figure img'] = {
 				'mask-image': `url(${imagePath})`,
 				'-webkit-mask-image': `url(${imagePath})`,
 				'mask-size': maskSize,
@@ -273,7 +273,7 @@ export default function styling( props ) {
 	const tablet_selectors = {};
 	const mobile_selectors = {};
 
-	tablet_selectors['.wp-block-uagb-image figcaption'] = {
+	tablet_selectors['.wp-block-uagb-image .wp-block-uagb-image__figure figcaption'] = {
         'font-size': generateCSSUnit(
             captionFontSizeTablet,
             captionFontSizeType
@@ -300,7 +300,7 @@ export default function styling( props ) {
 		),
     }
 
-	tablet_selectors[' .wp-block-uagb-image--layout-overlay__inner .uagb-image-heading'] = {
+	tablet_selectors['.wp-block-uagb-image .wp-block-uagb-image--layout-overlay__inner .uagb-image-heading'] = {
         'font-size': generateCSSUnit(
             headingFontSizeTablet,
             headingFontSizeType
@@ -327,14 +327,14 @@ export default function styling( props ) {
 		),
     }
 	// separator
-	tablet_selectors[' .wp-block-uagb-image--layout-overlay__inner .uagb-image-separator'] = {
+	tablet_selectors['.wp-block-uagb-image .wp-block-uagb-image--layout-overlay__inner .uagb-image-separator'] = {
 		'margin-bottom': generateCSSUnit( seperatorBottomMarginTablet, seperatorMarginUnitTablet ),
 		'margin-top': generateCSSUnit( seperatorTopMarginTablet, seperatorMarginUnitTablet ),
 		'margin-left': generateCSSUnit( seperatorLeftMarginTablet, seperatorMarginUnitTablet ),
 		'margin-right': generateCSSUnit( seperatorRightMarginTablet, seperatorMarginUnitTablet ),
 	}
 
-	mobile_selectors['.wp-block-uagb-image figcaption'] = {
+	mobile_selectors['.wp-block-uagb-image .wp-block-uagb-image__figure figcaption'] = {
         'font-size': generateCSSUnit(
             captionFontSizeMobile,
             captionFontSizeType
@@ -361,7 +361,7 @@ export default function styling( props ) {
 		),
     }
 
-	mobile_selectors[' .wp-block-uagb-image--layout-overlay__inner .uagb-image-heading'] = {
+	mobile_selectors['.wp-block-uagb-image .wp-block-uagb-image--layout-overlay__inner .uagb-image-heading'] = {
         'font-size': generateCSSUnit(
             headingFontSizeMobile,
             headingFontSizeType
@@ -388,7 +388,7 @@ export default function styling( props ) {
 		),
     }
 
-	mobile_selectors[' .wp-block-uagb-image--layout-overlay__inner .uagb-image-separator'] = {
+	mobile_selectors['.wp-block-uagb-image .wp-block-uagb-image--layout-overlay__inner .uagb-image-separator'] = {
 		'margin-bottom': generateCSSUnit( seperatorBottomMarginMobile, seperatorMarginUnitMobile ),
 		'margin-top': generateCSSUnit( seperatorTopMarginMobile, seperatorMarginUnitMobile ),
 		'margin-left': generateCSSUnit( seperatorLeftMarginMobile, seperatorMarginUnitMobile ),

@@ -20,17 +20,17 @@ if ( 'outset' === $attr['imageBoxShadowPosition'] ) {
 }
 
 $selectors = array(
-	'.wp-block-uagb-image img'                             => array(
+	'.wp-block-uagb-image .wp-block-uagb-image__figure img'                             => array(
 		'border-style'  => $attr['imageBorderStyle'],
 		'border-color'  => $attr['imageBorderColor'],
 		'border-radius' => UAGB_Helper::get_css_value( $attr['imageBorderRadius'], 'px' ),
 		'border-width'  => UAGB_Helper::get_css_value( $attr['imageBorderWidth'], 'px' ),
 		'box-shadow'    => UAGB_Helper::get_css_value( $attr['imageBoxShadowHOffset'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['imageBoxShadowVOffset'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['imageBoxShadowBlur'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['imageBoxShadowSpread'], 'px' ) . ' ' . $attr['imageBoxShadowColor'] . ' ' . $imageBoxShadowPosition,
 	),
-	'.wp-block-uagb-image img:hover'                       => array(
+	'.wp-block-uagb-image .wp-block-uagb-image__figure img:hover'                       => array(
 		'border-color' => $attr['imageBorderhoverColor'],
 	),
-	'.wp-block-uagb-image figcaption'                      => array(
+	'.wp-block-uagb-image .wp-block-uagb-image__figure figcaption'                      => array(
 		'font-family'     => $attr['captionFontFamily'],
 		'font-style'      => $attr['captionFontStyle'],
 		'text-decoration' => $attr['captionDecoration'],
@@ -45,11 +45,11 @@ $selectors = array(
 		'margin-left'     => UAGB_Helper::get_css_value( $attr['captionLeftMargin'], $attr['captionMarginUnit'] ),
 	),
 	// overlay.
-	' .wp-block-uagb-image--layout-overlay__color-wrapper' => array(
+	'.wp-block-uagb-image .wp-block-uagb-image--layout-overlay__color-wrapper' => array(
 		'background' => $attr['overlayBackground'],
 		'opacity'    => $attr['overlayOpacity'],
 	),
-	' .wp-block-uagb-image--layout-overlay__inner'         => array(
+	'.wp-block-uagb-image .wp-block-uagb-image--layout-overlay__inner'         => array(
 		'border-style'  => $attr['overlayBorderStyle'],
 		'border-color'  => $attr['overlayBorderColor'],
 		'border-radius' => UAGB_Helper::get_css_value( $attr['overlayBorderRadius'], 'px' ),
@@ -59,7 +59,7 @@ $selectors = array(
 		'top'           => UAGB_Helper::get_css_value( $attr['overlayPositionFromEdge'], $attr['overlayPositionFromEdgeUnit'] ),
 		'bottom'        => UAGB_Helper::get_css_value( $attr['overlayPositionFromEdge'], $attr['overlayPositionFromEdgeUnit'] ),
 	),
-	' .wp-block-uagb-image--layout-overlay__inner .uagb-image-heading' => array(
+	'.wp-block-uagb-image .wp-block-uagb-image--layout-overlay__inner .uagb-image-heading' => array(
 		'font-family'     => $attr['headingFontFamily'],
 		'font-style'      => $attr['headingFontStyle'],
 		'text-decoration' => $attr['headingDecoration'],
@@ -80,7 +80,7 @@ $selectors = array(
 		'opacity' => $attr['overlayHoverOpacity'],
 	),
 	// Seperator.
-	' .wp-block-uagb-image--layout-overlay__inner .uagb-image-separator' => array(
+	'.wp-block-uagb-image .wp-block-uagb-image--layout-overlay__inner .uagb-image-separator' => array(
 		'width'            => UAGB_Helper::get_css_value( $attr['seperatorWidth'], $attr['separatorWidthType'] ),
 		'border-top-width' => UAGB_Helper::get_css_value( $attr['seperatorThickness'], $attr['seperatorThicknessUnit'] ),
 		'border-top-color' => $attr['seperatorColor'],
@@ -91,15 +91,14 @@ $selectors = array(
 		'margin-right'     => UAGB_Helper::get_css_value( $attr['seperatorRightMargin'], $attr['seperatorMarginUnit'] ),
 	),
 );
-error_log(print_r($attr['layout'], true));
 if($attr['layout'] === 'overlay'){
-	$selectors['.wp-block-uagb-image--layout-overlay'] =  array(
+	$selectors['.wp-block-uagb-image.wp-block-uagb-image--layout-overlay .wp-block-uagb-image__figure img'] =  array(
 		'width'         =>  ( isset( $attr['width'] ) ? UAGB_Helper::get_css_value( $attr['width'], 'px' ) : '' ),
 		'height'        => ( isset( $attr['height'] ) ? UAGB_Helper::get_css_value( $attr['height'], 'px' ) : '' )
 	);
 
 } else {
-	$selectors['.wp-block-uagb-image img'] =  array(
+	$selectors['.wp-block-uagb-image .wp-block-uagb-image__figure img'] =  array(
 		'width'         =>  ( isset( $attr['width'] ) ? UAGB_Helper::get_css_value( $attr['width'], 'px' ) : '' ),
 		'height'        => ( isset( $attr['height'] ) ? UAGB_Helper::get_css_value( $attr['height'], 'px' ) : '' )
 	);
@@ -113,7 +112,7 @@ if ( 'none' !== $attr['maskShape'] ) {
 		$imagePath = $attr['maskCustomShape']['url'];
 	}
 	if ( ! empty( $imagePath ) ) {
-		$selectors['.wp-block-uagb-image img'] = array(
+		$selectors['.wp-block-uagb-image .wp-block-uagb-image__figure img'] = array(
 			'mask-image'            => 'url(' . $imagePath . ')',
 			'-webkit-mask-image'    => 'url(' . $imagePath . ')',
 			'mask-size'             => $attr['maskSize'],
@@ -127,7 +126,7 @@ if ( 'none' !== $attr['maskShape'] ) {
 }
 
 // tablet.
-$t_selectors['.wp-block-uagb-image figcaption']                                    = array(
+$t_selectors['.wp-block-uagb-image .wp-block-uagb-image__figure figcaption']                                    = array(
 	'font-size'     => UAGB_Helper::get_css_value( $attr['captionFontSizeTablet'], $attr['captionFontSizeType'] ),
 	'line-height'   => UAGB_Helper::get_css_value( $attr['captionLineHeightTablet'], $attr['captionLineHeightType'] ),
 	'margin-top'    => UAGB_Helper::get_css_value( $attr['captionTopMarginTablet'], $attr['captionMarginUnitTablet'] ),
@@ -135,7 +134,7 @@ $t_selectors['.wp-block-uagb-image figcaption']                                 
 	'margin-bottom' => UAGB_Helper::get_css_value( $attr['captionBottomMarginTablet'], $attr['captionMarginUnitTablet'] ),
 	'margin-left'   => UAGB_Helper::get_css_value( $attr['captionLeftMarginTablet'], $attr['captionMarginUnitTablet'] ),
 );
-$t_selectors[' .wp-block-uagb-image--layout-overlay__inner .uagb-image-heading']   = array(
+$t_selectors['.wp-block-uagb-image .wp-block-uagb-image--layout-overlay__inner .uagb-image-heading']   = array(
 	'font-size'     => UAGB_Helper::get_css_value( $attr['headingFontSizeTablet'], $attr['headingFontSizeType'] ),
 	'line-height'   => UAGB_Helper::get_css_value( $attr['headingLineHeightTablet'], $attr['headingLineHeightType'] ),
 	'margin-top'    => UAGB_Helper::get_css_value( $attr['headingTopMarginTablet'], $attr['headingMarginUnitTablet'] ),
@@ -143,7 +142,7 @@ $t_selectors[' .wp-block-uagb-image--layout-overlay__inner .uagb-image-heading']
 	'margin-bottom' => UAGB_Helper::get_css_value( $attr['headingBottomMarginTablet'], $attr['headingMarginUnitTablet'] ),
 	'margin-left'   => UAGB_Helper::get_css_value( $attr['headingLeftMarginTablet'], $attr['headingMarginUnitTablet'] ),
 );
-$t_selectors[' .wp-block-uagb-image--layout-overlay__inner .uagb-image-separator'] = array(
+$t_selectors['.wp-block-uagb-image .wp-block-uagb-image--layout-overlay__inner .uagb-image-separator'] = array(
 	'margin-bottom' => UAGB_Helper::get_css_value( $attr['seperatorBottomMarginTablet'], $attr['seperatorMarginUnitTablet'] ),
 	'margin-top'    => UAGB_Helper::get_css_value( $attr['seperatorTopMarginTablet'], $attr['seperatorMarginUnitTablet'] ),
 	'margin-left'   => UAGB_Helper::get_css_value( $attr['seperatorLeftMarginTablet'], $attr['seperatorMarginUnitTablet'] ),
@@ -151,7 +150,7 @@ $t_selectors[' .wp-block-uagb-image--layout-overlay__inner .uagb-image-separator
 );
 
 // mobile.
-$m_selectors['.wp-block-uagb-image figcaption'] = array(
+$m_selectors['.wp-block-uagb-image .wp-block-uagb-image__figure figcaption'] = array(
 	'font-size'     => UAGB_Helper::get_css_value( $attr['captionFontSizeMobile'], $attr['captionFontSizeType'] ),
 	'line-height'   => UAGB_Helper::get_css_value( $attr['captionLineHeightMobile'], $attr['captionLineHeightType'] ),
 	'margin-top'    => UAGB_Helper::get_css_value( $attr['captionTopMarginMobile'], $attr['captionMarginUnitMobile'] ),
@@ -160,7 +159,7 @@ $m_selectors['.wp-block-uagb-image figcaption'] = array(
 	'margin-left'   => UAGB_Helper::get_css_value( $attr['captionLeftMarginMobile'], $attr['captionMarginUnitMobile'] ),
 );
 
-$m_selectors[' .wp-block-uagb-image--layout-overlay__inner .uagb-image-heading'] = array(
+$m_selectors['.wp-block-uagb-image .wp-block-uagb-image--layout-overlay__inner .uagb-image-heading'] = array(
 	'font-size'     => UAGB_Helper::get_css_value( $attr['headingFontSizeMobile'], $attr['headingFontSizeType'] ),
 	'line-height'   => UAGB_Helper::get_css_value( $attr['headingLineHeightMobile'], $attr['headingLineHeightType'] ),
 	'margin-top'    => UAGB_Helper::get_css_value( $attr['headingTopMarginMobile'], $attr['headingMarginUnitMobile'] ),
@@ -169,7 +168,7 @@ $m_selectors[' .wp-block-uagb-image--layout-overlay__inner .uagb-image-heading']
 	'margin-left'   => UAGB_Helper::get_css_value( $attr['headingLeftMarginMobile'], $attr['headingMarginUnitMobile'] ),
 );
 
-$m_selectors[' .wp-block-uagb-image--layout-overlay__inner .uagb-image-separator'] = array(
+$m_selectors['.wp-block-uagb-image .wp-block-uagb-image--layout-overlay__inner .uagb-image-separator'] = array(
 	'margin-bottom' => UAGB_Helper::get_css_value( $attr['seperatorBottomMarginMobile'], $attr['seperatorMarginUnitMobile'] ),
 	'margin-top'    => UAGB_Helper::get_css_value( $attr['seperatorTopMarginMobile'], $attr['seperatorMarginUnitMobile'] ),
 	'margin-left'   => UAGB_Helper::get_css_value( $attr['seperatorLeftMarginMobile'], $attr['seperatorMarginUnitMobile'] ),

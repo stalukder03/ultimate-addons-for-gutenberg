@@ -79,31 +79,33 @@ export default function Save( props ) {
 
 	return (
 		<>
-			<figure className={ classnames(
+			<div className={ classnames(
 				props.className,
 				`uagb-block-${ block_id }`,
 				'wp-block-uagb-image',
 				`wp-block-uagb-image--layout-${ layout }`,
 				`wp-block-uagb-image--align-${align ? align : 'none'}`
 			) }>
-				{ figureImage }
-				{
-					layout === 'overlay' ? (
-						<>
-							<div className='wp-block-uagb-image--layout-overlay__color-wrapper'></div>
-							<div className={`wp-block-uagb-image--layout-overlay__inner ${overlayContentPosition.replace( ' ', '-' )}`}>
-								{ 'before_title' === seperatorPosition && separator}
-								{imageHeading}
-								{ 'after_title' === seperatorPosition && separator}
-								{imageCaption}
-								{ 'after_sub_title' === seperatorPosition && separator}
-							</div>
-						</>
-					) : (
-						imageCaption
-					)
-				}
-			</figure>
+				<figure className='wp-block-uagb-image__figure'>
+					{ figureImage }
+					{
+						layout === 'overlay' ? (
+							<>
+								<div className='wp-block-uagb-image--layout-overlay__color-wrapper'></div>
+								<div className={`wp-block-uagb-image--layout-overlay__inner ${overlayContentPosition.replace( ' ', '-' )}`}>
+									{ 'before_title' === seperatorPosition && separator}
+									{imageHeading}
+									{ 'after_title' === seperatorPosition && separator}
+									{imageCaption}
+									{ 'after_sub_title' === seperatorPosition && separator}
+								</div>
+							</>
+						) : (
+							imageCaption
+						)
+					}
+				</figure>
+			</div>
 		</>
 	);
 }

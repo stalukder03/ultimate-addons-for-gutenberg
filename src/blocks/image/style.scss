@@ -1,73 +1,56 @@
-html :where(.editor-styles-wrapper) .block-editor-block-list__block > .wp-block[data-align=full] {
-    margin-left: -8px;
-    margin-right: -8px;
-}
-[data-align=wide] > .wp-block-uagb-image img, [data-align=full] > .wp-block-uagb-image img {
-    height: auto;
-    width: 100%;
-}
-.wp-block-uagb-image .components-resizable-box__container {
-	display: inline-block;
-	max-width: 100% !important;
-	img {
-		max-width: 100%;
-	}
-}
-
 .wp-block-uagb-image {
-	&--align-none {
-		margin-left: auto;
-		margin-right: auto;
+	display: flex;
+	flex-direction: column;
+	&__figure {
+		position: relative;
+		display: inline-block;
+		figcaption {
+			text-align: center;
+			margin-top: 0.5em;
+			margin-bottom: 1em;
+		}
 	}
 	&--align-left,
 	&--align-right,
 	&--align-center {
-		display: table;
-		> figcaption {
-			display: table-caption;
-			caption-side: bottom;
-			text-align: center;
-		}
-	}
-	figcaption {
-		margin-top: 0.5em;
-		margin-bottom: 1em;
-	}
-	&--align-full {
-		margin-left: calc(50% - 50vw);
-		margin-right: calc(50% - 50vw);
-		max-width: 100vw;
-		width: 100vw;
-		img {
+		.wp-block-uagb-image__figure {
+			max-width: 100%;
 			height: auto;
-			width: 100%;
-		}
-	}
-	&--align-wide {
-		img {
-			height: auto;
-			width: 100%;
 		}
 	}
 	&--align-left {
-		margin-right: auto;
-		margin-left: 0;
+		align-items: flex-start;
 	}
 	&--align-right {
-		margin-left: auto;
-		margin-right: 0;
+		align-items: flex-end;
 	}
 	&--align-center {
-		margin-left: auto;
-		margin-right: auto;
-		text-align: center;
+		align-items: center;
 	}
-	&--layout-overlay {
-		display: inline-block;
-		position: relative;
-		&.wp-block-uagb-image--align-center {
-			display: block;
+	&--align-full {
+		.wp-block-uagb-image__figure {
+			margin-left: calc(50% - 50vw);
+			margin-right: calc(50% - 50vw);
+			max-width: 100vw;
+			width: 100vw;
+			height: auto;
+			img {
+				height: auto;
+				width: 100%;
+			}
 		}
+
+	}
+	&--align-wide {
+		.wp-block-uagb-image__figure {
+			img {
+				height: auto;
+				width: 100%;
+			}
+		}
+	}
+
+	&--layout-overlay {
 		img {
 			width: 100%;
 			height: auto;
