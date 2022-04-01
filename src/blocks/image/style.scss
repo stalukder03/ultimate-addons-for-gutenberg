@@ -1,6 +1,4 @@
 .wp-block-uagb-image {
-	display: flex;
-	flex-direction: column;
 
 	&__figure {
 		position: relative;
@@ -24,15 +22,15 @@
 	}
 
 	&--align-left {
-		align-items: flex-start;
+		text-align: left;
 	}
 
 	&--align-right {
-		align-items: flex-end;
+		text-align: right;
 	}
 
 	&--align-center {
-		align-items: center;
+		text-align: center;
 	}
 
 	&--align-full {
@@ -165,37 +163,45 @@
 	&--effect {
 
 		&-zoomin {
-			overflow: hidden;
 
-			img {
-				transform: scale(1);
-				transition: transform 0.35s ease-in-out;
-			}
-
-			&:hover {
+			.wp-block-uagb-image__figure {
+				overflow: hidden;
 
 				img {
-					transform: scale(1.05);
+					transform: scale(1);
+					transition: transform 0.35s ease-in-out;
+				}
+
+				&:hover {
+
+					img {
+						transform: scale(1.05);
+					}
 				}
 			}
+
 		}
 
 		&-slide {
-			overflow: hidden;
 
-			img {
-				width: calc(100% + 40px);
-				max-width: none !important;
-				transform: translate3d(-40px, 0, 0);
-				transition: transform 0.35s ease-in-out;
-			}
-
-			&:hover {
+			.wp-block-uagb-image__figure {
+				overflow: hidden;
 
 				img {
-					transform: translate3d(0, 0, 0);
+					width: calc(100% + 40px) !important;
+					max-width: none !important;
+					transform: translate3d(-40px, 0, 0);
+					transition: transform 0.35s ease-in-out;
+				}
+
+				&:hover {
+
+					img {
+						transform: translate3d(0, 0, 0);
+					}
 				}
 			}
+
 		}
 
 		&-grayscale {

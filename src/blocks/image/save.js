@@ -9,6 +9,7 @@ export default function Save( props ) {
 		url,
 		alt,
 		caption,
+		imageHoverEffect,
 		href,
 		linkClass,
 		width,
@@ -84,6 +85,7 @@ export default function Save( props ) {
 				`uagb-block-${ block_id }`,
 				'wp-block-uagb-image',
 				`wp-block-uagb-image--layout-${ layout }`,
+				`wp-block-uagb-image--effect-${imageHoverEffect}`,
 				`wp-block-uagb-image--align-${align ? align : 'none'}`
 			) }>
 				<figure className='wp-block-uagb-image__figure'>
