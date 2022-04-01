@@ -132,8 +132,6 @@ export default function styling( props ) {
 		'.wp-block-uagb-image .wp-block-uagb-image__figure img':{
 			'width': generateCSSUnit( width, 'px' ),
 			'height': generateCSSUnit( height, 'px' ),
-		},
-		'.wp-block-uagb-image .wp-block-uagb-image__figure img':{
 			'border-style': imageBorderStyle,
 			'border-color': imageBorderColor,
 			'border-radius': generateCSSUnit( imageBorderRadius, 'px' ),

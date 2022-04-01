@@ -1,13 +1,16 @@
 .uag-link-control {
 	margin-bottom: 15px;
+
 	> label {
 		display: inline-block;
 		margin-bottom: 5px;
 	}
+
 	&__link {
 		display: flex;
 		column-gap: 5px;
 		margin-bottom: 10px;
+
 		input {
 			width: 100%;
 			padding: 6px 8px;
@@ -18,6 +21,7 @@
 			font-size: 16px;
 			line-height: normal;
 		}
+
 		button {
 			background: #fff;
 			border: 1px solid #757575;
@@ -32,7 +36,9 @@
 			cursor: pointer;
 		}
 	}
+
 	&__options {
+
 		.components-base-control {
 			margin-bottom: 10px !important;
 		}

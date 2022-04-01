@@ -8,7 +8,7 @@
  */
 
 return array(
-	'layout' => "default",
+	'layout'                      => 'default',
 	// heading.
 	'headingFontFamily'           => 'Default',
 	'headingFontWeight'           => '',

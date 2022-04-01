@@ -91,16 +91,16 @@ $selectors = array(
 		'margin-right'     => UAGB_Helper::get_css_value( $attr['seperatorRightMargin'], $attr['seperatorMarginUnit'] ),
 	),
 );
-if($attr['layout'] === 'overlay'){
-	$selectors['.wp-block-uagb-image.wp-block-uagb-image--layout-overlay .wp-block-uagb-image__figure img'] =  array(
-		'width'         =>  ( isset( $attr['width'] ) ? UAGB_Helper::get_css_value( $attr['width'], 'px' ) : '' ),
-		'height'        => ( isset( $attr['height'] ) ? UAGB_Helper::get_css_value( $attr['height'], 'px' ) : '' )
+if ( 'overlay' === $attr['layout'] ) {
+	$selectors['.wp-block-uagb-image.wp-block-uagb-image--layout-overlay .wp-block-uagb-image__figure img'] = array(
+		'width'  => ( isset( $attr['width'] ) ? UAGB_Helper::get_css_value( $attr['width'], 'px' ) : '' ),
+		'height' => ( isset( $attr['height'] ) ? UAGB_Helper::get_css_value( $attr['height'], 'px' ) : '' ),
 	);
 
 } else {
-	$selectors['.wp-block-uagb-image .wp-block-uagb-image__figure img'] =  array(
-		'width'         =>  ( isset( $attr['width'] ) ? UAGB_Helper::get_css_value( $attr['width'], 'px' ) : '' ),
-		'height'        => ( isset( $attr['height'] ) ? UAGB_Helper::get_css_value( $attr['height'], 'px' ) : '' )
+	$selectors['.wp-block-uagb-image .wp-block-uagb-image__figure img'] = array(
+		'width'  => ( isset( $attr['width'] ) ? UAGB_Helper::get_css_value( $attr['width'], 'px' ) : '' ),
+		'height' => ( isset( $attr['height'] ) ? UAGB_Helper::get_css_value( $attr['height'], 'px' ) : '' ),
 	);
 }
 
@@ -126,7 +126,7 @@ if ( 'none' !== $attr['maskShape'] ) {
 }
 
 // tablet.
-$t_selectors['.wp-block-uagb-image .wp-block-uagb-image__figure figcaption']                                    = array(
+$t_selectors['.wp-block-uagb-image .wp-block-uagb-image__figure figcaption']                           = array(
 	'font-size'     => UAGB_Helper::get_css_value( $attr['captionFontSizeTablet'], $attr['captionFontSizeType'] ),
 	'line-height'   => UAGB_Helper::get_css_value( $attr['captionLineHeightTablet'], $attr['captionLineHeightType'] ),
 	'margin-top'    => UAGB_Helper::get_css_value( $attr['captionTopMarginTablet'], $attr['captionMarginUnitTablet'] ),
