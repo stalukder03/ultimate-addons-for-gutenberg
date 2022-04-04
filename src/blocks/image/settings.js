@@ -1129,6 +1129,7 @@ export default function Settings( props ) {
 				}
 				min={ 0 }
 				max={ 1 }
+				step={0.1}
 			/>
 			<RangeControl
 				label={ __(

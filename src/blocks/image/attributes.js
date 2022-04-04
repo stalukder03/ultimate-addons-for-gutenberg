@@ -360,7 +360,7 @@ const attributes = {
 		default: '',
 	},
 	overlayOpacity: {
-		type: 'number',
+		type: 'float',
 		default: 0.2,
 	},
 	overlayHoverOpacity: {
