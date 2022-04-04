@@ -43,6 +43,7 @@ $selectors = array(
 		'margin-right'    => UAGB_Helper::get_css_value( $attr['captionRightMargin'], $attr['captionMarginUnit'] ),
 		'margin-bottom'   => UAGB_Helper::get_css_value( $attr['captionBottomMargin'], $attr['captionMarginUnit'] ),
 		'margin-left'     => UAGB_Helper::get_css_value( $attr['captionLeftMargin'], $attr['captionMarginUnit'] ),
+		'text-align'	 => $attr['captionAlign']
 	),
 	// overlay.
 	'.wp-block-uagb-image .wp-block-uagb-image--layout-overlay__color-wrapper' => array(

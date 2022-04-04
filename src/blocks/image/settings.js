@@ -14,6 +14,7 @@ import UAGImage from '@Components/image';
 import BoxShadowControl from '@Components/box-shadow';
 import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
+import MultiButtonsControl from '@Components/multi-buttons-control';
 import {
 	store as blockEditorStore,
 	__experimentalImageSizeControl as ImageSizeControl,
@@ -24,8 +25,10 @@ import {
 	TextControl,
 	RadioControl,
 	SelectControl,
-	__experimentalAlignmentMatrixControl as AlignmentMatrixControl
+	__experimentalAlignmentMatrixControl as AlignmentMatrixControl,
+	Icon
 } from '@wordpress/components';
+import renderSVG from '@Controls/renderIcon';
 
 import { store as coreStore } from '@wordpress/core-data';
 // Extend component
@@ -44,6 +47,7 @@ export default function Settings( props ) {
 		sizeSlug,
 		// caption
 		captionLoadGoogleFonts,
+		captionAlign,
 		captionFontFamily,
 		captionFontWeight,
 		captionFontStyle,
@@ -811,6 +815,61 @@ export default function Settings( props ) {
 			title={ layout === 'overlay' ?  __( 'Sub Title', 'ultimate-addons-for-gutenberg' ) : __( 'Caption', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ true }
 		>
+			<MultiButtonsControl
+				setAttributes={ setAttributes }
+				label={ __(
+					'Alignment',
+					'ultimate-addons-for-gutenberg'
+				) }
+				data={ {
+					value: captionAlign,
+					label: 'captionAlign',
+				} }
+				className="uagb-multi-button-alignment-control"
+				options={ [
+					{
+						value: 'left',
+						icon: (
+							<Icon
+								icon={ renderSVG( 'fa fa-align-left' ) }
+							/>
+						),
+						tooltip: __(
+							'Left',
+							'ultimate-addons-for-gutenberg'
+						),
+					},
+					{
+						value: 'center',
+						icon: (
+							<Icon
+								icon={ renderSVG(
+									'fa fa-align-center'
+								) }
+							/>
+						),
+						tooltip: __(
+							'Center',
+							'ultimate-addons-for-gutenberg'
+						),
+					},
+					{
+						value: 'right',
+						icon: (
+							<Icon
+								icon={ renderSVG(
+									'fa fa-align-right'
+								) }
+							/>
+						),
+						tooltip: __(
+							'Right',
+							'ultimate-addons-for-gutenberg'
+						),
+					},
+				] }
+				showIcons={ true }
+			/>
 			<Suspense fallback={ lazyLoader() }>
 				<TypographyControl
 					label={ __(

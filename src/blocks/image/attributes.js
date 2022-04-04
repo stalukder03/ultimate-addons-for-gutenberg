@@ -76,6 +76,10 @@ const attributes = {
 		type: 'string',
 		isUAGStyle: true,
 	},
+	captionAlign: {
+		type: 'string',
+		default: 'center',
+	},
 	captionFontFamily: {
 		type: 'string',
 		default: 'Default',

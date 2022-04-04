@@ -52,6 +52,7 @@ return array(
 	'overlayBorderColor'          => '#fff',
 	'overlayBorderHoverColor'     => '',
 	// caption.
+	'captionAlign'                => 'center',
 	'captionColor'                => '',
 	'captionFontFamily'           => '',
 	'captionFontStyle'            => 'normal',

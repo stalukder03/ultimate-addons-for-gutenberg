@@ -13,6 +13,7 @@ export default function styling( props ) {
 		width,
 		height,
 		// cpation
+		captionAlign,
 		captionFontFamily,
 		captionFontWeight,
 		captionFontStyle,
@@ -172,6 +173,7 @@ export default function styling( props ) {
 				captionLeftMargin,
 				captionMarginUnit
 			),
+			'text-align': captionAlign
 		},
 		// overlay
 		'.wp-block-uagb-image .wp-block-uagb-image--layout-overlay__color-wrapper': {
