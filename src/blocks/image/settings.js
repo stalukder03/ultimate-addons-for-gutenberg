@@ -1395,11 +1395,12 @@ export default function Settings( props ) {
 								<>
 									{overlayStylePanel}
 									{headingStylePanel}
-									{ 'none' !== seperatorStyle && seperatorStylePanel}
+
 								</>
 							)
 						}
 						{ captionStylePanel }
+						{ 'none' !== seperatorStyle && layout === 'overlay' && seperatorStylePanel}
 					</InspectorTab>
 					<InspectorTab
 						{ ...UAGTabs.advance }
