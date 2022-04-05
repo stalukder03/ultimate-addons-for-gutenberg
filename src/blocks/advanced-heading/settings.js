@@ -221,6 +221,7 @@ const Settings = ( props ) => {
 				/>
 				</>
 				)}
+				{ 'none' !== seperatorStyle &&
 				<ToggleControl
 					checked={ showseprator }
 					onChange={ () =>
@@ -231,6 +232,7 @@ const Settings = ( props ) => {
 						'ultimate-addons-for-gutenberg'
 					) }
 				/>
+				}
 				<ToggleControl
 					checked={ showdesc }
 					onChange={ () =>
