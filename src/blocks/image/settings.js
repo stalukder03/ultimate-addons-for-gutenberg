@@ -45,6 +45,23 @@ export default function Settings( props ) {
 		align,
 		alt,
 		sizeSlug,
+		// image
+		imageTopMargin,
+		imageRightMargin,
+		imageLeftMargin,
+		imageBottomMargin,
+		imageTopMarginTablet,
+		imageRightMarginTablet,
+		imageLeftMarginTablet,
+		imageBottomMarginTablet,
+		imageTopMarginMobile,
+		imageRightMarginMobile,
+		imageLeftMarginMobile,
+		imageBottomMarginMobile,
+		imageMarginUnit,
+		imageMarginUnitTablet,
+		imageMarginUnitMobile,
+		imageMarginLink,
 		// caption
 		captionLoadGoogleFonts,
 		captionAlign,
@@ -1123,6 +1140,80 @@ export default function Settings( props ) {
 					/>
 				</>
 			)}
+
+			<SpacingControl
+				label={ __(
+					'Margin',
+					'ultimate-addons-for-gutenberg'
+				) }
+				valueTop={ {
+					value: imageTopMargin,
+					label: 'imageTopMargin',
+				} }
+				valueRight={ {
+					value: imageRightMargin,
+					label: 'imageRightMargin',
+				} }
+				valueBottom={ {
+					value: imageBottomMargin,
+					label: 'imageBottomMargin',
+				} }
+				valueLeft={ {
+					value: imageLeftMargin,
+					label: 'imageLeftMargin',
+				} }
+				valueTopTablet={ {
+					value: imageTopMarginTablet,
+					label: 'imageTopMarginTablet',
+				} }
+				valueRightTablet={ {
+					value: imageRightMarginTablet,
+					label: 'imageRightMarginTablet',
+				} }
+				valueBottomTablet={ {
+					value: imageBottomMarginTablet,
+					label: 'imageBottomMarginTablet',
+				} }
+				valueLeftTablet={ {
+					value: imageLeftMarginTablet,
+					label: 'imageLeftMarginTablet',
+				} }
+				valueTopMobile={ {
+					value: imageTopMarginMobile,
+					label: 'imageTopMarginMobile',
+				} }
+				valueRightMobile={ {
+					value: imageRightMarginMobile,
+					label: 'imageRightMarginMobile',
+				} }
+				valueBottomMobile={ {
+					value: imageBottomMarginMobile,
+					label: 'imageBottomMarginMobile',
+				} }
+				valueLeftMobile={ {
+					value: imageLeftMarginMobile,
+					label: 'imageLeftMarginMobile',
+				} }
+				unit={ {
+					value: imageMarginUnit,
+					label: 'imageMarginUnit',
+				} }
+				mUnit={ {
+					value: imageMarginUnitMobile,
+					label: 'imageMarginUnitMobile',
+				} }
+				tUnit={ {
+					value: imageMarginUnitTablet,
+					label: 'imageMarginUnitTablet',
+				} }
+				deviceType={ deviceType }
+				attributes={ attributes }
+				setAttributes={ setAttributes }
+				link={ {
+					value: imageMarginLink,
+					label: 'imageMarginLink',
+				} }
+			/>
 
 			<BoxShadowControl
 				setAttributes={ setAttributes }

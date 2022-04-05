@@ -62,6 +62,75 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
+	// image
+	imageTopMargin : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	imageRightMargin : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	imageLeftMargin : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	imageBottomMargin : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	imageTopMarginTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	imageRightMarginTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	imageLeftMarginTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	imageBottomMarginTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	imageTopMarginMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	imageRightMarginMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	imageLeftMarginMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	imageBottomMarginMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	imageMarginUnit : {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+	},
+	imageMarginUnitTablet: {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+	},
+	imageMarginUnitMobile : {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+	},
+	imageMarginLink: {
+		type: 'boolean',
+		default: true,
+		isUAGStyle: true,
+	},
 	// caption.
 	captionText: {
 		type: 'string',

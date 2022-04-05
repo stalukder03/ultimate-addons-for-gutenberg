@@ -12,6 +12,23 @@ export default function styling( props ) {
 	const {
 		width,
 		height,
+		// image
+		imageTopMargin,
+		imageRightMargin,
+		imageLeftMargin,
+		imageBottomMargin,
+		imageTopMarginTablet,
+		imageRightMarginTablet,
+		imageLeftMarginTablet,
+		imageBottomMarginTablet,
+		imageTopMarginMobile,
+		imageRightMarginMobile,
+		imageLeftMarginMobile,
+		imageBottomMarginMobile,
+		imageMarginUnit,
+		imageMarginUnitTablet,
+		imageMarginUnitMobile,
+		imageMarginLink,
 		// cpation
 		captionAlign,
 		captionFontFamily,
@@ -131,6 +148,24 @@ export default function styling( props ) {
 
 
 	const selectors = {
+		'.wp-block-uagb-image':{
+			'margin-top': generateCSSUnit(
+				imageTopMargin,
+				imageMarginUnit
+			),
+			'margin-right': generateCSSUnit(
+				imageRightMargin,
+				imageMarginUnit
+			),
+			'margin-bottom': generateCSSUnit(
+				imageBottomMargin,
+				imageMarginUnit
+			),
+			'margin-left': generateCSSUnit(
+				imageLeftMargin,
+				imageMarginUnit
+			),
+		},
 		'.wp-block-uagb-image--layout-default img':{
 			'width': generateCSSUnit( width, 'px' ),
 			'height': generateCSSUnit( height, 'px' ),
@@ -279,6 +314,24 @@ export default function styling( props ) {
 	const tablet_selectors = {};
 	const mobile_selectors = {};
 
+	tablet_selectors['.wp-block-uagb-image'] = {
+		'margin-top': generateCSSUnit(
+			imageTopMarginTablet,
+			imageMarginUnitTablet
+		),
+		'margin-right': generateCSSUnit(
+			imageRightMarginTablet,
+			imageMarginUnitTablet
+		),
+		'margin-bottom': generateCSSUnit(
+			imageBottomMarginTablet,
+			imageMarginUnitTablet
+		),
+		'margin-left': generateCSSUnit(
+			imageLeftMarginTablet,
+			imageMarginUnitTablet
+		),
+	}
 	tablet_selectors['.wp-block-uagb-image .wp-block-uagb-image__figure figcaption'] = {
         'font-size': generateCSSUnit(
             captionFontSizeTablet,
@@ -338,6 +391,25 @@ export default function styling( props ) {
 		'margin-top': generateCSSUnit( seperatorTopMarginTablet, seperatorMarginUnitTablet ),
 		'margin-left': generateCSSUnit( seperatorLeftMarginTablet, seperatorMarginUnitTablet ),
 		'margin-right': generateCSSUnit( seperatorRightMarginTablet, seperatorMarginUnitTablet ),
+	}
+
+	mobile_selectors['.wp-block-uagb-image'] = {
+		'margin-top': generateCSSUnit(
+			imageTopMarginMobile,
+			imageMarginUnitMobile
+		),
+		'margin-right': generateCSSUnit(
+			imageRightMarginMobile,
+			imageMarginUnitMobile
+		),
+		'margin-bottom': generateCSSUnit(
+			imageBottomMarginMobile,
+			imageMarginUnitMobile
+		),
+		'margin-left': generateCSSUnit(
+			imageLeftMarginMobile,
+			imageMarginUnitMobile
+		),
 	}
 
 	mobile_selectors['.wp-block-uagb-image .wp-block-uagb-image__figure figcaption'] = {
