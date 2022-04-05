@@ -242,8 +242,8 @@ export default function Settings( props ) {
 				label="Layout"
 				selected={ layout }
 				options={ [
-					{ label: 'Normal View', value: 'default' },
-					{ label: 'Overlay View', value: 'overlay' },
+					{ label: 'Normal', value: 'default' },
+					{ label: 'Overlay', value: 'overlay' },
 				] }
 				onChange={ ( value ) => setAttributes( { layout: value} ) }
 			/>
@@ -262,7 +262,7 @@ export default function Settings( props ) {
 							imageHeight={ image?.media_details?.height }
 						/>
 						<TextControl
-							label={ __( 'Alt text (alternative text)' ) }
+							label={ __( 'Alt Text', 'ultimate-addons-for-gutenberg' ) }
 							value={ alt }
 							onChange={ ( value ) => setAttributes( { alt: value } ) }
 						/>
@@ -1060,6 +1060,70 @@ export default function Settings( props ) {
 				)
 			}
 
+			{layout === 'overlay' && (
+				<>
+					<label htmlFor='overlayContentAlign'>
+						{__( 'Content Postion', 'ultimate-addons-for-gutenberg' )}
+					</label>
+					<AlignmentMatrixControl
+						id="overlayContentAlign"
+						value={ overlayContentPosition }
+						onChange={ ( newAlignment ) =>  setAttributes( {overlayContentPosition: newAlignment} ) }
+					/>
+					<Border
+						setAttributes={ setAttributes }
+						borderStyle={ {
+							value: overlayBorderStyle,
+							label: 'overlayBorderStyle',
+							title: __( 'Style', 'ultimate-addons-for-gutenberg' ),
+						} }
+						borderWidth={ {
+							value: overlayBorderWidth,
+							label: 'overlayBorderWidth',
+							title: __( 'Width', 'ultimate-addons-for-gutenberg' ),
+						} }
+						borderRadius={ {
+							value: overlayBorderRadius,
+							label: 'overlayBorderRadius',
+							title: __( 'Radius', 'ultimate-addons-for-gutenberg' ),
+						} }
+						borderColor={ {
+							value: overlayBorderColor,
+							label: 'overlayBorderColor',
+							title: __( 'Color', 'ultimate-addons-for-gutenberg' ),
+						} }
+						borderHoverColor={ {
+							value: overlayBorderHoverColor,
+							label: 'overlayBorderHoverColor',
+							title: __(
+								'Hover Color',
+								'ultimate-addons-for-gutenberg'
+							),
+						} }
+						disableBottomSeparator={ false }
+					/>
+					<Range
+						label={ __(
+							'Border Distance From EDGE',
+							'ultimate-addons-for-gutenberg'
+						) }
+						setAttributes={ setAttributes }
+						value={ overlayPositionFromEdge }
+						onChange={ ( value ) =>
+							setAttributes( {
+								overlayPositionFromEdge: value,
+							} )
+						}
+						min={ 0 }
+						max={ 100 }
+						unit={ {
+							value: overlayPositionFromEdgeUnit,
+							label: 'overlayPositionFromEdgeUnit',
+						} }
+					/>
+				</>
+			)}
+
 			<BoxShadowControl
 				setAttributes={ setAttributes }
 				label={ __(
@@ -1149,66 +1213,6 @@ export default function Settings( props ) {
 				}
 				min={ 0 }
 				max={ 1 }
-			/>
-			<label htmlFor='overlayContentAlign'>
-				{__( 'Content Postion', 'ultimate-addons-for-gutenberg' )}
-
-			</label>
-			<AlignmentMatrixControl
-				id="overlayContentAlign"
-				value={ overlayContentPosition }
-				onChange={ ( newAlignment ) =>  setAttributes( {overlayContentPosition: newAlignment} ) }
-			/>
-			<Border
-				setAttributes={ setAttributes }
-				borderStyle={ {
-					value: overlayBorderStyle,
-					label: 'overlayBorderStyle',
-					title: __( 'Style', 'ultimate-addons-for-gutenberg' ),
-				} }
-				borderWidth={ {
-					value: overlayBorderWidth,
-					label: 'overlayBorderWidth',
-					title: __( 'Width', 'ultimate-addons-for-gutenberg' ),
-				} }
-				borderRadius={ {
-					value: overlayBorderRadius,
-					label: 'overlayBorderRadius',
-					title: __( 'Radius', 'ultimate-addons-for-gutenberg' ),
-				} }
-				borderColor={ {
-					value: overlayBorderColor,
-					label: 'overlayBorderColor',
-					title: __( 'Color', 'ultimate-addons-for-gutenberg' ),
-				} }
-				borderHoverColor={ {
-					value: overlayBorderHoverColor,
-					label: 'overlayBorderHoverColor',
-					title: __(
-						'Hover Color',
-						'ultimate-addons-for-gutenberg'
-					),
-				} }
-				disableBottomSeparator={ false }
-			/>
-			<Range
-				label={ __(
-					'Overlay Position From EDGE',
-					'ultimate-addons-for-gutenberg'
-				) }
-				setAttributes={ setAttributes }
-				value={ overlayPositionFromEdge }
-				onChange={ ( value ) =>
-					setAttributes( {
-						overlayPositionFromEdge: value,
-					} )
-				}
-				min={ 0 }
-				max={ 100 }
-				unit={ {
-					value: overlayPositionFromEdgeUnit,
-					label: 'overlayPositionFromEdgeUnit',
-				} }
 			/>
 		</UAGAdvancedPanelBody>
 	)
