@@ -1023,38 +1023,43 @@ export default function Settings( props ) {
 			title={ __( 'Image Style', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ false }
 		>
-			<Border
-				setAttributes={ setAttributes }
-				borderStyle={ {
-					value: imageBorderStyle,
-					label: 'imageBorderStyle',
-					title: __( 'Style', 'ultimate-addons-for-gutenberg' ),
-				} }
-				borderWidth={ {
-					value: imageBorderWidth,
-					label: 'imageBorderWidth',
-					title: __( 'Width', 'ultimate-addons-for-gutenberg' ),
-				} }
-				borderRadius={ {
-					value: imageBorderRadius,
-					label: 'imageBorderRadius',
-					title: __( 'Radius', 'ultimate-addons-for-gutenberg' ),
-				} }
-				borderColor={ {
-					value: imageBorderColor,
-					label: 'imageBorderColor',
-					title: __( 'Color', 'ultimate-addons-for-gutenberg' ),
-				} }
-				borderHoverColor={ {
-					value: imageBorderhoverColor,
-					label: 'imageBorderhoverColor',
-					title: __(
-						'Hover Color',
-						'ultimate-addons-for-gutenberg'
-					),
-				} }
-				disableBottomSeparator={ true }
-			/>
+			{
+				layout === 'default' && (
+					<Border
+						setAttributes={ setAttributes }
+						borderStyle={ {
+							value: imageBorderStyle,
+							label: 'imageBorderStyle',
+							title: __( 'Style', 'ultimate-addons-for-gutenberg' ),
+						} }
+						borderWidth={ {
+							value: imageBorderWidth,
+							label: 'imageBorderWidth',
+							title: __( 'Width', 'ultimate-addons-for-gutenberg' ),
+						} }
+						borderRadius={ {
+							value: imageBorderRadius,
+							label: 'imageBorderRadius',
+							title: __( 'Radius', 'ultimate-addons-for-gutenberg' ),
+						} }
+						borderColor={ {
+							value: imageBorderColor,
+							label: 'imageBorderColor',
+							title: __( 'Color', 'ultimate-addons-for-gutenberg' ),
+						} }
+						borderHoverColor={ {
+							value: imageBorderhoverColor,
+							label: 'imageBorderhoverColor',
+							title: __(
+								'Hover Color',
+								'ultimate-addons-for-gutenberg'
+							),
+						} }
+						disableBottomSeparator={ true }
+					/>
+				)
+			}
+
 			<BoxShadowControl
 				setAttributes={ setAttributes }
 				label={ __(

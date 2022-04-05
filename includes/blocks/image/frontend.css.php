@@ -20,11 +20,14 @@ if ( 'outset' === $attr['imageBoxShadowPosition'] ) {
 }
 
 $selectors = array(
-	'.wp-block-uagb-image .wp-block-uagb-image__figure img'                             => array(
+	'.wp-block-uagb-image--layout-default img'                             => array(
 		'border-style'  => $attr['imageBorderStyle'],
 		'border-color'  => $attr['imageBorderColor'],
 		'border-radius' => UAGB_Helper::get_css_value( $attr['imageBorderRadius'], 'px' ),
 		'border-width'  => UAGB_Helper::get_css_value( $attr['imageBorderWidth'], 'px' ),
+		'box-shadow'    => UAGB_Helper::get_css_value( $attr['imageBoxShadowHOffset'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['imageBoxShadowVOffset'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['imageBoxShadowBlur'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['imageBoxShadowSpread'], 'px' ) . ' ' . $attr['imageBoxShadowColor'] . ' ' . $imageBoxShadowPosition,
+	),
+	'.wp-block-uagb-image--layout-overlay img'                             => array(
 		'box-shadow'    => UAGB_Helper::get_css_value( $attr['imageBoxShadowHOffset'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['imageBoxShadowVOffset'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['imageBoxShadowBlur'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['imageBoxShadowSpread'], 'px' ) . ' ' . $attr['imageBoxShadowColor'] . ' ' . $imageBoxShadowPosition,
 	),
 	'.wp-block-uagb-image .wp-block-uagb-image__figure img:hover'                       => array(

@@ -129,14 +129,20 @@ export default function styling( props ) {
 
 	const getImageShadowPosition = imageBoxShadowPosition !== 'outset' ? imageBoxShadowPosition : ''
 
+
 	const selectors = {
-		'.wp-block-uagb-image .wp-block-uagb-image__figure img':{
+		'.wp-block-uagb-image--layout-default img':{
 			'width': generateCSSUnit( width, 'px' ),
 			'height': generateCSSUnit( height, 'px' ),
 			'border-style': imageBorderStyle,
 			'border-color': imageBorderColor,
 			'border-radius': generateCSSUnit( imageBorderRadius, 'px' ),
 			'border-width': generateCSSUnit( imageBorderWidth, 'px' ),
+			'box-shadow': generateCSSUnit( imageBoxShadowHOffset, 'px' ) + ' ' + generateCSSUnit( imageBoxShadowVOffset, 'px' ) +	' ' + generateCSSUnit( imageBoxShadowBlur, 'px' ) + ' ' +	generateCSSUnit( imageBoxShadowSpread, 'px' ) + ' ' + imageBoxShadowColor + ' ' + getImageShadowPosition,
+		},
+		'.wp-block-uagb-image--layout-overlay img':{
+			'width': generateCSSUnit( width, 'px' ),
+			'height': generateCSSUnit( height, 'px' ),
 			'box-shadow': generateCSSUnit( imageBoxShadowHOffset, 'px' ) + ' ' + generateCSSUnit( imageBoxShadowVOffset, 'px' ) +	' ' + generateCSSUnit( imageBoxShadowBlur, 'px' ) + ' ' +	generateCSSUnit( imageBoxShadowSpread, 'px' ) + ' ' + imageBoxShadowColor + ' ' + getImageShadowPosition,
 		},
 		'.wp-block-uagb-image .wp-block-uagb-image__figure img:hover':{
