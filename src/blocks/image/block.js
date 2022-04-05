@@ -12,13 +12,14 @@ import { registerBlockType } from '@wordpress/blocks';
 
 
 registerBlockType( 'uagb/image', {
-	title: __( 'Advanced Image', 'ultimate-addons-for-gutenberg' ),
-	description: __( 'This block helps you add Image.', 'ultimate-addons-for-gutenberg' ),
+	title: __( 'Advance Image', 'ultimate-addons-for-gutenberg' ),
+	description: __( 'This Block let\'s you add an Image.', 'ultimate-addons-for-gutenberg' ),
 	icon: UAGB_Block_Icons.post_masonry,
 	keywords: [
 		__( 'image', 'ultimate-addons-for-gutenberg' ),
-		__( 'advanced image', 'ultimate-addons-for-gutenberg' ),
+		__( 'advance image', 'ultimate-addons-for-gutenberg' ),
 		__( 'caption', 'ultimate-addons-for-gutenberg' ),
+		__( 'overlay image', 'ultimate-addons-for-gutenberg' ),
 	],
 	example: {},
 	supports: {
