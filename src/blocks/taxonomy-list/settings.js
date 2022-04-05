@@ -17,14 +17,16 @@ import ResponsiveSlider from '@Components/responsive-slider';
 import MultiButtonsControl from '@Components/multi-buttons-control';
 import UAGTabsControl from '@Components/tabs';
 import {
-	PanelBody,
 	SelectControl,
 	TextControl,
 	Icon,
 	ToggleControl,
 } from '@wordpress/components';
-import { InspectorControls } from '@wordpress/block-editor';
+import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
 
+import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
+
+import apiFetch from '@wordpress/api-fetch';
 const Settings = ( props ) => {
 	props = props.parentProps;
 
@@ -139,7 +141,7 @@ const Settings = ( props ) => {
 		countDecoration,
 		listDecoration,
 	} = attributes;
-	
+
 	const taxonomy_list_setting = showEmptyTaxonomy ? taxonomyList : termsList;
 	const taxonomyListOptions = [
 		{
@@ -264,21 +266,23 @@ const Settings = ( props ) => {
 	);
 
 	const onSelectPostType = ( value ) => {
-		jQuery.ajax( {
+		const formData = new window.FormData();
+
+		formData.append( 'action', 'uagb_get_taxonomy' );
+		formData.append(
+			'nonce',
+			uagb_blocks_info.uagb_ajax_nonce
+		);
+		apiFetch( {
 			url: uagb_blocks_info.ajax_url,
-			data: {
-				action: 'uagb_get_taxonomy',
-				nonce: uagb_blocks_info.uagb_ajax_nonce
-			},
-			dataType: 'json',
-			type: 'POST',
-			success( data ) {
-				setAttributes( { listInJson: data } );
-				setAttributes( { postType: value } );
-				setAttributes( { categories: '' } );
-				setAttributes( { taxonomyType: '' } );
-			},
-		} )
+			method: 'POST',
+			body: formData,
+		} ).then( ( data ) => {
+			setAttributes( { listInJson: data } );
+			setAttributes( { postType: value } );
+			setAttributes( { categories: '' } );
+			setAttributes( { taxonomyType: '' } );
+		} );
 	};
 
 	const onSelectTaxonomyType = ( value ) => {
@@ -296,7 +300,7 @@ const Settings = ( props ) => {
 			}
 		}
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Layout', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -395,6 +399,8 @@ const Settings = ( props ) => {
 								max: 2,
 							},
 						} }
+						min={ 1 }
+						max={ 4 }
 						displayUnit={ false }
 						setAttributes={ setAttributes }
 					/>
@@ -554,12 +560,12 @@ const Settings = ( props ) => {
 						/>
 					</>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const postQueryPanel = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Query', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ true }
 			>
@@ -645,22 +651,15 @@ const Settings = ( props ) => {
 							) }
 						/>
 					) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const titleColorPanel = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Title', 'ultimate-addons-for-gutenberg' ) }
-				initialOpen={ true }
+				initialOpen={ false }
 			>
-				<AdvancedPopColorControl
-					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
-					colorValue={ titleColor ? titleColor : '' }
-					onColorChange={ ( value ) =>
-						setAttributes( { titleColor: value } )
-					}
-				/>
 				<TypographyControl
 					label={ __(
 						'Typography',
@@ -725,12 +724,35 @@ const Settings = ( props ) => {
 						label: 'titleDecoration',
 					} }
 				/>
-			</PanelBody>
+				<AdvancedPopColorControl
+					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
+					colorValue={ titleColor ? titleColor : '' }
+					onColorChange={ ( value ) =>
+						setAttributes( { titleColor: value } )
+					}
+				/>
+				{ showCount && (
+					<Range
+						label={ __(
+							'Bottom Spacing',
+							'ultimate-addons-for-gutenberg'
+						) }
+						setAttributes={ setAttributes }
+						value={ titleBottomSpace }
+						onChange={ ( value ) =>
+							setAttributes( { titleBottomSpace: value } )
+						}
+						min={ 0 }
+						max={ 50 }
+						displayUnit={ false }
+					/>
+				) }
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const countColorPanel = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Count', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -805,12 +827,12 @@ const Settings = ( props ) => {
 						label: 'countDecoration',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const bgColorPanel = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Background', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -821,12 +843,12 @@ const Settings = ( props ) => {
 						setAttributes( { bgColor: value } )
 					}
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const spacingPanel = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Spacing', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -860,22 +882,6 @@ const Settings = ( props ) => {
 							max={ 50 }
 							displayUnit={ false }
 						/>
-						{ showCount && (
-							<Range
-								label={ __(
-									'Bottom Spacing',
-									'ultimate-addons-for-gutenberg'
-								) }
-								setAttributes={ setAttributes }
-								value={ titleBottomSpace }
-								onChange={ ( value ) =>
-									setAttributes( { titleBottomSpace: value } )
-								}
-								min={ 0 }
-								max={ 50 }
-								displayUnit={ false }
-							/>
-						) }
 						<SpacingControl
 							{ ...props }
 							label={ __(
@@ -968,12 +974,12 @@ const Settings = ( props ) => {
 						displayUnit={ false }
 					/>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const borderPanel = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Border', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -1009,12 +1015,12 @@ const Settings = ( props ) => {
 					} }
 					disableBottomSeparator={ true }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const listPanel = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'List', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -1103,12 +1109,12 @@ const Settings = ( props ) => {
 					hover={ colorControlHover }
 					disableBottomSeparator={ true }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const separatorPanel = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Separator', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -1147,12 +1153,12 @@ const Settings = ( props ) => {
 					} }
 					disableBottomSeparator={ true }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const boxShadowPanel = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Box Shadow', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -1202,7 +1208,7 @@ const Settings = ( props ) => {
 						),
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
@@ -1257,6 +1263,14 @@ const Settings = ( props ) => {
 	return (
 		<>
 			<Suspense fallback={ lazyLoader() }>
+				<BlockControls key="controls">
+					<AlignmentToolbar
+						value={ alignment }
+						onChange={ ( value ) =>
+							setAttributes( { alignment: value } )
+						}
+					/>
+				</BlockControls>
 				{ inspectorControlsSettings }
 				{ loadTitleGoogleFonts }
 				{ loadCountGoogleFonts }

@@ -3,7 +3,6 @@ import React, { Suspense } from 'react';
 import lazyLoader from '@Controls/lazy-loader';
 import TypographyControl from '@Components/typography';
 import UAGIconPicker from '@Components/icon-picker';
-import renderSVG from '@Controls/renderIcon';
 import WebfontLoader from '@Components/typography/fontloader';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
 import ResponsiveSlider from '@Components/responsive-slider';
@@ -14,21 +13,23 @@ import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
 import InspectorTab, {
 	UAGTabs,
 } from '@Components/inspector-tabs/InspectorTab.js';
-import MultiButtonsControl from '@Components/multi-buttons-control';
 import UAGTabsControl from '@Components/tabs';
-
+import renderSVG from '@Controls/renderIcon';
 import {
 	BlockControls,
-	BlockAlignmentToolbar,
+	AlignmentToolbar,
 	InspectorControls,
 } from '@wordpress/block-editor';
-
+import MultiButtonsControl from '@Components/multi-buttons-control';
 import {
-	PanelBody,
 	PanelRow,
 	ToggleControl,
-	Icon,
+	Icon
 } from '@wordpress/components';
+
+
+
+import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 const Settings = ( props ) => {
 	props = props.parentProps;
@@ -37,6 +38,7 @@ const Settings = ( props ) => {
 
 	const {
 		align,
+		headingAlignment,
 		disableBullets,
 		makeCollapsible,
 		initialCollapse,
@@ -131,7 +133,6 @@ const Settings = ( props ) => {
 		headingLineHeightTablet,
 		headingLineHeightMobile,
 		mappingHeaders,
-		headingAlignment,
 		fontStyle,
 		fontTransform,
 		fontDecoration,
@@ -172,7 +173,7 @@ const Settings = ( props ) => {
 
 	const getGeneralPanelBody = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'General', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ true }
 			>
@@ -202,13 +203,13 @@ const Settings = ( props ) => {
 						/>
 					</PanelRow>
 				) ) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getScrollPanelBody = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Scroll', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -272,15 +273,15 @@ const Settings = ( props ) => {
 						setAttributes( { scrollToTop: ! scrollToTop } )
 					}
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getTitle = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Title', 'ultimate-addons-for-gutenberg' ) }
-				initialOpen={ true }
+				initialOpen={ false }
 			>
 				<AdvancedPopColorControl
 					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
@@ -355,7 +356,7 @@ const Settings = ( props ) => {
 				/>
 				<Range
 					label={ __(
-						'Bottom Space',
+						'Bottom Spacing',
 						'ultimate-addons-for-gutenberg'
 					) }
 					setAttributes={ setAttributes }
@@ -367,13 +368,13 @@ const Settings = ( props ) => {
 					max={ 50 }
 					displayUnit={ false }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getContent = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Content', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -405,7 +406,9 @@ const Settings = ( props ) => {
 							value: 'center',
 							icon: (
 								<Icon
-									icon={ renderSVG( 'fa fa-align-center' ) }
+									icon={ renderSVG(
+										'fa fa-align-center'
+									) }
 								/>
 							),
 							tooltip: __(
@@ -417,7 +420,64 @@ const Settings = ( props ) => {
 							value: 'right',
 							icon: (
 								<Icon
-									icon={ renderSVG( 'fa fa-align-right' ) }
+									icon={ renderSVG(
+										'fa fa-align-right'
+									) }
+								/>
+							),
+							tooltip: __(
+								'Right',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+					] }
+					showIcons={ true }
+				/>
+				<MultiButtonsControl
+					setAttributes={ setAttributes }
+					label={ __(
+						'Alignment',
+						'ultimate-addons-for-gutenberg'
+					) }
+					data={ {
+						value: align,
+						label: 'align',
+					} }
+					className="uagb-multi-button-alignment-control"
+					options={ [
+						{
+							value: 'left',
+							icon: (
+								<Icon
+									icon={ renderSVG( 'fa fa-align-left' ) }
+								/>
+							),
+							tooltip: __(
+								'Left',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'center',
+							icon: (
+								<Icon
+									icon={ renderSVG(
+										'fa fa-align-center'
+									) }
+								/>
+							),
+							tooltip: __(
+								'Center',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'right',
+							icon: (
+								<Icon
+									icon={ renderSVG(
+										'fa fa-align-right'
+									) }
 								/>
 							),
 							tooltip: __(
@@ -482,12 +542,11 @@ const Settings = ( props ) => {
 					} }
 					min={ 0 }
 					max={ 100 }
+					limitMin={ { 'px': 0, '%': 0 } }
+					limitMax={ { 'px': 1500, '%': 100 } }
 					units={ [
 						{
-							name: __(
-								'Pixel',
-								'ultimate-addons-for-gutenberg'
-							),
+							name: __( 'Pixel', 'ultimate-addons-for-gutenberg' ),
 							unitValue: 'px',
 						},
 						{
@@ -546,6 +605,8 @@ const Settings = ( props ) => {
 								max: maxMob,
 							},
 						} }
+						min={ 0 }
+						max={ 100 }
 						units={ [
 							{
 								name: __(
@@ -629,13 +690,13 @@ const Settings = ( props ) => {
 						/>
 					</>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getBulletStyle = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Bullet Points', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -646,13 +707,13 @@ const Settings = ( props ) => {
 						setAttributes( { bulletColor: value } )
 					}
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getIconStyle = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Icon', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -663,13 +724,13 @@ const Settings = ( props ) => {
 						setAttributes( { iconColor: value } )
 					}
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getContentStyle = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Content', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -777,13 +838,13 @@ const Settings = ( props ) => {
 						label: 'lineHeightTablet',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getScrollToTop = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Scroll To Top', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -811,7 +872,7 @@ const Settings = ( props ) => {
 						}
 					/>
 				</>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
@@ -821,7 +882,7 @@ const Settings = ( props ) => {
 
 	const getBackground = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Background', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -832,13 +893,13 @@ const Settings = ( props ) => {
 						setAttributes( { backgroundColor: value } )
 					}
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getBorder = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Border', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -874,13 +935,13 @@ const Settings = ( props ) => {
 					} }
 					disableBottomSeparator={ true }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getSpacing = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Spacing', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -1026,21 +1087,23 @@ const Settings = ( props ) => {
 						label: 'marginLink',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	return (
 		<Suspense fallback={ lazyLoader() }>
-			<BlockControls>
-				<BlockAlignmentToolbar
-					value={ align }
-					onChange={ ( value ) => {
-						setAttributes( { align: value } );
-					} }
-					controls={ [ 'left', 'center', 'right' ] }
-				/>
-			</BlockControls>
+			{ ! customWidth && (
+				<BlockControls>
+					<AlignmentToolbar
+						value={ align }
+						onChange={ ( value ) => {
+							setAttributes( { align: value } );
+						} }
+						controls={ [ 'left', 'center', 'right' ] }
+					/>
+				</BlockControls>
+			)}
 			<InspectorControls>
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>

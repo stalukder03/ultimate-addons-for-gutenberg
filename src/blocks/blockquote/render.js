@@ -6,6 +6,7 @@ import AuthorImage from './components/AuthorImage';
 import AuthorText from './components/AuthorText';
 import TweetButtonCTA from './components/TweetButtonCTA';
 import styles from './editor.lazy.scss';
+import { useDeviceType } from '@Controls/getPreviewType';
 
 const Render = ( props ) => {
 	// Add and remove the CSS on the drop and remove of the component.
@@ -18,9 +19,10 @@ const Render = ( props ) => {
 
 	props = props.parentProps;
 
-	const { className, setAttributes, attributes, deviceType } = props;
+	const { className, setAttributes, attributes } = props;
 
 	const {
+		isPreview,
 		skinStyle,
 		align,
 		stack,
@@ -32,18 +34,16 @@ const Render = ( props ) => {
 		authorImgPosition,
 	} = attributes;
 
+	const deviceType = useDeviceType();
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/blockquote.png`;
+
 	return (
-		<div
-			className={ classnames(
-				className,
-				'uagb-blockquote__outer-wrap',
-				`uagb-block-${ props.clientId.substr( 0, 8 ) }`,
-				`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`
-			) }
-		>
+		isPreview ? <img width='100%' src={previewImageData} alt=''/> :
 			<div
 				className={ classnames(
-					'uagb-blockquote__wrap',
+					className,
+					`uagb-block-${ props.clientId.substr( 0, 8 ) }`,
+					`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
 					`uagb-blockquote__skin-${ skinStyle }`,
 					skinStyle !== 'border'
 						? `uagb-blockquote__align-${ align }`
@@ -59,21 +59,15 @@ const Render = ( props ) => {
 			>
 				<blockquote className="uagb-blockquote">
 					{ skinStyle === 'quotation' && (
-						<div className="uagb-blockquote__icon-wrap">
-							<span className="uagb-blockquote__icon">
+						<span className="uagb-blockquote__icon">
 								{ UAGB_Block_Icons.quote_inline_icon }
-							</span>{ ' ' }
-						</div>
+						</span>
 					) }
-					<div className="uagb-blockquote__content-wrap">
-						{
-							<Description
-								attributes={ attributes }
-								setAttributes={ setAttributes }
-								props={ props }
-							/>
-						}
-
+						<Description
+							attributes={ attributes }
+							setAttributes={ setAttributes }
+							props={ props }
+						/>
 						<footer>
 							<div
 								className={ classnames(
@@ -83,23 +77,20 @@ const Render = ( props ) => {
 										: ''
 								) }
 							>
-								{ <AuthorImage attributes={ attributes } /> }
-								{
-									<AuthorText
+								<AuthorImage attributes={ attributes } />
+
+								<AuthorText
 										attributes={ attributes }
 										setAttributes={ setAttributes }
 										props={ props }
 									/>
-								}
 							</div>
 							{ enableTweet && (
 								<TweetButtonCTA attributes={ attributes } />
 							) }
 						</footer>
-					</div>
 				</blockquote>
 			</div>
-		</div>
 	);
 };
 

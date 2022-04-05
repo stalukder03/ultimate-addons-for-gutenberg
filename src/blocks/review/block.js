@@ -7,7 +7,7 @@ import edit from './edit';
 import save from './save';
 import './style.scss';
 import { __ } from '@wordpress/i18n';
-
+import deprecated from './deprecated';
 import { registerBlockType } from '@wordpress/blocks';
 
 registerBlockType( 'uagb/review', {
@@ -21,11 +21,16 @@ registerBlockType( 'uagb/review', {
 		__( 'schema', 'ultimate-addons-for-gutenberg' ),
 		__( 'uag', 'ultimate-addons-for-gutenberg' ),
 	],
-	example: {},
+	example: {
+		attributes: {
+			isPreview: true,
+		}
+	},
 	supports: {
 		anchor: true,
 	},
 	attributes,
 	edit,
 	save,
+	deprecated
 } );

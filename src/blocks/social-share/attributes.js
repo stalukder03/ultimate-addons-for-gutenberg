@@ -2,7 +2,7 @@
  * BLOCK: UAGB Social Share Attributes
  */
 
-const itemCount = 1;
+const itemCount = 3;
 
 const socials = [];
 
@@ -37,6 +37,9 @@ const attributes = {
 	align: {
 		type: 'string',
 		default: 'center',
+		UAGCopyPaste: {
+			styleType: 'column-gradient-value'
+		}
 	},
 	social_count: {
 		type: 'number',
@@ -48,38 +51,68 @@ const attributes = {
 	},
 	gap: {
 		type: 'number',
-		default: 15,
+		default: 10,
+		UAGCopyPaste: {
+			styleType: 'column-gradient-value'
+		}
 	},
 	size: {
 		type: 'number',
 		default: 25,
+		UAGCopyPaste: {
+			styleType: 'icon-size'
+		}
 	},
 	sizeType: {
 		type: 'string',
 		default: 'px',
+		UAGCopyPaste: {
+			styleType: 'icon-size-type'
+		}
 	},
 	sizeMobile: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'icon-size-mobile'
+		}
 	},
 	sizeTablet: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'icon-size-tablet'
+		}
 	},
 	bgSize: {
 		type: 'number',
 		default: 0,
+		UAGCopyPaste: {
+			styleType: 'icon-bg-size'
+		}
 	},
 	bgSizeType: {
 		type: 'string',
 		default: 'px',
+		UAGCopyPaste: {
+			styleType: 'icon-bg-size-unit'
+		}
 	},
 	bgSizeMobile: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'icon-bg-size-mobile'
+		}
 	},
 	bgSizeTablet: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'icon-bg-size-tablet'
+		}
 	},
 	borderRadius: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'icon-border-radius'
+		},
 		default: 0,
 	},
 	social_layout: {
@@ -90,6 +123,10 @@ const attributes = {
 		type: 'string',
 		default: 'none',
 	},
+	isPreview: {
+		type: 'boolean',
+		default: false,
+	}
 };
 
 export default attributes;

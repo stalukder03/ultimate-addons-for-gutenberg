@@ -13,12 +13,13 @@ const Render = ( props ) => {
 	const { className, setAttributes, attributes } = props;
 
 	// Setup the attributes.
-	const { 
+	const {
 		imagePosition,
 		showTitle,
 		showContent,
 		showPrice,
-		showImg
+		showImg,
+		headingAlign
 	} = attributes;
 
 	const parentClientId = select(
@@ -28,41 +29,40 @@ const Render = ( props ) => {
 		parentClientId
 	);
 
-	const position = parentAttributes
-		? parentAttributes.imagePosition
-		: imagePosition;
+	const position = ( parentAttributes ) ? ( ( parentAttributes.imagePosition ) ?  parentAttributes.imagePosition : imagePosition ) : imagePosition; // eslint-disable-line no-nested-ternary
+	const align = ( parentAttributes ) ? ( ( parentAttributes.headingAlign ) ?  parentAttributes.headingAlign : headingAlign ) : headingAlign; // eslint-disable-line no-nested-ternary
 
 	return (
 		<div
 			className={ classnames(
 				className,
-				'uagb-rest_menu__outer-wrap',
+				'uagb-rest_menu__wrap',
 				`uagb-block-${ props.clientId.substr( 0, 8 ) }`,
 				...PositionClasses( attributes )
 			) }
 		>
 			<Suspense fallback={ lazyLoader() }>
 				<div className="uagb-rm__content">
-					{ showImg && <> 
+					{ showImg && <>
 					{ ( position === 'top' || position === 'left' ) && (
 						<RestMenuImage attributes={ attributes } />
 					) }
 					</> }
-					{ ( showTitle || showContent || showPrice ) && 
+					{ ( showTitle || showContent || showPrice ) &&
 					<div className="uagb-rm__text-wrap">
 						{
 							<>
 								<div className="uagb-rm-details">
-								{ ( showTitle || showContent ) && 
+								{ ( showTitle || showContent ) &&
 									<div className="uagb-rm__title-wrap">
-										{ showTitle && 
+										{ showTitle &&
 										<Title
 											attributes={ attributes }
 											setAttributes={ setAttributes }
 											props={ props }
 										/>
 										}
-										{ showContent && 
+										{ showContent &&
 										<div className="uagb-rest-menu-text-wrap">
 											<Description
 												attributes={ attributes }
@@ -87,16 +87,67 @@ const Render = ( props ) => {
 						}
 					</div>
 					}
-					{ showImg && <> 
-					{ position === 'right' && (
-						<RestMenuImage attributes={ attributes } />
-					) }
+					{ showImg && <>
+						{
+							<>
+							<div className="uagb-rm-details">
+							{ position === 'right' && (
+								<>
+								<Price
+									attributes={ attributes }
+									setAttributes={ setAttributes }
+									props={ props }
+								/>
+								<Title
+									attributes={ attributes }
+									setAttributes={ setAttributes }
+									props={ props }
+								/>
+								<Description
+									attributes={ attributes }
+									setAttributes={ setAttributes }
+									props={ props }
+								/>
+								</>
+							) }
+							{ ( position === 'top' || position === 'left' ) && (
+								<>
+								{ ( align === 'right' ) && (
+								<Price
+									attributes={ attributes }
+									setAttributes={ setAttributes }
+									props={ props }
+								/>
+								)}
+								<Title
+									attributes={ attributes }
+									setAttributes={ setAttributes }
+									props={ props }
+								/>
+								<Description
+									attributes={ attributes }
+									setAttributes={ setAttributes }
+									props={ props }
+								/>
+								{ ( align !== 'right' ) && (
+								<Price
+									attributes={ attributes }
+									setAttributes={ setAttributes }
+									props={ props }
+								/>
+								)}
+								</>
+							)}
+							</div>
+							</>
+						}
+						{ position === 'right' && (
+							<RestMenuImage attributes={ attributes } />
+						) }
 					</> }
 				</div>
 			</Suspense>
-			<div className="uagb-rm__separator-parent">
 				<div className="uagb-rm__separator"></div>
-			</div>
 		</div>
 	);
 };

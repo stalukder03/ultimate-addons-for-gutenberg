@@ -29,6 +29,9 @@ const attributes = {
 	align: {
 		type: 'string',
 		default: 'center',
+		UAGCopyPaste: {
+			styleType: 'overall-alignment'
+		},
 	},
 	headingTag: {
 		type: 'string',
@@ -37,10 +40,16 @@ const attributes = {
 	timelinAlignment: {
 		type: 'string',
 		default: 'center',
+		UAGCopyPaste: {
+			styleType: 'timeline-alignment'
+		},
 	},
 	arrowlinAlignment: {
 		type: 'string',
 		default: 'center',
+		UAGCopyPaste: {
+			styleType: 'arrowline-alignment'
+		},
 	},
 	block_id: {
 		type: 'string',
@@ -57,6 +66,9 @@ const attributes = {
 	iconSize: {
 		type: 'number',
 		default: 12,
+		UAGCopyPaste: {
+			styleType: 'icon-size'
+		},
 	},
 	icon: {
 		type: 'string',

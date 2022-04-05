@@ -92,6 +92,7 @@ function styling( props ) {
 
 	const selectors = {
 		':before': inlineStyles( props ),
+		':after': inlineStyles( props ),
 		'': style,
 	};
 
@@ -189,20 +190,20 @@ function styling( props ) {
 
 	let stylingCss = '';
 
-	const id = `#wpwrap .edit-post-visual-editor #block-${ props.clientId }`;
+	const id = `#block-${ props.clientId }`;
 
 	stylingCss = generateCSS( selectors, id );
 
 	stylingCss += generateCSS(
 		tabletSelectors,
-		`${ id }.uagb-editor-preview-mode-tablet`,
+		`.uagb-editor-preview-mode-tablet ${ id }`,
 		true,
 		'tablet'
 	);
 
 	stylingCss += generateCSS(
 		mobileSelectors,
-		`${ id }.uagb-editor-preview-mode-mobile`,
+		`.uagb-editor-preview-mode-mobile ${ id }`,
 		true,
 		'mobile'
 	);

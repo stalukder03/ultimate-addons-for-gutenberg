@@ -8,6 +8,7 @@ import edit from './edit';
 import save from './save';
 import './style.scss';
 import { __ } from '@wordpress/i18n';
+import deprecated from './deprecated';
 import { registerBlockType } from '@wordpress/blocks';
 
 registerBlockType( 'uagb/star-rating', {
@@ -27,11 +28,12 @@ registerBlockType( 'uagb/star-rating', {
 	},
 	example: {
 		attributes: {
-			rating: 4,
-		},
+			isPreview: true,
+		}
 	},
 	category: uagb_blocks_info.category,
 	attributes,
 	edit,
 	save,
+	deprecated
 } );

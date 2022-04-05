@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import { InnerBlocks } from '@wordpress/block-editor';
 import React, { useLayoutEffect, useMemo } from 'react';
 import styles from './editor.lazy.scss';
+import { useDeviceType } from '@Controls/getPreviewType';
 
 const ALLOWED_BLOCKS = [ 'uagb/icon-list-child' ];
 
@@ -16,18 +17,15 @@ const Render = ( props ) => {
 	}, [] );
 
 	props = props.parentProps;
-	const { attributes, deviceType } = props;
+	const deviceType = useDeviceType();
+	const { attributes } = props;
 
 	const {
+		isPreview,
 		className,
 		icon_count,
-		icon_layout,
-		iconPosition,
-		hideLabel,
 		block_id,
 	} = attributes;
-
-	const labelClass = hideLabel ? 'uagb-icon-list__no-label' : '';
 
 	const getIconTemplate = useMemo( () => {
 		const childIconList = [];
@@ -39,14 +37,13 @@ const Render = ( props ) => {
 		return childIconList;
 	}, [ icon_count ] );
 
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/icon-list.png`;
+
 	return (
+		isPreview ? <img width='100%' src={previewImageData} alt=''/> :
 		<div
 			className={ classnames(
 				className,
-				'uagb-icon-list__outer-wrap',
-				`uagb-icon-list__layout-${ icon_layout }`,
-				iconPosition === 'top' ? 'uagb-icon-list__icon-at-top' : '',
-				labelClass,
 				`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
 				`uagb-block-${ block_id }`
 			) }
@@ -56,7 +53,6 @@ const Render = ( props ) => {
 					template={ getIconTemplate }
 					templateLock={ false }
 					allowedBlocks={ ALLOWED_BLOCKS }
-					orientation={ icon_layout }
 				/>
 			</div>
 		</div>

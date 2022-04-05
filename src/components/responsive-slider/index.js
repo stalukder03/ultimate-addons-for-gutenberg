@@ -1,31 +1,18 @@
 
 import Range from '@Components/range/Range.js';
-// Extend component
-import { useSelect } from '@wordpress/data';
+import { useDeviceType } from '@Controls/getPreviewType';
+import { limitMax, limitMin } from '@Controls/unitWiseMinMaxOption';
 
 const ResponsiveSlider = ( props ) => {
-	const deviceType = useSelect( ( select ) => {
-		return select( 'core/edit-post' ).__experimentalGetPreviewDeviceType();
-	}, [] );
-
+	const deviceType = useDeviceType();
 	const output = {};
+	const maxDesk = limitMax( props.data.desktop.unit?.value, props, true );
+	const maxTab = limitMax( props.data.tablet.unit?.value, props, true );
+	const maxMob = limitMax( props.data.mobile.unit?.value, props, true );
+	const minDesk =	limitMin( props.data.desktop.unit?.value, props, true );
+	const minTab = limitMin( props.data.tablet.unit?.value, props, true );
+	const minMob = limitMin( props.data.mobile.unit?.value, props, true );
 
-	const maxDesk =
-		undefined !== props.data.desktop.max
-			? props.data.desktop.max
-			: props.max;
-	const maxTab =
-		undefined !== props.data.tablet.max ? props.data.tablet.max : props.max;
-	const maxMob =
-		undefined !== props.data.mobile.max ? props.data.mobile.max : props.max;
-	const minDesk =
-		undefined !== props.data.desktop.min
-			? props.data.desktop.min
-			: props.min;
-	const minTab =
-		undefined !== props.data.tablet.min ? props.data.tablet.min : props.min;
-	const minMob =
-		undefined !== props.data.mobile.min ? props.data.mobile.min : props.min;
 
 	output.Desktop = (
 		<>
@@ -33,11 +20,16 @@ const ResponsiveSlider = ( props ) => {
 				{ ...props }
 				label={ props.label }
 				value={ props.data.desktop.value || '' }
-				onChange={ ( value ) =>
+				onChange={ ( value ) => {
 					props.setAttributes( {
 						[ props.data.desktop.label ]: value,
 					} )
-				}
+
+					if ( props.onChange ) {
+						props.onChange( value )
+					}
+				}}
+
 				min={ minDesk }
 				max={ maxDesk }
 				unit={ props.data.desktop.unit || props.unit }
@@ -52,11 +44,14 @@ const ResponsiveSlider = ( props ) => {
 				{ ...props }
 				label={ props.label }
 				value={ props.data.tablet.value }
-				onChange={ ( value ) =>
+				onChange={ ( value ) => {
 					props.setAttributes( {
 						[ props.data.tablet.label ]: value,
 					} )
-				}
+					if ( props.onChange ) {
+						props.onChange( value )
+					}
+				}}
 				min={ minTab }
 				max={ maxTab }
 				unit={ props.data.tablet.unit || props.unit }
@@ -71,11 +66,14 @@ const ResponsiveSlider = ( props ) => {
 				{ ...props }
 				label={ props.label }
 				value={ props.data.mobile.value }
-				onChange={ ( value ) =>
+				onChange={ ( value ) => {
 					props.setAttributes( {
 						[ props.data.mobile.label ]: value,
 					} )
-				}
+					if ( props.onChange ) {
+						props.onChange( value )
+					}
+				}}
 				min={ minMob }
 				max={ maxMob }
 				unit={ props.data.mobile.unit || props.unit }

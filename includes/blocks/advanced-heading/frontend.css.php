@@ -16,16 +16,18 @@ $t_selectors = array();
 
 if ( $attr['showheading'] ) {
 	$selectors[' .uagb-heading-text'] = array(
-		'text-align'    => $attr['headingAlign'],
 		'color'         => $attr['headingColor'],
 		'margin-bottom' => UAGB_Helper::get_css_value( $attr['headSpace'], 'px' ),
 	);
 }
 
+$selectors[' .wp-block-uagb-advanced-heading'] = array(
+	'text-align' => $attr['headingAlign'],
+);
+
 if ( $attr['showdesc'] ) {
 	$selectors[' .uagb-desc-text'] = array(
-		'text-align' => $attr['headingAlign'],
-		'color'      => $attr['subHeadingColor'],
+		'color' => $attr['subHeadingColor'],
 	);
 }
 

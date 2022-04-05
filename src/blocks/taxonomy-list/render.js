@@ -2,6 +2,7 @@ import classnames from 'classnames';
 import React, { useLayoutEffect } from 'react';
 import styles from './editor.lazy.scss';
 import { decodeEntities } from '@wordpress/html-entities';
+import { useDeviceType } from '@Controls/getPreviewType';
 
 const Render = ( props ) => {
 	// Add and remove the CSS on the drop and remove of the component.
@@ -13,12 +14,13 @@ const Render = ( props ) => {
 	}, [] );
 
 	props = props.parentProps;
-
+	const deviceType = useDeviceType();
 	// Caching all Props.
-	const { attributes, categoriesList, deviceType } = props;
+	const { attributes, categoriesList } = props;
 
 	// Caching all attributes.
 	const {
+		isPreview,
 		layout,
 		seperatorStyle,
 		noTaxDisplaytext,
@@ -34,22 +36,18 @@ const Render = ( props ) => {
 	} else if ( 'list' === layout ) {
 		Tag = titleTag ? titleTag : 'div';
 	}
-	
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/taxonomy-list.png`;
 		return (
+		 isPreview ? <img width='100%' src={previewImageData} alt=''/> :
 			<>
 				<div
 					className={ classnames(
 						'uagb-taxonomy__outer-wrap',
 						`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
+						`uagb-layout-${ layout }`,
 						`uagb-block-${ props.clientId.substr( 0, 8 ) }`
 					) }
 				>
-					<div
-						className={ classnames(
-							'uagb-taxonomy-wrap',
-							`uagb-layout-${ layout }`
-						) }
-					>
 						{ 'grid' === layout &&
 							categoriesList.map( ( p, index ) => (
 								<div className="uagb-taxomony-box" key={ index }>
@@ -61,12 +59,12 @@ const Render = ( props ) => {
 											} }
 										></Tag>
 										{ showCount && (
-											<div className="uagb-tax-count">
+<>
 												{ p.count }{ ' ' }
 												{ p.count > '1'
 													? `${ p.singular_name }s`
 													: p.singular_name }
-											</div>
+</>
 										) }
 									</a>
 								</div>
@@ -85,7 +83,7 @@ const Render = ( props ) => {
 												} }
 											></a>
 											{ showCount && (
-												<span className="uagb-tax-list-count">{ ` (${ p.count })` }</span>
+												` (${ p.count })`
 											) }
 											{ showhierarchy && p.children !== null && (
 												<ul className="uagb-taxonomy-list-children">
@@ -119,9 +117,7 @@ const Render = ( props ) => {
 										</Tag>
 
 										{ 'none' !== seperatorStyle && (
-											<div className="uagb-tax-separator-wrap">
 												<div className="uagb-tax-separator"></div>
-											</div>
 										) }
 									</li>
 								) ) }
@@ -138,8 +134,7 @@ const Render = ( props ) => {
 								) ) }
 							</select>
 						) }
-					</div>
-					
+
 					{ /* If no Taxonomy is available. */ }
 					{ categoriesList === '' && (
 						<div className="uagb-tax-not-available">

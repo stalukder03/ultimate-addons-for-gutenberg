@@ -63,35 +63,62 @@ const attributes = {
 	align: {
 		type: 'string',
 		default: 'center',
+		UAGCopyPaste: {
+			styleType: 'overall-alignment'
+		},
 	},
 	headingColor: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'main-title-color'
+		},
 	},
 	subHeadingColor: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'desc-color'
+		},
 	},
 	separatorBg: {
 		type: 'string',
 		default: '#eee',
+		UAGCopyPaste: {
+			styleType: 'connector-bg-color'
+		},
 	},
 	backgroundColor: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'post-bg-color'
+		},
 		default: '#eee',
 	},
 	separatorColor: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'connector-color'
+		},
 		default: '#eee',
 	},
 	separatorFillColor: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'connector-fill-color'
+		},
 		default: '#0693e3',
 	},
 	separatorBorder: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'connector-border-color'
+		},
 		default: '#eee',
 	},
 	borderFocus: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'overall-border-focus-color'
+		},
 		default: '#0693e3',
 	},
 	headingTag: {
@@ -100,196 +127,364 @@ const attributes = {
 	},
 	horizontalSpace: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'row-gap'
+		},
 		default: 10,
 	},
 	verticalSpace: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'column-gap'
+		},
 		default: 15,
 	},
 	headFontSize: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'main-title-font-size'
+		},
 	},
 	headFontSizeType: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'main-title-font-size-type'
+		},
 		default: 'px',
 	},
 	headFontSizeTablet: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'main-title-font-size-tablet'
+		},
 	},
 	headFontSizeMobile: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'main-title-font-size-mobile'
+		},
 	},
 	headFontFamily: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'main-title-font-family'
+		},
 		default: 'Default',
 	},
 	headFontWeight: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'main-title-font-weight'
+		},
 	},
 	headFontStyle: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'main-title-font-style'
+		},
 	},
 	headTransform: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'main-title-transform'
+		},
 	},
 	headDecoration: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'main-title-decoration'
+		},
 	},
 	headLineHeightType: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'main-title-line-height-type'
+		},
 		default: 'em',
 	},
 	headLineHeight: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'main-title-line-height'
+		},
 	},
 	headLineHeightTablet: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'main-title-line-height-tablet'
+		},
 	},
 	headLineHeightMobile: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'main-title-line-height-mobile'
+		},
 	},
 	headLoadGoogleFonts: {
 		type: 'boolean',
+		UAGCopyPaste: {
+			styleType: 'main-title-load-google-fonts'
+		},
 		default: false,
 	},
 	timelinAlignment: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'overall-alignment'
+		},
 		default: 'center',
 	},
 	arrowlinAlignment: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'arrowline-alignment'
+		},
 		default: 'center',
 	},
 	subHeadFontSizeType: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'desc-font-size-type'
+		},
 		default: 'px',
 	},
 	subHeadFontSize: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'desc-font-size'
+		},
 	},
 	subHeadFontSizeTablet: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'desc-font-size-tablet'
+		},
 	},
 	subHeadFontSizeMobile: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'desc-font-size-mobile'
+		},
 	},
 	subHeadFontFamily: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'desc-font-family'
+		},
 		default: 'Default',
 	},
 	subHeadFontWeight: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'desc-font-weight'
+		},
 	},
 	subHeadFontStyle: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'desc-font-style'
+		},
 	},
 	subHeadTransform: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'desc-transform'
+		},
 	},
 	subHeadDecoration: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'desc-decoration'
+		},
 	},
 	subHeadLineHeightType: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'desc-decoration'
+		},
 		default: 'em',
 	},
 	subHeadLineHeight: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'desc-line-height'
+		},
 	},
 	subHeadLineHeightTablet: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'desc-line-height-tablet'
+		},
 	},
 	subHeadLineHeightMobile: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'desc-line-height-mobile'
+		},
 	},
 	subHeadLoadGoogleFonts: {
 		type: 'boolean',
+		UAGCopyPaste: {
+			styleType: 'desc-load-google-fonts'
+		},
 		default: false,
 	},
 	headSpace: {
 		type: 'number',
 		default: 5,
+		UAGCopyPaste: {
+			styleType: 'main-title-bottom-margin'
+		},
 	},
 	separatorwidth: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'connector-width'
+		},
 		default: 3,
 	},
 	borderwidth: {
 		type: 'number',
 		default: 0,
+		UAGCopyPaste: {
+			styleType: 'overall-border-width'
+		},
 	},
 	iconColor: {
 		type: 'string',
 		default: '#333',
+		UAGCopyPaste: {
+			styleType: 'icon-color'
+		},
 	},
 	iconFocus: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'icon-focus-color'
+		},
 		default: '#fff',
 	},
 	iconBgFocus: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'icon-bg-focus-color'
+		},
 		default: '#0693e3',
 	},
 	dateColor: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'prefix-color'
+		},
 		default: '#333',
 	},
 	dateFontsizeType: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'prefix-font-size-type'
+		},
 		default: 'px',
 	},
 	dateFontsize: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'prefix-font-size'
+		},
 	},
 	dateFontsizeTablet: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'prefix-font-size-tablet'
+		},
 	},
 	dateFontsizeMobile: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'prefix-font-size-mobile'
+		},
 	},
 	dateFontFamily: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'prefix-font-family'
+		},
 		default: 'Default',
 	},
 	dateFontWeight: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'prefix-font-weight'
+		},
 	},
 	dateFontStyle: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'prefix-font-style'
+		},
 	},
 	dateTransform: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'prefix-line-height-type'
+		},
 	},
 	dateDecoration: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'prefix-line-height'
+		},
 	},
 	dateLineHeightType: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'prefix-line-height-type'
+		},
 		default: 'em',
 	},
 	dateLineHeight: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'prefix-line-height'
+		},
 	},
 	dateLineHeightTablet: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'prefix-line-height-tablet'
+		},
 	},
 	dateLineHeightMobile: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'prefix-line-height-mobile'
+		},
 	},
 	dateLoadGoogleFonts: {
 		type: 'boolean',
 		default: false,
+		UAGCopyPaste: {
+			styleType: 'prefix-load-google-fonts'
+		},
 	},
 	connectorBgsize: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'connector-bg-size'
+		},
 		default: 35,
 	},
 	subHeadSpace: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'desc-bottom-space'
+		},
 		default: 5,
 	},
 	dateBottomspace: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'prefix-bottom-space'
+		},
 		default: 5,
 	},
 	block_id: {
@@ -307,13 +502,22 @@ const attributes = {
 	borderRadius: {
 		type: 'number',
 		default: 2,
+		UAGCopyPaste: {
+			styleType: 'overall-border-radius'
+		},
 	},
 	bgPadding: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'post-bg-padding'
+		},
 		default: 20,
 	},
 	iconSize: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'icon-size'
+		},
 		default: 12,
 	},
 	icon: {
@@ -334,51 +538,96 @@ const attributes = {
 	},
 	leftMargin: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'post-left-margin'
+		},
 	},
 	rightMargin: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'post-right-margin'
+		},
 	},
 	topMargin: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'post-top-margin'
+		},
 	},
 	bottomMargin: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'post-bottom-margin'
+		},
 	},
 	leftMarginTablet: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'post-left-margin-tablet'
+		},
 	},
 	rightMarginTablet: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'post-right-margin-tablet'
+		},
 	},
 	topMarginTablet: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'post-top-margin-tablet'
+		},
 	},
 	bottomMarginTablet: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'post-bottom-margin-tablet'
+		},
 	},
 	leftMarginMobile: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'post-left-margin-mobile'
+		},
 	},
 	rightMarginMobile: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'post-right-margin-mobile'
+		},
 	},
 	topMarginMobile: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'post-top-margin-mobile'
+		},
 	},
 	bottomMarginMobile: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'post-bottom-margin-mobile'
+		},
 	},
 	marginUnit: {
 		type: 'string',
 		default: 'px',
+		UAGCopyPaste: {
+			styleType: 'post-margin-unit'
+		},
 	},
 	mobileMarginUnit: {
 		type: 'string',
 		default: 'px',
+		UAGCopyPaste: {
+			styleType: 'post-margin-unit-mobile'
+		},
 	},
 	tabletMarginUnit: {
 		type: 'string',
 		default: 'px',
+		UAGCopyPaste: {
+			styleType: 'post-margin-unit-tablet'
+		},
 	},
 	marginLink: {
 		type: 'boolean',
@@ -386,56 +635,105 @@ const attributes = {
 	},
 	leftPadding: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'post-left-padding'
+		},
 	},
 	rightPadding: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'post-right-padding'
+		},
 	},
 	topPadding: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'post-top-padding'
+		},
 	},
 	bottomPadding: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'post-bottom-padding'
+		},
 	},
 	leftPaddingTablet: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'post-left-padding-tablet'
+		},
 	},
 	rightPaddingTablet: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'post-right-padding-tablet'
+		},
 	},
 	topPaddingTablet: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'post-top-padding-tablet'
+		},
 	},
 	bottomPaddingTablet: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'post-bottom-padding-tablet'
+		},
 	},
 	leftPaddingMobile: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'post-left-padding-mobile'
+		},
 	},
 	rightPaddingMobile: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'post-right-padding-mobile'
+		},
 	},
 	topPaddingMobile: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'post-top-padding-mobile'
+		},
 	},
 	bottomPaddingMobile: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'post-bottom-padding-mobile'
+		},
 	},
 	paddingUnit: {
 		type: 'string',
 		default: 'px',
+		UAGCopyPaste: {
+			styleType: 'post-padding-unit'
+		},
 	},
 	mobilePaddingUnit: {
 		type: 'string',
 		default: 'px',
+		UAGCopyPaste: {
+			styleType: 'post-padding-unit-mobile'
+		},
 	},
 	tabletPaddingUnit: {
 		type: 'string',
 		default: 'px',
+		UAGCopyPaste: {
+			styleType: 'post-padding-unit-tablet'
+		},
 	},
 	paddingLink: {
 		type: 'boolean',
 		default: false,
 	},
+	isPreview: {
+		type: 'boolean',
+		default: false,
+	}
 };
 
 export default attributes;

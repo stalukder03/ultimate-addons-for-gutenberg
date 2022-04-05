@@ -3,9 +3,9 @@
  */
 
 import styling from './styling';
-import UAGB_Block_Icons from '@Controls/block-icons';
 import { __ } from '@wordpress/i18n';
-
+import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
+import { useDeviceType } from '@Controls/getPreviewType';
 import React, { useEffect, lazy, Suspense, useLayoutEffect } from 'react';
 import lazyLoader from '@Controls/lazy-loader';
 
@@ -35,7 +35,7 @@ import maybeGetColorForVariable from '@Controls/maybeGetColorForVariable';
 import styles from './editor.lazy.scss';
 
 const ColumnsComponent = ( props ) => {
-
+	const deviceType = useDeviceType();
 	// Add and remove the CSS on the drop and remove of the component.
 	useLayoutEffect( () => {
 		styles.use();
@@ -53,10 +53,23 @@ const ColumnsComponent = ( props ) => {
 			bottomMargin,
 			topMarginDesktop,
 			bottomMarginDesktop,
-			vAlign,
 			backgroundOpacity,
+			align,
+			vAlign,
 			backgroundImageColor
 		} = attributes
+
+		if ( 'middle' === vAlign ) {
+			setAttributes( { vAlign: 'center' } );
+		}
+
+		if ( undefined === align ){
+			setAttributes( { align: 'wide' } );
+		}
+
+		if ( undefined === vAlign ){
+			setAttributes( { vAlign: 'top' } );
+		}
 
 		// Replacement for componentDidMount.
 		// Assigning block_id in the attribute.
@@ -64,18 +77,6 @@ const ColumnsComponent = ( props ) => {
 
 		setAttributes( { classMigrate: true } );
 
-		if ( 'middle' === vAlign ) {
-			setAttributes( { vAlign: 'center' } );
-		}
-		// Pushing Style tag for this block css.
-		const $style = document.createElement( 'style' );
-		$style.setAttribute(
-			'id',
-			'uagb-columns-style-' + props.clientId.substr( 0, 8 )
-		);
-		document.head.appendChild( $style );
-
-		;
 
 		//Margin
 		if ( topMargin ) {
@@ -101,15 +102,18 @@ const ColumnsComponent = ( props ) => {
 	useEffect( () => {
 
 		// Replacement for componentDidUpdate.
-		const element = document.getElementById(
-			'uagb-columns-style-' + props.clientId.substr( 0, 8 )
-		);
+		const blockStyling = styling( props );
 
-		if ( null !== element && undefined !== element ) {
-			element.innerHTML = styling( props );
-		}
+        addBlockEditorDynamicStyles( 'uagb-columns-style-' + props.clientId.substr( 0, 8 ), blockStyling );
 
 	}, [ props ] );
+
+	useEffect( () => {
+		// Replacement for componentDidUpdate.
+	    const blockStyling = styling( props );
+
+        addBlockEditorDynamicStyles( 'uagb-columns-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+	}, [deviceType] );
 
 	const blockVariationPickerOnSelect = (
 		nextVariation = props.defaultVariation
@@ -138,13 +142,15 @@ const ColumnsComponent = ( props ) => {
 	};
 
 	const { variations, hasInnerBlocks } = props;
-
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/advanced-columns.png`;
 	if ( ! hasInnerBlocks ) {
-		
+
 		return (
+			props.attributes.isPreview ? <img width='100%' src={previewImageData} alt=''/> :
+			<>
 			<div className='uagb-columns-variation-picker'>
 				<BlockVariationPicker
-					icon={ UAGB_Block_Icons.columns }
+					icon={ '' }
 					label={ uagb_blocks_info.blocks[ 'uagb/columns' ].title }
 					instructions={ __(
 						'Select a variation to start with.',
@@ -156,6 +162,7 @@ const ColumnsComponent = ( props ) => {
 					}
 				/>
 			</div>
+			</>
 		);
 	}
 
@@ -176,13 +183,6 @@ const applyWithSelect = withSelect( ( select, props ) => {
 	} = select( 'core/blocks' );
 	const innerBlocks = getBlocks( props.clientId );
 	const { replaceInnerBlocks } = useDispatch( 'core/block-editor' );
-	const { __experimentalGetPreviewDeviceType = null } = select(
-		'core/edit-post'
-	);
-
-	const deviceType = __experimentalGetPreviewDeviceType
-		? __experimentalGetPreviewDeviceType()
-		: null;
 
 	return {
 		// Subscribe to changes of the innerBlocks to control the display of the layout selection placeholder.
@@ -201,7 +201,6 @@ const applyWithSelect = withSelect( ( select, props ) => {
 				? null
 				: getBlockVariations( props.name ),
 		replaceInnerBlocks,
-		deviceType,
 	};
 } );
 

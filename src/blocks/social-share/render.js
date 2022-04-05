@@ -4,8 +4,9 @@
 
 import classnames from 'classnames';
 import { InnerBlocks } from '@wordpress/block-editor';
-import React, { useLayoutEffect, useMemo } from 'react';
+import React, { useLayoutEffect } from 'react';
 import styles from './editor.lazy.scss';
+import { useDeviceType } from '@Controls/getPreviewType';
 
 const ALLOWED_BLOCKS = [ 'uagb/social-share-child' ];
 
@@ -19,25 +20,70 @@ const Render = ( props ) => {
 	}, [] );
 
 	props = props.parentProps;
+	const deviceType = useDeviceType();
+	const { attributes } = props;
 
-	const { attributes, deviceType } = props;
+	const { isPreview, className, social_layout } = attributes;
 
-	const { className, social_count, socials, social_layout } = attributes;
+	const getSocialShareTemplate = [
+		[
+			'uagb/social-share-child',
+			{
+				type: 'facebook',
+				image_icon: 'icon',
+				icon: 'fab fa-facebook',
+				image: '',
+				icon_color: '#3b5998',
+				icon_hover_color: '',
+				icon_bg_color: '',
+				icon_bg_hover_color: '',
+			},
+		],
+		[
+			'uagb/social-share-child',
+			{
+				type: 'twitter',
+				image_icon: 'icon',
+				icon: 'fab fa-twitter-square',
+				image: '',
+				icon_color: '#55acee',
+				icon_hover_color: '',
+				icon_bg_color: '',
+				icon_bg_hover_color: '',
+			},
+		],
+		[
+			'uagb/social-share-child',
+			{
+				type: 'pinterest',
+				image_icon: 'icon',
+				icon: 'fab fa-pinterest-square',
+				image: '',
+				icon_color: '#bd081c',
+				icon_hover_color: '',
+				icon_bg_color: '',
+				icon_bg_hover_color: '',
+			},
+		],
+		[
+			'uagb/social-share-child',
+			{
+				type: 'linkedin',
+				image_icon: 'icon',
+				icon: 'fab fa-linkedin',
+				image: '',
+				icon_color: '#0077b5',
+				icon_hover_color: '',
+				icon_bg_color: '',
+				icon_bg_hover_color: '',
+			},
+		],
+	];
 
-	const getSocialShareTemplate = useMemo( () => {
-		const childSocialShare = [];
-
-		for ( let i = 0; i < social_count; i++ ) {
-			childSocialShare.push( [
-				'uagb/social-share-child',
-				socials[ i ],
-			] );
-		}
-
-		return childSocialShare;
-	}, [ social_count, socials ] );
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/social-share.png`;
 
 	return (
+		isPreview ? <img width='100%' src={previewImageData} alt=''/> :
 		<div
 			className={ classnames(
 				className,

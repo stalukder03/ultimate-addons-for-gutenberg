@@ -20,12 +20,9 @@ export default function save( props ) {
 	} = props.attributes;
 
 	let seprator = '';
+
 	if ( showseprator && seperatorStyle !== 'none' ) {
-		seprator = (
-			<div className="uagb-separator-wrap">
-				<div className="uagb-separator"></div>
-			</div>
-		);
+		seprator = <div className="uagb-separator"></div>
 	}
 	let headingText = '';
 	if ( headingTitle !== '' ) {

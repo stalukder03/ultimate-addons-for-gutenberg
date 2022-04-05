@@ -3,9 +3,9 @@
  */
 import React, { lazy, Suspense, useEffect } from 'react';
 import lazyLoader from '@Controls/lazy-loader';
-import InfoBoxStyle from './inline-styles';
-
-import { withSelect } from '@wordpress/data';
+import styling from './styling';
+import { useDeviceType } from '@Controls/getPreviewType';
+import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 
 const Render = lazy( () =>
 	import( /* webpackChunkName: "chunks/info-box/render" */ './render' )
@@ -15,19 +15,15 @@ const Settings = lazy( () =>
 );
 
 const UAGBInfoBox = ( props ) => {
+	const deviceType = useDeviceType();
+
 	useEffect( () => {
+
+		const { setAttributes } = props;
 		// Assigning block_id in the attribute.
-		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
+		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
 
-		props.setAttributes( { classMigrate: true } );
-
-		// Pushing Style tag for this block css.
-		const $style = document.createElement( 'style' );
-		$style.setAttribute(
-			'id',
-			'uagb-info-box-style-' + props.clientId.substr( 0, 8 )
-		);
-		document.head.appendChild( $style );
+		setAttributes( { classMigrate: true } );
 
 		const {
 			ctaBtnVertPadding,
@@ -39,33 +35,41 @@ const UAGBInfoBox = ( props ) => {
 		} = props.attributes;
 
 		if ( ctaBtnVertPadding ) {
-			if ( ! paddingBtnTop ) {
+			if ( undefined === paddingBtnTop ) {
 				props.setAttributes( { paddingBtnTop: ctaBtnVertPadding } );
 			}
-			if ( ! paddingBtnBottom ) {
+			if ( undefined === paddingBtnBottom ) {
 				props.setAttributes( { paddingBtnBottom: ctaBtnVertPadding } );
 			}
 		}
 		if ( ctaBtnHrPadding ) {
-			if ( ! paddingBtnRight ) {
+			if ( undefined === paddingBtnRight ) {
 				props.setAttributes( { paddingBtnRight: ctaBtnHrPadding } );
 			}
-			if ( ! paddingBtnLeft ) {
+			if ( undefined === paddingBtnLeft ) {
 				props.setAttributes( { paddingBtnLeft: ctaBtnHrPadding } );
 			}
 		}
+
 	}, [] );
 
 	useEffect( () => {
-		// Replacement for componentDidUpdate.
-		const element = document.getElementById(
-			'uagb-info-box-style-' + props.clientId.substr( 0, 8 )
-		);
 
-		if ( null !== element && undefined !== element ) {
-			element.innerHTML = InfoBoxStyle( props );
-		}
+		// Replacement for componentDidUpdate.
+		const blockStyling = styling( props );
+
+		addBlockEditorDynamicStyles( 'uagb-info-box-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+
 	}, [ props ] );
+
+	useEffect( () => {
+
+		// Replacement for componentDidUpdate.
+		const blockStyling = styling( props );
+
+		addBlockEditorDynamicStyles( 'uagb-info-box-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+
+	}, [ deviceType ] );
 
 	return (
 		<>
@@ -77,15 +81,4 @@ const UAGBInfoBox = ( props ) => {
 	);
 };
 
-export default withSelect( ( select ) => {
-	const { __experimentalGetPreviewDeviceType = null } = select(
-		'core/edit-post'
-	);
-	const deviceType = __experimentalGetPreviewDeviceType
-		? __experimentalGetPreviewDeviceType()
-		: null;
-
-	return {
-		deviceType,
-	};
-} )( UAGBInfoBox );
+export default UAGBInfoBox;

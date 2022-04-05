@@ -3,6 +3,7 @@ import ContentTmClasses from '.././classes';
 import React, { useMemo, useLayoutEffect } from 'react';
 import { InnerBlocks } from '@wordpress/block-editor';
 import styles from './editor.lazy.scss';
+import { useDeviceType } from '@Controls/getPreviewType';
 
 const ALLOWED_BLOCKS = [ 'uagb/content-timeline-child' ];
 
@@ -14,13 +15,13 @@ const Render = ( props ) => {
 			styles.unuse();
 		};
 	}, [] );
-	props = props.parentProps;
 
+	props = props.parentProps;
+	const deviceType = useDeviceType();
 	// Setup the attributes.
 	const {
 		className,
-		deviceType,
-		attributes: { tm_content, timelineItem },
+		attributes: { isPreview, tm_content, timelineItem },
 	} = props;
 
 	const getContentTimelineTemplate = useMemo( () => {
@@ -35,8 +36,9 @@ const Render = ( props ) => {
 
 		return childTimeline;
 	}, [ timelineItem, tm_content ] );
-
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/content-timeline.png`;
 	return (
+		isPreview ? <img width='100%' src={previewImageData} alt=''/> :
 		<div
 			className={ classnames(
 				className,
@@ -47,17 +49,13 @@ const Render = ( props ) => {
 				...ContentTmClasses( props.attributes )
 			) }
 		>
-			<div className="uagb-timeline__main">
-				<div className="uagb-timeline__days">
-					<InnerBlocks
-						template={ getContentTimelineTemplate }
-						templateLock={ false }
-						allowedBlocks={ ALLOWED_BLOCKS }
-					/>
-				</div>
-				<div className="uagb-timeline__line">
-					<div className="uagb-timeline__line__inner"></div>
-				</div>
+			<InnerBlocks
+				template={ getContentTimelineTemplate }
+				templateLock={ false }
+				allowedBlocks={ ALLOWED_BLOCKS }
+			/>
+			<div className="uagb-timeline__line">
+				<div className="uagb-timeline__line__inner"></div>
 			</div>
 		</div>
 	);

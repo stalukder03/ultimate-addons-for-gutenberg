@@ -2,6 +2,7 @@ import classnames from 'classnames';
 import { InnerBlocks } from '@wordpress/block-editor';
 import React, { useLayoutEffect, useMemo } from 'react';
 import styles from './editor.lazy.scss';
+import { useDeviceType } from '@Controls/getPreviewType';
 
 const ALLOWED_BLOCKS = [ 'uagb/buttons-child' ];
 
@@ -16,9 +17,11 @@ const Render = ( props ) => {
 
 	props = props.parentProps;
 
-	const { attributes, deviceType } = props;
+	const { attributes } = props;
 
-	const { className, btn_count, buttons, stack } = attributes;
+	const deviceType = useDeviceType();
+
+	const { className, btn_count, buttons, stack, isPreview } = attributes;
 
 	const getButtonTemplate = useMemo( () => {
 		const childButtons = [];
@@ -30,7 +33,11 @@ const Render = ( props ) => {
 		return childButtons;
 	}, [ btn_count, buttons ] );
 
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/multi-button.png`;
+
 	return (
+		isPreview ? <img width='100%' src={previewImageData} alt=''/> :
+		<>
 		<div
 			className={ classnames(
 				className,
@@ -55,6 +62,7 @@ const Render = ( props ) => {
 				/>
 			</div>
 		</div>
+		</>
 	);
 };
 

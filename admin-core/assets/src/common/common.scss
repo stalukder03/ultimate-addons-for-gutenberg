@@ -15,7 +15,11 @@
 	outline: none;
 }
 
-.uag-menu-page-wrapper {
+.settings_page_spectra #wpcontent {
+	padding-left: 0;
+}
+
+.uag-menu-page-wrapper .uag-settings-app {
 	font-family: var(--heading-font-family);
 	left: -20px;
 	position: relative;
@@ -126,7 +130,8 @@
 	color: var(--accent-hv-color);
 }
 
-.uag-control__status-yes {
+.uag-control__status-yes,
+.uag-control__status-enabled {
 	display: inline-flex;
 	color: #639102;
 	align-items: center;
@@ -158,3 +163,47 @@
 	background: var(--background-light-color);
 }
 
+.uag-font-select-disabled {
+	pointer-events: none;
+	opacity: 0.4;
+}
+
+.uag-menu-page-wrapper {
+	font-family: Inter, sans-serif;
+
+	p {
+		font-size: 14px;
+		line-height: 22.4px;
+	}
+
+	h2 {
+		font-size: 2rem;
+	}
+
+	h3 {
+		font-size: 1.125rem;
+	}
+}
+
+.uag-dashboard-app .read-more a {
+	color: #2271b1;
+}
+
+.uag-dashboard-app .read-more a:hover {
+	color: #135e96;
+}
+
+.spectra-content-width-input-wrap {
+
+	> input {
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+
+	> span {
+		border: 1px solid #8c8f94;
+		background-color: #fff;
+		color: #2c3338;
+		border-left-width: 0;
+	}
+}

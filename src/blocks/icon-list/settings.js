@@ -6,7 +6,7 @@ import { __ } from '@wordpress/i18n';
 import { select } from '@wordpress/data';
 import {
 	BlockControls,
-	BlockAlignmentToolbar,
+	AlignmentToolbar,
 	InspectorControls,
 } from '@wordpress/block-editor';
 import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
@@ -16,8 +16,11 @@ import InspectorTab, {
 import Range from '@Components/range/Range.js';
 import ResponsiveSlider from '@Components/responsive-slider';
 import MultiButtonsControl from '@Components/multi-buttons-control';
-
-import { PanelBody, ToggleControl } from '@wordpress/components';
+import presets from './presets';
+import UAGPresets from '@Components/presets';
+import renderSVG from '@Controls/renderIcon';
+import { ToggleControl, Icon } from '@wordpress/components';
+import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 const Settings = ( props ) => {
 	props = props.parentProps;
@@ -71,7 +74,7 @@ const Settings = ( props ) => {
 	const blockControls = () => {
 		return (
 			<BlockControls>
-				<BlockAlignmentToolbar
+				<AlignmentToolbar
 					value={ align }
 					onChange={ ( value ) => {
 						setAttributes( { align: value } );
@@ -94,7 +97,7 @@ const Settings = ( props ) => {
 
 	const generalSetting = () => {
 		return (
-			<PanelBody initialOpen={ true }>
+			<UAGAdvancedPanelBody initialOpen={ true }>
 				<MultiButtonsControl
 					setAttributes={ setAttributes }
 					label={ __( 'Layout', 'ultimate-addons-for-gutenberg' ) }
@@ -128,6 +131,61 @@ const Settings = ( props ) => {
 						},
 					] }
 					showIcons={ false }
+				/>
+				<MultiButtonsControl
+					setAttributes={ setAttributes }
+					label={ __(
+						'Alignment',
+						'ultimate-addons-for-gutenberg'
+					) }
+					data={ {
+						value: align,
+						label: 'align',
+					} }
+					className="uagb-multi-button-alignment-control"
+					options={ [
+						{
+							value: 'left',
+							icon: (
+								<Icon
+									icon={ renderSVG( 'fa fa-align-left' ) }
+								/>
+							),
+							tooltip: __(
+								'Left',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'center',
+							icon: (
+								<Icon
+									icon={ renderSVG(
+										'fa fa-align-center'
+									) }
+								/>
+							),
+							tooltip: __(
+								'Center',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'right',
+							icon: (
+								<Icon
+									icon={ renderSVG(
+										'fa fa-align-right'
+									) }
+								/>
+							),
+							tooltip: __(
+								'Right',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+					] }
+					showIcons={ true }
 				/>
 				{ 'horizontal' === icon_layout && (
 					<>
@@ -232,13 +290,13 @@ const Settings = ( props ) => {
 					checked={ hideLabel }
 					onChange={ ( value ) => changeChildAttr( value ) }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const commonSetting = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Spacing', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -258,13 +316,13 @@ const Settings = ( props ) => {
 						'ultimate-addons-for-gutenberg'
 					) }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const labelSetting = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Label', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -343,15 +401,15 @@ const Settings = ( props ) => {
 						label: 'lineHeightTablet',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const iconSetting = () => {
 		return (
-			<PanelBody
-				title={ __( 'Icon', 'ultimate-addons-for-gutenberg' ) }
-				initialOpen={ true }
+			<UAGAdvancedPanelBody
+				title={ __( 'Icon/Image', 'ultimate-addons-for-gutenberg' ) }
+				initialOpen={ false }
 			>
 				<ResponsiveSlider
 					label={ __( 'Size', 'ultimate-addons-for-gutenberg' ) }
@@ -370,7 +428,7 @@ const Settings = ( props ) => {
 						},
 					} }
 					min={ 0 }
-					max={ 500 }
+					max={ 200 }
 					unit={ {
 						value: sizeType,
 						label: 'sizeType',
@@ -399,7 +457,7 @@ const Settings = ( props ) => {
 					value={ bgSize }
 					onChange={ ( value ) => setAttributes( { bgSize: value } ) }
 					min={ 0 }
-					max={ 500 }
+					max={ 50 }
 					displayUnit={ false }
 					help={ __(
 						'Note: Background Size option is useful when one adds background color to the icons.',
@@ -433,23 +491,35 @@ const Settings = ( props ) => {
 						setAttributes( { borderRadius: value } )
 					}
 					min={ 0 }
-					max={ 500 }
+					max={ 100 }
 					displayUnit={ false }
 					help={ __(
 						'Note: Border Radius option is useful when one adds background color to the icons.',
 						'ultimate-addons-for-gutenberg'
 					) }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
-
+	const presetSettings = () => {
+		return <UAGAdvancedPanelBody
+					title={ __( 'Presets', 'ultimate-addons-for-gutenberg' ) }
+					initialOpen={ true }
+				>
+					<UAGPresets
+						setAttributes = { setAttributes }
+						presets = { presets }
+						presetInputType = 'radioImage'
+					/>
+				</UAGAdvancedPanelBody>
+	};
 	return (
 		<Suspense fallback={ lazyLoader() }>
 			{ blockControls() }
 			<InspectorControls>
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>
+						{ presetSettings() }
 						{ generalSetting() }
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>

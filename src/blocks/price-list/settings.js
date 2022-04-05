@@ -14,11 +14,16 @@ import InspectorTab, {
 	UAGTabs,
 } from '@Components/inspector-tabs/InspectorTab.js';
 import renderSVG from '@Controls/renderIcon';
+import presets from './presets';
+import UAGPresets from '@Components/presets';
+
 const maxColumns = 3;
 
 import { InspectorControls } from '@wordpress/block-editor';
 
-import { PanelBody, SelectControl, Icon, ToggleControl } from '@wordpress/components';
+import { SelectControl, Icon, ToggleControl } from '@wordpress/components';
+
+import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 const Settings = ( props ) => {
 	props = props.parentProps;
@@ -128,9 +133,11 @@ const Settings = ( props ) => {
 		showTitle,
 		showContent,
 		showPrice,
-		showImg
+		showImg,
+		headingAlign,
+		imgAlign
 	} = attributes;
-	
+
 	const setimageSize = ( value ) => {
 		const getChildBlocks = select( 'core/block-editor' ).getBlocks(
 			props.clientId
@@ -194,7 +201,7 @@ const Settings = ( props ) => {
 	// Margin Settings.
 	const marginSettings = () => {
 		return (
-			<PanelBody title={ __( 'Spacing' ) } initialOpen={ false }>
+			<UAGAdvancedPanelBody title={ __( 'Spacing' ) } initialOpen={ false }>
 				<Range
 					label={ __( 'Row Gap' ) }
 					setAttributes={ setAttributes }
@@ -295,7 +302,7 @@ const Settings = ( props ) => {
 						label: 'contentSpacingLink',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
@@ -305,14 +312,39 @@ const Settings = ( props ) => {
 		{ value: 'medium', label: __( 'Medium' ) },
 		{ value: 'full', label: __( 'Large' ) },
 	];
+
 	//Image Setting
 	const imageSettings = () => {
 		return (
-			<PanelBody title={ __( 'Image' ) } initialOpen={ false }>
+			<UAGAdvancedPanelBody title={ __( 'Image' ) } initialOpen={ false }>
 				<MultiButtonsControl
 					setAttributes={ setAttributes }
 					label={ __(
-						'Image Position',
+						'Position',
+						'ultimate-addons-for-gutenberg'
+					) }
+					data={ {
+						value: imgAlign,
+						label: 'imgAlign',
+					} }
+					className="uagb-multi-button-alignment-control"
+					options={ [
+						{
+							value: 'top',
+							label: 'Top',
+						},
+						{
+							value: 'side',
+							label: 'Side',
+						},
+					] }
+					showIcons={ false }
+				/>
+				{ ( imgAlign === 'side' ) && (
+					<MultiButtonsControl
+					setAttributes={ setAttributes }
+					label={ __(
+						'Alignment',
 						'ultimate-addons-for-gutenberg'
 					) }
 					data={ {
@@ -334,14 +366,52 @@ const Settings = ( props ) => {
 							),
 						},
 						{
-							value: 'top',
+							value: 'right',
+							icon: (
+								<Icon
+									icon={ renderSVG( 'fa fa-align-right' ) }
+								/>
+							),
+							tooltip: __(
+								'Right',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+					] }
+					showIcons={ true }
+				/>
+				)}
+				{ ( imgAlign === 'top' ) && (
+				<MultiButtonsControl
+					setAttributes={ setAttributes }
+					label={ __( 'Alignment', 'ultimate-addons-for-gutenberg' ) }
+					data={ {
+						value: headingAlign,
+						label: 'headingAlign',
+					} }
+					className="uagb-multi-button-alignment-control"
+					options={ [
+						{
+							value: 'left',
+							icon: (
+								<Icon
+									icon={ renderSVG( 'fa fa-align-left' ) }
+								/>
+							),
+							tooltip: __(
+								'Left',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'center',
 							icon: (
 								<Icon
 									icon={ renderSVG( 'fa fa-align-center' ) }
 								/>
 							),
 							tooltip: __(
-								'Top',
+								'Center',
 								'ultimate-addons-for-gutenberg'
 							),
 						},
@@ -360,6 +430,7 @@ const Settings = ( props ) => {
 					] }
 					showIcons={ true }
 				/>
+				)}
 				{ ( imagePosition === 'left' || imagePosition === 'right' ) && (
 					<>
 						<MultiButtonsControl
@@ -437,13 +508,13 @@ const Settings = ( props ) => {
 						label: 'imageWidthType',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	//Image Setting
 	const imageStyles = () => {
 		return (
-			<PanelBody title={ __( 'Image' ) } initialOpen={ false }>
+			<UAGAdvancedPanelBody title={ __( 'Image' ) } initialOpen={ false }>
 				<SpacingControl
 					{ ...props }
 					label={ __( 'Padding', 'ultimate-addons-for-gutenberg' ) }
@@ -515,14 +586,14 @@ const Settings = ( props ) => {
 						label: 'imgSpacingLink',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	//Color settings
 	const contentSettings = () => {
 		return (
-			<PanelBody title={ __( 'Content' ) } initialOpen={ false }>
+			<UAGAdvancedPanelBody title={ __( 'Content' ) } initialOpen={ false }>
 				<AdvancedPopColorControl
 					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
 					colorValue={ descColor ? descColor : '' }
@@ -593,14 +664,14 @@ const Settings = ( props ) => {
 						label: 'descDecoration',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	//seperator setting
 	const separatorSettings = () => {
 		return (
-			<PanelBody title={ __( 'Separator' ) } initialOpen={ false }>
+			<UAGAdvancedPanelBody title={ __( 'Separator' ) } initialOpen={ false }>
 				<SelectControl
 					label={ __( 'Style' ) }
 					value={ seperatorStyle }
@@ -683,14 +754,14 @@ const Settings = ( props ) => {
 						/>
 					</>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	// Typography settings.
 	const priceSettings = () => {
 		return (
-			<PanelBody title={ __( 'Price' ) } initialOpen={ false }>
+			<UAGAdvancedPanelBody title={ __( 'Price' ) } initialOpen={ false }>
 				<AdvancedPopColorControl
 					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
 					colorValue={ priceColor ? priceColor : '' }
@@ -761,12 +832,12 @@ const Settings = ( props ) => {
 						label: 'priceDecoration',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const titleSettings = () => {
 		return (
-			<PanelBody title={ __( 'Title' ) } initialOpen={ false }>
+			<UAGAdvancedPanelBody title={ __( 'Title' ) } initialOpen={ false }>
 				<AdvancedPopColorControl
 					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
 					colorValue={ titleColor ? titleColor : '' }
@@ -851,15 +922,28 @@ const Settings = ( props ) => {
 						label: 'titleSpaceType',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
+	};
+	const presetSettings = () => {
+		return <UAGAdvancedPanelBody
+					title={ __( 'Presets', 'ultimate-addons-for-gutenberg' ) }
+					initialOpen={ true }
+				>
+					<UAGPresets
+						setAttributes = { setAttributes }
+						presets = { presets }
+						presetInputType = 'radioImage'
+					/>
+				</UAGAdvancedPanelBody>
 	};
 	const inspectControl = () => {
 		return (
 			<InspectorControls>
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>
-						<PanelBody
+						{ presetSettings() }
+						<UAGAdvancedPanelBody
 							title={ __( 'General' ) }
 							initialOpen={ true }
 						>
@@ -927,7 +1011,7 @@ const Settings = ( props ) => {
 								displayUnit={ false }
 								setAttributes={ setAttributes }
 							/>
-							{ showTitle && 
+							{ showTitle &&
 							<MultiButtonsControl
 								setAttributes={ setAttributes }
 								label={ __(
@@ -998,7 +1082,7 @@ const Settings = ( props ) => {
 								] }
 							/>
 							}
-						</PanelBody>
+						</UAGAdvancedPanelBody>
 						{ showImg && imageSettings() }
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>

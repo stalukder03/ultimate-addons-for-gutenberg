@@ -5,9 +5,11 @@ import InspectorTab, {
 	UAGTabs,
 } from '@Components/inspector-tabs/InspectorTab.js';
 
-import { PanelBody, ToggleControl, TextControl } from '@wordpress/components';
+import { ToggleControl, TextControl } from '@wordpress/components';
 
 import { InspectorControls } from '@wordpress/block-editor';
+
+import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 const Settings = ( props ) => {
 	props = props.parentProps;
@@ -18,14 +20,7 @@ const Settings = ( props ) => {
 
 	const nameInspectorControls = () => {
 		return (
-			<PanelBody initialOpen={ true }>
-				<ToggleControl
-					label={ __( 'Required', 'ultimate-addons-for-gutenberg' ) }
-					checked={ nameRequired }
-					onChange={ () =>
-						setAttributes( { nameRequired: ! nameRequired } )
-					}
-				/>
+			<UAGAdvancedPanelBody initialOpen={ true }>
 				<TextControl
 					label="Placeholder"
 					value={ placeholder }
@@ -37,7 +32,14 @@ const Settings = ( props ) => {
 						'ultimate-addons-for-gutenberg'
 					) }
 				/>
-			</PanelBody>
+				<ToggleControl
+					label={ __( 'Required', 'ultimate-addons-for-gutenberg' ) }
+					checked={ nameRequired }
+					onChange={ () =>
+						setAttributes( { nameRequired: ! nameRequired } )
+					}
+				/>
+			</UAGAdvancedPanelBody>
 		);
 	};
 

@@ -89,10 +89,9 @@ function styling( props ) {
 	const setIconColor = '' === iconColor ? titleColor : iconColor;
 	const setIconHoverColor =
 		'' === iconHoverColor ? titleHoverColor : iconHoverColor;
-
 	selectors = {
-		' .uagb-marketing-btn__title-wrap': {
-			'margin-bottom': generateCSSUnit( titleSpace, 'px' ),
+		' .uagb-marketing-btn__prefix': {
+			'margin-top': generateCSSUnit( titleSpace, 'px' ),
 		},
 		' .block-editor-rich-text__editable.uagb-marketing-btn__title': {
 			'font-size': generateCSSUnit( titleFontSize, titleFontSizeType ),
@@ -107,10 +106,8 @@ function styling( props ) {
 			'text-decoration': titleDecoration,
 			'color': titleColor,
 		},
-		' .uagb-marketing-btn__icon-wrap svg': {
+		' svg': {
 			'fill': setIconColor,
-		},
-		' .uagb-marketing-btn__icon-wrap': {
 			'width': generateCSSUnit( iconFontSize, iconFontSizeType ),
 			'height': generateCSSUnit( iconFontSize, iconFontSizeType ),
 		},
@@ -133,7 +130,7 @@ function styling( props ) {
 		' .uagb-marketing-btn__link:hover .block-editor-rich-text__editable.uagb-marketing-btn__prefix': {
 			'color': prefixHoverColor,
 		},
-		' .uagb-marketing-btn__link:hover .uagb-marketing-btn__icon-wrap svg': {
+		' .uagb-marketing-btn__link:hover svg': {
 			'fill': setIconHoverColor,
 		},
 		' .uagb-marketing-btn__link': {
@@ -178,7 +175,7 @@ function styling( props ) {
 
 	const marginType = 'after' === iconPosition ? 'margin-left' : 'margin-right';
 
-	selectors[ ' .uagb-marketing-btn__icon-wrap' ][
+	selectors[ ' svg' ][
 		marginType
 	] = generateCSSUnit( iconSpace, 'px' );
 
@@ -203,7 +200,7 @@ function styling( props ) {
 				prefixLineHeightType
 			),
 		},
-		' .uagb-marketing-btn__icon-wrap': {
+		' svg': {
 			'width': generateCSSUnit( iconFontSizeTablet, iconFontSizeType ),
 			'height': generateCSSUnit( iconFontSizeTablet, iconFontSizeType ),
 		},
@@ -248,7 +245,7 @@ function styling( props ) {
 				prefixLineHeightType
 			),
 		},
-		' .uagb-marketing-btn__icon-wrap': {
+		' svg': {
 			'width': generateCSSUnit( iconFontSizeMobile, iconFontSizeType ),
 			'height': generateCSSUnit( iconFontSizeMobile, iconFontSizeType ),
 		},
@@ -272,7 +269,7 @@ function styling( props ) {
 		},
 	};
 
-	const id = `.uagb-block-${ props.clientId.substr( 0, 8 ) }`;
+	const id = `.editor-styles-wrapper .uagb-block-${ props.clientId.substr( 0, 8 ) }`;
 
 	let stylingCss = generateCSS( selectors, id );
 

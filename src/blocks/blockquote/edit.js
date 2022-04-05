@@ -2,8 +2,9 @@ import styling from './styling';
 
 import React, { lazy, useEffect, Suspense } from 'react';
 import lazyLoader from '@Controls/lazy-loader';
+import { useDeviceType } from '@Controls/getPreviewType';
+import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 
-import { withSelect } from '@wordpress/data';
 const Settings = lazy( () =>
 	import( /* webpackChunkName: "chunks/blockquote/settings" */ './settings' )
 );
@@ -12,16 +13,8 @@ const Render = lazy( () =>
 );
 
 const UAGBBlockQuote = ( props ) => {
-	useEffect( () => {
-		
-		const element = document.getElementById(
-			'uagb-blockquote-style-' + props.clientId.substr( 0, 8 )
-		);
 
-		if ( null !== element && undefined !== element ) {
-			element.innerHTML = styling( props );
-		}
-	}, [ props ] );
+	const deviceType = useDeviceType();
 
 	useEffect( () => {
 		// Assigning block_id in the attribute.
@@ -36,32 +29,50 @@ const UAGBBlockQuote = ( props ) => {
 			paddingBtnBottom,
 			paddingBtnRight,
 			paddingBtnLeft,
+			authorImageWidthUnit,
+			authorImgBorderRadiusUnit,
 		} = props.attributes;
+		
+		if( undefined ===  authorImageWidthUnit ){
+			props.setAttributes( { authorImageWidthUnit: 'px' } );
+		} 
+		if( undefined ===  authorImgBorderRadiusUnit ){
+			props.setAttributes( { authorImgBorderRadiusUnit: '%' } );
+		} 
 
 		if ( tweetBtnVrPadding ) {
-			if ( ! paddingBtnTop ) {
+			if ( undefined === paddingBtnTop ) {
 				props.setAttributes( { paddingBtnTop: tweetBtnVrPadding } );
 			}
-			if ( ! paddingBtnBottom ) {
+			if ( undefined === paddingBtnBottom ) {
 				props.setAttributes( { paddingBtnBottom: tweetBtnVrPadding } );
 			}
 		}
 		if ( tweetBtnHrPadding ) {
-			if ( ! paddingBtnRight ) {
+			if ( undefined === paddingBtnRight ) {
 				props.setAttributes( { paddingBtnRight: tweetBtnHrPadding } );
 			}
-			if ( ! paddingBtnLeft ) {
+			if ( undefined === paddingBtnLeft ) {
 				props.setAttributes( { paddingBtnLeft: tweetBtnHrPadding } );
 			}
 		}
-		// Pushing Style tag for this block css.
-		const $style = document.createElement( 'style' );
-		$style.setAttribute(
-			'id',
-			'uagb-blockquote-style-' + props.clientId.substr( 0, 8 )
-		);
-		document.head.appendChild( $style );
 	}, [] );
+
+	useEffect( () => {
+		// Replacement for componentDidUpdate.
+		const blockStyling = styling( props );
+
+		addBlockEditorDynamicStyles( 'uagb-blockquote-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+		
+	}, [ props ] );
+
+	useEffect( () => {
+		// Replacement for componentDidUpdate.
+		const blockStyling = styling( props );
+
+		addBlockEditorDynamicStyles( 'uagb-blockquote-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+		
+	}, [ deviceType ] );
 
 	return (
 		<Suspense fallback={ lazyLoader() }>
@@ -71,16 +82,4 @@ const UAGBBlockQuote = ( props ) => {
 	);
 };
 
-export default withSelect( ( select ) => {
-	const { __experimentalGetPreviewDeviceType = null } = select(
-		'core/edit-post'
-	);
-
-	const deviceType = __experimentalGetPreviewDeviceType
-		? __experimentalGetPreviewDeviceType()
-		: null;
-
-	return {
-		deviceType,
-	};
-} )( UAGBBlockQuote );
+export default UAGBBlockQuote;

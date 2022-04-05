@@ -16,7 +16,6 @@ import { InspectorControls } from '@wordpress/block-editor';
 import renderSVG from '@Controls/renderIcon';
 import UAGTabsControl from '@Components/tabs';
 import {
-	PanelBody,
 	SelectControl,
 	TextControl,
 	ToggleControl,
@@ -24,6 +23,10 @@ import {
 	ExternalLink,
 	Icon,
 } from '@wordpress/components';
+
+import presets from './presets';
+import UAGPresets from '@Components/presets';
+import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 const Settings = ( props ) => {
 	props = props.parentProps;
@@ -168,11 +171,23 @@ const Settings = ( props ) => {
 		inputFontStyle,
 	} = attributes;
 
+	const presetSettings = () => {
+		return <UAGAdvancedPanelBody
+					title={ __( 'Presets', 'ultimate-addons-for-gutenberg' ) }
+					initialOpen={ true }
+				>
+					<UAGPresets
+						setAttributes = { setAttributes }
+						presets = { presets }
+						presetInputType = 'radioImage'
+					/>
+				</UAGAdvancedPanelBody>
+	};
 	const generalSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'General', 'ultimate-addons-for-gutenberg' ) }
-				initialOpen={ true }
+				initialOpen={ false }
 				className="uagb__url-panel-body"
 			>
 				<TextControl
@@ -337,12 +352,12 @@ const Settings = ( props ) => {
 						}
 					/>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const successMessageStyle = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __(
 					'Success Message',
 					'ultimate-addons-for-gutenberg'
@@ -390,7 +405,7 @@ const Settings = ( props ) => {
 								value: successMessageBorderStyle,
 								label: 'successMessageBorderStyle',
 								title: __(
-									'Border Style',
+									'Style',
 									'ultimate-addons-for-gutenberg'
 								),
 							} }
@@ -430,12 +445,12 @@ const Settings = ( props ) => {
 						/>
 					</>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const failedMessageStyle = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Error Message', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 				className="uagb__url-panel-body"
@@ -476,7 +491,7 @@ const Settings = ( props ) => {
 								value: failedMessageBorderStyle,
 								label: 'failedMessageBorderStyle',
 								title: __(
-									'Border Style',
+									'Style',
 									'ultimate-addons-for-gutenberg'
 								),
 							} }
@@ -516,13 +531,13 @@ const Settings = ( props ) => {
 						/>
 					</>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const submitButtonStyle = () => {
 		return (
-			<PanelBody
-				title={ __( 'Submit Button', 'ultimate-addons-for-gutenberg' ) }
+			<UAGAdvancedPanelBody
+				title={ __( 'Submit', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 				className="uagb__url-panel-body"
 			>
@@ -774,6 +789,41 @@ const Settings = ( props ) => {
 						</>
 					}
 				/>
+				<Border
+					setAttributes={ setAttributes }
+					borderStyle={ {
+						value: submitborderStyle,
+						label: 'submitborderStyle',
+						title: __(
+							'Style',
+							'ultimate-addons-for-gutenberg'
+						),
+					} }
+					borderWidth={ {
+						value: submitborderWidth,
+						label: 'submitborderWidth',
+						title: __( 'Width', 'ultimate-addons-for-gutenberg' ),
+					} }
+					borderRadius={ {
+						value: submitborderRadius,
+						label: 'submitborderRadius',
+						title: __( 'Radius', 'ultimate-addons-for-gutenberg' ),
+					} }
+					borderColor={ {
+						value: submitborderColor,
+						label: 'submitborderColor',
+						title: __( 'Color', 'ultimate-addons-for-gutenberg' ),
+					} }
+					borderHoverColor={ {
+						value: submitborderHoverColor,
+						label: 'submitborderHoverColor',
+						title: __(
+							'Hover Color',
+							'ultimate-addons-for-gutenberg'
+						),
+					} }
+					disableBottomSeparator={ false }
+				/>
 				<TypographyControl
 					label={ __(
 						'Typography',
@@ -838,49 +888,14 @@ const Settings = ( props ) => {
 						label: 'submitTextDecoration',
 					} }
 				/>
-				<Border
-					setAttributes={ setAttributes }
-					borderStyle={ {
-						value: submitborderStyle,
-						label: 'submitborderStyle',
-						title: __(
-							'Border Style',
-							'ultimate-addons-for-gutenberg'
-						),
-					} }
-					borderWidth={ {
-						value: submitborderWidth,
-						label: 'submitborderWidth',
-						title: __( 'Width', 'ultimate-addons-for-gutenberg' ),
-					} }
-					borderRadius={ {
-						value: submitborderRadius,
-						label: 'submitborderRadius',
-						title: __( 'Radius', 'ultimate-addons-for-gutenberg' ),
-					} }
-					borderColor={ {
-						value: submitborderColor,
-						label: 'submitborderColor',
-						title: __( 'Color', 'ultimate-addons-for-gutenberg' ),
-					} }
-					borderHoverColor={ {
-						value: submitborderHoverColor,
-						label: 'submitborderHoverColor',
-						title: __(
-							'Hover Color',
-							'ultimate-addons-for-gutenberg'
-						),
-					} }
-					disableBottomSeparator={ true }
-				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const afterSubmitActions = () => {
 		return (
-			<PanelBody
-				title={ __( 'After Submit Actions' ) }
+			<UAGAdvancedPanelBody
+				title={ __( 'Actions' ) }
 				initialOpen={ false }
 				className="uagb__url-panel-body"
 			>
@@ -981,13 +996,13 @@ const Settings = ( props ) => {
 						/>
 					</>
 				) }
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const labelSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Label', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 				className="uagb__url-panel-body"
@@ -1063,12 +1078,12 @@ const Settings = ( props ) => {
 						label: 'labelDecoration',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const inputSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Input', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 				className="uagb__url-panel-body"
@@ -1102,6 +1117,7 @@ const Settings = ( props ) => {
 						setAttributes( { inputactiveColor: value } )
 					}
 				/>
+				{ 'underlined' !== formStyle && (
 				<AdvancedPopColorControl
 					label={ __(
 						'Background Color',
@@ -1112,6 +1128,7 @@ const Settings = ( props ) => {
 						setAttributes( { bgColor: value } )
 					}
 				/>
+				)}
 				<TypographyControl
 					label={ __(
 						'Typography',
@@ -1182,7 +1199,7 @@ const Settings = ( props ) => {
 						value: inputborderStyle,
 						label: 'inputborderStyle',
 						title: __(
-							'Border Style',
+							'Style',
 							'ultimate-addons-for-gutenberg'
 						),
 					} }
@@ -1211,12 +1228,12 @@ const Settings = ( props ) => {
 					} }
 					disableBottomSeparator={ true }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const fieldSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Field', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 				className="uagb__url-panel-body"
@@ -1312,12 +1329,12 @@ const Settings = ( props ) => {
 						label: 'paddingFieldLink',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const checkboxSettings = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __(
 					'Checkbox / Toggle',
 					'ultimate-addons-for-gutenberg'
@@ -1386,13 +1403,13 @@ const Settings = ( props ) => {
 						setAttributes( { toggleActiveColor: value } )
 					}
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const googleReCaptcha = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __(
 					'Google reCAPTCHA',
 					'ultimate-addons-for-gutenberg'
@@ -1545,7 +1562,7 @@ const Settings = ( props ) => {
 						'ultimate-addons-for-gutenberg'
 					) }
 				</ExternalLink>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
@@ -1604,6 +1621,7 @@ const Settings = ( props ) => {
 			<InspectorControls>
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>
+						{ presetSettings() }
 						{ generalSettings() }
 						{ afterSubmitActions() }
 						{ googleReCaptcha() }

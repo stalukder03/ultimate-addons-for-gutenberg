@@ -4,13 +4,11 @@ import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
 import InspectorTab, { UAGTabs } from '@Components/inspector-tabs/InspectorTab.js';
 import UAGImage from '@Components/image';
 import { InspectorControls } from '@wordpress/block-editor';
-import jQuery from 'jquery';
 import TypographyControl from '@Components/typography';
 import WebfontLoader from '@Components/typography/fontloader';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
-
+import { getImageSize } from '@Utils/Helpers';
 import {
-	PanelBody,
 	SelectControl,
 	ToggleControl,
 	TextControl,
@@ -23,6 +21,10 @@ let imageSizeOptions = [
 	{ value: 'medium', label: __( 'Medium', 'ultimate-addons-for-gutenberg' ) },
 	{ value: 'full', label: __( 'Large', 'ultimate-addons-for-gutenberg' ) },
 ];
+
+
+
+import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 const Settings = ( props ) => {
 	props = props.parentProps;
@@ -93,15 +95,7 @@ const Settings = ( props ) => {
 		}
 		setAttributes( { image: media } );
 	};
-	const getImageSize = ( sizes ) => {
-		const sizeArr = [];
-		jQuery.each( sizes, function ( index ) {
-			const name = index;
-			const p = { value: name, label: name };
-			sizeArr.push( p );
-		} );
-		return sizeArr;
-	};
+
 	/*
 	 * Event to set Image as null while removing.
 	 */
@@ -165,7 +159,7 @@ const Settings = ( props ) => {
 
 	const imageControls = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				initialOpen={ true }
 				title={ __( 'Image', 'ultimate-addons-for-gutenberg' ) }
 			>
@@ -205,15 +199,15 @@ const Settings = ( props ) => {
 						/>
 					</>
 					)
-					
+
 				}
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 	const urlControls = () => {
 
 		return (
-			<PanelBody title={__( 'Add Link' )} initialOpen={false}>
+			<UAGAdvancedPanelBody title={__( 'Add Link' )} initialOpen={false}>
 				<SelectControl
 					label={__( 'Type' )}
 					value={urlType}
@@ -244,7 +238,7 @@ const Settings = ( props ) => {
 							}
 						/>
 						<ToggleControl
-							label={__( 'Open in new Window' )}
+							label={__( 'Open in new window' )}
 							checked={urlTarget}
 							onChange={() =>
 								setAttributes( { urlTarget: !urlTarget } )
@@ -252,13 +246,13 @@ const Settings = ( props ) => {
 						/>
 					</>
 				)}
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	}
 	const linkStyle = () => {
 
 		return (
-			<PanelBody title={__( 'Link' )} initialOpen={true}>
+			<UAGAdvancedPanelBody title={__( 'Link' )} initialOpen={true}>
 				<TypographyControl
 					label={__( 'Typography' )}
 					attributes={attributes}
@@ -312,13 +306,13 @@ const Settings = ( props ) => {
 						setAttributes( { urlColor: value } )
 					}
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	}
 	const titleStyle = () => {
 
 		return (
-			<PanelBody title={__( 'Title' )} initialOpen={true}>
+			<UAGAdvancedPanelBody title={__( 'Title' )} initialOpen={false}>
 				<TypographyControl
 					label={__( 'Typography' )}
 					attributes={attributes}
@@ -372,14 +366,14 @@ const Settings = ( props ) => {
 						setAttributes( { titleColor: value } )
 					}
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	}
 
 	const descriptionStyle = () => {
 
 		return (
-			<PanelBody title={__( 'Description' )} initialOpen={true}>
+			<UAGAdvancedPanelBody title={__( 'Description' )} initialOpen={false}>
 				<TypographyControl
 					label={__( 'Typography' )}
 					attributes={attributes}
@@ -433,7 +427,7 @@ const Settings = ( props ) => {
 						setAttributes( { descriptionColor: value } )
 					}
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	}
 

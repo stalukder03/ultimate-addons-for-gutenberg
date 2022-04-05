@@ -5,6 +5,7 @@ import { createBlock } from '@wordpress/blocks';
 import { RichText, InnerBlocks } from '@wordpress/block-editor';
 import React, { useLayoutEffect } from 'react';
 import styles from './editor.lazy.scss';
+import { useDeviceType } from '@Controls/getPreviewType';
 
 var ALLOWED_BLOCKS = [ 'uagb/how-to-step' ]; // eslint-disable-line no-var
 
@@ -24,6 +25,8 @@ const Render = ( props ) => {
 
 	props = props.parentProps;
 
+	const deviceType = useDeviceType();
+
 	// Setup the attributes
 	const {
 		className,
@@ -32,7 +35,6 @@ const Render = ( props ) => {
 		insertBlocksAfter,
 		mergeBlocks,
 		onReplace,
-		deviceType,
 		attributes: {
 			currencyType,
 			showEstcost,
@@ -59,7 +61,7 @@ const Render = ( props ) => {
 			timeInYears,
 		},
 	} = props;
-	
+
 	const splitBlock = ( before, after, ...blocks ) => {
 		if ( after ) {
 			// Append "After" content as a new paragraph block to the end of
@@ -250,7 +252,7 @@ const Render = ( props ) => {
 				onSplit={ splitBlock }
 				onRemove={ () => onReplace( [] ) }
 			/>
-			<div className="uagb-howto__source-wrap">{ imageIconHtml }</div>
+				{ imageIconHtml }
 			<span className="uagb-howto__time-wrap">
 				{ showTotaltime && (
 					<RichText
@@ -379,7 +381,6 @@ const Render = ( props ) => {
 					/>
 				) }
 			</span>
-			<div className="uagb-how-to-tools__wrap">
 				{ showTools && (
 					<RichText
 						tagName="h4"
@@ -398,17 +399,8 @@ const Render = ( props ) => {
 					/>
 				) }
 				{ showTools && (
-					<div className="uagb-how-to-tools">
-						{ tools.map( ( tool, index ) => {
+						<>{ tools.map( ( tool, index ) => {
 							return (
-								<div
-									className={ classnames(
-										`uagb-how-to-tools-${ index }`,
-										'uagb-how-to-tools-child__wrapper'
-									) }
-									key={ index }
-								>
-									<div className="uagb-tools">
 										<RichText
 											tagName="div"
 											placeholder={ __(
@@ -424,19 +416,17 @@ const Render = ( props ) => {
 													index
 												);
 											} }
-											className="uagb-tools__label"
+											className={ `uagb-tools__label ${ index }` }
 											multiline={ false }
 											allowedFormats={ [
 												'core/bold',
 												'core/italic',
 												'core/strikethrough',
 											] }
+											key={ index }
 										/>
-									</div>
-								</div>
 							);
-						} ) }
-					</div>
+						} ) }</>
 				) }
 				{ showMaterials && (
 					<RichText
@@ -459,14 +449,6 @@ const Render = ( props ) => {
 					<>
 						{ materials.map( ( material, index ) => {
 							return (
-								<div
-									className={ classnames(
-										`uagb-how-to-materials-${ index }`,
-										'uagb-how-to-materials-child__wrapper'
-									) }
-									key={ index }
-								>
-									<div className="uagb-materials">
 										<RichText
 											tagName="div"
 											placeholder={ __(
@@ -484,22 +466,19 @@ const Render = ( props ) => {
 													index
 												);
 											} }
-											className="uagb-materials__label"
+											className={ `uagb-materials__label ${ index }` }
 											multiline={ false }
 											allowedFormats={ [
 												'core/bold',
 												'core/italic',
 												'core/strikethrough',
 											] }
+											key={ index }
 										/>
-									</div>
-								</div>
 							);
 						} ) }
 					</>
 				) }
-			</div>
-			<div className="uagb-how-to-steps__wrap">
 				<RichText
 					tagName="h4"
 					placeholder={ __(
@@ -519,7 +498,6 @@ const Render = ( props ) => {
 					template={ getStepAsChild }
 					allowedBlocks={ ALLOWED_BLOCKS }
 				/>
-			</div>
 		</div>
 	);
 };

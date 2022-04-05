@@ -5,6 +5,7 @@ import { RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import React, { useLayoutEffect } from 'react';
 import styles from './editor.lazy.scss';
+import { useDeviceType } from '@Controls/getPreviewType';
 
 const Render = ( props ) => {
 	// Add and remove the CSS on the drop and remove of the component.
@@ -16,9 +17,11 @@ const Render = ( props ) => {
 	}, [] );
 
 	props = props.parentProps;
+	const deviceType = useDeviceType();
 	// Setup the attributes
 	const {
 		attributes: {
+			isPreview,
 			block_id,
 			icon,
 			noticeTitle,
@@ -27,7 +30,6 @@ const Render = ( props ) => {
 			noticeAlignment,
 			headingTag,
 		},
-		deviceType,
 		setAttributes,
 		className,
 	} = props;
@@ -35,15 +37,14 @@ const Render = ( props ) => {
 	let imageIconHtml = '';
 
 	if ( noticeDismiss ) {
-		imageIconHtml = (
-			<span className="uagb-notice-dismiss">{ renderSVG( icon ) }</span>
-		);
+		imageIconHtml = ( renderSVG( icon ) );
 	}
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/inline-notice.png`;
 	return (
+		isPreview ? <img width='100%' src={previewImageData} alt=''/> :
 		<div
 			className={ classnames(
 				className,
-				'uagb-inline_notice__outer-wrap',
 				`${ noticeDismiss }`,
 				`uagb-inline_notice__align-${ noticeAlignment }`,
 				`uagb-block-${ block_id }`,

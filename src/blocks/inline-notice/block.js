@@ -6,7 +6,7 @@ import attributes from './attributes';
 import edit from './edit';
 import save from './save';
 import './style.scss';
-
+import deprecated from './deprecated';
 import { __ } from '@wordpress/i18n';
 
 import { registerBlockType } from '@wordpress/blocks';
@@ -25,7 +25,12 @@ registerBlockType( 'uagb/inline-notice', {
 		anchor: true,
 	},
 	attributes,
-	example: {},
+	example: {
+		attributes: {
+			isPreview: true,
+		}
+	},
+	deprecated,
 	edit,
 	save,
 } );

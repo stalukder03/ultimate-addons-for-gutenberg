@@ -19,7 +19,7 @@ function styling( props ) {
 		separatorSpace,
 		subHeadingColor,
 		headFontFamily,
-		headFontStyle, 
+		headFontStyle,
 		headFontWeight,
 		headFontSize,
 		headFontSizeType,
@@ -50,9 +50,11 @@ function styling( props ) {
 	const mobile_selectors = {};
 
 	const selectors = {
+		'.wp-block-uagb-advanced-heading ':{
+			'text-align': headingAlign,
+		},
 		' .uagb-desc-text': {
 			'margin': 0,
-			'text-align': headingAlign,
 			'font-family': subHeadFontFamily,
 			'font-style' : subHeadFontStyle,
 			'text-decoration': subHeadDecoration,
@@ -67,14 +69,10 @@ function styling( props ) {
 				subHeadLineHeightType
 			),
 			'color': subHeadingColor,
-		},
-		' .uagb-separator-wrap': {
-			'text-align': headingAlign,
-		},
+		}
 	};
 
 	selectors[ ' ' + headingTag + '.uagb-heading-text' ] = {
-		'text-align': headingAlign,
 		'font-family': headFontFamily,
 		'font-style' : headFontStyle,
 		'text-decoration': headDecoration,
@@ -132,7 +130,7 @@ function styling( props ) {
 		),
 	};
 
-	const base_selector = `.block-editor-page #wpwrap .uagb-block-${ props.clientId.substr(
+	const base_selector = `.editor-styles-wrapper .uagb-block-${ props.clientId.substr(
 		0,
 		8
 	) }`;

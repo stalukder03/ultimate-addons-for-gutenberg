@@ -16,14 +16,18 @@ import {
 	MediaPlaceholder,
 	BlockControls,
 	MediaReplaceFlow,
+	AlignmentToolbar
 } from '@wordpress/block-editor';
 
 import {
-	PanelBody,
 	ToggleControl,
 	ToolbarGroup,
 	Icon,
 } from '@wordpress/components';
+
+
+
+import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 const Settings = ( props ) => {
 	const { loopLottie, reverseDirection } = props;
@@ -48,10 +52,11 @@ const Settings = ( props ) => {
 		lottieURl,
 		playOn,
 		backgroundHColor,
+		isPreview
 	} = attributes;
 
 	const controlsSettings = (
-		<PanelBody 
+		<UAGAdvancedPanelBody
 			title={ __( 'Content', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ true }
 		>
@@ -171,11 +176,11 @@ const Settings = ( props ) => {
 					) }
 				/>
 			) }
-		</PanelBody>
+		</UAGAdvancedPanelBody>
 	);
 
 	const styleSettings = (
-		<PanelBody
+		<UAGAdvancedPanelBody
 			title={ __( 'Background', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ true }
 		>
@@ -252,7 +257,7 @@ const Settings = ( props ) => {
 				}
 				disableBottomSeparator={ true }
 			/>
-		</PanelBody>
+		</UAGAdvancedPanelBody>
 	);
 
 	const onSelectLottieJSON = ( media ) => {
@@ -306,8 +311,10 @@ const Settings = ( props ) => {
 				{ __( 'website.' ) }
 			</span>
 		);
-
+		const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/lottie-animation.png`;
 		return (
+			isPreview ? <img width='100%' src={previewImageData} alt=''/> :
+			<>
 			<div className="uagb-lottie_upload_wrap">
 				<MediaPlaceholder
 					labels={ {
@@ -323,6 +330,7 @@ const Settings = ( props ) => {
 					onSelect={ onSelectLottieJSON }
 				/>
 			</div>
+			</>
 		);
 	}
 
@@ -340,6 +348,12 @@ const Settings = ( props ) => {
 						onSelect={ onSelectLottieJSON }
 					/>
 				</ToolbarGroup>
+				<AlignmentToolbar
+					value={ align }
+					onChange={ ( value ) =>
+						setAttributes( { align: value } )
+					}
+				/>
 			</BlockControls>
 		);
 	};

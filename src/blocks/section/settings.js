@@ -11,12 +11,17 @@ import Range from '@Components/range/Range.js';
 import Background from '@Components/background';
 import Border from '@Components/border';
 import MultiButtonsControl from '@Components/multi-buttons-control';
+import renderSVG from '@Controls/renderIcon';
 import {
 	BlockControls,
-	BlockAlignmentToolbar,
+	AlignmentToolbar,
 	InspectorControls,
 } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, ToggleControl } from '@wordpress/components';
+import { SelectControl, ToggleControl, Icon } from '@wordpress/components';
+
+
+
+import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 const Settings = ( props ) => {
 	props = props.parentProps;
@@ -96,7 +101,7 @@ const Settings = ( props ) => {
 
 	const getLayoutPanelBody = () => {
 		return (
-			<PanelBody initialOpen={ true }>
+			<UAGAdvancedPanelBody initialOpen={ true }>
 				<MultiButtonsControl
 					setAttributes={ setAttributes }
 					label={ __(
@@ -120,7 +125,63 @@ const Settings = ( props ) => {
 					] }
 					showIcons={ false }
 				/>
-				{ contentWidth === 'boxed' && (
+				{ 'boxed' === contentWidth && (
+					<>
+					<MultiButtonsControl
+						setAttributes={ setAttributes }
+						label={ __(
+							'Alignment',
+							'ultimate-addons-for-gutenberg'
+						) }
+						data={ {
+							value: align,
+							label: 'align',
+						} }
+						className="uagb-multi-button-alignment-control"
+						options={ [
+							{
+								value: 'left',
+								icon: (
+									<Icon
+										icon={ renderSVG( 'fa fa-align-left' ) }
+									/>
+								),
+								tooltip: __(
+									'Left',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+							{
+								value: 'center',
+								icon: (
+									<Icon
+										icon={ renderSVG(
+											'fa fa-align-center'
+										) }
+									/>
+								),
+								tooltip: __(
+									'Center',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+							{
+								value: 'right',
+								icon: (
+									<Icon
+										icon={ renderSVG(
+											'fa fa-align-right'
+										) }
+									/>
+								),
+								tooltip: __(
+									'Right',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+						] }
+						showIcons={ true }
+					/>
 					<Range
 						label={ __( 'Width', 'ultimate-addons-for-gutenberg' ) }
 						setAttributes={ setAttributes }
@@ -132,6 +193,7 @@ const Settings = ( props ) => {
 						max={ 2000 }
 						displayUnit={ false }
 					/>
+				</>
 				) }
 				{ contentWidth !== 'boxed' && (
 					<ToggleControl
@@ -244,13 +306,13 @@ const Settings = ( props ) => {
 						},
 					] }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getSpacingPanelBody = () => {
 		return (
-			<PanelBody title="Spacing" initialOpen={ false }>
+			<UAGAdvancedPanelBody title="Spacing" initialOpen={ false }>
 				<SpacingControl
 					{ ...props }
 					label={ __( 'Margin', 'ultimate-addons-for-gutenberg' ) }
@@ -393,13 +455,13 @@ const Settings = ( props ) => {
 						label: 'spacingLink',
 					} }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getBackgroundPanelBody = () => {
 		return (
-			<PanelBody
+			<UAGAdvancedPanelBody
 				title={ __( 'Background', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
@@ -463,14 +525,14 @@ const Settings = ( props ) => {
 					onOpacityChange = { ( opacity ) => setAttributes( { backgroundVideoOpacity: opacity } ) }
 					{ ...props }
 				/>
-			</PanelBody>
+			</UAGAdvancedPanelBody>
 		);
 	};
 
 	const getBorderPanelBody = () => {
 		return (
 			<>
-				<PanelBody
+				<UAGAdvancedPanelBody
 					title={ __( 'Border', 'ultimate-addons-for-gutenberg' ) }
 					initialOpen={ false }
 				>
@@ -518,8 +580,8 @@ const Settings = ( props ) => {
 						} }
 						disableBottomSeparator={ true }
 					/>
-				</PanelBody>
-				<PanelBody title="Box Shadow" initialOpen={ false }>
+				</UAGAdvancedPanelBody>
+				<UAGAdvancedPanelBody title="Box Shadow" initialOpen={ false }>
 					<BoxShadowControl
 						setAttributes={ setAttributes }
 						label={ __(
@@ -575,7 +637,7 @@ const Settings = ( props ) => {
 							),
 						} }
 					/>
-				</PanelBody>
+				</UAGAdvancedPanelBody>
 			</>
 		);
 	};
@@ -601,7 +663,7 @@ const Settings = ( props ) => {
 	return (
 		<Suspense fallback={ lazyLoader() }>
 			<BlockControls>
-				<BlockAlignmentToolbar
+				<AlignmentToolbar
 					value={ align }
 					onChange={ ( value ) => {
 						setAttributes( { align: value } );

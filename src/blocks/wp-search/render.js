@@ -3,7 +3,7 @@ import React, { useLayoutEffect } from 'react';
 import renderSVG from '@Controls/renderIcon';
 import { __ } from '@wordpress/i18n';
 import styles from './editor.lazy.scss';
-
+import { useDeviceType } from '@Controls/getPreviewType';
 import { RichText } from '@wordpress/block-editor';
 
 const Render = ( props ) => {
@@ -16,8 +16,8 @@ const Render = ( props ) => {
 	}, [] );
 
 	props = props.parentProps;
-
-	const { attributes, setAttributes, deviceType } = props;
+	const deviceType = useDeviceType();
+	const { attributes, setAttributes } = props;
 
 	const {
 		block_id,
@@ -25,6 +25,7 @@ const Render = ( props ) => {
 		placeholder,
 		buttonType,
 		buttonText,
+		isPreview
 	} = attributes;
 
 	const renderClassic = () => {
@@ -118,7 +119,11 @@ const Render = ( props ) => {
 		return '';
 	};
 
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/wp-search.png`;
+
 	return (
+		isPreview ? <img width='100%' src={previewImageData} alt=''/> :
+		<>
 		<div
 			className={ classnames(
 				'uagb-wp-search__outer-wrap',
@@ -130,6 +135,7 @@ const Render = ( props ) => {
 			{ renderClassic() }
 			{ renderMinimal() }
 		</div>
+		</>
 	);
 };
 

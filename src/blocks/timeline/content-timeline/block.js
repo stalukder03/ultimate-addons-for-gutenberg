@@ -29,17 +29,17 @@ const enhance = compose(
 			selected: select( 'core/block-editor' ).getSelectedBlock(),
 		};
 	} )
-);
-/**
- * Add custom UAG attributes to selected blocks
- *
- * @param {Function} BlockEdit Original component.
- * @return {string} Wrapped component.
- */
-const withcontentTimeline = createHigherOrderComponent( ( BlockEdit ) => {
-	return enhance( ( { ...props } ) => {
-		return <BlockEdit { ...props } />;
-	} );
+	);
+	/**
+	 * Add custom UAG attributes to selected blocks
+	 *
+	 * @param {Function} BlockEdit Original component.
+	 * @return {string} Wrapped component.
+	 */
+	const withcontentTimeline = createHigherOrderComponent( ( BlockEdit ) => {
+		return enhance( ( { ...props } ) => {
+		 return <BlockEdit { ...props } />;
+	 } );
 }, 'withcontentTimeline' );
 
 registerBlockType( 'uagb/content-timeline', {
@@ -60,79 +60,11 @@ registerBlockType( 'uagb/content-timeline', {
 	edit,
 	save,
 	example: {
-		innerBlocks: [
-			{
-				name: 'uagb/content-timeline-child',
-				innerBlocks: [
-					{
-						name: 'uagb/content-timeline-child',
-						attributes: {
-							time_heading: 'Timeline Heading ',
-							time_desc:
-								'This is Timeline description, you can change me anytime click here ',
-							t_date: '1/1/2019',
-						},
-					},
-				],
-			},
-			{
-				name: 'uagb/content-timeline-child',
-				innerBlocks: [
-					{
-						name: 'uagb/content-timeline-child',
-						attributes: {
-							time_heading: 'Timeline Heading ',
-							time_desc:
-								'This is Timeline description, you can change me anytime click here ',
-							t_date: '1/1/2019',
-						},
-					},
-				],
-			},
-			{
-				name: 'uagb/content-timeline-child',
-				innerBlocks: [
-					{
-						name: 'uagb/content-timeline-child',
-						attributes: {
-							time_heading: 'Timeline Heading ',
-							time_desc:
-								'This is Timeline description, you can change me anytime click here ',
-							t_date: '1/1/2019',
-						},
-					},
-				],
-			},
-			{
-				name: 'uagb/content-timeline-child',
-				innerBlocks: [
-					{
-						name: 'uagb/content-timeline-child',
-						attributes: {
-							time_heading: 'Timeline Heading ',
-							time_desc:
-								'This is Timeline description, you can change me anytime click here ',
-							t_date: '1/1/2019',
-						},
-					},
-				],
-			},
-			{
-				name: 'uagb/content-timeline-child',
-				innerBlocks: [
-					{
-						name: 'uagb/content-timeline-child',
-						attributes: {
-							time_heading: 'Timeline Heading ',
-							time_desc:
-								'This is Timeline description, you can change me anytime click here ',
-							t_date: '1/1/2019',
-						},
-					},
-				],
-			},
-		],
+		attributes: {
+			isPreview: true,
+		}
 	},
 	deprecated,
 } );
+
 addFilter( 'editor.BlockEdit', 'uagb/content-timeline', withcontentTimeline );

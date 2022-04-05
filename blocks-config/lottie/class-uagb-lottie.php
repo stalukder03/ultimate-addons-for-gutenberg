@@ -127,6 +127,10 @@ if ( ! class_exists( 'UAGB_Lottie' ) ) {
 							'type'    => 'string',
 							'default' => '',
 						),
+						'isPreview'        => array(
+							'type'    => 'boolean',
+							'default' => false,
+						),
 					),
 					'render_callback' => array( $this, 'render_html' ),
 				)
@@ -149,6 +153,7 @@ if ( ! class_exists( 'UAGB_Lottie' ) ) {
 			}
 
 			$main_classes = array(
+				'wp-block-uagb-lottie',
 				'uagb-block-' . $block_id,
 				'uagb-lottie__outer-wrap',
 				'uagb-lottie__' . $attributes['align'],

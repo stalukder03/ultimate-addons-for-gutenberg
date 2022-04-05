@@ -20,18 +20,28 @@ const attributes = {
 	},
 	image: {
 		type: 'object',
+		default: null
 	},
 	imagePosition: {
 		type: 'string',
 		default: 'top',
+		UAGCopyPaste: {
+			styleType: 'image-position'
+		},
 	},
 	imageAlignment: {
 		type: 'string',
 		default: 'top',
+		UAGCopyPaste: {
+			styleType: 'image-align'
+		},
 	},
 	imageSize: {
 		type: 'string',
 		default: 'medium',
+		UAGCopyPaste: {
+			styleType: 'image-size'
+		},
 	},
 	headingTag: {
 		type: 'string',
@@ -52,6 +62,13 @@ const attributes = {
 	headingAlign: {
 		type: 'string',
 		default: 'left',
+		UAGCopyPaste: {
+			styleType: 'main-title-align'
+		},
+	},
+	stack: {
+		type: 'string',
+		default: 'tablet',
 	},
 	showTitle: {
 		type: 'boolean',

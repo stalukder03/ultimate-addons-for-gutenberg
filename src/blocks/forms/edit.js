@@ -5,7 +5,8 @@
 import React, { useEffect, useCallback, Suspense, lazy } from 'react';
 import styling from './styling';
 import UAGB_Block_Icons from '@Controls/block-icons';
-
+import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
+import { useDeviceType } from '@Controls/getPreviewType';
 const Settings = lazy( () =>
 	import( /* webpackChunkName: "chunks/form/settings" */ './settings' )
 );
@@ -27,6 +28,7 @@ import { __ } from '@wordpress/i18n';
 import lazyLoader from '@Controls/lazy-loader';
 
 const UAGBFormsEdit = ( props ) => {
+	const deviceType = useDeviceType();
 	useEffect( () => {
 		const { setAttributes } = props;
 
@@ -48,44 +50,37 @@ const UAGBFormsEdit = ( props ) => {
 		} = props.attributes;
 
 		if ( vPaddingSubmit ) {
-			if ( ! paddingBtnTop ) {
+			if ( undefined === paddingBtnTop ) {
 				setAttributes( { paddingBtnTop: vPaddingSubmit } );
 			}
-			if ( ! paddingBtnBottom ) {
+			if ( undefined === paddingBtnBottom ) {
 				setAttributes( { paddingBtnBottom: vPaddingSubmit } );
 			}
 		}
 		if ( hPaddingSubmit ) {
-			if ( ! paddingBtnRight ) {
+			if ( undefined === paddingBtnRight ) {
 				setAttributes( { paddingBtnRight: hPaddingSubmit } );
 			}
-			if ( ! paddingBtnLeft ) {
+			if ( undefined === paddingBtnLeft ) {
 				setAttributes( { paddingBtnLeft: hPaddingSubmit } );
 			}
 		}
 		if ( vPaddingField ) {
-			if ( ! paddingFieldTop ) {
+			if ( undefined === paddingFieldTop ) {
 				setAttributes( { paddingFieldTop: vPaddingField } );
 			}
-			if ( ! paddingFieldBottom ) {
+			if ( undefined === paddingFieldBottom ) {
 				setAttributes( { paddingFieldBottom: vPaddingField } );
 			}
 		}
 		if ( hPaddingField ) {
-			if ( ! paddingFieldRight ) {
+			if ( undefined === paddingFieldRight ) {
 				setAttributes( { paddingFieldRight: hPaddingField } );
 			}
-			if ( ! paddingFieldLeft ) {
+			if ( undefined === paddingFieldLeft ) {
 				setAttributes( { paddingFieldLeft: hPaddingField } );
 			}
 		}
-		// Pushing Style tag for this block css.
-		const $style = document.createElement( 'style' );
-		$style.setAttribute(
-			'id',
-			'uagb-style-forms-' + props.clientId.substr( 0, 8 )
-		);
-		document.head.appendChild( $style );
 
 		const id = props.clientId;
 
@@ -93,14 +88,17 @@ const UAGBFormsEdit = ( props ) => {
 	}, [] );
 
 	useEffect( () => {
-		const element = document.getElementById(
-			'uagb-style-forms-' + props.clientId.substr( 0, 8 )
-		);
+		const blockStyling = styling( props );
 
-		if ( null !== element && undefined !== element ) {
-			element.innerHTML = styling( props );
-		}
+        addBlockEditorDynamicStyles( 'uagb-style-forms-' + props.clientId.substr( 0, 8 ), blockStyling );
 	}, [ props ] );
+
+	useEffect( () => {
+		// Replacement for componentDidUpdate.
+	    const blockStyling = styling( props );
+
+        addBlockEditorDynamicStyles( 'uagb-style-forms-' + props.clientId.substr( 0, 8 ), blockStyling );
+	}, [deviceType] );
 
 	const blockVariationPickerOnSelect = useCallback(
 		( nextVariation = props.defaultVariation ) => {
@@ -133,12 +131,18 @@ const UAGBFormsEdit = ( props ) => {
 	const { variations, hasInnerBlocks } = props;
 
 	const renderReadyClasses = useCallback( ( id ) => {
-		const mainDiv = document.getElementById( 'block-' + id );
-		const formscope = mainDiv.getElementsByClassName(
-			'uagb-forms__outer-wrap'
-		);
+		const iframeEl = document.querySelector( `iframe[name='editor-canvas']` );
+		let mainDiv;
+		let formscope;
+		if( iframeEl ){
+			mainDiv = iframeEl.contentDocument.getElementById( 'block-' + id )
+			formscope = mainDiv.getElementsByClassName( 'uagb-forms__outer-wrap' )
+		} else {
+			mainDiv = document.getElementById( 'block-' + id )
+			formscope = mainDiv?.getElementsByClassName( 'uagb-forms__outer-wrap' )
+		}
 
-		if ( null !== formscope[ 0 ] && undefined !== formscope[ 0 ] ) {
+		if ( formscope && formscope[ 0 ] ) {
 			const editorwrap = formscope[ 0 ].children;
 			const formInnerWrap = editorwrap[ 0 ].children;
 			const editorBlockWrap = formInnerWrap[ 0 ].getElementsByClassName(
@@ -193,12 +197,13 @@ const UAGBFormsEdit = ( props ) => {
 			}
 		}
 	} );
-
+const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/form.png`;
 	if ( ! hasInnerBlocks ) {
 		return (
 			<>
+			{ props.attributes.isPreview ? <img width='100%' src={previewImageData} alt=''/> :
 				<__experimentalBlockVariationPicker
-					icon={ UAGB_Block_Icons.columns }
+					icon={ UAGB_Block_Icons.forms }
 					label={ uagb_blocks_info.blocks[ 'uagb/forms' ].title }
 					instructions={ __(
 						'Select a variation to start with.',
@@ -211,6 +216,7 @@ const UAGBFormsEdit = ( props ) => {
 					}
 					className="uagb-forms-variations"
 				/>
+	}
 			</>
 		);
 	}
@@ -232,12 +238,7 @@ const applyWithSelect = withSelect( ( select, props ) => {
 		getBlockVariations,
 		getDefaultBlockVariation,
 	} = select( 'core/blocks' );
-	const { __experimentalGetPreviewDeviceType = null } = select(
-		'core/edit-post'
-	);
-	const deviceType = __experimentalGetPreviewDeviceType
-		? __experimentalGetPreviewDeviceType()
-		: null;
+
 	const innerBlocks = getBlocks( props.clientId );
 	const { replaceInnerBlocks } = useDispatch( 'core/block-editor' );
 
@@ -258,7 +259,6 @@ const applyWithSelect = withSelect( ( select, props ) => {
 				? null
 				: getBlockVariations( props.name ),
 		replaceInnerBlocks,
-		deviceType,
 	};
 } );
 

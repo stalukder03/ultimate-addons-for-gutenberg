@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import { InnerBlocks } from '@wordpress/block-editor';
 import React, { useLayoutEffect, useMemo } from 'react';
 import styles from './editor.lazy.scss';
-
+import { useDeviceType } from '@Controls/getPreviewType';
 const ALLOWED_BLOCKS = [ 'uagb/faq-child' ];
 
 const faq = [];
@@ -22,9 +22,9 @@ const Render = ( props ) => {
 	}, [] );
 
 	props = props.parentProps;
-
-	const { attributes, deviceType } = props;
-	const { equalHeight } = attributes;
+	const deviceType = useDeviceType();
+	const { attributes } = props;
+	const { isPreview, equalHeight } = attributes;
 
 	const getFaqChildTemplate = useMemo( () => {
 		const childFaq = [];
@@ -37,8 +37,10 @@ const Render = ( props ) => {
 	}, [ faqCount, faq ] );
 
 	const equalHeightClass = equalHeight ? 'uagb-faq-equal-height' : '';
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/faq.png`;
 
 	return (
+		isPreview ? <img width='100%' src={previewImageData} alt=''/> :
 		<div
 			className={ classnames(
 				'uagb-faq__outer-wrap',

@@ -5,6 +5,7 @@ import renderSVG from '@Controls/renderIcon';
 import { createBlock } from '@wordpress/blocks';
 import { RichText } from '@wordpress/block-editor';
 import styles from './editor.lazy.scss';
+import { useDeviceType } from '@Controls/getPreviewType';
 
 const Render = ( props ) => {
 	// Add and remove the CSS on the drop and remove of the component.
@@ -16,7 +17,7 @@ const Render = ( props ) => {
 	}, [] );
 
 	props = props.parentProps;
-
+	const deviceType = useDeviceType();
 	const {
 		className,
 		setAttributes,
@@ -24,10 +25,10 @@ const Render = ( props ) => {
 		mergeBlocks,
 		insertBlocksAfter,
 		onReplace,
-		deviceType,
 	} = props;
 
 	const {
+		isPreview,
 		align,
 		tag,
 		title,
@@ -55,6 +56,7 @@ const Render = ( props ) => {
 	} = attributes;
 
 	const titleHtml = (
+
 		<div className="uagb-team__title-wrap">
 			{ showTitle && ( <RichText
 				tagName={ tag }
@@ -130,7 +132,6 @@ const Render = ( props ) => {
 	};
 
 	const socialLinks = (
-		<div className="uagb-team__social-icon-wrap">
 			<ul className="uagb-team__social-list">
 				{ '' !== twitterIcon &&
 					socialHtml( twitterIcon, twitterLink, socialTarget ) }
@@ -140,12 +141,10 @@ const Render = ( props ) => {
 				{ '' !== pinIcon &&
 					socialHtml( pinIcon, pinLink, socialTarget ) }
 			</ul>
-		</div>
 	);
 
 	// Get description and seperator components.
 	const descHtml = (
-		<div className="uagb-team__desc-wrap">
 			<RichText
 				tagName="p"
 				value={ description_text }
@@ -173,7 +172,6 @@ const Render = ( props ) => {
 				}
 				onRemove={ () => onReplace( [] ) }
 			/>
-		</div>
 	);
 
 	let size = '';
@@ -192,28 +190,20 @@ const Render = ( props ) => {
 
 	if ( '' !== imgUrl && showImg ) {
 		imageHtml = (
-			<div
-				className={ classnames(
-					'uagb-team__image-wrap',
-					`uagb-team__image-crop-${ imgStyle }`
-				) }
-			>
 				<img
-					className=""
+					className={`uagb-team__image-crop-${ imgStyle }`}
 					src={ imgUrl }
 					alt={ image.alt ? image.alt : '' }
 				/>
-			</div>
 		);
 	}
-
+		const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/team.png`;
 	return (
 		<>
+		{ isPreview ? <img width='100%' src={previewImageData} alt=''/> :
 			<div
 				className={ classnames(
 					className,
-					'uagb-team',
-					'uagb-team__outer-wrap',
 					`uagb-team__image-position-${ imgPosition }`,
 					`uagb-team__align-${ align }`,
 					`uagb-team__stack-${ stack }`,
@@ -221,7 +211,6 @@ const Render = ( props ) => {
 					`uagb-block-${ props.clientId.substr( 0, 8 ) }`
 				) }
 			>
-				<div className="uagb-team__wrap">
 					{ imgPosition === 'left' && imageHtml }
 
 					<div className="uagb-team__content">
@@ -235,8 +224,8 @@ const Render = ( props ) => {
 					</div>
 
 					{ imgPosition === 'right' && imageHtml }
-				</div>
 			</div>
+}
 		</>
 	);
 };

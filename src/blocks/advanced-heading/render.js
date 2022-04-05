@@ -2,11 +2,13 @@ import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import React from 'react';
+import { useDeviceType } from '@Controls/getPreviewType';
 
 const Render = ( props ) => {
 	props = props.parentProps;
 	const {
 		attributes: {
+			isPreview,
 			block_id,
 			headingTitle,
 			headingDesc,
@@ -18,9 +20,9 @@ const Render = ( props ) => {
 		},
 		setAttributes,
 		className,
-		deviceType,
 	} = props;
 
+	const deviceType = useDeviceType();
 	const headingText = showheading && (
 		<RichText
 			tagName={ headingTag }
@@ -55,7 +57,9 @@ const Render = ( props ) => {
 			onChange={ ( value ) => setAttributes( { headingDesc: value } ) }
 		/>
 	);
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/creative-heading.png`;
 	return (
+		isPreview ? <img width='100%' src={previewImageData} alt=''/> :
 		<div
 			className={ classnames(
 				className,

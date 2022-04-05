@@ -9,6 +9,9 @@ const attributes = {
 	height: {
 		type: 'number',
 		default: 300,
+		UAGCopyPaste: {
+			styleType: 'map-height'
+		},
 	},
 	zoom: {
 		type: 'number',
@@ -17,6 +20,10 @@ const attributes = {
 	language: {
 		type: 'string',
 		default: 'en',
+	},
+	isPreview: {
+		type: 'boolean',
+		default: false,
 	},
 };
 

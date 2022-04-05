@@ -47,6 +47,7 @@ const Border = ( props ) => {
 	);
 	const advancedControls = (
 		<>
+			<h2>{ __( 'Border', 'ultimate-addons-for-gutenberg' ) }</h2>
 			<div className="uag-border-type">
 				<SelectControl
 					label={ borderStyle.title }
@@ -139,38 +140,36 @@ const Border = ( props ) => {
 					/>
 				</div>
 			) }
-			{ 'none' !== borderStyle.value && (
-				<div className="uag-border-radius">
-					<Range
-						label={ borderRadius.title }
-						value={ borderRadius.value }
-						onChange={ ( value ) =>
-							setAttributes( { [ borderRadius.label ]: value } )
-						}
-						min={ 0 }
-						max={ 100 }
-						displayUnit={ borderRadius?.displayUnit || false }
-						unit={ borderRadius?.unit || false }
-						units={ [
-							{
-								name: __(
-									'Pixel',
-									'ultimate-addons-for-gutenberg'
-								),
-								unitValue: 'px',
-							},
-							{
-								name: __(
-									'%',
-									'ultimate-addons-for-gutenberg'
-								),
-								unitValue: '%',
-							},
-						] }
-						setAttributes={ setAttributes }
-					/>
-				</div>
-			) }
+			<div className="uag-border-radius">
+				<Range
+					label={ borderRadius.title }
+					value={ borderRadius.value }
+					onChange={ ( value ) =>
+						setAttributes( { [ borderRadius.label ]: value } )
+					}
+					min={ 0 }
+					max={ 100 }
+					displayUnit={ borderRadius?.displayUnit || false }
+					unit={ borderRadius?.unit || false }
+					units={ [
+						{
+							name: __(
+								'Pixel',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'px',
+						},
+						{
+							name: __(
+								'%',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: '%',
+						},
+					] }
+					setAttributes={ setAttributes }
+				/>
+			</div>
 			{ 'none' !== borderStyle.value && (
 				<UAGTabsControl
 					tabs={ [

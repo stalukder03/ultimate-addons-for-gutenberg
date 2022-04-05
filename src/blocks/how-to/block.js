@@ -25,44 +25,9 @@ registerBlockType( 'uagb/how-to', {
 		anchor: true,
 	},
 	example: {
-		innerBlocks: [
-			{
-				name: 'uagb/info-box',
-				attributes: {
-					infoBoxTitle: 'Step 1',
-					iconimgPosition: 'left',
-					source_type: 'image',
-					showPrefix: false,
-					seperatorStyle: 'none',
-					ctaType: 'all',
-					headingTag: 'h4',
-				},
-			},
-			{
-				name: 'uagb/info-box',
-				attributes: {
-					infoBoxTitle: 'Step 2',
-					iconimgPosition: 'left',
-					source_type: 'image',
-					showPrefix: false,
-					seperatorStyle: 'none',
-					ctaType: 'all',
-					headingTag: 'h4',
-				},
-			},
-			{
-				name: 'uagb/info-box',
-				attributes: {
-					infoBoxTitle: 'Step 3',
-					iconimgPosition: 'left',
-					source_type: 'image',
-					showPrefix: false,
-					seperatorStyle: 'none',
-					ctaType: 'all',
-					headingTag: 'h4',
-				},
-			},
-		],
+		attributes: {
+			isPreview: true,
+		}
 	},
 	attributes,
 	edit,

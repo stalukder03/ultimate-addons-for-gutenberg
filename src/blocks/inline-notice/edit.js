@@ -3,11 +3,11 @@
  */
 
 // Import block dependencies and components.
-import { withSelect } from '@wordpress/data';
 import styling from './styling';
 import lazyLoader from '@Controls/lazy-loader';
 import React, { useEffect, Suspense, lazy } from 'react';
-
+import { useDeviceType } from '@Controls/getPreviewType';
+import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 const Settings = lazy( () =>
 	import(
 		/* webpackChunkName: "chunks/inline-notice/settings" */ './settings'
@@ -18,18 +18,11 @@ const Render = lazy( () =>
 );
 
 const UAGBInlineNoticeEdit = ( props ) => {
+	const deviceType = useDeviceType();
 	useEffect( () => {
 		const { setAttributes, clientId, attributes } = props;
 		// Assigning block_id in the attribute.
 		setAttributes( { block_id: clientId.substr( 0, 8 ) } );
-
-		// Pushing Style tag for this block css.
-		const $style = document.createElement( 'style' );
-		$style.setAttribute(
-			'id',
-			'uagb-inline-notice-style-' + clientId.substr( 0, 8 )
-		);
-		document.head.appendChild( $style );
 
 		const {
 			contentVrPadding,
@@ -47,50 +40,52 @@ const UAGBInlineNoticeEdit = ( props ) => {
 		} = attributes;
 
 		if ( titleVrPadding ) {
-			if ( ! titleTopPadding ) {
+			if ( undefined === titleTopPadding ) {
 				setAttributes( { titleTopPadding: titleVrPadding } );
 			}
-			if ( ! titleBottomPadding ) {
+			if ( undefined === titleBottomPadding ) {
 				setAttributes( { titleBottomPadding: titleVrPadding } );
 			}
 		}
 		if ( titleHrPadding ) {
-			if ( ! titleRightPadding ) {
+			if ( undefined === titleRightPadding ) {
 				setAttributes( { titleRightPadding: titleHrPadding } );
 			}
-			if ( ! titleLeftPadding ) {
+			if ( undefined === titleLeftPadding ) {
 				setAttributes( { titleLeftPadding: titleHrPadding } );
 			}
 		}
 
 		if ( contentVrPadding ) {
-			if ( ! contentTopPadding ) {
+			if ( undefined === contentTopPadding ) {
 				setAttributes( { contentTopPadding: contentVrPadding } );
 			}
-			if ( ! contentBottomPadding ) {
+			if ( undefined === contentBottomPadding ) {
 				setAttributes( { contentBottomPadding: contentVrPadding } );
 			}
 		}
 		if ( contentHrPadding ) {
-			if ( ! contentRightPadding ) {
+			if ( undefined === contentRightPadding ) {
 				setAttributes( { contentRightPadding: contentHrPadding } );
 			}
-			if ( ! contentLeftPadding ) {
+			if ( undefined === contentLeftPadding ) {
 				setAttributes( { contentLeftPadding: contentHrPadding } );
 			}
 		}
 	}, [] );
 
 	useEffect( () => {
-		// Replacement for componentDidUpdate.
-		const element = document.getElementById(
-			'uagb-inline-notice-style-' + props.clientId.substr( 0, 8 )
-		);
+		const blockStyling = styling( props );
 
-		if ( null !== element && undefined !== element ) {
-			element.innerHTML = styling( props );
-		}
+		addBlockEditorDynamicStyles( 'uagb-inline-notice-style-' + props.clientId.substr( 0, 8 ), blockStyling );
 	}, [ props ] );
+
+	useEffect( () => {
+		// Replacement for componentDidUpdate.
+		const blockStyling = styling( props );
+
+		addBlockEditorDynamicStyles( 'uagb-inline-notice-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+	}, [deviceType] );
 
 	return (
 		<Suspense fallback={ lazyLoader() }>
@@ -100,16 +95,4 @@ const UAGBInlineNoticeEdit = ( props ) => {
 	);
 };
 
-export default withSelect( ( select ) => {
-	const { __experimentalGetPreviewDeviceType = null } = select(
-		'core/edit-post'
-	);
-
-	const deviceType = __experimentalGetPreviewDeviceType
-		? __experimentalGetPreviewDeviceType()
-		: null;
-
-	return {
-		deviceType,
-	};
-} )( UAGBInlineNoticeEdit );
+export default UAGBInlineNoticeEdit;
