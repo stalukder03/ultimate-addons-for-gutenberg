@@ -166,8 +166,8 @@ export default function styling( props ) {
 			),
 		},
 		'.wp-block-uagb-image--layout-default img':{
-			'width': generateCSSUnit( width, 'px' ),
-			'height': generateCSSUnit( height, 'px' ),
+			'width': 'inherit',
+			'height': 'inherit',
 			'border-style': imageBorderStyle,
 			'border-color': imageBorderColor,
 			'border-radius': generateCSSUnit( imageBorderRadius, 'px' ),
