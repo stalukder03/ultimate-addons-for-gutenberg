@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useLayoutEffect } from 'react';
 import classnames from 'classnames';
 import { isBlobURL, getBlobByURL, revokeBlobURL } from '@wordpress/blob';
 import { ToolbarButton } from '@wordpress/components';
@@ -19,6 +19,7 @@ import { useDeviceType } from '@Controls/getPreviewType';
 import UAGB_Block_Icons from '@Controls/block-icons';
 import Image from './image'
 import Layout from './layout'
+import styles from './editor.lazy.scss';
 
 /**
  * Internal dependencies
@@ -68,6 +69,14 @@ const Render = ( props ) => {
 		href,
 		linkDestination,
 	} = attributes
+
+	// Add and remove the CSS on the drop and remove of the component.
+	useLayoutEffect( () => {
+		styles.use();
+		return () => {
+			styles.unuse();
+		};
+	}, [] );
 
 	const deviceType = useDeviceType();
 	const { createNotice } = useDispatch( 'core/notices' );
