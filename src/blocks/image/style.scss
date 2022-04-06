@@ -1,8 +1,9 @@
 .wp-block-uagb-image {
-
 	&__figure {
 		position: relative;
 		display: inline-block;
+		max-width: 100%;
+		height: auto;
 
 		figcaption {
 			text-align: center;
@@ -11,15 +12,6 @@
 		}
 	}
 
-	&--align-left,
-	&--align-right,
-	&--align-center {
-
-		.wp-block-uagb-image__figure {
-			max-width: 100%;
-			height: auto;
-		}
-	}
 
 	&--align-left {
 		text-align: left;
