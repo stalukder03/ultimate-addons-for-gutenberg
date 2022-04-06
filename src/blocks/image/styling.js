@@ -28,7 +28,6 @@ export default function styling( props ) {
 		imageMarginUnit,
 		imageMarginUnitTablet,
 		imageMarginUnitMobile,
-		imageMarginLink,
 		// cpation
 		captionAlign,
 		captionFontFamily,

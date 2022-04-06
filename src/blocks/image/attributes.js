@@ -62,7 +62,7 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
-	// image
+	// image.
 	imageTopMargin : {
 		type: 'number',
 		isUAGStyle: true,

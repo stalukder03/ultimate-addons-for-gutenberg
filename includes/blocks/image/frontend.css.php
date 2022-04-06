@@ -20,26 +20,26 @@ if ( 'outset' === $attr['imageBoxShadowPosition'] ) {
 }
 
 $selectors = array(
-	'.wp-block-uagb-image'                             => array(
-		'margin-top'      => UAGB_Helper::get_css_value( $attr['imageTopMargin'], $attr['imageMarginUnit'] ),
-		'margin-right'    => UAGB_Helper::get_css_value( $attr['imageRightMargin'], $attr['imageMarginUnit'] ),
-		'margin-bottom'   => UAGB_Helper::get_css_value( $attr['imageBottomMargin'], $attr['imageMarginUnit'] ),
-		'margin-left'     => UAGB_Helper::get_css_value( $attr['imageLeftMargin'], $attr['imageMarginUnit'] ),
+	'.wp-block-uagb-image'                     => array(
+		'margin-top'    => UAGB_Helper::get_css_value( $attr['imageTopMargin'], $attr['imageMarginUnit'] ),
+		'margin-right'  => UAGB_Helper::get_css_value( $attr['imageRightMargin'], $attr['imageMarginUnit'] ),
+		'margin-bottom' => UAGB_Helper::get_css_value( $attr['imageBottomMargin'], $attr['imageMarginUnit'] ),
+		'margin-left'   => UAGB_Helper::get_css_value( $attr['imageLeftMargin'], $attr['imageMarginUnit'] ),
 	),
-	'.wp-block-uagb-image--layout-default img'                             => array(
+	'.wp-block-uagb-image--layout-default img' => array(
 		'border-style'  => $attr['imageBorderStyle'],
 		'border-color'  => $attr['imageBorderColor'],
 		'border-radius' => UAGB_Helper::get_css_value( $attr['imageBorderRadius'], 'px' ),
 		'border-width'  => UAGB_Helper::get_css_value( $attr['imageBorderWidth'], 'px' ),
 		'box-shadow'    => UAGB_Helper::get_css_value( $attr['imageBoxShadowHOffset'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['imageBoxShadowVOffset'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['imageBoxShadowBlur'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['imageBoxShadowSpread'], 'px' ) . ' ' . $attr['imageBoxShadowColor'] . ' ' . $imageBoxShadowPosition,
 	),
-	'.wp-block-uagb-image--layout-overlay img'                             => array(
-		'box-shadow'    => UAGB_Helper::get_css_value( $attr['imageBoxShadowHOffset'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['imageBoxShadowVOffset'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['imageBoxShadowBlur'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['imageBoxShadowSpread'], 'px' ) . ' ' . $attr['imageBoxShadowColor'] . ' ' . $imageBoxShadowPosition,
+	'.wp-block-uagb-image--layout-overlay img' => array(
+		'box-shadow' => UAGB_Helper::get_css_value( $attr['imageBoxShadowHOffset'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['imageBoxShadowVOffset'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['imageBoxShadowBlur'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['imageBoxShadowSpread'], 'px' ) . ' ' . $attr['imageBoxShadowColor'] . ' ' . $imageBoxShadowPosition,
 	),
-	'.wp-block-uagb-image .wp-block-uagb-image__figure img:hover'                       => array(
+	'.wp-block-uagb-image .wp-block-uagb-image__figure img:hover' => array(
 		'border-color' => $attr['imageBorderhoverColor'],
 	),
-	'.wp-block-uagb-image .wp-block-uagb-image__figure figcaption'                      => array(
+	'.wp-block-uagb-image .wp-block-uagb-image__figure figcaption' => array(
 		'font-family'     => $attr['captionFontFamily'],
 		'font-style'      => $attr['captionFontStyle'],
 		'text-decoration' => $attr['captionDecoration'],
@@ -52,14 +52,14 @@ $selectors = array(
 		'margin-right'    => UAGB_Helper::get_css_value( $attr['captionRightMargin'], $attr['captionMarginUnit'] ),
 		'margin-bottom'   => UAGB_Helper::get_css_value( $attr['captionBottomMargin'], $attr['captionMarginUnit'] ),
 		'margin-left'     => UAGB_Helper::get_css_value( $attr['captionLeftMargin'], $attr['captionMarginUnit'] ),
-		'text-align'	 => $attr['captionAlign']
+		'text-align'      => $attr['captionAlign'],
 	),
 	// overlay.
 	'.wp-block-uagb-image .wp-block-uagb-image--layout-overlay__color-wrapper' => array(
 		'background' => $attr['overlayBackground'],
 		'opacity'    => $attr['overlayOpacity'],
 	),
-	'.wp-block-uagb-image .wp-block-uagb-image--layout-overlay__inner'         => array(
+	'.wp-block-uagb-image .wp-block-uagb-image--layout-overlay__inner' => array(
 		'border-style'  => $attr['overlayBorderStyle'],
 		'border-color'  => $attr['overlayBorderColor'],
 		'border-radius' => UAGB_Helper::get_css_value( $attr['overlayBorderRadius'], 'px' ),
@@ -137,10 +137,10 @@ if ( 'none' !== $attr['maskShape'] ) {
 
 // tablet.
 $t_selectors['.wp-block-uagb-image'] = array(
-	'margin-top'      => UAGB_Helper::get_css_value( $attr['imageTopMarginTablet'], $attr['imageMarginUnitTablet'] ),
-	'margin-right'    => UAGB_Helper::get_css_value( $attr['imageRightMarginTablet'], $attr['imageMarginUnitTablet'] ),
-	'margin-bottom'   => UAGB_Helper::get_css_value( $attr['imageBottomMarginTablet'], $attr['imageMarginUnitTablet'] ),
-	'margin-left'     => UAGB_Helper::get_css_value( $attr['imageLeftMarginTablet'], $attr['imageMarginUnitTablet'] ),
+	'margin-top'    => UAGB_Helper::get_css_value( $attr['imageTopMarginTablet'], $attr['imageMarginUnitTablet'] ),
+	'margin-right'  => UAGB_Helper::get_css_value( $attr['imageRightMarginTablet'], $attr['imageMarginUnitTablet'] ),
+	'margin-bottom' => UAGB_Helper::get_css_value( $attr['imageBottomMarginTablet'], $attr['imageMarginUnitTablet'] ),
+	'margin-left'   => UAGB_Helper::get_css_value( $attr['imageLeftMarginTablet'], $attr['imageMarginUnitTablet'] ),
 );
 $t_selectors['.wp-block-uagb-image .wp-block-uagb-image__figure figcaption']                           = array(
 	'font-size'     => UAGB_Helper::get_css_value( $attr['captionFontSizeTablet'], $attr['captionFontSizeType'] ),
@@ -167,10 +167,10 @@ $t_selectors['.wp-block-uagb-image .wp-block-uagb-image--layout-overlay__inner .
 
 // mobile.
 $m_selectors['.wp-block-uagb-image'] = array(
-	'margin-top'      => UAGB_Helper::get_css_value( $attr['imageTopMarginMobile'], $attr['imageMarginUnitMobile'] ),
-	'margin-right'    => UAGB_Helper::get_css_value( $attr['imageRightMarginMobile'], $attr['imageMarginUnitMobile'] ),
-	'margin-bottom'   => UAGB_Helper::get_css_value( $attr['imageBottomMarginMobile'], $attr['imageMarginUnitMobile'] ),
-	'margin-left'     => UAGB_Helper::get_css_value( $attr['imageLeftMarginMobile'], $attr['imageMarginUnitMobile'] ),
+	'margin-top'    => UAGB_Helper::get_css_value( $attr['imageTopMarginMobile'], $attr['imageMarginUnitMobile'] ),
+	'margin-right'  => UAGB_Helper::get_css_value( $attr['imageRightMarginMobile'], $attr['imageMarginUnitMobile'] ),
+	'margin-bottom' => UAGB_Helper::get_css_value( $attr['imageBottomMarginMobile'], $attr['imageMarginUnitMobile'] ),
+	'margin-left'   => UAGB_Helper::get_css_value( $attr['imageLeftMarginMobile'], $attr['imageMarginUnitMobile'] ),
 );
 $m_selectors['.wp-block-uagb-image .wp-block-uagb-image__figure figcaption'] = array(
 	'font-size'     => UAGB_Helper::get_css_value( $attr['captionFontSizeMobile'], $attr['captionFontSizeType'] ),

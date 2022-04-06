@@ -23,7 +23,7 @@ import Layout from './layout'
 /**
  * Internal dependencies
  */
-import {pickRelevantMediaFiles, isTemporaryImage, isExternalImage, hasDefaultSize, isMediaDestroyed} from './utils'
+import {isTemporaryImage, isExternalImage, hasDefaultSize, isMediaDestroyed} from './utils'
 
 
 /**
@@ -152,6 +152,7 @@ const Render = ( props ) => {
 			return;
 		}
 
+
 		if ( isBlobURL( media.url ) ) {
 			setTemporaryURL( media.url );
 			return;
@@ -159,7 +160,7 @@ const Render = ( props ) => {
 
 		setTemporaryURL();
 
-		let mediaAttributes = pickRelevantMediaFiles( media, imageDefaultSize );
+		let mediaAttributes = media;
 
 		// If a caption text was meanwhile written by the user,
 		// make sure the text is not overwritten by empty captions.
