@@ -256,14 +256,34 @@ export default function Settings( props ) {
 			title={ __( 'Image', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ true }
 		>
-			<RadioControl
-				label="Layout"
-				selected={ layout }
+			<MultiButtonsControl
+				setAttributes={ setAttributes }
+				label={ __(
+					'Layout',
+					'ultimate-addons-for-gutenberg'
+				) }
+				data={ {
+					value: layout,
+					label: 'layout',
+				} }
+				className="uagb-multi-button-alignment-control"
 				options={ [
-					{ label: 'Normal', value: 'default' },
-					{ label: 'Overlay', value: 'overlay' },
+					{
+						value: 'default',
+						label: __(
+							'Normal',
+							'ultimate-addons-for-gutenberg'
+						),
+					},
+					{
+						value: 'overlay',
+						label: __(
+							'Overlay',
+							'ultimate-addons-for-gutenberg'
+						),
+					},
 				] }
-				onChange={ ( value ) => setAttributes( { layout: value} ) }
+				showIcons={ false }
 			/>
 			{
 				id && isSelected && (
