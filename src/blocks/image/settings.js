@@ -697,7 +697,7 @@ export default function Settings( props ) {
 
 	const headingStylePanel =  (
 		<UAGAdvancedPanelBody
-			title={ __( 'Title', 'ultimate-addons-for-gutenberg' ) }
+			title={ __( 'Heading', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ false }
 		>
 			<Suspense fallback={ lazyLoader() }>
@@ -850,7 +850,7 @@ export default function Settings( props ) {
 
 	const captionStylePanel =  (
 		<UAGAdvancedPanelBody
-			title={ layout === 'overlay' ?  __( 'Sub Title', 'ultimate-addons-for-gutenberg' ) : __( 'Caption', 'ultimate-addons-for-gutenberg' ) }
+			title={ layout === 'overlay' ?  __( 'Description', 'ultimate-addons-for-gutenberg' ) : __( 'Caption', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ true }
 		>
 			<MultiButtonsControl
