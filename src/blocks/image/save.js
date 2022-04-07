@@ -20,6 +20,7 @@ export default function Save( props ) {
 		rel,
 		title,
 		heading,
+		headingTag,
 		overlayContentPosition,
 		seperatorStyle,
 		seperatorPosition
@@ -61,7 +62,7 @@ export default function Save( props ) {
 	const imageHeading = (
 		<>
 			{ ( ! RichText.isEmpty( heading ) ) && (
-				<RichText.Content tagName="h2" className='uagb-image-heading' value={ heading } />
+				<RichText.Content tagName={headingTag} className='uagb-image-heading' value={ heading } />
 			) }
 		</>
 	)

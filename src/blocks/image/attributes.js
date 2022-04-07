@@ -278,6 +278,10 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
+	headingTag: {
+		type: 'string',
+		default: 'h2',
+	},
 	headingLoadGoogleFonts: {
 		type: 'boolean',
 		default: false,

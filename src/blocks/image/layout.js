@@ -4,7 +4,7 @@ import { __ } from '@wordpress/i18n';
 
 
 export default function Layout( {attributes, isSelected, setAttributes, captionRef} ) {
-	const {caption, heading, layout, overlayContentPosition, seperatorStyle, seperatorPosition} = attributes
+	const {caption, heading, headingTag, layout, overlayContentPosition, seperatorStyle, seperatorPosition} = attributes
 	const headingRef = useRef();
 	useEffect( () => {
 		headingRef.current = heading;
@@ -15,7 +15,7 @@ export default function Layout( {attributes, isSelected, setAttributes, captionR
 			{ ( ! RichText.isEmpty( heading ) || isSelected ) && (
 				<RichText
 					ref={ headingRef }
-					tagName="h2"
+					tagName={headingTag}
 					className='uagb-image-heading'
 					aria-label={ __( 'Image overlay heading text' ) }
 					placeholder={ __( 'Add Heading' ) }
