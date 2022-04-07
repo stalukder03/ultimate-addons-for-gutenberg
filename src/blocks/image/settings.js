@@ -253,7 +253,7 @@ export default function Settings( props ) {
 
 	const generalPanel = (
 		<UAGAdvancedPanelBody
-			title={ __( 'Image settings', 'ultimate-addons-for-gutenberg' ) }
+			title={ __( 'Image', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ true }
 		>
 			<RadioControl
@@ -340,7 +340,7 @@ export default function Settings( props ) {
 	// shape
 	const shapeGeneralPanel = (
 		<UAGAdvancedPanelBody
-			title={ __( 'Mask settings', 'ultimate-addons-for-gutenberg' ) }
+			title={ __( 'Mask', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ false }
 		>
 			<SelectControl
@@ -1038,7 +1038,7 @@ export default function Settings( props ) {
 
 	const ImageStylePanel = (
 		<UAGAdvancedPanelBody
-			title={ __( 'Image Style', 'ultimate-addons-for-gutenberg' ) }
+			title={ __( 'Image', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ false }
 		>
 			<MultiButtonsControl
@@ -1322,7 +1322,7 @@ export default function Settings( props ) {
 
 	const overlayStylePanel = (
 		<UAGAdvancedPanelBody
-			title={ __( 'Overlay Settings', 'ultimate-addons-for-gutenberg' ) }
+			title={ __( 'Overlay', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ false }
 		>
 			<AdvancedPopColorControl
