@@ -36,7 +36,8 @@ import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 
 export default function Settings( props ) {
-	const { attributes, setAttributes, deviceType, context, isSelected, clientId } = props.parentProps;
+	props = props.parentProps;
+	const { attributes, setAttributes, deviceType, context, isSelected, clientId } = props;
 	const {
 		layout,
 		id,

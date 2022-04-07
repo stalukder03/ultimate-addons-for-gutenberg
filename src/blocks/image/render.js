@@ -471,4 +471,4 @@ const Render = ( props ) => {
 Render.propTypes = propTypes;
 Render.defaultProps = defaultProps;
 
-export default Render
+export default React.memo( Render );
