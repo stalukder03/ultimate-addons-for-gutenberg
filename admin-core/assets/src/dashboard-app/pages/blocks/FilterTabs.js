@@ -43,18 +43,18 @@ const FilterTabs = () => {
 		blocksInfo.map( ( block ) => {
 
             const blockCategories = block.admin_categories;
-            
-            blockCategories.map( ( category ) => {
-    
+
+            blockCategories?.map( ( category ) => {
+
                 if ( ! categoriesBlocksTemp [ category ] ) {
                     categoriesBlocksTemp [ category ] = [];
                 }
-        
+
                 categoriesBlocksTemp [ category ].push( block.slug );
 
                 return category;
             } );
-    
+
             return block;
         } );
 
@@ -63,7 +63,7 @@ const FilterTabs = () => {
 	}, [] );
 
     const activateAllBlocks = () => {
-		
+
 		const value = { ...blocksStatuses };
 
 		for ( const block in blocksStatuses ) {
@@ -99,7 +99,7 @@ const FilterTabs = () => {
 	};
 
 	const deactivateAllBlocks = () => {
-		
+
 		const value = { ...blocksStatuses };
 
 		for ( const block in blocksStatuses ) {
