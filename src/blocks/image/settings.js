@@ -23,7 +23,6 @@ import {
 import {
 	RangeControl,
 	TextControl,
-	RadioControl,
 	SelectControl,
 	__experimentalAlignmentMatrixControl as AlignmentMatrixControl,
 	Icon

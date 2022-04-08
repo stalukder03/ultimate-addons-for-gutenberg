@@ -282,6 +282,9 @@ const attributes = {
 		type: 'string',
 		default: 'h2',
 	},
+	headingId: {
+		type: 'string',
+	},
 	headingLoadGoogleFonts: {
 		type: 'boolean',
 		default: false,
