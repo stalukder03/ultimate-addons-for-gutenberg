@@ -24,7 +24,7 @@ import styles from './editor.lazy.scss';
 /**
  * Internal dependencies
  */
-import {isTemporaryImage, isExternalImage, hasDefaultSize, isMediaDestroyed} from './utils'
+import {pickRelevantMediaFiles, isTemporaryImage, isExternalImage, hasDefaultSize, isMediaDestroyed} from './utils'
 
 
 /**
@@ -169,7 +169,7 @@ const Render = ( props ) => {
 
 		setTemporaryURL();
 
-		let mediaAttributes = media;
+		let mediaAttributes = pickRelevantMediaFiles( media, imageDefaultSize );
 
 		// If a caption text was meanwhile written by the user,
 		// make sure the text is not overwritten by empty captions.

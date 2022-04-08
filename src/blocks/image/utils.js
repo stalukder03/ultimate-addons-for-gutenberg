@@ -3,14 +3,25 @@ import { isBlobURL } from '@wordpress/blob';
 export const pickRelevantMediaFiles = ( image, size ) => {
 	const { alt, id, link, caption,url} = image
 	const imageProps = {alt, id, link, caption,url};
-	if( image?.sizes[size] ){
-		imageProps.url = image?.sizes[size]?.url;
-	} else if( image?.media_details?.sizes[size] ){
-		imageProps.url = image?.media_details?.sizes[size]?.source_url;
-	} else {
-		imageProps.url = image.url
+	if( image?.sizes && image?.sizes[size] ){
+		return {
+			...imageProps,
+			width: image?.sizes[size]?.width,
+			height: image?.sizes[size]?.height,
+			url: image?.sizes[size]?.url,
+		}
+	} else if( image?.media_details && image?.media_details?.sizes[size] ){
+		return {
+			...imageProps,
+			width: image?.media_details?.sizes[size]?.width,
+			height: image?.media_details?.sizes[size]?.height,
+			url: image?.media_details?.sizes[size]?.source_url,
+		}
 	}
-	return imageProps;
+	return {
+		...imageProps,
+		url: image?.url
+	}
 };
 
 /**
