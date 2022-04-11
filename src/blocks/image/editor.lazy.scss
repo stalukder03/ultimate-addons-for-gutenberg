@@ -4,3 +4,18 @@
 .uagb-inspector-tab .components-base-control label.components-input-control__label {
 	text-transform: capitalize;
 }
+.wp-block-uagb-image {
+	.components-placeholder.is-medium {
+		.components-placeholder__instructions {
+			display: block !important;
+		}
+		.components-placeholder__fieldset {
+			flex-direction: row;
+			.components-button,
+			.components-button {
+				margin-right: 10px;
+			}
+		}
+	}
+}
+
