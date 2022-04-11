@@ -652,47 +652,80 @@ const attributes = {
 	overlayPositionFromEdge: {
 		type: 'number',
 		default: 15,
+		UAGCopyPaste: {
+			styleType: 'overlay-position-from-edge'
+		}
 	},
 	overlayPositionFromEdgeUnit: {
 		type: 'string',
 		default: 'px',
+		UAGCopyPaste: {
+			styleType: 'overlay-position-from-edge-unit'
+		}
 	},
 	overlayContentPosition: {
 		type: 'string',
 		default: 'center center',
+		UAGCopyPaste: {
+			styleType: 'overlay-content-position'
+		}
 	},
 	overlayBackground: {
 		type: 'string',
 		default: '',
+		UAGCopyPaste: {
+			styleType: 'overlay-background'
+		}
 	},
 	overlayOpacity: {
 		type: 'float',
 		default: 0.2,
+		UAGCopyPaste: {
+			styleType: 'overlay-opacity'
+		}
 	},
 	overlayHoverOpacity: {
 		type: 'number',
 		default: 1,
+		UAGCopyPaste: {
+			styleType: 'overlay-hover-opacity'
+		}
 	},
 	overlayBorderWidth: {
 		type: 'number',
 		default: 2,
+		UAGCopyPaste: {
+			styleType: 'overlay-border-width'
+		}
 	},
 	overlayBorderStyle: {
 		type: 'string',
 		default: 'solid',
+		UAGCopyPaste: {
+			styleType: 'overlay-border-style'
+		}
 	},
 	overlayBorderRadius: {
 		type: 'number',
 		isUAGStyle: true,
 		default: '',
+		UAGCopyPaste: {
+			styleType: 'overlay-border-radius'
+		}
 	},
 	overlayBorderColor: {
 		type: 'string',
-		default: '#fff'
+		default: '#fff',
+		UAGCopyPaste: {
+			styleType: 'overlay-border-color'
+		}
 	},
 	overlayBorderHoverColor: {
 		type: 'string',
 		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'overlay-border-hover-color'
+		}
 	},
 	// seperator.
 	seperatorShowOn: {
