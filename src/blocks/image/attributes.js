@@ -136,6 +136,10 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
+	captionShowOn: {
+		type: 'string',
+		default: 'hover',
+	},
 	captionLoadGoogleFonts: {
 		type: 'boolean',
 		default: false,
@@ -277,6 +281,10 @@ const attributes = {
 	heading: {
 		type: 'string',
 		default: '',
+	},
+	headingShowOn: {
+		type: 'string',
+		default: 'always',
 	},
 	headingTag: {
 		type: 'string',
@@ -465,6 +473,10 @@ const attributes = {
 		isUAGStyle: true,
 	},
 	// seperator.
+	seperatorShowOn: {
+		type: 'string',
+		default: 'hover',
+	},
 	seperatorStyle: {
 		type: 'string',
 		default: 'none',

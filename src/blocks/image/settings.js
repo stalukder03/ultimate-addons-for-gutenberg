@@ -63,6 +63,7 @@ export default function Settings( props ) {
 		imageMarginUnitMobile,
 		imageMarginLink,
 		// caption
+		captionShowOn,
 		captionLoadGoogleFonts,
 		captionAlign,
 		captionFontFamily,
@@ -97,6 +98,7 @@ export default function Settings( props ) {
 		captionMarginLink,
 		// heading
 		headingTag,
+		headingShowOn,
 		headingLoadGoogleFonts,
 		headingFontFamily,
 		headingFontWeight,
@@ -141,6 +143,7 @@ export default function Settings( props ) {
 		overlayBorderColor,
 		overlayBorderHoverColor,
 		// seperator
+		seperatorShowOn,
 		seperatorStyle,
 		seperatorWidth,
 		separatorWidthType,
@@ -612,6 +615,39 @@ export default function Settings( props ) {
 				title={ __( 'Separator', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
+				{
+					seperatorStyle !== 'none' && (
+						<MultiButtonsControl
+							setAttributes={ setAttributes }
+							label={ __(
+								'Show On',
+								'ultimate-addons-for-gutenberg'
+							) }
+							data={ {
+								value: seperatorShowOn,
+								label: 'seperatorShowOn',
+							} }
+							className="uagb-multi-button-alignment-control"
+							options={ [
+								{
+									value: 'always',
+									label: __(
+										'Always',
+										'ultimate-addons-for-gutenberg'
+									),
+								},
+								{
+									value: 'hover',
+									label: __(
+										'Hover',
+										'ultimate-addons-for-gutenberg'
+									),
+								},
+							] }
+							showIcons={ false }
+						/>
+					)
+				}
 				<SelectControl
 					label={ __( 'Style' ) }
 					value={ seperatorStyle }
@@ -693,6 +729,81 @@ export default function Settings( props ) {
 				) }
 			</UAGAdvancedPanelBody>
 	);
+
+	const headingGeneralPanel = (
+		<UAGAdvancedPanelBody
+			title={ __( 'Heading', 'ultimate-addons-for-gutenberg' ) }
+			initialOpen={ false }
+		>
+			<MultiButtonsControl
+				setAttributes={ setAttributes }
+				label={ __(
+					'Show On',
+					'ultimate-addons-for-gutenberg'
+				) }
+				data={ {
+					value: headingShowOn,
+					label: 'headingShowOn',
+				} }
+				className="uagb-multi-button-alignment-control"
+				options={ [
+					{
+						value: 'always',
+						label: __(
+							'Always',
+							'ultimate-addons-for-gutenberg'
+						),
+					},
+					{
+						value: 'hover',
+						label: __(
+							'Hover',
+							'ultimate-addons-for-gutenberg'
+						),
+					},
+				] }
+				showIcons={ false }
+			/>
+		</UAGAdvancedPanelBody>
+	);
+
+	const descriptionGeneralPanel = (
+		<UAGAdvancedPanelBody
+			title={ __( 'Description', 'ultimate-addons-for-gutenberg' ) }
+			initialOpen={ false }
+		>
+			<MultiButtonsControl
+				setAttributes={ setAttributes }
+				label={ __(
+					'Show On',
+					'ultimate-addons-for-gutenberg'
+				) }
+				data={ {
+					value: captionShowOn,
+					label: 'captionShowOn',
+				} }
+				className="uagb-multi-button-alignment-control"
+				options={ [
+					{
+						value: 'always',
+						label: __(
+							'Always',
+							'ultimate-addons-for-gutenberg'
+						),
+					},
+					{
+						value: 'hover',
+						label: __(
+							'Hover',
+							'ultimate-addons-for-gutenberg'
+						),
+					},
+				] }
+				showIcons={ false }
+			/>
+		</UAGAdvancedPanelBody>
+	);
+
 
 
 	const headingStylePanel =  (
@@ -1588,6 +1699,8 @@ export default function Settings( props ) {
 						{
 							layout === 'overlay' && (
 								<>
+									{headingGeneralPanel}
+									{descriptionGeneralPanel}
 									{seperatorGeneralPanel}
 								</>
 							)

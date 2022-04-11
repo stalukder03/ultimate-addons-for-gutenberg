@@ -10,8 +10,6 @@ import generateCSSUnit from '@Controls/generateCSSUnit';
 
 export default function styling( props ) {
 	const {
-		width,
-		height,
 		// image
 		imageTopMargin,
 		imageRightMargin,
@@ -29,6 +27,7 @@ export default function styling( props ) {
 		imageMarginUnitTablet,
 		imageMarginUnitMobile,
 		// cpation
+		captionShowOn,
 		captionAlign,
 		captionFontFamily,
 		captionFontWeight,
@@ -60,6 +59,7 @@ export default function styling( props ) {
 		captionMarginUnitTablet,
 		captionMarginUnitMobile,
 		// heading
+		headingShowOn,
 		headingFontFamily,
 		headingFontWeight,
 		headingFontStyle,
@@ -101,6 +101,7 @@ export default function styling( props ) {
 		overlayBorderColor,
 		overlayBorderHoverColor,
 		// seperator
+		seperatorShowOn,
 		seperatorStyle,
 		seperatorWidth,
 		separatorWidthType,
@@ -261,6 +262,10 @@ export default function styling( props ) {
 				headingLeftMargin,
 				headingMarginUnit
 			),
+			'opacity': headingShowOn === 'always' ? 1 : 0
+		},
+		'.wp-block-uagb-image .wp-block-uagb-image--layout-overlay__inner .uagb-image-caption': {
+			'opacity': captionShowOn === 'always' ? 1 : 0
 		},
 		'.wp-block-uagb-image .wp-block-uagb-image__figure:hover .wp-block-uagb-image--layout-overlay__inner': {
 			'border-color': overlayBorderHoverColor,
@@ -281,7 +286,24 @@ export default function styling( props ) {
 			'margin-top': generateCSSUnit( seperatorTopMargin, seperatorMarginUnit ),
 			'margin-left': generateCSSUnit( seperatorLeftMargin, seperatorMarginUnit ),
 			'margin-right': generateCSSUnit( seperatorRightMargin, seperatorMarginUnit ),
+			'opacity': seperatorShowOn === 'always' ? 1 : 0
 		},
+	}
+
+	if(headingShowOn === 'hover'){
+		selectors['.wp-block-uagb-image .wp-block-uagb-image__figure:hover .wp-block-uagb-image--layout-overlay__inner .uagb-image-heading'] = {
+			'opacity': 1
+		}
+	}
+	if(captionShowOn === 'hover'){
+		selectors['.wp-block-uagb-image .wp-block-uagb-image__figure:hover .wp-block-uagb-image--layout-overlay__inner .uagb-image-caption'] = {
+			'opacity': 1
+		}
+	}
+	if(seperatorShowOn === 'hover'){
+		selectors['.wp-block-uagb-image .wp-block-uagb-image__figure:hover .wp-block-uagb-image--layout-overlay__inner .uagb-image-separator'] = {
+			'opacity': 1
+		}
 	}
 
 

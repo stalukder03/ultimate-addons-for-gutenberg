@@ -26,6 +26,7 @@ return array(
 	'imageMarginUnitTablet'       => 'px',
 	'imageMarginUnitMobile'       => 'px',
 	// heading.
+	'headingShowOn'				 => 'always',
 	'headingFontFamily'           => 'Default',
 	'headingFontWeight'           => '',
 	'headingFontStyle'            => 'normal',
@@ -68,6 +69,7 @@ return array(
 	'overlayBorderColor'          => '#fff',
 	'overlayBorderHoverColor'     => '',
 	// caption.
+	'captionShowOn'				 => 'hover',
 	'captionAlign'                => 'center',
 	'captionColor'                => '',
 	'captionFontFamily'           => '',
@@ -99,6 +101,7 @@ return array(
 	'captionMarginUnitTablet'     => 'px',
 	'captionMarginUnitMobile'     => 'px',
 	// seperator.
+	'seperatorShowOn'		      => 'hover',
 	'seperatorStyle'              => '',
 	'seperatorColor'              => '#fff',
 	'seperatorWidth'              => 30,
