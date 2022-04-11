@@ -12,12 +12,13 @@ import {
 	__experimentalImageEditor as ImageEditor,
 	__experimentalImageEditingProvider as ImageEditingProvider,
 } from '@wordpress/block-editor';
-import { useMemo, useState, useRef } from '@wordpress/element';
+import { useMemo, useEffect, useState, useRef } from '@wordpress/element';
 import { __, sprintf, isRTL } from '@wordpress/i18n';
 import { getFilename } from '@wordpress/url';
 import { crop } from '@wordpress/icons';
 import useClientWidth from './use-client-width';
 import { MIN_SIZE, ALLOWED_MEDIA_TYPES } from './constants';
+import {isMediaDestroyed} from './utils'
 
 
 export default function Image( {
@@ -39,6 +40,7 @@ export default function Image( {
 	containerRef,
 	context,
 	clientId,
+	onImageLoadError
 } ) {
 	const imageRef = useRef();
 	const { allowResize = true } = context;
@@ -160,6 +162,15 @@ export default function Image( {
 			? clientWidth * ratio
 			: naturalHeight;
 	}
+
+	useEffect( () => {
+		if ( ! isSelected ) {
+			setIsEditingImage( false );
+		}
+		if ( isSelected && isMediaDestroyed( id ) ) {
+			onImageLoadError();
+		}
+	}, [ isSelected ] );
 
 	const canEditImage = id && naturalWidth && naturalHeight && imageEditing;
 	const allowCrop = ! multiImageSelection && canEditImage && ! isEditingImage;
