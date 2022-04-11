@@ -35,7 +35,7 @@
 
 			img {
 				height: auto;
-				width: 100%;
+				width: 100% !important;
 			}
 		}
 
@@ -53,11 +53,6 @@
 	}
 
 	&--layout-overlay {
-
-		img {
-			width: 100%;
-			height: auto;
-		}
 
 		&__color-wrapper {
 			position: absolute;
