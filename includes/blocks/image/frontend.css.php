@@ -107,11 +107,6 @@ if ( 'overlay' === $attr['layout'] ) {
 		'height' => ( isset( $attr['height'] ) ? UAGB_Helper::get_css_value( $attr['height'], 'px' ) : '' ),
 	);
 
-} else {
-	$selectors['.wp-block-uagb-image .wp-block-uagb-image__figure img'] = array(
-		'width'  => ( isset( $attr['width'] ) ? UAGB_Helper::get_css_value( $attr['width'], 'px' ) : '' ),
-		'height' => ( isset( $attr['height'] ) ? UAGB_Helper::get_css_value( $attr['height'], 'px' ) : '' ),
-	);
 }
 
 
