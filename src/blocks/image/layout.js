@@ -23,7 +23,6 @@ export default function Layout( {attributes, isSelected, setAttributes, captionR
 					onChange={ ( value ) =>
 						setAttributes( { heading: value } )
 					}
-					inlineToolbar
 				/>
 			) }
 		</>
@@ -42,7 +41,6 @@ export default function Layout( {attributes, isSelected, setAttributes, captionR
 					onChange={ ( value ) =>
 						setAttributes( { caption: value } )
 					}
-					inlineToolbar
 				/>
 			) }
 		</>
