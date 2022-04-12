@@ -441,12 +441,7 @@ class UAGB_Init_Blocks {
 		wp_set_script_translations( 'uagb-block-editor-js', 'ultimate-addons-for-gutenberg' );
 
 		// Common Editor style.
-		wp_enqueue_style(
-			'uagb-block-common-editor-css', // Handle.
-			UAGB_URL . 'dist/common-editor.css', // Block editor CSS.
-			array( 'wp-edit-blocks' ), // Dependency to include the CSS after it.
-			UAGB_VER
-		);
+		add_editor_style( UAGB_URL . 'dist/common-editor.css' );
 
 		wp_enqueue_script( 'uagb-deactivate-block-js', UAGB_URL . 'admin/assets/blocks-deactivate.js', array( 'wp-blocks' ), UAGB_VER, true );
 

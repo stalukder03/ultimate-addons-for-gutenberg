@@ -71,7 +71,7 @@ final class UAGB_Scripts_Utils {
 					);
 
 					if ( is_admin() ) {
-						wp_enqueue_style( $val );
+						add_editor_style( $block_assets[ $val ]['src'] );
 					}
 				}
 			}
@@ -112,19 +112,27 @@ final class UAGB_Scripts_Utils {
 
 			$wp_upload_url = UAGB_Helper::get_uag_upload_url_path();
 
-			wp_enqueue_style(
-				'uagb-block-css', // Handle.
-				$wp_upload_url . 'custom-style-blocks.css', // Block style CSS.
-				array(),
-				UAGB_VER
-			);
+			if ( ! is_admin() ) {
+				wp_enqueue_style(
+					'uagb-block-css', // Handle.
+					$wp_upload_url . 'custom-style-blocks.css', // Block style CSS.
+					array(),
+					UAGB_VER
+				);
+			} else {
+				add_editor_style( $wp_upload_url . 'custom-style-blocks.css' );
+			}
 		} else {
-			wp_enqueue_style(
-				'uagb-block-css', // Handle.
-				UAGB_URL . 'dist/style-blocks.css', // Block style CSS.
-				array(),
-				UAGB_VER
-			);
+			if ( ! is_admin() ) {
+				wp_enqueue_style(
+					'uagb-block-css', // Handle.
+					UAGB_URL . 'dist/style-blocks.css', // Block style CSS.
+					array(),
+					UAGB_VER
+				);
+			} else {
+				add_editor_style( UAGB_URL . 'dist/style-blocks.css' );
+			}
 		}
 	}
 
