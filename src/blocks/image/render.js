@@ -415,52 +415,50 @@ const Render = ( props ) => {
 				`wp-block-uagb-image--effect-${imageHoverEffect}`,
 				`wp-block-uagb-image--align-${align ? align : 'none'}`
 			) }>
-					<figure className='wp-block-uagb-image__figure'>
-					{ ( temporaryURL || url ) && (
-						<>
-							<Image
-								temporaryURL={ temporaryURL }
-								attributes={ attributes }
-								setAttributes={ setAttributes }
-								isSelected={ isSelected }
-								insertBlocksAfter={ insertBlocksAfter }
-								onReplace={ onReplace }
-								onSelectImage={ onSelectImage }
-								onSelectURL={ onSelectURL }
-								onUploadError={ onUploadError }
-								containerRef={ ref }
-								context={ context }
-								clientId={ clientId }
-								onCloseModal={ onCloseModal }
-								onImageLoadError={ onImageError }
-							/>
-							<Layout
-								captionRef={captionRef}
-								attributes={ attributes }
-								setAttributes={ setAttributes }
-								isSelected={ isSelected }
-							/>
-						</>
-					) }
-					<MediaPlaceholder
-						icon={ <BlockIcon icon={ UAGB_Block_Icons.post_masonry } /> }
-						labels={
-							{
-								title: __( 'Advanced Image', 'ultimate-addons-for-gutenberg' ),
-								instructions: __( 'Upload an image file, pick one from your media library, or add one with a URL.', 'ultimate-addons-for-gutenberg' )
-							}
-						}
-						onSelect={ onSelectImage }
+				{ ( temporaryURL || url ) && (
+				<figure className='wp-block-uagb-image__figure'>
+					<Image
+						temporaryURL={ temporaryURL }
+						attributes={ attributes }
+						setAttributes={ setAttributes }
+						isSelected={ isSelected }
+						insertBlocksAfter={ insertBlocksAfter }
+						onReplace={ onReplace }
+						onSelectImage={ onSelectImage }
 						onSelectURL={ onSelectURL }
-						onError={ onUploadError }
-						onClose={ onCloseModal }
-						accept="image/*"
-						allowedTypes={ ALLOWED_MEDIA_TYPES }
-						value={ { id, src } }
-						mediaPreview={ mediaPreview }
-						disableMediaButtons={ temporaryURL || url }
+						onUploadError={ onUploadError }
+						containerRef={ ref }
+						context={ context }
+						clientId={ clientId }
+						onCloseModal={ onCloseModal }
+						onImageLoadError={ onImageError }
+					/>
+					<Layout
+						captionRef={captionRef}
+						attributes={ attributes }
+						setAttributes={ setAttributes }
+						isSelected={ isSelected }
 					/>
 				</figure>
+				) }
+				<MediaPlaceholder
+					icon={ <BlockIcon icon={ UAGB_Block_Icons.post_masonry } /> }
+					labels={
+						{
+							title: __( 'Advanced Image', 'ultimate-addons-for-gutenberg' ),
+							instructions: __( 'Upload an image file, pick one from your media library, or add one with a URL.', 'ultimate-addons-for-gutenberg' )
+						}
+					}
+					onSelect={ onSelectImage }
+					onSelectURL={ onSelectURL }
+					onError={ onUploadError }
+					onClose={ onCloseModal }
+					accept="image/*"
+					allowedTypes={ ALLOWED_MEDIA_TYPES }
+					value={ { id, src } }
+					mediaPreview={ mediaPreview }
+					disableMediaButtons={ temporaryURL || url }
+				/>
 			</div>
 		</React.Fragment>
 	);
