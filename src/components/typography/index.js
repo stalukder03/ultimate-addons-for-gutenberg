@@ -31,11 +31,38 @@ const TypographyControl = ( props ) => {
 	let fontWeight;
 	let fontFamily;
 	let fontAdvancedControls;
+	let resetFontAdvancedControls;
 	let fontTypoAdvancedControls;
 	let showAdvancedFontControls;
 	let transform;
 	let decoration;
 	const activeClass = showAdvancedControls ? 'active' : '';
+
+	const resetValues = () => {
+		const { setAttributes } = props
+
+		// Reset Font family to default.
+		setAttributes( { [ props.fontFamily.label ]: 'Default' } )
+		setAttributes( { [ props.fontWeight.label ]: '' } )
+		setAttributes( { [ props.fontStyle.label ]: '' } )
+		setAttributes( { [ props.transform.label ]: '' } )
+		setAttributes( { [ props.decoration.label ]: '' } )
+
+		// Reset Font Size to default.
+		setAttributes( { [ props.fontSize.label ]: '' } )
+		setAttributes( { [ props.fontSizeType.label ]: 'px' } )
+		setAttributes( { [ props.fontSizeMobile.label ]: '' } )
+		setAttributes( { [ props.fontSizeTablet.label ]: '' } )
+
+		// Reset Line Height to default.
+		setAttributes( { [ props.lineHeight.label ]: '' } )
+		setAttributes( { [ props.lineHeightType.label ]: 'em' } )
+		setAttributes( { [ props.lineHeightMobile.label ]: '' } )
+		setAttributes( { [ props.lineHeightTablet.label ]: '' } )
+
+		// Reset Google Fonts to default.
+		setAttributes( { [ props.loadGoogleFonts.label ]: false } )
+	};
 
 	const {
 		disableFontFamily,
@@ -216,6 +243,19 @@ const TypographyControl = ( props ) => {
 				<Dashicon icon="edit" />
 			</Button>
 		);
+		resetFontAdvancedControls =  (
+			<Button
+				className="uagb-reset"
+				isSecondary
+				isSmall
+				onClick={ ( e ) => {
+					e.preventDefault();
+					resetValues();
+				} }
+			>
+				<Dashicon icon="image-rotate" />
+			</Button>
+		)
 	} else {
 		showAdvancedFontControls = (
 			<>
@@ -248,7 +288,10 @@ const TypographyControl = ( props ) => {
 		fontTypoAdvancedControls = (
 			<div className="uag-typography-option-actions">
 				<span className="uag-control-label">{ props.label }</span>
+				<div className="uagb-range-control__actions">
+				{ resetFontAdvancedControls }
 				{ fontAdvancedControls }
+				</div>
 			</div>
 		);
 	}
