@@ -290,17 +290,17 @@ export default function styling( props ) {
 		},
 	}
 
-	if(headingShowOn === 'hover'){
+	if( headingShowOn === 'hover' ){
 		selectors['.wp-block-uagb-image .wp-block-uagb-image__figure:hover .wp-block-uagb-image--layout-overlay__inner .uagb-image-heading'] = {
 			'opacity': 1
 		}
 	}
-	if(captionShowOn === 'hover'){
+	if( captionShowOn === 'hover' ){
 		selectors['.wp-block-uagb-image .wp-block-uagb-image__figure:hover .wp-block-uagb-image--layout-overlay__inner .uagb-image-caption'] = {
 			'opacity': 1
 		}
 	}
-	if(seperatorShowOn === 'hover'){
+	if( seperatorShowOn === 'hover' ){
 		selectors['.wp-block-uagb-image .wp-block-uagb-image__figure:hover .wp-block-uagb-image--layout-overlay__inner .uagb-image-separator'] = {
 			'opacity': 1
 		}

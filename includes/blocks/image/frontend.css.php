@@ -82,10 +82,10 @@ $selectors = array(
 		'margin-right'    => UAGB_Helper::get_css_value( $attr['headingRightMargin'], $attr['headingMarginUnit'] ),
 		'margin-bottom'   => UAGB_Helper::get_css_value( $attr['headingBottomMargin'], $attr['headingMarginUnit'] ),
 		'margin-left'     => UAGB_Helper::get_css_value( $attr['headingLeftMargin'], $attr['headingMarginUnit'] ),
-		'opacity' => $attr['headingShowOn'] === 'always' ? 1 : 0
+		'opacity'         => 'always' === $attr['headingShowOn'] ? 1 : 0,
 	),
 	'.wp-block-uagb-image .wp-block-uagb-image--layout-overlay__inner .uagb-image-caption' => array(
-		'opacity' => $attr['captionShowOn'] === 'always' ? 1 : 0
+		'opacity' => 'always' === $attr['captionShowOn'] ? 1 : 0,
 	),
 	'.wp-block-uagb-image:hover .wp-block-uagb-image--layout-overlay__inner' => array(
 		'border-color' => $attr['overlayBorderHoverColor'],
@@ -103,23 +103,23 @@ $selectors = array(
 		'margin-top'       => UAGB_Helper::get_css_value( $attr['seperatorTopMargin'], $attr['seperatorMarginUnit'] ),
 		'margin-left'      => UAGB_Helper::get_css_value( $attr['seperatorLeftMargin'], $attr['seperatorMarginUnit'] ),
 		'margin-right'     => UAGB_Helper::get_css_value( $attr['seperatorRightMargin'], $attr['seperatorMarginUnit'] ),
-		'opacity' => $attr['seperatorShowOn'] === 'always' ? 1 : 0
+		'opacity'          => 'always' === $attr['seperatorShowOn'] ? 1 : 0,
 	),
 );
 
-if($attr['headingShowOn'] === 'hover'){
+if ( 'hover' === $attr['headingShowOn'] ) {
 	$selectors['.wp-block-uagb-image .wp-block-uagb-image__figure:hover .wp-block-uagb-image--layout-overlay__inner .uagb-image-heading'] = array(
-		'opacity' => 1
+		'opacity' => 1,
 	);
 }
-if($attr['captionShowOn'] === 'hover'){
+if ( 'hover' === $attr['captionShowOn'] ) {
 	$selectors['.wp-block-uagb-image .wp-block-uagb-image__figure:hover .wp-block-uagb-image--layout-overlay__inner .uagb-image-caption'] = array(
-		'opacity' => 1
+		'opacity' => 1,
 	);
 }
-if($attr['seperatorShowOn'] === 'hover'){
+if ( 'hover' === $attr['seperatorShowOn'] ) {
 	$selectors['.wp-block-uagb-image .wp-block-uagb-image__figure:hover .wp-block-uagb-image--layout-overlay__inner .uagb-image-separator'] = array(
-		'opacity' => 1
+		'opacity' => 1,
 	);
 }
 
