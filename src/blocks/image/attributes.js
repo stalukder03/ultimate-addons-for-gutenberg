@@ -901,52 +901,85 @@ const attributes = {
 		type: 'number',
 		isUAGStyle: true,
 		default: '',
+		UAGCopyPaste: {
+			styleType: 'image-border-width'
+		}
 	},
 	imageBorderStyle: {
 		type: 'string',
 		isUAGStyle: true,
 		default: 'none',
+		UAGCopyPaste: {
+			styleType: 'image-border-style'
+		}
 	},
 	imageBorderRadius: {
 		type: 'number',
 		isUAGStyle: true,
 		default: '',
+		UAGCopyPaste: {
+			styleType: 'image-border-radius'
+		}
 	},
 	imageBorderColor: {
 		type: 'string',
 		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'image-border-color'
+		}
 	},
 	imageBorderhoverColor: {
 		type: 'string',
 		isUAGStyle: true,
 		default: '',
+		UAGCopyPaste: {
+			styleType: 'image-border-hover-color'
+		}
 	},
 	imageBoxShadowColor: {
 		type: 'string',
 		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'image-shadow-color'
+		}
 	},
 	imageBoxShadowHOffset: {
 		type: 'number',
 		isUAGStyle: true,
 		default: 0,
+		UAGCopyPaste: {
+			styleType: 'image-shadow-h-offset'
+		}
 	},
 	imageBoxShadowVOffset: {
 		type: 'number',
 		default: 0,
 		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'image-shadow-v-offset'
+		}
 	},
 	imageBoxShadowBlur: {
 		type: 'number',
 		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'image-shadow-blur'
+		}
 	},
 	imageBoxShadowSpread: {
 		type: 'number',
 		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'image-shadow-spread'
+		}
 	},
 	imageBoxShadowPosition: {
 		type: 'string',
 		default: 'outset',
 		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'image-shadow-position'
+		}
 	},
 	// mask
 	maskShape: {
