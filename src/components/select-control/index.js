@@ -15,7 +15,7 @@ const defaultProps = {
 	layout: 'inline'
 };
 
-export default function UAGSelectControl({layout, label, options, data, setAttributes}) {
+export default function UAGSelectControl( {layout, label, options, data, setAttributes} ) {
 	useLayoutEffect( () => {
 		styles.use();
 		return () => {
