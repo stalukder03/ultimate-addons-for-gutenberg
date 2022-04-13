@@ -15,6 +15,7 @@ import BoxShadowControl from '@Components/box-shadow';
 import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 import MultiButtonsControl from '@Components/multi-buttons-control';
+import UAGSelectControl from '@Components/select-control';
 import {
 	store as blockEditorStore,
 	__experimentalImageSizeControl as ImageSizeControl,
@@ -366,15 +367,16 @@ export default function Settings( props ) {
 			title={ __( 'Mask', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ false }
 		>
-			<SelectControl
+			<UAGSelectControl
 				label={ __(
 					'Mask Shape',
 					'ultimate-addons-for-gutenberg'
 				) }
-				value={ maskShape }
-				onChange={ ( value ) =>
-					setAttributes( { maskShape: value } )
-				}
+				data={ {
+					value: maskShape,
+					label: 'maskShape',
+				} }
+				setAttributes={ setAttributes }
 				options={ [
 					{
 						value: 'none',
@@ -454,15 +456,16 @@ export default function Settings( props ) {
 			{
 				maskShape !== 'none' && (
 					<>
-						<SelectControl
+						<UAGSelectControl
 							label={ __(
 								'Mask Size',
 								'ultimate-addons-for-gutenberg'
 							) }
-							value={ maskSize }
-							onChange={ ( value ) =>
-								setAttributes( { maskSize: value } )
-							}
+							data={ {
+								value: maskSize,
+								label: 'maskSize',
+							} }
+							setAttributes={ setAttributes }
 							options={ [
 								{
 									value: 'auto',
@@ -487,15 +490,16 @@ export default function Settings( props ) {
 								},
 							] }
 						/>
-						<SelectControl
+						<UAGSelectControl
 							label={ __(
 								'Mask Position',
 								'ultimate-addons-for-gutenberg'
 							) }
-							value={ maskPosition }
-							onChange={ ( value ) =>
-								setAttributes( { maskPosition: value } )
-							}
+							data={ {
+								value: maskPosition,
+								label: 'maskPosition',
+							} }
+							setAttributes={ setAttributes }
 							options={ [
 								{
 									value: 'center top',
@@ -562,15 +566,16 @@ export default function Settings( props ) {
 								},
 							] }
 						/>
-						<SelectControl
+						<UAGSelectControl
 							label={ __(
 								'Mask Repeat',
 								'ultimate-addons-for-gutenberg'
 							) }
-							value={ maskRepeat }
-							onChange={ ( value ) =>
-								setAttributes( { maskRepeat: value } )
-							}
+							data={ {
+								value: maskRepeat,
+								label: 'maskRepeat',
+							} }
+							setAttributes={ setAttributes }
 							options={ [
 								{
 									value: 'no-repeat',
