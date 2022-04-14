@@ -527,14 +527,13 @@ const UAGB_Block_Icons = {
 		'svg',
 		{ width: 24, height: 24, viewBox: '0 0 24 24' },
 		el( 'path', {
-			'fill': '#000000',
+			'fill': 'none',
 			'fill-rule':'evenodd',
 			'clip-rule':'evenodd',
 			'd':
 				'M0 0h24v24H0V0z',
 		} ),
 		el( 'path', {
-			'fill': '#000000',
 			'fill-rule':'evenodd',
 			'clip-rule':'evenodd',
 			'd':
