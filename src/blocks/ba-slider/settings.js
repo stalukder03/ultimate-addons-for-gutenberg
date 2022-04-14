@@ -29,12 +29,35 @@ const Settings = ( props ) => {
 	props = props.parentProps;
 	const { attributes, setAttributes } = props;
 
+    const baSliderGeneralSettings = () => {
+
+        return(
+            <>
+                <UAGAdvancedPanelBody title={ __( 'Select Images', 'ultimate-addons-for-gutenberg' ) } initialOpen= { true }>
+					<UAGImage
+						label={ __( 'Before Image', 'ultimate-addons-for-gutenberg' ) }
+						// onSelectImage={ onSelectImage }
+						// backgroundImage={ image }
+						// onRemoveImage={ onRemoveImage }
+					/>
+                    <UAGImage
+						label={ __( 'After Image', 'ultimate-addons-for-gutenberg' ) }
+						// onSelectImage={ onSelectImage }
+						// backgroundImage={ image }
+						// onRemoveImage={ onRemoveImage }
+					/>
+				</UAGAdvancedPanelBody>
+            </>
+        );
+
+    }
+
     return(
         <>
             <InspectorControls>
 				<InspectorTabs tabs={ [ 'general', 'style', 'advance' ] }>
 					<InspectorTab { ...UAGTabs.general }>
-						{/* { baSliderGeneralSettings() } */}
+						{ baSliderGeneralSettings() }
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
 						{/* { baSliderStyleSettings() } */}
