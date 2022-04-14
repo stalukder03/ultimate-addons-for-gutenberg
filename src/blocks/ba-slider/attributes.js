@@ -1,6 +1,7 @@
 import { __ } from '@wordpress/i18n';
 
 const attributes = {
+    // Block Requirements.
     block_id: {
 		type: 'string',
 	},
