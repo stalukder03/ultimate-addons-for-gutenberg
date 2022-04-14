@@ -31,7 +31,20 @@ const Settings = ( props ) => {
 
     return(
         <>
-
+            <InspectorControls>
+				<InspectorTabs tabs={ [ 'general', 'style', 'advance' ] }>
+					<InspectorTab { ...UAGTabs.general }>
+						{/* { baSliderGeneralSettings() } */}
+					</InspectorTab>
+					<InspectorTab { ...UAGTabs.style }>
+						{/* { baSliderStyleSettings() } */}
+					</InspectorTab>
+					<InspectorTab
+						{ ...UAGTabs.advance }
+						parentProps={ props }
+					></InspectorTab>
+				</InspectorTabs>
+			</InspectorControls>
         </>
     );
 
