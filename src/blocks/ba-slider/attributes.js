@@ -9,6 +9,12 @@ const attributes = {
 		type: 'boolean',
 		default: false,
 	},
+	beforeImage: {
+		type: 'object',
+	},
+	afterImage: {
+		type: 'object',
+	},
 };
 
 export default attributes;
