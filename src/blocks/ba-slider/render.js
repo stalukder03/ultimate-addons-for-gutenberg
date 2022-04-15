@@ -18,6 +18,13 @@ const Render = ( props ) => {
         classMigrate,
         beforeImage,
         afterImage,
+        showLabels,
+        beforeLabel,
+        afterLabel,
+        sliderOrientation,
+        sliderPosition,
+        animateSlider,
+        hoverSlider,
     } = attributes;
 
     return(
@@ -28,7 +35,8 @@ const Render = ( props ) => {
                 `uagb-block-${ block_id }`
             ) }
         >
-            <ImgComparisonSlider>
+            <ImgComparisonSlider
+            >
                 <img
                     slot="first"
                     src={ beforeImage ? beforeImage.url : 'Placeholder' }
