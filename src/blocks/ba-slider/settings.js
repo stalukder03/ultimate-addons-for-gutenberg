@@ -29,6 +29,64 @@ const Settings = ( props ) => {
 	props = props.parentProps;
 	const { attributes, setAttributes } = props;
 
+    /*
+	 * Event to set Image as null while removing.
+	 */
+	const onRemoveImage = ( imageSelectorID ) => {
+
+		switch( imageSelectorID ) {
+
+			case 0: setAttributes( { beforeImage: null } );
+					break;
+
+			case 1: setAttributes( { afterImage: null } );
+					break;
+
+			default: break;
+
+		}
+
+	};
+
+	/*
+	 * Event to set Image as while adding.
+	 */
+	const onSelectImage = ( media, imageSelectorID ) => {
+
+		if ( ! media || ! media.url ) {
+
+			switch( imageSelectorID ) {
+
+				case 0: setAttributes( { beforeImage: null } );
+						return;
+
+				case 1: setAttributes( { afterImage: null } )
+						return;
+
+				default: return;
+
+			}
+
+		}
+
+		if ( ! media.type || 'image' !== media.type ) {
+			return;
+		}
+
+		switch( imageSelectorID ) {
+
+			case 0: setAttributes( { beforeImage: media } );
+					break;
+
+			case 1: setAttributes( { afterImage: media } );
+					break;
+
+			default: break;
+
+		}
+
+	};
+
     const baSliderGeneralSettings = () => {
 
         return(
@@ -36,15 +94,15 @@ const Settings = ( props ) => {
                 <UAGAdvancedPanelBody title={ __( 'Select Images', 'ultimate-addons-for-gutenberg' ) } initialOpen= { true }>
 					<UAGImage
 						label={ __( 'Before Image', 'ultimate-addons-for-gutenberg' ) }
-						// onSelectImage={ onSelectImage }
-						// backgroundImage={ image }
-						// onRemoveImage={ onRemoveImage }
+						onSelectImage={ ( media ) => onSelectImage( media, 0 ) }
+						backgroundImage={ attributes.beforeImage }
+						onRemoveImage={ () => onRemoveImage( 0 ) }
 					/>
                     <UAGImage
 						label={ __( 'After Image', 'ultimate-addons-for-gutenberg' ) }
-						// onSelectImage={ onSelectImage }
-						// backgroundImage={ image }
-						// onRemoveImage={ onRemoveImage }
+						onSelectImage={ ( media ) => onSelectImage( media, 1 ) }
+						backgroundImage={ attributes.afterImage }
+						onRemoveImage={ () => onRemoveImage( 1 ) }
 					/>
 				</UAGAdvancedPanelBody>
             </>
