@@ -21,6 +21,7 @@
   "dependencies": {
     "@dr-kobros/react-webfont-loader": "^8.0.0",
     "@fonticonpicker/react-fonticonpicker": "^1.2.0",
+    "@img-comparison-slider/react": "^7.5.2",
     "@lottiefiles/react-lottie-player": "^3.4.1",
     "@wordpress/icons": "^2.10.1",
     "classnames": "^2.2.6",
