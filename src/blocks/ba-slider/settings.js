@@ -34,6 +34,9 @@ const Settings = ( props ) => {
 	 */
 	const onRemoveImage = ( imageSelectorID ) => {
 
+		// 0 = Code for Before-Image UAG Selector.
+		// 1 = Code for After-Image UAG Selector.
+
 		switch( imageSelectorID ) {
 
 			case 0: setAttributes( { beforeImage: null } );
@@ -54,6 +57,9 @@ const Settings = ( props ) => {
 	const onSelectImage = ( media, imageSelectorID ) => {
 
 		if ( ! media || ! media.url ) {
+
+			// 0 = Code for Before-Image UAG Selector.
+			// 1 = Code for After-Image UAG Selector.
 
 			switch( imageSelectorID ) {
 
@@ -94,13 +100,13 @@ const Settings = ( props ) => {
                 <UAGAdvancedPanelBody title={ __( 'Select Images', 'ultimate-addons-for-gutenberg' ) } initialOpen= { true }>
 					<UAGImage
 						label={ __( 'Before Image', 'ultimate-addons-for-gutenberg' ) }
-						onSelectImage={ ( media ) => onSelectImage( media, 0 ) }
+						onSelectImage={ ( media ) => onSelectImage( media, 0 ) }	// 0 = Code for Before-Image UAG Selector.
 						backgroundImage={ attributes.beforeImage }
 						onRemoveImage={ () => onRemoveImage( 0 ) }
 					/>
                     <UAGImage
 						label={ __( 'After Image', 'ultimate-addons-for-gutenberg' ) }
-						onSelectImage={ ( media ) => onSelectImage( media, 1 ) }
+						onSelectImage={ ( media ) => onSelectImage( media, 1 ) }	// 1 = Code for After-Image UAG Selector.
 						backgroundImage={ attributes.afterImage }
 						onRemoveImage={ () => onRemoveImage( 1 ) }
 					/>
