@@ -19,7 +19,7 @@ import UAGPresets from '@Components/presets';
 
 import { InspectorControls } from '@wordpress/block-editor';
 
-import { SelectControl, Icon, ToggleControl, TextControl, __experimentalNumberControl as NumberControl } from '@wordpress/components';
+import { SelectControl, RangeControl, Icon, ToggleControl, TextControl, __experimentalNumberControl as NumberControl } from '@wordpress/components';
 
 // Extend component
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
@@ -97,6 +97,9 @@ const Settings = ( props ) => {
 
         return(
             <>
+
+				{/* Image Settings */}
+
                 <UAGAdvancedPanelBody title={ __( 'Select Images', 'ultimate-addons-for-gutenberg' ) } initialOpen= { true }>
 					<UAGImage
 						label={ __( 'Before Image', 'ultimate-addons-for-gutenberg' ) }
@@ -111,6 +114,94 @@ const Settings = ( props ) => {
 						onRemoveImage={ () => onRemoveImage( 1 ) }
 					/>
 				</UAGAdvancedPanelBody>
+
+				{/* General Slider Settings */}
+
+                <UAGAdvancedPanelBody title={ __( 'General Slider Settings', 'ultimate-addons-for-gutenberg' ) } initialOpen= { true }>
+					<SelectControl
+						label={ __( 'Slider Orientation', 'ultimate-addons-for-gutenberg' ) }
+						value={ attributes.sliderOrientation }
+						options={ [
+							{ label: 'Horizontal', value: 0 },
+							{ label: 'Vertical', value: 1 },
+						] }
+						onChange={ ( newSliderOrientation ) => setAttributes( { sliderOrientation: newSliderOrientation } ) }
+					/>
+
+					<RangeControl
+						label={ __( 'Initial Slider Position', 'ultimate-addons-for-gutenberg' ) }
+						value={ attributes.sliderPosition }
+						onChange={ ( newSliderPosition ) => setAttributes( { sliderPosition: newSliderPosition } ) }
+						min={ 1 }
+						max={ 100 }
+						step={ 1 }
+					/>
+
+					<ToggleControl
+						label={ __( 'Animate Slider?', 'ultimate-addons-for-gutenberg' ) }
+						help={
+							attributes.animateSlider
+								? __( 'Disables animated slider handle.', 'ultimate-addons-for-gutenberg' )
+								: __( 'Enables animated slider handle.', 'ultimate-addons-for-gutenberg' )
+						}
+						checked={ attributes.animateSlider }
+						onChange={ () => {
+							setAttributes( { animateSlider: !attributes.animateSlider } );
+						} }
+					/>
+
+					{ ! attributes.animateSlider &&
+
+						<ToggleControl
+							label={ __( 'Control slider handle on mouse hover?', 'ultimate-addons-for-gutenberg' ) }
+							help={
+								attributes.hoverSlide
+									? __( 'Disables hover-based slider handle controls.', 'ultimate-addons-for-gutenberg' )
+									: __( 'Enables hover-based slider handle controls.', 'ultimate-addons-for-gutenberg' )
+							}
+							checked={ attributes.hoverSlide }
+							onChange={ () => {
+								setAttributes( { hoverSlide: !attributes.hoverSlide } );
+							} }
+						/>
+
+					}
+
+					<ToggleControl
+						label={ __( 'Show Image Labels?', 'ultimate-addons-for-gutenberg' ) }
+						help={
+							attributes.showLabels
+								? __( 'Hides labels for images.', 'ultimate-addons-for-gutenberg' )
+								: __( 'Shows labels for images.', 'ultimate-addons-for-gutenberg' )
+						}
+						checked={ attributes.showLabels }
+						onChange={ () => {
+							setAttributes( { showLabels: !attributes.showLabels } );
+						} }
+					/>
+
+				</UAGAdvancedPanelBody>
+
+				{ attributes.showLabels &&
+
+					<UAGAdvancedPanelBody title={ __( 'Label Settings', 'ultimate-addons-for-gutenberg' ) } initialOpen= { true }>
+						
+						<TextControl
+							label={ __( 'Before-Image Label', 'ultimate-addons-for-gutenberg' ) }
+							value={ attributes.beforeLabel }
+							onChange={ ( newBeforeLabel ) => setAttributes( { beforeLabel: newBeforeLabel } ) }
+						/>
+
+						<TextControl
+							label={ __( 'After-Image Label', 'ultimate-addons-for-gutenberg' ) }
+							value={ attributes.afterLabel }
+							onChange={ ( newAfterLabel ) => setAttributes( { afterLabel: newAfterLabel } ) }
+						/>
+
+					</UAGAdvancedPanelBody>
+
+				}
+
             </>
         );
 
