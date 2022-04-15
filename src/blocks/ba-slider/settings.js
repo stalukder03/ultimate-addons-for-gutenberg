@@ -122,8 +122,8 @@ const Settings = ( props ) => {
 						label={ __( 'Slider Orientation', 'ultimate-addons-for-gutenberg' ) }
 						value={ attributes.sliderOrientation }
 						options={ [
-							{ label: 'Horizontal', value: 0 },
-							{ label: 'Vertical', value: 1 },
+							{ label: 'Horizontal', value: 'horizontal' },
+							{ label: 'Vertical', value: 'vertical' },
 						] }
 						onChange={ ( newSliderOrientation ) => setAttributes( { sliderOrientation: newSliderOrientation } ) }
 					/>

@@ -36,6 +36,7 @@ const Render = ( props ) => {
             ) }
         >
             <ImgComparisonSlider
+                direction={ sliderOrientation }
             >
                 <img
                     slot="first"

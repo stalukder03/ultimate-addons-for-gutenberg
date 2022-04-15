@@ -34,10 +34,10 @@ const attributes = {
 		default: __( 'After' , 'ultimate-addons-for-gutenberg' ),
 	},
 
-	// Slider Orientation ( 0 = Horizontal, 1 = Vertical ).
+	// Slider Orientation.
 	sliderOrientation: {
-		type: 'number',
-		default: 0,	// Horizontal orientation by default.
+		type: 'string',
+		default: 'horizontal',	// Horizontal orientation by default.
 	},
 
 	// Slider position in percentage.
