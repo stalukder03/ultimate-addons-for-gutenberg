@@ -16,6 +16,7 @@ import InspectorTab, {
 } from '@Components/inspector-tabs/InspectorTab.js';
 import renderSVG from '@Controls/renderIcon';
 import UAGPresets from '@Components/presets';
+import UAGTabsControl from '@Components/tabs'
 
 import { InspectorControls } from '@wordpress/block-editor';
 
@@ -227,12 +228,11 @@ const Settings = ( props ) => {
     }
 
 	const baSliderStyleSettings = () => {
-		return(
-			<>
-				{ attributes.showLabels &&
 
-					<UAGAdvancedPanelBody title={ __( 'Label Styling', 'ultimate-addons-for-gutenberg' ) } initialOpen= { true }>
-						
+		const beforeLabelStylingSettings = () => {
+
+			return(
+				<>
 						{/* Before Label */}
 						
 						<AdvancedPopColorControl
@@ -261,34 +261,75 @@ const Settings = ( props ) => {
 							max={ 1 }
 							displayUnit={ false }
 						/>
+				</>
+			);
 
-						{/* After Label */}
+		}
 
-						<AdvancedPopColorControl
-							label={ __( 'After Label Color', 'ultimate-addons-for-gutenberg' ) }
-							colorValue={ attributes.afterLabelColor ? attributes.afterLabelColor : '' }
-							onColorChange={ ( value ) =>
-								setAttributes( { afterLabelColor: value } )
-							}
-						/>
-						<AdvancedPopColorControl
-							label={ __( 'After Label Background Color', 'ultimate-addons-for-gutenberg' ) }
-							colorValue={ attributes.afterLabelBgColor ? attributes.afterLabelBgColor : '' }
-							onColorChange={ ( value ) =>
-								setAttributes( { afterLabelBgColor: value } )
-							}
-						/>
-						<Range
-							label={ __( 'Right Label Opacity', 'ultimate-addons-for-gutenberg' ) }
-							setAttributes={ setAttributes }
-							value={ attributes.afterLabelOpacity }
-							onChange={ ( value ) =>
-								setAttributes( { afterLabelOpacity: value } )
-							}
-							step={ 0.01 }
-							min={ 0 }
-							max={ 1 }
-							displayUnit={ false }
+		const afterLabelStylingSettings = () => {
+			
+			return(
+				<>
+					{/* After Label */}
+
+					<AdvancedPopColorControl
+						label={ __( 'After Label Color', 'ultimate-addons-for-gutenberg' ) }
+						colorValue={ attributes.afterLabelColor ? attributes.afterLabelColor : '' }
+						onColorChange={ ( value ) =>
+							setAttributes( { afterLabelColor: value } )
+						}
+					/>
+					<AdvancedPopColorControl
+						label={ __( 'After Label Background Color', 'ultimate-addons-for-gutenberg' ) }
+						colorValue={ attributes.afterLabelBgColor ? attributes.afterLabelBgColor : '' }
+						onColorChange={ ( value ) =>
+							setAttributes( { afterLabelBgColor: value } )
+						}
+					/>
+					<Range
+						label={ __( 'Right Label Opacity', 'ultimate-addons-for-gutenberg' ) }
+						setAttributes={ setAttributes }
+						value={ attributes.afterLabelOpacity }
+						onChange={ ( value ) =>
+							setAttributes( { afterLabelOpacity: value } )
+						}
+						step={ 0.01 }
+						min={ 0 }
+						max={ 1 }
+						displayUnit={ false }
+					/>
+				</>
+			);
+
+		}
+
+
+		return(
+			<>
+				{ attributes.showLabels &&
+
+					<UAGAdvancedPanelBody title={ __( 'Label Styling', 'ultimate-addons-for-gutenberg' ) } initialOpen= { true }>
+
+						<UAGTabsControl
+							tabs={ [
+								{
+									name: 'beforeLabel',
+									title: __(
+										'Before',
+										'ultimate-addons-for-gutenberg'
+									),
+								},
+								{
+									name: 'afterLabel',
+									title: __(
+										'After',
+										'ultimate-addons-for-gutenberg'
+									),
+								},
+							] }
+							beforeLabel={ beforeLabelStylingSettings() }
+							afterLabel={ afterLabelStylingSettings() }
+							disableBottomSeparator={ true }
 						/>
 
 					</UAGAdvancedPanelBody>
