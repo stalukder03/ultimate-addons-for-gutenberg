@@ -134,13 +134,17 @@ const Settings = ( props ) => {
 						onChange={ ( newSliderOrientation ) => setAttributes( { sliderOrientation: newSliderOrientation } ) }
 					/>
 
-					<RangeControl
+					<Range
 						label={ __( 'Initial Slider Position', 'ultimate-addons-for-gutenberg' ) }
+						setAttributes={ setAttributes }
 						value={ attributes.sliderPosition }
-						onChange={ ( newSliderPosition ) => setAttributes( { sliderPosition: newSliderPosition } ) }
+						onChange={ ( newSliderPosition ) =>
+							setAttributes( { sliderPosition: newSliderPosition } )
+						}
+						step={ 1 }
 						min={ 1 }
 						max={ 100 }
-						step={ 1 }
+						displayUnit={ false }
 					/>
 
 					<ToggleControl
