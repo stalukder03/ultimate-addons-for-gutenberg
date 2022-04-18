@@ -117,7 +117,7 @@ const Settings = ( props ) => {
 
 				{/* General Slider Settings */}
 
-                <UAGAdvancedPanelBody title={ __( 'General Slider Settings', 'ultimate-addons-for-gutenberg' ) } initialOpen= { true }>
+                <UAGAdvancedPanelBody title={ __( 'General Slider Settings', 'ultimate-addons-for-gutenberg' ) } initialOpen= { false }>
 					<SelectControl
 						label={ __( 'Slider Orientation', 'ultimate-addons-for-gutenberg' ) }
 						value={ attributes.sliderOrientation }
@@ -190,7 +190,7 @@ const Settings = ( props ) => {
 
 				{ attributes.showLabels &&
 
-					<UAGAdvancedPanelBody title={ __( 'Label Settings', 'ultimate-addons-for-gutenberg' ) } initialOpen= { true }>
+					<UAGAdvancedPanelBody title={ __( 'Label Settings', 'ultimate-addons-for-gutenberg' ) } initialOpen= { false }>
 						
 						<TextControl
 							label={ __( 'Before-Image Label', 'ultimate-addons-for-gutenberg' ) }
