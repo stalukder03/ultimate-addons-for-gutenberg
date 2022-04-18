@@ -118,9 +118,18 @@ const Settings = ( props ) => {
 				{/* General Slider Settings */}
 
                 <UAGAdvancedPanelBody title={ __( 'General Slider Settings', 'ultimate-addons-for-gutenberg' ) } initialOpen= { false }>
-					<SelectControl
-						label={ __( 'Slider Orientation', 'ultimate-addons-for-gutenberg' ) }
-						value={ attributes.sliderOrientation }
+
+					<MultiButtonsControl
+						setAttributes={ setAttributes }
+						label={ __(
+							'Slider Orientation',
+							'ultimate-addons-for-gutenberg'
+						) }
+						data={ {
+							value: attributes.sliderOrientation,
+							label: 'sliderOrientation',
+						} }
+						className="uagb-multi-button-alignment-control"
 						options={ [
 							{
 								label: __( 'Horizontal', 'ultimate-addons-for-gutenberg' ),
@@ -131,7 +140,7 @@ const Settings = ( props ) => {
 								value: 'vertical'
 							},
 						] }
-						onChange={ ( newSliderOrientation ) => setAttributes( { sliderOrientation: newSliderOrientation } ) }
+						showIcons={ false }
 					/>
 
 					<Range
