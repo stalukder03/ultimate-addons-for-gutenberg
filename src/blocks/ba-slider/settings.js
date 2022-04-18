@@ -213,6 +213,78 @@ const Settings = ( props ) => {
 
     }
 
+	const baSliderStyleSettings = () => {
+		return(
+			<>
+				{ attributes.showLabels &&
+
+					<UAGAdvancedPanelBody title={ __( 'Label Styling', 'ultimate-addons-for-gutenberg' ) } initialOpen= { true }>
+						
+						{/* Before Label */}
+						
+						<AdvancedPopColorControl
+							label={ __( 'Before Label Color', 'ultimate-addons-for-gutenberg' ) }
+							colorValue={ attributes.beforeLabelColor ? attributes.beforeLabelColor : '' }
+							onColorChange={ ( value ) =>
+								setAttributes( { beforeLabelColor: value } )
+							}
+						/>
+						<AdvancedPopColorControl
+							label={ __( 'Before Label Background Color', 'ultimate-addons-for-gutenberg' ) }
+							colorValue={ attributes.beforeLabelBgColor ? attributes.beforeLabelBgColor : '' }
+							onColorChange={ ( value ) =>
+								setAttributes( { afterLabelColor: value } )
+							}
+						/>
+						<Range
+							label={ __( 'Left Label Opacity', 'ultimate-addons-for-gutenberg' ) }
+							setAttributes={ setAttributes }
+							value={ attributes.beforeLabelOpacity }
+							onChange={ ( value ) =>
+								setAttributes( { beforeLabelOpacity: value } )
+							}
+							step={ 0.01 }
+							min={ 0 }
+							max={ 1 }
+							displayUnit={ false }
+						/>
+
+						{/* After Label */}
+
+						<AdvancedPopColorControl
+							label={ __( 'After Label Color', 'ultimate-addons-for-gutenberg' ) }
+							colorValue={ attributes.afterLabelColor ? attributes.afterLabelColor : '' }
+							onColorChange={ ( value ) =>
+								setAttributes( { afterLabelColor: value } )
+							}
+						/>
+						<AdvancedPopColorControl
+							label={ __( 'After Label Background Color', 'ultimate-addons-for-gutenberg' ) }
+							colorValue={ attributes.afterLabelBgColor ? attributes.afterLabelBgColor : '' }
+							onColorChange={ ( value ) =>
+								setAttributes( { afterLabelBgColor: value } )
+							}
+						/>
+						<Range
+							label={ __( 'Right Label Opacity', 'ultimate-addons-for-gutenberg' ) }
+							setAttributes={ setAttributes }
+							value={ attributes.afterLabelOpacity }
+							onChange={ ( value ) =>
+								setAttributes( { afterLabelOpacity: value } )
+							}
+							step={ 0.01 }
+							min={ 0 }
+							max={ 1 }
+							displayUnit={ false }
+						/>
+
+					</UAGAdvancedPanelBody>
+
+				}
+			</>
+		);
+	}
+
     return(
         <>
             <InspectorControls>
@@ -221,7 +293,7 @@ const Settings = ( props ) => {
 						{ baSliderGeneralSettings() }
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
-						{/* { baSliderStyleSettings() } */}
+						{ baSliderStyleSettings() }
 					</InspectorTab>
 					<InspectorTab
 						{ ...UAGTabs.advance }
