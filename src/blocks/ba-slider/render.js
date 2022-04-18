@@ -4,8 +4,6 @@ import { __ } from '@wordpress/i18n';
 import React, { useLayoutEffect, useMemo, useEffect, useState } from 'react';
 import { useDeviceType } from '@Controls/getPreviewType';
 import { ImgComparisonSlider } from '@img-comparison-slider/react';
-// import BeforeImagePlaceholder from '../../../assets/images/ba-slider-placeholder-before-image.jpeg';
-// import AfterImagePlaceholder from '../../../assets/images/ba-slider-placeholder-after-image.jpeg';
 
 const Render = ( props ) => {
 
@@ -27,6 +25,9 @@ const Render = ( props ) => {
         hoverSlider,
     } = attributes;
 
+    const beforePlaceholder = `${window?.uagb_blocks_info?.uagb_url}assets/images/ba-slider-placeholder-before-image.jpeg`;
+    const afterPlaceholder = `${window?.uagb_blocks_info?.uagb_url}assets/images/ba-slider-placeholder-after-image.jpeg`;
+
     return(
         <div
             className={ classnames(
@@ -41,12 +42,12 @@ const Render = ( props ) => {
             >
                 <img
                     slot="first"
-                    src={ beforeImage ? beforeImage.url : 'Placeholder' }
+                    src={ beforeImage ? beforeImage.url : beforePlaceholder }
                     alt={ beforeImage ? beforeImage.alt : '' }
                 />
                 <img
                     slot="second"
-                    src={ afterImage ? afterImage.url : 'Placeholder' }
+                    src={ afterImage ? afterImage.url : afterPlaceholder }
                     alt={ afterImage ? afterImage.alt : '' }
                 />
             </ImgComparisonSlider>
