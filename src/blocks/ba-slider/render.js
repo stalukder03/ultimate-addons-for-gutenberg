@@ -47,7 +47,9 @@ const Render = ( props ) => {
                         src={ beforeImage ? beforeImage.url : beforePlaceholder }
                         alt={ beforeImage ? beforeImage.alt : '' }
                     />
-                    <figcaption>{beforeLabel}</figcaption>
+                    { showLabels &&
+                        <figcaption>{beforeLabel}</figcaption>
+                    }
                 </figure>
                 <figure slot="second">
                     <img
@@ -55,7 +57,9 @@ const Render = ( props ) => {
                         src={ afterImage ? afterImage.url : afterPlaceholder }
                         alt={ afterImage ? afterImage.alt : '' }
                     />
-                    <figcaption>{afterLabel}</figcaption>
+                    { showLabels &&
+                        <figcaption>{afterLabel}</figcaption>
+                    }
                 </figure>
             </ImgComparisonSlider>
         </div>
