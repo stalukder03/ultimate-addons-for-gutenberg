@@ -161,13 +161,13 @@ const Settings = ( props ) => {
 						<ToggleControl
 							label={ __( 'Control slider handle on mouse hover?', 'ultimate-addons-for-gutenberg' ) }
 							help={
-								attributes.hoverSlide
+								attributes.hoverSlider
 									? __( 'Disables hover-based slider handle controls.', 'ultimate-addons-for-gutenberg' )
 									: __( 'Enables hover-based slider handle controls.', 'ultimate-addons-for-gutenberg' )
 							}
-							checked={ attributes.hoverSlide }
+							checked={ attributes.hoverSlider }
 							onChange={ () => {
-								setAttributes( { hoverSlide: !attributes.hoverSlide } );
+								setAttributes( { hoverSlider: !attributes.hoverSlider } );
 							} }
 						/>
 

@@ -39,6 +39,7 @@ const Render = ( props ) => {
             <ImgComparisonSlider
                 direction={ sliderOrientation }
                 value= { sliderPosition }
+                hover= { hoverSlider ? 'hover' : false }
             >
                 <figure slot="first">
                     <img
