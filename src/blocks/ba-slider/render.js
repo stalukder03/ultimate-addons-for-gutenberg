@@ -40,16 +40,22 @@ const Render = ( props ) => {
                 direction={ sliderOrientation }
                 value= { sliderPosition }
             >
-                <img
-                    slot="first"
-                    src={ beforeImage ? beforeImage.url : beforePlaceholder }
-                    alt={ beforeImage ? beforeImage.alt : '' }
-                />
-                <img
-                    slot="second"
-                    src={ afterImage ? afterImage.url : afterPlaceholder }
-                    alt={ afterImage ? afterImage.alt : '' }
-                />
+                <figure slot="first">
+                    <img
+                        slot="first"
+                        src={ beforeImage ? beforeImage.url : beforePlaceholder }
+                        alt={ beforeImage ? beforeImage.alt : '' }
+                    />
+                    <figcaption>{beforeLabel}</figcaption>
+                </figure>
+                <figure slot="second">
+                    <img
+                        slot="second"
+                        src={ afterImage ? afterImage.url : afterPlaceholder }
+                        alt={ afterImage ? afterImage.alt : '' }
+                    />
+                    <figcaption>{afterLabel}</figcaption>
+                </figure>
             </ImgComparisonSlider>
         </div>
     );
