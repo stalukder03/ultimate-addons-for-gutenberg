@@ -41,7 +41,7 @@ const Render = ( props ) => {
                 value= { sliderPosition }
                 hover= { hoverSlider ? 'hover' : false }
             >
-                <figure slot="first">
+                <figure slot="first" className="ba-slider-label-before">
                     <img
                         slot="first"
                         src={ beforeImage ? beforeImage.url : beforePlaceholder }
@@ -51,7 +51,7 @@ const Render = ( props ) => {
                         <figcaption>{beforeLabel}</figcaption>
                     }
                 </figure>
-                <figure slot="second">
+                <figure slot="second" className="ba-slider-label-after">
                     <img
                         slot="second"
                         src={ afterImage ? afterImage.url : afterPlaceholder }
