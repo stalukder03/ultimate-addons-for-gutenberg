@@ -134,6 +134,9 @@ class UAGB_Block_Module {
 		'container'          => array(
 			'dir' => 'container',
 		),
+		'ba-slider'          => array(
+			'dir' => 'ba-slider',
+		),
 	);
 
 	/**
