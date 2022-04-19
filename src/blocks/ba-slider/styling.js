@@ -6,6 +6,27 @@
  import generateCSSUnit from '@Controls/generateCSSUnit';
 
  function styling ( props ) {
+
+	const {
+		block_id,
+        classMigrate,
+        beforeImage,
+        afterImage,
+        showLabels,
+        beforeLabel,
+        afterLabel,
+		beforeLabelColor,
+		afterLabelColor,
+		beforeLabelBgColor,
+		afterLabelBgColor,
+		beforeLabelOpacity,
+		afterLabelOpacity,
+        sliderOrientation,
+        sliderPosition,
+        animateSlider,
+        hoverSlider,
+	} = props.attributes;
+
     const selectors = {};
 	const tablet_selectors = {};
 	const mobile_selectors = {};
