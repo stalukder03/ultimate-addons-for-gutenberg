@@ -34,6 +34,32 @@ const attributes = {
 		default: __( 'After' , 'ultimate-addons-for-gutenberg' ),
 	},
 
+	// Image Labels Styling.
+	beforeLabelColor: {
+		type: 'string',
+		default: '#000000',
+	},
+	afterLabelColor: {
+		type: 'string',
+		default: '#000000',
+	},
+	beforeLabelBgColor: {
+		type: 'string',
+		default: '#000000',
+	},
+	afterLabelBgColor: {
+		type: 'string',
+		default: '#000000',
+	},
+	beforeLabelOpacity: {
+		type: 'number',
+		default: 1,
+	},
+	afterLabelOpacity: {
+		type: 'number',
+		default: 1,
+	},
+
 	// Slider Orientation.
 	sliderOrientation: {
 		type: 'string',
