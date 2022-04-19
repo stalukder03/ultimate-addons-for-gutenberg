@@ -290,6 +290,9 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 					'uagb/wp-search'              => array(
 						'name' => 'wp-search',
 					),
+					'uagb/ba-slider'              => array(
+						'name' => 'ba-slider',
+					),
 				);
 			}
 			return self::$block_assets_css;
