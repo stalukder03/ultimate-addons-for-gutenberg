@@ -152,7 +152,7 @@ const Settings = ( props ) => {
 							setAttributes( { sliderPosition: newSliderPosition } )
 						}
 						step={ 1 }
-						min={ 1 }
+						min={ 0 }
 						max={ 100 }
 						displayUnit={ false }
 					/>
@@ -314,22 +314,16 @@ const Settings = ( props ) => {
 							tabs={ [
 								{
 									name: 'beforeLabel',
-									title: __(
-										'Before',
-										'ultimate-addons-for-gutenberg'
-									),
+									title: __( 'Before', 'ultimate-addons-for-gutenberg' ),
 								},
 								{
 									name: 'afterLabel',
-									title: __(
-										'After',
-										'ultimate-addons-for-gutenberg'
-									),
+									title: __( 'After', 'ultimate-addons-for-gutenberg' ),
 								},
 							] }
 							beforeLabel={ beforeLabelStylingSettings() }
 							afterLabel={ afterLabelStylingSettings() }
-							disableBottomSeparator={ true }
+							disableBottomSeparator={ false }
 						/>
 
 					</UAGAdvancedPanelBody>
