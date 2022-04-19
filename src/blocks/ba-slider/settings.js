@@ -246,7 +246,7 @@ const Settings = ( props ) => {
 							label={ __( 'Before Label Background Color', 'ultimate-addons-for-gutenberg' ) }
 							colorValue={ attributes.beforeLabelBgColor ? attributes.beforeLabelBgColor : '' }
 							onColorChange={ ( value ) =>
-								setAttributes( { afterLabelColor: value } )
+								setAttributes( { beforeLabelColor: value } )
 							}
 						/>
 						<Range
