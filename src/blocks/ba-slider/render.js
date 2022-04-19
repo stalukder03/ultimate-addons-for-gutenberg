@@ -33,32 +33,40 @@ const Render = ( props ) => {
             className={ classnames(
                 className,
                 `uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
-                `uagb-block-${ block_id }`
+                `uagb-block-${ block_id }`,
+                'uagb-ba-slider',
             ) }
         >
             <ImgComparisonSlider
+                className='uagb-ba-slider__img-comparison'
                 direction={ sliderOrientation }
                 value= { sliderPosition }
                 hover= { hoverSlider ? 'hover' : false }
             >
-                <figure slot="first" className="ba-slider-label-before">
+                <figure slot="first" className="uagb-ba-slider__figure-before">
                     <img
                         slot="first"
                         src={ beforeImage ? beforeImage.url : beforePlaceholder }
                         alt={ beforeImage ? beforeImage.alt : '' }
+                        className="uagb-ba-slider__image-before"
                     />
                     { showLabels &&
-                        <figcaption>{beforeLabel}</figcaption>
+                        <figcaption className="uagb-ba-slider__label-before">
+                            {beforeLabel}
+                        </figcaption>
                     }
                 </figure>
-                <figure slot="second" className="ba-slider-label-after">
+                <figure slot="second" className="uagb-ba-slider__figure-after">
                     <img
                         slot="second"
                         src={ afterImage ? afterImage.url : afterPlaceholder }
                         alt={ afterImage ? afterImage.alt : '' }
+                        className="uagb-ba-slider__image-after"
                     />
                     { showLabels &&
-                        <figcaption>{afterLabel}</figcaption>
+                        <figcaption className="uagb-ba-slider__label-after">
+                            {afterLabel}
+                        </figcaption>
                     }
                 </figure>
             </ImgComparisonSlider>
