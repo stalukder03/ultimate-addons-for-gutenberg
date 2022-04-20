@@ -261,7 +261,30 @@ const Settings = ( props ) => {
 							max={ 1 }
 							displayUnit={ false }
 						/>
-
+						<Range
+							label={ __( 'Vertical Alignment', 'ultimate-addons-for-gutenberg' ) }
+							setAttributes={ setAttributes }
+							value={ attributes.beforeLabelVerticalAlignment }
+							onChange={ ( value ) =>
+								setAttributes( { beforeLabelVerticalAlignment: value } )
+							}
+							step={ 0.1 }
+							min={ 0 }
+							max={ 100 }
+							displayUnit={ false }
+						/>
+						<Range
+							label={ __( 'Horizontal Alignment', 'ultimate-addons-for-gutenberg' ) }
+							setAttributes={ setAttributes }
+							value={ attributes.beforeLabelHorizontalAlignment }
+							onChange={ ( value ) =>
+								setAttributes( { beforeLabelHorizontalAlignment: value } )
+							}
+							step={ 0.1 }
+							min={ 0 }
+							max={ 100 }
+							displayUnit={ false }
+						/>
 				</>
 			);
 
@@ -297,6 +320,30 @@ const Settings = ( props ) => {
 						step={ 0.01 }
 						min={ 0 }
 						max={ 1 }
+						displayUnit={ false }
+					/>
+					<Range
+						label={ __( 'Vertical Alignment', 'ultimate-addons-for-gutenberg' ) }
+						setAttributes={ setAttributes }
+						value={ attributes.afterLabelVerticalAlignment }
+						onChange={ ( value ) =>
+							setAttributes( { afterLabelVerticalAlignment: value } )
+						}
+						step={ 0.1 }
+						min={ 0 }
+						max={ 100 }
+						displayUnit={ false }
+					/>
+					<Range
+						label={ __( 'Horizontal Alignment', 'ultimate-addons-for-gutenberg' ) }
+						setAttributes={ setAttributes }
+						value={ attributes.afterLabelHorizontalAlignment }
+						onChange={ ( value ) =>
+							setAttributes( { afterLabelHorizontalAlignment: value } )
+						}
+						step={ 0.1 }
+						min={ 0 }
+						max={ 100 }
 						displayUnit={ false }
 					/>
 				</>
