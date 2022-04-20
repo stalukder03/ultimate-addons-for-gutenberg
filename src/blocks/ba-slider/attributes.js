@@ -134,17 +134,17 @@ const attributes = {
 
 	sliderBoxShadowHOffset: {
 		type: 'number',
-		default: 5,
+		default: 0,
 	},
 
 	sliderBoxShadowVOffset: {
 		type: 'number',
-		default: 5,
+		default: 0,
 	},
 
 	sliderBoxShadowBlur: {
 		type: 'number',
-		default: 5,
+		default: 15,
 	},
 
 	sliderBoxShadowSpread: {
