@@ -21,6 +21,10 @@
 		afterLabelBgColor,
 		beforeLabelOpacity,
 		afterLabelOpacity,
+		beforeLabelVerticalAlignment,
+		afterLabelVerticalAlignment,
+		beforeLabelHorizontalAlignment,
+		afterLabelHorizontalAlignment,
         sliderOrientation,
         sliderPosition,
         animateSlider,
@@ -38,6 +42,8 @@
 			'color': beforeLabelColor,
 			'background-color': beforeLabelBgColor,
 			'opacity': beforeLabelOpacity,
+			'top': beforeLabelVerticalAlignment+'%',
+			'left': beforeLabelHorizontalAlignment+'%',
 		},
 
 		' .uagb-ba-slider__label-after': {
@@ -45,6 +51,8 @@
 			'color': afterLabelColor,
 			'background-color': afterLabelBgColor,
 			'opacity': afterLabelOpacity,
+			'top': afterLabelVerticalAlignment+'%',
+			'right': afterLabelHorizontalAlignment+'%',
 		},
 
 	}
