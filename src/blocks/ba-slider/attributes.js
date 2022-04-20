@@ -121,6 +121,42 @@ const attributes = {
 		default: false,
 	},
 
+	// Slider Elevation Styling.
+	enableSliderElevation: {
+		type: 'boolean',
+		default: true,
+	},
+
+	sliderBoxShadowColor: {
+		type: 'string',
+		default: '#aaaaaa',
+	},
+
+	sliderBoxShadowHOffset: {
+		type: 'number',
+		default: 5,
+	},
+
+	sliderBoxShadowVOffset: {
+		type: 'number',
+		default: 5,
+	},
+
+	sliderBoxShadowBlur: {
+		type: 'number',
+		default: 5,
+	},
+
+	sliderBoxShadowSpread: {
+		type: 'number',
+		default: 5,
+	},
+
+	sliderBoxShadowPosition: {
+		type: 'string',
+		default: '',
+	},
+
 };
 
 export default attributes;
