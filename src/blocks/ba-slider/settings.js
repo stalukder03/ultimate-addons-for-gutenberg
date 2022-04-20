@@ -23,6 +23,7 @@ import { InspectorControls } from '@wordpress/block-editor';
 import { SelectControl, RangeControl, Icon, ToggleControl, TextControl, __experimentalNumberControl as NumberControl } from '@wordpress/components';
 
 import Border from '@Components/border/index.js';
+import BoxShadowControl from '@Components/box-shadow/index.js';
 
 // Extend component
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
@@ -414,6 +415,65 @@ const Settings = ( props ) => {
 					</UAGAdvancedPanelBody>
 
 				}
+
+				<UAGAdvancedPanelBody title={ __( 'Slider Elevation Styling', 'ultimate-addons-for-gutenberg' ) } initialOpen= { false }>
+
+					<ToggleControl
+						label={ __( 'Enable Slider Elevation?', 'ultimate-addons-for-gutenberg' ) }
+						help={
+							attributes.enableSliderElevation
+								? __( 'Disables on-focus slider elevation.', 'ultimate-addons-for-gutenberg' )
+								: __( 'Enables on-focus slider elevation.', 'ultimate-addons-for-gutenberg' )
+						}
+						checked={ attributes.enableSliderElevation }
+						onChange={ () => {
+							setAttributes( { enableSliderElevation: !attributes.enableSliderElevation } );
+						} }
+					/>
+
+					{ attributes.enableSliderElevation &&
+
+						<>
+							<BoxShadowControl
+								setAttributes={ setAttributes }
+								label={ __( 'Box Shadow', 'ultimate-addons-for-gutenberg' ) }
+								boxShadowColor={ {
+									value: attributes.sliderBoxShadowColor,
+									label: 'sliderBoxShadowColor',
+									title: __( 'Color', 'ultimate-addons-for-gutenberg' ),
+								} }
+								boxShadowHOffset={ {
+									value: attributes.sliderBoxShadowHOffset,
+									label: 'sliderBoxShadowHOffset',
+									title: __( 'Horizontal', 'ultimate-addons-for-gutenberg' ),
+								} }
+								boxShadowVOffset={ {
+									value: attributes.sliderBoxShadowVOffset,
+									label: 'sliderBoxShadowVOffset',
+									title: __( 'Vertical', 'ultimate-addons-for-gutenberg' ),
+								} }
+								boxShadowBlur={ {
+									value: attributes.sliderBoxShadowBlur,
+									label: 'sliderBoxShadowBlur',
+									title: __( 'Blur', 'ultimate-addons-for-gutenberg' ),
+								} }
+								boxShadowSpread={ {
+									value: attributes.sliderBoxShadowSpread,
+									label: 'sliderBoxShadowSpread',
+									title: __( 'Spread', 'ultimate-addons-for-gutenberg' ),
+								} }
+								boxShadowPosition={ {
+									value: attributes.sliderBoxShadowPosition,
+									label: 'sliderBoxShadowPosition',
+									title: __( 'Position', 'ultimate-addons-for-gutenberg' ),
+								} }
+							/>
+						</>
+
+					}
+
+				</UAGAdvancedPanelBody>
+
 			</>
 		);
 	}
