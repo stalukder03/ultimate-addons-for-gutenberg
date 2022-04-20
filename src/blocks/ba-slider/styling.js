@@ -42,6 +42,7 @@
 
 	selectors = {
 
+		// Before Label.
 		' .uagb-ba-slider__label-before': {
 			'display': showLabels ? 'block' : 'none',
 			'color': beforeLabelColor,
@@ -57,6 +58,7 @@
 			'border-color': labelBorderColor,
 		},
 
+		// After Label.
 		' .uagb-ba-slider__label-after': {
 			'display': showLabels ? 'block' : 'none',
 			'color': afterLabelColor,
@@ -72,6 +74,7 @@
 			'border-color': labelBorderColor,
 		},
 
+		// Label hover effects.
 		' .uagb-ba-slider__label-before:hover': {
 			'border-color': labelBorderHoverColor,
 		},
