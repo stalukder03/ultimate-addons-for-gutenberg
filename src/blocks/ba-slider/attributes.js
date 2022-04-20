@@ -59,6 +59,22 @@ const attributes = {
 		type: 'number',
 		default: 1,
 	},
+	beforeLabelHorizontalAlignment: {
+		type: 'number',
+		default: 3,
+	},
+	afterLabelHorizontalAlignment: {
+		type: 'number',
+		default: 3,
+	},
+	beforeLabelVerticalAlignment: {
+		type: 'number',
+		default: 50,
+	},
+	afterLabelVerticalAlignment: {
+		type: 'number',
+		default: 50,
+	},
 
 	// Slider Orientation.
 	sliderOrientation: {
