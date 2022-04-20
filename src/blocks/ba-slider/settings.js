@@ -20,7 +20,7 @@ import UAGTabsControl from '@Components/tabs'
 
 import { InspectorControls } from '@wordpress/block-editor';
 
-import { SelectControl, RangeControl, Icon, ToggleControl, TextControl, __experimentalNumberControl as NumberControl } from '@wordpress/components';
+import { SelectControl, RangeControl, Icon, ToggleControl, TextControl, __experimentalNumberControl as NumberControl, __experimentalAlignmentMatrixControl as AlignmentMatrixControl } from '@wordpress/components';
 
 // Extend component
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
