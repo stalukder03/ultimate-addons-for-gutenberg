@@ -37,11 +37,11 @@ const attributes = {
 	// Image Labels Styling.
 	beforeLabelColor: {
 		type: 'string',
-		default: '#000000',
+		default: '#ffffff',
 	},
 	afterLabelColor: {
 		type: 'string',
-		default: '#000000',
+		default: '#ffffff',
 	},
 	beforeLabelBgColor: {
 		type: 'string',
