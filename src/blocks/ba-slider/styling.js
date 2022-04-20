@@ -52,7 +52,7 @@
 			'background-color': afterLabelBgColor,
 			'opacity': afterLabelOpacity,
 			'top': afterLabelVerticalAlignment+'%',
-			'right': afterLabelHorizontalAlignment+'%',
+			'left': afterLabelHorizontalAlignment+'%',
 		},
 
 	}
