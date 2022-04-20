@@ -22,6 +22,8 @@ import { InspectorControls } from '@wordpress/block-editor';
 
 import { SelectControl, RangeControl, Icon, ToggleControl, TextControl, __experimentalNumberControl as NumberControl } from '@wordpress/components';
 
+import Border from '@Components/border/index.js';
+
 // Extend component
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import UAGImage from '@Components/image';
@@ -372,6 +374,41 @@ const Settings = ( props ) => {
 							beforeLabel={ beforeLabelStylingSettings() }
 							afterLabel={ afterLabelStylingSettings() }
 							disableBottomSeparator={ false }
+						/>
+
+						{/* Label Border Styling */}
+
+						<Border
+							setAttributes={ setAttributes }
+							borderStyle={ {
+								value: attributes.labelBorderStyle,
+								label: 'labelBorderStyle',
+								title: __( 'Style', 'ultimate-addons-for-gutenberg' ),
+							} }
+							borderWidth={ {
+								value: attributes.labelBorderWidth,
+								label: 'labelBorderWidth',
+								title: __( 'Width', 'ultimate-addons-for-gutenberg' ),
+							} }
+							borderRadius={ {
+								value: attributes.labelBorderRadius,
+								label: 'labelBorderRadius',
+								title: __( 'Radius', 'ultimate-addons-for-gutenberg' ),
+							} }
+							borderColor={ {
+								value: attributes.labelBorderColor,
+								label: 'labelBorderColor',
+								title: __( 'Color', 'ultimate-addons-for-gutenberg' ),
+							} }
+							borderHoverColor={ {
+								value: attributes.labelBorderHoverColor,
+								label: 'labelBorderHoverColor',
+								title: __(
+									'Hover Color',
+									'ultimate-addons-for-gutenberg'
+								),
+							} }
+							disableBottomSeparator={ true }
 						/>
 
 					</UAGAdvancedPanelBody>

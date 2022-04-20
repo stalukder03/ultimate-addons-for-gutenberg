@@ -25,6 +25,11 @@
 		afterLabelVerticalAlignment,
 		beforeLabelHorizontalAlignment,
 		afterLabelHorizontalAlignment,
+		labelBorderStyle,
+		labelBorderWidth,
+		labelBorderRadius,
+		labelBorderColor,
+		labelBorderHoverColor,
         sliderOrientation,
         sliderPosition,
         animateSlider,
@@ -44,6 +49,12 @@
 			'opacity': beforeLabelOpacity,
 			'top': beforeLabelVerticalAlignment+'%',
 			'left': beforeLabelHorizontalAlignment+'%',
+
+			// Border styles.
+			'border-style': labelBorderStyle,
+			'border-width': labelBorderWidth+'px',
+			'border-radius': labelBorderRadius+'px',
+			'border-color': labelBorderColor,
 		},
 
 		' .uagb-ba-slider__label-after': {
@@ -53,6 +64,20 @@
 			'opacity': afterLabelOpacity,
 			'top': afterLabelVerticalAlignment+'%',
 			'right': afterLabelHorizontalAlignment+'%',
+
+			// Border styles.
+			'border-style': labelBorderStyle,
+			'border-width': labelBorderWidth+'px',
+			'border-radius': labelBorderRadius+'px',
+			'border-color': labelBorderColor,
+		},
+
+		' .uagb-ba-slider__label-before:hover': {
+			'border-color': labelBorderHoverColor,
+		},
+
+		' .uagb-ba-slider__label-after:hover': {
+			'border-color': labelBorderHoverColor,
 		},
 
 	}

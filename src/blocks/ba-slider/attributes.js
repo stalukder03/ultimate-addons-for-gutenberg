@@ -76,6 +76,28 @@ const attributes = {
 		default: 50,
 	},
 
+	// Image Label Border.
+	labelBorderStyle: {
+		type: 'string',
+		default: 'none',
+	},
+	labelBorderWidth: {
+		type: 'number',
+		default: 2,
+	},
+	labelBorderRadius: {
+		type: 'number',
+		default: 5,
+	},
+	labelBorderColor: {
+		type: 'string',
+		default: '#000000',
+	},
+	labelBorderHoverColor: {
+		type: 'string',
+		default: '#ffffff',
+	},
+
 	// Slider Orientation.
 	sliderOrientation: {
 		type: 'string',
