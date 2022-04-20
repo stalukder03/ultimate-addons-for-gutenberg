@@ -34,6 +34,13 @@
         sliderPosition,
         animateSlider,
         hoverSlider,
+		enableSliderElevation,
+		sliderBoxShadowColor,
+		sliderBoxShadowHOffset,
+		sliderBoxShadowVOffset,
+		sliderBoxShadowBlur,
+		sliderBoxShadowSpread,
+		sliderBoxShadowPosition,
 	} = props.attributes;
 
     let selectors = {};
