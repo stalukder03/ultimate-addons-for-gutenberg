@@ -27,9 +27,35 @@
         hoverSlider,
 	} = props.attributes;
 
-    const selectors = {};
-	const tablet_selectors = {};
-	const mobile_selectors = {};
+    let selectors = {};
+	let tablet_selectors = {};
+	let mobile_selectors = {};
+
+	selectors = {
+
+		' .uagb-ba-slider__label-before': {
+			'display': showLabels ? 'block' : 'none',
+			'color': beforeLabelColor,
+			'background-color': beforeLabelBgColor,
+			'opacity': beforeLabelOpacity,
+		},
+
+		' .uagb-ba-slider__label-after': {
+			'display': showLabels ? 'block' : 'none',
+			'color': beforeLabelColor,
+			'background-color': beforeLabelBgColor,
+			'opacity': beforeLabelOpacity,
+		},
+
+	}
+
+	tablet_selectors = {
+
+	}
+
+	mobile_selectors = {
+
+	}
 
     const base_selector = `.editor-styles-wrapper .uagb-block-${ props.clientId.substr(
 		0,
