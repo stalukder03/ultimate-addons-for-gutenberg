@@ -90,6 +90,10 @@
 			'border-color': labelBorderHoverColor,
 		},
 
+		' .uagb-ba-slider__img-comparison:focus': {
+			'box-shadow': enableSliderElevation ? sliderBoxShadowHOffset+'px '+sliderBoxShadowVOffset+'px '+sliderBoxShadowBlur+'px '+sliderBoxShadowSpread+'px '+( ( sliderBoxShadowPosition === 'inset' ) ? 'inset' : '' )  : 'none',
+		},
+
 	}
 
 	tablet_selectors = {
