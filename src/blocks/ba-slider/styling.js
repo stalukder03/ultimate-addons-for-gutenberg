@@ -42,9 +42,9 @@
 
 		' .uagb-ba-slider__label-after': {
 			'display': showLabels ? 'block' : 'none',
-			'color': beforeLabelColor,
-			'background-color': beforeLabelBgColor,
-			'opacity': beforeLabelOpacity,
+			'color': afterLabelColor,
+			'background-color': afterLabelBgColor,
+			'opacity': afterLabelOpacity,
 		},
 
 	}
