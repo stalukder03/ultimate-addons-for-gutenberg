@@ -4,17 +4,15 @@
  * CSS for both Frontend+Backend.
  */
 
-.ba-slider-label-before,
-.ba-slider-label-after {
+.uagb-ba-slider__figure-before,
+.uagb-ba-slider__figure-after {
   margin: 0;
 }
 
-.ba-slider-label-before figcaption,
-.ba-slider-label-after figcaption {
-  background: #fff;
+.uagb-ba-slider__figure-before figcaption,
+.uagb-ba-slider__figure-after figcaption {
   border: 1px solid #c0c0c0;
   border-radius: 12px;
-  color: #2e3452;
   opacity: 0.8;
   padding: 12px;
   position: absolute;
@@ -23,10 +21,10 @@
   line-height: 100%;
 }
 
-.ba-slider-label-before figcaption {
+.uagb-ba-slider__figure-before figcaption {
   left: 12px;
 }
 
-.ba-slider-label-after figcaption {
+.uagb-ba-slider__figure-after figcaption {
   right: 12px;
 }
