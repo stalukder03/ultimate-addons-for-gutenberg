@@ -69,11 +69,11 @@ const attributes = {
 	},
 	beforeLabelVerticalAlignment: {
 		type: 'number',
-		default: 50,
+		default: 85,
 	},
 	afterLabelVerticalAlignment: {
 		type: 'number',
-		default: 50,
+		default: 85,
 	},
 
 	// Image Label Border.
