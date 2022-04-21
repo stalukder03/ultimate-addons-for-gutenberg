@@ -28,6 +28,7 @@ import BoxShadowControl from '@Components/box-shadow/index.js';
 // Extend component
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import UAGImage from '@Components/image';
+import ResponsiveToggle from '@Components/responsive-toggle';
 
 const Settings = ( props ) => {
 	props = props.parentProps;
@@ -191,17 +192,64 @@ const Settings = ( props ) => {
 					}
 
 					<ToggleControl
-						label={ __( 'Show Image Labels?', 'ultimate-addons-for-gutenberg' ) }
+						label={ __( 'Show Image Labels on Desktop?', 'ultimate-addons-for-gutenberg' ) }
 						help={
 							attributes.showLabels
-								? __( 'Hides labels for images.', 'ultimate-addons-for-gutenberg' )
-								: __( 'Shows labels for images.', 'ultimate-addons-for-gutenberg' )
+								? __( 'Hides labels for images on desktop.', 'ultimate-addons-for-gutenberg' )
+								: __( 'Shows labels for images on desktop.', 'ultimate-addons-for-gutenberg' )
 						}
 						checked={ attributes.showLabels }
 						onChange={ () => {
 							setAttributes( { showLabels: !attributes.showLabels } );
 						} }
 					/>
+
+					<ToggleControl
+						label={ __( 'Show Image Labels on Tablet?', 'ultimate-addons-for-gutenberg' ) }
+						help={
+							attributes.showLabelsTablet
+								? __( 'Hides labels for images on tablets.', 'ultimate-addons-for-gutenberg' )
+								: __( 'Shows labels for images on tablets.', 'ultimate-addons-for-gutenberg' )
+						}
+						checked={ attributes.showLabelsTablet }
+						onChange={ () => setAttributes( { showLabelsTablet: !attributes.showLabelsTablet } ) }
+					/>
+
+					<ToggleControl
+						label={ __( 'Show Image Labels on Mobile?', 'ultimate-addons-for-gutenberg' ) }
+						help={
+							attributes.showLabelsMobile
+								? __( 'Hides labels for images on mobiles.', 'ultimate-addons-for-gutenberg' )
+								: __( 'Shows labels for images on mobiles.', 'ultimate-addons-for-gutenberg' )
+						}
+						checked={ attributes.showLabelsMobile }
+						onChange={ () => setAttributes( { showLabelsMobile: !attributes.showLabelsMobile } ) }
+					/>
+
+					{/* <MultiButtonsControl
+						setAttributes={ setAttributes }
+						label={ __(
+							'Slider Orientation',
+							'ultimate-addons-for-gutenberg'
+						) }
+						data={ {
+							value: attributes.sliderOrientation,
+							label: 'sliderOrientation',
+						} }
+						className="uagb-multi-button-alignment-control"
+						options={ [
+							{
+								label: __( 'Horizontal', 'ultimate-addons-for-gutenberg' ),
+								value: 'horizontal'
+							},
+							{
+								label: __( 'Vertical', 'ultimate-addons-for-gutenberg' ),
+								value: 'vertical'
+							},
+						] }
+						showIcons={ false }
+						responsive={ true }
+					/> */}
 
 				</UAGAdvancedPanelBody>
 
