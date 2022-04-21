@@ -25,6 +25,14 @@ const attributes = {
 		type: 'boolean',
 		default: true,
 	},
+	hideLabelsTablet: {
+		type: 'boolean',
+		default: false,
+	},
+	hideLabelsMobile: {
+		type: 'boolean',
+		default: false,
+	},
 	beforeLabel: {
 		type: 'string',
 		default: __( 'Before' , 'ultimate-addons-for-gutenberg' ),
