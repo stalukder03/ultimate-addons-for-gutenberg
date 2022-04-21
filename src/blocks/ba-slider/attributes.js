@@ -65,7 +65,7 @@ const attributes = {
 	},
 	afterLabelHorizontalAlignment: {
 		type: 'number',
-		default: 3,
+		default: 97,
 	},
 	beforeLabelVerticalAlignment: {
 		type: 'number',

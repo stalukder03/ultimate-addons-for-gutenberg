@@ -72,7 +72,7 @@
 			'background-color': afterLabelBgColor,
 			'opacity': afterLabelOpacity,
 			'top': afterLabelVerticalAlignment+'%',
-			'right': afterLabelHorizontalAlignment+'%',
+			'right': ( 100 - afterLabelHorizontalAlignment )+'%',
 
 			// Border styles.
 			'border-style': labelBorderStyle,
