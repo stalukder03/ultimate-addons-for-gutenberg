@@ -264,29 +264,49 @@ const Settings = ( props ) => {
 							max={ 1 }
 							displayUnit={ false }
 						/>
-						<Range
+						<ResponsiveSlider
 							label={ __( 'Vertical Alignment', 'ultimate-addons-for-gutenberg' ) }
-							setAttributes={ setAttributes }
-							value={ attributes.beforeLabelVerticalAlignment }
-							onChange={ ( value ) =>
-								setAttributes( { beforeLabelVerticalAlignment: value } )
-							}
+							data={ {
+								desktop: {
+									value: attributes.beforeLabelVerticalAlignment,
+									label: 'beforeLabelVerticalAlignment',
+								},
+								tablet: {
+									value: attributes.beforeLabelVerticalAlignmentTablet,
+									label: 'beforeLabelVerticalAlignmentTablet',
+								},
+								mobile: {
+									value: attributes.beforeLabelVerticalAlignmentMobile,
+									label: 'beforeLabelVerticalAlignmentMobile',
+								},
+							} }
 							step={ 0.1 }
-							min={ 0 }
+							min={ 1 }
 							max={ 100 }
 							displayUnit={ false }
+							setAttributes={ setAttributes }
 						/>
-						<Range
+						<ResponsiveSlider
 							label={ __( 'Horizontal Alignment', 'ultimate-addons-for-gutenberg' ) }
-							setAttributes={ setAttributes }
-							value={ attributes.beforeLabelHorizontalAlignment }
-							onChange={ ( value ) =>
-								setAttributes( { beforeLabelHorizontalAlignment: value } )
-							}
+							data={ {
+								desktop: {
+									value: attributes.beforeLabelHorizontalAlignment,
+									label: 'beforeLabelHorizontalAlignment',
+								},
+								tablet: {
+									value: attributes.beforeLabelHorizontalAlignmentTablet,
+									label: 'beforeLabelHorizontalAlignmentTablet',
+								},
+								mobile: {
+									value: attributes.afterLabelHorizontalAlignmentMobile,
+									label: 'beforeLabelHorizontalAlignmentMobile',
+								},
+							} }
 							step={ 0.1 }
-							min={ 0 }
+							min={ 1 }
 							max={ 100 }
 							displayUnit={ false }
+							setAttributes={ setAttributes }
 						/>
 				</>
 			);
@@ -368,7 +388,7 @@ const Settings = ( props ) => {
 						max={ 100 }
 						displayUnit={ false }
 						setAttributes={ setAttributes }
-					/> 
+					/>
 				</>
 			);
 
