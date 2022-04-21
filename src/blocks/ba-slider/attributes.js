@@ -25,11 +25,11 @@ const attributes = {
 		type: 'boolean',
 		default: true,
 	},
-	hideLabelsTablet: {
+	showLabelsTablet: {
 		type: 'boolean',
 		default: false,
 	},
-	hideLabelsMobile: {
+	showLabelsMobile: {
 		type: 'boolean',
 		default: false,
 	},
