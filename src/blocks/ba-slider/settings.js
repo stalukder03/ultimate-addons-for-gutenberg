@@ -416,6 +416,28 @@ const Settings = ( props ) => {
 
 				}
 
+				{/* Divider/Handle Styling */}
+				<UAGAdvancedPanelBody title={ __( 'Divider/Handle Styling', 'ultimate-addons-for-gutenberg' ) } initialOpen= { false }>
+					<AdvancedPopColorControl
+						label={ __( 'Divider Color', 'ultimate-addons-for-gutenberg' ) }
+						colorValue={ attributes.dividerColor }
+						onColorChange={ ( value ) =>
+							setAttributes( { dividerColor: value } )
+						}
+					/>
+					<Range
+						label={ __( 'Divider Width', 'ultimate-addons-for-gutenberg' ) }
+						setAttributes={ setAttributes }
+						value={ attributes.dividerWidth }
+						onChange={ ( value ) => setAttributes( { dividerWidth: value } ) }
+						step={ 0.1 }
+						min={ 0 }
+						max={ 20 }
+						displayUnit={ false }
+					/>
+				</UAGAdvancedPanelBody>
+
+				{/* Slider Elevation Styling */}
 				<UAGAdvancedPanelBody title={ __( 'Slider Elevation Styling', 'ultimate-addons-for-gutenberg' ) } initialOpen= { false }>
 
 					<ToggleControl

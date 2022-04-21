@@ -41,6 +41,8 @@
 		sliderBoxShadowBlur,
 		sliderBoxShadowSpread,
 		sliderBoxShadowPosition,
+		dividerWidth,
+		dividerColor,
 	} = props.attributes;
 
     let selectors = {};
@@ -48,6 +50,11 @@
 	let mobile_selectors = {};
 
 	selectors = {
+
+		' .uagb-ba-slider__img-comparison': {
+			'--divider-width': dividerWidth+'px',
+			'--divider-color': dividerColor,
+		},
 
 		// Before Label.
 		' .uagb-ba-slider__label-before': {

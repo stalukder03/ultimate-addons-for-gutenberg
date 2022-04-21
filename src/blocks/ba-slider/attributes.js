@@ -157,6 +157,16 @@ const attributes = {
 		default: '',
 	},
 
+	// Divider/Handle Styling Settings.
+	dividerColor: {
+		type: 'string',
+		default: '#ffffff',
+	},
+	dividerWidth: {
+		type: 'number',
+		default: 2,
+	},
+
 };
 
 export default attributes;
