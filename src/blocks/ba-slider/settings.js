@@ -325,30 +325,50 @@ const Settings = ( props ) => {
 						max={ 1 }
 						displayUnit={ false }
 					/>
-					<Range
+					<ResponsiveSlider
 						label={ __( 'Vertical Alignment', 'ultimate-addons-for-gutenberg' ) }
-						setAttributes={ setAttributes }
-						value={ attributes.afterLabelVerticalAlignment }
-						onChange={ ( value ) =>
-							setAttributes( { afterLabelVerticalAlignment: value } )
-						}
+						data={ {
+							desktop: {
+								value: attributes.afterLabelVerticalAlignment,
+								label: 'afterLabelVerticalAlignment',
+							},
+							tablet: {
+								value: attributes.afterLabelVerticalAlignmentTablet,
+								label: 'afterLabelVerticalAlignmentTablet',
+							},
+							mobile: {
+								value: attributes.afterLabelVerticalAlignmentMobile,
+								label: 'afterLabelVerticalAlignmentMobile',
+							},
+						} }
 						step={ 0.1 }
-						min={ 0 }
+						min={ 1 }
 						max={ 100 }
 						displayUnit={ false }
+						setAttributes={ setAttributes }
 					/>
-					<Range
+					<ResponsiveSlider
 						label={ __( 'Horizontal Alignment', 'ultimate-addons-for-gutenberg' ) }
-						setAttributes={ setAttributes }
-						value={ attributes.afterLabelHorizontalAlignment }
-						onChange={ ( value ) =>
-							setAttributes( { afterLabelHorizontalAlignment: value } )
-						}
+						data={ {
+							desktop: {
+								value: attributes.afterLabelHorizontalAlignment,
+								label: 'afterLabelHorizontalAlignment',
+							},
+							tablet: {
+								value: attributes.afterLabelHorizontalAlignmentTablet,
+								label: 'afterLabelHorizontalAlignmentTablet',
+							},
+							mobile: {
+								value: attributes.afterLabelHorizontalAlignmentMobile,
+								label: 'afterLabelHorizontalAlignmentMobile',
+							},
+						} }
 						step={ 0.1 }
-						min={ 0 }
+						min={ 1 }
 						max={ 100 }
 						displayUnit={ false }
-					/>
+						setAttributes={ setAttributes }
+					/> 
 				</>
 			);
 
