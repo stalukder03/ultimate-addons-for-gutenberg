@@ -59,6 +59,8 @@ const attributes = {
 		type: 'number',
 		default: 1,
 	},
+
+	// Image Label Responsive Alignment.
 	beforeLabelHorizontalAlignment: {
 		type: 'number',
 		default: 3,
@@ -72,6 +74,42 @@ const attributes = {
 		default: 85,
 	},
 	afterLabelVerticalAlignment: {
+		type: 'number',
+		default: 85,
+	},
+
+	// Image Label Responsive Alignment (Tablet).
+	beforeLabelHorizontalAlignmentTablet: {
+		type: 'number',
+		default: 3,
+	},
+	afterLabelHorizontalAlignmentTablet: {
+		type: 'number',
+		default: 97,
+	},
+	beforeLabelVerticalAlignmentTablet: {
+		type: 'number',
+		default: 85,
+	},
+	afterLabelVerticalAlignmentTablet: {
+		type: 'number',
+		default: 85,
+	},
+
+	// Image Label Responsive Alignment (Mobile).
+	beforeLabelHorizontalAlignmentMobile: {
+		type: 'number',
+		default: 3,
+	},
+	afterLabelHorizontalAlignmentMobile: {
+		type: 'number',
+		default: 97,
+	},
+	beforeLabelVerticalAlignmentMobile: {
+		type: 'number',
+		default: 85,
+	},
+	afterLabelVerticalAlignmentMobile: {
 		type: 'number',
 		default: 85,
 	},
