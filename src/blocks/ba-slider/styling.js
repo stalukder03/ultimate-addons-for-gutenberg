@@ -51,6 +51,7 @@
 
 	selectors = {
 
+		// <img-comparison-slider> variables.
 		' .uagb-ba-slider__img-comparison': {
 			'--divider-width': dividerWidth+'px',
 			'--divider-color': dividerColor,
