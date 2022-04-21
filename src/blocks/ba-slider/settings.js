@@ -346,7 +346,7 @@ const Settings = ( props ) => {
 									label: 'beforeLabelHorizontalAlignmentTablet',
 								},
 								mobile: {
-									value: attributes.afterLabelHorizontalAlignmentMobile,
+									value: attributes.beforeLabelHorizontalAlignmentMobile,
 									label: 'beforeLabelHorizontalAlignmentMobile',
 								},
 							} }
