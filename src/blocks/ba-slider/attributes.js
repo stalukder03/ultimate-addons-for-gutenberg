@@ -212,7 +212,10 @@ const attributes = {
 		type: 'number',
 		default: 2,
 	},
-
+	handleHoverAnimation: {
+		type: 'boolean',
+		default: false,
+	},
 };
 
 export default attributes;
