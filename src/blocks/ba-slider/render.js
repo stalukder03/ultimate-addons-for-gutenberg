@@ -4,6 +4,7 @@ import { __ } from '@wordpress/i18n';
 import React, { useLayoutEffect, useMemo, useEffect, useState } from 'react';
 import { useDeviceType } from '@Controls/getPreviewType';
 import { ImgComparisonSlider } from '@img-comparison-slider/react';
+import UAGB_BA_Slider_Icons from './assets/uagb-ba-slider-handle-svgs';
 
 const Render = ( props ) => {
 
@@ -69,6 +70,7 @@ const Render = ( props ) => {
                         </figcaption>
                     }
                 </figure>
+                { UAGB_BA_Slider_Icons.arrows1 }
             </ImgComparisonSlider>
         </div>
     );
