@@ -523,6 +523,12 @@ const Settings = ( props ) => {
 						max={ 20 }
 						displayUnit={ false }
 					/>
+					<ToggleControl
+						label={ __( 'Enable hover animation?', 'ultimate-addons-for-gutenberg' ) }
+						help={ __( 'Slightly enlarges handle on hover.', 'ultimate-addons-for-gutenberg' ) }
+						checked={ attributes.handleHoverAnimation }
+						onChange={ () => setAttributes( { handleHoverAnimation: !attributes.handleHoverAnimation } ) }
+					/>
 				</UAGAdvancedPanelBody>
 
 				{/* Slider Elevation Styling */}
