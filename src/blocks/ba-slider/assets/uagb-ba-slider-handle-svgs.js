@@ -1,8 +1,97 @@
+/**
+ * Slider Handle Icons.
+ */
+
+ import { createElement as el } from '@wordpress/element';
+
 // Please insert slot="handle" attribute for each new icon.
 
-export default {
-    default: `<svg slot="handle" xmlns="http://www.w3.org/2000/svg" class="default-handle" viewBox="-8 -3 16 6"> <path d="M -5 -2 L -7 0 L -5 2 M 5 -2 L 7 0 L 5 2" fill="none" vector-effect="non-scaling-stroke"></path> </svg>`,
-    arrows1: `<svg slot="handle" xmlns="http://www.w3.org/2000/svg" width="100" viewBox="-8 -3 16 6"><path stroke="#fff" d="M -5 -2 L -7 0 L -5 2 M -5 -2 L -5 2 M 5 -2 L 7 0 L 5 2 M 5 -2 L 5 2" stroke-width="1" fill="#fff" vector-effect="non-scaling-stroke"></path></svg>`,
-    circle: `<svg slot="handle" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><circle id="Ellipse_1" data-name="Ellipse 1" cx="25" cy="25" r="25" fill="#fff"/></svg>`,
-    square: `<svg slot="handle" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><rect id="Rectangle_1" data-name="Rectangle 1" width="50" height="50" fill="#fff"/></svg>`,
+const UAGB_BA_Slider_Icons = {
+    default: el( 'svg', {
+            className: 'uagb-ba-slider__handle',
+            slot: 'handle',
+            xmlns: 'http://www.w3.org/2000/svg',
+            viewBox: '-8 -3 16 6',
+            width: '100',
+        },
+		el( 'path', {
+			fill: 'none',
+            stroke: '#fff',
+            vectorEffect: 'non-scaling-stroke',
+			d: 'M -5 -2 L -7 0 L -5 2 M 5 -2 L 7 0 L 5 2',
+		} ),
+	),
+    arrows1: el( 'svg', {
+            className: 'uagb-ba-slider__handle',
+            slot: 'handle',
+            xmlns: 'http://www.w3.org/2000/svg',
+            viewBox: '-8 -3 16 6',
+            width: '100',
+    },
+    el( 'path', {
+            fill: '#fff',
+            vectorEffect: 'non-scaling-stroke',
+            d: 'M -5 -2 L -7 0 L -5 2 M -5 -2 L -5 2 M 5 -2 L 7 0 L 5 2 M 5 -2 L 5 2',
+    } ),
+    ),
+    arrows2: el( 'svg', {
+        className: 'uagb-ba-slider__handle',
+        slot: 'handle',
+        xmlns: 'http://www.w3.org/2000/svg',
+        viewBox: '-8 -3 16 6',
+        width: '100',
+    },
+    el( 'path', {
+            fill: 'none',
+            stroke: '#fff',
+            vectorEffect: 'non-scaling-stroke',
+            d: 'M -5 -2 L -7 0 L -5 2 M -5 -2 L -5 2 M 5 -2 L 7 0 L 5 2 M 5 -2 L 5 2',
+    } ),
+    ),
+    circle: el( 'svg', {
+        className: 'uagb-ba-slider__handle',
+        slot: 'handle',
+        xmlns: 'http://www.w3.org/2000/svg',
+        viewBox: '0 0 50 50',
+        height: '60',
+        width: '60',
+    },
+    el( 'circle', {
+            fill: '#fff',
+            cx: '25',
+            cy: '25',
+            r: '25',
+    } ),
+    ),
+    square: el( 'svg', {
+        className: 'uagb-ba-slider__handle',
+        slot: 'handle',
+        xmlns: 'http://www.w3.org/2000/svg',
+        viewBox: '0 0 50 50',
+        height: '60',
+        width: '60',
+    },
+    el( 'rect', {
+            fill: '#fff',
+            width: 60,
+            height: 60,
+    } ),
+    ),
+    diamondSquare: el( 'svg', {
+        className: 'uagb-ba-slider__handle',
+        slot: 'handle',
+        xmlns: 'http://www.w3.org/2000/svg',
+        viewBox: '0 0 50 50',
+        height: '60',
+        width: '60',
+        transform: 'rotate(45)',
+    },
+    el( 'rect', {
+            fill: '#fff',
+            width: 60,
+            height: 60,
+    } ),
+    ),
 }
+
+export default UAGB_BA_Slider_Icons;
