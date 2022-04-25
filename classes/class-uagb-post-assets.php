@@ -366,7 +366,6 @@ class UAGB_Post_Assets {
 
 			// Print Dynamic CSS.
 			if ( 'disabled' === $this->file_generation || $this->fallback_css ) {
-				UAGB_Scripts_Utils::enqueue_blocks_styles(); // Enqueue block styles.
 				add_action( 'wp_head', array( $this, 'print_stylesheet' ), 80 );
 			}
 			// Print Dynamic JS.
@@ -754,7 +753,7 @@ class UAGB_Post_Assets {
 		// Add static css here.
 		$block_css_arr = UAGB_Config::get_block_assets_css();
 
-		if ( 'enabled' === $this->file_generation && isset( $block_css_arr[ $name ] ) && ! in_array( $block_css_arr[ $name ]['name'], $this->static_css_blocks, true ) ) {
+		if ( isset( $block_css_arr[ $name ] ) && ! in_array( $block_css_arr[ $name ]['name'], $this->static_css_blocks, true ) ) {
 			$common_css = array(
 				'common' => $this->get_block_static_css( $block_css_arr[ $name ]['name'] ),
 			);
