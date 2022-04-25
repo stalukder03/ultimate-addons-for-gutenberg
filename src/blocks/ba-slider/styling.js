@@ -43,6 +43,7 @@
 		sliderBoxShadowPosition,
 		dividerWidth,
 		dividerColor,
+		handleHoverAnimation,
 	} = props.attributes;
 
     let selectors = {};
@@ -100,6 +101,15 @@
 
 		' .uagb-ba-slider__img-comparison:focus': {
 			'box-shadow': enableSliderElevation ? sliderBoxShadowHOffset+'px '+sliderBoxShadowVOffset+'px '+sliderBoxShadowBlur+'px '+sliderBoxShadowSpread+'px '+( ( sliderBoxShadowPosition === 'inset' ) ? 'inset' : '' )  : 'none',
+		},
+
+		' .uagb-ba-slider__handle': {
+			'transition': 'transform 0.5s',
+		},
+
+		// Slider-handle hover animation.
+		' .uagb-ba-slider__handle:hover': {
+			'transform': handleHoverAnimation ? 'scale(1.2)' : 'scale(1)',
 		},
 
 	}
