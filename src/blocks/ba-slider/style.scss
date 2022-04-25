@@ -4,6 +4,10 @@
  * CSS for both Frontend+Backend.
  */
 
+.uagb-ba-slider__handle {
+  pointer-events: initial;
+}
+ 
 .uagb-ba-slider__figure-before,
 .uagb-ba-slider__figure-after {
   margin: 0;
@@ -11,8 +15,6 @@
 
 .uagb-ba-slider__figure-before figcaption,
 .uagb-ba-slider__figure-after figcaption {
-  border: 1px solid #c0c0c0;
-  border-radius: 12px;
   padding: 12px;
   position: absolute;
   transform: translateY(-50%);
