@@ -5,6 +5,7 @@ import React, { useLayoutEffect, useMemo, useEffect, useState } from 'react';
 import { useDeviceType } from '@Controls/getPreviewType';
 import { ImgComparisonSlider } from '@img-comparison-slider/react';
 import UAGB_BA_Slider_Icons from './assets/uagb-ba-slider-handle-svgs';
+import AnimateSliderHandle from './components/AnimateSliderHandle';
 
 const Render = ( props ) => {
 
@@ -72,6 +73,9 @@ const Render = ( props ) => {
                 </figure>
                 { UAGB_BA_Slider_Icons.arrows1 }
             </ImgComparisonSlider>
+            { animateSlider &&
+                <AnimateSliderHandle blockClass={ `uagb-block-${ block_id }` } isAnimationEnabled={ animateSlider } />
+            }
         </div>
     );
 }
