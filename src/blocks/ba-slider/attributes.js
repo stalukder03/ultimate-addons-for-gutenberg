@@ -21,7 +21,7 @@ const attributes = {
 	},
 
 	// Image/Slider Dimensions (thumb, medium, large, full, custom).
-	imageDim: {
+	imageDimDesktop: {
 		type: 'string',
 		default: 'full',
 	},

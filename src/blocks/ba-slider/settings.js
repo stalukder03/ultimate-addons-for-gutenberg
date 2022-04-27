@@ -169,8 +169,8 @@ const Settings = ( props ) => {
 						label={ __( 'Style', 'ultimate-addons-for-gutenberg' ) }
 						data={ {
 							desktop: {
-								value: attributes.imageDim,
-								label: 'imageDim',
+								value: attributes.imageDimDesktop,
+								label: 'imageDimDesktop',
 							},
 							tablet: {
 								value: attributes.imageDimTablet,
@@ -191,7 +191,7 @@ const Settings = ( props ) => {
 
 					{/* Custom Width/Height Settings */}
 
-					{/* { ( deviceType==='Desktop' && attributes.imageDim==='custom' ) || ( deviceType==='Tablet' && attributes.imageDimTablet==='custom' ) || ( deviceType==='Mobile' && attributes.imageDimMobile==='custom' ) && */}
+					{/* { ( deviceType==='Desktop' && attributes.imageDimDesktop==='custom' ) || ( deviceType==='Tablet' && attributes.imageDimTablet==='custom' ) || ( deviceType==='Mobile' && attributes.imageDimMobile==='custom' ) && */}
 
 						<ResponsiveSlider
 							label={ __( 'Slider Width', 'ultimate-addons-for-gutenberg' ) }
