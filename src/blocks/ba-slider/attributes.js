@@ -20,7 +20,7 @@ const attributes = {
 		type: 'object',
 	},
 
-	// Image Dimensions (thumb, medium, large, full, custom).
+	// Image/Slider Dimensions (thumb, medium, large, full, custom).
 	imageDim: {
 		type: 'string',
 		default: 'full',
@@ -32,6 +32,46 @@ const attributes = {
 	imageDimMobile: {
 		type: 'string',
 		default: 'full',
+	},
+
+	// Slider/Image Height and Widths (Responsive).
+	sliderWidthDesktop: {
+		type: 'number',
+		default: 100,
+	},
+	sliderHeightDesktop: {
+		type: 'number',
+		default: 100,
+	},
+	sliderWidthTablet: {
+		type: 'number',
+		default: 100,
+	},
+	sliderHeightTablet: {
+		type: 'number',
+		default: 100,
+	},
+	sliderWidthMobile: {
+		type: 'number',
+		default: 100,
+	},
+	sliderHeightMobile: {
+		type: 'number',
+		default: 100,
+	},
+
+	// Slider/Image Dimensions Unit (Responsive).
+	sliderDimUnitDesktop: {
+		type: 'string',
+		default: '%',
+	},
+	sliderDimUnitTablet: {
+		type: 'string',
+		default: '%',
+	},
+	sliderDimUnitMobile: {
+		type: 'string',
+		default: '%',
 	},
 
 	// Image Labels.
