@@ -44,6 +44,18 @@
 		dividerWidth,
 		dividerColor,
 		handleHoverAnimation,
+		imageDimDesktop,
+		imageDimTablet,
+		imageDimMobile,
+		sliderWidthDesktop,
+		sliderWidthTablet,
+		sliderWidthMobile,
+		sliderHeightDesktop,
+		sliderHeightTablet,
+		sliderHeightMobile,
+		sliderDimUnitDesktop,
+		sliderDimUnitTablet,
+		sliderDimUnitMobile,
 	} = props.attributes;
 
     let selectors = {};
