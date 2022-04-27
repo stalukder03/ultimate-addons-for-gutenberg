@@ -100,10 +100,33 @@ const Settings = ( props ) => {
 
     const baSliderGeneralSettings = () => {
 
+		const imageSizeOptions = [
+			{
+				value: 'thumb',
+				label: __( 'Thumbnail', 'ultimate-addons-for-gutenberg' ),
+			},
+			{
+				value: 'medium',
+				label: __( 'Medium', 'ultimate-addons-for-gutenberg' ),
+			},
+			{
+				value: 'large',
+				label: __( 'Large', 'ultimate-addons-for-gutenberg' ),
+			},
+			{
+				value: 'full',
+				label: __( 'Full', 'ultimate-addons-for-gutenberg' ),
+			},
+			{
+				value: 'custom',
+				label: __( 'Custom', 'ultimate-addons-for-gutenberg' ),
+			},
+		];
+
         return(
             <>
 
-				{/* Image Settings */}
+				{/* Image Selection Settings */}
 
                 <UAGAdvancedPanelBody title={ __( 'Select Images', 'ultimate-addons-for-gutenberg' ) } initialOpen= { true }>
 					<UAGImage
@@ -117,6 +140,34 @@ const Settings = ( props ) => {
 						onSelectImage={ ( media ) => onSelectImage( media, 1 ) }	// 1 = Code for After-Image UAG Selector.
 						backgroundImage={ attributes.afterImage }
 						onRemoveImage={ () => onRemoveImage( 1 ) }
+					/>
+				</UAGAdvancedPanelBody>
+
+				{/* Image Size Settings */}
+
+                <UAGAdvancedPanelBody title={ __( 'Image Size Settings', 'ultimate-addons-for-gutenberg' ) } initialOpen= { true }>
+					<ResponsiveSelectControl
+						label={ __( 'Style', 'ultimate-addons-for-gutenberg' ) }
+						data={ {
+							desktop: {
+								value: attributes.imageDim,
+								label: 'imageDim',
+							},
+							tablet: {
+								value: attributes.imageDimTablet,
+								label: 'imageDimTablet',
+							},
+							mobile: {
+								value: attributes.imageDimMobile,
+								label: 'imageDimMobile',
+							},
+						} }
+						options={ {
+							desktop: imageSizeOptions,
+							tablet: imageSizeOptions,
+							mobile: imageSizeOptions,
+						} }
+						setAttributes={ setAttributes }
 					/>
 				</UAGAdvancedPanelBody>
 
