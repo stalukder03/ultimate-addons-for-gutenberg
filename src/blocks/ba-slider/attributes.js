@@ -20,6 +20,20 @@ const attributes = {
 		type: 'object',
 	},
 
+	// Image Dimensions (thumb, medium, large, full, custom).
+	imageDim: {
+		type: 'string',
+		default: 'full',
+	},
+	imageDimTablet: {
+		type: 'string',
+		default: 'full',
+	},
+	imageDimMobile: {
+		type: 'string',
+		default: 'full',
+	},
+
 	// Image Labels.
 	showLabels: {
 		type: 'boolean',
