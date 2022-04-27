@@ -189,98 +189,45 @@ const Settings = ( props ) => {
 						setAttributes={ setAttributes }
 					/>
 
-					{/* Custom Width/Height Settings for Desktop */}
+					{/* Custom Width/Height Settings */}
 
-					{ deviceType==='Desktop' && attributes.imageDim==='custom' &&
-					
-						<>
-							<Range
-								label={ __( 'Slider Width (Desktop)', 'ultimate-addons-for-gutenberg' ) }
-								setAttributes={ setAttributes }
-								value={ attributes.sliderWidthDesktop }
-								onChange={ ( value ) => setAttributes( { sliderWidthDesktop: value } ) }
-								step={ 1 }
-								min={ 1 }
-								max={ 100 }
-								units={ units }
-								displayUnit={ true }
-							/>
-							<Range
-								label={ __( 'Slider Height (Desktop)', 'ultimate-addons-for-gutenberg' ) }
-								setAttributes={ setAttributes }
-								value={ attributes.sliderHeightDesktop }
-								onChange={ ( value ) => setAttributes( { sliderHeightDesktop: value } ) }
-								step={ 1 }
-								min={ 1 }
-								max={ 100 }
-								units={ units }
-								displayUnit={ true }
-							/>
-						</>
+					{/* { ( deviceType==='Desktop' && attributes.imageDim==='custom' ) || ( deviceType==='Tablet' && attributes.imageDimTablet==='custom' ) || ( deviceType==='Mobile' && attributes.imageDimMobile==='custom' ) && */}
 
-					}
+						<ResponsiveSlider
+							label={ __( 'Slider Width', 'ultimate-addons-for-gutenberg' ) }
+							data={ {
+								desktop: {
+									value: attributes.sliderWidthDesktop,
+									label: 'sliderWidthDesktop',
+									unit: {
+										value: attributes.sliderDimUnitDesktop,
+										label: 'sliderDimUnitDesktop',
+									},
+								},
+								tablet: {
+									value: attributes.sliderWidthTablet,
+									label: 'sliderWidthTablet',
+									unit: {
+										value: attributes.sliderDimUnitTablet,
+										label: 'sliderDimUnitTablet',
+									},
+								},
+								mobile: {
+									value: attributes.sliderWidthMobile,
+									label: 'sliderWidthMobile',
+									unit: {
+										value: attributes.sliderDimUnitMobile,
+										label: 'sliderDimUnitMobile',
+									},
+								},
+							} }
+							min={ 0 }
+							limitMax={ { '%': 100, 'px': 1600, 'em': 100 } }
+							units={ units }
+							setAttributes={ setAttributes }
+						/>						
 
-					{/* Custom Width/Height Settings for Tablet */}
-
-					{ deviceType==='Tablet' && attributes.imageDimTablet==='custom' &&
-					
-						<>
-							<Range
-								label={ __( 'Slider Width (Tablet)', 'ultimate-addons-for-gutenberg' ) }
-								setAttributes={ setAttributes }
-								value={ attributes.sliderWidthTablet }
-								onChange={ ( value ) => setAttributes( { sliderWidthTablet: value } ) }
-								step={ 1 }
-								min={ 1 }
-								max={ 100 }
-								units={ units }
-								displayUnit={ true }
-							/>
-							<Range
-								label={ __( 'Slider Height (Tablet)', 'ultimate-addons-for-gutenberg' ) }
-								setAttributes={ setAttributes }
-								value={ attributes.sliderHeightTablet }
-								onChange={ ( value ) => setAttributes( { sliderHeightTablet: value } ) }
-								step={ 1 }
-								min={ 1 }
-								max={ 100 }
-								units={ units }
-								displayUnit={ true }
-							/>
-						</>
-
-					}
-
-					{/* Custom Width/Height Settings for Mobile */}
-
-					{ deviceType==='Mobile' && attributes.imageDimMobile==='custom' &&
-					
-						<>
-							<Range
-								label={ __( 'Slider Width (Mobile)', 'ultimate-addons-for-gutenberg' ) }
-								setAttributes={ setAttributes }
-								value={ attributes.sliderWidthMobile }
-								onChange={ ( value ) => setAttributes( { sliderWidthMobile: value } ) }
-								step={ 1 }
-								min={ 1 }
-								max={ 100 }
-								units={ units }
-								displayUnit={ true }
-							/>
-							<Range
-								label={ __( 'Slider Height (Mobile)', 'ultimate-addons-for-gutenberg' ) }
-								setAttributes={ setAttributes }
-								value={ attributes.sliderHeightMobile }
-								onChange={ ( value ) => setAttributes( { sliderHeightMobile: value } ) }
-								step={ 1 }
-								min={ 1 }
-								max={ 100 }
-								units={ units }
-								displayUnit={ true }
-							/>
-						</>
-
-					}
+					{/* } */}
 
 				</UAGAdvancedPanelBody>
 
