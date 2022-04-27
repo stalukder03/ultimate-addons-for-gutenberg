@@ -127,6 +127,21 @@ const Settings = ( props ) => {
 			},
 		];
 
+		const units = [
+			{
+				name: __( '%', 'ultimate-addons-for-gutenberg' ),
+				unitValue: '%',
+			},
+			{
+				name: __( 'Pixel', 'ultimate-addons-for-gutenberg' ),
+				unitValue: 'px',
+			},
+			{
+				name: __( 'Em', 'ultimate-addons-for-gutenberg' ),
+				unitValue: 'em',
+			},
+		];
+
         return(
             <>
 
@@ -187,7 +202,7 @@ const Settings = ( props ) => {
 								step={ 1 }
 								min={ 1 }
 								max={ 100 }
-								unit={ [ '%', 'px', 'em' ] }
+								units={ units }
 								displayUnit={ true }
 							/>
 							<Range
@@ -198,7 +213,7 @@ const Settings = ( props ) => {
 								step={ 1 }
 								min={ 1 }
 								max={ 100 }
-								unit={ [ '%', 'px', 'em' ] }
+								units={ units }
 								displayUnit={ true }
 							/>
 						</>
@@ -218,7 +233,7 @@ const Settings = ( props ) => {
 								step={ 1 }
 								min={ 1 }
 								max={ 100 }
-								unit={ [ '%', 'px', 'em' ] }
+								units={ units }
 								displayUnit={ true }
 							/>
 							<Range
@@ -229,7 +244,7 @@ const Settings = ( props ) => {
 								step={ 1 }
 								min={ 1 }
 								max={ 100 }
-								unit={ [ '%', 'px', 'em' ] }
+								units={ units }
 								displayUnit={ true }
 							/>
 						</>
@@ -249,7 +264,7 @@ const Settings = ( props ) => {
 								step={ 1 }
 								min={ 1 }
 								max={ 100 }
-								unit={ [ '%', 'px', 'em' ] }
+								units={ units }
 								displayUnit={ true }
 							/>
 							<Range
@@ -260,7 +275,7 @@ const Settings = ( props ) => {
 								step={ 1 }
 								min={ 1 }
 								max={ 100 }
-								unit={ [ '%', 'px', 'em' ] }
+								units={ units }
 								displayUnit={ true }
 							/>
 						</>
