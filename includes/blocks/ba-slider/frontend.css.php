@@ -17,13 +17,13 @@ $m_selectors = array();
 $selectors = array(
 
 	// <img-comparison-slider> variables.
-	'  .uagb-ba-slider__img-comparison'    => array(
+	'  .uagb-ba-slider__img-comparison'      => array(
 		'--divider-width' => $attr['dividerWidth'] . 'px',
 		'--divider-color' => $attr['dividerColor'],
 	),
 
 	// Before Label.
-	' .uagb-ba-slider__label-before'       => array(
+	' .uagb-ba-slider__label-before'         => array(
 		'display'          => $attr['showLabels'] ? 'block' : 'none',
 
 		'color'            => $attr['beforeLabelColor'],
@@ -40,7 +40,7 @@ $selectors = array(
 	),
 
 	// After Label.
-	' .uagb-ba-slider__label-before'       => array(
+	' .uagb-ba-slider__label-before'         => array(
 		'display'          => $attr['showLabels'] ? 'block' : 'none',
 
 		'color'            => $attr['afterLabelColor'],
@@ -57,23 +57,23 @@ $selectors = array(
 	),
 
 	// Label hover effects.
-	' .uagb-ba-slider__label-before:hover' => array(
+	' .uagb-ba-slider__label-before:hover'   => array(
 		'border-color' => $attr['labelBorderHoverColor'],
 	),
-	' .uagb-ba-slider__label-after:hover'  => array(
+	' .uagb-ba-slider__label-after:hover'    => array(
 		'border-color' => $attr['labelBorderHoverColor'],
 	),
 
 	' .uagb-ba-slider__img-comparison:focus' => array(
-		'box-shadow'   => $attr['enableSliderElevation'] ? $attr['sliderBoxShadowHOffset'] . 'px ' . $attr['sliderBoxShadowVOffset'] . 'px ' . $attr['sliderBoxShadowBlur'] . 'px ' . $attr['sliderBoxShadowSpread'] . 'px ' . ( ( 'inset' === $attr['sliderBoxShadowPosition'] ) ? 'inset' : '' ) : 'none',
+		'box-shadow' => $attr['enableSliderElevation'] ? $attr['sliderBoxShadowHOffset'] . 'px ' . $attr['sliderBoxShadowVOffset'] . 'px ' . $attr['sliderBoxShadowBlur'] . 'px ' . $attr['sliderBoxShadowSpread'] . 'px ' . ( ( 'inset' === $attr['sliderBoxShadowPosition'] ) ? 'inset' : '' ) : 'none',
 	),
 
-	' .uagb-ba-slider__handle'             => array(
+	' .uagb-ba-slider__handle'               => array(
 		'transition' => 'transform 0.5s',
 	),
 
 	// Slider-handle hover animation.
-	' .uagb-ba-slider__handle:hover'       => array(
+	' .uagb-ba-slider__handle:hover'         => array(
 		'transform' => $attr['handleHoverAnimation'] ? 'scale(1.2)' : 'scale(1)',
 	),
 
