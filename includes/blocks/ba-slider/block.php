@@ -19,3 +19,12 @@ $block_data = array(
 	'extension'        => false,
 	'priority'         => 2,
 );
+
+/**
+ * Enqueue <img-comparison-slider> scripts and styles for frontend.
+ */
+function uagb_ba_slider_scripts() {
+	wp_enqueue_style( 'uagb-style-ba-slider', dirname( plugin_dir_url( __DIR__ ), 2 ) . '/assets/css/img-comparison-slider-styles.css', array(), time() );
+	wp_enqueue_script( 'uagb-style-ba-slider', dirname( plugin_dir_url( __DIR__ ), 2 ) . '/assets/js/img-comparison-slider-index.js', array(), time(), true );
+}
+add_action( 'wp_enqueue_scripts', 'uagb_ba_slider_scripts' );
