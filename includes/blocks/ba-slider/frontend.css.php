@@ -40,14 +40,14 @@ $selectors = array(
 	),
 
 	// After Label.
-	' .uagb-ba-slider__label-before'         => array(
+	' .uagb-ba-slider__label-after'          => array(
 		'display'          => $attr['showLabels'] ? 'block' : 'none',
 
 		'color'            => $attr['afterLabelColor'],
 		'background-color' => $attr['afterLabelBgColor'],
 		'opacity'          => $attr['afterLabelOpacity'],
 		'top'              => UAGB_Helper::get_css_value( $attr['afterLabelVerticalAlignment'], '%' ),
-		'left'             => UAGB_Helper::get_css_value( $attr['afterLabelHorizontalAlignment'], '%' ),
+		'right'            => UAGB_Helper::get_css_value( 100 - $attr['afterLabelHorizontalAlignment'], '%' ),
 
 		// Border styles.
 		'border-style'     => $attr['labelBorderStyle'],
