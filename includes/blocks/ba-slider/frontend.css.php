@@ -18,7 +18,7 @@ $selectors = array(
 
 	// <img-comparison-slider> variables.
 	'  .uagb-ba-slider__img-comparison'      => array(
-		'--divider-width' => $attr['dividerWidth'] . 'px',
+		'--divider-width' => UAGB_Helper::get_css_value( $attr['dividerWidth'], 'px' ),
 		'--divider-color' => $attr['dividerColor'],
 	),
 
@@ -29,13 +29,13 @@ $selectors = array(
 		'color'            => $attr['beforeLabelColor'],
 		'background-color' => $attr['beforeLabelBgColor'],
 		'opacity'          => $attr['beforeLabelOpacity'],
-		'top'              => $attr['beforeLabelVerticalAlignment'] . '%',
-		'left'             => $attr['beforeLabelHorizontalAlignment'] . '%',
+		'top'              => UAGB_Helper::get_css_value( $attr['beforeLabelVerticalAlignment'], '%' ),
+		'left'             => UAGB_Helper::get_css_value( $attr['beforeLabelHorizontalAlignment'], '%' ),
 
 		// Border styles.
 		'border-style'     => $attr['labelBorderStyle'],
-		'border-width'     => $attr['labelBorderWidth'] . 'px',
-		'border-radius'    => $attr['labelBorderRadius'] . 'px',
+		'border-width'     => UAGB_Helper::get_css_value( $attr['labelBorderWidth'], 'px' ),
+		'border-radius'    => UAGB_Helper::get_css_value( $attr['labelBorderRadius'], 'px' ),
 		'border-color'     => $attr['labelBorderColor'],
 	),
 
@@ -46,13 +46,13 @@ $selectors = array(
 		'color'            => $attr['afterLabelColor'],
 		'background-color' => $attr['afterLabelBgColor'],
 		'opacity'          => $attr['afterLabelOpacity'],
-		'top'              => $attr['afterLabelVerticalAlignment'] . '%',
-		'left'             => $attr['afterLabelHorizontalAlignment'] . '%',
+		'top'              => UAGB_Helper::get_css_value( $attr['afterLabelVerticalAlignment'], '%' ),
+		'left'             => UAGB_Helper::get_css_value( $attr['afterLabelHorizontalAlignment'], '%' ),
 
 		// Border styles.
 		'border-style'     => $attr['labelBorderStyle'],
-		'border-width'     => $attr['labelBorderWidth'] . 'px',
-		'border-radius'    => $attr['labelBorderRadius'] . 'px',
+		'border-width'     => UAGB_Helper::get_css_value( $attr['labelBorderWidth'], 'px' ),
+		'border-radius'    => UAGB_Helper::get_css_value( $attr['labelBorderRadius'], 'px' ),
 		'border-color'     => $attr['labelBorderColor'],
 	),
 
@@ -87,3 +87,5 @@ $combined_selectors = array(
 	'tablet'  => $t_selectors,
 	'mobile'  => $m_selectors,
 );
+
+return UAGB_Helper::generate_all_css( $combined_selectors, '.uagb-block-' . $id );
