@@ -17,14 +17,7 @@ $block_data = array(
 	'description'      => __( 'This block allows visitors to compare two images using a slider.', 'ultimate-addons-for-gutenberg' ),
 	'default'          => true,
 	'extension'        => false,
+	'js_assets'        => array( 'uagb-ba-slider-js' ),
+	'css_assets'       => array( 'uagb-ba-slider-css' ),
 	'priority'         => 2,
 );
-
-/**
- * Enqueue <img-comparison-slider> scripts and styles for frontend.
- */
-function uagb_ba_slider_scripts() {
-	wp_enqueue_style( 'uagb-style-ba-slider', dirname( plugin_dir_url( __DIR__ ), 2 ) . '/assets/css/img-comparison-slider-styles.css', array(), time() );
-	wp_enqueue_script( 'uagb-style-ba-slider', dirname( plugin_dir_url( __DIR__ ), 2 ) . '/assets/js/img-comparison-slider-index.js', array(), time(), true );
-}
-add_action( 'wp_enqueue_scripts', 'uagb_ba_slider_scripts' );
