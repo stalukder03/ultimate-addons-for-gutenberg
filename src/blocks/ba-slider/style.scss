@@ -4,19 +4,28 @@
  * CSS for both Frontend+Backend.
  */
 
-.uagb-ba-slider__handle {
-  pointer-events: initial;
-}
- 
-.uagb-ba-slider__figure-before,
-.uagb-ba-slider__figure-after {
-  margin: 0;
-}
+.uagb-ba-slider {
 
-.uagb-ba-slider__figure-before figcaption,
-.uagb-ba-slider__figure-after figcaption {
-  padding: 12px;
-  position: absolute;
-  transform: translateY(-50%);
-  line-height: 100%;
+  .uagb-ba-slider__handle {
+    pointer-events: initial;
+  }
+  
+  .uagb-ba-slider__figure-before,
+  .uagb-ba-slider__figure-after {
+    margin: 0;
+
+    .uagb-ba-slider__image-before, .uagb-ba-slider__image-after {
+      width: 100%;
+    }
+
+  }
+
+  .uagb-ba-slider__figure-before figcaption,
+  .uagb-ba-slider__figure-after figcaption {
+    padding: 12px;
+    position: absolute;
+    transform: translateY(-50%);
+    line-height: 100%;
+  }
+
 }
