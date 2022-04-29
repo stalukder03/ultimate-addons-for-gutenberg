@@ -264,7 +264,7 @@ const Settings = ( props ) => {
 						label={ __( 'Animate Slider?', 'ultimate-addons-for-gutenberg' ) }
 						help={
 							attributes.animateSlider
-								? __( 'Disables animated slider handle.', 'ultimate-addons-for-gutenberg' )
+								? __( 'Note: Slider animation preview is disabled in the editor.', 'ultimate-addons-for-gutenberg' )
 								: __( 'Enables animated slider handle.', 'ultimate-addons-for-gutenberg' )
 						}
 						checked={ attributes.animateSlider }
