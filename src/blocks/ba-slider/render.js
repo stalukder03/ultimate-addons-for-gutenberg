@@ -1,21 +1,17 @@
 import classnames from 'classnames';
-import { RichText } from '@wordpress/block-editor';
-import { __ } from '@wordpress/i18n';
-import React, { useLayoutEffect, useMemo, useEffect, useState } from 'react';
+import React from 'react';
 import { useDeviceType } from '@Controls/getPreviewType';
 import { ImgComparisonSlider } from '@img-comparison-slider/react';
 import UAGB_BA_Slider_Icons from './assets/uagb-ba-slider-handle-svgs';
-import AnimateSliderHandle from './components/AnimateSliderHandle';
 
 const Render = ( props ) => {
 
     props = props.parentProps;
 	const deviceType = useDeviceType();
-	const { className, clientId, attributes, setAttributes } = props;
+	const { className, attributes } = props;
 
     const {
         block_id,
-        classMigrate,
         beforeImage,
         afterImage,
         showLabels,
@@ -23,7 +19,6 @@ const Render = ( props ) => {
         afterLabel,
         sliderOrientation,
         sliderPosition,
-        animateSlider,
         hoverSlider,
     } = attributes;
 
@@ -73,9 +68,6 @@ const Render = ( props ) => {
                 </figure>
                 { UAGB_BA_Slider_Icons.arrows1 }
             </ImgComparisonSlider>
-            { animateSlider &&
-                <AnimateSliderHandle blockClass={ `uagb-block-${ block_id }` } isAnimationEnabled={ animateSlider } />
-            }
         </div>
     );
 }
