@@ -152,7 +152,7 @@ const Settings = ( props ) => {
 
 				{/* Image Size Settings */}
 
-                <UAGAdvancedPanelBody title={ __( 'Image Size Settings', 'ultimate-addons-for-gutenberg' ) } initialOpen= { true }>
+                <UAGAdvancedPanelBody title={ __( 'Image Size Settings', 'ultimate-addons-for-gutenberg' ) } initialOpen= { false }>
 					<ResponsiveSelectControl
 						label={ __( 'Style', 'ultimate-addons-for-gutenberg' ) }
 						data={ {
