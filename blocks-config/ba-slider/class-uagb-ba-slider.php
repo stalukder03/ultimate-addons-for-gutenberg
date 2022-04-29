@@ -38,54 +38,60 @@ if ( ! class_exists( 'UAGB_BA_Slider' ) ) {
 		 *
 		 * @param int     $id Block ID.
 		 * @param boolean $animationEnabled Tells if block is animated.
-		 * @param string  $selector Selector for the block.
 		 */
-		public static function animate_slider_instance( $id, $animationEnabled, $selector ) {
-			ob_start();
-			?>
-				window.addEventListener( 'DOMContentLoaded', function() {
-					const scope = document.querySelector( '.uagb-block-<?php echo esc_html( $id ); ?>' );
-					if ( scope ){
-						if ( scope.children[0].classList.contains( 'uagb-ba-slider__img-comparison' ) ) {
-							const slider = scope.querySelector( '.uagb-ba-slider__img-comparison' );
+		public static function animate_slider_instance( $id, $animationEnabled ) {
 
-							let direction = 'right';
+			if ( 'true' === $animationEnabled ) {
 
-							const move = () => {
+				ob_start();
+				?>
+					window.addEventListener( 'DOMContentLoaded', function() {
+						const scope = document.querySelector( '.uagb-block-<?php echo esc_html( $id ); ?>' );
+						if ( scope ){
+							if ( scope.children[0].classList.contains( 'uagb-ba-slider__img-comparison' ) ) {
+								const slider = scope.querySelector( '.uagb-ba-slider__img-comparison' );
 
-								slider.value = slider.value + 0.2 * ( direction === 'right' ? 1 : -1 );
+								let direction = 'right';
 
-								if ( slider.value >= 100 ) {
-									direction = 'left';
-								}
+								const move = () => {
 
-								if ( slider.value <= 0 ) {
-									direction = 'right';
-								}
+									slider.value = slider.value + 0.2 * ( direction === 'right' ? 1 : -1 );
 
-							};
+									if ( slider.value >= 100 ) {
+										direction = 'left';
+									}
 
-							let animationId;
-
-							if( <?php echo esc_js( $animationEnabled ); ?> ) {
-
-								const animate = () => {
-
-									move();
-									animationId = requestAnimationFrame( animate );
+									if ( slider.value <= 0 ) {
+										direction = 'right';
+									}
 
 								};
 
-								animationId = requestAnimationFrame( animate );
+								let animationId;
 
-							} else {
-								cancelAnimationFrame( animationId );
+								if( <?php echo esc_js( $animationEnabled ); ?> ) {
+
+									const animate = () => {
+
+										move();
+										animationId = requestAnimationFrame( animate );
+
+									};
+
+									animationId = requestAnimationFrame( animate );
+
+								} else {
+									cancelAnimationFrame( animationId );
+								}
 							}
 						}
-					}
-				});
-			<?php
-			return ob_get_clean();
+					});
+				<?php
+				return ob_get_clean();
+
+			} else {
+				return '';
+			}
 		}
 
 	}
