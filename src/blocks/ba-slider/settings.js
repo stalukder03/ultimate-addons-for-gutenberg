@@ -386,21 +386,21 @@ const Settings = ( props ) => {
 						{/* Before Label */}
 						
 						<AdvancedPopColorControl
-							label={ __( 'Before Label Color', 'ultimate-addons-for-gutenberg' ) }
+							label={ __( 'Label Color', 'ultimate-addons-for-gutenberg' ) }
 							colorValue={ attributes.beforeLabelColor ? attributes.beforeLabelColor : '' }
 							onColorChange={ ( value ) =>
 								setAttributes( { beforeLabelColor: value } )
 							}
 						/>
 						<AdvancedPopColorControl
-							label={ __( 'Before Label Background Color', 'ultimate-addons-for-gutenberg' ) }
+							label={ __( 'Label Background Color', 'ultimate-addons-for-gutenberg' ) }
 							colorValue={ attributes.beforeLabelBgColor ? attributes.beforeLabelBgColor : '' }
 							onColorChange={ ( value ) =>
 								setAttributes( { beforeLabelBgColor: value } )
 							}
 						/>
 						<Range
-							label={ __( 'Left Label Opacity', 'ultimate-addons-for-gutenberg' ) }
+							label={ __( 'Label Opacity', 'ultimate-addons-for-gutenberg' ) }
 							setAttributes={ setAttributes }
 							value={ attributes.beforeLabelOpacity }
 							onChange={ ( value ) =>
@@ -467,21 +467,21 @@ const Settings = ( props ) => {
 					{/* After Label */}
 
 					<AdvancedPopColorControl
-						label={ __( 'After Label Color', 'ultimate-addons-for-gutenberg' ) }
+						label={ __( 'Label Color', 'ultimate-addons-for-gutenberg' ) }
 						colorValue={ attributes.afterLabelColor ? attributes.afterLabelColor : '' }
 						onColorChange={ ( value ) =>
 							setAttributes( { afterLabelColor: value } )
 						}
 					/>
 					<AdvancedPopColorControl
-						label={ __( 'After Label Background Color', 'ultimate-addons-for-gutenberg' ) }
+						label={ __( 'Label Background Color', 'ultimate-addons-for-gutenberg' ) }
 						colorValue={ attributes.afterLabelBgColor ? attributes.afterLabelBgColor : '' }
 						onColorChange={ ( value ) =>
 							setAttributes( { afterLabelBgColor: value } )
 						}
 					/>
 					<Range
-						label={ __( 'Right Label Opacity', 'ultimate-addons-for-gutenberg' ) }
+						label={ __( 'Label Opacity', 'ultimate-addons-for-gutenberg' ) }
 						setAttributes={ setAttributes }
 						value={ attributes.afterLabelOpacity }
 						onChange={ ( value ) =>
