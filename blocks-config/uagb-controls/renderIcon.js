@@ -6,11 +6,12 @@
  */
 
 import parseSVG from './parseIcon';
+import UAGB_SVG_Icon from './UAGBIcon'
 
 function renderSVG( svg ) {
 	svg = parseSVG( svg );
 
-	const fontAwesome = uagb_blocks_info.uagb_svg_icons[ svg ];
+	const fontAwesome = UAGB_SVG_Icon[ svg ];
 
 	if ( 'undefined' !== typeof fontAwesome ) {
 		const viewbox_array = fontAwesome.svg.hasOwnProperty( 'brands' )
