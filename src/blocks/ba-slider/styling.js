@@ -13,6 +13,8 @@
         beforeImage,
         afterImage,
         showLabels,
+        showLabelsTablet,
+        showLabelsMobile,
         beforeLabel,
         afterLabel,
 		beforeLabelColor,
@@ -25,6 +27,14 @@
 		afterLabelVerticalAlignment,
 		beforeLabelHorizontalAlignment,
 		afterLabelHorizontalAlignment,
+		beforeLabelHorizontalAlignmentTablet,
+		beforeLabelVerticalAlignmentTablet,
+		afterLabelVerticalAlignmentTablet,
+		afterLabelHorizontalAlignmentTablet,
+		beforeLabelHorizontalAlignmentMobile,
+		beforeLabelVerticalAlignmentMobile,
+		afterLabelVerticalAlignmentMobile,
+		afterLabelHorizontalAlignmentMobile,
 		labelBorderStyle,
 		labelBorderWidth,
 		labelBorderRadius,
@@ -66,7 +76,7 @@
 
 		// <img-comparison-slider> variables.
 		' .uagb-ba-slider__img-comparison': {
-			'--divider-width': dividerWidth+'px',
+			'--divider-width': generateCSSUnit( dividerWidth, 'px' ),
 			'--divider-color': dividerColor,
 		},
 
@@ -76,13 +86,13 @@
 			'color': beforeLabelColor,
 			'background-color': beforeLabelBgColor,
 			'opacity': beforeLabelOpacity,
-			'top': beforeLabelVerticalAlignment+'%',
-			'left': beforeLabelHorizontalAlignment+'%',
+			'top': generateCSSUnit( beforeLabelVerticalAlignment, '%' ),
+			'left': generateCSSUnit( beforeLabelHorizontalAlignment, '%' ),
 
 			// Border styles.
 			'border-style': labelBorderStyle,
-			'border-width': labelBorderWidth+'px',
-			'border-radius': labelBorderRadius+'px',
+			'border-width': generateCSSUnit( labelBorderWidth, 'px' ),
+			'border-radius': generateCSSUnit( labelBorderRadius, 'px' ),
 			'border-color': labelBorderColor,
 		},
 
@@ -92,8 +102,8 @@
 			'color': afterLabelColor,
 			'background-color': afterLabelBgColor,
 			'opacity': afterLabelOpacity,
-			'top': afterLabelVerticalAlignment+'%',
-			'right': ( 100 - afterLabelHorizontalAlignment )+'%',
+			'top': generateCSSUnit( afterLabelVerticalAlignment, '%' ),
+			'right': generateCSSUnit( ( 100 - afterLabelHorizontalAlignment ), '%' ),
 
 			// Border styles.
 			'border-style': labelBorderStyle,
@@ -128,9 +138,37 @@
 
 	tablet_selectors = {
 
+		// Before Label.
+		' .uagb-ba-slider__label-before': {
+			'display': showLabelsTablet ? 'block' : 'none',
+			'top': generateCSSUnit( beforeLabelVerticalAlignmentTablet, '%' ),
+			'left': generateCSSUnit( beforeLabelHorizontalAlignmentTablet, '%' ),
+		},
+
+		// After Label.
+		' .uagb-ba-slider__label-after': {
+			'display': showLabelsTablet ? 'block' : 'none',
+			'top': generateCSSUnit( afterLabelVerticalAlignmentTablet, '%' ),
+			'right': generateCSSUnit( ( 100 - afterLabelHorizontalAlignmentTablet ), '%' ),
+		},
+
 	}
 
 	mobile_selectors = {
+		
+		// Before Label.
+		' .uagb-ba-slider__label-before': {
+			'display': showLabelsMobile ? 'block' : 'none',
+			'top': generateCSSUnit( beforeLabelVerticalAlignmentMobile, '%' ),
+			'left': generateCSSUnit( beforeLabelHorizontalAlignmentMobile, '%' ),
+		},
+
+		// After Label.
+		' .uagb-ba-slider__label-after': {
+			'display': showLabelsMobile ? 'block' : 'none',
+			'top': generateCSSUnit( afterLabelVerticalAlignmentMobile, '%' ),
+			'right': generateCSSUnit( ( 100 - afterLabelHorizontalAlignmentMobile ), '%' ),
+		},
 
 	}
 
