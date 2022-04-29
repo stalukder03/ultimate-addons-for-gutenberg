@@ -27,12 +27,7 @@
 
 	useEffect( () => {
 
-        const { className, clientId, attributes, setAttributes } = props;
-
-        const {
-            block_id,
-            classMigrate,
-		} = attributes;
+        const { clientId, setAttributes } = props;
 
 		// Assigning block_id in the attribute.
 		setAttributes( { block_id: clientId.substr( 0, 8 ) } );
