@@ -19,5 +19,5 @@ $block_data = array(
 	'extension'        => false,
 	'js_assets'        => array( 'uagb-ba-slider-js' ),
 	'css_assets'       => array( 'uagb-ba-slider-css' ),
-	'priority'         => 2,
+	'priority'         => 1,
 );
