@@ -21,6 +21,7 @@
 		__( 'uag', 'ultimate-addons-for-gutenberg' ),
 		__( 'before', 'ultimate-addons-for-gutenberg' ),
 		__( 'after', 'ultimate-addons-for-gutenberg' ),
+		__( 'image', 'ultimate-addons-for-gutenberg' ),
 		__( 'slider', 'ultimate-addons-for-gutenberg' ),
 		__( 'comparison', 'ultimate-addons-for-gutenberg' ),
 	],
