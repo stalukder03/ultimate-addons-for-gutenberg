@@ -4,17 +4,14 @@
 
 // Import block dependencies and components.
 import classnames from 'classnames';
-import { RichText } from '@wordpress/block-editor';
-import { __ } from '@wordpress/i18n';
 import UAGB_BA_Slider_Icons from './assets/uagb-ba-slider-handle-svgs';
 
 export default function save( props ) {
 
-	const { className, clientId, attributes} = props;
+	const { className, attributes } = props;
 
 	const {
 		block_id,
-        classMigrate,
         beforeImage,
         afterImage,
         showLabels,
@@ -22,9 +19,8 @@ export default function save( props ) {
         afterLabel,
         sliderOrientation,
         sliderPosition,
-        animateSlider,
         hoverSlider,
-	} = props.attributes;
+	} = attributes;
 
 	const beforePlaceholder = `${window?.uagb_blocks_info?.uagb_url}assets/images/ba-slider-placeholder-before-image.jpeg`;
     const afterPlaceholder = `${window?.uagb_blocks_info?.uagb_url}assets/images/ba-slider-placeholder-after-image.jpeg`;
