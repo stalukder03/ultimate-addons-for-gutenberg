@@ -109,7 +109,7 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 						'dep'        => array(),
 						'skipEditor' => true,
 					),
-					'uagb-ba-slider-js'     => array(
+					'uagb-ba-slider-js'      => array(
 						'src'        => UAGB_URL . 'assets/js/img-comparison-slider-index.js',
 						'dep'        => array(),
 						'skipEditor' => true,
