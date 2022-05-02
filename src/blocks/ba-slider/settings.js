@@ -148,6 +148,12 @@ const Settings = ( props ) => {
 						backgroundImage={ attributes.afterImage }
 						onRemoveImage={ () => onRemoveImage( 1 ) }
 					/>
+					<p><em>
+						<strong>
+							{ __( 'Note: ', 'ultimate-addons-for-gutenberg' ) }
+						</strong>
+						{ __( 'For best results, select images with the same aspect ratio.', 'ultimate-addons-for-gutenberg' ) }
+					</em></p> 
 				</UAGAdvancedPanelBody>
 
 				{/* Image Size Settings */}
