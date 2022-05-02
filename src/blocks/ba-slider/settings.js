@@ -226,7 +226,8 @@ const Settings = ( props ) => {
 								setAttributes={ setAttributes }
 							/>
 
-							<ResponsiveSlider
+							{/* Code for height is commented since it's WIP */}
+							{/* <ResponsiveSlider
 								label={ __( 'Slider Height', 'ultimate-addons-for-gutenberg' ) }
 								data={ {
 									desktop: {
@@ -258,7 +259,7 @@ const Settings = ( props ) => {
 								limitMax={ { '%': 100, 'px': 1600, 'em': 100 } }
 								units={ units }
 								setAttributes={ setAttributes }
-							/>
+							/> */}
 						</>			
 
 					}
