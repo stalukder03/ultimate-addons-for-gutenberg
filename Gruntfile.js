@@ -348,11 +348,6 @@ module.exports = function ( grunt ) {
 		);
 	} );
 
-	// Update Font Awesome library.
-	grunt.registerTask( 'font-awesome-json-chunks', function () {
-
-	} );
-
 	// Generate Read me file
 	grunt.registerTask( 'readme', [ 'wp_readme_to_markdown' ] );
 
