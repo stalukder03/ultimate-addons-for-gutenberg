@@ -2,8 +2,9 @@
  * Returns Dynamic Generated CSS
  */
 
- import generateCSS from '@Controls/generateCSS';
- import generateCSSUnit from '@Controls/generateCSSUnit';
+import generateCSS from '@Controls/generateCSS';
+import generateCSSUnit from '@Controls/generateCSSUnit';
+import { _x } from '@wordpress/i18n';
 
  function styling ( props ) {
 
@@ -74,7 +75,7 @@
 
 	selectors = {
 
-		// <img-comparison-slider> variables.
+		// <img-comparison-slider> variables and sizing.
 		' .uagb-ba-slider__img-comparison': {
 			'--divider-width': generateCSSUnit( dividerWidth, 'px' ),
 			'--divider-color': dividerColor,
@@ -134,6 +135,30 @@
 			'transform': handleHoverAnimation ? 'scale(1.2)' : 'scale(1)',
 		},
 
+	}
+
+	// If animateSlider is enabled, push this into selector array.
+	if( animateSlider ) {
+		selectors = {
+			...selectors,
+			' .uagb-ba-slider__img-comparison:before': {
+				'content': _x( '"Animation Enabled"',
+								'Since this text is for the content CSS property, please make sure to add the double quotes',
+								'ultimate-addons-for-gutenberg'
+							),
+				'position': 'sticky',
+				'z-index': '9999',
+				'color': '#ffffff',
+				'width': 'fit-content',
+				'height': 'fit-content',
+				'background-color': 'rgb(97, 4, 255)',
+				'top': generateCSSUnit( 1, '%' ),
+				'left': generateCSSUnit( 1, '%' ),
+				'padding': generateCSSUnit( 5, 'px' ) + ' ' + generateCSSUnit( 7, 'px' ),
+				'border-radius': generateCSSUnit( 5, 'px' ),
+				'box-shadow': '#7f7f7f 0 0 5px 5px',
+			},
+		};
 	}
 
 	tablet_selectors = {
