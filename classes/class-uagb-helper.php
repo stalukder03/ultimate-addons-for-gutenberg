@@ -251,18 +251,26 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 		 */
 		public static function backend_load_font_awesome_icons() {
 
-			$json_file = UAGB_DIR . 'blocks-config/uagb-controls/uagb-icons.php';
-
-			if ( ! file_exists( $json_file ) ) {
-				return array();
-			}
+			$json_file_1 = UAGB_DIR . 'blocks-config/uagb-controls/uagb-icons-0.php';
+			$json_file_2 = UAGB_DIR . 'blocks-config/uagb-controls/uagb-icons-1.php';
+			$json_file_3 = UAGB_DIR . 'blocks-config/uagb-controls/uagb-icons-2.php';
 
 			// Function has already run.
 			if ( null !== self::$icon_json ) {
 				return self::$icon_json;
 			}
 
-			self::$icon_json = include $json_file;
+			self::$icon_json = array();
+
+			if ( file_exists( $json_file_1 ) ) {
+				self::$icon_json[0] = include $json_file_1;
+			}
+			if ( file_exists( $json_file_2 ) ) {
+				self::$icon_json[1] = include $json_file_2;
+			}
+			if ( file_exists( $json_file_3 ) ) {
+				self::$icon_json[2] = include $json_file_3;
+			}
 
 			return self::$icon_json;
 		}
@@ -282,6 +290,7 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 			$icon = sanitize_text_field( esc_attr( $icon ) );
 
 			$json = self::backend_load_font_awesome_icons();
+			$json = array_merge( $json[0], $json[1], $json[2] );
 			$path = isset( $json[ $icon ]['svg']['brands'] ) ? $json[ $icon ]['svg']['brands']['path'] : $json[ $icon ]['svg']['solid']['path'];
 			$view = isset( $json[ $icon ]['svg']['brands'] ) ? $json[ $icon ]['svg']['brands']['viewBox'] : $json[ $icon ]['svg']['solid']['viewBox'];
 			if ( $view ) {

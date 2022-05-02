@@ -236,8 +236,12 @@ module.exports = function ( grunt ) {
 			},
 			your_target: {
 				files: {
-					'blocks-config/uagb-controls/uagb-icons.php':
-						'blocks-config/uagb-controls/UAGBIcon.json',
+					'blocks-config/uagb-controls/uagb-icons-0.php':
+					'blocks-config/uagb-controls/UAGBIcons-0.json',
+					'blocks-config/uagb-controls/uagb-icons-1.php':
+					'blocks-config/uagb-controls/UAGBIcons-1.json',
+					'blocks-config/uagb-controls/uagb-icons-2.php':
+					'blocks-config/uagb-controls/UAGBIcons-2.json',
 				},
 			},
 		},
@@ -313,18 +317,40 @@ module.exports = function ( grunt ) {
 						return key;
 					} );
 
-					fs.writeFile(
-						'blocks-config/uagb-controls/UAGBIcon.json',
-						JSON.stringify( fonts, null, 4 ),
-						function ( err ) {
-							if ( ! err ) {
-								console.log( 'Font-Awesome library updated!' ); // eslint-disable-line
-							}
+					var values = Object.values(fonts);
+					var finalFonts = [];
+					var counter = 0;
+					var portion = {};
+
+					for (var key in fonts) {
+						if (counter !== 0 && counter % 486 === 0) {
+							finalFonts.push(portion);
+							portion = {};
 						}
-					);
+						portion[key] = values[counter];
+						counter++
+					}
+					finalFonts.push(portion);
+
+					for (var chunk in finalFonts) {
+						fs.writeFile(
+							'blocks-config/uagb-controls/UAGBIcons-' + chunk + '.json',
+							JSON.stringify( finalFonts[chunk], null, 4 ),
+							function ( err ) {
+								if ( ! err ) {
+									console.log( 'Font-Awesome library updated!' ); // eslint-disable-line
+								}
+							}
+						);
+					}
 				}
 			}
 		);
+	} );
+
+	// Update Font Awesome library.
+	grunt.registerTask( 'font-awesome-json-chunks', function () {
+
 	} );
 
 	// Generate Read me file

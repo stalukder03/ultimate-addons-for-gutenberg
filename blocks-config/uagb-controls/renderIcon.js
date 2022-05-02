@@ -6,11 +6,12 @@
  */
 
 import parseSVG from './parseIcon';
+import getUAGBIcons from '@Controls/getUAGBIcons';
 
 function renderSVG( svg ) {
 	svg = parseSVG( svg );
 
-	const fontAwesome = uagb_blocks_info.uagb_svg_icons[ svg ];
+	const fontAwesome = getUAGBIcons()[ svg ];
 
 	if ( 'undefined' !== typeof fontAwesome ) {
 		const viewbox_array = fontAwesome.svg.hasOwnProperty( 'brands' )

@@ -553,6 +553,11 @@ class UAGB_Init_Blocks {
 			$content_width = 1200;
 		}
 
+		$uagb_icons = UAGB_Helper::backend_load_font_awesome_icons();
+
+		if( isset( $uagb_icons[0] ) ) {
+
+		}
 		wp_localize_script(
 			'uagb-block-editor-js',
 			'uagb_blocks_info',
@@ -576,7 +581,9 @@ class UAGB_Init_Blocks {
 				'enableConditions'                   => apply_filters_deprecated( 'enable_block_condition', array( $display_condition ), '1.23.4', 'uag_enable_block_condition' ),
 				'enableMasonryGallery'               => apply_filters( 'uag_enable_masonry_gallery', UAGB_Admin_Helper::get_admin_settings_option( 'uag_enable_masonry_gallery', 'enabled' ) ),
 				'enableResponsiveConditions'         => apply_filters( 'enable_block_responsive', UAGB_Admin_Helper::get_admin_settings_option( 'uag_enable_block_responsive', 'enabled' ) ),
-				'uagb_svg_icons'                     => UAGB_Helper::backend_load_font_awesome_icons(),
+				'uagb_svg_icons_1'                     => isset( $uagb_icons[0] ) ? $uagb_icons[0] : array(),
+				'uagb_svg_icons_2'                     => isset( $uagb_icons[1] ) ? $uagb_icons[1] : array(),
+				'uagb_svg_icons_3'                     => isset( $uagb_icons[2] ) ? $uagb_icons[2] : array(),
 				'uagb_enable_extensions_for_blocks'  => apply_filters( 'uagb_enable_extensions_for_blocks', array() ),
 				'uagb_exclude_blocks_from_extension' => $uagb_exclude_blocks_from_extension,
 				'uag_load_select_font_globally'      => $enable_selected_fonts,

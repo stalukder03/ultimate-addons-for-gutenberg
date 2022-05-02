@@ -77,9 +77,9 @@ import './blocks/extensions/block.js';
 
 // Responsive Device Icons on Editor
 import './components/responsive-icons/index.js'
+import getUAGBIcons from '@Controls/getUAGBIcons';
 
-
-wp.UAGBSvgIcons = Object.keys( uagb_blocks_info.uagb_svg_icons );
+wp.UAGBSvgIcons = Object.keys( getUAGBIcons() );
 
 import UAGB_Block_Icons from '@Controls/block-icons';
 
