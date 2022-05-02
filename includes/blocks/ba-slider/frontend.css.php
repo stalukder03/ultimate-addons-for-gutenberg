@@ -80,6 +80,42 @@ $selectors = array(
 
 );
 
+$t_selectors = array(
+
+	// Before Label.
+	' .uagb-ba-slider__label-before' => array(
+		'display' => $attr['showLabelsTablet'] ? 'block' : 'none',
+		'top'     => UAGB_Helper::get_css_value( $attr['beforeLabelVerticalAlignmentTablet'], '%' ),
+		'left'    => UAGB_Helper::get_css_value( $attr['beforeLabelHorizontalAlignmentTablet'], '%' ),
+	),
+
+	// After Label.
+	' .uagb-ba-slider__label-after'  => array(
+		'display' => $attr['showLabelsTablet'] ? 'block' : 'none',
+		'top'     => UAGB_Helper::get_css_value( $attr['afterLabelVerticalAlignmentTablet'], '%' ),
+		'right'   => UAGB_Helper::get_css_value( ( 100 - $attr['afterLabelHorizontalAlignmentTablet'] ), '%' ),
+	),
+
+);
+
+$m_selectors = array(
+
+	// Before Label.
+	' .uagb-ba-slider__label-before' => array(
+		'display' => $attr['showLabelsMobile'] ? 'block' : 'none',
+		'top'     => UAGB_Helper::get_css_value( $attr['beforeLabelVerticalAlignmentMobile'], '%' ),
+		'left'    => UAGB_Helper::get_css_value( $attr['beforeLabelHorizontalAlignmentMobile'], '%' ),
+	),
+
+	// After Label.
+	' .uagb-ba-slider__label-after'  => array(
+		'display' => $attr['showLabelsMobile'] ? 'block' : 'none',
+		'top'     => UAGB_Helper::get_css_value( $attr['afterLabelVerticalAlignmentMobile'], '%' ),
+		'right'   => UAGB_Helper::get_css_value( ( 100 - $attr['afterLabelHorizontalAlignmentMobile'] ), '%' ),
+	),
+
+);
+
 // Combine selectors.
 
 $combined_selectors = array(
