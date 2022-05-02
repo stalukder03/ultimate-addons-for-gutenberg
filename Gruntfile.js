@@ -317,22 +317,22 @@ module.exports = function ( grunt ) {
 						return key;
 					} );
 
-					var values = Object.values(fonts);
-					var finalFonts = [];
-					var counter = 0;
-					var portion = {};
+					const values = Object.values( fonts );
+					const finalFonts = [];
+					let counter = 0;
+					let portion = {};
 
-					for (var key in fonts) {
-						if (counter !== 0 && counter % 486 === 0) {
-							finalFonts.push(portion);
+					for ( const key in fonts ) {
+						if ( counter !== 0 && counter % 486 === 0 ) {
+							finalFonts.push( portion );
 							portion = {};
 						}
 						portion[key] = values[counter];
 						counter++
 					}
-					finalFonts.push(portion);
+					finalFonts.push( portion );
 
-					for (var chunk in finalFonts) {
+					for ( const chunk in finalFonts ) {
 						fs.writeFile(
 							'blocks-config/uagb-controls/UAGBIcons-' + chunk + '.json',
 							JSON.stringify( finalFonts[chunk], null, 4 ),
