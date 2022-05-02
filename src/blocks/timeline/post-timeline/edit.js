@@ -17,6 +17,7 @@ const Render = lazy( () =>
 );
 
 import { withSelect } from '@wordpress/data';
+const SECOND = 1000;
 
 const PostTimelineComponent = ( props ) => {
 	const deviceType = useDeviceType();
@@ -82,6 +83,13 @@ const PostTimelineComponent = ( props ) => {
 				props.setAttributes( { leftMargin: horizontalSpace } );
 			}
 		}
+		const interval = setInterval( () => {
+			const loadPostTimelineEditor = new CustomEvent( 'UAGTimelineEditor', { // eslint-disable-line no-undef
+				detail: {},
+			} );
+			document.dispatchEvent( loadPostTimelineEditor );
+		}, SECOND );
+		return () => clearInterval( interval ); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
 	}, [] );
 
 	useEffect( () => {
@@ -89,10 +97,6 @@ const PostTimelineComponent = ( props ) => {
 		const blockStyling = contentTimelineStyle( props );
 
         addBlockEditorDynamicStyles( 'uagb-timeline-style-' + props.clientId, blockStyling );
-		const loadPostTimelineEditor = new CustomEvent( 'UAGTimelineEditor', { // eslint-disable-line no-undef
-			detail: {},
-		} );
-		document.dispatchEvent( loadPostTimelineEditor );
 	}, [ props ] );
 
 
