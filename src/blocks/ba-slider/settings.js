@@ -327,31 +327,6 @@ const Settings = ( props ) => {
 						onChange={ () => setAttributes( { showLabelsMobile: !attributes.showLabelsMobile } ) }
 					/>
 
-					{/* <MultiButtonsControl
-						setAttributes={ setAttributes }
-						label={ __(
-							'Slider Orientation',
-							'ultimate-addons-for-gutenberg'
-						) }
-						data={ {
-							value: attributes.sliderOrientation,
-							label: 'sliderOrientation',
-						} }
-						className="uagb-multi-button-alignment-control"
-						options={ [
-							{
-								label: __( 'Horizontal', 'ultimate-addons-for-gutenberg' ),
-								value: 'horizontal'
-							},
-							{
-								label: __( 'Vertical', 'ultimate-addons-for-gutenberg' ),
-								value: 'vertical'
-							},
-						] }
-						showIcons={ false }
-						responsive={ true }
-					/> */}
-
 				</UAGAdvancedPanelBody>
 
 				{ attributes.showLabels &&
