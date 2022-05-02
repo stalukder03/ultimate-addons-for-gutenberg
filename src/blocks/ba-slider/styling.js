@@ -5,6 +5,7 @@
 import generateCSS from '@Controls/generateCSS';
 import generateCSSUnit from '@Controls/generateCSSUnit';
 import { _x } from '@wordpress/i18n';
+import { array } from 'prop-types';
 
  function styling ( props ) {
 
@@ -73,12 +74,71 @@ import { _x } from '@wordpress/i18n';
 	let tablet_selectors = {};
 	let mobile_selectors = {};
 
+	let sliderSizeDesktop;
+	let sliderSizeTablet;
+	let sliderSizeMobile;
+
+	function getDimensions( dimension, newWidth = '100%', newHeight = 'auto' ){
+
+		let width = '100%', height = 'auto';
+		let maxWidth = '100%', maxHeight = '100%';
+
+		switch( dimension ) {
+			case 'full':
+				width = '100%';
+				height = 'auto';
+				break;
+			case 'thumb':
+				width = '100%';
+				height = 'auto';
+				maxWidth = maxWidth = '150px';
+				break;
+			case 'medium':
+				width = '100%';
+				height = 'auto';
+				maxWidth = 300 + 'px';
+				maxHeight = 300 + 'px';
+				break;
+			case 'large':
+				width = '100%';
+				height = 'auto';
+				maxWidth = 1024 + 'px';
+				maxHeight = 1024 + 'px';
+				break;
+			case 'custom':
+				width = newWidth;
+				height = newHeight;
+				break;
+			default:
+				break;
+		}
+		return [width, height, maxWidth, maxHeight];
+	}
+
 	selectors = {
 
 		// <img-comparison-slider> variables and sizing.
 		' .uagb-ba-slider__img-comparison': {
+
 			'--divider-width': generateCSSUnit( dividerWidth, 'px' ),
 			'--divider-color': dividerColor,
+
+			'width': ( getDimensions( imageDimDesktop, sliderWidthDesktop, sliderHeightDesktop )[0] === '100%' ) ?
+						'100%' :
+						generateCSSUnit( getDimensions( imageDimDesktop, sliderWidthDesktop, sliderHeightDesktop )[0], sliderDimUnitDesktop ),
+
+			'height': ( getDimensions( imageDimDesktop, sliderWidthDesktop, sliderHeightDesktop )[1] === 'auto' ) ?
+						'auto' :
+						generateCSSUnit( getDimensions( imageDimDesktop, sliderWidthDesktop, sliderHeightDesktop )[1], sliderDimUnitDesktop ),
+
+			'max-width': ( imageDimDesktop === 'custom' ) ?
+							'none' :
+							getDimensions( imageDimDesktop, sliderWidthDesktop, sliderHeightDesktop )[2],
+
+			'max-height': ( imageDimDesktop === 'custom' ) ?
+							'none' :
+							getDimensions( imageDimDesktop, sliderWidthDesktop, sliderHeightDesktop )[3],
+
 		},
 
 		// Before Label.
