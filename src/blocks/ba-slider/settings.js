@@ -21,8 +21,10 @@ import BoxShadowControl from '@Components/box-shadow/index.js';
 // Extend component
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import UAGImage from '@Components/image';
+import { useDeviceType } from '@Controls/getPreviewType';
 
 const Settings = ( props ) => {
+	const deviceType = useDeviceType();
 	props = props.parentProps;
 	const { attributes, setAttributes } = props;
 
@@ -185,43 +187,81 @@ const Settings = ( props ) => {
 
 					{/* Custom Width/Height Settings */}
 
-					{/* { ( deviceType==='Desktop' && attributes.imageDimDesktop==='custom' ) || ( deviceType==='Tablet' && attributes.imageDimTablet==='custom' ) || ( deviceType==='Mobile' && attributes.imageDimMobile==='custom' ) && */}
+					{ ( ( deviceType === 'Desktop' && attributes.imageDimDesktop==='custom' ) ||
+						( deviceType === 'Tablet' && attributes.imageDimTablet==='custom' ) ||
+						( deviceType === 'Mobile'&& attributes.imageDimMobile==='custom' ) ) &&
 
-						<ResponsiveSlider
-							label={ __( 'Slider Width', 'ultimate-addons-for-gutenberg' ) }
-							data={ {
-								desktop: {
-									value: attributes.sliderWidthDesktop,
-									label: 'sliderWidthDesktop',
-									unit: {
-										value: attributes.sliderDimUnitDesktop,
-										label: 'sliderDimUnitDesktop',
+						<>
+							<ResponsiveSlider
+								label={ __( 'Slider Width', 'ultimate-addons-for-gutenberg' ) }
+								data={ {
+									desktop: {
+										value: attributes.sliderWidthDesktop,
+										label: 'sliderWidthDesktop',
+										unit: {
+											value: attributes.sliderDimUnitDesktop,
+											label: 'sliderDimUnitDesktop',
+										},
 									},
-								},
-								tablet: {
-									value: attributes.sliderWidthTablet,
-									label: 'sliderWidthTablet',
-									unit: {
-										value: attributes.sliderDimUnitTablet,
-										label: 'sliderDimUnitTablet',
+									tablet: {
+										value: attributes.sliderWidthTablet,
+										label: 'sliderWidthTablet',
+										unit: {
+											value: attributes.sliderDimUnitTablet,
+											label: 'sliderDimUnitTablet',
+										},
 									},
-								},
-								mobile: {
-									value: attributes.sliderWidthMobile,
-									label: 'sliderWidthMobile',
-									unit: {
-										value: attributes.sliderDimUnitMobile,
-										label: 'sliderDimUnitMobile',
+									mobile: {
+										value: attributes.sliderWidthMobile,
+										label: 'sliderWidthMobile',
+										unit: {
+											value: attributes.sliderDimUnitMobile,
+											label: 'sliderDimUnitMobile',
+										},
 									},
-								},
-							} }
-							min={ 0 }
-							limitMax={ { '%': 100, 'px': 1600, 'em': 100 } }
-							units={ units }
-							setAttributes={ setAttributes }
-						/>						
+								} }
+								min={ 0 }
+								limitMax={ { '%': 100, 'px': 1600, 'em': 100 } }
+								units={ units }
+								setAttributes={ setAttributes }
+							/>
 
-					{/* } */}
+							<ResponsiveSlider
+								label={ __( 'Slider Height', 'ultimate-addons-for-gutenberg' ) }
+								data={ {
+									desktop: {
+										value: attributes.sliderHeightDesktop,
+										label: 'sliderHeightDesktop',
+										unit: {
+											value: attributes.sliderDimUnitDesktop,
+											label: 'sliderDimUnitDesktop',
+										},
+									},
+									tablet: {
+										value: attributes.sliderHeightTablet,
+										label: 'sliderHeightTablet',
+										unit: {
+											value: attributes.sliderDimUnitTablet,
+											label: 'sliderDimUnitTablet',
+										},
+									},
+									mobile: {
+										value: attributes.sliderHeightMobile,
+										label: 'sliderHeightMobile',
+										unit: {
+											value: attributes.sliderDimUnitMobile,
+											label: 'sliderDimUnitMobile',
+										},
+									},
+								} }
+								min={ 0 }
+								limitMax={ { '%': 100, 'px': 1600, 'em': 100 } }
+								units={ units }
+								setAttributes={ setAttributes }
+							/>
+						</>			
+
+					}
 
 				</UAGAdvancedPanelBody>
 
