@@ -279,22 +279,18 @@ const Settings = ( props ) => {
 						} }
 					/>
 
-					{ ! attributes.animateSlider &&
-
-						<ToggleControl
-							label={ __( 'Control slider handle on mouse hover?', 'ultimate-addons-for-gutenberg' ) }
-							help={
-								attributes.hoverSlider
-									? __( 'Disables hover-based slider handle controls.', 'ultimate-addons-for-gutenberg' )
-									: __( 'Enables hover-based slider handle controls.', 'ultimate-addons-for-gutenberg' )
-							}
-							checked={ attributes.hoverSlider }
-							onChange={ () => {
-								setAttributes( { hoverSlider: !attributes.hoverSlider } );
-							} }
-						/>
-
-					}
+					<ToggleControl
+						label={ __( 'Control slider handle on mouse hover?', 'ultimate-addons-for-gutenberg' ) }
+						help={
+							attributes.hoverSlider
+								? __( 'Disables hover-based slider handle controls.', 'ultimate-addons-for-gutenberg' )
+								: __( 'Enables hover-based slider handle controls.', 'ultimate-addons-for-gutenberg' )
+						}
+						checked={ attributes.hoverSlider }
+						onChange={ () => {
+							setAttributes( { hoverSlider: !attributes.hoverSlider } );
+						} }
+					/>
 
 					<ToggleControl
 						label={ __( 'Show Image Labels on Desktop?', 'ultimate-addons-for-gutenberg' ) }
