@@ -91,7 +91,7 @@ import { array } from 'prop-types';
 			case 'thumb':
 				width = '100%';
 				height = 'auto';
-				maxWidth = maxWidth = '150px';
+				maxWidth = maxHeight = '150px';
 				break;
 			case 'medium':
 				width = '100%';
