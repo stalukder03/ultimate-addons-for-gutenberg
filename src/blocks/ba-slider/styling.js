@@ -79,10 +79,6 @@ import { array } from 'prop-types';
 	let tablet_selectors = {};
 	let mobile_selectors = {};
 
-	let sliderSizeDesktop;
-	let sliderSizeTablet;
-	let sliderSizeMobile;
-
 	function getDimensions( dimension, newWidth = '100%', newHeight = 'auto' ){
 
 		let width = '100%', height = 'auto';
@@ -120,6 +116,10 @@ import { array } from 'prop-types';
 		return [width, height, maxWidth, maxHeight];
 	}
 
+	const dimsDesktop = getDimensions( imageDimDesktop, sliderWidthDesktop, sliderHeightDesktop );
+	const dimsTablet  = getDimensions( imageDimTablet, sliderWidthTablet, sliderHeightTablet );
+	const dimsMobile  = getDimensions( imageDimMobile, sliderWidthMobile, sliderHeightMobile );
+
 	selectors = {
 
 		// <img-comparison-slider> variables and sizing.
@@ -128,21 +128,21 @@ import { array } from 'prop-types';
 			'--divider-width': generateCSSUnit( dividerWidth, 'px' ),
 			'--divider-color': dividerColor,
 
-			'width': ( getDimensions( imageDimDesktop, sliderWidthDesktop, sliderHeightDesktop )[0] === '100%' ) ?
+			'width': ( dimsDesktop[0] === '100%' ) ?
 						'100%' :
-						generateCSSUnit( getDimensions( imageDimDesktop, sliderWidthDesktop, sliderHeightDesktop )[0], sliderWidthUnitDesktop ),
+						generateCSSUnit( dimsDesktop[0], sliderWidthUnitDesktop ),
 
-			'height': ( getDimensions( imageDimDesktop, sliderWidthDesktop, sliderHeightDesktop )[1] === 'auto' ) ?
+			'height': ( dimsDesktop[1] === 'auto' ) ?
 						'auto' :
-						generateCSSUnit( getDimensions( imageDimDesktop, sliderWidthDesktop, sliderHeightDesktop )[1], sliderHeightUnitDesktop ),
+						generateCSSUnit( dimsDesktop[1], sliderHeightUnitDesktop ),
 
 			'max-width': ( imageDimDesktop === 'custom' ) ?
 							'none' :
-							getDimensions( imageDimDesktop, sliderWidthDesktop, sliderHeightDesktop )[2],
+							dimsDesktop[2],
 
 			'max-height': ( imageDimDesktop === 'custom' ) ?
 							'none' :
-							getDimensions( imageDimDesktop, sliderWidthDesktop, sliderHeightDesktop )[3],
+							dimsDesktop[3],
 
 		},
 
@@ -237,6 +237,37 @@ import { array } from 'prop-types';
 
 	tablet_selectors = {
 
+		// <img-comparison-slider> variables and sizing.
+		' .uagb-ba-slider__img-comparison': {
+
+			'--divider-width': generateCSSUnit( dividerWidth, 'px' ),
+			'--divider-color': dividerColor,
+
+			'width': ( dimsTablet[0] === '100%' ) ?
+						'100%' :
+						generateCSSUnit( dimsTablet[0], sliderWidthUnitTablet ),
+
+			'height': ( dimsTablet[1] === 'auto' ) ?
+						'auto' :
+						generateCSSUnit( dimsTablet[1], sliderHeightUnitTablet ),
+
+			'max-width': ( imageDimTablet === 'custom' ) ?
+							'none' :
+							dimsTablet[2],
+
+			'max-height': ( imageDimTablet === 'custom' ) ?
+							'none' :
+							dimsTablet[3],
+
+		},
+
+		// Figure -> After (The second image/figure doesn't resize itself, and hence we need the following code).
+		' .uagb-ba-slider__figure-after': {
+			'height': ( imageDimTablet === 'custom' ) ? 
+						generateCSSUnit( sliderHeightTablet, sliderHeightUnitTablet ) :
+						'auto',
+		},
+
 		// Before Label.
 		' .uagb-ba-slider__label-before': {
 			'display': showLabelsTablet ? 'block' : 'none',
@@ -254,7 +285,38 @@ import { array } from 'prop-types';
 	}
 
 	mobile_selectors = {
+
+		// <img-comparison-slider> variables and sizing.
+		' .uagb-ba-slider__img-comparison': {
+
+			'--divider-width': generateCSSUnit( dividerWidth, 'px' ),
+			'--divider-color': dividerColor,
+
+			'width': ( dimsMobile[0] === '100%' ) ?
+						'100%' :
+						generateCSSUnit( dimsMobile[0], sliderWidthUnitMobile ),
+
+			'height': ( dimsMobile[1] === 'auto' ) ?
+						'auto' :
+						generateCSSUnit( dimsMobile[1], sliderHeightUnitMobile ),
+
+			'max-width': ( imageDimMobile === 'custom' ) ?
+							'none' :
+							dimsMobile[2],
+
+			'max-height': ( imageDimMobile === 'custom' ) ?
+							'none' :
+							dimsMobile[3],
+
+		},
 		
+		// Figure -> After (The second image/figure doesn't resize itself, and hence we need the following code).
+		' .uagb-ba-slider__figure-after': {
+			'height': ( imageDimMobile === 'custom' ) ? 
+						generateCSSUnit( sliderHeightMobile, sliderHeightUnitMobile ) :
+						'auto',
+		},
+
 		// Before Label.
 		' .uagb-ba-slider__label-before': {
 			'display': showLabelsMobile ? 'block' : 'none',
