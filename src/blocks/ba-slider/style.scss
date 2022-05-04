@@ -10,8 +10,9 @@
     pointer-events: initial;
   }
   
-  .uagb-ba-slider__figure-before,
-  .uagb-ba-slider__figure-after {
+  figure.uagb-ba-slider__figure-before,
+  figure.uagb-ba-slider__figure-after {
+    display: inline-block;
     margin: 0;
     width: 100%;
     height: 100%;
