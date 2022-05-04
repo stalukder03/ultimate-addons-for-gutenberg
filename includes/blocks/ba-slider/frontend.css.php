@@ -58,7 +58,7 @@ function get_dimensions( $dimension, $newWidth = '100%', $newHeight = 'auto' ) {
 
 $dimsDesktop = get_dimensions( $attr['imageDimDesktop'], $attr['sliderWidthDesktop'], $attr['sliderHeightDesktop'] );
 $dimsTablet  = get_dimensions( $attr['imageDimTablet'], $attr['sliderWidthTablet'], $attr['sliderHeightTablet'] );
-$dimsDesktop = get_dimensions( $attr['imageDimMobile'], $attr['sliderWidthMobile'], $attr['sliderHeightMobile'] );
+$dimsMobile  = get_dimensions( $attr['imageDimMobile'], $attr['sliderWidthMobile'], $attr['sliderHeightMobile'] );
 
 // Define selectors.
 $selectors   = array();
