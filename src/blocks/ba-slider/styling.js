@@ -195,7 +195,9 @@ import { array } from 'prop-types';
 		},
 
 		' .uagb-ba-slider__img-comparison:focus': {
-			'box-shadow': enableSliderElevation ? sliderBoxShadowHOffset+'px '+sliderBoxShadowVOffset+'px '+sliderBoxShadowBlur+'px '+sliderBoxShadowSpread+'px '+( ( sliderBoxShadowPosition === 'inset' ) ? 'inset' : '' )  : 'none',
+			'box-shadow': enableSliderElevation ?
+							sliderBoxShadowHOffset+'px ' + sliderBoxShadowVOffset+'px ' + sliderBoxShadowBlur+'px ' + sliderBoxShadowSpread+'px '+ sliderBoxShadowColor + ( ( sliderBoxShadowPosition === 'inset' ) ? 'inset' : '' )  :
+							'none',
 		},
 
 		' .uagb-ba-slider__handle': {
