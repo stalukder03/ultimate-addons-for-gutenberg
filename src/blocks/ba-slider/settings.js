@@ -132,6 +132,9 @@ const Settings = ( props ) => {
 			},
 		];
 
+		// Recreating the same array for Height Units, without the percentage (since % has no impact on the height).
+		const unitsHeight = [ units[1], units[2] ];
+
         return(
             <>
 
@@ -199,24 +202,24 @@ const Settings = ( props ) => {
 										value: attributes.sliderWidthDesktop,
 										label: 'sliderWidthDesktop',
 										unit: {
-											value: attributes.sliderDimUnitDesktop,
-											label: 'sliderDimUnitDesktop',
+											value: attributes.sliderWidthUnitDesktop,
+											label: 'sliderWidthUnitDesktop',
 										},
 									},
 									tablet: {
 										value: attributes.sliderWidthTablet,
 										label: 'sliderWidthTablet',
 										unit: {
-											value: attributes.sliderDimUnitTablet,
-											label: 'sliderDimUnitTablet',
+											value: attributes.sliderWidthUnitTablet,
+											label: 'sliderWidthUnitTablet',
 										},
 									},
 									mobile: {
 										value: attributes.sliderWidthMobile,
 										label: 'sliderWidthMobile',
 										unit: {
-											value: attributes.sliderDimUnitMobile,
-											label: 'sliderDimUnitMobile',
+											value: attributes.sliderWidthUnitMobile,
+											label: 'sliderWidthUnitMobile',
 										},
 									},
 								} }
@@ -226,40 +229,39 @@ const Settings = ( props ) => {
 								setAttributes={ setAttributes }
 							/>
 
-							{/* Code for height is commented since it's WIP */}
-							{/* <ResponsiveSlider
+							<ResponsiveSlider
 								label={ __( 'Slider Height', 'ultimate-addons-for-gutenberg' ) }
 								data={ {
 									desktop: {
 										value: attributes.sliderHeightDesktop,
 										label: 'sliderHeightDesktop',
 										unit: {
-											value: attributes.sliderDimUnitDesktop,
-											label: 'sliderDimUnitDesktop',
+											value: attributes.sliderHeightUnitDesktop,
+											label: 'sliderHeightUnitDesktop',
 										},
 									},
 									tablet: {
 										value: attributes.sliderHeightTablet,
 										label: 'sliderHeightTablet',
 										unit: {
-											value: attributes.sliderDimUnitTablet,
-											label: 'sliderDimUnitTablet',
+											value: attributes.sliderHeightUnitTablet,
+											label: 'sliderHeightUnitTablet',
 										},
 									},
 									mobile: {
 										value: attributes.sliderHeightMobile,
 										label: 'sliderHeightMobile',
 										unit: {
-											value: attributes.sliderDimUnitMobile,
-											label: 'sliderDimUnitMobile',
+											value: attributes.sliderHeightUnitMobile,
+											label: 'sliderHeightUnitMobile',
 										},
 									},
 								} }
 								min={ 0 }
-								limitMax={ { '%': 100, 'px': 1600, 'em': 100 } }
-								units={ units }
+								limitMax={ { px: 1600, em: 100 } }
+								units={ unitsHeight }
 								setAttributes={ setAttributes }
-							/> */}
+							/>
 						</>			
 
 					}
