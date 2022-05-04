@@ -7,53 +7,55 @@
  * @package uagb
  */
 
-/**
- * Get dimensions of slider/images based on size type (full, thumbnail, small, medium, large, custom).
- *
- * @param string $dimension (full, thumb, small, medium, large, custom).
- * @param string $newWidth Pass the new width in case of custom type.
- * @param string $newHeight Pass the new height in case of custom type.
- * @return array Array of [ width, height, maxWidth, maxHeight ]
- */
-function get_dimensions( $dimension, $newWidth = '100%', $newHeight = 'auto' ) {
+if ( ! function_exists( 'get_dimensions' ) ) {
+	/**
+	 * Get dimensions of slider/images based on size type (full, thumbnail, small, medium, large, custom).
+	 *
+	 * @param string $dimension (full, thumb, small, medium, large, custom).
+	 * @param string $newWidth Pass the new width in case of custom type.
+	 * @param string $newHeight Pass the new height in case of custom type.
+	 * @return array Array of [ width, height, maxWidth, maxHeight ]
+	 */
+	function get_dimensions( $dimension, $newWidth = '100%', $newHeight = 'auto' ) {
 
-	$width     = '100%';
-	$height    = 'auto';
-	$maxWidth  = '100%';
-	$maxHeight = '100%';
+		$width     = '100%';
+		$height    = 'auto';
+		$maxWidth  = '100%';
+		$maxHeight = '100%';
 
-	switch ( $dimension ) {
-		case 'full':
-			$width  = '100%';
-			$height = 'auto';
-			break;
-		case 'thumb':
-			$width     = '100%';
-			$height    = 'auto';
-			$maxWidth  = '150px';
-			$maxHeight = '150px';
-			break;
-		case 'medium':
-			$width     = '100%';
-			$height    = 'auto';
-			$maxWidth  = '300px';
-			$maxHeight = '300px';
-			break;
-		case 'large':
-			$width     = '100%';
-			$height    = 'auto';
-			$maxWidth  = '1024px';
-			$maxHeight = '1024px';
-			break;
-		case 'custom':
-			$width  = $newWidth;
-			$height = $newHeight;
-			break;
-		default:
-			break;
+		switch ( $dimension ) {
+			case 'full':
+				$width  = '100%';
+				$height = 'auto';
+				break;
+			case 'thumb':
+				$width     = '100%';
+				$height    = 'auto';
+				$maxWidth  = '150px';
+				$maxHeight = '150px';
+				break;
+			case 'medium':
+				$width     = '100%';
+				$height    = 'auto';
+				$maxWidth  = '300px';
+				$maxHeight = '300px';
+				break;
+			case 'large':
+				$width     = '100%';
+				$height    = 'auto';
+				$maxWidth  = '1024px';
+				$maxHeight = '1024px';
+				break;
+			case 'custom':
+				$width  = $newWidth;
+				$height = $newHeight;
+				break;
+			default:
+				break;
+		}
+
+		return array( $width, $height, $maxWidth, $maxHeight );
 	}
-
-	return array( $width, $height, $maxWidth, $maxHeight );
 }
 
 $dimsDesktop = get_dimensions( $attr['imageDimDesktop'], $attr['sliderWidthDesktop'], $attr['sliderHeightDesktop'] );
@@ -91,7 +93,7 @@ $selectors = array(
 	),
 
 	// Figure -> After (The second image/figure doesn't resize itself, and hence we need the following code).
-	' .uagb-ba-slider__figure-after'         => array(
+	' figure.uagb-ba-slider__figure-after'   => array(
 		'height' => ( 'custom' === $attr['imageDimDesktop'] ) ?
 					UAGB_Helper::get_css_value( $attr['sliderHeightDesktop'], $attr['sliderHeightUnitDesktop'] ) :
 					'auto',
