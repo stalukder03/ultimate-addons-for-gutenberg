@@ -179,21 +179,21 @@ $t_selectors = array(
 	),
 
 	// Figure -> After (The second image/figure doesn't resize itself, and hence we need the following code).
-	' .uagb-ba-slider__figure-after' => array(
+	' .uagb-ba-slider__figure-after'    => array(
 		'height' => ( 'custom' === $attr['imageDimTablet'] ) ?
 					UAGB_Helper::get_css_value( $attr['sliderHeightTablet'], $attr['sliderHeightUnitTablet'] ) :
 					'auto',
 	),
 
 	// Before Label.
-	' .uagb-ba-slider__label-before' => array(
+	' .uagb-ba-slider__label-before'    => array(
 		'display' => $attr['showLabelsTablet'] ? 'block' : 'none',
 		'top'     => UAGB_Helper::get_css_value( $attr['beforeLabelVerticalAlignmentTablet'], '%' ),
 		'left'    => UAGB_Helper::get_css_value( $attr['beforeLabelHorizontalAlignmentTablet'], '%' ),
 	),
 
 	// After Label.
-	' .uagb-ba-slider__label-after'  => array(
+	' .uagb-ba-slider__label-after'     => array(
 		'display' => $attr['showLabelsTablet'] ? 'block' : 'none',
 		'top'     => UAGB_Helper::get_css_value( $attr['afterLabelVerticalAlignmentTablet'], '%' ),
 		'right'   => UAGB_Helper::get_css_value( ( 100 - $attr['afterLabelHorizontalAlignmentTablet'] ), '%' ),
@@ -225,21 +225,21 @@ $m_selectors = array(
 	),
 
 	// Figure -> After (The second image/figure doesn't resize itself, and hence we need the following code).
-	' .uagb-ba-slider__figure-after' => array(
+	' .uagb-ba-slider__figure-after'    => array(
 		'height' => ( 'custom' === $attr['imageDimMobile'] ) ?
 					UAGB_Helper::get_css_value( $attr['sliderHeightMobile'], $attr['sliderHeightUnitMobile'] ) :
 					'auto',
 	),
 
 	// Before Label.
-	' .uagb-ba-slider__label-before' => array(
+	' .uagb-ba-slider__label-before'    => array(
 		'display' => $attr['showLabelsMobile'] ? 'block' : 'none',
 		'top'     => UAGB_Helper::get_css_value( $attr['beforeLabelVerticalAlignmentMobile'], '%' ),
 		'left'    => UAGB_Helper::get_css_value( $attr['beforeLabelHorizontalAlignmentMobile'], '%' ),
 	),
 
 	// After Label.
-	' .uagb-ba-slider__label-after'  => array(
+	' .uagb-ba-slider__label-after'     => array(
 		'display' => $attr['showLabelsMobile'] ? 'block' : 'none',
 		'top'     => UAGB_Helper::get_css_value( $attr['afterLabelVerticalAlignmentMobile'], '%' ),
 		'right'   => UAGB_Helper::get_css_value( ( 100 - $attr['afterLabelHorizontalAlignmentMobile'] ), '%' ),
