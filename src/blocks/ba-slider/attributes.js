@@ -41,7 +41,7 @@ const attributes = {
 	},
 	sliderHeightDesktop: {
 		type: 'number',
-		default: 100,
+		default: 720,
 	},
 	sliderWidthTablet: {
 		type: 'number',
@@ -49,7 +49,7 @@ const attributes = {
 	},
 	sliderHeightTablet: {
 		type: 'number',
-		default: 100,
+		default: 360,
 	},
 	sliderWidthMobile: {
 		type: 'number',
@@ -57,21 +57,41 @@ const attributes = {
 	},
 	sliderHeightMobile: {
 		type: 'number',
-		default: 100,
+		default: 240,
 	},
 
 	// Slider/Image Dimensions Unit (Responsive).
-	sliderDimUnitDesktop: {
+	sliderWidthUnitDesktop: {
 		type: 'string',
 		default: '%',
+	},
+	sliderHeightUnitDesktop: {
+		type: 'string',
+		default: 'px',
 	},
 	sliderDimUnitTablet: {
 		type: 'string',
 		default: '%',
 	},
+	sliderWidthUnitTablet: {
+		type: 'string',
+		default: '%',
+	},
+	sliderHeightUnitTablet: {
+		type: 'string',
+		default: 'px',
+	},
 	sliderDimUnitMobile: {
 		type: 'string',
 		default: '%',
+	},
+	sliderWidthUnitMobile: {
+		type: 'string',
+		default: '%',
+	},
+	sliderHeightUnitMobile: {
+		type: 'string',
+		default: 'px',
 	},
 
 	// Image Labels.
@@ -270,6 +290,18 @@ const attributes = {
 		type: 'boolean',
 		default: false,
 	},
+
+	// Misc.
+	beforeHeight: {
+		type: 'number',
+	},
+	firstTimeRun: {
+		type: 'boolean',
+		default: true,
+	},
+	initialHeight: {
+		type: 'number',
+	}
 };
 
 export default attributes;
