@@ -65,9 +65,14 @@ import { array } from 'prop-types';
 		sliderHeightDesktop,
 		sliderHeightTablet,
 		sliderHeightMobile,
-		sliderDimUnitDesktop,
-		sliderDimUnitTablet,
-		sliderDimUnitMobile,
+		sliderWidthUnitDesktop,
+		sliderWidthUnitTablet,
+		sliderWidthUnitMobile,
+		sliderHeightUnitDesktop,
+		sliderHeightUnitTablet,
+		sliderHeightUnitMobile,
+		beforeHeight,
+		firstTimeRun,
 	} = props.attributes;
 
     let selectors = {};
@@ -125,11 +130,11 @@ import { array } from 'prop-types';
 
 			'width': ( getDimensions( imageDimDesktop, sliderWidthDesktop, sliderHeightDesktop )[0] === '100%' ) ?
 						'100%' :
-						generateCSSUnit( getDimensions( imageDimDesktop, sliderWidthDesktop, sliderHeightDesktop )[0], sliderDimUnitDesktop ),
+						generateCSSUnit( getDimensions( imageDimDesktop, sliderWidthDesktop, sliderHeightDesktop )[0], sliderWidthUnitDesktop ),
 
 			'height': ( getDimensions( imageDimDesktop, sliderWidthDesktop, sliderHeightDesktop )[1] === 'auto' ) ?
 						'auto' :
-						generateCSSUnit( getDimensions( imageDimDesktop, sliderWidthDesktop, sliderHeightDesktop )[1], sliderDimUnitDesktop ),
+						generateCSSUnit( getDimensions( imageDimDesktop, sliderWidthDesktop, sliderHeightDesktop )[1], sliderHeightUnitDesktop ),
 
 			'max-width': ( imageDimDesktop === 'custom' ) ?
 							'none' :
@@ -139,6 +144,13 @@ import { array } from 'prop-types';
 							'none' :
 							getDimensions( imageDimDesktop, sliderWidthDesktop, sliderHeightDesktop )[3],
 
+		},
+
+		// Figure -> After (The second image/figure doesn't resize itself, and hence we need the following code).
+		' .uagb-ba-slider__figure-after': {
+			'height': ( imageDimDesktop === 'custom' ) ? 
+						generateCSSUnit( sliderHeightDesktop, sliderHeightUnitDesktop ) :
+						'auto',
 		},
 
 		// Before Label.
