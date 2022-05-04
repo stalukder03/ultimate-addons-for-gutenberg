@@ -65,7 +65,7 @@ $selectors = array(
 	),
 
 	' .uagb-ba-slider__img-comparison:focus' => array(
-		'box-shadow' => $attr['enableSliderElevation'] ? $attr['sliderBoxShadowHOffset'] . 'px ' . $attr['sliderBoxShadowVOffset'] . 'px ' . $attr['sliderBoxShadowBlur'] . 'px ' . $attr['sliderBoxShadowSpread'] . 'px ' . ( ( 'inset' === $attr['sliderBoxShadowPosition'] ) ? 'inset' : '' ) : 'none',
+		'box-shadow' => $attr['enableSliderElevation'] ? $attr['sliderBoxShadowHOffset'] . 'px ' . $attr['sliderBoxShadowVOffset'] . 'px ' . $attr['sliderBoxShadowBlur'] . 'px ' . $attr['sliderBoxShadowSpread'] . 'px ' . $attr['sliderBoxShadowColor'] . ( ( 'inset' === $attr['sliderBoxShadowPosition'] ) ? 'inset' : '' ) : 'none',
 	),
 
 	' .uagb-ba-slider__handle'               => array(
