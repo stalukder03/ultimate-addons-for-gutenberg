@@ -335,41 +335,6 @@ const Settings = ( props ) => {
 						} }
 					/>
 
-					<ToggleControl
-						label={ __( 'Show Image Labels on Desktop?', 'ultimate-addons-for-gutenberg' ) }
-						help={
-							attributes.showLabels
-								? __( 'Hides labels for images on desktop.', 'ultimate-addons-for-gutenberg' )
-								: __( 'Shows labels for images on desktop.', 'ultimate-addons-for-gutenberg' )
-						}
-						checked={ attributes.showLabels }
-						onChange={ () => {
-							setAttributes( { showLabels: !attributes.showLabels } );
-						} }
-					/>
-
-					<ToggleControl
-						label={ __( 'Show Image Labels on Tablet?', 'ultimate-addons-for-gutenberg' ) }
-						help={
-							attributes.showLabelsTablet
-								? __( 'Hides labels for images on tablets.', 'ultimate-addons-for-gutenberg' )
-								: __( 'Shows labels for images on tablets.', 'ultimate-addons-for-gutenberg' )
-						}
-						checked={ attributes.showLabelsTablet }
-						onChange={ () => setAttributes( { showLabelsTablet: !attributes.showLabelsTablet } ) }
-					/>
-
-					<ToggleControl
-						label={ __( 'Show Image Labels on Mobile?', 'ultimate-addons-for-gutenberg' ) }
-						help={
-							attributes.showLabelsMobile
-								? __( 'Hides labels for images on mobiles.', 'ultimate-addons-for-gutenberg' )
-								: __( 'Shows labels for images on mobiles.', 'ultimate-addons-for-gutenberg' )
-						}
-						checked={ attributes.showLabelsMobile }
-						onChange={ () => setAttributes( { showLabelsMobile: !attributes.showLabelsMobile } ) }
-					/>
-
 				</UAGAdvancedPanelBody>
 
 				{ attributes.showLabels &&
@@ -386,6 +351,41 @@ const Settings = ( props ) => {
 							label={ __( 'After-Image Label', 'ultimate-addons-for-gutenberg' ) }
 							value={ attributes.afterLabel }
 							onChange={ ( newAfterLabel ) => setAttributes( { afterLabel: newAfterLabel } ) }
+						/>
+
+						<ToggleControl
+							label={ __( 'Show Image Labels on Desktop?', 'ultimate-addons-for-gutenberg' ) }
+							help={
+								attributes.showLabels
+									? __( 'Hides labels for images on desktop.', 'ultimate-addons-for-gutenberg' )
+									: __( 'Shows labels for images on desktop.', 'ultimate-addons-for-gutenberg' )
+							}
+							checked={ attributes.showLabels }
+							onChange={ () => {
+								setAttributes( { showLabels: !attributes.showLabels } );
+							} }
+						/>
+
+						<ToggleControl
+							label={ __( 'Show Image Labels on Tablet?', 'ultimate-addons-for-gutenberg' ) }
+							help={
+								attributes.showLabelsTablet
+									? __( 'Hides labels for images on tablets.', 'ultimate-addons-for-gutenberg' )
+									: __( 'Shows labels for images on tablets.', 'ultimate-addons-for-gutenberg' )
+							}
+							checked={ attributes.showLabelsTablet }
+							onChange={ () => setAttributes( { showLabelsTablet: !attributes.showLabelsTablet } ) }
+						/>
+
+						<ToggleControl
+							label={ __( 'Show Image Labels on Mobile?', 'ultimate-addons-for-gutenberg' ) }
+							help={
+								attributes.showLabelsMobile
+									? __( 'Hides labels for images on mobiles.', 'ultimate-addons-for-gutenberg' )
+									: __( 'Shows labels for images on mobiles.', 'ultimate-addons-for-gutenberg' )
+							}
+							checked={ attributes.showLabelsMobile }
+							onChange={ () => setAttributes( { showLabelsMobile: !attributes.showLabelsMobile } ) }
 						/>
 
 					</UAGAdvancedPanelBody>
