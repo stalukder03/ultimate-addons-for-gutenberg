@@ -84,15 +84,20 @@ const PostTimelineComponent = ( props ) => {
 		}
 	}, [] );
 
+	const loadPostTimelineEditor = new CustomEvent( 'UAGTimelineEditor', { // eslint-disable-line no-undef
+		detail: {},
+	} );
+
 	useEffect( () => {
 		// Replacement for componentDidUpdate.
 		const blockStyling = contentTimelineStyle( props );
 
         addBlockEditorDynamicStyles( 'uagb-timeline-style-' + props.clientId, blockStyling );
-		const loadPostTimelineEditor = new CustomEvent( 'UAGTimelineEditor', { // eslint-disable-line no-undef
-			detail: {},
-		} );
+		// dispatch Event on mousewheel change.
 		document.dispatchEvent( loadPostTimelineEditor );
+		window.addEventListener( 'mousewheel', function(){
+			document.dispatchEvent( loadPostTimelineEditor );
+	  	} );
 	}, [ props ] );
 
 
@@ -101,7 +106,19 @@ const PostTimelineComponent = ( props ) => {
 	    const blockStyling = contentTimelineStyle( props );
 
         addBlockEditorDynamicStyles( 'uagb-timeline-style-' + props.clientId, blockStyling );
-	}, [deviceType] );
+		// To load progress bar on responsive device.
+		const tabletPreview = document.getElementsByClassName( 'is-tablet-preview' );
+		const mobilePreview = document.getElementsByClassName( 'is-mobile-preview' );
+		if ( 0 !== tabletPreview.length || 0 !== mobilePreview.length ) {
+			const preview = tabletPreview[0] || mobilePreview[0];
+			const iframe = preview.getElementsByTagName( 'iframe' )[0];
+			const iframeDocument = iframe.contentWindow.document || iframe.contentDocument;
+			iframeDocument.addEventListener( 'mousewheel', function(){
+				document.dispatchEvent( loadPostTimelineEditor );
+			} );
+		}
+
+	}, [ deviceType ] );
 
 	return (
 		<Suspense fallback={ lazyLoader() }>
