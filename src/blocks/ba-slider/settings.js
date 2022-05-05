@@ -13,7 +13,7 @@ import UAGTabsControl from '@Components/tabs'
 
 import { InspectorControls } from '@wordpress/block-editor';
 
-import { ToggleControl, TextControl } from '@wordpress/components';
+import { ToggleControl, TextControl, Button } from '@wordpress/components';
 
 import Border from '@Components/border/index.js';
 import BoxShadowControl from '@Components/box-shadow/index.js';
@@ -784,6 +784,40 @@ const Settings = ( props ) => {
 							label: 'marginLink',
 						} }
 					/>
+
+					<Button
+						variant='secondary'
+						onClick={ () => {
+
+							if( deviceType === 'Desktop' )
+							props.setAttributes( {
+								topMarginDesktop: null,
+								rightMarginDesktop: null,
+								leftMarginDesktop: null,
+								bottomMarginDesktop: null,
+							} );
+
+							if( deviceType === 'Tablet' )
+							props.setAttributes( {
+								topMarginTablet: null,
+								rightMarginTablet: null,
+								leftMarginTablet: null,
+								bottomMarginTablet: null,
+							} );
+
+							if( deviceType === 'Mobile' )
+							props.setAttributes( {
+								topMarginMobile: null,
+								rightMarginMobile: null,
+								leftMarginMobile: null,
+								bottomMarginMobile: null,
+							} );
+
+
+						} }
+					>
+						{ __( 'Reset Margin for ', 'ultimate-addons-for-gutenberg' ) } { deviceType }
+					</Button>
 
 				</UAGAdvancedPanelBody>
 
