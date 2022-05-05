@@ -22,6 +22,8 @@ import BoxShadowControl from '@Components/box-shadow/index.js';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import UAGImage from '@Components/image';
 import { useDeviceType } from '@Controls/getPreviewType';
+import SpacingControl from '@Components/spacing-control';
+
 
 const Settings = ( props ) => {
 	const deviceType = useDeviceType();
@@ -706,6 +708,82 @@ const Settings = ( props ) => {
 						</>
 
 					}
+
+				</UAGAdvancedPanelBody>
+
+				{/* Spacing */}
+				<UAGAdvancedPanelBody title={ __( 'Spacing', 'ultimate-addons-for-gutenberg' ) } initialOpen= { false }>
+					
+					<SpacingControl
+						{ ...props }
+						label={ __( 'Margin', 'ultimate-addons-for-gutenberg' ) }
+						valueTop={ {
+							value: attributes.topMarginDesktop,
+							label: 'topMarginDesktop',
+						} }
+						valueRight={ {
+							value: attributes.rightMarginDesktop,
+							label: 'rightMarginDesktop',
+						} }
+						valueBottom={ {
+							value: attributes.bottomMarginDesktop,
+							label: 'bottomMarginDesktop',
+						} }
+						valueLeft={ {
+							value: attributes.leftMarginDesktop,
+							label: 'leftMarginDesktop',
+						} }
+						valueTopTablet={ {
+							value: attributes.topMarginTablet,
+							label: 'topMarginTablet',
+						} }
+						valueRightTablet={ {
+							value: attributes.rightMarginTablet,
+							label: 'rightMarginTablet',
+						} }
+						valueBottomTablet={ {
+							value: attributes.bottomMarginTablet,
+							label: 'bottomMarginTablet',
+						} }
+						valueLeftTablet={ {
+							value: attributes.leftMarginTablet,
+							label: 'leftMarginTablet',
+						} }
+						valueTopMobile={ {
+							value: attributes.topMarginMobile,
+							label: 'topMarginMobile',
+						} }
+						valueRightMobile={ {
+							value: attributes.rightMarginMobile,
+							label: 'rightMarginMobile',
+						} }
+						valueBottomMobile={ {
+							value: attributes.bottomMarginMobile,
+							label: 'bottomMarginMobile',
+						} }
+						valueLeftMobile={ {
+							value: attributes.leftMarginMobile,
+							label: 'leftMarginMobile',
+						} }
+						unit={ {
+							value: attributes.marginTypeDesktop,
+							label: 'marginType',
+						} }
+						mUnit={ {
+							value: attributes.marginTypeMobile,
+							label: 'marginType',
+						} }
+						tUnit={ {
+							value: attributes.marginTypeTablet,
+							label: 'marginType',
+						} }
+						attributes={ attributes }
+						setAttributes={ setAttributes }
+						link={ {
+							value: attributes.marginLink,
+							label: 'marginLink',
+						} }
+					/>
 
 				</UAGAdvancedPanelBody>
 
