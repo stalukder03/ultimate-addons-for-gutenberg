@@ -766,16 +766,16 @@ const Settings = ( props ) => {
 							label: 'leftMarginMobile',
 						} }
 						unit={ {
-							value: attributes.marginTypeDesktop,
-							label: 'marginType',
+							value: attributes.marginUnitDesktop,
+							label: 'marginUnitDesktop',
 						} }
 						mUnit={ {
-							value: attributes.marginTypeMobile,
-							label: 'marginType',
+							value: attributes.marginUnitMobile,
+							label: 'marginUnitMobile',
 						} }
 						tUnit={ {
-							value: attributes.marginTypeTablet,
-							label: 'marginType',
+							value: attributes.marginUnitTablet,
+							label: 'marginUnitTablet',
 						} }
 						attributes={ attributes }
 						setAttributes={ setAttributes }
