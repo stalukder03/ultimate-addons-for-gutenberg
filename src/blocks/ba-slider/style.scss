@@ -36,3 +36,17 @@
   }
 
 }
+
+// Margin reset button in Styling -> Spacing Settings.
+.uag-advance-panel-body-spacing button.uagb-ba-slider__margin-reset-button {
+  width: 100%;
+  justify-content: center;
+
+  background-color: rgb(97, 4, 255);  // The uber cool Spectra purple! 😎
+  color: #ffffff;
+
+  &:hover {
+    color: rgb(97, 4, 255) !important;  // !important is essential since the specificity is already high, yet the color wasn't being applied.
+    background-color: #ffffff;
+  }
+}
