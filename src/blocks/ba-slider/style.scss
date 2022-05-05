@@ -45,6 +45,8 @@
   background-color: rgb(97, 4, 255);  // The uber cool Spectra purple! 😎
   color: #ffffff;
 
+  margin-bottom: 1.5em;
+
   &:hover {
     color: rgb(97, 4, 255) !important;  // !important is essential since the specificity is already high, yet the color wasn't being applied.
     background-color: #ffffff;
