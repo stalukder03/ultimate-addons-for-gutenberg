@@ -5,6 +5,8 @@
  */
 
 .uagb-ba-slider {
+  display: flex;
+  justify-content: center;
 
   .uagb-ba-slider__handle {
     pointer-events: initial;
