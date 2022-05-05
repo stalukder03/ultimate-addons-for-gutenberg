@@ -301,7 +301,61 @@ const attributes = {
 	},
 	initialHeight: {
 		type: 'number',
-	}
+	},
+
+	// Margins.
+	topMarginDesktop: {
+		type: 'number'
+	},
+	topMarginTablet: {
+		type: 'number'
+	},
+	topMarginMobile: {
+		type: 'number'
+	},
+	bottomMarginDesktop: {
+		type: 'number'
+	},
+	bottomMarginTablet: {
+		type: 'number'
+	},
+	bottomMarginMobile: {
+		type: 'number'
+	},
+	leftMarginDesktop: {
+		type: 'number'
+	},
+	leftMarginTablet: {
+		type: 'number'
+	},
+	leftMarginMobile: {
+		type: 'number'
+	},
+	rightMarginDesktop: {
+		type: 'number'
+	},
+	rightMarginTablet: {
+		type: 'number'
+	},
+	rightMarginMobile: {
+		type: 'number'
+	},
+	marginUnitDesktop: {
+		type: 'string',
+		default: 'px',
+	},
+	marginUnitTablet: {
+		type: 'string',
+		default: 'px',
+	},
+	marginUnitMobile: {
+		type: 'string',
+		default: 'px',
+	},
+	marginLink: {
+		type: 'boolean',
+		default: true,
+	},
 };
 
 export default attributes;
