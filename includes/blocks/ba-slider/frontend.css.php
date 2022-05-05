@@ -168,9 +168,9 @@ $t_selectors = array(
 
 	'.uagb-ba-slider'                   => array(
 		'margin-top'    => UAGB_Helper::get_css_value( $attr['topMarginTablet'], $attr['marginUnitTablet'] ),
-		'margin-right'  => UAGB_Helper::get_css_value( $attr['rightMarginTablet'], $attr['marginUnitTablet'] ) . '!important',
+		'margin-right'  => UAGB_Helper::get_css_value( $attr['rightMarginTablet'], $attr['marginUnitTablet'] ) . ' !important',
 		'margin-bottom' => UAGB_Helper::get_css_value( $attr['bottomMarginTablet'], $attr['marginUnitTablet'] ),
-		'margin-left'   => UAGB_Helper::get_css_value( $attr['leftMarginTablet'], $attr['marginUnitTablet'] ) . '!important',
+		'margin-left'   => UAGB_Helper::get_css_value( $attr['leftMarginTablet'], $attr['marginUnitTablet'] ) . ' !important',
 	),
 
 	// <img-comparison-slider> variables and sizing.
@@ -197,7 +197,7 @@ $t_selectors = array(
 	// Figure -> After (The second image/figure doesn't resize itself, and hence we need the following code).
 	' .uagb-ba-slider__figure-after'    => array(
 		'height' => ( 'custom' === $attr['imageDimTablet'] ) ?
-					UAGB_Helper::get_css_value( $attr['sliderHeightTablet'], $attr['sliderHeightUnitTablet'] ) :
+					UAGB_Helper::get_css_value( $attr['sliderHeightTablet'], $attr['sliderHeightUnitTablet'] ) . ' !important' :
 					'auto',
 	),
 
@@ -221,9 +221,9 @@ $m_selectors = array(
 
 	'.uagb-ba-slider'                   => array(
 		'margin-top'    => UAGB_Helper::get_css_value( $attr['topMarginMobile'], $attr['marginUnitMobile'] ),
-		'margin-right'  => UAGB_Helper::get_css_value( $attr['rightMarginMobile'], $attr['marginUnitMobile'] ) . '!important',
+		'margin-right'  => UAGB_Helper::get_css_value( $attr['rightMarginMobile'], $attr['marginUnitMobile'] ) . ' !important',
 		'margin-bottom' => UAGB_Helper::get_css_value( $attr['bottomMarginMobile'], $attr['marginUnitMobile'] ),
-		'margin-left'   => UAGB_Helper::get_css_value( $attr['leftMarginMobile'], $attr['marginUnitMobile'] ) . '!important',
+		'margin-left'   => UAGB_Helper::get_css_value( $attr['leftMarginMobile'], $attr['marginUnitMobile'] ) . ' !important',
 	),
 
 	// <img-comparison-slider> variables and sizing.
@@ -250,8 +250,8 @@ $m_selectors = array(
 	// Figure -> After (The second image/figure doesn't resize itself, and hence we need the following code).
 	' .uagb-ba-slider__figure-after'    => array(
 		'height' => ( 'custom' === $attr['imageDimMobile'] ) ?
-					UAGB_Helper::get_css_value( $attr['sliderHeightMobile'], $attr['sliderHeightUnitMobile'] ) :
-					'auto',
+					UAGB_Helper::get_css_value( $attr['sliderHeightMobile'], $attr['sliderHeightUnitMobile'] ) . ' !important' :
+					'auto !important',
 	),
 
 	// Before Label.
