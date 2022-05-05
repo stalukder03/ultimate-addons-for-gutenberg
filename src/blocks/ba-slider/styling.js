@@ -61,6 +61,21 @@ import { _x } from '@wordpress/i18n';
 		sliderHeightUnitDesktop,
 		sliderHeightUnitTablet,
 		sliderHeightUnitMobile,
+		topMarginDesktop,
+		topMarginTablet,
+		topMarginMobile,
+		rightMarginDesktop,
+		rightMarginTablet,
+		rightMarginMobile,
+		leftMarginDesktop,
+		leftMarginTablet,
+		leftMarginMobile,
+		bottomMarginDesktop,
+		bottomMarginTablet,
+		bottomMarginMobile,
+		marginUnitDesktop,
+		marginUnitTablet,
+		marginUnitMobile,
 	} = props.attributes;
 
     let selectors = {};
@@ -109,6 +124,13 @@ import { _x } from '@wordpress/i18n';
 	const dimsMobile  = getDimensions( imageDimMobile, sliderWidthMobile, sliderHeightMobile );
 
 	selectors = {
+
+		'.uagb-ba-slider': {
+			'margin-top': generateCSSUnit( topMarginDesktop, marginUnitDesktop ),
+			'margin-right': generateCSSUnit( rightMarginDesktop, marginUnitDesktop ),
+			'margin-bottom': generateCSSUnit( bottomMarginDesktop, marginUnitDesktop ),
+			'margin-left': generateCSSUnit( leftMarginDesktop, marginUnitDesktop ),
+		},
 
 		// <img-comparison-slider> variables and sizing.
 		' .uagb-ba-slider__img-comparison': {
@@ -225,6 +247,13 @@ import { _x } from '@wordpress/i18n';
 
 	tablet_selectors = {
 
+		'.uagb-ba-slider': {
+			'margin-top': generateCSSUnit( topMarginTablet, marginUnitTablet ),
+			'margin-right': generateCSSUnit( rightMarginTablet, marginUnitTablet ),
+			'margin-bottom': generateCSSUnit( bottomMarginTablet, marginUnitTablet ),
+			'margin-left': generateCSSUnit( leftMarginTablet, marginUnitTablet ),
+		},
+
 		// <img-comparison-slider> variables and sizing.
 		' .uagb-ba-slider__img-comparison': {
 
@@ -273,6 +302,13 @@ import { _x } from '@wordpress/i18n';
 	}
 
 	mobile_selectors = {
+
+		'.uagb-ba-slider': {
+			'margin-top': generateCSSUnit( topMarginMobile, marginUnitMobile ),
+			'margin-right': generateCSSUnit( rightMarginMobile, marginUnitMobile ),
+			'margin-bottom': generateCSSUnit( bottomMarginMobile, marginUnitMobile ),
+			'margin-left': generateCSSUnit( leftMarginMobile, marginUnitMobile ),
+		},
 
 		// <img-comparison-slider> variables and sizing.
 		' .uagb-ba-slider__img-comparison': {
