@@ -820,6 +820,13 @@ const Settings = ( props ) => {
 						{ __( 'Reset Margin for ', 'ultimate-addons-for-gutenberg' ) } { deviceType }
 					</Button>
 
+					<div>
+						<em>
+							<strong>{ __( 'Note: ', 'ultimate-addons-for-gutenberg' ) }</strong>
+							{ __( 'Using the margin reset button will perfectly center the block (horizontally).', 'ultimate-addons-for-gutenberg' ) }
+						</em>
+					</div>
+
 				</UAGAdvancedPanelBody>
 
 			</>
