@@ -125,6 +125,7 @@ import { _x } from '@wordpress/i18n';
 
 	selectors = {
 
+		// Only this selector won't have a whitespace before.
 		'.uagb-ba-slider': {
 			'margin-top': generateCSSUnit( topMarginDesktop, marginUnitDesktop ),
 			'margin-right': generateCSSUnit( rightMarginDesktop, marginUnitDesktop ),
@@ -247,6 +248,7 @@ import { _x } from '@wordpress/i18n';
 
 	tablet_selectors = {
 
+		// Only this selector won't have a whitespace before.
 		'.uagb-ba-slider': {
 			'margin-top': generateCSSUnit( topMarginTablet, marginUnitTablet ),
 			'margin-right': generateCSSUnit( rightMarginTablet, marginUnitTablet ),
@@ -303,6 +305,7 @@ import { _x } from '@wordpress/i18n';
 
 	mobile_selectors = {
 
+		// Only this selector won't have a whitespace before.
 		'.uagb-ba-slider': {
 			'margin-top': generateCSSUnit( topMarginMobile, marginUnitMobile ),
 			'margin-right': generateCSSUnit( rightMarginMobile, marginUnitMobile ),
