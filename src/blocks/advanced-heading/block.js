@@ -9,7 +9,8 @@ import save from './save';
 import deprecated from './deprecated';
 import './style.scss';
 import { __ } from '@wordpress/i18n';
-import { registerBlockType, createBlock } from '@wordpress/blocks';
+import { registerBlockType } from '@wordpress/blocks';
+import transforms from './transforms';
 
 registerBlockType( 'uagb/advanced-heading', {
 	title: __( 'Heading', 'ultimate-addons-for-gutenberg' ),
@@ -36,54 +37,5 @@ registerBlockType( 'uagb/advanced-heading', {
 	edit,
 	save,
 	deprecated,
-	transforms: {
-		from: [
-			{
-				type: 'block',
-				blocks: [ 'core/heading' ],
-				transform: ( attribute ) => {
-					return createBlock( 'uagb/advanced-heading', {
-						headingTitle: attribute.content,
-						headingAlign: attribute.align,
-						className: 'uagb-heading-text',
-					} );
-				},
-			},
-			{
-				type: 'block',
-				blocks: [ 'core/quote' ],
-				transform: ( attribute ) => {
-					return createBlock( 'uagb/advanced-heading', {
-						headingTitle: attribute.value,
-						headingDesc: attribute.citation,
-						className: 'uagb-heading-text',
-					} );
-				},
-			},
-		],
-		to: [
-			{
-				type: 'block',
-				blocks: [ 'core/heading' ],
-				transform: ( attribute ) => {
-					return createBlock( 'core/heading', {
-						content: attribute.headingTitle,
-						align: attribute.headingAlign,
-						className: 'uagb-heading-text',
-					} );
-				},
-			},
-			{
-				type: 'block',
-				blocks: [ 'core/quote' ],
-				transform: ( attribute ) => {
-					return createBlock( 'core/quote', {
-						value: `<p>${ attribute.headingTitle }</p>`,
-						citation: attribute.headingDesc,
-						className: 'uagb-heading-text',
-					} );
-				},
-			},
-		],
-	},
+	transforms
 } );
