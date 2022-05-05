@@ -9,8 +9,8 @@ import './style.scss';
 import deprecated from './deprecated';
 import attributes from './attributes';
 import { __ } from '@wordpress/i18n';
-
-import { registerBlockType, createBlock } from '@wordpress/blocks';
+import transforms from './transforms';
+import { registerBlockType } from '@wordpress/blocks';
 
 registerBlockType( 'uagb/blockquote', {
 	title: __( 'Blockquote', 'ultimate-addons-for-gutenberg' ),
@@ -37,52 +37,5 @@ registerBlockType( 'uagb/blockquote', {
 		}
 	},
 	deprecated,
-	transforms: {
-		from: [
-			{
-				type: 'block',
-				blocks: [ 'core/quote' ],
-				transform: ( attribute ) => {
-					return createBlock( 'uagb/blockquote', {
-						descriptionText: attribute.value,
-						author: attribute.citation,
-						align: attribute.align,
-					} );
-				},
-			},
-			{
-				type: 'block',
-				blocks: [ 'core/heading' ],
-				transform: ( attribute ) => {
-					return createBlock( 'uagb/blockquote', {
-						descriptionText: attribute.content,
-						align: attribute.align,
-					} );
-				},
-			},
-		],
-		to: [
-			{
-				type: 'block',
-				blocks: [ 'core/quote' ],
-				transform: ( attribute ) => {
-					return createBlock( 'core/quote', {
-						value: `<p>${ attribute.descriptionText }</p>`,
-						citation: attribute.author,
-						align: attribute.align,
-					} );
-				},
-			},
-			{
-				type: 'block',
-				blocks: [ 'core/heading' ],
-				transform: ( attribute ) => {
-					return createBlock( 'core/heading', {
-						content: attribute.descriptionText,
-						align: attribute.align,
-					} );
-				},
-			},
-		],
-	},
+	transforms,
 } );
