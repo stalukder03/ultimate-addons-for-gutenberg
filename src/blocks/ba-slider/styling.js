@@ -5,20 +5,13 @@
 import generateCSS from '@Controls/generateCSS';
 import generateCSSUnit from '@Controls/generateCSSUnit';
 import { _x } from '@wordpress/i18n';
-import { array } from 'prop-types';
 
  function styling ( props ) {
 
 	const {
-		block_id,
-        classMigrate,
-        beforeImage,
-        afterImage,
         showLabels,
         showLabelsTablet,
         showLabelsMobile,
-        beforeLabel,
-        afterLabel,
 		beforeLabelColor,
 		afterLabelColor,
 		beforeLabelBgColor,
@@ -42,10 +35,7 @@ import { array } from 'prop-types';
 		labelBorderRadius,
 		labelBorderColor,
 		labelBorderHoverColor,
-        sliderOrientation,
-        sliderPosition,
         animateSlider,
-        hoverSlider,
 		enableSliderElevation,
 		sliderBoxShadowColor,
 		sliderBoxShadowHOffset,
@@ -71,8 +61,6 @@ import { array } from 'prop-types';
 		sliderHeightUnitDesktop,
 		sliderHeightUnitTablet,
 		sliderHeightUnitMobile,
-		beforeHeight,
-		firstTimeRun,
 	} = props.attributes;
 
     let selectors = {};
