@@ -21,6 +21,7 @@ import renderSVG from '@Controls/renderIcon';
 import MultiButtonsControl from '@Components/multi-buttons-control';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
+import addBlockEditorDynamicScripts from '@Controls/addBlockEditorDynamicScripts';
 
 const Settings = lazy( () =>
 	import(
@@ -260,6 +261,14 @@ const UAGBPostMasonry = ( props ) => {
 
 		addBlockEditorDynamicStyles( 'uagb-post-masonry-style-' + props.clientId.substr( 0, 8 ), blockStyling );
 
+	}, [ props.deviceType ] );
+
+	// Loading Required Scripts.
+	useEffect( () => {
+		addBlockEditorDynamicScripts(
+			'uagb-post-masonry-styles-' + props.clientId.substr( 0, 8 ),
+			[ 'uagb-masonry-js', 'uagb-imagesloaded-js', 'uagb-post-js-js' ] //, 'jquery-core-js'
+		);
 	}, [ props.deviceType ] );
 
 	const togglePreview = () => {
