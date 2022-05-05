@@ -787,6 +787,7 @@ const Settings = ( props ) => {
 
 					<Button
 						variant='secondary'
+						className='uagb-ba-slider__margin-reset-button'
 						onClick={ () => {
 
 							if( deviceType === 'Desktop' )
