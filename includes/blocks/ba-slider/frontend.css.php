@@ -71,6 +71,13 @@ $m_selectors = array();
 
 $selectors = array(
 
+	'.uagb-ba-slider'                        => array(
+		'margin-top'    => UAGB_Helper::get_css_value( $attr['topMarginDesktop'], $attr['marginUnitDesktop'] ),
+		'margin-right'  => UAGB_Helper::get_css_value( $attr['rightMarginDesktop'], $attr['marginUnitDesktop'] ) . ' !important',
+		'margin-bottom' => UAGB_Helper::get_css_value( $attr['bottomMarginDesktop'], $attr['marginUnitDesktop'] ),
+		'margin-left'   => UAGB_Helper::get_css_value( $attr['leftMarginDesktop'], $attr['marginUnitDesktop'] ) . ' !important',
+	),
+
 	// <img-comparison-slider> variables and sizing.
 	'  .uagb-ba-slider__img-comparison'      => array(
 		'--divider-width' => UAGB_Helper::get_css_value( $attr['dividerWidth'], 'px' ),
@@ -159,6 +166,13 @@ $selectors = array(
 
 $t_selectors = array(
 
+	'.uagb-ba-slider'                   => array(
+		'margin-top'    => UAGB_Helper::get_css_value( $attr['topMarginTablet'], $attr['marginUnitTablet'] ),
+		'margin-right'  => UAGB_Helper::get_css_value( $attr['rightMarginTablet'], $attr['marginUnitTablet'] ) . '!important',
+		'margin-bottom' => UAGB_Helper::get_css_value( $attr['bottomMarginTablet'], $attr['marginUnitTablet'] ),
+		'margin-left'   => UAGB_Helper::get_css_value( $attr['leftMarginTablet'], $attr['marginUnitTablet'] ) . '!important',
+	),
+
 	// <img-comparison-slider> variables and sizing.
 	'  .uagb-ba-slider__img-comparison' => array(
 		'--divider-width' => UAGB_Helper::get_css_value( $attr['dividerWidth'], 'px' ),
@@ -204,6 +218,13 @@ $t_selectors = array(
 );
 
 $m_selectors = array(
+
+	'.uagb-ba-slider'                   => array(
+		'margin-top'    => UAGB_Helper::get_css_value( $attr['topMarginMobile'], $attr['marginUnitMobile'] ),
+		'margin-right'  => UAGB_Helper::get_css_value( $attr['rightMarginMobile'], $attr['marginUnitMobile'] ) . '!important',
+		'margin-bottom' => UAGB_Helper::get_css_value( $attr['bottomMarginMobile'], $attr['marginUnitMobile'] ),
+		'margin-left'   => UAGB_Helper::get_css_value( $attr['leftMarginMobile'], $attr['marginUnitMobile'] ) . '!important',
+	),
 
 	// <img-comparison-slider> variables and sizing.
 	'  .uagb-ba-slider__img-comparison' => array(
