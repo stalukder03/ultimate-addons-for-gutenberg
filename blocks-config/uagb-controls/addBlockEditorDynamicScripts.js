@@ -11,19 +11,16 @@ ISSUES:
 /*
 TEST CODE ( For Post Masonry Isotope ):
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-const element = document.querySelector( '.uag-image-gallery__layout--tiled' );
+const element = document.querySelector( '.wp-block-uagb-post-masonry ' );
 const isotope = new Isotope( element, {
-	itemSelector: '.uag-image-gallery-media-wrapper',
+	itemSelector: 'article.uagb-post__inner-wrap',
 	layoutMode: 'masonry',
-	masonry: {
-		columnWidth: '.uag-image-gallery-media-spacer',
-	},
 } );
 isotope.layout();
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-const addBlockEditorDynamicScripts = ( scriptTagId, dependencies = [] ) => {
+const addBlockEditorDynamicScripts = ( dependencies = [] ) => {
 
     const scriptLoaded = ( id ) => {
         console.log( `${ id } has been loaded.`);
@@ -37,13 +34,10 @@ const addBlockEditorDynamicScripts = ( scriptTagId, dependencies = [] ) => {
 
     if ( 0 !== tabletPreview.length || 0 !== mobilePreview.length ) {
 
-        const preview = tabletPreview[0] || mobilePreview[0];
+        const preview = tabletPreview[ 0 ] || mobilePreview[ 0 ];
 
-        const iframe = preview.getElementsByTagName( 'iframe' )[0];
+        const iframe = preview.getElementsByTagName( 'iframe' )[ 0 ];
         const iframeDocument = iframe.contentWindow.document || iframe.contentDocument;
-        // const iframeElement = iframeDocument.getElementById( scriptTagId );
-        // console.error( iframeElement );
-        // if ( null !== iframeElement && undefined !== iframeElement ) {
 
             // Dependency JS Files.
             for ( let i = 0; i < dependencies.length; i++ ) {

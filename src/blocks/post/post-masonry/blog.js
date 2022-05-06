@@ -16,6 +16,7 @@ import {
 
 function Blog( props ) {
 	const article = useRef();
+	const isoElement = useRef();
 	const { attributes, className, latestPosts, block_id } = props;
 	const deviceType = useDeviceType();
 	const {
@@ -29,8 +30,50 @@ function Blog( props ) {
 		buttonText,
 		paginationType,
 		layoutConfig,
-		rowGap
+		rowGap,
 	} = attributes;
+
+	// useEffect( () => {
+	// 	layoutIsotope();
+	// }, [ deviceType ] )
+
+	const layoutIsotope = () => {
+		if ( ! isoElement.current ){
+			console.log( `%cNope.`, 'color: yellowgreen; text-shadow: 1em 1em 1em black; font-size: 2em;' );
+			console.log( isoElement );
+			return;
+		}
+		let element = isoElement.current.querySelector( '.is-masonry' );
+		if ( ! element ) {
+			element = isoElement.current;
+		};
+		console.log( element );
+		// const $selector = `.uagb-block-${ block_id }`;
+		// let $scope;
+		// if ( 'Desktop' === deviceType ){
+		// 	$scope = document.querySelector( JSON.stringify( $selector ) );
+		// }
+		// else{
+		// 	const tabletPreview = document.getElementsByClassName( 'is-tablet-preview' );
+		// 	const mobilePreview = document.getElementsByClassName( 'is-mobile-preview' );
+		// 	if ( 0 !== tabletPreview.length || 0 !== mobilePreview.length ) {
+		// 		const preview = tabletPreview[ 0 ] || mobilePreview[ 0 ];
+		// 		const iframe = preview.getElementsByTagName( 'iframe' )[ 0 ];
+		// 		const iframeDocument = iframe.contentWindow.document || iframe.contentDocument;			
+		// 		$scope = iframeDocument.querySelector( $selector );
+		// 		console.log( `%ciFrame:\n${ $selector }`, 'color: aquamarine; text-shadow: 1em 1em 1em black; font-size: 2em;' );
+		// 	}
+		// 	else{
+		// 		$scope = document.querySelector( $selector );
+		// 	}
+		// }
+		// console.log( `%cScope:`, 'color: deeppink; text-shadow: 1em 1em 1em black; font-size: 2em;' );
+		// console.log( $scope );
+		const isotope = new Isotope( element, { // eslint-disable-line no-undef
+			itemSelector: 'article',
+		} );
+		setTimeout( () => isotope.layout(), 1000 );		
+	}
 
 	const updateImageBgWidth = () => {
 
@@ -109,8 +152,9 @@ function Blog( props ) {
 				`uagb-block-${ block_id }`
 			) }
 			data-blog-id={ block_id }
+			ref={ isoElement }
 		>
-			<Suspense fallback={ lazyLoader() }>
+			{/* <Suspense fallback={ lazyLoader() }> */}
 				<Masonry
 					className={ classnames(
 						'is-masonry',
@@ -144,7 +188,7 @@ function Blog( props ) {
 						) ) }
 					</InnerBlockLayoutContextProvider>
 				</Masonry>
-			</Suspense>
+			{/* </Suspense> */}
 			{ paginationRender() }
 		</div>
 	);
