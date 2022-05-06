@@ -47,11 +47,9 @@ const Render = ( props ) => {
                         alt={ beforeImage ? beforeImage.alt : '' }
                         className="uagb-ba-slider__image-before"
                     />
-                    { showLabels &&
-                        <figcaption className="uagb-ba-slider__label-before">
-                            {beforeLabel}
-                        </figcaption>
-                    }
+                    <figcaption className="uagb-ba-slider__label-before">
+                        {beforeLabel}
+                    </figcaption>
                 </figure>
                 <figure slot="second" className="uagb-ba-slider__figure-after">
                     <img
@@ -60,11 +58,9 @@ const Render = ( props ) => {
                         alt={ afterImage ? afterImage.alt : '' }
                         className="uagb-ba-slider__image-after"
                     />
-                    { showLabels &&
-                        <figcaption className="uagb-ba-slider__label-after">
-                            {afterLabel}
-                        </figcaption>
-                    }
+                    <figcaption className="uagb-ba-slider__label-after">
+                        {afterLabel}
+                    </figcaption>
                 </figure>
                 { UAGB_BA_Slider_Icons.arrows1 }
             </ImgComparisonSlider>
