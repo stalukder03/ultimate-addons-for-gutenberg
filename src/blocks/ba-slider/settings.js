@@ -406,7 +406,7 @@ const Settings = ( props ) => {
 						{/* Before Label */}
 						
 						<AdvancedPopColorControl
-							label={ __( 'Label Color', 'ultimate-addons-for-gutenberg' ) }
+							label={ __( 'Label Text Color', 'ultimate-addons-for-gutenberg' ) }
 							colorValue={ attributes.beforeLabelColor ? attributes.beforeLabelColor : '' }
 							onColorChange={ ( value ) =>
 								setAttributes( { beforeLabelColor: value } )
@@ -487,7 +487,7 @@ const Settings = ( props ) => {
 					{/* After Label */}
 
 					<AdvancedPopColorControl
-						label={ __( 'Label Color', 'ultimate-addons-for-gutenberg' ) }
+						label={ __( 'Label Text Color', 'ultimate-addons-for-gutenberg' ) }
 						colorValue={ attributes.afterLabelColor ? attributes.afterLabelColor : '' }
 						onColorChange={ ( value ) =>
 							setAttributes( { afterLabelColor: value } )
