@@ -87,7 +87,7 @@ $selectors = array(
 								'100%' :
 								UAGB_Helper::get_css_value( $dimsDesktop[0], $attr['sliderWidthUnitDesktop'] ),
 
-		'height'          => ( '100%' === $dimsDesktop[1] ) ?
+		'height'          => ( 'auto' === $dimsDesktop[1] ) ?
 								'auto' :
 								UAGB_Helper::get_css_value( $dimsDesktop[1], $attr['sliderHeightUnitDesktop'] ),
 
@@ -182,7 +182,7 @@ $t_selectors = array(
 								'100%' :
 								UAGB_Helper::get_css_value( $dimsTablet[0], $attr['sliderWidthUnitTablet'] ),
 
-		'height'          => ( '100%' === $dimsTablet[1] ) ?
+		'height'          => ( 'auto' === $dimsTablet[1] ) ?
 								'auto' :
 								UAGB_Helper::get_css_value( $dimsTablet[1], $attr['sliderHeightUnitTablet'] ),
 
@@ -235,7 +235,7 @@ $m_selectors = array(
 								'100%' :
 								UAGB_Helper::get_css_value( $dimsMobile[0], $attr['sliderWidthUnitMobile'] ),
 
-		'height'          => ( '100%' === $dimsMobile[1] ) ?
+		'height'          => ( 'auto' === $dimsMobile[1] ) ?
 								'auto' :
 								UAGB_Helper::get_css_value( $dimsMobile[1], $attr['sliderHeightUnitMobile'] ),
 
