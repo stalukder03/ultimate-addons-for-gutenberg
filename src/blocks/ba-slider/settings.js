@@ -566,64 +566,62 @@ const Settings = ( props ) => {
 
 		return(
 			<>
-				{ attributes.showLabels &&
 
-					<UAGAdvancedPanelBody title={ __( 'Label Styling', 'ultimate-addons-for-gutenberg' ) } initialOpen= { true }>
+				<UAGAdvancedPanelBody title={ __( 'Label Styling', 'ultimate-addons-for-gutenberg' ) } initialOpen= { true }>
 
-						<UAGTabsControl
-							tabs={ [
-								{
-									name: 'beforeLabel',
-									title: __( 'Before', 'ultimate-addons-for-gutenberg' ),
-								},
-								{
-									name: 'afterLabel',
-									title: __( 'After', 'ultimate-addons-for-gutenberg' ),
-								},
-							] }
-							beforeLabel={ beforeLabelStylingSettings() }
-							afterLabel={ afterLabelStylingSettings() }
-							disableBottomSeparator={ false }
-						/>
+					<UAGTabsControl
+						tabs={ [
+							{
+								name: 'beforeLabel',
+								title: __( 'Before', 'ultimate-addons-for-gutenberg' ),
+							},
+							{
+								name: 'afterLabel',
+								title: __( 'After', 'ultimate-addons-for-gutenberg' ),
+							},
+						] }
+						beforeLabel={ beforeLabelStylingSettings() }
+						afterLabel={ afterLabelStylingSettings() }
+						disableBottomSeparator={ false }
+					/>
 
-						{/* Label Border Styling */}
+					{/* Label Border Styling */}
 
-						<Border
-							setAttributes={ setAttributes }
-							borderStyle={ {
-								value: attributes.labelBorderStyle,
-								label: 'labelBorderStyle',
-								title: __( 'Style', 'ultimate-addons-for-gutenberg' ),
-							} }
-							borderWidth={ {
-								value: attributes.labelBorderWidth,
-								label: 'labelBorderWidth',
-								title: __( 'Width', 'ultimate-addons-for-gutenberg' ),
-							} }
-							borderRadius={ {
-								value: attributes.labelBorderRadius,
-								label: 'labelBorderRadius',
-								title: __( 'Radius', 'ultimate-addons-for-gutenberg' ),
-							} }
-							borderColor={ {
-								value: attributes.labelBorderColor,
-								label: 'labelBorderColor',
-								title: __( 'Color', 'ultimate-addons-for-gutenberg' ),
-							} }
-							borderHoverColor={ {
-								value: attributes.labelBorderHoverColor,
-								label: 'labelBorderHoverColor',
-								title: __(
-									'Hover Color',
-									'ultimate-addons-for-gutenberg'
-								),
-							} }
-							disableBottomSeparator={ true }
-						/>
+					<Border
+						setAttributes={ setAttributes }
+						borderStyle={ {
+							value: attributes.labelBorderStyle,
+							label: 'labelBorderStyle',
+							title: __( 'Style', 'ultimate-addons-for-gutenberg' ),
+						} }
+						borderWidth={ {
+							value: attributes.labelBorderWidth,
+							label: 'labelBorderWidth',
+							title: __( 'Width', 'ultimate-addons-for-gutenberg' ),
+						} }
+						borderRadius={ {
+							value: attributes.labelBorderRadius,
+							label: 'labelBorderRadius',
+							title: __( 'Radius', 'ultimate-addons-for-gutenberg' ),
+						} }
+						borderColor={ {
+							value: attributes.labelBorderColor,
+							label: 'labelBorderColor',
+							title: __( 'Color', 'ultimate-addons-for-gutenberg' ),
+						} }
+						borderHoverColor={ {
+							value: attributes.labelBorderHoverColor,
+							label: 'labelBorderHoverColor',
+							title: __(
+								'Hover Color',
+								'ultimate-addons-for-gutenberg'
+							),
+						} }
+						disableBottomSeparator={ true }
+					/>
 
-					</UAGAdvancedPanelBody>
+				</UAGAdvancedPanelBody>
 
-				}
 
 				{/* Divider/Handle Styling */}
 				<UAGAdvancedPanelBody title={ __( 'Divider/Handle Styling', 'ultimate-addons-for-gutenberg' ) } initialOpen= { false }>
