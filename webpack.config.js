@@ -47,6 +47,27 @@ module.exports = {
 						options: {
 							injectType: 'lazySingletonStyleTag',
 							attributes: { id: 'uagb-editor-styles' },
+							insert: function insertAtTop( element ) {
+
+								const spectraEditorIframe = document.querySelector( '#sepctra-frame' );
+
+								let parent = false;
+
+								if ( ! spectraEditorIframe ) {
+									// For Core Editor Desktop Iframe Static CSS loading.
+									parent = document.head;
+								} else {
+									// For Spectra Editor Iframe Static CSS loading.
+									parent = spectraEditorIframe.contentWindow.document.head;
+								}
+
+								if ( parent ) {
+									parent.appendChild( element );
+								}
+
+								// eslint-disable-next-line no-underscore-dangle
+								window._lastElementInsertedByStyleLoader = element;
+							},
 						},
 					},
 					'css-loader',
