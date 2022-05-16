@@ -1290,6 +1290,22 @@ const Settings = ( props ) => {
 						value: imageBottomSpaceUnit,
 						label: 'imageBottomSpaceUnit',
 					} }
+					units={ [
+						{
+							name: __(
+								'Pixel',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'px',
+						},
+						{
+							name: __(
+								'EM',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'em',
+						},
+					] }
 					setAttributes={ setAttributes }
 				/>
 			}
@@ -1399,6 +1415,22 @@ const Settings = ( props ) => {
 						value: titleBottomSpaceUnit,
 						label: 'titleBottomSpaceUnit',
 					} }
+					units={ [
+						{
+							name: __(
+								'Pixel',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'px',
+						},
+						{
+							name: __(
+								'EM',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'em',
+						},
+					] }
 					setAttributes={ setAttributes }
 				/>
 			</UAGAdvancedPanelBody>
@@ -1522,6 +1554,22 @@ const Settings = ( props ) => {
 						value: metaBottomSpaceUnit,
 						label: 'metaBottomSpaceUnit',
 					} }
+					units={ [
+						{
+							name: __(
+								'Pixel',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'px',
+						},
+						{
+							name: __(
+								'EM',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'em',
+						},
+					] }
 					setAttributes={ setAttributes }
 				/>
 			</UAGAdvancedPanelBody>
@@ -1626,6 +1674,22 @@ const Settings = ( props ) => {
 						value: excerptBottomSpaceUnit,
 						label: 'excerptBottomSpaceUnit',
 					} }
+					units={ [
+						{
+							name: __(
+								'Pixel',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'px',
+						},
+						{
+							name: __(
+								'EM',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'em',
+						},
+					] }
 					setAttributes={ setAttributes }
 				/>
 			</UAGAdvancedPanelBody>
@@ -1837,6 +1901,22 @@ const Settings = ( props ) => {
 						value: ctaBottomSpaceUnit,
 						label: 'ctaBottomSpaceUnit',
 					} }
+					units={ [
+						{
+							name: __(
+								'Pixel',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'px',
+						},
+						{
+							name: __(
+								'EM',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'em',
+						},
+					] }
 					setAttributes={ setAttributes }
 				/>
 				<SpacingControl

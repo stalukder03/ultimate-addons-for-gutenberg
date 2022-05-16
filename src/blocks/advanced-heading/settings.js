@@ -375,6 +375,13 @@ const Settings = ( props ) => {
 							),
 							unitValue: 'px',
 						},
+						{
+							name: __(
+								'EM',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'em',
+						},
 					] }
 					setAttributes={ setAttributes }
 				/>
@@ -588,6 +595,13 @@ const Settings = ( props ) => {
 								'ultimate-addons-for-gutenberg'
 							),
 							unitValue: 'px',
+						},
+						{
+							name: __(
+								'EM',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'em',
 						},
 					] }
 					setAttributes={ setAttributes }

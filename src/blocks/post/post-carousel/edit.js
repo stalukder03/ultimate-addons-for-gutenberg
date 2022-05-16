@@ -1268,23 +1268,6 @@ const UAGBPostCarousel = ( props ) => {
 				</>
 			)}
 			{imgPosition === 'top' && (
-			// <Range
-			// 	label={ __(
-			// 		'Image Bottom Spacing',
-			// 		'ultimate-addons-for-gutenberg'
-			// 	) }
-			// 	setAttributes={ setAttributes }
-			// 	value={ imageBottomSpace }
-			// 	onChange={ ( value ) =>
-			// 		setAttributes( { imageBottomSpace: value } )
-			// 	}
-			// 	min={ 0 }
-			// 	max={ 50 }
-			// 	unit={ {
-			// 		value: imageBottomSpaceUnit,
-			// 		label: 'imageBottomSpaceUnit',
-			// 	} }
-			// />
 			<ResponsiveSlider
 				label={ __( 'Bottom Spacing', 'ultimate-addons-for-gutenberg' ) }
 				data={ {
@@ -1307,6 +1290,22 @@ const UAGBPostCarousel = ( props ) => {
 					value: imageBottomSpaceUnit,
 					label: 'imageBottomSpaceUnit',
 				} }
+				units={ [
+					{
+						name: __(
+							'Pixel',
+							'ultimate-addons-for-gutenberg'
+						),
+						unitValue: 'px',
+					},
+					{
+						name: __(
+							'EM',
+							'ultimate-addons-for-gutenberg'
+						),
+						unitValue: 'em',
+					},
+				] }
 				setAttributes={ setAttributes }
 			/>
 			)}
@@ -1438,23 +1437,6 @@ const UAGBPostCarousel = ( props ) => {
 						label: 'titleDecoration',
 					} }
 				/>
-				{/* <Range
-					label={ __(
-						'Bottom Spacing',
-						'ultimate-addons-for-gutenberg'
-					) }
-					setAttributes={ setAttributes }
-					value={ titleBottomSpace }
-					onChange={ ( value ) =>
-						setAttributes( { titleBottomSpace: value } )
-					}
-					min={ 0 }
-					max={ 50 }
-					unit={ {
-						value: titleBottomSpaceUnit,
-						label: 'titleBottomSpaceUnit',
-					} }
-				/> */}
 				<ResponsiveSlider
 					label={ __( 'Bottom Spacing', 'ultimate-addons-for-gutenberg' ) }
 					data={ {
@@ -1477,6 +1459,22 @@ const UAGBPostCarousel = ( props ) => {
 						value: titleBottomSpaceUnit,
 						label: 'titleBottomSpaceUnit',
 					} }
+					units={ [
+						{
+							name: __(
+								'Pixel',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'px',
+						},
+						{
+							name: __(
+								'EM',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'em',
+						},
+					] }
 					setAttributes={ setAttributes }
 				/>
 
@@ -1579,23 +1577,6 @@ const UAGBPostCarousel = ( props ) => {
 					} }
 				/>
 
-				{/* <Range
-					label={ __(
-						'Bottom Spacing',
-						'ultimate-addons-for-gutenberg'
-					) }
-					setAttributes={ setAttributes }
-					value={ metaBottomSpace }
-					onChange={ ( value ) =>
-						setAttributes( { metaBottomSpace: value } )
-					}
-					min={ 0 }
-					max={ 50 }
-					unit={ {
-						value: metaBottomSpaceUnit,
-						label: 'metaBottomSpaceUnit',
-					} }
-				/> */}
 				<ResponsiveSlider
 					label={ __( 'Bottom Spacing', 'ultimate-addons-for-gutenberg' ) }
 					data={ {
@@ -1618,6 +1599,22 @@ const UAGBPostCarousel = ( props ) => {
 						value: metaBottomSpaceUnit,
 						label: 'metaBottomSpaceUnit',
 					} }
+					units={ [
+						{
+							name: __(
+								'Pixel',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'px',
+						},
+						{
+							name: __(
+								'EM',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'em',
+						},
+					] }
 					setAttributes={ setAttributes }
 				/>
 			</UAGAdvancedPanelBody>
@@ -1700,23 +1697,6 @@ const UAGBPostCarousel = ( props ) => {
 						label: 'excerptDecoration',
 					} }
 				/>
-				{/* <Range
-					label={ __(
-						'Bottom Spacing',
-						'ultimate-addons-for-gutenberg'
-					) }
-					setAttributes={ setAttributes }
-					value={ excerptBottomSpace }
-					onChange={ ( value ) =>
-						setAttributes( { excerptBottomSpace: value } )
-					}
-					min={ 0 }
-					max={ 50 }
-					unit={ {
-						value: excerptBottomSpaceUnit,
-						label: 'excerptBottomSpaceUnit',
-					} }
-				/> */}
 				<ResponsiveSlider
 					label={ __( 'Bottom Spacing', 'ultimate-addons-for-gutenberg' ) }
 					data={ {
@@ -1739,6 +1719,22 @@ const UAGBPostCarousel = ( props ) => {
 						value: excerptBottomSpaceUnit,
 						label: 'excerptBottomSpaceUnit',
 					} }
+					units={ [
+						{
+							name: __(
+								'Pixel',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'px',
+						},
+						{
+							name: __(
+								'EM',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'em',
+						},
+					] }
 					setAttributes={ setAttributes }
 				/>
 			</UAGAdvancedPanelBody>
@@ -1884,23 +1880,6 @@ const UAGBPostCarousel = ( props ) => {
 						label: 'ctaDecoration',
 					} }
 				/>
-				{/* <Range
-					label={ __(
-						'Bottom Spacing',
-						'ultimate-addons-for-gutenberg'
-					) }
-					setAttributes={ setAttributes }
-					value={ ctaBottomSpace }
-					onChange={ ( value ) =>
-						setAttributes( { ctaBottomSpace: value } )
-					}
-					min={ 0 }
-					max={ 200 }
-					unit={ {
-						value: ctaBottomSpaceUnit,
-						label: 'ctaBottomSpaceUnit',
-					} }
-				/> */}
 				<ResponsiveSlider
 					label={ __( 'Bottom Spacing', 'ultimate-addons-for-gutenberg' ) }
 					data={ {
@@ -1923,6 +1902,22 @@ const UAGBPostCarousel = ( props ) => {
 						value: ctaBottomSpaceUnit,
 						label: 'ctaBottomSpaceUnit',
 					} }
+					units={ [
+						{
+							name: __(
+								'Pixel',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'px',
+						},
+						{
+							name: __(
+								'EM',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'em',
+						},
+					] }
 					setAttributes={ setAttributes }
 				/>
 				<Border

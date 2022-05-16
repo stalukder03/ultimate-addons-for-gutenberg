@@ -1329,6 +1329,13 @@ const Settings = ( props ) => {
 							),
 							unitValue: 'px',
 						},
+						{
+							name: __(
+								'EM',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'em',
+						},
 					] }
 				/>
 				{ ctaPosition !== 'right' &&
@@ -1355,6 +1362,13 @@ const Settings = ( props ) => {
 									'ultimate-addons-for-gutenberg'
 								),
 								unitValue: 'px',
+							},
+							{
+								name: __(
+									'EM',
+									'ultimate-addons-for-gutenberg'
+								),
+								unitValue: 'em',
 							},
 						] }
 					/>
@@ -1384,6 +1398,13 @@ const Settings = ( props ) => {
 								),
 								unitValue: 'px',
 							},
+							{
+								name: __(
+									'EM',
+									'ultimate-addons-for-gutenberg'
+								),
+								unitValue: 'em',
+							},
 						] }
 					/>
 				) }
@@ -1412,6 +1433,13 @@ const Settings = ( props ) => {
 								),
 								unitValue: 'px',
 							},
+							{
+								name: __(
+									'EM',
+									'ultimate-addons-for-gutenberg'
+								),
+								unitValue: 'em',
+							},
 						] }
 					/>
 				) }
@@ -1439,6 +1467,13 @@ const Settings = ( props ) => {
 								'ultimate-addons-for-gutenberg'
 							),
 							unitValue: 'px',
+						},
+						{
+							name: __(
+								'EM',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'em',
 						},
 					] }
 				/>
@@ -1660,6 +1695,13 @@ const Settings = ( props ) => {
 													'ultimate-addons-for-gutenberg'
 												),
 												unitValue: '%',
+											},
+											{
+												name: __(
+													'EM',
+													'ultimate-addons-for-gutenberg'
+												),
+												unitValue: 'em',
 											},
 										] }
 										setAttributes={ setAttributes }

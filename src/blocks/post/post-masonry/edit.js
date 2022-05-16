@@ -1658,6 +1658,22 @@ const UAGBPostMasonry = ( props ) => {
 							value: imageBottomSpaceUnit,
 							label: 'imageBottomSpaceUnit',
 						} }
+						units={ [
+							{
+								name: __(
+									'Pixel',
+									'ultimate-addons-for-gutenberg'
+								),
+								unitValue: 'px',
+							},
+							{
+								name: __(
+									'EM',
+									'ultimate-addons-for-gutenberg'
+								),
+								unitValue: 'em',
+							},
+						] }
 						setAttributes={ setAttributes }
 					/>
 				}
@@ -1811,6 +1827,22 @@ const UAGBPostMasonry = ( props ) => {
 						value: titleBottomSpaceUnit,
 						label: 'titleBottomSpaceUnit',
 					} }
+					units={ [
+						{
+							name: __(
+								'Pixel',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'px',
+						},
+						{
+							name: __(
+								'EM',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'em',
+						},
+					] }
 					setAttributes={ setAttributes }
 				/>
 
@@ -1934,6 +1966,22 @@ const UAGBPostMasonry = ( props ) => {
 						value: metaBottomSpaceUnit,
 						label: 'metaBottomSpaceUnit',
 					} }
+					units={ [
+						{
+							name: __(
+								'Pixel',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'px',
+						},
+						{
+							name: __(
+								'EM',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'em',
+						},
+					] }
 					setAttributes={ setAttributes }
 				/>
 			</UAGAdvancedPanelBody>
@@ -2038,6 +2086,22 @@ const UAGBPostMasonry = ( props ) => {
 						value: excerptBottomSpaceUnit,
 						label: 'excerptBottomSpaceUnit',
 					} }
+					units={ [
+						{
+							name: __(
+								'Pixel',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'px',
+						},
+						{
+							name: __(
+								'EM',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'em',
+						},
+					] }
 					setAttributes={ setAttributes }
 				/>
 			</UAGAdvancedPanelBody>
@@ -2205,6 +2269,22 @@ const UAGBPostMasonry = ( props ) => {
 						value: ctaBottomSpaceUnit,
 						label: 'ctaBottomSpaceUnit',
 					} }
+					units={ [
+						{
+							name: __(
+								'Pixel',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'px',
+						},
+						{
+							name: __(
+								'EM',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'em',
+						},
+					] }
 					setAttributes={ setAttributes }
 				/>
 				<Border

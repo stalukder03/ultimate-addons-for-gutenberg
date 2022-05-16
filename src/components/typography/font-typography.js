@@ -24,6 +24,7 @@ function FontFamilyControl( props ) {
 	} );
 
 	// check if the font is a system font and then apply the font weight accordingly.
+
 	if ( fontWeight === '' ) {
 		fontWeight = fonts[ 0 ].weight;
 	}
@@ -36,33 +37,9 @@ function FontFamilyControl( props ) {
 
 	const onFontfamilyChange = ( value ) => {
 		const font = value.value;
-		const { loadGoogleFonts, fontFamily, fontWeight } = props; // eslint-disable-line no-shadow
+		const { loadGoogleFonts, fontFamily } = props; // eslint-disable-line no-shadow
 		props.setAttributes( { [ fontFamily.label ]: font } );
 		onLoadGoogleFonts( loadGoogleFonts, font );
-		onFontChange( fontWeight, font );
-	};
-
-	const onFontChange = ( fontWeight, fontFamily ) => { // eslint-disable-line no-shadow
-		let font_flag;  // eslint-disable-line no-unused-vars
-		let new_value;
-
-		if ( typeof googleFonts[ fontFamily ] === 'object' ) {
-			const gfontsObj = googleFonts[ fontFamily ].weight;
-
-			if ( typeof gfontsObj === 'object' ) {
-				gfontsObj.forEach( function ( item ) {
-					if ( fontWeight.value === item ) {
-						font_flag = false;
-					} else {
-						new_value = item;
-						font_flag = true;
-						props.setAttributes( {
-							[ props.fontWeight.label ]: new_value,
-						} );
-					}
-				} );
-			}
-		}
 	};
 
 	const onLoadGoogleFonts = ( loadGoogleFonts, fontFamily ) => {

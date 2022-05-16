@@ -777,5 +777,9 @@ button.components-button.uagb-review-select-btn.is-secondary {
 		display: flex;
 		flex-direction: row-reverse;
 		justify-content: space-between;
+
+		.components-form-toggle {
+			margin-right: 0;
+		}
 	}
 }

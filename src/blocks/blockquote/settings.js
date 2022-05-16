@@ -1066,6 +1066,22 @@ const Settings = ( props ) => {
 					value: descSpaceUnit,
 					label: 'descSpaceUnit',
 				} }
+				units={ [
+					{
+						name: __(
+							'Pixel',
+							'ultimate-addons-for-gutenberg'
+						),
+						unitValue: 'px',
+					},
+					{
+						name: __(
+							'EM',
+							'ultimate-addons-for-gutenberg'
+						),
+						unitValue: 'em',
+					},
+				] }
 				setAttributes={ setAttributes }
 			/>
 			{ align === 'center' && skinStyle !== 'border' && (
@@ -1094,6 +1110,22 @@ const Settings = ( props ) => {
 						value: authorSpaceUnit,
 						label: 'authorSpaceUnit',
 					} }
+					units={ [
+						{
+							name: __(
+								'Pixel',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'px',
+						},
+						{
+							name: __(
+								'EM',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'em',
+						},
+					] }
 					setAttributes={ setAttributes }
 				/>
 			) }
@@ -1125,6 +1157,22 @@ const Settings = ( props ) => {
 							value: verticalPaddingUnit,
 							label: 'verticalPaddingUnit',
 						} }
+						units={ [
+							{
+								name: __(
+									'Pixel',
+									'ultimate-addons-for-gutenberg'
+								),
+								unitValue: 'px',
+							},
+							{
+								name: __(
+									'EM',
+									'ultimate-addons-for-gutenberg'
+								),
+								unitValue: 'em',
+							},
+						] }
 						setAttributes={ setAttributes }
 					/>
 				</>
@@ -1147,6 +1195,22 @@ const Settings = ( props ) => {
 						value: tweetGapUnit,
 						label: 'tweetGapUnit',
 					} }
+					units={ [
+						{
+							name: __(
+								'Pixel',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'px',
+						},
+						{
+							name: __(
+								'EM',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'em',
+						},
+					] }
 				/>
 			) }
 		</UAGAdvancedPanelBody>

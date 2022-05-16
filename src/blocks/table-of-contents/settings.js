@@ -521,6 +521,13 @@ const Settings = ( props ) => {
 							),
 							unitValue: 'px',
 						},
+						{
+							name: __(
+								'EM',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'em',
+						},
 					] }
 					setAttributes={ setAttributes }
 				/>
