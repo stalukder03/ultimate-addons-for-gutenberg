@@ -150,7 +150,35 @@ const attributes = {
 	isPreview: {
 		type: 'boolean',
 		default: false,
-	}
+	},
+	parent_icon_color: {
+		type: 'string',
+		default: '#3a3a3a',
+		UAGCopyPaste: {
+			styleType: 'icon-color'
+		},
+	},
+	parent_icon_hover_color: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'icon-hover-color'
+		},
+		default: '',
+	},
+	parent_icon_bg_color: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'icon-bg-color'
+		},
+		default: '',
+	},
+	parent_icon_bg_hover_color: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'icon-bg-hover-color'
+		},
+		default: '',
+	},
 };
 
 export default attributes;
