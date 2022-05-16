@@ -12,26 +12,40 @@ function styling( props ) {
 		icon_bg_hover_color,
 	} = props.attributes;
 
-	const selectors = {
-		'.uagb-ss-repeater a.uagb-ss__link': {
+	const selectors = {};
+
+	if( icon_color ) {
+		selectors['.uagb-ss-repeater a.uagb-ss__link'] = {
 			'color': icon_color,
-		},
-		'.uagb-ss-repeater a.uagb-ss__link svg': {
+		};
+		selectors['.uagb-ss-repeater a.uagb-ss__link svg'] = {
 			'fill': icon_color,
-		},
-		'.uagb-ss-repeater:hover a.uagb-ss__link': {
+		};
+	} else {
+		delete selectors['.uagb-ss-repeater a.uagb-ss__link'];
+		delete selectors['.uagb-ss-repeater a.uagb-ss__link svg'];
+	}
+
+	if( icon_hover_color ) {
+		selectors['.uagb-ss-repeater:hover a.uagb-ss__link'] = {
 			'color': icon_hover_color,
-		},
-		'.uagb-ss-repeater:hover a.uagb-ss__link svg': {
+		};
+		selectors['.uagb-ss-repeater:hover a.uagb-ss__link svg'] = {
 			'fill': icon_hover_color,
-		},
-		'.uagb-ss-repeater.uagb-ss__wrapper': {
-			'background': icon_bg_color,
-		},
-		'.uagb-ss-repeater.uagb-ss__wrapper:hover': {
-			'background': icon_bg_hover_color,
-		},
-	};
+		};
+	}
+
+	if( icon_bg_color ) {
+		selectors['.uagb-ss-repeater.uagb-ss__wrapper'] = {
+			'color': icon_bg_color,
+		};
+	}
+
+	if( icon_bg_hover_color ) {
+		selectors['.uagb-ss-repeater.uagb-ss__wrapper:hover'] = {
+			'fill': icon_bg_hover_color,
+		};
+	}
 
 	let stylingCss = '';
 	const id = `.uagb-block-${ props.clientId.substr( 0, 8 ) }`;
