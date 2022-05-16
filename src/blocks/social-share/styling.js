@@ -21,6 +21,8 @@ function styling( props ) {
 		sizeTablet,
 		bgSize,
 		stack,
+		parent_icon_color,
+		parent_icon_hover_color,
 	} = props.attributes;
 
 	const selectors = {};
@@ -124,6 +126,18 @@ function styling( props ) {
 		'-webkit-box-align': alignment,
 		'-ms-flex-align': alignment,
 		'align-items': alignment,
+	};
+	selectors[ ' .uagb-ss-repeater a.uagb-ss__link' ] = {
+		'color': 'orange',
+	};
+	selectors[ ' .uagb-ss-repeater a.uagb-ss__link svg' ] = {
+		'fill': parent_icon_color,
+	};
+	selectors[ ' .uagb-ss-repeater:hover a.uagb-ss__link' ] = {
+		'color': parent_icon_hover_color,
+	};
+	selectors[ ' .uagb-ss-repeater:hover a.uagb-ss__link svg' ] = {
+		'fill': parent_icon_hover_color,
 	};
 
 	if ( 'horizontal' === social_layout ) {
