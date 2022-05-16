@@ -22,6 +22,9 @@ import { Icon } from '@wordpress/components';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import presets from './presets';
 import UAGPresets from '@Components/presets';
+import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
+import UAGTabsControl from '@Components/tabs';
+
 const Settings = ( props ) => {
 	props = props.parentProps;
 
@@ -42,6 +45,8 @@ const Settings = ( props ) => {
 		sizeMobile,
 		sizeTablet,
 		bgSize,
+		parent_icon_bg_color,
+		parent_icon_bg_color_hover,
 	} = attributes;
 
 	const blockControls = () => {
@@ -313,6 +318,124 @@ const Settings = ( props ) => {
 					/>
 				</UAGAdvancedPanelBody>
 	};
+	const colorSettings = () => {
+
+		const normalSettings = (
+			<AdvancedPopColorControl
+				label={ __(
+					'Background Color',
+					'ultimate-addons-for-gutenberg'
+				) }
+				colorValue={ parent_icon_bg_color ? parent_icon_bg_color : '' }
+				onColorChange={ ( value ) =>
+					setAttributes( { parent_icon_bg_color: value } )
+				}
+			/>
+		);
+
+		const hoverSettings = (
+			<AdvancedPopColorControl
+				label={ __(
+					'Background Color',
+					'ultimate-addons-for-gutenberg'
+				) }
+				colorValue={ parent_icon_bg_color_hover ? parent_icon_bg_color_hover : '' }
+				onColorChange={ ( value ) =>
+					setAttributes( { parent_icon_bg_color_hover: value } )
+				}
+			/>
+		);
+
+		return (
+			<>
+				<UAGAdvancedPanelBody
+					title={ __( 'Icon Colors', 'ultimate-addons-for-gutenberg' ) }
+					initialOpen={ true }
+				>
+					<UAGTabsControl
+						tabs={ [
+							{
+								name: 'normal',
+								title: __(
+									'Normal',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+							{
+								name: 'hover',
+								title: __(
+									'Hover',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+						] }
+						normal={ normalSettings }
+						hover={ hoverSettings }
+						disableBottomSeparator={ true }
+					/>
+				</UAGAdvancedPanelBody>
+			</>
+		);
+	};
+	const bgColorSettings = () => {
+
+		const normalSettings = (
+			<AdvancedPopColorControl
+				label={ __(
+					'Background Color',
+					'ultimate-addons-for-gutenberg'
+				) }
+				colorValue={ parent_icon_bg_color ? parent_icon_bg_color : '' }
+				onColorChange={ ( value ) =>
+					setAttributes( { parent_icon_bg_color: value } )
+				}
+			/>
+		);
+
+		const hoverSettings = (
+			<AdvancedPopColorControl
+				label={ __(
+					'Background Color',
+					'ultimate-addons-for-gutenberg'
+				) }
+				colorValue={ parent_icon_bg_color_hover ? parent_icon_bg_color_hover : '' }
+				onColorChange={ ( value ) =>
+					setAttributes( { parent_icon_bg_color_hover: value } )
+				}
+			/>
+		);
+
+		return (
+			<>
+				<UAGAdvancedPanelBody
+					title={ __( 'Icon Colors', 'ultimate-addons-for-gutenberg' ) }
+					initialOpen={ true }
+				>
+					<UAGTabsControl
+						tabs={ [
+							{
+								name: 'normal',
+								title: __(
+									'Normal',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+							{
+								name: 'hover',
+								title: __(
+									'Hover',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+						] }
+						normal={ normalSettings }
+						hover={ hoverSettings }
+						disableBottomSeparator={ true }
+					/>
+				</UAGAdvancedPanelBody>
+			</>
+		);
+	};
 	return (
 		<Suspense fallback={ lazyLoader() }>
 			{ blockControls() }
@@ -323,6 +446,7 @@ const Settings = ( props ) => {
 						{ generalSettings() }
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
+						{ colorSettings() }
 						{ spacingSettings() }
 					</InspectorTab>
 					<InspectorTab
