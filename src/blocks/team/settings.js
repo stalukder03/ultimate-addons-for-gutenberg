@@ -81,7 +81,6 @@ const Settings = ( props ) => {
 		descLineHeightMobile,
 		descLineHeightTablet,
 		socialFontSize,
-		socialFontSizeType,
 		socialFontSizeMobile,
 		socialFontSizeTablet,
 		titleLoadGoogleFonts,
@@ -1052,35 +1051,29 @@ const Settings = ( props ) => {
 				title={ __( 'Social Icons', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
-				<TypographyControl
-					label={ __(
-						'Typography',
-						'ultimate-addons-for-gutenberg'
-					) }
-					attributes={ attributes }
-					setAttributes={ setAttributes }
-					fontSizeType={ {
-						value: socialFontSizeType,
-						label: 'socialFontSizeType',
-					} }
-					fontSize={ {
-						value: socialFontSize,
-						label: 'socialFontSize',
-					} }
-					fontSizeMobile={ {
-						value: socialFontSizeMobile,
-						label: 'socialFontSizeMobile',
-					} }
-					fontSizeTablet={ {
-						value: socialFontSizeTablet,
-						label: 'socialFontSizeTablet',
-					} }
-					sizeText={ __(
+				<ResponsiveSlider
+					label={__(
 						'Icon Size',
 						'ultimate-addons-for-gutenberg'
-					) }
-					disableFontFamily={ true }
-					disableLineHeight={ true }
+					)}
+					data={{
+						desktop: {
+							value: socialFontSize,
+							label: 'socialFontSize',
+						},
+						tablet: {
+							value: socialFontSizeTablet,
+							label: 'socialFontSizeTablet',
+						},
+						mobile: {
+							value: socialFontSizeMobile,
+							label: 'socialFontSizeMobile',
+						},
+					}}
+					min={0}
+					max={100}
+					displayUnit={false}
+					setAttributes={setAttributes}
 				/>
 				<ResponsiveSlider
 					label={ __(
