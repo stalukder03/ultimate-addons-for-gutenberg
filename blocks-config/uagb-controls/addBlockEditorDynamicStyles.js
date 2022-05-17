@@ -87,6 +87,12 @@ const addBlockEditorDynamicStyles = ( styleTagId, styling ) => {
             iframeElement.innerHTML = styling;
         }
     }
+
+    // Create the event
+    var event = new CustomEvent("spectra-style-insert", { "detail": styleTagId });
+
+    // Dispatch/Trigger/Fire the event
+    document.dispatchEvent(event);
 }
 
 export default addBlockEditorDynamicStyles;
