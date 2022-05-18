@@ -78,10 +78,9 @@ $selectors[' .uagb-ss__source-image'] = array(
 );
 
 $selectors[' .uagb-ss__source-icon'] = array(
-	'width'       => $image_size,
-	'height'      => $image_size,
-	'font-size'   => $image_size,
-	'line-height' => $image_size,
+	'width'     => $image_size,
+	'height'    => $image_size,
+	'font-size' => $image_size,
 );
 
 $t_selectors[' .uagb-ss__source-wrap'] = array(
@@ -100,10 +99,9 @@ $t_selectors[' .uagb-ss__source-image'] = array(
 );
 
 $t_selectors[' .uagb-ss__source-icon'] = array(
-	'width'       => $t_image_size,
-	'height'      => $t_image_size,
-	'font-size'   => $t_image_size,
-	'line-height' => $t_image_size,
+	'width'     => $t_image_size,
+	'height'    => $t_image_size,
+	'font-size' => $t_image_size,
 );
 
 $m_selectors[' .uagb-ss__source-wrap'] = array(
@@ -122,10 +120,9 @@ $m_selectors[' .uagb-ss__source-image'] = array(
 );
 
 $m_selectors[' .uagb-ss__source-icon'] = array(
-	'width'       => $m_image_size,
-	'height'      => $m_image_size,
-	'font-size'   => $m_image_size,
-	'line-height' => $m_image_size,
+	'width'     => $m_image_size,
+	'height'    => $m_image_size,
+	'font-size' => $m_image_size,
 );
 
 

@@ -92,7 +92,6 @@ function styling( props ) {
 		'width': generateCSSUnit( size, sizeType ),
 		'height': generateCSSUnit( size, sizeType ),
 		'font-size': generateCSSUnit( size, sizeType ),
-		'line-height': generateCSSUnit( size, sizeType ),
 	};
 
 	let alignment = 'center';
@@ -223,7 +222,6 @@ function styling( props ) {
 		'width': generateCSSUnit( sizeMobile, sizeType ),
 		'height': generateCSSUnit( sizeMobile, sizeType ),
 		'font-size': generateCSSUnit( sizeMobile, sizeType ),
-		'line-height': generateCSSUnit( sizeMobile, sizeType ),
 	};
 
 	tabletSelectors[ ' .uagb-ss__source-image' ] = {
@@ -245,7 +243,6 @@ function styling( props ) {
 		'width': generateCSSUnit( sizeTablet, sizeType ),
 		'height': generateCSSUnit( sizeTablet, sizeType ),
 		'font-size': generateCSSUnit( sizeTablet, sizeType ),
-		'line-height': generateCSSUnit( sizeTablet, sizeType ),
 	};
 
 	let stylingCss = '';
