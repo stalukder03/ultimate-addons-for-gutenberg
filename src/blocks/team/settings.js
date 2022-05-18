@@ -80,6 +80,7 @@ const Settings = ( props ) => {
 		descLineHeight,
 		descLineHeightMobile,
 		descLineHeightTablet,
+		socialFontSizeType,
 		socialFontSize,
 		socialFontSizeMobile,
 		socialFontSizeTablet,
@@ -1070,9 +1071,29 @@ const Settings = ( props ) => {
 							label: 'socialFontSizeMobile',
 						},
 					}}
+					units={ [
+						{
+							name: __(
+								'Pixel',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'px',
+						},
+						{
+							name: __(
+								'EM',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'em',
+						},
+					] }
+					unit={ {
+						value: socialFontSizeType,
+						label: 'socialFontSizeType',
+					} }
 					min={0}
-					max={100}
-					displayUnit={false}
+					limitMax={ { 'px': 100, 'em': 100 } }
+					displayUnit={true}
 					setAttributes={setAttributes}
 				/>
 				<ResponsiveSlider
