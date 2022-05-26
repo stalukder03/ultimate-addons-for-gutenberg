@@ -181,6 +181,7 @@ const AdvancedPopColorControl = ( props ) => {
 						e.preventDefault();
 						resetValues();
 					} }
+					ref={props?.resetRef}
 				>
 					<Dashicon icon="image-rotate" />
 				</Button>

@@ -5,14 +5,19 @@
 import { __ } from '@wordpress/i18n';
 import Range from '@Components/range/Range.js';
 import AdvancedPopColorControl from '../color-control/advanced-pop-color-control';
-import { Button, Dashicon } from '@wordpress/components';
+import { Tooltip, Button, Dashicon } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import MultiButtonsControl from '../multi-buttons-control/index';
 import styles from './editor.lazy.scss';
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 const BoxShadowControl = ( props ) => {
 
 	const [ showAdvancedControls, toggleAdvancedControls ] = useState( false );
+	const colorResetRef = useRef();
+	const horizontalResetRef = useRef();
+	const verticalResetRef = useRef();
+	const blurResetRef = useRef();
+	const spreadResetRef = useRef();
 
 	// Add and remove the CSS on the drop and remove of the component.
 	useLayoutEffect( () => {
@@ -26,8 +31,9 @@ const BoxShadowControl = ( props ) => {
 		window.addEventListener( 'click', function( e ){
 			const typoDiv = document.querySelector( '.uagb-box-shadow-advanced' );
 			const actionsDiv = document.querySelector( '.uag-box-shadow-button' );
+			const boxShadowReset = document.querySelector( '.uagb-common-reset' );
 			if ( typoDiv ) {
-				if ( ! typoDiv?.contains( e.target ) && ! actionsDiv?.contains( e.target ) && ! e.target?.classList?.contains( 'uagb-advanced-color-indicate' ) && ! e.target?.parentElement?.closest( '.uagb-popover-color' ) ){
+				if ( ! typoDiv?.contains( e.target ) && ! actionsDiv?.contains( e.target ) && ! boxShadowReset?.contains( e.target ) && ! e.target?.classList?.contains( 'uagb-advanced-color-indicate' ) && ! e.target?.parentElement?.closest( '.uagb-popover-color' ) ){
 					toggleAdvancedControls( false )
 				}
 			}
@@ -57,6 +63,7 @@ const BoxShadowControl = ( props ) => {
 						onColorChange={ ( value ) =>
 							setAttributes( { [ boxShadowColor.label ]: value } )
 						}
+						resetRef={colorResetRef}
 					/>
 				</div>
 				<div className="uagb-horizontal-wrap">
@@ -69,6 +76,7 @@ const BoxShadowControl = ( props ) => {
 						setAttributes={setAttributes}
 						data={{value:boxShadowHOffset.value, label:boxShadowHOffset.label}}
 						onChange={false}
+						resetRef={horizontalResetRef}
 					/>
 				</div>
 				<div className="uagb-vertical-wrap">
@@ -81,6 +89,7 @@ const BoxShadowControl = ( props ) => {
 						setAttributes={setAttributes}
 						data={{value:boxShadowVOffset.value, label:boxShadowVOffset.label}}
 						onChange={false}
+						resetRef={verticalResetRef}
 					/>
 				</div>
 				<div className="uagb-blur-wrap">
@@ -93,6 +102,7 @@ const BoxShadowControl = ( props ) => {
 						setAttributes={setAttributes}
 						data={{value:boxShadowBlur.value, label:boxShadowBlur.label}}
 						onChange={false}
+						resetRef={blurResetRef}
 					/>
 				</div>
 				<div className="uagb-spread-wrap">
@@ -105,6 +115,7 @@ const BoxShadowControl = ( props ) => {
 						setAttributes={setAttributes}
 						data={{value:boxShadowSpread.value, label:boxShadowSpread.label}}
 						onChange={false}
+						resetRef={spreadResetRef}
 					/>
 				</div>
 				<div className="uagb-shadow-type">
@@ -146,20 +157,46 @@ const BoxShadowControl = ( props ) => {
 		);
 	}
 
+	const resetValues = () => {
+		colorResetRef?.current?.click();
+		horizontalResetRef?.current?.click();
+		verticalResetRef?.current?.click();
+		blurResetRef?.current?.click();
+		spreadResetRef?.current?.click();
+	};
+
 	const boxShadowAdvancedControls = (
 		<div className="uag-box-shadow-option-actions">
 			<span className="uag-control-label">
 				{ __( 'Box Shadow', 'ultimate-addons-for-gutenberg' ) }
 			</span>
-			<Button
-				className={ 'uag-box-shadow-button' }
-				aria-pressed={ showAdvancedControls }
-				onClick={ () =>
-					toggleAdvancedControls( ! showAdvancedControls )
-				}
-			>
-				<Dashicon icon="edit" />
-			</Button>
+			<div className='uag-box-shadow-action-buttons-wrap'>
+				<Tooltip
+					text={ __( 'Reset', 'ultimate-addons-for-gutenberg' )}
+					key={ 'reset' }
+				>
+					<Button
+						className="uagb-reset uagb-common-reset"
+						isSecondary
+						isSmall
+						onClick={ ( e ) => {
+							e.preventDefault();
+							resetValues();
+						} }
+					>
+						<Dashicon icon="image-rotate" />
+					</Button>
+				</Tooltip>
+				<Button
+					className={ 'uag-box-shadow-button' }
+					aria-pressed={ showAdvancedControls }
+					onClick={ () =>
+						toggleAdvancedControls( ! showAdvancedControls )
+					}
+				>
+					<Dashicon icon="edit" />
+				</Button>
+			</div>
 		</div>
 	);
 
