@@ -561,6 +561,27 @@ const attributes = {
 		},
 		default: 12,
 	},
+	iconSizeTablet: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'icon-size-tablet'
+		},
+		default: 12,
+	},
+	iconSizeMobile: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'icon-size-mobile'
+		},
+		default: 12,
+	},
+	iconSizeType: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'icon-size-type'
+		},
+		default: 'px',
+	},
 	icon: {
 		type: 'string',
 		default: 'fab fa fa-calendar-alt',
