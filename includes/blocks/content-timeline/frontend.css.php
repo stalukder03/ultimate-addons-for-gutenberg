@@ -237,6 +237,9 @@ $selectors = array(
 			'padding-bottom' => UAGB_Helper::get_css_value( $attr['bottomPaddingMobile'], $attr['mobilePaddingUnit'] ),
 			'border-radius'  => UAGB_Helper::get_css_value( $attr['borderRadiusMobile'], 'px' ),
 		),
+		' .uagb-timeline__marker svg'       => array(
+			'width' => UAGB_Helper::get_css_value( $attr['iconSizeMobile'], 'px' ),
+		),
 	);
 
 	$t_selectors = array(
@@ -289,6 +292,9 @@ $selectors = array(
 			'padding-top'    => UAGB_Helper::get_css_value( $attr['topPaddingTablet'], $attr['tabletPaddingUnit'] ),
 			'padding-bottom' => UAGB_Helper::get_css_value( $attr['bottomPaddingTablet'], $attr['tabletPaddingUnit'] ),
 			'border-radius'  => UAGB_Helper::get_css_value( $attr['borderRadiusTablet'], 'px' ),
+		),
+		' .uagb-timeline__marker svg'       => array(
+			'width' => UAGB_Helper::get_css_value( $attr['iconSizeTablet'], 'px' ),
 		),
 	);
 
