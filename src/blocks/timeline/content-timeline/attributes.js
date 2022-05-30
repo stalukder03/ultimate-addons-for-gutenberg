@@ -486,6 +486,27 @@ const attributes = {
 		},
 		default: 35,
 	},
+	connectorBgsizeTablet: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'connector-bg-size-tablet'
+		},
+		default: 35,
+	},
+	connectorBgsizeMobile: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'connector-bg-size-mobile'
+		},
+		default: 35,
+	},
+	connectorBgsizeType: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'connector-bg-size-type'
+		},
+		default: 'px',
+	},
 	subHeadSpace: {
 		type: 'number',
 		UAGCopyPaste: {
