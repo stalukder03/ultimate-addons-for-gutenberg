@@ -107,6 +107,9 @@ const Settings = ( props ) => {
 			dateLineHeightMobile,
 			dateLoadGoogleFonts,
 			iconSize,
+			iconSizeTablet,
+			iconSizeMobile,
+			iconSizeType,
 			borderRadius,
 		borderRadiusTablet,
 		borderRadiusMobile,
@@ -669,17 +672,41 @@ const Settings = ( props ) => {
 					onChange={ getTimelineicon }
 				/>
 				{ icon && (
-					<Range
+					<ResponsiveSlider
 						label={ __(
 							'Icon Size',
 							'ultimate-addons-for-gutenberg'
 						) }
-						setAttributes={ setAttributes }
-						value={ iconSize }
-						onChange={ geticonSize }
+						data= { {
+							desktop: {
+								value: iconSize,
+								label: 'iconSize',
+							},
+							tablet: {
+								value: iconSizeTablet,
+								label: 'iconSizeTablet',
+							},
+							mobile: {
+								value: iconSizeMobile,
+								label: 'iconSizeMobile',
+							},
+						} }
 						min={ 0 }
 						max={ 30 }
-						displayUnit={ false }
+						unit={ {
+							value: iconSizeType,
+							label: 'iconSizeType',
+						} }
+						units={ [
+							{
+								name: __(
+									'Pixel',
+									'ultimate-addons-for-gutenberg'
+								),
+								unitValue: 'px',
+							},
+						] }
+						setAttributes={ setAttributes }
 					/>
 				) }
 				<Range
