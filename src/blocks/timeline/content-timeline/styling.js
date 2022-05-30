@@ -19,6 +19,8 @@ function contentTimelineStyle( props ) {
 		separatorwidth,
 		borderwidth,
 		connectorBgsize,
+		connectorBgsizeTablet,
+		connectorBgsizeMobile,
 		borderRadius,
 		borderRadiusTablet,
 		borderRadiusMobile,
@@ -467,6 +469,38 @@ function contentTimelineStyle( props ) {
 			'font-size': generateCSSUnit( iconSizeTablet, 'px' ),
 			'width': generateCSSUnit( iconSizeTablet, 'px' ),
 		},
+		
+		'.uagb-timeline__right-block .uagb-timeline__line': {
+			'right': 'calc( ' + connectorBgsizeTablet + 'px / 2 )',
+		},
+		'.uagb-timeline__left-block .uagb-timeline__line': {
+			'left': 'calc( ' + connectorBgsizeTablet + 'px / 2 )',
+		},
+		'.uagb-timeline__center-block .uagb-timeline__line': {
+			'left': ( stack === 'tablet' && timelinAlignment === 'center' ) ?
+						'calc( ' + connectorBgsizeTablet + 'px / 2 )' :
+						'50%',
+			'right': 'calc( ' + connectorBgsizeTablet + 'px / 2 )',
+		},
+		' .uagb-timeline__marker': {
+			'background-color': separatorBg,
+			'min-height': generateCSSUnit( connectorBgsizeTablet, 'px' ),
+			'min-width': generateCSSUnit( connectorBgsizeTablet, 'px' ),
+			'line-height': generateCSSUnit( connectorBgsizeTablet, 'px' ),
+			'border': borderwidth + 'px solid' + separatorBorder,
+		},
+		'.uagb-timeline__left-block .uagb-timeline__left .uagb-timeline__arrow': {
+			'height': generateCSSUnit( connectorBgsizeTablet, 'px' ),
+		},
+		'.uagb-timeline__right-block .uagb-timeline__right .uagb-timeline__arrow': {
+			'height': generateCSSUnit( connectorBgsizeTablet, 'px' ),
+		},
+		'.uagb-timeline__center-block .uagb-timeline__left .uagb-timeline__arrow': {
+			'height': generateCSSUnit( connectorBgsizeTablet, 'px' ),
+		},
+		'.uagb-timeline__center-block .uagb-timeline__right .uagb-timeline__arrow': {
+			'height': generateCSSUnit( connectorBgsizeTablet, 'px' ),
+		},
 	};
 
 	const mobileSelectors = {
@@ -620,6 +654,37 @@ function contentTimelineStyle( props ) {
 		' svg': {
 			'font-size': generateCSSUnit( iconSizeMobile, 'px' ),
 			'width': generateCSSUnit( iconSizeMobile, 'px' ),
+		},
+		'.uagb-timeline__right-block .uagb-timeline__line': {
+			'right': 'calc( ' + connectorBgsizeMobile + 'px / 2 )',
+		},
+		'.uagb-timeline__left-block .uagb-timeline__line': {
+			'left': 'calc( ' + connectorBgsizeMobile + 'px / 2 )',
+		},
+		'.uagb-timeline__center-block .uagb-timeline__line': {
+			'left': ( ( stack === 'tablet' || stack === 'mobile' ) && timelinAlignment === 'center' ) ?
+						'calc( ' + connectorBgsizeMobile + 'px / 2 )':
+						'50%',
+			'right': 'calc( ' + connectorBgsizeMobile + 'px / 2 )',
+		},
+		' .uagb-timeline__marker': {
+			'background-color': separatorBg,
+			'min-height': generateCSSUnit( connectorBgsizeMobile, 'px' ),
+			'min-width': generateCSSUnit( connectorBgsizeMobile, 'px' ),
+			'line-height': generateCSSUnit( connectorBgsizeMobile, 'px' ),
+			'border': borderwidth + 'px solid' + separatorBorder,
+		},
+		'.uagb-timeline__left-block .uagb-timeline__left .uagb-timeline__arrow': {
+			'height': generateCSSUnit( connectorBgsizeMobile, 'px' ),
+		},
+		'.uagb-timeline__right-block .uagb-timeline__right .uagb-timeline__arrow': {
+			'height': generateCSSUnit( connectorBgsizeMobile, 'px' ),
+		},
+		'.uagb-timeline__center-block .uagb-timeline__left .uagb-timeline__arrow': {
+			'height': generateCSSUnit( connectorBgsizeMobile, 'px' ),
+		},
+		'.uagb-timeline__center-block .uagb-timeline__right .uagb-timeline__arrow': {
+			'height': generateCSSUnit( connectorBgsizeMobile, 'px' ),
 		},
 	};
 
