@@ -7,14 +7,11 @@
 
 import generateCSS from '@Controls/generateCSS';
 import generateCSSUnit from '@Controls/generateCSSUnit';
+import generateBorderCSS from '@Controls/generateBorderCSS';
 
 function styling( props ) {
 	const {
-		borderWidth,
-		borderStyle,
-		borderColor,
 		borderHColor,
-		borderRadius,
 		align,
 
 		titleColor,
@@ -194,6 +191,11 @@ function styling( props ) {
 		highlightedTextColor,
 		highlightedTextBgColor
 	} = props.attributes;
+
+	// NOTE: This needs to be implemented for all post types.
+	const btnBorderCSS = generateBorderCSS( props.attributes, 'btn' )
+	const btnBorderCSSTablet = generateBorderCSS( props.attributes, 'btn', 'tablet' )
+	const btnBorderCSSMobile = generateBorderCSS( props.attributes, 'btn', 'mobile' )
 
 	let mobileSelectors = {};
 	let tabletSelectors = {};
@@ -422,10 +424,7 @@ function styling( props ) {
 		'text-decoration': ctaDecoration,
 		'padding-left': generateCSSUnit( paddingBtnLeft, paddingBtnUnit ),
 		'padding-right': generateCSSUnit( paddingBtnRight, paddingBtnUnit ),
-		'border-width': generateCSSUnit( borderWidth, 'px' ),
-		'border-radius': generateCSSUnit( borderRadius, 'px' ),
-		'border-color': borderColor,
-		'border-style': borderStyle,
+		...btnBorderCSS,
 	};
 	selectors[ ' .uagb-post__text .uagb-post__cta:hover' ] = {
 		'color': ctaHColor,
@@ -710,6 +709,9 @@ function styling( props ) {
 			'padding-left': generateCSSUnit( rowGapMobile / 2, rowGapUnit ),
 			'margin-bottom': generateCSSUnit( columnGapMobile, columnGapUnit ),
 		},
+		' .uagb-post__cta .uagb-text-link': {
+			...btnBorderCSSMobile,
+		},
 	};
 
 	tabletSelectors = {
@@ -822,6 +824,9 @@ function styling( props ) {
 			'padding-right': generateCSSUnit( rowGapTablet / 2, rowGapUnit ),
 			'padding-left': generateCSSUnit( rowGapTablet / 2, rowGapUnit ),
 			'margin-bottom': generateCSSUnit( columnGapTablet, columnGapUnit ),
+		},
+		' .uagb-post__cta .uagb-text-link': {
+			...btnBorderCSSTablet,
 		},
 	};
 

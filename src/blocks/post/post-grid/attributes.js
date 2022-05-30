@@ -1,4 +1,15 @@
 import { __ } from '@wordpress/i18n';
+
+import { getBorderAttributes } from '@Controls/generateAttributes';
+
+const btnBorderAttributes = getBorderAttributes( 'btn', {
+	borderColor: '#3b3b3b',
+	borderTopWidth: 1,
+	borderRightWidth: 1,
+	borderBottomWidth: 1,
+	borderLeftWidth: 1,
+} );
+
 const attributes = {
 	equalHeight                 : {
 		type    : 'boolean',
@@ -210,13 +221,6 @@ const attributes = {
 		type    : 'string',
 		default : __( 'Read More', 'ultimate-addons-for-gutenberg' ),
 	},
-	borderWidth             : {
-		type    : 'number',
-		UAGCopyPaste: {
-			styleType: 'post-border-width'
-		},
-		default : 1,
-	},
 	btnHPadding             : {
 		type    : 'number',
 		default : 10,
@@ -233,30 +237,18 @@ const attributes = {
 	},
 	borderStyle             : {
 		type    : 'string',
-		default : 'none',
-		UAGCopyPaste: {
-			styleType: 'btn-border-style'
-		},
+	},
+	borderWidth             : {
+		type    : 'number',
 	},
 	borderColor             : {
 		type    : 'string',
-		default : '#3b3b3b',
-		UAGCopyPaste: {
-			styleType: 'btn-border-color'
-		},
 	},
 	borderHColor            : {
-		type : 'string',
-		UAGCopyPaste: {
-			styleType: 'btn-border-hover-color'
-		},
+		type    : 'string',
 	},
 	borderRadius            : {
 		type    : 'number',
-		default : 0,
-		UAGCopyPaste: {
-			styleType: 'btn-border-radius'
-		},
 	},
 	columns                 : {
 		type    : 'number',
@@ -1059,7 +1051,8 @@ const attributes = {
 		postsOffset: {
 			type    : 'number',
 			default : 0,
-		}
+		},
+		...btnBorderAttributes,
 }
 
 export default attributes;

@@ -1225,6 +1225,10 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 				$gen_border_css['border-color'] = $border_color;
 			}
 
+			if ( $border_color ) {
+				$gen_border_css['border-hover-color'] = $border_hover_color;
+			}
+
 			if ( $border_style ) {
 				$gen_border_css['border-style'] = $border_style;
 			}

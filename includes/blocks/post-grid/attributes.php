@@ -7,6 +7,16 @@
  * @package uagb
  */
 
+$btnBorderDefaults = array(
+	'borderColor'       => '#3b3b3b',
+	'borderTopWidth'    => 1,
+	'borderRightWidth'  => 1,
+	'borderBottomWidth' => 1,
+	'borderLeftWidth'   => 1,
+);
+
+$btnBorderAttributes = UAGB_Block_Helper::uag_generate_border_attribute( 'btn', $btnBorderDefaults );
+
 return array(
 	'post_type'                   => 'grid',
 	'align'                       => 'left',
@@ -97,11 +107,6 @@ return array(
 	'overlayOpacity'              => '50',
 	'bgOverlayColor'              => '#ffffff',
 	'ctaText'                     => __( 'Read More', 'ultimate-addons-for-gutenberg' ),
-	'borderWidth'                 => '',
-	'borderStyle'                 => 'none',
-	'borderColor'                 => '',
-	'borderHColor'                => '',
-	'borderRadius'                => '',
 	'postPagination'              => '',
 	'pageLimit'                   => '',
 	'paginationBgActiveColor'     => '#e4e4e4',
@@ -167,4 +172,5 @@ return array(
 		array( 'uagb/post-excerpt' ),
 		array( 'uagb/post-button' ),
 	),
+	$btnBorderAttributes,
 );
