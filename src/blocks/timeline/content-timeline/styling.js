@@ -35,6 +35,8 @@ function contentTimelineStyle( props ) {
 		dateLineHeightMobile,
 		dateColor,
 		iconSize,
+		iconSizeTablet,
+		iconSizeMobile,
 		iconBgFocus,
 		headFontSizeType,
 		headFontSize,
@@ -461,6 +463,10 @@ function contentTimelineStyle( props ) {
 			),
 			'border-radius': generateCSSUnit( borderRadiusTablet, 'px' ),
 		},
+		' svg': {
+			'font-size': generateCSSUnit( iconSizeTablet, 'px' ),
+			'width': generateCSSUnit( iconSizeTablet, 'px' ),
+		},
 	};
 
 	const mobileSelectors = {
@@ -610,6 +616,10 @@ function contentTimelineStyle( props ) {
 				mobilePaddingUnit
 			),
 			'border-radius': generateCSSUnit( borderRadiusMobile, 'px' ),
+		},
+		' svg': {
+			'font-size': generateCSSUnit( iconSizeMobile, 'px' ),
+			'width': generateCSSUnit( iconSizeMobile, 'px' ),
 		},
 	};
 
