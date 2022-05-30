@@ -87,6 +87,9 @@ const Settings = ( props ) => {
 			separatorwidth,
 			borderwidth,
 			connectorBgsize,
+			connectorBgsizeTablet,
+			connectorBgsizeMobile,
+			connectorBgsizeType,
 			dateBottomspace,
 		dateBottomspaceTablet,
 		dateBottomspaceMobile,
@@ -709,17 +712,41 @@ const Settings = ( props ) => {
 						setAttributes={ setAttributes }
 					/>
 				) }
-				<Range
+				<ResponsiveSlider
 					label={ __(
 						'Icon Background Size',
 						'ultimate-addons-for-gutenberg'
 					) }
-					setAttributes={ setAttributes }
-					value={ connectorBgsize }
-					onChange={ getconnectorBgsize }
+					data= { {
+						desktop: {
+							value: connectorBgsize,
+							label: 'connectorBgsize',
+						},
+						tablet: {
+							value: connectorBgsizeTablet,
+							label: 'connectorBgsizeTablet',
+						},
+						mobile: {
+							value: connectorBgsizeMobile,
+							label: 'connectorBgsizeMobile',
+						},
+					} }
 					min={ 25 }
 					max={ 90 }
-					displayUnit={ false }
+					unit={ {
+						value: connectorBgsizeType,
+						label: 'connectorBgsizeType',
+					} }
+					units={ [
+						{
+							name: __(
+								'Pixel',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'px',
+						},
+					] }
+					setAttributes={ setAttributes }
 				/>
 				<Range
 					label={ __(
