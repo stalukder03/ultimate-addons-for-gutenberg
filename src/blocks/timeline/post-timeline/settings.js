@@ -78,6 +78,9 @@ const Settings = ( props ) => {
 		separatorwidth,
 		borderwidth,
 		connectorBgsize,
+		connectorBgsizeTablet,
+		connectorBgsizeMobile,
+		connectorBgsizeType,
 		authorSpace,
 		authorSpaceTablet,
 		authorSpaceMobile,
@@ -140,6 +143,9 @@ const Settings = ( props ) => {
 		ctaLineHeightMobile,
 		ctaLoadGoogleFonts,
 		iconSize,
+		iconSizeTablet,
+		iconSizeMobile,
+		iconSizeType,
 		exerptLength,
 		borderRadius,
 		borderRadiusTablet,
@@ -912,34 +918,78 @@ const Settings = ( props ) => {
 					onChange={ getTimelineicon }
 				/>
 				{ icon && (
-					<Range
+					<ResponsiveSlider
 						label={ __(
 							'Icon Size',
 							'ultimate-addons-for-gutenberg'
 						) }
-						setAttributes={ setAttributes }
-						value={ iconSize }
-						onChange={ ( value ) =>
-							setAttributes( { iconSize: value } )
-						}
+						data= { {
+							desktop: {
+								value: iconSize,
+								label: 'iconSize',
+							},
+							tablet: {
+								value: iconSizeTablet,
+								label: 'iconSizeTablet',
+							},
+							mobile: {
+								value: iconSizeMobile,
+								label: 'iconSizeMobile',
+							},
+						} }
 						min={ 0 }
 						max={ 30 }
-						displayUnit={ false }
+						unit={ {
+							value: iconSizeType,
+							label: 'iconSizeType',
+						} }
+						units={ [
+							{
+								name: __(
+									'Pixel',
+									'ultimate-addons-for-gutenberg'
+								),
+								unitValue: 'px',
+							},
+						] }
+						setAttributes={ setAttributes }
 					/>
 				) }
-				<Range
+				<ResponsiveSlider
 					label={ __(
 						'Icon Background Size',
 						'ultimate-addons-for-gutenberg'
 					) }
-					setAttributes={ setAttributes }
-					value={ connectorBgsize }
-					onChange={ ( value ) =>
-						setAttributes( { connectorBgsize: value } )
-					}
+					data= { {
+						desktop: {
+							value: connectorBgsize,
+							label: 'connectorBgsize',
+						},
+						tablet: {
+							value: connectorBgsizeTablet,
+							label: 'connectorBgsizeTablet',
+						},
+						mobile: {
+							value: connectorBgsizeMobile,
+							label: 'connectorBgsizeMobile',
+						},
+					} }
 					min={ 25 }
 					max={ 90 }
-					displayUnit={ false }
+					unit={ {
+						value: connectorBgsizeType,
+						label: 'connectorBgsizeType',
+					} }
+					units={ [
+						{
+							name: __(
+								'Pixel',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'px',
+						},
+					] }
+					setAttributes={ setAttributes }
 				/>
 				<Range
 					label={ __(
