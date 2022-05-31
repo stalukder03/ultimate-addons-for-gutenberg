@@ -18,6 +18,10 @@ $headTopSpace   = ( isset( $attr['headTopSpacing'] ) && ! empty( $attr['headTopS
 $left_margin   = isset( $attr['leftMargin'] ) ? $attr['leftMargin'] : $attr['horizontalSpace'];
 $right_margin  = isset( $attr['rightMargin'] ) ? $attr['rightMargin'] : $attr['horizontalSpace'];
 
+$connector_size   = UAGB_Helper::get_css_value( $attr['connectorBgsize'], 'px' );
+$connector_size_t = UAGB_Helper::get_css_value( $attr['connectorBgsizeTablet'], 'px' );
+$connector_size_m = UAGB_Helper::get_css_value( $attr['connectorBgsizeMobile'], 'px' );
+
 $selectors = array(
 	' .uagb-timeline__heading'      => array(
 		'text-align' => $attr['align'],
@@ -61,6 +65,46 @@ $selectors = array(
 	),
 	' .uagb-timeline__author-link + .uagb-timeline__link_parent' => array(
 		'margin-top' => UAGB_Helper::get_css_value( $attr['authorSpace'], 'px' ),
+	),
+	'.uagb-timeline__right-block .uagb-timeline__line'     => array(
+		'right' => 'calc( ' . $attr['connectorBgsize'] . 'px / 2 )',
+	),
+	'.uagb-timeline__left-block .uagb-timeline__line'      => array(
+		'left' => 'calc( ' . $attr['connectorBgsize'] . 'px / 2 )',
+	),
+	'.uagb-timeline__center-block .uagb-timeline__line'    => array(
+		'right' => 'calc( ' . $attr['connectorBgsize'] . 'px / 2 )',
+	),
+	' .uagb-timeline__marker svg'       => array(
+		'width' => UAGB_Helper::get_css_value( $attr['iconSize'], 'px' ),
+	),
+	'.uagb-timeline__right-block .uagb-timeline__line'  => array(
+		'right' => 'calc( ' . $attr['connectorBgsize'] . 'px / 2 )',
+	),
+	'.uagb-timeline__left-block .uagb-timeline__line'   => array(
+		'left' => 'calc( ' . $attr['connectorBgsize'] . 'px / 2 )',
+	),
+	'.uagb-timeline__center-block .uagb-timeline__line' => array(
+		'right' => 'calc( ' . $attr['connectorBgsize'] . 'px / 2 )',
+	),
+	' .uagb-timeline__marker'                           => array(
+		'background-color' => $attr['separatorBg'],
+		'min-height'       => $connector_size,
+		'min-width'        => $connector_size,
+		'line-height'      => $connector_size,
+		'border'           => $attr['borderwidth'] . 'px solid' . $attr['separatorBorder'],
+	),
+	'.uagb-timeline__left-block .uagb-timeline__left .uagb-timeline__arrow' => array(
+		'height' => $connector_size,
+	),
+	'.uagb-timeline__right-block .uagb-timeline__right .uagb-timeline__arrow' => array(
+		'height' => $connector_size,
+	),
+	'.uagb-timeline__center-block .uagb-timeline__left .uagb-timeline__arrow' => array(
+		'height' => $connector_size,
+	),
+	'.uagb-timeline__center-block .uagb-timeline__right .uagb-timeline__arrow' => array(
+		'height' => $connector_size,
 	),
 );
 
@@ -115,6 +159,40 @@ $t_selectors = array(
 		'margin-right' => ( 'tablet' === $attr['stack'] ) ?
 							0 :
 							UAGB_Helper::get_css_value( $right_margin, $attr['marginUnit'] ),
+	),
+	' .uagb-timeline__marker svg'                       => array(
+		'width' => UAGB_Helper::get_css_value( $attr['iconSizeTablet'], 'px' ),
+	),
+	'.uagb-timeline__right-block .uagb-timeline__line'  => array(
+		'right' => 'calc( ' . $attr['connectorBgsizeTablet'] . 'px / 2 )',
+	),
+	'.uagb-timeline__left-block .uagb-timeline__line'   => array(
+		'left' => 'calc( ' . $attr['connectorBgsizeTablet'] . 'px / 2 )',
+	),
+	'.uagb-timeline__center-block .uagb-timeline__line' => array(
+		'left'  => ( 'tablet' === $attr['stack'] ) ?
+						'calc( ' . $attr['connectorBgsizeTablet'] . 'px / 2 )' :
+						'50%',
+		'right' => 'calc( ' . $attr['connectorBgsizeTablet'] . 'px / 2 )',
+	),
+	' .uagb-timeline__marker'                           => array(
+		'background-color' => $attr['separatorBg'],
+		'min-height'       => $connector_size_t,
+		'min-width'        => $connector_size_t,
+		'line-height'      => $connector_size_t,
+		'border'           => $attr['borderwidth'] . 'px solid' . $attr['separatorBorder'],
+	),
+	'.uagb-timeline__left-block .uagb-timeline__left .uagb-timeline__arrow' => array(
+		'height' => $connector_size_t,
+	),
+	'.uagb-timeline__right-block .uagb-timeline__right .uagb-timeline__arrow' => array(
+		'height' => $connector_size_t,
+	),
+	'.uagb-timeline__center-block .uagb-timeline__left .uagb-timeline__arrow' => array(
+		'height' => $connector_size_t,
+	),
+	'.uagb-timeline__center-block .uagb-timeline__right .uagb-timeline__arrow' => array(
+		'height' => $connector_size_t,
 	),
 );
 
@@ -173,6 +251,40 @@ $m_selectors = array(
 		'margin-right' => ( 'tablet' === $attr['stack'] ) || ( 'mobile' === $attr['stack'] ) ?
 							0 :
 							UAGB_Helper::get_css_value( $right_margin, $attr['marginUnit'] ),
+	),
+	' .uagb-timeline__marker svg'                       => array(
+		'width' => UAGB_Helper::get_css_value( $attr['iconSizeMobile'], 'px' ),
+	),
+	'.uagb-timeline__right-block .uagb-timeline__line'  => array(
+		'right' => 'calc( ' . $attr['connectorBgsizeMobile'] . 'px / 2 )',
+	),
+	'.uagb-timeline__left-block .uagb-timeline__line'   => array(
+		'left' => 'calc( ' . $attr['connectorBgsizeMobile'] . 'px / 2 )',
+	),
+	'.uagb-timeline__center-block .uagb-timeline__line' => array(
+		'left'  => ( 'tablet' === $attr['stack'] ) || ( 'mobile' === $attr['stack'] ) ?
+						'calc( ' . $attr['connectorBgsizeMobile'] . 'px / 2 )' :
+						'50%',
+		'right' => 'calc( ' . $attr['connectorBgsizeMobile'] . 'px / 2 )',
+	),
+	' .uagb-timeline__marker'                           => array(
+		'background-color' => $attr['separatorBg'],
+		'min-height'       => $connector_size_m,
+		'min-width'        => $connector_size_m,
+		'line-height'      => $connector_size_m,
+		'border'           => $attr['borderwidth'] . 'px solid' . $attr['separatorBorder'],
+	),
+	'.uagb-timeline__left-block .uagb-timeline__left .uagb-timeline__arrow' => array(
+		'height' => $connector_size_m,
+	),
+	'.uagb-timeline__right-block .uagb-timeline__right .uagb-timeline__arrow' => array(
+		'height' => $connector_size_m,
+	),
+	'.uagb-timeline__center-block .uagb-timeline__left .uagb-timeline__arrow' => array(
+		'height' => $connector_size_m,
+	),
+	'.uagb-timeline__center-block .uagb-timeline__right .uagb-timeline__arrow' => array(
+		'height' => $connector_size_m,
 	),
 );
 
