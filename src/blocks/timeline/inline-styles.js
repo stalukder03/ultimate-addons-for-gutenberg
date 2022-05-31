@@ -19,6 +19,8 @@ function contentTimelineStyle( props ) {
 		separatorwidth,
 		borderwidth,
 		connectorBgsize,
+		connectorBgsizeTablet,
+		connectorBgsizeMobile,
 		borderRadius,
 		borderRadiusTablet,
 		borderRadiusMobile,
@@ -35,6 +37,8 @@ function contentTimelineStyle( props ) {
 		dateLineHeightMobile,
 		dateColor,
 		iconSize,
+		iconSizeTablet,
+		iconSizeMobile,
 		iconFocus,
 		iconBgFocus,
 		headFontSizeType,
@@ -576,6 +580,37 @@ function contentTimelineStyle( props ) {
 			),
 			'border-radius': generateCSSUnit( borderRadiusTablet, 'px' ),
 		},
+		' svg': {
+			'color': iconColor,
+			'font-size': generateCSSUnit( iconSizeTablet, 'px' ),
+			'width': generateCSSUnit( iconSizeTablet, 'px' ),
+		},
+		'.uagb-timeline__right-block .uagb-timeline__line': {
+			'right': 'calc( ' + connectorBgsizeTablet + 'px / 2 )',
+		},
+		'.uagb-timeline__left-block .uagb-timeline__line': {
+			'left': 'calc( ' + connectorBgsizeTablet + 'px / 2 )',
+		},
+		'.uagb-timeline__center-block .uagb-timeline__line': {
+			'right': 'calc( ' + connectorBgsizeTablet + 'px / 2 )',
+		},
+		' .uagb-timeline__marker': {
+			'min-height': generateCSSUnit( connectorBgsizeTablet, 'px' ),
+			'min-width': generateCSSUnit( connectorBgsizeTablet, 'px' ),
+			'line-height': generateCSSUnit( connectorBgsizeTablet, 'px' ),
+		},
+		'.uagb-timeline__left-block .uagb-timeline__left .uagb-timeline__arrow': {
+			'height': generateCSSUnit( connectorBgsizeTablet, 'px' ),
+		},
+		'.uagb-timeline__right-block .uagb-timeline__right .uagb-timeline__arrow': {
+			'height': generateCSSUnit( connectorBgsizeTablet, 'px' ),
+		},
+		'.uagb-timeline__center-block .uagb-timeline__left .uagb-timeline__arrow': {
+			'height': generateCSSUnit( connectorBgsizeTablet, 'px' ),
+		},
+		'.uagb-timeline__center-block .uagb-timeline__right .uagb-timeline__arrow': {
+			'height': generateCSSUnit( connectorBgsizeTablet, 'px' ),
+		},
 	};
 
 	const mobileSelectors = {
@@ -767,6 +802,37 @@ function contentTimelineStyle( props ) {
 				mobilePaddingUnit
 			),
 			'border-radius': generateCSSUnit( borderRadiusMobile, 'px' ),
+		},
+		' svg': {
+			'color': iconColor,
+			'font-size': generateCSSUnit( iconSizeMobile, 'px' ),
+			'width': generateCSSUnit( iconSizeMobile, 'px' ),
+		},
+		'.uagb-timeline__right-block .uagb-timeline__line': {
+			'right': 'calc( ' + connectorBgsizeMobile + 'px / 2 )',
+		},
+		'.uagb-timeline__left-block .uagb-timeline__line': {
+			'left': 'calc( ' + connectorBgsizeMobile + 'px / 2 )',
+		},
+		'.uagb-timeline__center-block .uagb-timeline__line': {
+			'right': 'calc( ' + connectorBgsizeMobile + 'px / 2 )',
+		},
+		' .uagb-timeline__marker': {
+			'min-height': generateCSSUnit( connectorBgsizeMobile, 'px' ),
+			'min-width': generateCSSUnit( connectorBgsizeMobile, 'px' ),
+			'line-height': generateCSSUnit( connectorBgsizeMobile, 'px' ),
+		},
+		'.uagb-timeline__left-block .uagb-timeline__left .uagb-timeline__arrow': {
+			'height': generateCSSUnit( connectorBgsizeMobile, 'px' ),
+		},
+		'.uagb-timeline__right-block .uagb-timeline__right .uagb-timeline__arrow': {
+			'height': generateCSSUnit( connectorBgsizeMobile, 'px' ),
+		},
+		'.uagb-timeline__center-block .uagb-timeline__left .uagb-timeline__arrow': {
+			'height': generateCSSUnit( connectorBgsizeMobile, 'px' ),
+		},
+		'.uagb-timeline__center-block .uagb-timeline__right .uagb-timeline__arrow': {
+			'height': generateCSSUnit( connectorBgsizeMobile, 'px' ),
 		},
 	};
 
