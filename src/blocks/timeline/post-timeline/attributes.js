@@ -494,6 +494,27 @@ const attributes = { // eslint-disable-line no-unused-vars
 			styleType: 'connector-bg-size'
 		},
 	},
+	connectorBgsizeTablet   : {
+		type    : 'number',
+		default : 35,
+		UAGCopyPaste: {
+			styleType: 'connector-bg-size-tablet'
+		},
+	},
+	connectorBgsizeMobile   : {
+		type    : 'number',
+		default : 35,
+		UAGCopyPaste: {
+			styleType: 'connector-bg-size-mobile'
+		},
+	},
+	connectorBgsizeType     : {
+		type    : 'string',
+		default : 'px',
+		UAGCopyPaste: {
+			styleType: 'connector-bg-size-type'
+		},
+	},
 	dateBottomspace         : {
 		type    : 'number',
 		default : 5,
@@ -706,6 +727,27 @@ const attributes = { // eslint-disable-line no-unused-vars
 		default : 15,
 		UAGCopyPaste: {
 			styleType: 'icon-size'
+		},
+	},
+	iconSizeTablet          : {
+		type    : 'number',
+		default : 12,
+		UAGCopyPaste: {
+			styleType: 'icon-size-tablet'
+		},
+	},
+	iconSizeMobile          : {
+		type    : 'number',
+		default : 12,
+		UAGCopyPaste: {
+			styleType: 'icon-size-mobile'
+		},
+	},
+	iconSizeType: {
+		type    : 'string',
+		default : 'px',
+		UAGCopyPaste: {
+			styleType: 'icon-size-type'
 		},
 	},
 	ctaColor                : {
