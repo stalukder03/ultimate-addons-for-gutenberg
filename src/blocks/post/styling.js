@@ -195,6 +195,10 @@ function styling( props ) {
 		highlightedTextBgColor,
 
 		imgPosition,
+
+		bgmTitleColor,
+		bgmMetaColor,
+		bgmExcerptColor,
 	} = props.attributes;
 
 	let mobileSelectors = {};
@@ -281,7 +285,7 @@ function styling( props ) {
 	}
 
 	selectors[ ' .uagb-post__title' ] = {
-		'color': titleColor,
+		'color': ( imgPosition === 'top' ) ? titleColor : bgmTitleColor,
 		'font-size': generateCSSUnit( titleFontSize, titleFontSizeType ),
 		'font-family': titleFontFamily,
 		'font-weight': titleFontWeight,
@@ -294,7 +298,7 @@ function styling( props ) {
 		'font-style': titleFontStyle,
 	};
 	selectors[ ' .uagb-post__title a' ] = {
-		'color': titleColor,
+		'color': ( imgPosition === 'top' ) ? titleColor : bgmTitleColor,
 		'font-size': generateCSSUnit( titleFontSize, titleFontSizeType ),
 		'font-family': titleFontFamily,
 		'font-weight': titleFontWeight,
@@ -304,7 +308,7 @@ function styling( props ) {
 		),
 	};
 	selectors[ ' .uagb-post-grid-byline' ] = {
-		'color': metaColor,
+		'color': ( imgPosition === 'top' ) ? metaColor : bgmMetaColor,
 		'font-size': generateCSSUnit( metaFontSize, metaFontSizeType ),
 		'font-family': metaFontFamily,
 		'font-weight': metaFontWeight,
@@ -341,7 +345,7 @@ function styling( props ) {
 		'font-style': metaFontStyle,
 	};
 	selectors[ ' span.uagb-post__taxonomy' ] = {
-		'color': metaColor,
+		'color': ( imgPosition === 'top' ) ? metaColor : bgmMetaColor,
 		'font-size': generateCSSUnit( metaFontSize, metaFontSizeType ),
 		'font-family': metaFontFamily,
 		'font-weight': metaFontWeight,
@@ -368,7 +372,7 @@ function styling( props ) {
 		'font-style': metaFontStyle,
 	};
 	selectors[ ' .uagb-post-grid-byline .uagb-post__author' ] = {
-		'color': metaColor,
+		'color': ( imgPosition === 'top' ) ? metaColor : bgmMetaColor,
 		'font-size': generateCSSUnit( metaFontSize, metaFontSizeType ),
 		'font-family': metaFontFamily,
 		'font-weight': metaFontWeight,
@@ -392,7 +396,7 @@ function styling( props ) {
 		'text-decoration': metaDecoration,
 	};
 	selectors[ ' .uagb-post__excerpt' ] = {
-		'color': excerptColor,
+		'color': ( imgPosition === 'top' ) ? excerptColor : bgmExcerptColor,
 		'font-size': generateCSSUnit(
 			excerptFontSize,
 			excerptFontSizeType
