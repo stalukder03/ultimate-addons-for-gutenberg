@@ -457,7 +457,7 @@ if ( ! class_exists( 'UAGB_Post' ) ) {
 				),
 				'bgOverlayColor'                => array(
 					'type'    => 'string',
-					'default' => '#ffffff',
+					'default' => '#000000',
 				),
 				'overlayOpacity'                => array(
 					'type'    => 'number',
@@ -618,7 +618,7 @@ if ( ! class_exists( 'UAGB_Post' ) ) {
 				),
 				'bgmMetaColor'                  => array(
 					'type'    => 'string',
-					'default' => '#EEEEEE',
+					'default' => '#DDDDDD',
 				),
 				'highlightedTextColor'          => array(
 					'type'    => 'string',
