@@ -409,7 +409,7 @@ const attributes = {
 	},
 	bgmMetaColor            : {
 		type    : 'string',
-		default : '#EEEEEE',
+		default : '#DDDDDD',
 		UAGCopyPaste: {
 			styleType: 'prefix-color-bgm'
 		},
@@ -502,7 +502,7 @@ const attributes = {
 	},
 	bgmExcerptColor         : {
 		type    : 'string',
-		default : '#ffffff',
+		default : '#000000',
 		UAGCopyPaste: {
 			styleType: 'desc-color-bgm'
 		},
