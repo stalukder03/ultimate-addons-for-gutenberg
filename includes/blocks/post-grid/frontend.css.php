@@ -11,6 +11,31 @@
 UAGB_Block_JS::blocks_post_gfont( $attr );
 
 $selectors = UAGB_Block_Helper::get_post_selectors( $attr );
+
+$selectors[' .uagb-post__text.uagb-post__title a'] = array(
+	'color' => ( 'top' === $attr['imgPosition'] ) ? $attr['titleColor'] : $attr['bgmTitleColor'],
+);
+
+$selectors[' .uagb-post__excerpt'] = array(
+	'color' => ( 'top' === $attr['imgPosition'] ) ? $attr['excerptColor'] : $attr['bgmExcerptColor'],
+);
+
+$selectors[' .uagb-post__text.uagb-post-grid-byline'] = array(
+	'color' => ( 'top' === $attr['imgPosition'] ) ? $attr['metaColor'] : $attr['bgmMetaColor'],
+);
+
+$selectors[' span.uagb-post__taxonomy'] = array(
+	'color' => ( 'top' === $attr['imgPosition'] ) ? $attr['metaColor'] : $attr['bgmMetaColor'],
+);
+
+$selectors[' .uagb-post-grid-byline .uagb-post__author'] = array(
+	'color' => ( 'top' === $attr['imgPosition'] ) ? $attr['metaColor'] : $attr['bgmMetaColor'],
+);
+
+$selectors[' .uagb-post-grid-byline .uagb-post__author a'] = array(
+	'color' => ( 'top' === $attr['imgPosition'] ) ? $attr['metaColor'] : $attr['bgmMetaColor'],
+);
+
 // Pagination CSS.
 $selectors[' .uagb-post-pagination-wrap'] = array(
 
