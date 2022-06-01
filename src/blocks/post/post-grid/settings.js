@@ -234,7 +234,10 @@ const Settings = ( props ) => {
 		displayPostTaxonomyAboveTitle,
 		hideTaxonomyIcon,
 		highlightedTextColor,
-		highlightedTextBgColor
+		highlightedTextBgColor,
+		bgmTitleColor,
+		bgmMetaColor,
+		bgmExcerptColor,
 	} = attributes;
 
 	const onSelectPostType = ( value ) => {
@@ -1308,9 +1311,11 @@ const Settings = ( props ) => {
 						'Color',
 						'ultimate-addons-for-gutenberg'
 					) }
-					colorValue={ titleColor }
+					colorValue={ ( imgPosition === 'top' ) ? titleColor : bgmTitleColor }
 					onColorChange={ ( value ) =>
-						setAttributes( { titleColor: value } )
+						( imgPosition === 'top' ) ?
+							setAttributes( { titleColor: value } ) :
+							setAttributes( { bgmTitleColor: value } )
 					}
 				/>
 				<TypographyControl
@@ -1412,9 +1417,11 @@ const Settings = ( props ) => {
 			>
 				<AdvancedPopColorControl
 					label={ __( 'Meta Color', 'ultimate-addons-for-gutenberg' ) }
-					colorValue={ metaColor }
+					colorValue={ ( imgPosition === 'top' ) ? metaColor : bgmMetaColor }
 					onColorChange={ ( value ) =>
-						setAttributes( { metaColor: value } )
+						( imgPosition === 'top' ) ?
+						setAttributes( { metaColor: value } ) :
+						setAttributes( { bgmMetaColor: value } )
 					}
 				/>
 				{ ( 'aboveTitle' === displayPostTaxonomyAboveTitle && 'highlighted' === taxStyle ) && (
@@ -1535,9 +1542,11 @@ const Settings = ( props ) => {
 			>
 				<AdvancedPopColorControl
 					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
-					colorValue={ excerptColor }
+					colorValue={ ( imgPosition === 'top' ) ? excerptColor : bgmExcerptColor }
 					onColorChange={ ( value ) =>
-						setAttributes( { excerptColor: value } )
+						( imgPosition === 'top' ) ?
+						setAttributes( { excerptColor: value } ) :
+						setAttributes( { bgmExcerptColor: value } )
 					}
 				/>
 				<TypographyControl
