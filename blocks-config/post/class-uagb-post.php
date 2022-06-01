@@ -561,6 +561,10 @@ if ( ! class_exists( 'UAGB_Post' ) ) {
 				'titleColor'                    => array(
 					'type' => 'string',
 				),
+				'bgmTitleColor'                 => array(
+					'type'    => 'string',
+					'default' => '#ffffff',
+				),
 				'titleTag'                      => array(
 					'type'    => 'string',
 					'default' => 'h4',
@@ -611,6 +615,10 @@ if ( ! class_exists( 'UAGB_Post' ) ) {
 				'metaColor'                     => array(
 					'type'    => 'string',
 					'default' => '#777777',
+				),
+				'bgmMetaColor'                  => array(
+					'type'    => 'string',
+					'default' => '#EEEEEE',
 				),
 				'highlightedTextColor'          => array(
 					'type'    => 'string',
@@ -666,6 +674,10 @@ if ( ! class_exists( 'UAGB_Post' ) ) {
 				'excerptColor'                  => array(
 					'type'    => 'string',
 					'default' => '',
+				),
+				'bgmExcerptColor'               => array(
+					'type'    => 'string',
+					'default' => '#FFFFFF',
 				),
 				'excerptFontSize'               => array(
 					'type'    => 'number',
