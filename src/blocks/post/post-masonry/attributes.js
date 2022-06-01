@@ -418,6 +418,13 @@ const attributes = {
 		},
 		default: '',
 	},
+	bgmTitleColor           : {
+		type : 'string',
+		UAGCopyPaste: {
+			styleType: 'main-title-color-bgm'
+		},
+		default: '#ffffff',
+	},
 	titleTag                : {
 		type    : 'string',
 		default : 'h4',
@@ -508,6 +515,13 @@ const attributes = {
 			styleType: 'prefix-color'
 		},
 	},
+	bgmMetaColor            : {
+		type    : 'string',
+		default : '#EEEEEE',
+		UAGCopyPaste: {
+			styleType: 'prefix-color-bgm'
+		},
+	},
 	metaFontSize            : {
 		type    : 'number',
 		default : '',
@@ -592,6 +606,13 @@ const attributes = {
 		default : '',
 		UAGCopyPaste: {
 			styleType: 'desc-color'
+		},
+	},
+	bgmExcerptColor         : {
+		type    : 'string',
+		default : '#ffffff',
+		UAGCopyPaste: {
+			styleType: 'desc-color-bgm'
 		},
 	},
 	excerptFontSize         : {
