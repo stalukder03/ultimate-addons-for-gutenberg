@@ -384,7 +384,7 @@ function styling( props ) {
 		'text-decoration': metaDecoration,
 	};
 	selectors[ ' .uagb-post-grid-byline .uagb-post__author a' ] = {
-		'color': metaColor,
+		'color': ( imgPosition === 'top' ) ? metaColor : bgmMetaColor,
 		'font-size': generateCSSUnit( metaFontSize, metaFontSizeType ),
 		'font-family': metaFontFamily,
 		'font-weight': metaFontWeight,
