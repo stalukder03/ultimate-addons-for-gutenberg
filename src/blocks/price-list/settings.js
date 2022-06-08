@@ -143,6 +143,8 @@ const Settings = ( props ) => {
 		priceTransform,
 		priceDecoration,
 		headingAlign,
+		headingAlignTablet,
+		headingAlignMobile,
 		imgAlign
 	} = attributes;
 
@@ -480,8 +482,18 @@ const Settings = ( props ) => {
 					setAttributes={ setAttributes }
 					label={ __( 'Alignment', 'ultimate-addons-for-gutenberg' ) }
 					data={ {
-						value: headingAlign,
-						label: 'headingAlign',
+						desktop: {
+							value: headingAlign,
+							label: 'headingAlign',
+						},
+						tablet: {
+							value: headingAlignTablet,
+							label: 'headingAlignTablet',
+						},
+						mobile: {
+							value: headingAlignMobile,
+							label: 'headingAlignMobile',
+						},
 					} }
 					className="uagb-multi-button-alignment-control"
 					options={ [
@@ -523,6 +535,7 @@ const Settings = ( props ) => {
 						},
 					] }
 					showIcons={ true }
+					responsive={ true }
 				/>
 				)}
 				{ ( imagePosition === 'left' || imagePosition === 'right' ) && (

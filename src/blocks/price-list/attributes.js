@@ -44,6 +44,20 @@ const attributes = {
 			styleType: 'main-title-align'
 		},
 	},
+	headingAlignTablet: {
+		type: 'string',
+		default: '',
+		UAGCopyPaste: {
+			styleType: 'main-title-align-tablet'
+		},
+	},
+	headingAlignMobile: {
+		type: 'string',
+		default: '',
+		UAGCopyPaste: {
+			styleType: 'main-title-align-mobile'
+		},
+	},
 	priceSpace: {
 		type: 'number',
 		default: 5,

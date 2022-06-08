@@ -27,6 +27,15 @@ function PositionClasses( attributes ) {
 
 	iconimgStyleClass += ' uagb-rm__align-' + attributes.headingAlign + ' ';
 
+	if( attributes.headingAlignTablet ) {
+		iconimgStyleClass += ' uagb-rm__align-tablet-' + attributes.headingAlignTablet + ' ';
+	}
+
+	if( attributes.headingAlignMobile ) {
+		iconimgStyleClass += ' uagb-rm__align-mobile-' + attributes.headingAlignMobile + ' ';
+	}
+
+
 	if (
 		'left' === attributes.imagePosition ||
 		'right' === attributes.imagePosition

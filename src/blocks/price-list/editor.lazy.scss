@@ -100,6 +100,23 @@
 			&.uagb-rm__tablet-column-1 [data-type="uagb/restaurant-menu-child"] {
 				width: 100%;
 			}
+
+			.uagb-rest_menu__wrap.uagb-rm__align-tablet-left .uagb-rm__price {
+				display: table-cell;
+				text-align: right;
+			}
+	
+			.uagb-rest_menu__wrap.uagb-rm__align-tablet-right {
+	
+				& .uagb-rm-details {
+					display: table;
+	
+					.uagb-rm__price {
+						display: table-cell;
+						text-align: left;
+					}
+				}
+			}
 		}
 
 		/*
@@ -121,6 +138,21 @@
 
 			&.uagb-rm__mobile-column-1 [data-type="uagb/restaurant-menu-child"] {
 				width: 100%;
+			}
+			.uagb-rest_menu__wrap.uagb-rm__align-mobile-left .uagb-rm__price {
+				display: table-cell;
+				text-align: right;
+			}	
+			.uagb-rest_menu__wrap.uagb-rm__align-mobile-right {
+	
+				& .uagb-rm-details {
+					display: table;
+	
+					.uagb-rm__price {
+						display: table-cell;
+						text-align: left;
+					}
+				}
 			}
 		}
 	}

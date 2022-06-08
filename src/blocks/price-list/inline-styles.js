@@ -8,6 +8,8 @@ import generateCSSUnit from '@Controls/generateCSSUnit';
 function RestMenuStyle( props ) {
 	const {
 		headingAlign,
+		headingAlignTablet,
+		headingAlignMobile,
 		priceColor,
 		descColor,
 		titleColor,
@@ -120,6 +122,24 @@ function RestMenuStyle( props ) {
 		align = 'flex-end';
 	}
 
+	let tabletAlign = align;
+	if ( 'left' === headingAlignTablet ) {
+		tabletAlign = 'flex-start';
+	} else if ( 'right' === headingAlignTablet ) {
+		tabletAlign = 'flex-end';
+	} else if ( 'center' === headingAlignTablet ) {
+		tabletAlign = headingAlignTablet;
+	}
+
+	let mobileAlign = tabletAlign;
+	if ( 'left' === headingAlignMobile ) {
+		mobileAlign = 'flex-start';
+	} else if ( 'right' === headingAlignMobile ) {
+		mobileAlign = 'flex-end';
+	} else if ( 'center' === headingAlignMobile ) {
+		mobileAlign = headingAlignMobile;
+	}
+
 	const selectors = {
 		" [data-type='uagb/restaurant-menu-child'] .wp-block-uagb-restaurant-menu-child": {
 			'padding-left': generateCSSUnit( columnGap / 2, columnGapType ),
@@ -230,6 +250,9 @@ function RestMenuStyle( props ) {
 			'width': generateCSSUnit( imageWidthTablet, imageWidthType ),
 			'max-width': generateCSSUnit( imageWidthTablet, imageWidthType ),
 		},
+		' .uagb-rm__separator': {
+			'justify-content': tabletAlign,
+		},
 		" [data-type='uagb/restaurant-menu-child'] .wp-block-uagb-restaurant-menu-child": {
 			'padding-left': generateCSSUnit( columnGapTablet / 2, columnGapType ),
 			'padding-right': generateCSSUnit( columnGapTablet / 2, columnGapType ),
@@ -285,7 +308,7 @@ function RestMenuStyle( props ) {
 			),
 		},
 		' .uagb-rm__content': {
-			'text-align': headingAlign,
+			'text-align': headingAlignTablet,
 			'padding-left': generateCSSUnit(
 				contentPaddingLeftTablet,
 				contentTabletPaddingUnit
@@ -302,6 +325,10 @@ function RestMenuStyle( props ) {
 				contentPaddingBottomTablet,
 				contentTabletPaddingUnit
 			),
+		},
+		'.uagb-rm__align-tablet-center  .uagb-rest_menu__wrap .uagb-rm__content .uagb-rm__price': {
+			'text-align': headingAlignTablet,
+			'display': 'inline-table',
 		},
 	};
 
@@ -332,6 +359,9 @@ function RestMenuStyle( props ) {
 		' img': {
 			'width': generateCSSUnit( imageWidthMobile, imageWidthType ),
 			'max-width': generateCSSUnit( imageWidthMobile, imageWidthType ),
+		},
+		' .uagb-rm__separator': {
+			'justify-content': mobileAlign,
 		},
 		" [data-type='uagb/restaurant-menu-child'] .wp-block-uagb-restaurant-menu-child": {
 			'padding-left': generateCSSUnit( columnGapMobile / 2, columnGapType ),
@@ -388,7 +418,7 @@ function RestMenuStyle( props ) {
 			),
 		},
 		' .uagb-rm__content': {
-			'text-align': headingAlign,
+			'text-align': headingAlignMobile,
 			'padding-left': generateCSSUnit(
 				contentPaddingLeftMobile,
 				contentMobilePaddingUnit
@@ -405,6 +435,10 @@ function RestMenuStyle( props ) {
 				contentPaddingBottomMobile,
 				contentMobilePaddingUnit
 			),
+		},
+		'.uagb-rm__align-mobile-center  .uagb-rest_menu__wrap .uagb-rm__content .uagb-rm__price': {
+			'text-align': headingAlignMobile,
+			'display': 'inline-table',
 		},
 	};
 

@@ -19,6 +19,22 @@ if ( 'left' === $align ) {
 } elseif ( 'right' === $align ) {
 	$align = 'flex-end';
 }
+$tabletAlign = $attr['headingAlign'];
+if ( 'left' === $align ) {
+	$align = 'flex-start';
+} elseif ( 'right' === $align ) {
+	$align = 'flex-end';
+} elseif ( 'center' === $align ) {
+	$align = $attr['headingAlignTablet'];
+}
+$mobileAlign = $tabletAlign;
+if ( 'left' === $align ) {
+	$align = 'flex-start';
+} elseif ( 'right' === $align ) {
+	$align = 'flex-end';
+} elseif ( 'center' === $align ) {
+	$align = $attr['headingAlignMobile'];
+}
 $imgPaddingTop    = isset( $attr['imgPaddingTop'] ) ? $attr['imgPaddingTop'] : $attr['imgVrPadding'];
 $imgPaddingRight  = isset( $attr['imgPaddingRight'] ) ? $attr['imgPaddingRight'] : $attr['imgHrPadding'];
 $imgPaddingBottom = isset( $attr['imgPaddingBottom'] ) ? $attr['imgPaddingBottom'] : $attr['imgVrPadding'];
@@ -97,10 +113,14 @@ $t_selectors = array(
 		'max-width'      => UAGB_Helper::get_css_value( $attr['imageWidthTablet'], $attr['imageWidthType'] ),
 	),
 	' .uagb-rm__content'         => array(
+		'text-align'     => $attr['headingAlignTablet'],
 		'padding-left'   => UAGB_Helper::get_css_value( $attr['contentPaddingLeftTablet'], $attr['contentTabletPaddingUnit'] ),
 		'padding-right'  => UAGB_Helper::get_css_value( $attr['contentPaddingRightTablet'], $attr['contentTabletPaddingUnit'] ),
 		'padding-top'    => UAGB_Helper::get_css_value( $attr['contentPaddingTopTablet'], $attr['contentTabletPaddingUnit'] ),
 		'padding-bottom' => UAGB_Helper::get_css_value( $attr['contentPaddingBottomTablet'], $attr['contentTabletPaddingUnit'] ),
+	),
+	' .uagb-rm__separator-parent' => array(
+		'justify-content' => $tabletAlign,
 	),
 );
 
@@ -130,10 +150,14 @@ $m_selectors = array(
 		'max-width'      => UAGB_Helper::get_css_value( $attr['imageWidthMobile'], $attr['imageWidthType'] ),
 	),
 	' .uagb-rm__content'         => array(
+		'text-align'     => $attr['headingAlignMobile'],
 		'padding-left'   => UAGB_Helper::get_css_value( $attr['contentPaddingLeftMobile'], $attr['contentMobilePaddingUnit'] ),
 		'padding-right'  => UAGB_Helper::get_css_value( $attr['contentPaddingRightMobile'], $attr['contentMobilePaddingUnit'] ),
 		'padding-top'    => UAGB_Helper::get_css_value( $attr['contentPaddingTopMobile'], $attr['contentMobilePaddingUnit'] ),
 		'padding-bottom' => UAGB_Helper::get_css_value( $attr['contentPaddingBottomMobile'], $attr['contentMobilePaddingUnit'] ),
+	),
+	' .uagb-rm__separator-parent' => array(
+		'justify-content' => $mobileAlign,
 	),
 );
 

@@ -11,6 +11,8 @@ return array(
 	'classMigrate'               => false,
 	'block_id'                   => '',
 	'headingAlign'               => 'left',
+	'headingAlignTablet'         => '',
+	'headingAlignMobile'         => '',
 	'descColor'                  => '#333',
 	'priceColor'                 => '#888888',
 	'titleColor'                 => '#333',
