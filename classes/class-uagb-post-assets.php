@@ -324,9 +324,6 @@ class UAGB_Post_Assets {
 			}
 		}
 
-		if ( has_blocks( $this_post->ID ) && isset( $this_post->post_content ) ) {
-			$this->common_function_for_assets_preparation( $this_post->post_content );
-		}
 	}
 
 	/**
@@ -877,21 +874,7 @@ class UAGB_Post_Assets {
 		}
 
 		if ( has_blocks( $this_post->ID ) && isset( $this_post->post_content ) ) {
-
-			$blocks            = $this->parse_blocks( $this_post->post_content );
-			$this->page_blocks = $blocks;
-
-			if ( ! is_array( $blocks ) || empty( $blocks ) ) {
-				return;
-			}
-
-			$assets = $this->get_blocks_assets( $blocks );
-
-			$this->stylesheet .= $assets['css'];
-			$this->script     .= $assets['js'];
-
-			// Update fonts.
-			$this->gfonts = array_merge( $this->gfonts, UAGB_Helper::$gfonts );
+			$this->common_function_for_assets_preparation( $this_post->post_content );
 		}
 	}
 
