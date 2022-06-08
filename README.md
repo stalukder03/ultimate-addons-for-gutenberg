@@ -5,7 +5,7 @@
 **Requires at least:** 4.7  
 **Requires PHP:** 5.6  
 **Tested up to:** 6.0  
-**Stable tag:** 1.25.6  
+**Stable tag:** 1.25.7  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -168,6 +168,10 @@ When you use the Spectra along with the free Astra theme, you get a huge library
 1. /assets/screenshots/1.png
 
 ## Changelog ##
+
+### 1.25.7 ###
+* Fix: Styling not applying on frontend when block used in widget area.
+* Fix: Table of contents - Not preview on page when Buddy Boss Platform is activated.
 
 ### 1.25.6 - TUESDAY, 31ST MAY 2022 ###
 * Improvement: Updated Gutenberg Templates Library.

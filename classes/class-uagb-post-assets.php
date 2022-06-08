@@ -181,7 +181,7 @@ class UAGB_Post_Assets {
 	 * Generates stylesheet for widget area.
 	 *
 	 * @param object $content Current Post Object.
-	 * @since x.x.x
+	 * @since 1.25.7
 	 */
 	public function prepare_widget_area_assets( $content ) {
 
@@ -333,7 +333,7 @@ class UAGB_Post_Assets {
 	 * Common function to generate stylesheet.
 	 *
 	 * @param array $post_content Current Post Object.
-	 * @since x.x.x
+	 * @since 1.25.7
 	 */
 	public function common_function_for_assets_preparation( $post_content ) {
 		$blocks            = $this->parse_blocks( $post_content );

@@ -51,6 +51,8 @@ const {
 
 let svg_icons = Object.keys( UAGBIcon )
 
+const $ = jQuery;
+
 class UAGBTableOfContentsEdit extends Component {
 
 	constructor() {
@@ -79,12 +81,12 @@ class UAGBTableOfContentsEdit extends Component {
 
 		// Pushing Scroll To Top div
 		var scrollToTopSvg = '<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.1\" id=\"Layer_1\" x=\"0px\" y=\"0px\" width=\"26px\" height=\"16.043px\" viewBox=\"57 35.171 26 16.043\" enable-background=\"new 57 35.171 26 16.043\" xml:space=\"preserve\"><path d=\"M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z\"/></svg>';
-		
+
 		if ( 0 == scroll_element.length ) {
 			jQuery( "body" ).append( "<div class=\"uagb-toc__scroll-top\"> " + scrollToTopSvg + "</div>" );
 		}
 
-		
+
 	}
 
 	render() {
@@ -242,7 +244,7 @@ class UAGBTableOfContentsEdit extends Component {
 		if ( makeCollapsible && icon ) {
 			icon_html = (
 				<span className="uag-toc__collapsible-wrap">{renderSVG(icon)}</span>
-			)	
+			)
 		}
 
 		return (
@@ -338,7 +340,7 @@ class UAGBTableOfContentsEdit extends Component {
 								{ value: "center", label: __( "Center",'ultimate-addons-for-gutenberg' ) },
 								{ value: "right", label: __( "Right",'ultimate-addons-for-gutenberg' ) },
 							] }
-	  					/>						
+	  					/>
 						<RangeControl
 							label={ __( "Bottom Space",'ultimate-addons-for-gutenberg' ) }
 							value={ headingBottom }
@@ -369,7 +371,7 @@ class UAGBTableOfContentsEdit extends Component {
 							value={ headingColor }
 							onChange={ ( colorValue ) => setAttributes( { headingColor: colorValue } ) }
 							allowReset
-						/>						
+						/>
 						<hr className="uagb-editor__separator" />
 						<h2>{ __( "Collapsible",'ultimate-addons-for-gutenberg' ) }</h2>
 						<ToggleControl
@@ -500,7 +502,7 @@ class UAGBTableOfContentsEdit extends Component {
 							value={ linkHoverColor }
 							onChange={ ( colorValue ) => setAttributes( { linkHoverColor: colorValue } ) }
 							allowReset
-						/>						
+						/>
 					</PanelBody>
 					<PanelBody title={ __( "Style",'ultimate-addons-for-gutenberg' ) } initialOpen={ false }>
 						<h2>{ __( "Background",'ultimate-addons-for-gutenberg' ) }</h2>
@@ -867,8 +869,8 @@ export default compose(
 			if( ! slug ) {
 				return slug;
 			}
-			
-			var parsedSlug = slug.toString().toLowerCase()                        
+
+			var parsedSlug = slug.toString().toLowerCase()
 				.replace(/\…+/g,'')                          // Remove multiple …
 				.replace(/&(amp;)/g, '')					 // Remove &
 				.replace(/&(mdash;)/g, '')					 // Remove long dash
@@ -888,12 +890,12 @@ export default compose(
 		var mainDiv;
 		if( iframeEl ){
 			mainDiv = iframeEl.find('.is-root-container' ).find('h1, h2, h3, h4, h5, h6' );
-		} 
-		
+		}
+
 		if(  0 !== $( '.is-root-container' ).length ) {
 			mainDiv = $( '.is-root-container' ).find('h1, h2, h3, h4, h5, h6' )
 		}
-		
+
 		var headerArray = mainDiv
 		let headers = [];
 		if( headerArray != 'undefined' ) {
@@ -901,7 +903,7 @@ export default compose(
 			headerArray.each( function (index, value){
 				let header = $( this );
 				let excludeHeading ;
-				
+
 				if ( value.className.includes('uagb-toc-hide-heading') ) {
 					excludeHeading = true;
 				} else if ( 0 < header.parents('.uagb-toc-hide-heading').length ) {
@@ -909,13 +911,13 @@ export default compose(
 				} else {
 					excludeHeading = false;
 				}
-				
+
 				let headerText = parseTocSlug(header.text());
 				var openLevel = header[0].nodeName.replace(/^H+/, '');
 				var titleText = header.text();
-					
+
 					level = parseInt(openLevel);
-					
+
 					if ( !excludeHeading ) {
 						headers.push(
 							{
@@ -926,9 +928,9 @@ export default compose(
 							}
 						);
 					}
-				
-									
-			});	
+
+
+			});
 		}
 
 		if ( headers !== undefined ) {
