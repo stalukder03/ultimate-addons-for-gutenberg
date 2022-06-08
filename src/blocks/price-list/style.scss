@@ -108,6 +108,12 @@
 		}
 
 		&.uagb-rm__align-right {
+			display: flex;
+			flex-direction: column;
+
+			.uagb-rm__separator {
+				align-self: flex-end;
+			}
 
 			& .uagb-rm__price {
 				display: table-cell;

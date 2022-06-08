@@ -66,6 +66,20 @@ const attributes = {
 			styleType: 'main-title-align'
 		},
 	},
+	headingAlignTablet: {
+		type: 'string',
+		default: '',
+		UAGCopyPaste: {
+			styleType: 'main-title-align-tablet'
+		},
+	},
+	headingAlignMobile: {
+		type: 'string',
+		default: '',
+		UAGCopyPaste: {
+			styleType: 'main-title-align-mobile'
+		},
+	},
 	stack: {
 		type: 'string',
 		default: 'tablet',

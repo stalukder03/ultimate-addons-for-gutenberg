@@ -162,6 +162,7 @@ function RestMenuStyle( props ) {
 		},
 		' .uagb-rm__separator': {
 			'justify-content': align,
+			'align-self': align,
 		},
 		' .uagb-rm__content': {
 			'text-align': headingAlign,
@@ -252,6 +253,7 @@ function RestMenuStyle( props ) {
 		},
 		' .uagb-rm__separator': {
 			'justify-content': tabletAlign,
+			'align-self': tabletAlign,
 		},
 		" [data-type='uagb/restaurant-menu-child'] .wp-block-uagb-restaurant-menu-child": {
 			'padding-left': generateCSSUnit( columnGapTablet / 2, columnGapType ),
@@ -362,6 +364,7 @@ function RestMenuStyle( props ) {
 		},
 		' .uagb-rm__separator': {
 			'justify-content': mobileAlign,
+			'align-self': mobileAlign,
 		},
 		" [data-type='uagb/restaurant-menu-child'] .wp-block-uagb-restaurant-menu-child": {
 			'padding-left': generateCSSUnit( columnGapMobile / 2, columnGapType ),
