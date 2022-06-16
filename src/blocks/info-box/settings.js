@@ -1360,7 +1360,7 @@ const Settings = ( props ) => {
 							<SpacingControl
 								{ ...props }
 								label={ __(
-									'Padding',
+									'Margin',
 									'ultimate-addons-for-gutenberg'
 								) }
 								valueTop={ {
