@@ -47,7 +47,10 @@ const Render = ( props ) => {
 		autoplay,
 		autoplaySpeed,
 		arrowColor,
-		equalHeight
+		equalHeight,
+		rating,
+		range,
+		enableStarRating,
 	} = attributes;
 
 	const sliderRef = useRef();
@@ -138,6 +141,16 @@ const Render = ( props ) => {
 			},
 		],
 	};
+
+	const rangeValue = parseInt( range );
+	const stars = [];
+	for ( let i = 1; i <= rangeValue; i++ ) {
+		stars.push(
+			<span key={ i } className="uagb-star">
+				★
+			</span>
+		);
+	}
 
 	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/testimonials.png`;
 

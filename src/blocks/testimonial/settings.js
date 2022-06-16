@@ -173,7 +173,32 @@ const Settings = ( props ) => {
 		imgpaddingUnit,
 		imgmobilePaddingUnit,
 		imgtabletPaddingUnit,
-		equalHeight
+		equalHeight,
+		enableStarRating,
+		starRatingMarkColor,
+		starRatingUnmarkColor,
+		starRating,
+		starRatingRange,
+		starRatingIconSize,
+		starRatingIconSizeTablet,
+		starRatingIconSizeMobile,
+		starRatingIconSizeType,
+		starRatingTopPadding ,
+		starRatingRightPadding,
+		starRatingLeftPadding,
+		starRatingBottomPadding,
+		starRatingTopPaddingTablet,
+		starRatingRightPaddingTablet,
+		starRatingLeftPaddingTablet,
+		starRatingBottomPaddingTablet,
+		starRatingTopPaddingMobile,
+		starRatingRightPaddingMobile,
+		starRatingLeftPaddingMobile,
+		starRatingBottomPaddingMobile,
+		starRatingPaddingUnit,
+		starRatingPaddingUnitTablet,
+		starRatingPaddingUnitMobile,
+		starRatingPaddingLink,
 	} = attributes;
 
 	let loadNameGoogleFonts;
@@ -1137,6 +1162,162 @@ const Settings = ( props ) => {
 		}
 	} );
 
+	const ratingStyle = () => {
+		return (
+			<UAGAdvancedPanelBody
+				title={ __( 'Rating', 'ultimate-addons-for-gutenberg' ) }
+				initialOpen={ true }
+			>
+				<MultiButtonsControl
+					setAttributes={ setAttributes }
+					label={ __( 'Range', 'ultimate-addons-for-gutenberg' ) }
+					data={ {
+						value: starRatingRange,
+						label: 'starRatingRange',
+					} }
+					options={ [
+						{
+							value: '5',
+							label: __( '1-5', 'ultimate-addons-for-gutenberg' ),
+						},
+						{
+							value: '10',
+							label: __( '1-10', 'ultimate-addons-for-gutenberg' ),
+						},
+					] }
+				/>
+				<Range
+					label={ __( 'Rating', 'ultimate-addons-for-gutenberg' ) }
+					setAttributes={ setAttributes }
+					value={ starRating }
+					onChange={ ( value ) => setAttributes( { starRating: value } ) }
+					min={ 0 }
+					max={ starRatingRange }
+					step={ 0.1 }
+					displayUnit={ false }
+				/>
+				<AdvancedPopColorControl
+					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
+					colorValue={ starRatingMarkColor ? starRatingMarkColor : '' }
+					onColorChange={ ( value ) =>
+						setAttributes( {
+							starRatingMarkColor: value,
+						} )
+					}
+				/>
+				<AdvancedPopColorControl
+					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
+					colorValue={ starRatingUnmarkColor ? starRatingUnmarkColor : '' }
+					onColorChange={ ( value ) =>
+						setAttributes( {
+							starRatingUnmarkColor: value,
+						} )
+					}
+				/>
+				<ResponsiveSlider
+					label={ __(
+						'Icon Size',
+						'ultimate-addons-for-gutenberg'
+					) }
+					data={ {
+						desktop: {
+							value: starRatingIconSize,
+							label: 'starRatingIconSize',
+						},
+						tablet: {
+							value: starRatingIconSizeTablet,
+							label: 'starRatingIconSizeTablet',
+						},
+						mobile: {
+							value: starRatingIconSizeMobile,
+							label: 'starRatingIconSizeMobile',
+						},
+					} }
+					min={ 1 }
+					max={ 50 }
+					unit={ {
+						value: starRatingIconSizeType,
+						label: 'starRatingIconSizeType',
+					} }
+					setAttributes={ setAttributes }
+				/>
+				<SpacingControl
+					label={ __(
+						'Padding',
+						'ultimate-addons-for-gutenberg'
+					) }
+					valueTop={ {
+						value: starRatingTopPadding,
+						label: 'starRatingTopPadding',
+					} }
+					valueRight={ {
+						value: starRatingRightPadding,
+						label: 'starRatingRightPadding',
+					} }
+					valueBottom={ {
+						value: starRatingBottomPadding,
+						label: 'starRatingBottomPadding',
+					} }
+					valueLeft={ {
+						value: starRatingLeftPadding,
+						label: 'starRatingLeftPadding',
+					} }
+					valueTopTablet={ {
+						value: starRatingTopPaddingTablet,
+						label: 'starRatingTopPaddingTablet',
+					} }
+					valueRightTablet={ {
+						value: starRatingRightPaddingTablet,
+						label: 'starRatingRightPaddingTablet',
+					} }
+					valueBottomTablet={ {
+						value: starRatingBottomPaddingTablet,
+						label: 'starRatingBottomPaddingTablet',
+					} }
+					valueLeftTablet={ {
+						value: starRatingLeftPaddingTablet,
+						label: 'starRatingLeftPaddingTablet',
+					} }
+					valueTopMobile={ {
+						value: starRatingTopPaddingMobile,
+						label: 'starRatingTopPaddingMobile',
+					} }
+					valueRightMobile={ {
+						value: starRatingRightPaddingMobile,
+						label: 'starRatingRightPaddingMobile',
+					} }
+					valueBottomMobile={ {
+						value: starRatingBottomPaddingMobile,
+						label: 'starRatingBottomPaddingMobile',
+					} }
+					valueLeftMobile={ {
+						value: starRatingLeftPaddingMobile,
+						label: 'starRatingLeftPaddingMobile',
+					} }
+					unit={ {
+						value: starRatingPaddingUnit,
+						label: 'starRatingPaddingUnit',
+					} }
+					mUnit={ {
+						value: starRatingPaddingUnitMobile,
+						label: 'starRatingPaddingUnitMobile',
+					} }
+					tUnit={ {
+						value: starRatingPaddingUnitTablet,
+						label: 'starRatingPaddingUnitTablet',
+					} }
+					deviceType={ deviceType }
+					attributes={ attributes }
+					setAttributes={ setAttributes }
+					link={ {
+						value: starRatingPaddingLink,
+						label: 'starRatingPaddingLink',
+					} }
+				/>
+			</UAGAdvancedPanelBody>
+		);
+	};
+
 	// Global Controls.
 	const inspectControl = () => {
 		return (
@@ -1301,6 +1482,13 @@ const Settings = ( props ) => {
 								) }
 							/>
 							) }
+							<ToggleControl
+								label={ __( 'Enable Rating', 'ultimate-addons-for-gutenberg' ) }
+								checked={ enableStarRating }
+								onChange={ () =>
+									setAttributes( { enableStarRating: ! enableStarRating } )
+								}
+							/>
 						</UAGAdvancedPanelBody>
 						<UAGAdvancedPanelBody
 							title={ __(
@@ -1502,6 +1690,7 @@ const Settings = ( props ) => {
 						{ nameStyle() }
 						{ contentStyle() }
 						{ companyStyle() }
+						{ enableStarRating && ratingStyle() }
 						{ imageStyle() }
 						{ carouselStyle() }
 						{ borderSetting() }

@@ -1007,6 +1007,171 @@ const attributes = {
 			styleType: 'post-equal-height'
 		},
 	},
+	enableStarRating: {
+		type: 'boolean',
+		default: false,
+	},
+	starRatingMarkColor: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'icon-color'
+		},
+	},
+	starRatingUnmarkColor: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'icon-unmarked-color'
+		},
+	},
+	starRating: {
+		type: 'number',
+		default: 4,
+	},
+	starRatingRange: {
+		type: 'string',
+		default: '5',
+	},
+	starRatingIconSize: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'icon-size'
+		},
+		default: 18,
+	},
+	starRatingIconSizeTablet: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'icon-size'
+		},
+		default: '',
+	},
+	starRatingIconSizeMobile: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'icon-size'
+		},
+		default: '',
+	},
+	starRatingIconSizeType: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'icon-size-type'
+		},
+		default: 'px',
+	},
+	starRatingTopPadding : {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'block-top-padding'
+		}
+	},
+	starRatingRightPadding : {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'block-right-padding'
+		}
+	},
+	starRatingLeftPadding : {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'block-left-padding'
+		}
+	},
+	starRatingBottomPadding : {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'block-bottom-padding'
+		}
+	},
+	starRatingTopPaddingTablet: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'block-top-padding-tablet'
+		}
+	},
+	starRatingRightPaddingTablet: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'block-right-padding-tablet'
+		}
+	},
+	starRatingLeftPaddingTablet: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'block-left-padding-tablet'
+		}
+	},
+	starRatingBottomPaddingTablet: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'block-bottom-padding-tablet'
+		}
+	},
+	starRatingTopPaddingMobile: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'block-top-padding-mobile'
+		}
+	},
+	starRatingRightPaddingMobile: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'block-right-padding-mobile'
+		}
+	},
+	starRatingLeftPaddingMobile: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'block-left-padding-mobile'
+		}
+	},
+	starRatingBottomPaddingMobile: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'block-bottom-padding-mobile'
+		}
+	},
+	starRatingPaddingUnit : {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'block-padding-unit'
+		}
+	},
+	starRatingPaddingUnitTablet: {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'block-padding-unit-tablet'
+		}
+	},
+	starRatingPaddingUnitMobile : {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'block-padding-unit-mobile'
+		}
+	},
+	starRatingPaddingLink: {
+		type: 'boolean',
+		default: false,
+		isUAGStyle: true,
+	},
 };
 
 export default attributes;
