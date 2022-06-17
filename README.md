@@ -172,6 +172,7 @@ When you use the Spectra along with the free Astra theme, you get a huge library
 ### 1.25.7 ###
 * Fix: Styling not applying on frontend when block used in widget area.
 * Fix: Table of contents - Not preview on page when Buddy Boss Platform is activated.
+* Fix: Info Box - Padding not applying on frontend when zero is set.
 
 ### 1.25.6 - TUESDAY, 31ST MAY 2022 ###
 * Improvement: Updated Gutenberg Templates Library.
