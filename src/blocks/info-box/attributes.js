@@ -965,21 +965,21 @@ const attributes = {
 	},
 	imageWidthUnit: {
 		type: 'string',
-		default: 'px',
+		default: '%',
 		UAGCopyPaste: {
 			styleType: 'image-width-unit'
 		}
 	},
 	imageWidthUnitTablet: {
 		type: 'string',
-		default: 'px',
+		default: '%',
 		UAGCopyPaste: {
 			styleType: 'image-width-unit-tablet'
 		}
 	},
 	imageWidthUnitMobile: {
 		type: 'string',
-		default: 'px',
+		default: '%',
 		UAGCopyPaste: {
 			styleType: 'image-width-unit-mobile'
 		}

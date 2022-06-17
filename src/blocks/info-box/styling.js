@@ -808,6 +808,22 @@ function styling( props ) {
 		},
 		'.uagb-infobox__content-wrap  .uagb-ifb-content img': {
 			'box-sizing' : `${boxSizingImageTablet}`,
+			'margin-top': generateCSSUnit(
+				iconMarginTopTablet,
+				iconTabletMarginUnit
+			),
+			'margin-right': generateCSSUnit(
+				iconMarginRightTablet,
+				iconTabletMarginUnit
+			),
+			'margin-bottom': generateCSSUnit(
+				iconMarginBottomTablet,
+				iconTabletMarginUnit
+			),
+			'margin-left': generateCSSUnit(
+				iconMarginLeftTablet,
+				iconTabletMarginUnit
+			),
 		},
 	};
 
@@ -1042,6 +1058,22 @@ function styling( props ) {
 		},
 		'.uagb-infobox__content-wrap  .uagb-ifb-content img': {
 			'box-sizing' : `${boxSizingImageMobile}`,
+			'margin-top': generateCSSUnit(
+				iconMarginTopMobile,
+				iconMobileMarginUnit
+			),
+			'margin-right': generateCSSUnit(
+				iconMarginRightMobile,
+				iconMobileMarginUnit
+			),
+			'margin-bottom': generateCSSUnit(
+				iconMarginBottomMobile,
+				iconMobileMarginUnit
+			),
+			'margin-left': generateCSSUnit(
+				iconMarginLeftMobile,
+				iconMobileMarginUnit
+			),
 		},
 	};
 

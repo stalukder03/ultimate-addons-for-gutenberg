@@ -1196,7 +1196,7 @@ const Settings = ( props ) => {
 									/>
 									<Range
 										label={ __(
-											'Width',
+											'Size',
 											'ultimate-addons-for-gutenberg'
 										) }
 										setAttributes={ setAttributes }
@@ -1204,8 +1204,8 @@ const Settings = ( props ) => {
 										onChange={ ( value ) =>
 											setAttributes( { iconSize: value } )
 										}
-										limitMin={ { 'px': 0, '%': 0, 'em': 0 } } // eslint-disable-line quote-props
-										limitMax={ { 'px': 500, '%': 100, 'em': 100 } } // eslint-disable-line quote-props
+										min={ 0 } // eslint-disable-line quote-props
+										max={ 500 } // eslint-disable-line quote-props
 										unit={ {
 											value: iconSizeType,
 											label: 'iconSizeType',
@@ -1217,20 +1217,6 @@ const Settings = ( props ) => {
 													'ultimate-addons-for-gutenberg'
 												),
 												unitValue: 'px',
-											},
-											{
-												name: __(
-													'%',
-													'ultimate-addons-for-gutenberg'
-												),
-												unitValue: '%',
-											},
-											{
-												name: __(
-													'EM',
-													'ultimate-addons-for-gutenberg'
-												),
-												unitValue: 'em',
 											},
 										] }
 									/>
@@ -1292,7 +1278,7 @@ const Settings = ( props ) => {
 													},
 												} }
 												min={ 0 }
-												limitMax={ { 'px': 500, '%': 100, 'em': 100 } } // eslint-disable-line quote-props
+												limitMax={ { 'px': 500, '%': 100 } } // eslint-disable-line quote-props
 												units={ [
 													{
 														name: __(
@@ -1307,13 +1293,6 @@ const Settings = ( props ) => {
 															'ultimate-addons-for-gutenberg'
 														),
 														unitValue: '%',
-													},
-													{
-														name: __(
-															'EM',
-															'ultimate-addons-for-gutenberg'
-														),
-														unitValue: 'em',
 													},
 												] }
 												setAttributes={ setAttributes }
