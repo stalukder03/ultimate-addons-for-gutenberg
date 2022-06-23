@@ -137,7 +137,7 @@ function styling( props ) {
 			'border-radius': generateCSSUnit( borderRadius, borderRadiusType ),
 			'border-style':
 				0 === border || undefined === border ? 'none' : 'solid',
-			'border-width': generateCSSUnit( border, borderType ),
+			'border-width': border ? generateCSSUnit( border, borderType ) : '0px',
 			'align-self' : position
 		},
 		' .uagb-icon-list__source-image': {
