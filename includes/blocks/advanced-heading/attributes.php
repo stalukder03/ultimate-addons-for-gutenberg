@@ -95,7 +95,7 @@ return array_merge(
 		'blockPaddingUnit'             => 'px',
 		'blockPaddingUnitTablet'       => 'px',
 		'blockPaddingUnitMobile'       => 'px',
-		'blockPaddingLink'             => '',
+		'blockPaddingLink'             => true,
 		// margin.
 		'blockTopMargin'               => '',
 		'blockRightMargin'             => '',
@@ -112,7 +112,7 @@ return array_merge(
 		'blockMarginUnit'              => 'px',
 		'blockMarginUnitTablet'        => 'px',
 		'blockMarginUnitMobile'        => 'px',
-		'blockMarginLink'              => '',
+		'blockMarginLink'              => true,
 		// link.
 		'linkColor'                    => '#6104ff',
 		'linkHColor'                   => '',
@@ -152,6 +152,6 @@ return array_merge(
 		'highLightPaddingUnit'         => 'px',
 		'highLightPaddingUnitTablet'   => 'px',
 		'highLightPaddingUnitMobile'   => 'px',
-		'highLightPaddingLink'         => '',
+		'highLightPaddingLink'         => true,
 	)
 );

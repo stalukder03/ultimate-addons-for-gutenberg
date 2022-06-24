@@ -583,7 +583,7 @@ const attributes = {
 	},
 	blockPaddingLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 		isUAGStyle: true,
 	},
 	// margin
@@ -697,7 +697,7 @@ const attributes = {
 	},
 	blockMarginLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 		isUAGStyle: true,
 	},
 	// link
@@ -954,7 +954,7 @@ const attributes = {
 	},
 	highLightPaddingLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 		isUAGStyle: true,
 		UAGCopyPaste: {
 			styleType: 'highlight-padding-link'
