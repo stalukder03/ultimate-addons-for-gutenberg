@@ -668,7 +668,7 @@ const attributes = {
 	},
 	contentSpacingLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	imgPaddingTopTablet: {
 		type: 'number',
@@ -741,7 +741,7 @@ const attributes = {
 	},
 	imgSpacingLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	titleTransform: {
 		type: 'string',

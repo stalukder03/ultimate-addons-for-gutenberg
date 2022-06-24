@@ -195,7 +195,7 @@ const attributes = {
 	},
 	tabTitleMarginLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	tabBodyLeftMargin: {
 		type: 'number',
@@ -292,7 +292,7 @@ const attributes = {
 	},
 	tabBodyMarginLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	tabBodyVertPadding: {
 		type: 'number',
@@ -401,7 +401,7 @@ const attributes = {
 	},
 	tabTitlePaddingLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	tabBodyLeftPadding: {
 		type: 'number',
@@ -498,7 +498,7 @@ const attributes = {
 	},
 	tabBodyPaddingLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	tabTitleVertPadding: {
 		type: 'number',

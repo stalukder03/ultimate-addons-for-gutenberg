@@ -979,7 +979,7 @@ const attributes = {
 	},
 	paddingspacingLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	submitTextTransform: {
 		type: 'string',
@@ -1123,7 +1123,7 @@ const attributes = {
 	},
 	paddingFieldLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	toggleSizeType: {
 		type: 'string',
@@ -1244,6 +1244,14 @@ const attributes = {
 		UAGCopyPaste: {
 			styleType: 'submit-letter-spacing-type'
 		}
+	},
+	successMsgBorderRadiusLink: {
+		type: 'boolean',
+		default: true,
+	},
+	failedMsgBorderRadiusLink: {
+		type: 'boolean',
+		default: true,
 	},
 };
 export default attributes;

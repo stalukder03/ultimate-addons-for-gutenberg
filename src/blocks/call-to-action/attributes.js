@@ -600,7 +600,7 @@ const attributes = {
 	},
 	ctaPaddingLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	enabledSecondCtaButton: {
 		type: 'boolean',
@@ -752,7 +752,7 @@ const attributes = {
 	},
 	secondCtaPaddingLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	secondCtaBorderWidth: {
 		type: 'number',
@@ -980,7 +980,7 @@ const attributes = {
 	},
 	overallBlockPaddingLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	overallBlockTopMargin: {
 		type: 'number',
@@ -1077,7 +1077,7 @@ const attributes = {
 	},
 	overallBlockMarginLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	buttonRightSpace: {
 		type: 'number',
