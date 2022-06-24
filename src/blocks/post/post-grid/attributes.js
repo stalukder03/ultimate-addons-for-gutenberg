@@ -1,5 +1,9 @@
 import { __ } from '@wordpress/i18n';
 const attributes = {
+	blockName                   : {
+		type    : 'string',
+		default : 'post-grid',
+	},
 	equalHeight                 : {
 		type    : 'boolean',
 		default : true,
@@ -301,14 +305,12 @@ const attributes = {
 	},
 	rowGapTablet                  : {
 		type    : 'number',
-		default : 20,
 		UAGCopyPaste: {
 			styleType: 'post-bottom-padding'
 		},
 	},
 	rowGapMobile                  : {
 		type    : 'number',
-		default : 10,
 		UAGCopyPaste: {
 			styleType: 'post-bottom-padding'
 		},
@@ -322,14 +324,12 @@ const attributes = {
 	},
 	columnGapTablet               : {
 		type    : 'number',
-		default : 0,
 		UAGCopyPaste: {
 			styleType: 'post-bottom-padding'
 		},
 	},
 	columnGapMobile               : {
 		type    : 'number',
-		default : 0,
 		UAGCopyPaste: {
 			styleType: 'post-bottom-padding'
 		},
