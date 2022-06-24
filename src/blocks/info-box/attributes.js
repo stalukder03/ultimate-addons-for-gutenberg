@@ -849,7 +849,7 @@
 	},
 	spacingLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	paddingspacingLink: {
 		type: 'boolean',
@@ -1385,8 +1385,23 @@
 		type: 'number',
 		default: 3,
 	},
+	spacingPrefixLink: {
+		type: 'boolean',
+		default: true,
+	},
+	spacingHeadLink: {
+		type: 'boolean',
+		default: true,
+	},
+	spacingSeparatorLink: {
+		type: 'boolean',
+		default: true,
+	},
+	spacingSubheadLink: {
+		type: 'boolean',
+		default: true,
+	},
 	...borderAttributes
 };
 
 export default attributes;
- 
