@@ -553,11 +553,11 @@ const attributes = {
 	},
 	paddingLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	marginLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	boxShadowColor: {
 		type: 'string',
