@@ -380,7 +380,7 @@ const attributes = {
 	},
 	titlePaddingLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	layout: {
 		type: 'string',
@@ -502,7 +502,7 @@ const attributes = {
 	},
 	contentPaddingLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	contentVrPadding: {
 		type: 'number',

@@ -904,11 +904,11 @@ const attributes = {
 	},
 	btnspacingLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	spacingLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	descTransform:{
 		type: 'string',

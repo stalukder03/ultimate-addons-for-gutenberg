@@ -561,11 +561,11 @@ const attributes = {
 	},
 	marginLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	paddingLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	headingBottom: {
 		type: 'number',
