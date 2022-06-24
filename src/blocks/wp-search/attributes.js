@@ -480,7 +480,7 @@ const attributes = {
 	},
 	spacingLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	iconSizeType: {
 		type: 'string',

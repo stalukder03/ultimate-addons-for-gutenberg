@@ -481,7 +481,7 @@ const attributes = {
 	},
 	captionMarginLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 		isUAGStyle: true,
 	},
 	// heading.
@@ -717,7 +717,7 @@ const attributes = {
 	},
 	headingMarginLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 		isUAGStyle: true,
 	},
 	// overlay.
@@ -924,7 +924,7 @@ const attributes = {
 	},
 	seperatorMarginLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 		isUAGStyle: true,
 	},
 	// effect.

@@ -670,7 +670,7 @@ const attributes = {   // eslint-disable-line no-unused-vars
 	},
 	contentPaddingLink         : {
 		type    : 'boolean',
-		default : false,
+		default : true,
 	},
 	titleTransform             : {
 		type : 'string',

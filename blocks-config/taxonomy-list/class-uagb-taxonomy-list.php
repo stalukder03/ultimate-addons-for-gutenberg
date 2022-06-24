@@ -426,7 +426,7 @@ if ( ! class_exists( 'UAGB_Taxonomy_List' ) ) {
 							),
 							'contentPaddingLink'         => array(
 								'type'    => 'boolean',
-								'default' => false,
+								'default' => true,
 							),
 							'titleTransform'             => array(
 								'type' => 'string',
