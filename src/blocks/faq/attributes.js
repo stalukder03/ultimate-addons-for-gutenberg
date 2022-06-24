@@ -686,11 +686,11 @@ const attributes = {
 	},
 	questionSpacingLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	answerSpacingLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	answerTopPadding: {
 		type: 'number',

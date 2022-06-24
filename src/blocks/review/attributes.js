@@ -444,7 +444,7 @@ const attributes = {
 	},
 	spacingLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	paddingUnit: {
 		type: 'string',

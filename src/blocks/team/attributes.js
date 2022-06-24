@@ -666,7 +666,7 @@ const attributes = {
 	},
 	spacingLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	isPreview: {
 		type: 'boolean',

@@ -686,7 +686,7 @@ const attributes = {
 	},
 	marginLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	leftPadding: {
 		type: 'number',
@@ -783,7 +783,7 @@ const attributes = {
 	},
 	paddingLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	isPreview: {
 		type: 'boolean',

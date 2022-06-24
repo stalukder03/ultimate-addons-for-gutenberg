@@ -847,9 +847,11 @@ const attributes = {
 	},
 	imgspacingLink: {
 		type: 'boolean',
+		default: true,
 	},
 	spacingLink: {
 		type: 'boolean',
+		default: true,
 	},
 	imgpaddingTop: {
 		type: 'number',
