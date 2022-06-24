@@ -844,7 +844,7 @@ const attributes = { // eslint-disable-line no-unused-vars
 	},
 	marginLink              : {
 		type    : 'boolean',
-		default : false,
+		default : true,
 	},
 	leftPadding             : {
 		type : 'number',
@@ -941,7 +941,7 @@ const attributes = { // eslint-disable-line no-unused-vars
 	},
 	paddingLink             : {
 		type    : 'boolean',
-		default : false,
+		default : true,
 	},
 	headTransform           : {
 		type : 'string',

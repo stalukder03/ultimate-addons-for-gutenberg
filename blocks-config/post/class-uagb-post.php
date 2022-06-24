@@ -988,6 +988,14 @@ if ( ! class_exists( 'UAGB_Post' ) ) {
 					'excerptLetterSpacingTablet'    => array(
 						'type' => 'number',
 					),
+					'spacingLinkPadding'            => array(
+						'type' => 'boolean',
+						'default' => true,
+					),
+					'spacingLink'      => array(
+						'type'    => 'boolean',
+						'default' => true,
+					),
 				),
 			);
 		}

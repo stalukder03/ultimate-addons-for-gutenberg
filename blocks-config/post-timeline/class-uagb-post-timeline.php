@@ -593,7 +593,7 @@ if ( ! class_exists( 'UAGB_Post_Timeline' ) ) {
 						),
 						'marginLink'                 => array(
 							'type'    => 'boolean',
-							'default' => false,
+							'default' => true,
 						),
 						'leftPadding'                => array(
 							'type' => 'number',
@@ -645,7 +645,7 @@ if ( ! class_exists( 'UAGB_Post_Timeline' ) ) {
 						),
 						'paddingLink'                => array(
 							'type'    => 'boolean',
-							'default' => false,
+							'default' => true,
 						),
 						'headTransform'              => array(
 							'type' => 'string',
