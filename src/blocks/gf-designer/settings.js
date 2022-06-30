@@ -254,6 +254,34 @@ const Settings = ( props ) => {
 		successMsgDecoration,
 		successMsgFontStyle,
 		successMsgTransform,
+		labelLetterSpacing,
+labelLetterSpacingTablet,
+labelLetterSpacingMobile,
+labelLetterSpacingType,
+inputLetterSpacing,
+inputLetterSpacingTablet,
+inputLetterSpacingMobile,
+inputLetterSpacingType,
+radioCheckLetterSpacing,
+radioCheckLetterSpacingTablet,
+radioCheckLetterSpacingMobile,
+radioCheckLetterSpacingType,
+buttonLetterSpacing,
+buttonLetterSpacingTablet,
+buttonLetterSpacingMobile,
+buttonLetterSpacingType,
+validationMsgLetterSpacing,
+validationMsgLetterSpacingTablet,
+validationMsgLetterSpacingMobile,
+validationMsgLetterSpacingType,
+msgLetterSpacing,
+msgLetterSpacingTablet,
+msgLetterSpacingMobile,
+msgLetterSpacingType,
+successMsgLetterSpacing,
+successMsgLetterSpacingTablet,
+successMsgLetterSpacingMobile,
+successMsgLetterSpacingType,
 	} = attributes;
 
 	let loadInputGoogleFonts;
@@ -584,9 +612,10 @@ const Settings = ( props ) => {
 					label={ __( 'Radius', 'ultimate-addons-for-gutenberg' ) }
 					setAttributes={ setAttributes }
 					value={ fieldBorderRadius }
-					onChange={ ( value ) =>
-						setAttributes( { fieldBorderRadius: value } )
-					}
+					data={ {
+						value: fieldBorderRadius,
+						label: 'fieldBorderRadius',
+					} }
 					min={ 0 }
 					max={ 50 }
 					unit={ {
@@ -636,11 +665,11 @@ const Settings = ( props ) => {
 									colorValue={
 										fieldBorderColor ? fieldBorderColor : ''
 									}
-									onColorChange={ ( value ) =>
-										setAttributes( {
-											fieldBorderColor: value,
-										} )
-									}
+									data={ {
+										value: fieldBorderColor,
+										label: 'fieldBorderColor',
+									} }
+									setAttributes={ setAttributes }
 								/>
 							</>
 						)
@@ -659,11 +688,11 @@ const Settings = ( props ) => {
 											? fieldBorderFocusColor
 											: ''
 									}
-									onColorChange={ ( value ) =>
-										setAttributes( {
-											fieldBorderFocusColor: value,
-										} )
-									}
+									data={ {
+										value: fieldBorderFocusColor,
+										label: 'fieldBorderFocusColor',
+									} }
+									setAttributes={ setAttributes }
 								/>
 							</>
 						)
@@ -683,9 +712,11 @@ const Settings = ( props ) => {
 				<AdvancedPopColorControl
 					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
 					colorValue={ fieldInputColor ? fieldInputColor : '' }
-					onColorChange={ ( value ) =>
-						setAttributes( { fieldInputColor: value } )
-					}
+					data={ {
+						value: fieldInputColor,
+						label: 'fieldInputColor',
+					} }
+					setAttributes={ setAttributes }
 				/>
 				<AdvancedPopColorControl
 					label={ __(
@@ -693,9 +724,11 @@ const Settings = ( props ) => {
 						'ultimate-addons-for-gutenberg'
 					) }
 					colorValue={ fieldBgColor ? fieldBgColor : '' }
-					onColorChange={ ( value ) =>
-						setAttributes( { fieldBgColor: value } )
-					}
+					data={ {
+						value: fieldBgColor,
+						label: 'fieldBgColor',
+					} }
+					setAttributes={ setAttributes }
 				/>
 				<TypographyControl
 					label={ __( 'Typography' ) }
@@ -757,6 +790,22 @@ const Settings = ( props ) => {
 						value: inputLineHeightTablet,
 						label: 'inputLineHeightTablet',
 					} }
+					letterSpacing={ {
+						value: inputLetterSpacing,
+						label: 'inputLetterSpacing',
+					} }
+					letterSpacingTablet={ {
+						value: inputLetterSpacingTablet,
+						label: 'inputLetterSpacingTablet',
+					} }
+					letterSpacingMobile={ {
+						value: inputLetterSpacingMobile,
+						label: 'inputLetterSpacingMobile',
+					} }
+					letterSpacingType={ {
+						value: inputLetterSpacingType,
+						label: 'inputLetterSpacingType',
+					} }
 				/>
 				<ResponsiveSlider
 					label={ __(
@@ -809,9 +858,11 @@ const Settings = ( props ) => {
 							colorValue={
 								fieldLabelColor ? fieldLabelColor : ''
 							}
-							onColorChange={ ( value ) =>
-								setAttributes( { fieldLabelColor: value } )
-							}
+							data={ {
+								value: fieldLabelColor,
+								label: 'fieldLabelColor',
+							} }
+							setAttributes={ setAttributes }
 						/>
 						<TypographyControl
 							label={ __(
@@ -876,6 +927,22 @@ const Settings = ( props ) => {
 								value: labelLineHeightTablet,
 								label: 'labelLineHeightTablet',
 							} }
+							letterSpacing={ {
+								value: labelLetterSpacing,
+								label: 'labelLetterSpacing',
+							} }
+							letterSpacingTablet={ {
+								value: labelLetterSpacingTablet,
+								label: 'labelLetterSpacingTablet',
+							} }
+							letterSpacingMobile={ {
+								value: labelLetterSpacingMobile,
+								label: 'labelLetterSpacingMobile',
+							} }
+							letterSpacingType={ {
+								value: labelLetterSpacingType,
+								label: 'labelLetterSpacingType',
+							} }
 						/>
 					</>
 				) }
@@ -921,9 +988,10 @@ const Settings = ( props ) => {
 						) }
 						setAttributes={ setAttributes }
 						value={ formTabIndex }
-						onChange={ ( value ) =>
-							setAttributes( { formTabIndex: value } )
-						}
+						data={ {
+							value: formTabIndex,
+							label: 'formTabIndex',
+						} }
 						min={ 0 }
 						max={ 500 }
 						displayUnit={ false }
@@ -1191,9 +1259,10 @@ const Settings = ( props ) => {
 					label={ __( 'Radius', 'ultimate-addons-for-gutenberg' ) }
 					setAttributes={ setAttributes }
 					value={ buttonBorderRadius }
-					onChange={ ( value ) =>
-						setAttributes( { buttonBorderRadius: value } )
-					}
+					data={ {
+						value: buttonBorderRadius,
+						label: 'buttonBorderRadius',
+					} }
 					min={ 0 }
 					max={ 50 }
 					unit={ {
@@ -1227,9 +1296,11 @@ const Settings = ( props ) => {
 						'ultimate-addons-for-gutenberg'
 					) }
 					colorValue={ buttonTextColor ? buttonTextColor : '' }
-					onColorChange={ ( value ) =>
-						setAttributes( { buttonTextColor: value } )
-					}
+					data={ {
+						value: buttonTextColor,
+						label: 'buttonTextColor',
+					} }
+					setAttributes={ setAttributes }
 				/>
 				<AdvancedPopColorControl
 					label={ __(
@@ -1237,9 +1308,11 @@ const Settings = ( props ) => {
 						'ultimate-addons-for-gutenberg'
 					) }
 					colorValue={ buttonBgColor }
-					onColorChange={ ( value ) =>
-						setAttributes( { buttonBgColor: value } )
-					}
+					data={ {
+						value: buttonBgColor,
+						label: 'buttonBgColor',
+					} }
+					setAttributes={ setAttributes }
 				/>
 				{ 'none' !== buttonBorderStyle && (
 					<>
@@ -1251,9 +1324,11 @@ const Settings = ( props ) => {
 							colorValue={
 								buttonBorderColor ? buttonBorderColor : ''
 							}
-							onColorChange={ ( value ) =>
-								setAttributes( { buttonBorderColor: value } )
-							}
+							data={ {
+								value: buttonBorderColor,
+								label: 'buttonBorderColor',
+							} }
+							setAttributes={ setAttributes }
 						/>
 					</>
 				) }
@@ -1272,9 +1347,11 @@ const Settings = ( props ) => {
 					colorValue={
 						buttonTextHoverColor ? buttonTextHoverColor : ''
 					}
-					onColorChange={ ( value ) =>
-						setAttributes( { buttonTextHoverColor: value } )
-					}
+					data={ {
+						value: buttonTextHoverColor,
+						label: 'buttonTextHoverColor',
+					} }
+					setAttributes={ setAttributes }
 				/>
 				<AdvancedPopColorControl
 					label={ __(
@@ -1282,9 +1359,11 @@ const Settings = ( props ) => {
 						'ultimate-addons-for-gutenberg'
 					) }
 					colorValue={ buttonBgHoverColor }
-					onColorChange={ ( value ) =>
-						setAttributes( { buttonBgHoverColor: value } )
-					}
+					data={ {
+						value: buttonBgHoverColor,
+						label: 'buttonBgHoverColor',
+					} }
+					setAttributes={ setAttributes }
 				/>
 				{ 'none' !== buttonBorderStyle && (
 					<>
@@ -1298,11 +1377,11 @@ const Settings = ( props ) => {
 									? buttonBorderHoverColor
 									: ''
 							}
-							onColorChange={ ( value ) =>
-								setAttributes( {
-									buttonBorderHoverColor: value,
-								} )
-							}
+							data={ {
+								value: buttonBorderHoverColor,
+								label: 'buttonBorderHoverColor',
+							} }
+							setAttributes={ setAttributes }
 						/>
 					</>
 				) }
@@ -1449,6 +1528,22 @@ const Settings = ( props ) => {
 					lineHeightTablet={ {
 						value: buttonLineHeightTablet,
 						label: 'buttonLineHeightTablet',
+					} }
+					letterSpacing={ {
+						value: buttonLetterSpacing,
+						label: 'buttonLetterSpacing',
+					} }
+					letterSpacingTablet={ {
+						value: buttonLetterSpacingTablet,
+						label: 'buttonLetterSpacingTablet',
+					} }
+					letterSpacingMobile={ {
+						value: buttonLetterSpacingMobile,
+						label: 'buttonLetterSpacingMobile',
+					} }
+					letterSpacingType={ {
+						value: buttonLetterSpacingType,
+						label: 'buttonLetterSpacingType',
 					} }
 				/>
 				<SpacingControl
@@ -1664,9 +1759,11 @@ const Settings = ( props ) => {
 								'ultimate-addons-for-gutenberg'
 							) }
 							colorValue={ radioCheckLableColor }
-							onColorChange={ ( value ) =>
-								setAttributes( { radioCheckLableColor: value } )
-							}
+							data={ {
+								value: radioCheckLableColor,
+								label: 'radioCheckLableColor',
+							} }
+							setAttributes={ setAttributes }
 						/>
 						<AdvancedPopColorControl
 							label={ __(
@@ -1674,9 +1771,11 @@ const Settings = ( props ) => {
 								'ultimate-addons-for-gutenberg'
 							) }
 							colorValue={ radioCheckBgColor }
-							onColorChange={ ( value ) =>
-								setAttributes( { radioCheckBgColor: value } )
-							}
+							data={ {
+								value: radioCheckBgColor,
+								label: 'radioCheckBgColor',
+							} }
+							setAttributes={ setAttributes }
 						/>
 						<AdvancedPopColorControl
 							label={ __(
@@ -1684,11 +1783,11 @@ const Settings = ( props ) => {
 								'ultimate-addons-for-gutenberg'
 							) }
 							colorValue={ radioCheckSelectColor }
-							onColorChange={ ( value ) =>
-								setAttributes( {
-									radioCheckSelectColor: value,
-								} )
-							}
+							data={ {
+								value: radioCheckSelectColor,
+								label: 'radioCheckSelectColor',
+							} }
+							setAttributes={ setAttributes }
 						/>
 						<TypographyControl
 							label={ __(
@@ -1753,6 +1852,22 @@ const Settings = ( props ) => {
 								value: radioCheckLineHeightTablet,
 								label: 'radioCheckLineHeightTablet',
 							} }
+							letterSpacing={ {
+								value: radioCheckLetterSpacing,
+								label: 'radioCheckLetterSpacing',
+							} }
+							letterSpacingTablet={ {
+								value: radioCheckLetterSpacingTablet,
+								label: 'radioCheckLetterSpacingTablet',
+							} }
+							letterSpacingMobile={ {
+								value: radioCheckLetterSpacingMobile,
+								label: 'radioCheckLetterSpacingMobile',
+							} }
+							letterSpacingType={ {
+								value: radioCheckLetterSpacingType,
+								label: 'radioCheckLetterSpacingType',
+							} }
 						/>
 						{ fieldBorderStyle !== 'none' && (
 							<>
@@ -1804,11 +1919,11 @@ const Settings = ( props ) => {
 											? radioCheckBorderColor
 											: ''
 									}
-									onColorChange={ ( value ) =>
-										setAttributes( {
-											radioCheckBorderColor: value,
-										} )
-									}
+									data={ {
+										value: radioCheckBorderColor,
+										label: 'radioCheckBorderColor',
+									} }
+									setAttributes={ setAttributes }
 								/>
 							</>
 						) }
@@ -1819,11 +1934,10 @@ const Settings = ( props ) => {
 							) }
 							setAttributes={ setAttributes }
 							value={ radioCheckBorderRadius }
-							onChange={ ( value ) =>
-								setAttributes( {
-									radioCheckBorderRadius: value,
-								} )
-							}
+							data={ {
+								value: radioCheckBorderRadius,
+								label: 'radioCheckBorderRadius',
+							} }
 							min={ 0 }
 							max={ 50 }
 							unit={ {
@@ -1880,9 +1994,11 @@ const Settings = ( props ) => {
 						'ultimate-addons-for-gutenberg'
 					) }
 					colorValue={ validationMsgColor ? validationMsgColor : '' }
-					onColorChange={ ( value ) =>
-						setAttributes( { validationMsgColor: value } )
-					}
+					data={ {
+						value: validationMsgColor,
+						label: 'validationMsgColor',
+					} }
+					setAttributes={ setAttributes }
 				/>
 				<TypographyControl
 					label={ __( 'Typography' ) }
@@ -1943,6 +2059,22 @@ const Settings = ( props ) => {
 					lineHeightTablet={ {
 						value: validationMsgLineHeightTablet,
 						label: 'validationMsgLineHeightTablet',
+					} }
+					letterSpacing={ {
+						value: validationMsgLetterSpacing,
+						label: 'validationMsgLetterSpacing',
+					} }
+					letterSpacingTablet={ {
+						value: validationMsgLetterSpacingTablet,
+						label: 'validationMsgLetterSpacingTablet',
+					} }
+					letterSpacingMobile={ {
+						value: validationMsgLetterSpacingMobile,
+						label: 'validationMsgLetterSpacingMobile',
+					} }
+					letterSpacingType={ {
+						value: validationMsgLetterSpacingType,
+						label: 'validationMsgLetterSpacingType',
 					} }
 				/>
 				<SpacingControl
@@ -2041,9 +2173,11 @@ const Settings = ( props ) => {
 							colorValue={
 								validationMsgBgColor ? validationMsgBgColor : ''
 							}
-							onColorChange={ ( value ) =>
-								setAttributes( { validationMsgBgColor: value } )
-							}
+							data={ {
+								value: validationMsgBgColor,
+								label: 'validationMsgBgColor',
+							} }
+							setAttributes={ setAttributes }
 						/>
 					</>
 				) }
@@ -2058,9 +2192,11 @@ const Settings = ( props ) => {
 							colorValue={
 								highlightBorderColor ? highlightBorderColor : ''
 							}
-							onColorChange={ ( value ) =>
-								setAttributes( { highlightBorderColor: value } )
-							}
+							data={ {
+								value: highlightBorderColor,
+								label: 'highlightBorderColor',
+							} }
+							setAttributes={ setAttributes }
 						/>
 					</>
 				) }
@@ -2073,9 +2209,11 @@ const Settings = ( props ) => {
 				<AdvancedPopColorControl
 					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
 					colorValue={ errorMsgColor ? errorMsgColor : '' }
-					onColorChange={ ( value ) =>
-						setAttributes( { errorMsgColor: value } )
-					}
+					data={ {
+						value: errorMsgColor,
+						label: 'errorMsgColor',
+					} }
+					setAttributes={ setAttributes }
 				/>
 				<AdvancedPopColorControl
 					label={ __(
@@ -2083,9 +2221,11 @@ const Settings = ( props ) => {
 						'ultimate-addons-for-gutenberg'
 					) }
 					colorValue={ errorMsgBgColor ? errorMsgBgColor : '' }
-					onColorChange={ ( value ) =>
-						setAttributes( { errorMsgBgColor: value } )
-					}
+					data={ {
+						value: errorMsgBgColor,
+						label: 'errorMsgBgColor',
+					} }
+					setAttributes={ setAttributes }
 				/>
 				<AdvancedPopColorControl
 					label={ __(
@@ -2095,9 +2235,11 @@ const Settings = ( props ) => {
 					colorValue={
 						errorMsgBorderColor ? errorMsgBorderColor : ''
 					}
-					onColorChange={ ( value ) =>
-						setAttributes( { errorMsgBorderColor: value } )
-					}
+					data={ {
+						value: errorMsgBorderColor,
+						label: 'errorMsgBorderColor',
+					} }
+					setAttributes={ setAttributes }
 				/>
 				<Range
 					label={ __(
@@ -2106,9 +2248,10 @@ const Settings = ( props ) => {
 					) }
 					setAttributes={ setAttributes }
 					value={ msgBorderSize }
-					onChange={ ( value ) =>
-						setAttributes( { msgBorderSize: value } )
-					}
+					data={ {
+						value: msgBorderSize,
+						label: 'msgBorderSize',
+					} }
 					min={ 0 }
 					max={ 50 }
 					unit={ {
@@ -2133,9 +2276,10 @@ const Settings = ( props ) => {
 					) }
 					setAttributes={ setAttributes }
 					value={ msgBorderRadius }
-					onChange={ ( value ) =>
-						setAttributes( { msgBorderRadius: value } )
-					}
+					data={ {
+						value: msgBorderRadius,
+						label: 'msgBorderRadius',
+					} }
 					min={ 0 }
 					max={ 50 }
 					unit={ {
@@ -2216,6 +2360,22 @@ const Settings = ( props ) => {
 						value: msgLineHeightTablet,
 						label: 'msgLineHeightTablet',
 					} }
+					letterSpacing={ {
+						value: msgLetterSpacing,
+						label: 'msgLetterSpacing',
+					} }
+					letterSpacingTablet={ {
+						value: msgLetterSpacingTablet,
+						label: 'msgLetterSpacingTablet',
+					} }
+					letterSpacingMobile={ {
+						value: msgLetterSpacingMobile,
+						label: 'msgLetterSpacingMobile',
+					} }
+					letterSpacingType={ {
+						value: msgLetterSpacingType,
+						label: 'msgLetterSpacingType',
+					} }
 				/>
 				<h2>
 					{ __(
@@ -2226,9 +2386,11 @@ const Settings = ( props ) => {
 				<AdvancedPopColorControl
 					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
 					colorValue={ successMsgColor ? successMsgColor : '' }
-					onColorChange={ ( value ) =>
-						setAttributes( { successMsgColor: value } )
-					}
+					data={ {
+						value: successMsgColor,
+						label: 'successMsgColor',
+					} }
+					setAttributes={ setAttributes }
 				/>
 				<TypographyControl
 					label={ __(
@@ -2292,6 +2454,22 @@ const Settings = ( props ) => {
 					lineHeightTablet={ {
 						value: successMsgLineHeightTablet,
 						label: 'successMsgLineHeightTablet',
+					} }
+					letterSpacing={ {
+						value: successMsgLetterSpacing,
+						label: 'successMsgLetterSpacing',
+					} }
+					letterSpacingTablet={ {
+						value: successMsgLetterSpacingTablet,
+						label: 'successMsgLetterSpacingTablet',
+					} }
+					letterSpacingMobile={ {
+						value: successMsgLetterSpacingMobile,
+						label: 'successMsgLetterSpacingMobile',
+					} }
+					letterSpacingType={ {
+						value: successMsgLetterSpacingType,
+						label: 'successMsgLetterSpacingType',
 					} }
 				/>
 			</UAGAdvancedPanelBody>

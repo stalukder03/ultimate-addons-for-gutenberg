@@ -17,7 +17,6 @@ import {
 	MediaPlaceholder,
 	BlockControls,
 	MediaReplaceFlow,
-	AlignmentToolbar
 } from '@wordpress/block-editor';
 
 import {
@@ -117,7 +116,7 @@ const Settings = ( props ) => {
 						allow={ [ 'application/json' ] }
 					/>
 				) }
-				{ lottieSource === 'url' && (					
+				{ lottieSource === 'url' && (
 					<TextControl
 						label={ __(
 							'Lottie Animation URL',
@@ -216,7 +215,10 @@ const Settings = ( props ) => {
 					label={ __( 'Speed', 'ultimate-addons-for-gutenberg' ) }
 					setAttributes={ setAttributes }
 					value={ speed }
-					onChange={ ( value ) => setAttributes( { speed: value } ) }
+					data={ {
+						value: speed,
+						label: 'speed',
+					} }
 					min={ 1 }
 					max={ 50 }
 					displayUnit={ false }
@@ -298,18 +300,22 @@ const Settings = ( props ) => {
 					<AdvancedPopColorControl
 						label={ __( 'Background Color', 'ultimate-addons-for-gutenberg' ) }
 						colorValue={ backgroundColor ? backgroundColor : '' }
-						onColorChange={ ( value ) =>
-							setAttributes( { backgroundColor: value } )
-						}
+						data={ {
+							value: backgroundColor,
+							label: 'backgroundColor',
+						} }
+						setAttributes={ setAttributes }
 					/>
 				}
 				hover={
 					<AdvancedPopColorControl
 						label={ __( 'Background Color', 'ultimate-addons-for-gutenberg' ) }
 						colorValue={ backgroundHColor ? backgroundHColor : '' }
-						onColorChange={ ( value ) =>
-							setAttributes( { backgroundHColor: value } )
-						}
+						data={ {
+							value: backgroundHColor,
+							label: 'backgroundHColor',
+						} }
+						setAttributes={ setAttributes }
 					/>
 				}
 				disableBottomSeparator={ true }
@@ -391,12 +397,6 @@ const Settings = ( props ) => {
 						onSelect={ onSelectLottieJSON }
 					/>
 				</ToolbarGroup>
-				<AlignmentToolbar
-					value={ align }
-					onChange={ ( value ) =>
-						setAttributes( { align: value } )
-					}
-				/>
 			</BlockControls>
 		);
 	};

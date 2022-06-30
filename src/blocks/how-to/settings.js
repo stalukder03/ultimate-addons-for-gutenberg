@@ -5,8 +5,6 @@ import TypographyControl from '@Components/typography';
 import './style.scss';
 import { __ } from '@wordpress/i18n';
 import {
-	AlignmentToolbar,
-	BlockControls,
 	InspectorControls,
 } from '@wordpress/block-editor';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
@@ -36,7 +34,7 @@ let imageSizeOptions = [
 ];
 
 
-
+import { getFallbackNumber } from '@Controls/getAttributeFallback';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 const Settings = ( props ) => {
@@ -117,6 +115,19 @@ const Settings = ( props ) => {
 			subHeadFontStyle,
 			subHeadTransform,
 			subHeadDecoration,
+			// letter spacing
+			headLetterSpacing,
+			headLetterSpacingTablet,
+			headLetterSpacingMobile,
+			headLetterSpacingType,
+			priceLetterSpacing,
+			priceLetterSpacingTablet,
+			priceLetterSpacingMobile,
+			priceLetterSpacingType,
+			subHeadLetterSpacing,
+			subHeadLetterSpacingTablet,
+			subHeadLetterSpacingMobile,
+			subHeadLetterSpacingType,
 		},
 	} = props;
 
@@ -358,9 +369,10 @@ const Settings = ( props ) => {
 							) }
 							setAttributes={ setAttributes }
 							value={ timeInYears }
-							onChange={ ( value ) =>
-								setAttributes( { timeInYears: value } )
-							}
+							data={ {
+								value: timeInYears,
+								label: 'timeInYears',
+							} }
 							min={ 1 }
 							max={ 10 }
 							displayUnit={ false }
@@ -372,9 +384,10 @@ const Settings = ( props ) => {
 							) }
 							setAttributes={ setAttributes }
 							value={ timeInMonths }
-							onChange={ ( value ) =>
-								setAttributes( { timeInMonths: value } )
-							}
+							data={ {
+								value: timeInMonths,
+								label: 'timeInMonths',
+							} }
 							min={ 1 }
 							max={ 12 }
 							displayUnit={ false }
@@ -386,9 +399,10 @@ const Settings = ( props ) => {
 							) }
 							setAttributes={ setAttributes }
 							value={ timeInDays }
-							onChange={ ( value ) =>
-								setAttributes( { timeInDays: value } )
-							}
+							data={ {
+								value: timeInDays,
+								label: 'timeInDays',
+							} }
 							min={ 1 }
 							max={ 31 }
 							displayUnit={ false }
@@ -400,9 +414,10 @@ const Settings = ( props ) => {
 							) }
 							setAttributes={ setAttributes }
 							value={ timeInHours }
-							onChange={ ( value ) =>
-								setAttributes( { timeInHours: value } )
-							}
+							data={ {
+								value: timeInHours,
+								label: 'timeInHours',
+							} }
 							min={ 1 }
 							max={ 24 }
 							displayUnit={ false }
@@ -414,9 +429,10 @@ const Settings = ( props ) => {
 							) }
 							setAttributes={ setAttributes }
 							value={ minsValue }
-							onChange={ ( value ) =>
-								setAttributes( { timeInMins: value } )
-							}
+							data={ {
+								value: timeInMins,
+								label: 'timeInMins',
+							} }
 							min={ 1 }
 							max={ 60 }
 							displayUnit={ false }
@@ -487,12 +503,17 @@ const Settings = ( props ) => {
 						) }
 						setAttributes={ setAttributes }
 						value={ tools_count }
+						data={ {
+							value: tools_count,
+							label: 'tools_count',
+						} }
 						onChange={ ( newCount ) => {
 							const cloneIcons = [ ...tools ];
+							const newCountFallback = getFallbackNumber( newCount, 'tools_count', 'how-to' );
 
-							if ( cloneIcons.length < newCount ) {
+							if ( cloneIcons.length < newCountFallback ) {
 								const incAmount = Math.abs(
-									newCount - cloneIcons.length
+									newCountFallback - cloneIcons.length
 								);
 
 								{
@@ -508,7 +529,7 @@ const Settings = ( props ) => {
 								setAttributes( { tools: cloneIcons } );
 							} else {
 								const incAmount = Math.abs(
-									newCount - cloneIcons.length
+									newCountFallback - cloneIcons.length
 								);
 								const data_new = cloneIcons;
 								for ( let i = 0; i < incAmount; i++ ) {
@@ -516,7 +537,7 @@ const Settings = ( props ) => {
 								}
 								setAttributes( { tools: data_new } );
 							}
-							setAttributes( { tools_count: newCount } );
+							setAttributes( { tools_count: newCountFallback } );
 						} }
 						min={ 1 }
 						max={ 50 }
@@ -554,12 +575,17 @@ const Settings = ( props ) => {
 						) }
 						setAttributes={ setAttributes }
 						value={ material_count }
+						data={ {
+							value: material_count,
+							label: 'material_count',
+						} }
 						onChange={ ( newCount ) => {
 							const cloneIcons = [ ...materials ];
+							const newCountFallback = getFallbackNumber( newCount, 'material_count', 'how-to' );
 
-							if ( cloneIcons.length < newCount ) {
+							if ( cloneIcons.length < newCountFallback ) {
 								const incAmount = Math.abs(
-									newCount - cloneIcons.length
+									newCountFallback - cloneIcons.length
 								);
 
 								{
@@ -575,7 +601,7 @@ const Settings = ( props ) => {
 								setAttributes( { materials: cloneIcons } );
 							} else {
 								const incAmount = Math.abs(
-									newCount - cloneIcons.length
+									newCountFallback - cloneIcons.length
 								);
 								const data_new = cloneIcons;
 								for ( let i = 0; i < incAmount; i++ ) {
@@ -583,7 +609,7 @@ const Settings = ( props ) => {
 								}
 								setAttributes( { materials: data_new } );
 							}
-							setAttributes( { material_count: newCount } );
+							setAttributes( { material_count: newCountFallback } );
 						} }
 						min={ 1 }
 						max={ 50 }
@@ -603,9 +629,11 @@ const Settings = ( props ) => {
 				<AdvancedPopColorControl
 					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
 					colorValue={ headingColor ? headingColor : '' }
-					onColorChange={ ( value ) =>
-						setAttributes( { headingColor: value } )
-					}
+					data={ {
+						value: headingColor,
+						label: 'headingColor',
+					} }
+					setAttributes={ setAttributes }
 				/>
 				<TypographyControl
 					label={ __(
@@ -667,6 +695,22 @@ const Settings = ( props ) => {
 						value: headLineHeightTablet,
 						label: 'headLineHeightTablet',
 					} }
+					letterSpacing={ {
+						value: headLetterSpacing,
+						label: 'headLetterSpacing',
+					} }
+					letterSpacingTablet={ {
+						value: headLetterSpacingTablet,
+						label: 'headLetterSpacingTablet',
+					} }
+					letterSpacingMobile={ {
+						value: headLetterSpacingMobile,
+						label: 'headLetterSpacingMobile',
+					} }
+					letterSpacingType={ {
+						value: headLetterSpacingType,
+						label: 'headLetterSpacingType',
+					} }
 				/>
 			</UAGAdvancedPanelBody>
 		);
@@ -683,9 +727,11 @@ const Settings = ( props ) => {
 				<AdvancedPopColorControl
 					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
 					colorValue={ showTotaltimecolor ? showTotaltimecolor : '' }
-					onColorChange={ ( value ) =>
-						setAttributes( { showTotaltimecolor: value } )
-					}
+					data={ {
+						value: showTotaltimecolor,
+						label: 'showTotaltimecolor',
+					} }
+					setAttributes={ setAttributes }
 				/>
 				<TypographyControl
 					label={ __(
@@ -750,6 +796,22 @@ const Settings = ( props ) => {
 						value: priceLineHeightTablet,
 						label: 'priceLineHeightTablet',
 					} }
+					letterSpacing={ {
+						value: priceLetterSpacing,
+						label: 'priceLetterSpacing',
+					} }
+					letterSpacingTablet={ {
+						value: priceLetterSpacingTablet,
+						label: 'priceLetterSpacingTablet',
+					} }
+					letterSpacingMobile={ {
+						value: priceLetterSpacingMobile,
+						label: 'priceLetterSpacingMobile',
+					} }
+					letterSpacingType={ {
+						value: priceLetterSpacingType,
+						label: 'priceLetterSpacingType',
+					} }
 				/>
 			</UAGAdvancedPanelBody>
 		);
@@ -763,9 +825,11 @@ const Settings = ( props ) => {
 				<AdvancedPopColorControl
 					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
 					colorValue={ subHeadingColor ? subHeadingColor : '' }
-					onColorChange={ ( value ) =>
-						setAttributes( { subHeadingColor: value } )
-					}
+					data={ {
+						value: subHeadingColor,
+						label: 'subHeadingColor',
+					} }
+					setAttributes={ setAttributes }
 				/>
 				<TypographyControl
 					label={ __(
@@ -830,6 +894,22 @@ const Settings = ( props ) => {
 						value: subHeadLineHeightTablet,
 						label: 'subHeadLineHeightTablet',
 					} }
+					letterSpacing={ {
+						value: subHeadLetterSpacing,
+						label: 'subHeadLetterSpacing',
+					} }
+					letterSpacingTablet={ {
+						value: subHeadLetterSpacingTablet,
+						label: 'subHeadLetterSpacingTablet',
+					} }
+					letterSpacingMobile={ {
+						value: subHeadLetterSpacingMobile,
+						label: 'subHeadLetterSpacingMobile',
+					} }
+					letterSpacingType={ {
+						value: subHeadLetterSpacingType,
+						label: 'subHeadLetterSpacingType',
+					} }
 				/>
 			</UAGAdvancedPanelBody>
 		);
@@ -848,9 +928,10 @@ const Settings = ( props ) => {
 						) }
 						setAttributes={ setAttributes }
 						value={ timeSpace }
-						onChange={ ( value ) =>
-							setAttributes( { timeSpace: value } )
-						}
+						data={ {
+							value: timeSpace,
+							label: 'timeSpace',
+						} }
 						min={ 0 }
 						max={ 50 }
 						displayUnit={ false }
@@ -864,25 +945,15 @@ const Settings = ( props ) => {
 						) }
 						setAttributes={ setAttributes }
 						value={ costSpace }
-						onChange={ ( value ) =>
-							setAttributes( { costSpace: value } )
-						}
+						data={ {
+							value: costSpace,
+							label: 'costSpace',
+						} }
 						min={ 0 }
 						max={ 50 }
 						displayUnit={ false }
 					/>
 				) }
-				{/* <Range
-					label={ __( 'Row Gap', 'ultimate-addons-for-gutenberg' ) }
-					setAttributes={ setAttributes }
-					value={ row_gap }
-					onChange={ ( value ) =>
-						setAttributes( { row_gap: value } )
-					}
-					min={ 0 }
-					max={ 200 }
-					displayUnit={ false }
-				/> */}
 				<ResponsiveSlider
 					label={ __(
 						'Row Gap',
@@ -914,9 +985,10 @@ const Settings = ( props ) => {
 					) }
 					setAttributes={ setAttributes }
 					value={ step_gap }
-					onChange={ ( value ) =>
-						setAttributes( { step_gap: value } )
-					}
+					data={ {
+						value: step_gap,
+						label: 'step_gap',
+					} }
 					min={ 0 }
 					max={ 200 }
 					displayUnit={ false }
@@ -925,22 +997,9 @@ const Settings = ( props ) => {
 		);
 	};
 
-	const blockControls = () => {
-		return (
-			<BlockControls key="index">
-				<AlignmentToolbar
-					value={ overallAlignment }
-					onChange={ ( value ) =>
-						setAttributes( { overallAlignment: value } )
-					}
-				/>
-			</BlockControls>
-		);
-	};
 
 	return (
 		<Suspense fallback={ lazyLoader() }>
-			{ blockControls() }
 			<InspectorControls>
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>

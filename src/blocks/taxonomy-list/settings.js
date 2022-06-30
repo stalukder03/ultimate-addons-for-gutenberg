@@ -5,7 +5,7 @@ import WebfontLoader from '@Components/typography/fontloader';
 import renderSVG from '@Controls/renderIcon';
 import TypographyControl from '@Components/typography';
 import BoxShadowControl from '@Components/box-shadow';
-import Border from '@Components/border';
+import ResponsiveBorder from '@Components/responsive-border';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
 import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
 import InspectorTab, {
@@ -22,9 +22,11 @@ import {
 	Icon,
 	ToggleControl,
 } from '@wordpress/components';
-import { InspectorControls, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
+import { InspectorControls } from '@wordpress/block-editor';
 
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
+import boxShadowPresets from './presets';
+import UAGPresets from '@Components/presets';
 
 import apiFetch from '@wordpress/api-fetch';
 const Settings = ( props ) => {
@@ -77,11 +79,6 @@ const Settings = ( props ) => {
 		titleBottomSpaceMobile,
 		alignment,
 		listStyle,
-		seperatorStyle,
-		seperatorWidth,
-		seperatorThickness,
-		seperatorColor,
-		seperatorHoverColor,
 		listTextColor,
 		hoverlistTextColor,
 		listBottomMargin,
@@ -132,11 +129,6 @@ const Settings = ( props ) => {
 		listLineHeightMobile,
 		listLoadGoogleFonts,
 		showEmptyTaxonomy,
-		borderStyle,
-		borderThickness,
-		borderColor,
-		borderRadius,
-		borderHoverColor,
 		listDisplayStyle,
 		showhierarchy,
 		titleTag,
@@ -146,6 +138,19 @@ const Settings = ( props ) => {
 		titleDecoration,
 		countDecoration,
 		listDecoration,
+		// letter spacing
+		titleLetterSpacing,
+		titleLetterSpacingTablet,
+		titleLetterSpacingMobile,
+		titleLetterSpacingType,
+		countLetterSpacing,
+		countLetterSpacingTablet,
+		countLetterSpacingMobile,
+		countLetterSpacingType,
+		listLetterSpacing,
+		listLetterSpacingTablet,
+		listLetterSpacingMobile,
+		listLetterSpacingType,
 	} = attributes;
 
 	const taxonomy_list_setting = showEmptyTaxonomy ? taxonomyList : termsList;
@@ -220,9 +225,11 @@ const Settings = ( props ) => {
 			<AdvancedPopColorControl
 				label={ __( 'Text Color', 'ultimate-addons-for-gutenberg' ) }
 				colorValue={ listTextColor ? listTextColor : '' }
-				onColorChange={ ( value ) =>
-					setAttributes( { listTextColor: value } )
-				}
+				data={ {
+					value: listTextColor,
+					label: 'listTextColor',
+				} }
+				setAttributes={ setAttributes }
 			/>
 			<br />
 
@@ -234,9 +241,11 @@ const Settings = ( props ) => {
 							'ultimate-addons-for-gutenberg'
 						) }
 						colorValue={ listStyleColor ? listStyleColor : '' }
-						onColorChange={ ( value ) =>
-							setAttributes( { listStyleColor: value } )
-						}
+						data={ {
+							value: listStyleColor,
+							label: 'listStyleColor',
+						} }
+						setAttributes={ setAttributes }
 					/>
 				</>
 			) }
@@ -247,9 +256,11 @@ const Settings = ( props ) => {
 			<AdvancedPopColorControl
 				label={ __( 'Text Color', 'ultimate-addons-for-gutenberg' ) }
 				colorValue={ hoverlistTextColor ? hoverlistTextColor : '' }
-				onColorChange={ ( value ) =>
-					setAttributes( { hoverlistTextColor: value } )
-				}
+				data={ {
+					value: hoverlistTextColor,
+					label: 'hoverlistTextColor',
+				} }
+				setAttributes={ setAttributes }
 			/>
 			<br />
 			{ 'none' !== listStyle && (
@@ -262,9 +273,11 @@ const Settings = ( props ) => {
 						colorValue={
 							hoverlistStyleColor ? hoverlistStyleColor : ''
 						}
-						onColorChange={ ( value ) =>
-							setAttributes( { hoverlistStyleColor: value } )
-						}
+						data={ {
+							value: hoverlistStyleColor,
+							label: 'hoverlistStyleColor',
+						} }
+						setAttributes={ setAttributes }
 					/>
 				</>
 			) }
@@ -704,13 +717,31 @@ const Settings = ( props ) => {
 						value: titleDecoration,
 						label: 'titleDecoration',
 					} }
+					letterSpacing={ {
+						value: titleLetterSpacing,
+						label: 'titleLetterSpacing',
+					} }
+					letterSpacingTablet={ {
+						value: titleLetterSpacingTablet,
+						label: 'titleLetterSpacingTablet',
+					} }
+					letterSpacingMobile={ {
+						value: titleLetterSpacingMobile,
+						label: 'titleLetterSpacingMobile',
+					} }
+					letterSpacingType={ {
+						value: titleLetterSpacingType,
+						label: 'titleLetterSpacingType',
+					} }
 				/>
 				<AdvancedPopColorControl
 					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
 					colorValue={ titleColor ? titleColor : '' }
-					onColorChange={ ( value ) =>
-						setAttributes( { titleColor: value } )
-					}
+					data={ {
+						value: titleColor,
+						label: 'titleColor',
+					} }
+					setAttributes={ setAttributes }
 				/>
 				{ showCount && (
 					<ResponsiveSlider
@@ -750,9 +781,11 @@ const Settings = ( props ) => {
 				<AdvancedPopColorControl
 					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
 					colorValue={ countColor ? countColor : '' }
-					onColorChange={ ( value ) =>
-						setAttributes( { countColor: value } )
-					}
+					data={ {
+						value: countColor,
+						label: 'countColor',
+					} }
+					setAttributes={ setAttributes }
 				/>
 				<TypographyControl
 					label={ __(
@@ -817,6 +850,22 @@ const Settings = ( props ) => {
 						value: countDecoration,
 						label: 'countDecoration',
 					} }
+					letterSpacing={ {
+						value: countLetterSpacing,
+						label: 'countLetterSpacing',
+					} }
+					letterSpacingTablet={ {
+						value: countLetterSpacingTablet,
+						label: 'countLetterSpacingTablet',
+					} }
+					letterSpacingMobile={ {
+						value: countLetterSpacingMobile,
+						label: 'countLetterSpacingMobile',
+					} }
+					letterSpacingType={ {
+						value: countLetterSpacingType,
+						label: 'countLetterSpacingType',
+					} }
 				/>
 			</UAGAdvancedPanelBody>
 		);
@@ -830,9 +879,11 @@ const Settings = ( props ) => {
 				<AdvancedPopColorControl
 					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
 					colorValue={ bgColor ? bgColor : '' }
-					onColorChange={ ( value ) =>
-						setAttributes( { bgColor: value } )
-					}
+					data={ {
+						value: bgColor,
+						label: 'bgColor',
+					} }
+					setAttributes={ setAttributes }
 				/>
 			</UAGAdvancedPanelBody>
 		);
@@ -977,9 +1028,10 @@ const Settings = ( props ) => {
 						) }
 						setAttributes={ setAttributes }
 						value={ listBottomMargin }
-						onChange={ ( value ) =>
-							setAttributes( { listBottomMargin: value } )
-						}
+						data={ {
+							value: listBottomMargin,
+							label: 'listBottomMargin',
+						} }
 						min={ 0 }
 						max={ 100 }
 						displayUnit={ false }
@@ -994,38 +1046,13 @@ const Settings = ( props ) => {
 				title={ __( 'Border', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
-				<Border
-					disabledBorderTitle= {true}
+				<ResponsiveBorder
 					setAttributes={ setAttributes }
-					borderStyle={ {
-						value: borderStyle,
-						label: 'borderStyle',
-						title: __( 'Style', 'ultimate-addons-for-gutenberg' ),
-					} }
-					borderWidth={ {
-						value: borderThickness,
-						label: 'borderThickness',
-						title: __( 'Width', 'ultimate-addons-for-gutenberg' ),
-					} }
-					borderRadius={ {
-						value: borderRadius,
-						label: 'borderRadius',
-						title: __( 'Radius', 'ultimate-addons-for-gutenberg' ),
-					} }
-					borderColor={ {
-						value: borderColor,
-						label: 'borderColor',
-						title: __( 'Color', 'ultimate-addons-for-gutenberg' ),
-					} }
-					borderHoverColor={ {
-						value: borderHoverColor,
-						label: 'borderHoverColor',
-						title: __(
-							'Hover Color',
-							'ultimate-addons-for-gutenberg'
-						),
-					} }
+					prefix={ 'overall' }
+					attributes={ attributes }
+					deviceType={ deviceType }
 					disableBottomSeparator={ true }
+					disabledBorderTitle= { true }
 				/>
 			</UAGAdvancedPanelBody>
 		);
@@ -1099,6 +1126,22 @@ const Settings = ( props ) => {
 						value: listDecoration,
 						label: 'listDecoration',
 					} }
+					letterSpacing={ {
+						value: listLetterSpacing,
+						label: 'listLetterSpacing',
+					} }
+					letterSpacingTablet={ {
+						value: listLetterSpacingTablet,
+						label: 'listLetterSpacingTablet',
+					} }
+					letterSpacingMobile={ {
+						value: listLetterSpacingMobile,
+						label: 'listLetterSpacingMobile',
+					} }
+					letterSpacingType={ {
+						value: listLetterSpacingType,
+						label: 'listLetterSpacingType',
+					} }
 				/>
 				<UAGTabsControl
 					tabs={ [
@@ -1130,41 +1173,13 @@ const Settings = ( props ) => {
 				title={ __( 'Separator', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
-				<Border
-					disabledBorderTitle= {false}
+				<ResponsiveBorder
 					setAttributes={ setAttributes }
-					borderStyle={ {
-						value: seperatorStyle,
-						label: 'seperatorStyle',
-						title: __( 'Style', 'ultimate-addons-for-gutenberg' ),
-					} }
-					borderWidth={ {
-						value: seperatorWidth,
-						label: 'seperatorWidth',
-						title: __( 'Width', 'ultimate-addons-for-gutenberg' ),
-					} }
-					borderRadius={ {
-						value: seperatorThickness,
-						label: 'seperatorThickness',
-						title: __(
-							'Thickness',
-							'ultimate-addons-for-gutenberg'
-						),
-					} }
-					borderColor={ {
-						value: seperatorColor,
-						label: 'seperatorColor',
-						title: __( 'Color', 'ultimate-addons-for-gutenberg' ),
-					} }
-					borderHoverColor={ {
-						value: seperatorHoverColor,
-						label: 'seperatorHoverColor',
-						title: __(
-							'Hover Color',
-							'ultimate-addons-for-gutenberg'
-						),
-					} }
+					prefix={ 'separator' }
+					attributes={ attributes }
+					deviceType={ deviceType }
 					disableBottomSeparator={ true }
+					disabledBorderTitle= { true }
 				/>
 			</UAGAdvancedPanelBody>
 		);
@@ -1175,6 +1190,11 @@ const Settings = ( props ) => {
 				title={ __( 'Box Shadow', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
+				<UAGPresets
+					setAttributes = { setAttributes }
+					presets = { boxShadowPresets }
+					presetInputType = 'radioImage'
+				/>
 				<BoxShadowControl
 					setAttributes={ setAttributes }
 					label={ __(
@@ -1276,14 +1296,6 @@ const Settings = ( props ) => {
 	return (
 		<>
 			<Suspense fallback={ lazyLoader() }>
-				<BlockControls key="controls">
-					<AlignmentToolbar
-						value={ alignment }
-						onChange={ ( value ) =>
-							setAttributes( { alignment: value } )
-						}
-					/>
-				</BlockControls>
 				{ inspectorControlsSettings }
 				{ loadTitleGoogleFonts }
 				{ loadCountGoogleFonts }

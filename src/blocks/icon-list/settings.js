@@ -5,8 +5,6 @@ import TypographyControl from '@Components/typography';
 import { __ } from '@wordpress/i18n';
 import { select } from '@wordpress/data';
 import {
-	BlockControls,
-	AlignmentToolbar,
 	InspectorControls,
 } from '@wordpress/block-editor';
 import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
@@ -42,6 +40,8 @@ const Settings = ( props ) => {
 		innerGapType,
 		stack,
 		icon_layout,
+		iconLayoutTablet,
+		iconLayoutMobile,
 		iconPosition,
 		iconPositionTablet,
 		iconPositionMobile,
@@ -76,6 +76,10 @@ const Settings = ( props ) => {
 		fontStyle,
 		fontTransform,
 		fontDecoration,
+		labelLetterSpacing,
+		labelLetterSpacingTablet,
+		labelLetterSpacingMobile,
+		labelLetterSpacingType,
 		iconColor,
 		labelColor,
 		iconHoverColor,
@@ -100,19 +104,6 @@ const Settings = ( props ) => {
 		googleFonts = <WebfontLoader config={ hconfig }></WebfontLoader>;
 	}
 
-	const blockControls = () => {
-		return (
-			<BlockControls>
-				<AlignmentToolbar
-					value={ align }
-					onChange={ ( value ) => {
-						setAttributes( { align: value } );
-					} }
-					controls={ [ 'left', 'center', 'right' ] }
-				/>
-			</BlockControls>
-		);
-	};
 	const changeChildAttr = ( value ) => {
 		const getChildBlocks = select( 'core/block-editor' ).getBlocks(
 			clientId
@@ -127,15 +118,23 @@ const Settings = ( props ) => {
 	const generalSetting = () => {
 		return (
 			<UAGAdvancedPanelBody title={ __( 'Content', 'ultimate-addons-for-gutenberg' ) } initialOpen={ true }>
-
 				<MultiButtonsControl
 					setAttributes={ setAttributes }
 					label={ __( 'Layout', 'ultimate-addons-for-gutenberg' ) }
 					data={ {
-						value: icon_layout,
-						label: 'icon_layout',
+						desktop: {
+							value: icon_layout,
+							label: 'icon_layout',
+						},
+						tablet: {
+							value: iconLayoutTablet,
+							label: 'iconLayoutTablet',
+						},
+						mobile: {
+							value: iconLayoutMobile,
+							label: 'iconLayoutMobile',
+						},
 					} }
-					className="uagb-multi-button-alignment-control"
 					options={ [
 						{
 							value: 'horizontal',
@@ -153,13 +152,11 @@ const Settings = ( props ) => {
 						},
 					] }
 					showIcons={ false }
+					responsive={true}
 				/>
 				<MultiButtonsControl
 					setAttributes={ setAttributes }
-					label={ __(
-						'Alignment',
-						'ultimate-addons-for-gutenberg'
-					) }
+					label={ __( 'Alignment', 'ultimate-addons-for-gutenberg' ) }
 					data={ {
 						desktop: {
 							value: align,
@@ -174,7 +171,6 @@ const Settings = ( props ) => {
 							label: 'alignMobile',
 						},
 					} }
-					className="uagb-multi-button-alignment-control"
 					options={ [
 						{
 							value: 'left',
@@ -192,9 +188,7 @@ const Settings = ( props ) => {
 							value: 'center',
 							icon: (
 								<Icon
-									icon={ renderSVG(
-										'fa fa-align-center'
-									) }
+									icon={ renderSVG( 'fa fa-align-center' ) }
 								/>
 							),
 							tooltip: __(
@@ -206,9 +200,7 @@ const Settings = ( props ) => {
 							value: 'right',
 							icon: (
 								<Icon
-									icon={ renderSVG(
-										'fa fa-align-right'
-									) }
+									icon={ renderSVG( 'fa fa-align-right' ) }
 								/>
 							),
 							tooltip: __(
@@ -220,6 +212,12 @@ const Settings = ( props ) => {
 					showIcons={ true }
 					responsive={true}
 				/>
+
+
+
+
+
+
 				{ 'horizontal' === icon_layout && (
 					<>
 						<MultiButtonsControl
@@ -466,6 +464,22 @@ const Settings = ( props ) => {
 						value: lineHeightTablet,
 						label: 'lineHeightTablet',
 					} }
+					letterSpacing={ {
+						value: labelLetterSpacing,
+						label: 'labelLetterSpacing',
+					} }
+					letterSpacingTablet={ {
+						value: labelLetterSpacingTablet,
+						label: 'labelLetterSpacingTablet',
+					} }
+					letterSpacingMobile={ {
+						value: labelLetterSpacingMobile,
+						label: 'labelLetterSpacingMobile',
+					} }
+					letterSpacingType={ {
+						value: labelLetterSpacingType,
+						label: 'labelLetterSpacingType',
+					} }
 				/>
 				<UAGTabsControl
 					tabs={ [
@@ -491,9 +505,11 @@ const Settings = ( props ) => {
 								'ultimate-addons-for-gutenberg'
 							) }
 							colorValue={ labelColor }
-							onColorChange={ ( value ) =>
-								setAttributes( { labelColor: value } )
-							}
+							data={ {
+								value: labelColor,
+								label: 'labelColor',
+							} }
+							setAttributes={ setAttributes }
 						/>
 					}
 					hover={
@@ -505,9 +521,11 @@ const Settings = ( props ) => {
 							colorValue={
 								labelHoverColor
 							}
-							onColorChange={ ( value ) =>
-								setAttributes( { labelHoverColor: value } )
-							}
+							data={ {
+								value: labelHoverColor,
+								label: 'labelHoverColor',
+							} }
+							setAttributes={ setAttributes }
 						/>
 					}
 					disableBottomSeparator={ true }
@@ -701,9 +719,11 @@ const Settings = ( props ) => {
 									'ultimate-addons-for-gutenberg'
 								) }
 								colorValue={ iconColor ? iconColor : '' }
-								onColorChange={ ( value ) =>
-									setAttributes( { iconColor: value } )
-								}
+								data={ {
+									value: iconColor,
+									label: 'iconColor',
+								} }
+								setAttributes={ setAttributes }
 							/>
 							<AdvancedPopColorControl
 								label={ __(
@@ -711,9 +731,11 @@ const Settings = ( props ) => {
 									'ultimate-addons-for-gutenberg'
 								) }
 								colorValue={ iconBgColor ? iconBgColor : '' }
-								onColorChange={ ( value ) =>
-									setAttributes( { iconBgColor: value } )
-								}
+								data={ {
+									value: iconBgColor,
+									label: 'iconBgColor',
+								} }
+								setAttributes={ setAttributes }
 							/>
 							<AdvancedPopColorControl
 								label={ __(
@@ -723,9 +745,11 @@ const Settings = ( props ) => {
 								colorValue={
 									iconBorderColor ? iconBorderColor : ''
 								}
-								onColorChange={ ( value ) =>
-									setAttributes( { iconBorderColor: value } )
-								}
+								data={ {
+									value: iconBorderColor,
+									label: 'iconBorderColor',
+								} }
+								setAttributes={ setAttributes }
 							/>
 						</>
 					}
@@ -739,9 +763,11 @@ const Settings = ( props ) => {
 								colorValue={
 									iconHoverColor ? iconHoverColor : ''
 								}
-								onColorChange={ ( value ) =>
-									setAttributes( { iconHoverColor: value } )
-								}
+								data={ {
+									value: iconHoverColor,
+									label: 'iconHoverColor',
+								} }
+								setAttributes={ setAttributes }
 							/>
 							<AdvancedPopColorControl
 								label={ __(
@@ -751,9 +777,11 @@ const Settings = ( props ) => {
 								colorValue={
 									iconBgHoverColor ? iconBgHoverColor : ''
 								}
-								onColorChange={ ( value ) =>
-									setAttributes( { iconBgHoverColor: value } )
-								}
+								data={ {
+									value: iconBgHoverColor,
+									label: 'iconBgHoverColor',
+								} }
+								setAttributes={ setAttributes }
 							/>
 							<AdvancedPopColorControl
 								label={ __(
@@ -765,11 +793,11 @@ const Settings = ( props ) => {
 										? iconBorderHoverColor
 										: ''
 								}
-								onColorChange={ ( value ) =>
-									setAttributes( {
-										iconBorderHoverColor: value,
-									} )
-								}
+								data={ {
+									value: iconBorderHoverColor,
+									label: 'iconBorderHoverColor',
+								} }
+								setAttributes={ setAttributes }
 							/>
 						</>
 					}
@@ -793,7 +821,6 @@ const Settings = ( props ) => {
 
 	return (
 		<Suspense fallback={ lazyLoader() }>
-			{ blockControls() }
 			<InspectorControls>
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>

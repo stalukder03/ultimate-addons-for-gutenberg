@@ -6,7 +6,7 @@ import WebfontLoader from '@Components/typography/fontloader';
 import Range from '@Components/range/Range.js';
 import ResponsiveSlider from '@Components/responsive-slider';
 import Background from '@Components/background';
-import Border from '@Components/border';
+import ResponsiveBorder from '@Components/responsive-border';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
 import SpacingControl from '@Components/spacing-control';
 import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
@@ -17,19 +17,16 @@ import InspectorTab, {
 	UAGTabs,
 } from '@Components/inspector-tabs/InspectorTab.js';
 import {
-	AlignmentToolbar,
-	BlockControls,
 	InspectorControls,
 } from '@wordpress/block-editor';
-
 import { SelectControl, ToggleControl, Icon } from '@wordpress/components';
-
-
+import { getFallbackNumber } from '@Controls/getAttributeFallback';
 
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 const Settings = ( props ) => {
 	props = props.parentProps;
+	const blockName = props.name.replace( 'uagb/', '' );
 	const { setAttributes, attributes, deviceType } = props;
 
 	// Setup the attributes.
@@ -119,10 +116,6 @@ const Settings = ( props ) => {
 		backgroundSize,
 		backgroundRepeat,
 		backgroundImageColor,
-		borderStyle,
-		borderWidth,
-		borderRadius,
-		borderColor,
 		stack,
 
 		imageWidthType,
@@ -131,7 +124,6 @@ const Settings = ( props ) => {
 		columnGapType,
 		descSpaceType,
 		nameSpaceType,
-		borderHoverColor,
 		overlayType,
 		backgroundAttachment,
 		gradientValue,
@@ -173,8 +165,24 @@ const Settings = ( props ) => {
 		imgpaddingUnit,
 		imgmobilePaddingUnit,
 		imgtabletPaddingUnit,
-		equalHeight
+		equalHeight,
+
+		// letter spacing
+		nameLetterSpacing,
+		nameLetterSpacingTablet,
+		nameLetterSpacingMobile,
+		nameLetterSpacingType,
+		descLetterSpacing,
+		descLetterSpacingTablet,
+		descLetterSpacingMobile,
+		descLetterSpacingType,
+		companyLetterSpacing,
+		companyLetterSpacingTablet,
+		companyLetterSpacingMobile,
+		companyLetterSpacingType,
 	} = attributes;
+
+	const testItemCountFallback = getFallbackNumber( test_item_count, 'test_item_count', blockName );
 
 	let loadNameGoogleFonts;
 	let loadCompanyGoogleFonts;
@@ -269,7 +277,7 @@ const Settings = ( props ) => {
 
 	const getImageData = () => {
 		const getImages = [];
-		for ( let i = 0; i < test_item_count; i++ ) {
+		for ( let i = 0; i < testItemCountFallback; i++ ) {
 			getImages.push( tmControls( i ) );
 		}
 		return getImages;
@@ -330,11 +338,12 @@ const Settings = ( props ) => {
 						) }
 						setAttributes={ setAttributes }
 						value={ autoplaySpeed }
-						onChange={ ( value ) =>
-							setAttributes( { autoplaySpeed: value } )
-						}
+						data={ {
+							value: autoplaySpeed,
+							label: 'autoplaySpeed',
+						} }
 						min={ 100 }
-						max={ 10000 }
+						max={ 15000 }
 						displayUnit={ false }
 					/>
 				) }
@@ -353,9 +362,10 @@ const Settings = ( props ) => {
 					) }
 					setAttributes={ setAttributes }
 					value={ transitionSpeed }
-					onChange={ ( value ) =>
-						setAttributes( { transitionSpeed: value } )
-					}
+					data={ {
+						value: transitionSpeed,
+						label: 'transitionSpeed',
+					} }
 					min={ 100 }
 					max={ 5000 }
 					displayUnit={ false }
@@ -414,9 +424,10 @@ const Settings = ( props ) => {
 							) }
 							setAttributes={ setAttributes }
 							value={ arrowSize }
-							onChange={ ( value ) =>
-								setAttributes( { arrowSize: value } )
-							}
+							data={ {
+								value: arrowSize,
+								label: 'arrowSize',
+							} }
 							min={ 0 }
 							max={ 50 }
 							unit={ {
@@ -431,9 +442,10 @@ const Settings = ( props ) => {
 							) }
 							setAttributes={ setAttributes }
 							value={ arrowBorderSize }
-							onChange={ ( value ) =>
-								setAttributes( { arrowBorderSize: value } )
-							}
+							data={ {
+								value: arrowBorderSize,
+								label: 'arrowBorderSize',
+							} }
 							min={ 0 }
 							max={ 50 }
 							unit={ {
@@ -458,9 +470,10 @@ const Settings = ( props ) => {
 							) }
 							setAttributes={ setAttributes }
 							value={ arrowBorderRadius }
-							onChange={ ( value ) =>
-								setAttributes( { arrowBorderRadius: value } )
-							}
+							data={ {
+								value: arrowBorderRadius,
+								label: 'arrowBorderRadius',
+							} }
 							min={ 0 }
 							max={ 50 }
 							unit={ {
@@ -510,11 +523,11 @@ const Settings = ( props ) => {
 				<AdvancedPopColorControl
 					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
 					colorValue={ arrowColor ? arrowColor : '' }
-					onColorChange={ ( value ) =>
-						setAttributes( {
-							arrowColor: value,
-						} )
-					}
+					data={ {
+						value: arrowColor,
+						label: 'arrowColor',
+					} }
+					setAttributes={ setAttributes }
 				/>
 			</UAGAdvancedPanelBody>
 		);
@@ -525,41 +538,21 @@ const Settings = ( props ) => {
 				title={ __( 'Border', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
-				<Border
-					disabledBorderTitle= {true}
+				<ResponsiveBorder
 					setAttributes={ setAttributes }
-					borderStyle={ {
-						value: borderStyle,
-						label: 'borderStyle',
-						title: __(
-							'Style',
-							'ultimate-addons-for-gutenberg'
-						),
-					} }
-					borderWidth={ {
-						value: borderWidth,
-						label: 'borderWidth',
-						title: __( 'Width', 'ultimate-addons-for-gutenberg' ),
-					} }
-					borderRadius={ {
-						value: borderRadius,
-						label: 'borderRadius',
-						title: __( 'Radius', 'ultimate-addons-for-gutenberg' ),
-					} }
-					borderColor={ {
-						value: borderColor,
-						label: 'borderColor',
-						title: __( 'Color', 'ultimate-addons-for-gutenberg' ),
-					} }
-					borderHoverColor={ {
-						value: borderHoverColor,
-						label: 'borderHoverColor',
-						title: __(
-							'Hover Color',
-							'ultimate-addons-for-gutenberg'
-						),
-					} }
+					borderStyleLabel={ __( 'Style', 'ultimate-addons-for-gutenberg' ) }
+					borderWidthLabel={ __( 'Width', 'ultimate-addons-for-gutenberg' ) }
+					borderRadiusLabel={ __( 'Radius', 'ultimate-addons-for-gutenberg' ) }
+					borderColorLabel={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
+					borderHoverColorLabel={ __(
+						'Hover Color',
+						'ultimate-addons-for-gutenberg'
+					) }
+					prefix={ 'overall' }
+					attributes={ attributes }
+					deviceType={ deviceType }
 					disableBottomSeparator={ true }
+					disabledBorderTitle= { true }
 				/>
 			</UAGAdvancedPanelBody>
 		);
@@ -633,11 +626,11 @@ const Settings = ( props ) => {
 				<AdvancedPopColorControl
 					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
 					colorValue={ authorColor ? authorColor : '' }
-					onColorChange={ ( value ) =>
-						setAttributes( {
-							authorColor: value,
-						} )
-					}
+					data={ {
+						value: authorColor,
+						label: 'authorColor',
+					} }
+					setAttributes={ setAttributes }
 				/>
 				<TypographyControl
 					label={ __(
@@ -702,6 +695,22 @@ const Settings = ( props ) => {
 						value: nameDecoration,
 						label: 'nameDecoration',
 					} }
+					letterSpacing={ {
+						value: nameLetterSpacing,
+						label: 'nameLetterSpacing',
+					} }
+					letterSpacingTablet={ {
+						value: nameLetterSpacingTablet,
+						label: 'nameLetterSpacingTablet',
+					} }
+					letterSpacingMobile={ {
+						value: nameLetterSpacingMobile,
+						label: 'nameLetterSpacingMobile',
+					} }
+					letterSpacingType={ {
+						value: nameLetterSpacingType,
+						label: 'nameLetterSpacingType',
+					} }
 				/>
 				<ResponsiveSlider
 					label={ __(
@@ -742,11 +751,11 @@ const Settings = ( props ) => {
 				<AdvancedPopColorControl
 					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
 					colorValue={ descColor ? descColor : '' }
-					onColorChange={ ( value ) =>
-						setAttributes( {
-							descColor: value,
-						} )
-					}
+					data={ {
+						value: descColor,
+						label: 'descColor',
+					} }
+					setAttributes={ setAttributes }
 				/>
 				<TypographyControl
 					label={ __(
@@ -810,6 +819,22 @@ const Settings = ( props ) => {
 					decoration={ {
 						value: descDecoration,
 						label: 'descDecoration',
+					} }
+					letterSpacing={ {
+						value: descLetterSpacing,
+						label: 'descLetterSpacing',
+					} }
+					letterSpacingTablet={ {
+						value: descLetterSpacingTablet,
+						label: 'descLetterSpacingTablet',
+					} }
+					letterSpacingMobile={ {
+						value: descLetterSpacingMobile,
+						label: 'descLetterSpacingMobile',
+					} }
+					letterSpacingType={ {
+						value: descLetterSpacingType,
+						label: 'descLetterSpacingType',
 					} }
 				/>
 				<ResponsiveSlider
@@ -949,11 +974,11 @@ const Settings = ( props ) => {
 				<AdvancedPopColorControl
 					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
 					colorValue={ companyColor ? companyColor : '' }
-					onColorChange={ ( value ) =>
-						setAttributes( {
-							companyColor: value,
-						} )
-					}
+					data={ {
+						value: companyColor,
+						label: 'companyColor',
+					} }
+					setAttributes={ setAttributes }
 				/>
 				<TypographyControl
 					label={ __(
@@ -1017,6 +1042,22 @@ const Settings = ( props ) => {
 					decoration={ {
 						value: companyDecoration,
 						label: 'companyDecoration',
+					} }
+					letterSpacing={ {
+						value: companyLetterSpacing,
+						label: 'companyLetterSpacing',
+					} }
+					letterSpacingTablet={ {
+						value: companyLetterSpacingTablet,
+						label: 'companyLetterSpacingTablet',
+					} }
+					letterSpacingMobile={ {
+						value: companyLetterSpacingMobile,
+						label: 'companyLetterSpacingMobile',
+					} }
+					letterSpacingType={ {
+						value: companyLetterSpacingType,
+						label: 'companyLetterSpacingType',
 					} }
 				/>
 			</UAGAdvancedPanelBody>
@@ -1153,11 +1194,16 @@ const Settings = ( props ) => {
 									'ultimate-addons-for-gutenberg'
 								) }
 								value={ test_item_count }
+								data={ {
+									value: test_item_count,
+									label: 'test_item_count',
+								} }
 								onChange={ ( newCount ) => {
 									const cloneTest_block = [ ...test_block ];
-									if ( cloneTest_block.length < newCount ) {
+									const newCountFallback = getFallbackNumber( newCount, 'test_item_count', 'testimonial' )
+									if ( cloneTest_block.length < newCountFallback ) {
 										const incAmount = Math.abs(
-											newCount - cloneTest_block.length
+											newCountFallback - cloneTest_block.length
 										);
 										for ( let i = 0; i < incAmount; i++ ) {
 											cloneTest_block.push( {
@@ -1176,7 +1222,7 @@ const Settings = ( props ) => {
 										} );
 									} else {
 										const incAmount = Math.abs(
-											newCount - cloneTest_block.length
+											newCountFallback - cloneTest_block.length
 										);
 										const data_new = cloneTest_block;
 										for ( let i = 0; i < incAmount; i++ ) {
@@ -1187,10 +1233,10 @@ const Settings = ( props ) => {
 										} );
 									}
 									setAttributes( {
-										test_item_count: newCount,
+										test_item_count: newCountFallback,
 									} );
 								} }
-								min={ 0 }
+								min={ 1 }
 								max={ 50 }
 								setAttributes={ setAttributes }
 								displayUnit={ false }
@@ -1215,7 +1261,7 @@ const Settings = ( props ) => {
 									},
 								} }
 								min={ 1 }
-								max={ test_item_count }
+								max={ testItemCountFallback }
 								displayUnit={ false }
 								setAttributes={ setAttributes }
 							/>
@@ -1516,22 +1562,9 @@ const Settings = ( props ) => {
 		);
 	};
 
-	const blockControls = () => {
-		return (
-			<BlockControls key="controls">
-				<AlignmentToolbar
-					value={ headingAlign }
-					onChange={ ( value ) =>
-						setAttributes( { headingAlign: value } )
-					}
-				/>
-			</BlockControls>
-		);
-	};
 
 	return (
 		<Suspense fallback={ lazyLoader() }>
-			{ blockControls() }
 			{ inspectControl() }
 			{ loadNameGoogleFonts }
 			{ loadCompanyGoogleFonts }

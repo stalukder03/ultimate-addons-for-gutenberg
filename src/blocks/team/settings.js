@@ -145,6 +145,19 @@ const Settings = ( props ) => {
 		titleFontStyle,
 		descFontStyle,
 		prefixFontStyle,
+		// lettter spacing
+		titleLetterSpacing,
+		titleLetterSpacingTablet,
+		titleLetterSpacingMobile,
+		titleLetterSpacingType,
+		prefixLetterSpacing,
+		prefixLetterSpacingTablet,
+		prefixLetterSpacingMobile,
+		prefixLetterSpacingType,
+		descLetterSpacing,
+		descLetterSpacingTablet,
+		descLetterSpacingMobile,
+		descLetterSpacingType,
 	} = attributes;
 
 	/*
@@ -739,9 +752,11 @@ const Settings = ( props ) => {
 				<AdvancedPopColorControl
 					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
 					colorValue={ titleColor ? titleColor : '' }
-					onColorChange={ ( value ) =>
-						setAttributes( { titleColor: value } )
-					}
+					data={ {
+						value: titleColor,
+						label: 'titleColor',
+					} }
+					setAttributes={ setAttributes }
 				/>
 				<TypographyControl
 					label={ __(
@@ -806,6 +821,22 @@ const Settings = ( props ) => {
 						value: titleLineHeightTablet,
 						label: 'titleLineHeightTablet',
 					} }
+					letterSpacing={ {
+						value: titleLetterSpacing,
+						label: 'titleLetterSpacing',
+					} }
+					letterSpacingTablet={ {
+						value: titleLetterSpacingTablet,
+						label: 'titleLetterSpacingTablet',
+					} }
+					letterSpacingMobile={ {
+						value: titleLetterSpacingMobile,
+						label: 'titleLetterSpacingMobile',
+					} }
+					letterSpacingType={ {
+						value: titleLetterSpacingType,
+						label: 'titleLetterSpacingType',
+					} }
 				/>
 
 				<ResponsiveSlider
@@ -845,9 +876,11 @@ const Settings = ( props ) => {
 				<AdvancedPopColorControl
 					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
 					colorValue={ prefixColor ? prefixColor : '' }
-					onColorChange={ ( value ) =>
-						setAttributes( { prefixColor: value } )
-					}
+					data={ {
+						value: prefixColor,
+						label: 'prefixColor',
+					} }
+					setAttributes={ setAttributes }
 				/>
 				<TypographyControl
 					label={ __(
@@ -912,6 +945,22 @@ const Settings = ( props ) => {
 						value: prefixLineHeightTablet,
 						label: 'prefixLineHeightTablet',
 					} }
+					letterSpacing={ {
+						value: prefixLetterSpacing,
+						label: 'prefixLetterSpacing',
+					} }
+					letterSpacingTablet={ {
+						value: prefixLetterSpacingTablet,
+						label: 'prefixLetterSpacingTablet',
+					} }
+					letterSpacingMobile={ {
+						value: prefixLetterSpacingMobile,
+						label: 'prefixLetterSpacingMobile',
+					} }
+					letterSpacingType={ {
+						value: prefixLetterSpacingType,
+						label: 'prefixLetterSpacingType',
+					} }
 				/>
 				<ResponsiveSlider
 					label={ __(
@@ -950,9 +999,11 @@ const Settings = ( props ) => {
 				<AdvancedPopColorControl
 					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
 					colorValue={ descColor ? descColor : '' }
-					onColorChange={ ( value ) =>
-						setAttributes( { descColor: value } )
-					}
+					data={ {
+						value: descColor,
+						label: 'descColor',
+					} }
+					setAttributes={ setAttributes }
 				/>
 				<TypographyControl
 					label={ __(
@@ -1016,6 +1067,22 @@ const Settings = ( props ) => {
 					lineHeightTablet={ {
 						value: descLineHeightTablet,
 						label: 'descLineHeightTablet',
+					} }
+					letterSpacing={ {
+						value: descLetterSpacing,
+						label: 'descLetterSpacing',
+					} }
+					letterSpacingTablet={ {
+						value: descLetterSpacingTablet,
+						label: 'descLetterSpacingTablet',
+					} }
+					letterSpacingMobile={ {
+						value: descLetterSpacingMobile,
+						label: 'descLetterSpacingMobile',
+					} }
+					letterSpacingType={ {
+						value: descLetterSpacingType,
+						label: 'descLetterSpacingType',
 					} }
 				/>
 				<ResponsiveSlider
@@ -1144,9 +1211,11 @@ const Settings = ( props ) => {
 								'ultimate-addons-for-gutenberg'
 							) }
 							colorValue={ socialColor ? socialColor : '' }
-							onColorChange={ ( value ) =>
-								setAttributes( { socialColor: value } )
-							}
+							data={ {
+								value: socialColor,
+								label: 'socialColor',
+							} }
+							setAttributes={ setAttributes }
 						/>
 					}
 					hover={
@@ -1158,9 +1227,11 @@ const Settings = ( props ) => {
 							colorValue={
 								socialHoverColor ? socialHoverColor : ''
 							}
-							onColorChange={ ( value ) =>
-								setAttributes( { socialHoverColor: value } )
-							}
+							data={ {
+								value: socialHoverColor,
+								label: 'socialHoverColor',
+							} }
+							setAttributes={ setAttributes }
 						/>
 					}
 					disableBottomSeparator={ true }

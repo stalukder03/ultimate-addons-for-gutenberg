@@ -8,7 +8,7 @@ import BoxShadowControl from '@Components/box-shadow';
 import MultiButtonsControl from '@Components/multi-buttons-control';
 import SpacingControl from '@Components/spacing-control';
 import Background from '@Components/background';
-import Border from '@Components/border';
+import ResponsiveBorder from '@Components/responsive-border';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
 import Range from '@Components/range/Range.js';
 import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
@@ -26,7 +26,7 @@ import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 const Settings = ( props ) => {
 	props = props.parentProps;
-	const { attributes, setAttributes } = props;
+	const { attributes, setAttributes, deviceType } = props;
 
 	const {
 		stack,
@@ -74,11 +74,6 @@ const Settings = ( props ) => {
 		backgroundImageColor,
 		gradientValue,
 		overlayType,
-		borderStyle,
-		borderWidth,
-		borderRadius,
-		borderColor,
-		borderHoverColor,
 		columns,
 		bottomType,
 		bottomColor,
@@ -123,11 +118,10 @@ const Settings = ( props ) => {
 					label={ __( 'Columns', 'ultimate-addons-for-gutenberg' ) }
 					setAttributes={ setAttributes }
 					value={ columns }
-					onChange={ ( value ) =>
-						setAttributes( {
-							columns: value,
-						} )
-					}
+					data={ {
+						value: columns,
+						label: 'columns',
+					} }
 					min={ 0 }
 					max={ 6 }
 					displayUnit={ false }
@@ -261,9 +255,10 @@ const Settings = ( props ) => {
 							) }
 							setAttributes={ setAttributes }
 							value={ width }
-							onChange={ ( value ) =>
-								setAttributes( { width: value } )
-							}
+							data={ {
+								value: width,
+								label: 'width',
+							} }
 							min={ 0 }
 							max={ '%' === widthType ? 100 : 2000 }
 							unit={ {
@@ -772,9 +767,11 @@ const Settings = ( props ) => {
 								'ultimate-addons-for-gutenberg'
 							) }
 							colorValue={ topColor }
-							onColorChange={ ( value ) =>
-								setAttributes( { topColor: value } )
-							}
+							data={ {
+								value: topColor,
+								label: 'topColor',
+							} }
+							setAttributes={ setAttributes }
 						/>
 						<Range
 							label={ __(
@@ -783,9 +780,10 @@ const Settings = ( props ) => {
 							) }
 							setAttributes={ setAttributes }
 							value={ topWidth }
-							onChange={ ( value ) =>
-								setAttributes( { topWidth: value } )
-							}
+							data={ {
+								value: topWidth,
+								label: 'topWidth',
+							} }
 							min={ 100 }
 							max={ 2000 }
 							displayUnit={ false }
@@ -859,9 +857,11 @@ const Settings = ( props ) => {
 								'ultimate-addons-for-gutenberg'
 							) }
 							colorValue={ bottomColor }
-							onColorChange={ ( value ) =>
-								setAttributes( { bottomColor: value } )
-							}
+							data={ {
+								value: bottomColor,
+								label: 'bottomColor',
+							} }
+							setAttributes={ setAttributes }
 						/>
 						<Range
 							label={ __(
@@ -870,9 +870,10 @@ const Settings = ( props ) => {
 							) }
 							setAttributes={ setAttributes }
 							value={ bottomWidth }
-							onChange={ ( value ) =>
-								setAttributes( { bottomWidth: value } )
-							}
+							data={ {
+								value: bottomWidth,
+								label: 'bottomWidth',
+							} }
 							min={ 100 }
 							max={ 2000 }
 							displayUnit={ false }
@@ -963,37 +964,12 @@ const Settings = ( props ) => {
 				title={ __( 'Border', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
-				<Border
-					disabledBorderTitle= {true}
+				<ResponsiveBorder
 					setAttributes={ setAttributes }
-					borderStyle={ {
-						value: borderStyle,
-						label: 'borderStyle',
-						title: __( 'Style', 'ultimate-addons-for-gutenberg' ),
-					} }
-					borderWidth={ {
-						value: borderWidth,
-						label: 'borderWidth',
-						title: __( 'Width', 'ultimate-addons-for-gutenberg' ),
-					} }
-					borderRadius={ {
-						value: borderRadius,
-						label: 'borderRadius',
-						title: __( 'Radius', 'ultimate-addons-for-gutenberg' ),
-					} }
-					borderColor={ {
-						value: borderColor,
-						label: 'borderColor',
-						title: __( 'Color', 'ultimate-addons-for-gutenberg' ),
-					} }
-					borderHoverColor={ {
-						value: borderHoverColor,
-						label: 'borderHoverColor',
-						title: __(
-							'Hover Color',
-							'ultimate-addons-for-gutenberg'
-						),
-					} }
+					prefix={ 'columns' }
+					attributes={ attributes }
+					deviceType={deviceType}
+					disabledBorderTitle= {true}
 				/>
 				<BoxShadowControl
 					setAttributes={ setAttributes }
