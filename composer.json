@@ -33,11 +33,5 @@
             "brainstormforce/gutenberg-templates"
         ]
     }
-  },
-  "config": {
-    "allow-plugins": {
-      "composer/installers": false,
-      "dealerdirect/phpcodesniffer-composer-installer": false
-    }
   }
 }
