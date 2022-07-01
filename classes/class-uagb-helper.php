@@ -315,9 +315,11 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 		public static function get_query( $attributes, $block_type ) {
 
 			// Block type is grid/masonry/carousel/timeline.
-			$query_args = array(
+
+			$pagination_limit = UAGB_Block_Helper::get_fallback_number( $attributes['postsToShow'], 'postsToShow', $attributes['blockName'] );
+			$query_args       = array(
 				'offset'              => UAGB_Block_Helper::get_fallback_number( $attributes['postsOffset'], 'postsOffset', $attributes['blockName'] ),
-				'posts_per_page'      => UAGB_Block_Helper::get_fallback_number( $attributes['postsToShow'], 'postsToShow', $attributes['blockName'] ),
+				'posts_per_page'      => $pagination_limit,
 				'post_status'         => 'publish',
 				'post_type'           => ( isset( $attributes['postType'] ) ) ? $attributes['postType'] : 'post',
 				'order'               => ( isset( $attributes['order'] ) ) ? $attributes['order'] : 'desc',
