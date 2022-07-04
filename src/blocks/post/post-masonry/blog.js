@@ -1,14 +1,10 @@
 import classnames from 'classnames';
 import lazyLoader from '@Controls/lazy-loader';
 import { useDeviceType } from '@Controls/getPreviewType';
-import React, { useRef, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useRef, useEffect, Suspense } from 'react';
 import { getFallbackNumber } from '@Controls/getAttributeFallback';
-
-const Masonry = lazy( () =>
-	import(
-		/* webpackChunkName: "chunks/post-masonry/react-masonry-component" */ 'react-masonry-component'
-	)
-);
+import '/assets/js/isotope.min';
+import '/assets/js/imagesloaded.min';
 
 import {
 	InnerBlockLayoutContextProvider,
@@ -16,6 +12,7 @@ import {
 } from '.././function';
 
 function Blog( props ) {
+	const isotope = useRef();
 	const blockName = props.name.replace( 'uagb/', '' );
 	const article = useRef();
 	const { attributes, className, latestPosts, block_id } = props;
@@ -31,8 +28,57 @@ function Blog( props ) {
 		buttonText,
 		paginationType,
 		layoutConfig,
-		rowGap
+		rowGap,
+		postType,
+		taxonomyType,
+		categories,
+		excludeCurrentPost,
+		postsOffset,
+		orderBy,
+		order,
 	} = attributes;
+
+	const [ rootElem, setRootElem ] = useState( document.querySelector( `.uagb-block-${ block_id } .is-masonry` ) );
+
+	useEffect( () => {
+		switch( deviceType ){
+			case 'desktop':
+				setRootElem( document.querySelector( `.uagb-block-${ block_id } .is-masonry` ) );
+				break;
+			case 'tablet':
+			case 'mobile':
+				const iFrameElem = document.querySelector( `iframe[name='editor-canvas']` );
+				console.log( iFrameElem );
+				setRootElem( iFrameElem.contentDocument.querySelector( `.uagb-block-${ block_id } .is-masonry` ) );
+				break;
+			default:
+				setRootElem( document.querySelector( `.uagb-block-${ block_id } .is-masonry` ) );
+		}
+	}, [ deviceType ] );
+
+	useEffect( () => {
+		// isotope.current && isotope.current.destroy();
+		isotope.current = new Isotope( rootElem, {
+			itemSelector: 'article',
+			layoutMode: 'masonry',
+		} );
+		imagesLoaded( rootElem ).on( 'progress', () => {
+			isotope.current.layout();
+		});
+	}, [
+		rootElem,
+		postType,
+		taxonomyType,
+		categories,
+		excludeCurrentPost,
+		postsToShow,
+		postsOffset,
+		orderBy,
+		order,
+		columns,
+		tcolumns,
+		mcolumns,
+	] );
 
 	const postsToShowFallback = getFallbackNumber( postsToShow, 'postsToShow', blockName );
 	const columnsFallback = getFallbackNumber( columns, 'columns', blockName );
@@ -44,7 +90,7 @@ function Blog( props ) {
 
 		setTimeout( () => {
 
-			if( article?.current ){
+			if ( article?.current ) {
 
 				const articleWidth  = article?.current?.offsetWidth;
 				const imageWidth = 100 - ( rowGapFallback / articleWidth ) * 100;
@@ -119,7 +165,7 @@ function Blog( props ) {
 			data-blog-id={ block_id }
 		>
 			<Suspense fallback={ lazyLoader() }>
-				<Masonry
+				<div
 					className={ classnames(
 						'is-masonry',
 						`uagb-post__columns-${ columnsFallback }`,
@@ -151,7 +197,7 @@ function Blog( props ) {
 							</article>
 						) ) }
 					</InnerBlockLayoutContextProvider>
-				</Masonry>
+				</div>
 			</Suspense>
 			{ paginationRender() }
 		</div>
