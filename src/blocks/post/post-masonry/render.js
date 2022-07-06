@@ -15,7 +15,7 @@ import styles from '.././editor.lazy.scss';
 
 const Blog = lazy( () =>
 	import(
-		/* webpackChunkName: "chunks/post-masonry/react-masonry-component" */ './blog'
+		/* webpackChunkName: "chunks/post-masonry/blog" */ './blog'
 	)
 );
 

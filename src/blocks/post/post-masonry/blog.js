@@ -3,6 +3,7 @@ import lazyLoader from '@Controls/lazy-loader';
 import { useDeviceType } from '@Controls/getPreviewType';
 import React, { useState, useRef, useEffect, Suspense } from 'react';
 import { getFallbackNumber } from '@Controls/getAttributeFallback';
+import addBlockEditorDynamicScripts from '@Controls/addBlockEditorDynamicScripts';
 import '/assets/js/isotope.min';
 import '/assets/js/imagesloaded.min';
 
@@ -12,7 +13,6 @@ import {
 } from '.././function';
 
 function Blog( props ) {
-	const isotope = useRef();
 	const blockName = props.name.replace( 'uagb/', '' );
 	const article = useRef();
 	const { attributes, className, latestPosts, block_id } = props;
@@ -37,36 +37,51 @@ function Blog( props ) {
 		orderBy,
 		order,
 	} = attributes;
-
-	const [ rootElem, setRootElem ] = useState( document.querySelector( `.uagb-block-${ block_id } .is-masonry` ) );
-
+	
 	useEffect( () => {
-		switch( deviceType ){
-			case 'desktop':
-				setRootElem( document.querySelector( `.uagb-block-${ block_id } .is-masonry` ) );
-				break;
-			case 'tablet':
-			case 'mobile':
-				const iFrameElem = document.querySelector( `iframe[name='editor-canvas']` );
-				console.log( iFrameElem );
-				setRootElem( iFrameElem.contentDocument.querySelector( `.uagb-block-${ block_id } .is-masonry` ) );
-				break;
-			default:
-				setRootElem( document.querySelector( `.uagb-block-${ block_id } .is-masonry` ) );
-		}
+		addBlockEditorDynamicScripts( [
+			// 'jquery-core-js',
+			// 'uagb-slick-js-js',
+			'uagb-masonry-js',
+			'uagb-imagesloaded-js',
+		] );
 	}, [ deviceType ] );
 
-	useEffect( () => {
-		// isotope.current && isotope.current.destroy();
-		isotope.current = new Isotope( rootElem, {
+	const isotope = useRef();
+
+	const layoutIsotope = (
+		rootElement = document.querySelector( `.uagb-block-${ block_id } .is-masonry` )
+	) => {
+		console.log( '%cLoaded', 'color:cadetblue;font-weight:bold;font-size:32px;text-shadow:1px 1px 3px black;');
+		console.log( rootElement );
+		isotope.current = new Isotope( rootElement, {
 			itemSelector: 'article',
 			layoutMode: 'masonry',
 		} );
-		imagesLoaded( rootElem ).on( 'progress', () => {
+		imagesLoaded( rootElement ).on( 'progress', () => {
 			isotope.current.layout();
-		});
+		} );
+	};
+
+	useEffect( () => {
+		setTimeout( () => {
+			switch( deviceType ){
+				case 'Desktop':
+					layoutIsotope();
+					break;
+				case 'Tablet':
+				case 'Mobile':
+					const iFrameElem = document.querySelector( `iframe[name='editor-canvas']` );
+					const iFrameDocument = iFrameElem.contentWindow.document || iFrameElem.contentDocument;
+					console.log( iFrameElem );
+					layoutIsotope( iFrameDocument.querySelector( `.uagb-block-${ block_id } .is-masonry` ) );
+					break;
+				default:
+					layoutIsotope();
+			}
+		}, 500 );
 	}, [
-		rootElem,
+		deviceType,
 		postType,
 		taxonomyType,
 		categories,
