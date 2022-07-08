@@ -77,7 +77,10 @@ if ( isset( $attr['backgroundVideoOpacity'] ) && '' !== $attr['backgroundVideoOp
 }
 
 $selectors = array(
-	'.uagb-columns__wrap'              => $style,
+	'.uagb-columns__wrap'              => array_merge(
+		$style,
+		$border,
+	),
 	' .uagb-columns__video-wrap'       => array(
 		'opacity' => $video_opacity,
 	),
@@ -137,15 +140,18 @@ if ( 'video' === $bg_type ) {
 }
 
 $m_selectors = array(
-	'.uagb-columns__wrap'              => array(
-		'padding-top'    => UAGB_Helper::get_css_value( $attr['topPaddingMobile'], $attr['mobilePaddingType'] ),
-		'padding-bottom' => UAGB_Helper::get_css_value( $attr['bottomPaddingMobile'], $attr['mobilePaddingType'] ),
-		'padding-left'   => UAGB_Helper::get_css_value( $attr['leftPaddingMobile'], $attr['mobilePaddingType'] ),
-		'padding-right'  => UAGB_Helper::get_css_value( $attr['rightPaddingMobile'], $attr['mobilePaddingType'] ),
-		'margin-top'     => UAGB_Helper::get_css_value( $mobile_top_margin, $attr['mobileMarginType'] ),
-		'margin-bottom'  => UAGB_Helper::get_css_value( $mobile_bottom_margin, $attr['mobileMarginType'] ),
-		'margin-left'    => UAGB_Helper::get_css_value( $mobile_left_margin, $attr['mobileMarginType'] ),
-		'margin-right'   => UAGB_Helper::get_css_value( $mobile_right_margin, $attr['mobileMarginType'] ),
+	'.uagb-columns__wrap'              => array_merge(
+		array(
+			'padding-top'    => UAGB_Helper::get_css_value( $attr['topPaddingMobile'], $attr['mobilePaddingType'] ),
+			'padding-bottom' => UAGB_Helper::get_css_value( $attr['bottomPaddingMobile'], $attr['mobilePaddingType'] ),
+			'padding-left'   => UAGB_Helper::get_css_value( $attr['leftPaddingMobile'], $attr['mobilePaddingType'] ),
+			'padding-right'  => UAGB_Helper::get_css_value( $attr['rightPaddingMobile'], $attr['mobilePaddingType'] ),
+			'margin-top'     => UAGB_Helper::get_css_value( $mobile_top_margin, $attr['mobileMarginType'] ),
+			'margin-bottom'  => UAGB_Helper::get_css_value( $mobile_bottom_margin, $attr['mobileMarginType'] ),
+			'margin-left'    => UAGB_Helper::get_css_value( $mobile_left_margin, $attr['mobileMarginType'] ),
+			'margin-right'   => UAGB_Helper::get_css_value( $mobile_right_margin, $attr['mobileMarginType'] ),
+		),
+		$border_mobile,
 	),
 	' .uagb-columns__shape-bottom svg' => array(
 		'height' => UAGB_Helper::get_css_value( $attr['bottomHeightMobile'], 'px' ),
@@ -155,16 +161,19 @@ $m_selectors = array(
 	),
 );
 
-$t_selectors                        = array(
-	'.uagb-columns__wrap'              => array(
-		'padding-top'    => UAGB_Helper::get_css_value( $attr['topPaddingTablet'], $attr['tabletPaddingType'] ),
-		'padding-bottom' => UAGB_Helper::get_css_value( $attr['bottomPaddingTablet'], $attr['tabletPaddingType'] ),
-		'padding-left'   => UAGB_Helper::get_css_value( $attr['leftPaddingTablet'], $attr['tabletPaddingType'] ),
-		'padding-right'  => UAGB_Helper::get_css_value( $attr['rightPaddingTablet'], $attr['tabletPaddingType'] ),
-		'margin-top'     => UAGB_Helper::get_css_value( $tablet_top_margin, $attr['tabletMarginType'] ),
-		'margin-bottom'  => UAGB_Helper::get_css_value( $tablet_bottom_margin, $attr['tabletMarginType'] ),
-		'margin-left'    => UAGB_Helper::get_css_value( $tablet_left_margin, $attr['tabletMarginType'] ),
-		'margin-right'   => UAGB_Helper::get_css_value( $tablet_right_margin, $attr['tabletMarginType'] ),
+$t_selectors = array(
+	'.uagb-columns__wrap'              => array_merge(
+		array(
+			'padding-top'    => UAGB_Helper::get_css_value( $attr['topPaddingTablet'], $attr['tabletPaddingType'] ),
+			'padding-bottom' => UAGB_Helper::get_css_value( $attr['bottomPaddingTablet'], $attr['tabletPaddingType'] ),
+			'padding-left'   => UAGB_Helper::get_css_value( $attr['leftPaddingTablet'], $attr['tabletPaddingType'] ),
+			'padding-right'  => UAGB_Helper::get_css_value( $attr['rightPaddingTablet'], $attr['tabletPaddingType'] ),
+			'margin-top'     => UAGB_Helper::get_css_value( $tablet_top_margin, $attr['tabletMarginType'] ),
+			'margin-bottom'  => UAGB_Helper::get_css_value( $tablet_bottom_margin, $attr['tabletMarginType'] ),
+			'margin-left'    => UAGB_Helper::get_css_value( $tablet_left_margin, $attr['tabletMarginType'] ),
+			'margin-right'   => UAGB_Helper::get_css_value( $tablet_right_margin, $attr['tabletMarginType'] ),
+		),
+		$border_tablet,
 	),
 	' .uagb-columns__shape-bottom svg' => array(
 		'height' => UAGB_Helper::get_css_value( $attr['bottomHeightTablet'], 'px' ),
@@ -173,9 +182,6 @@ $t_selectors                        = array(
 		'height' => UAGB_Helper::get_css_value( $attr['topHeightTablet'], 'px' ),
 	),
 );
-$selectors['.uagb-columns__wrap']   = $border;
-$t_selectors['.uagb-columns__wrap'] = $border_tablet;
-$m_selectors['.uagb-columns__wrap'] = $border_mobile;
 
 $combined_selectors = array(
 	'desktop' => $selectors,
