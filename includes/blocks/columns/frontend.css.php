@@ -69,6 +69,21 @@ $t_style = array(
 	'margin-right'   => UAGB_Helper::get_css_value( $tablet_right_margin, $attr['tabletMarginType'] ),
 );
 
+// Background Overlay Features.
+
+$bg_obj = array(
+	'backgroundType'       => $attr['backgroundType'],
+	'backgroundImage'      => $attr['backgroundImage'],
+	'backgroundColor'      => $attr['backgroundColor'],
+	'gradientValue'        => $attr['gradientValue'],
+	'backgroundImageColor' => $attr['backgroundImageColor'],
+	'overlayType'          => $attr['overlayType'],
+	'backgroundVideo'      => $attr['backgroundVideo'],
+	'backgroundVideoColor' => $attr['backgroundVideoColor'],
+);
+
+$backgroundWrapperCSS = UAGB_Block_Helper::uag_get_background_obj( $bg_obj );
+
 $position = str_replace( '-', ' ', $attr['backgroundPosition'] );
 
 if ( 'image' === $bg_type ) {
@@ -102,6 +117,7 @@ $selectors = array(
 	'.uagb-columns__wrap'              => array_merge(
 		$style,
 		$border,
+		$backgroundWrapperCSS,
 	),
 	' .uagb-columns__video-wrap'       => array(
 		'opacity' => $video_opacity,
@@ -135,14 +151,8 @@ if ( '' !== $attr['bottomWidth'] ) {
 }
 
 if ( 'video' === $bg_type ) {
-	$selectors[' > .uagb-columns__overlay'] = array(
-		'opacity'          => 1,
-		'background-color' => $attr['backgroundVideoColor'],
-	);
-} elseif ( 'image' === $bg_type ) {
-	$selectors[' > .uagb-columns__overlay'] = array(
-		'background-color' => $attr['backgroundImageColor'],
-		'opacity'          => ( isset( $attr['backgroundOpacity'] ) && '' !== $attr['backgroundOpacity'] && 101 !== $attr['backgroundOpacity'] ) ? $attr['backgroundOpacity'] / 100 : '',
+	$selectors[' > .uagb-columns__overlay'] = array_merge(
+		$backgroundWrapperCSS,
 	);
 } elseif ( 'color' === $bg_type ) {
 	$selectors[' > .uagb-columns__overlay'] = array(
@@ -165,6 +175,7 @@ $m_selectors = array(
 	'.uagb-columns__wrap'              => array_merge(
 		$m_style,
 		$border_mobile,
+		$backgroundWrapperCSS,
 	),
 	' .uagb-columns__shape-bottom svg' => array(
 		'height' => UAGB_Helper::get_css_value( $attr['bottomHeightMobile'], 'px' ),
@@ -178,6 +189,7 @@ $t_selectors = array(
 	'.uagb-columns__wrap'              => array_merge(
 		$t_style,
 		$border_tablet,
+		$backgroundWrapperCSS,
 	),
 	' .uagb-columns__shape-bottom svg' => array(
 		'height' => UAGB_Helper::get_css_value( $attr['bottomHeightTablet'], 'px' ),
