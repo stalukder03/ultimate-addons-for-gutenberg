@@ -13,8 +13,6 @@ function styling( props ) {
 
 	const {
 		backgroundType,
-		backgroundVideoColor,
-		backgroundImageColor,
 		backgroundOpacity,
 		backgroundColor,
 		backgroundVideoOpacity,
@@ -64,7 +62,7 @@ function styling( props ) {
 		boxShadowSpread,
 		boxShadowPosition,
 		gradientValue,
-		columnsBorderHColor
+		columnsBorderHColor,
 	} = props.attributes
 
 	let max_width = '100%'
@@ -127,17 +125,7 @@ function styling( props ) {
 
 	selectors[' > .uagb-columns__overlay'] = {}
 
-	if ( 'video' === backgroundType ) {
-		selectors[' > .uagb-columns__overlay'] = {
-			'opacity' : 1,
-			'background-color': backgroundVideoColor
-		}
-	} else if( 'image' === backgroundType ) {
-		selectors[' > .uagb-columns__overlay'] = {
-			'opacity' : ( typeof backgroundOpacity !== 'undefined' ) ? backgroundOpacity/100 : '',
-			'background-color': backgroundImageColor
-		}
-	} else if( 'color' === backgroundType ) {
+	if( 'color' === backgroundType ) {
 		selectors[' > .uagb-columns__overlay'] = {
 			'opacity' : ( typeof backgroundOpacity !== 'undefined' ) ? backgroundOpacity/100 : '',
 			'background-color' : backgroundColor
