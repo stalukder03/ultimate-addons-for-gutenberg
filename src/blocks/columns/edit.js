@@ -92,11 +92,12 @@ const ColumnsComponent = ( props ) => {
 			}
 		}
 
-		if ( 101 !== backgroundOpacity ) {
-			// const color = hexToRGBA( maybeGetColorForVariable( backgroundImageColor ), backgroundOpacity );
-			// console.log('color: ', color )
-			// setAttributes( { backgroundImageColor: color } );
-			setAttributes( { backgroundOpacity: 101 } );
+		if ( undefined !== backgroundOpacity ) {
+			const color = hexToRGBA( maybeGetColorForVariable( backgroundImageColor ), backgroundOpacity );
+			console.log('color: ', color )
+			console.log('bg opacity: ', backgroundOpacity )
+			setAttributes( { backgroundImageColor: color } );
+			setAttributes( { backgroundOpacity: undefined } );
 		}
 		const { borderStyle, borderWidth, borderRadius, borderColor, borderHoverColor } = props.attributes
 		// border migration
