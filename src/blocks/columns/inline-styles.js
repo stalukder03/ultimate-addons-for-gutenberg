@@ -4,6 +4,7 @@
 import generateCSSUnit from '@Controls/generateCSSUnit';
 import generateBorderCSS from '@Controls/generateBorderCSS';
 import generateBackgroundCSS from '@Controls/generateBackgroundCSS';
+import attributes from './attributes';
 
 function inlineStyles( props ) {
 	const {
@@ -59,9 +60,9 @@ function inlineStyles( props ) {
 
 	if ( 'image' === backgroundType ) {
 
-		if( !( 'background-image' in backgroundWrapperCSS ) && overlayType === 'color' ) {
+		if( !( 'background-image' in backgroundWrapperCSS ) && overlayType === 'color' && backgroundImageColor === '' ) {
 			style[ 'background-image' ] = backgroundImage
-				? `url(${ backgroundImage.url })`
+				? 'linear-gradient(to right,' + attributes.backgroundImageColor.default + ',' + attributes.backgroundImageColor.default + '), url(' + backgroundImage.url + ')'
 				: null;
 		}
 		style[ 'background-position' ] = position;
