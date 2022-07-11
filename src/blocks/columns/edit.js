@@ -93,8 +93,9 @@ const ColumnsComponent = ( props ) => {
 		}
 
 		if ( 101 !== backgroundOpacity ) {
-			const color = hexToRGBA( maybeGetColorForVariable( backgroundImageColor ), backgroundOpacity );
-			setAttributes( { backgroundImageColor: color } );
+			// const color = hexToRGBA( maybeGetColorForVariable( backgroundImageColor ), backgroundOpacity );
+			// console.log('color: ', color )
+			// setAttributes( { backgroundImageColor: color } );
 			setAttributes( { backgroundOpacity: 101 } );
 		}
 		const { borderStyle, borderWidth, borderRadius, borderColor, borderHoverColor } = props.attributes
