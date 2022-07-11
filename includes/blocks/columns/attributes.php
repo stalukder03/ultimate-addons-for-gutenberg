@@ -63,7 +63,7 @@ return array_merge(
 		'gradientPosition'       => 'center center',
 		'backgroundVideoOpacity' => '50',
 		'backgroundVideoColor'   => '',
-		'backgroundImageColor'   => '',
+		'backgroundImageColor'   => '#FFFFFF75',
 		'columnGap'              => '10',
 		'bottomType'             => 'none',
 		'bottomColor'            => '#333',

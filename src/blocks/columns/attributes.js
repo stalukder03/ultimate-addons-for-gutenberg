@@ -358,6 +358,7 @@ const attributes = {
 	},
 	backgroundImageColor: {
 		type: 'string',
+		default: '#FFFFFF75',
 		UAGCopyPaste: {
 			styleType: 'column-bg-image-color'
 		},
