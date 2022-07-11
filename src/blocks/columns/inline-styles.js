@@ -58,6 +58,12 @@ function inlineStyles( props ) {
 	const position = backgroundPosition.replace( '-', ' ' );
 
 	if ( 'image' === backgroundType ) {
+
+		if( !( 'background-image' in backgroundWrapperCSS ) && overlayType === 'color' ) {
+			style[ 'background-image' ] = backgroundImage
+				? `url(${ backgroundImage.url })`
+				: null;
+		}
 		style[ 'background-position' ] = position;
 		style[ 'background-attachment' ] = backgroundAttachment;
 		style[ 'background-repeat' ] = backgroundRepeat;
