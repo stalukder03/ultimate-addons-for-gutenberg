@@ -89,6 +89,12 @@ $position = str_replace( '-', ' ', $attr['backgroundPosition'] );
 if ( 'image' === $bg_type ) {
 
 	$style['background-image']      = ( isset( $attr['backgroundImage'] ) && isset( $attr['backgroundImage']['url'] ) ) ? "url('" . $attr['backgroundImage']['url'] . "' )" : null;
+
+	// To handle default case, which is overridden due to backward compatibility code.
+	if ( '' === $attr['backgroundImageColor'] ) {
+		$style['background-image'] = ( isset( $attr['backgroundImage'] ) && isset( $attr['backgroundImage']['url'] ) ) ? "linear-gradient(to right, #ffffff75, #ffffff75 ), url('" . $attr['backgroundImage']['url'] . "' )" : null;
+	}
+
 	$style['background-position']   = $position;
 	$style['background-attachment'] = $attr['backgroundAttachment'];
 	$style['background-repeat']     = $attr['backgroundRepeat'];
