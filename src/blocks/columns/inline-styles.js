@@ -60,11 +60,10 @@ function inlineStyles( props ) {
 
 	if ( 'image' === backgroundType ) {
 
-		if( !( 'background-image' in backgroundWrapperCSS ) && backgroundImageColor === undefined ) {
-			style[ 'background-image' ] = backgroundImage
-				? 'url(' + backgroundImage.url + ')'
-				: null;
-		}
+		style[ 'background-image' ] = backgroundImage
+			? 'url(' + backgroundImage.url + ')'
+			: null;
+
 		if( !( 'background-image' in backgroundWrapperCSS ) && backgroundImageColor ) {
 			style[ 'background-image' ] = backgroundImage
 				? 'linear-gradient(to right,' + backgroundImageColor + ',' + backgroundImageColor + '), url(' + backgroundImage.url + ')'
