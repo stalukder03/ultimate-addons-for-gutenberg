@@ -20,7 +20,9 @@ export default function save( { attributes, className } ) {
 		'' === alignMobile ? '' : `uagb-column__align-mobile-${ alignMobile }`;
 	const alignClassTablet =
 		'' === alignTablet ? '' : `uagb-column__align-tablet-${ alignTablet }`;
-
+		console.log('....Save....');
+		console.log(backgroundType)
+		console.log('...Save....');
 	return (
 		<div
 			className={ classnames(
