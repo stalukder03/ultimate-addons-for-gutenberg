@@ -1,10 +1,10 @@
 import { getBorderAttributes } from '@Controls/generateAttributes';
 
 const overallBorderAttributes = getBorderAttributes( 'overall', {
-	borderTopWidth: 1,
-	borderRightWidth: 1,
-	borderBottomWidth: 1,
-	borderLeftWidth: 1,
+	borderTopWidth: '',
+	borderRightWidth: '',
+	borderBottomWidth: '',
+	borderLeftWidth: '',
 } );
 
 /**
