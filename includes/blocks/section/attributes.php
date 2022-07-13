@@ -7,16 +7,7 @@
  * @package uagb
  */
 
-$overall_border_attributes = UAGB_Block_Helper::uag_generate_border_attribute(
-	'overall',
-	array(
-		'borderTopWidth'    => '',
-		'borderRightWidth'  => '',
-		'borderLeftWidth'   => '',
-		'borderBottomWidth' => '',
-	)
-);
-
+$overall_border_attributes = UAGB_Block_Helper::uag_generate_border_attribute( 'overall' );
 
 return array_merge(
 	array(

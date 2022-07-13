@@ -162,7 +162,7 @@ export const getBorderAttributes = ( prefix, defaultArgs = {} ) => {
 export const migrateBorderAttributes = ( prefix, borderWidth, borderRadius, color = {}, hoverColor = {}, borderStyle = {} ) => {
 	const attributes = {};
 
-	if( borderWidth.value ){
+	if( '' !== borderWidth.value ){
 
 		if( undefined === attributes[ prefix + 'BorderTopWidth' ] ) {
 			attributes[ prefix + 'BorderTopWidth' ] = borderWidth.value;

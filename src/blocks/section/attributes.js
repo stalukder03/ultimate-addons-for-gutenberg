@@ -1,11 +1,6 @@
 import { getBorderAttributes } from '@Controls/generateAttributes';
 
-const overallBorderAttributes = getBorderAttributes( 'overall', {
-	borderTopWidth: '',
-	borderRightWidth: '',
-	borderBottomWidth: '',
-	borderLeftWidth: '',
-} );
+const overallBorderAttributes = getBorderAttributes( 'overall' );
 
 /**
  * BLOCK: UAGB column Attributes
