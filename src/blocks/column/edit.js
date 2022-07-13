@@ -25,9 +25,13 @@ const ColumnComponent = ( props ) => {
 
 		const { setAttributes, attributes } = props;
 
-		const { backgroundOpacity, backgroundImageColor } = attributes;
+		const { backgroundOpacity, backgroundImageColor, backgroundType } = attributes;
 
 		// Replacement for componentDidMount.
+console.log('edit' + backgroundType )
+		if ( undefined === backgroundType ){
+			setAttributes( { backgroundType: 'none' } );
+		}
 
 		// Assigning block_id in the attribute.
 		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
@@ -66,7 +70,7 @@ const ColumnComponent = ( props ) => {
 	}, [] );
 
 	useEffect( () => {
-		
+
 		// Replacement for componentDidUpdate.
 		const blockStyling = styling( props );
 
