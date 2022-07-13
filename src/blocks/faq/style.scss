@@ -4,7 +4,8 @@
 		cursor: pointer;
 	}
 
-	.uagb-faq-content {
+	.uagb-faq-content,
+	.uagb-faq-content > span > p {	// Deprecated support selector.
 		margin-bottom: 0;
 	}
 }
