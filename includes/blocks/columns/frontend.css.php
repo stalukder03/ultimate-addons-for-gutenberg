@@ -120,7 +120,7 @@ if ( isset( $attr['backgroundVideoOpacity'] ) && '' !== $attr['backgroundVideoOp
 }
 
 $selectors = array(
-	'.uagb-columns__wrap'              => array_merge(
+	'.wp-block-uagb-columns.uagb-columns__wrap' => array_merge(
 		$style,
 		$border,
 		$backgroundWrapperCSS,
@@ -178,7 +178,7 @@ if ( 'video' === $bg_type ) {
 }
 
 $m_selectors = array(
-	'.uagb-columns__wrap'              => array_merge(
+	'.wp-block-uagb-columns.uagb-columns__wrap' => array_merge(
 		$m_style,
 		$border_mobile,
 		$backgroundWrapperCSS,
@@ -192,7 +192,7 @@ $m_selectors = array(
 );
 
 $t_selectors = array(
-	'.uagb-columns__wrap'              => array_merge(
+	'.wp-block-uagb-columns.uagb-columns__wrap' => array_merge(
 		$t_style,
 		$border_tablet,
 		$backgroundWrapperCSS,

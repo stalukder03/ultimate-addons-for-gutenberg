@@ -416,6 +416,7 @@ const attributes = {
 	},
 	ctaBorderStyle: {
 		type: "string",
+		default: 'solid',
 	},
 	ctaBtnVertPadding :{
 		type: "number",
@@ -489,6 +490,10 @@ const attributes = {
 	showDesc: {
 		type: "boolean",
 		default: true,
+	},
+	iconView: {
+		type: 'string',
+		default: 'none',
 	},
 }
 

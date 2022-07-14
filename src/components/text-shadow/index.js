@@ -31,7 +31,9 @@ const TextShadowControl = ( props ) => {
 	useLayoutEffect( () => {
 		window.addEventListener( 'click', function( e ){
 			const popupButton = document.querySelector( `.active.popup-${blockId} .spectra-control-popup__options--action-button` );
-			if ( popupButton && ! popupButton?.contains( e.target ) ) {
+			const popupWrap = document.querySelector( `.active.popup-${blockId} .spectra-control-popup` );
+
+			if ( popupButton && ! popupButton?.contains( e.target ) && ! e.target?.classList?.contains( 'uagb-advanced-color-indicate' ) && ! e.target?.parentElement?.closest( '.uagb-popover-color' ) && popupWrap && ! popupWrap?.contains( e.target ) && ! e.target?.parentElement?.closest( '.uagb-reset' ) ) {
 				toggleAdvancedControls( false )
 			}
 		  } );
@@ -53,6 +55,7 @@ const TextShadowControl = ( props ) => {
 			<Range
 				label={ textShadowHOffset.title }
 				value={ textShadowHOffset.value }
+				min={ -100 }
 				max={ 100 }
 				displayUnit={ false }
 				setAttributes={setAttributes}
@@ -65,6 +68,7 @@ const TextShadowControl = ( props ) => {
 			<Range
 				label={ textShadowVOffset.title }
 				value={ textShadowVOffset.value }
+				min={ -100 }
 				max={ 100 }
 				displayUnit={ false }
 				setAttributes={setAttributes}

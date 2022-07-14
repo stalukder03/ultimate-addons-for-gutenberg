@@ -19,7 +19,9 @@ const BoxShadowControl = ( props ) => {
 	useLayoutEffect( () => {
 		window.addEventListener( 'click', function( e ){
 			const popupButton = document.querySelector( `.active.popup-${blockId} .spectra-control-popup__options--action-button` );
-			if ( popupButton && ! popupButton?.contains( e.target ) ) {
+			const popupWrap = document.querySelector( `.active.popup-${blockId} .spectra-control-popup` );
+
+			if ( popupButton && ! popupButton?.contains( e.target ) && popupWrap && ! popupWrap?.contains( e.target ) && ! e.target?.classList?.contains( 'uagb-advanced-color-indicate' ) && ! e.target?.parentElement?.closest( '.uagb-popover-color' ) && ! e.target?.parentElement?.closest( '.uagb-reset' ) ) {
 				toggleAdvancedControls( false )
 			}
 		  } );
@@ -57,6 +59,7 @@ const BoxShadowControl = ( props ) => {
 			<Range
 				label={ boxShadowHOffset.title }
 				value={ boxShadowHOffset.value }
+				min={ -100 }
 				max={ 100 }
 				displayUnit={ false }
 				setAttributes={setAttributes}
@@ -69,6 +72,7 @@ const BoxShadowControl = ( props ) => {
 			<Range
 				label={ boxShadowVOffset.title }
 				value={ boxShadowVOffset.value }
+				min={ -100 }
 				max={ 100 }
 				displayUnit={ false }
 				setAttributes={setAttributes}
@@ -94,6 +98,7 @@ const BoxShadowControl = ( props ) => {
 			<Range
 				label={ boxShadowSpread.title }
 				value={ boxShadowSpread.value }
+				min={ -100 }
 				max={ 100 }
 				displayUnit={ false }
 				setAttributes={setAttributes}
