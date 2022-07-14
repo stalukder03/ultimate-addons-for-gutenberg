@@ -125,25 +125,25 @@ $selectors = array(
 		$border,
 		$backgroundWrapperCSS,
 	),
-	' .uagb-columns__video-wrap'       => array(
+	' .uagb-columns__video-wrap'                => array(
 		'opacity' => $video_opacity,
 	),
-	' .uagb-column__wrap'              => array(
+	' .uagb-column__wrap'                       => array(
 		'padding' => UAGB_Helper::get_css_value( $attr['columnGap'], 'px' ),
 	),
-	' .uagb-columns__shape-top svg'    => array(
+	' .uagb-columns__shape-top svg'             => array(
 		'height' => UAGB_Helper::get_css_value( $attr['topHeight'], 'px' ),
 	),
 	' .uagb-columns__shape.uagb-columns__shape-top .uagb-columns__shape-fill' => array(
 		'fill' => UAGB_Helper::hex2rgba( $attr['topColor'], ( isset( $attr['topDividerOpacity'] ) && '' !== $attr['topDividerOpacity'] ) ? $attr['topDividerOpacity'] : 100 ),
 	),
-	' .uagb-columns__shape-bottom svg' => array(
+	' .uagb-columns__shape-bottom svg'          => array(
 		'height' => UAGB_Helper::get_css_value( $attr['bottomHeight'], 'px' ),
 	),
 	' .uagb-columns__shape.uagb-columns__shape-bottom .uagb-columns__shape-fill' => array(
 		'fill' => UAGB_Helper::hex2rgba( $attr['bottomColor'], ( isset( $attr['bottomDividerOpacity'] ) && '' !== $attr['bottomDividerOpacity'] ) ? $attr['bottomDividerOpacity'] : 100 ),
 	),
-	'.wp-block-uagb-columns'           => array(
+	'.wp-block-uagb-columns'                    => array(
 		'box-shadow' => UAGB_Helper::get_css_value( $attr['boxShadowHOffset'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['boxShadowVOffset'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['boxShadowBlur'], 'px' ) . ' ' . UAGB_Helper::get_css_value( $attr['boxShadowSpread'], 'px' ) . ' ' . $attr['boxShadowColor'] . ' ' . $boxShadowPositionCSS,
 	),
 );
@@ -183,10 +183,10 @@ $m_selectors = array(
 		$border_mobile,
 		$backgroundWrapperCSS,
 	),
-	' .uagb-columns__shape-bottom svg' => array(
+	' .uagb-columns__shape-bottom svg'          => array(
 		'height' => UAGB_Helper::get_css_value( $attr['bottomHeightMobile'], 'px' ),
 	),
-	' .uagb-columns__shape-top svg'    => array(
+	' .uagb-columns__shape-top svg'             => array(
 		'height' => UAGB_Helper::get_css_value( $attr['topHeightMobile'], 'px' ),
 	),
 );
@@ -197,10 +197,10 @@ $t_selectors = array(
 		$border_tablet,
 		$backgroundWrapperCSS,
 	),
-	' .uagb-columns__shape-bottom svg' => array(
+	' .uagb-columns__shape-bottom svg'          => array(
 		'height' => UAGB_Helper::get_css_value( $attr['bottomHeightTablet'], 'px' ),
 	),
-	' .uagb-columns__shape-top svg'    => array(
+	' .uagb-columns__shape-top svg'             => array(
 		'height' => UAGB_Helper::get_css_value( $attr['topHeightTablet'], 'px' ),
 	),
 );
