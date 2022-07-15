@@ -264,7 +264,7 @@ function CtaStyle( props ) {
 		'text-transform': ctaTransform,
 		'font-weight': ctaFontWeight,
 		'color': ctaBtnLinkColor,
-		'background-color': ctaBgColor,
+		'background-color': ( ctaType === 'button' ) ? ctaBgColor : 'transparent',
 		'padding-top': generateCSSUnit( ctaTopPadding, ctaPaddingUnit ),
 		'padding-bottom': generateCSSUnit( ctaBottomPadding, ctaPaddingUnit ),
 		'padding-left': generateCSSUnit( ctaLeftPadding, ctaPaddingUnit ),
@@ -304,7 +304,7 @@ function CtaStyle( props ) {
 		// The following properties need !important for TwentyTwentyOne theme support.
 		// The theme overrides our css (which is of higher specificity) with !important, hence we need to use the same.
 		'color': ctaLinkHoverColor + ' !important',
-		'background-color': ctaBgHoverColor + ' !important',
+		'background-color': ( ctaType === 'button' ) ? ctaBgHoverColor + ' !important' : 'transparent',
 		'border-color': btnBorderHColor,
 	};
 
