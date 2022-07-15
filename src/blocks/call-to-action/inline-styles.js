@@ -293,14 +293,18 @@ function CtaStyle( props ) {
 		'letter-spacing': generateCSSUnit( secondCtaLetterSpacing, secondCtaLetterSpacingType ),
 	};
 	selectors['.uagb-cta__outer-wrap a.uagb-cta-second__button:hover'] = {
-		'color': secondCtaHoverColor,
-		'background-color': secondCtaHoverBackground,
+		// The following properties need !important for TwentyTwentyOne theme support.
+		// The theme overrides our css (which is of higher specificity) with !important, hence we need to use the same.
+		'color': secondCtaHoverColor + ' !important',
+		'background-color': secondCtaHoverBackground + ' !important',
 		'border-color': secondCtaBorderHColor,
 	};
 
 	selectors['.uagb-cta__outer-wrap a.uagb-cta__button-link-wrapper:hover'] = {
-		'color': ctaLinkHoverColor,
-		'background-color': ctaBgHoverColor,
+		// The following properties need !important for TwentyTwentyOne theme support.
+		// The theme overrides our css (which is of higher specificity) with !important, hence we need to use the same.
+		'color': ctaLinkHoverColor + ' !important',
+		'background-color': ctaBgHoverColor + ' !important',
 		'border-color': btnBorderHColor,
 	};
 
