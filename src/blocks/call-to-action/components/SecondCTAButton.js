@@ -27,6 +27,8 @@ const SecondCTAButton = ( props ) => {
 				className={ classnames(
 					'uagb-cta-second__button',
 					'wp-block-button__link',
+					attributes.secondCtaColor !== '' ? 'has-text-color' : '',
+					attributes.secondCtaBackground !== '' ? 'has-background' : '',
 				) }
 				target={ target }
 				rel={ rel }
