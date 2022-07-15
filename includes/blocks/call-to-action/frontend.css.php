@@ -139,6 +139,8 @@ $selectors['.wp-block-uagb-call-to-action a.uagb-cta-second__button']       = ar
 	$second_cta_border
 );
 $selectors['.wp-block-uagb-call-to-action a.uagb-cta-second__button:hover'] = array(
+	// The following properties need !important for TwentyTwentyOne theme support.
+	// The theme overrides our css (which is of higher specificity) with !important, hence we need to use the same.
 	'color'            => $attr['secondCtaHoverColor'] . ' !important',
 	'background-color' => $attr['secondCtaHoverBackground'] . ' !important',
 	'border-color'     => $attr['secondCtaBorderHColor'],
@@ -188,6 +190,8 @@ if ( 'button' === $attr['ctaType'] ) {
 		$cta_border
 	);
 	$selectors['.wp-block-uagb-call-to-action a.uagb-cta__button-link-wrapper:hover'] = array(
+		// The following properties need !important for TwentyTwentyOne theme support.
+		// The theme overrides our css (which is of higher specificity) with !important, hence we need to use the same.
 		'color'            => $attr['ctaLinkHoverColor'] . ' !important',
 		'background-color' => $attr['ctaBgHoverColor'] . ' !important',
 		'border-color'     => $attr['btnBorderHColor'],
