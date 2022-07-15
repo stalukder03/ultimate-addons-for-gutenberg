@@ -1,6 +1,7 @@
 import { RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { createBlock } from '@wordpress/blocks';
+import classnames from 'classnames';
 
 const Description = ( props ) => {
 	const {
@@ -9,6 +10,7 @@ const Description = ( props ) => {
 		mergeBlocks,
 		insertBlocksAfter,
 		onReplace,
+		descColor,
 	} = props;
 
 	if ( setAttributes !== 'not_set' ) {
@@ -17,7 +19,10 @@ const Description = ( props ) => {
 				tagName="p"
 				value={ attributes.description }
 				placeholder={ __( 'Write a Description' ) }
-				className="uagb-cta__desc"
+				className={ classnames(
+					'uagb-cta__desc',
+					descColor !== '' ? 'has-text-color' : '',
+				) }
 				onChange={ ( value ) =>
 					setAttributes( { description: value } )
 				}
@@ -43,7 +48,10 @@ const Description = ( props ) => {
 		<RichText.Content
 			tagName="p"
 			value={ attributes.description }
-			className="uagb-cta__desc"
+			className={ classnames(
+				'uagb-cta__desc',
+				descColor !== '' ? 'has-text-color' : '',
+			) }
 		/>
 	);
 };
