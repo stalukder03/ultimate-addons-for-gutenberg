@@ -1,6 +1,7 @@
 import { RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { createBlock } from '@wordpress/blocks';
+import classnames from 'classnames';
 
 const Title = ( props ) => {
 	const {
@@ -9,6 +10,7 @@ const Title = ( props ) => {
 		mergeBlocks,
 		insertBlocksAfter,
 		onReplace,
+		titleColor,
 	} = props;
 
 	if ( setAttributes !== 'not_set' ) {
@@ -17,7 +19,10 @@ const Title = ( props ) => {
 				tagName={ attributes.titleTag }
 				placeholder={ __( 'Write a Heading' ) }
 				value={ attributes.ctaTitle }
-				className="uagb-cta__title"
+				className={ classnames(
+					'uagb-cta__title',
+					titleColor !== '' ? 'has-text-color' : '',
+				) }
 				onChange={ ( value ) => setAttributes( { ctaTitle: value } ) }
 				multiline={ false }
 				onMerge={ mergeBlocks }
@@ -42,7 +47,10 @@ const Title = ( props ) => {
 		<RichText.Content
 			tagName={ attributes.titleTag }
 			value={ attributes.ctaTitle }
-			className="uagb-cta__title"
+			className={ classnames(
+				'uagb-cta__title',
+				titleColor !== '' ? 'has-text-color' : '',
+			) }
 		/>
 	);
 };
