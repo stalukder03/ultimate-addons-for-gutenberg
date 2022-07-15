@@ -153,7 +153,7 @@ if ( 'text' === $attr['ctaType'] ) {
 	$selectors[' .uagb-cta__button-wrapper a.uagb-cta-typeof-text:hover ']             = array(
 		'color' => $attr['ctaLinkHoverColor'],
 	);
-	$selectors['.wp-block-uagb-call-to-action a.uagb-cta__button-link-wrapper']        = array(
+	$selectors['.wp-block-uagb-call-to-action .uagb-cta__buttons a.uagb-cta__button-link-wrapper']        = array(
 		'color' => $attr['ctaBtnLinkColor'],
 	);
 	$selectors['.wp-block-uagb-call-to-action a.uagb-cta__button-link-wrapper:hover '] = array(
