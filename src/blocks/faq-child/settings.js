@@ -53,8 +53,8 @@ const Settings = (props) => {
 	};
 
 	return <InspectorControls>
-			<InspectorTabs tabs={ [ 'style', 'advance' ] }>
-				<InspectorTab { ...UAGTabs.style }>
+			<InspectorTabs tabs={ [ 'general', 'advance' ] }>
+				<InspectorTab { ...UAGTabs.general }>
 					{ commonStyle() }
 				</InspectorTab>
 				<InspectorTab { ...UAGTabs.advance }></InspectorTab>

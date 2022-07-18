@@ -8,7 +8,8 @@ import generateBorderCSS from '@Controls/generateBorderCSS';
 function styling( props ) {
     
     const {
-        overrideStyle
+        overrideStyle,
+        innerBorderHColor
     } = props.attributes;
 
     let selectors = {};
@@ -19,13 +20,18 @@ function styling( props ) {
 
     if( overrideStyle ) {
         const borderCSS = generateBorderCSS( props.attributes, 'inner', '' );
-        const borderCSSTablet = generateBorderCSS( props.attributes,'inner', 'tablet' );
-        const borderCSSMobile = generateBorderCSS( props.attributes,'inner', 'mobile' );
+        const borderCSSTablet = generateBorderCSS( props.attributes, 'inner', 'tablet' );
+        const borderCSSMobile = generateBorderCSS( props.attributes, 'inner', 'mobile' );
+
+        const id = `.uagb-block-${ props.clientId.substr( 0, 8 ) }`;
 
         selectors = {
             '.uagb-faq-item': {
                 ...borderCSS
-            }
+            },
+            '.uagb-faq-item:hover': {
+                'border-color': innerBorderHColor,
+            },
         };
 
         tabletSelectors = {
@@ -39,8 +45,6 @@ function styling( props ) {
                 ...borderCSSMobile
             },
         };
-
-        const id = `.uagb-block-${ props.clientId.substr( 0, 8 ) }`;
 
         stylingCss = generateCSS( selectors, id );
 
