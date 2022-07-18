@@ -9,4 +9,9 @@
 
 $border_attribute = UAGB_Block_Helper::uag_generate_border_attribute( 'inner' );
 
-return $border_attribute;
+return array_merge(
+  array(
+    'overrideStyle'    => false,
+  ),
+	$border_attribute,
+);

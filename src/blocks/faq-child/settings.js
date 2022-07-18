@@ -5,6 +5,9 @@ import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
 import InspectorTab, {
 	UAGTabs,
 } from '@Components/inspector-tabs/InspectorTab.js';
+import {
+	ToggleControl,
+} from '@wordpress/components';
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 
@@ -12,6 +15,10 @@ const Settings = (props) => {
 	props = props.parentProps;
 
 	const { setAttributes, attributes, deviceType } = props;
+
+	const {
+		overrideStyle
+	} = attributes;
 
 	const commonStyle = () => {
 		return (
@@ -21,14 +28,26 @@ const Settings = (props) => {
 						'For the common styling options please select the Parent Block.'
 					) }
 				</p>
-				<ResponsiveBorder
-					setAttributes={ setAttributes }
-					prefix={ 'inner' }
-					disabledBorderTitle= {false}
-					attributes={ attributes }
-					deviceType={deviceType}
-					disableBottomSeparator={ true }
+				<ToggleControl
+					label={ __(
+						'Override Default Style',
+						'ultimate-addons-for-gutenberg'
+					) }
+					checked={ overrideStyle }
+					onChange={ () =>
+						setAttributes( { overrideStyle: ! overrideStyle } )
+					}
 				/>
+				{ overrideStyle && (
+					<ResponsiveBorder
+						setAttributes={ setAttributes }
+						prefix={ 'inner' }
+						disabledBorderTitle= {false}
+						attributes={ attributes }
+						deviceType={deviceType}
+						disableBottomSeparator={ true }
+					/>
+				)}
 			</UAGAdvancedPanelBody>
 		);
 	};
