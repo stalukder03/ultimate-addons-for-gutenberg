@@ -50,7 +50,7 @@ class UAGB_Block_Module {
 		'faq'                => array(
 			'dir' => 'faq',
 		),
-		'faq-child'                => array(
+		'faq-child'          => array(
 			'dir' => 'faq-child',
 		),
 		'gf-styler'          => array(
@@ -179,7 +179,7 @@ class UAGB_Block_Module {
 				}
 
 				// Get CSS.
-				
+
 				$css = include $css_file;
 			}
 		}

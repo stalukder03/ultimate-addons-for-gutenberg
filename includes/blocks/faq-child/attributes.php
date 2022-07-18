@@ -7,7 +7,7 @@
  * @package uagb
  */
 
-$border_defaults  = array(
+$border_defaults = array(
 	'borderStyle'             => 'solid',
 	'borderTopWidth'          => '',
 	'borderRightWidth'        => '',
@@ -22,9 +22,9 @@ $border_defaults  = array(
 $border_attribute = UAGB_Block_Helper::uag_generate_border_attribute( 'inner', $border_defaults );
 
 return array_merge(
-  array(
-    'overrideStyle'    => false,
-	'innerBorderHColor' => ''
-  ),
+	array(
+		'overrideStyle'     => false,
+		'innerBorderHColor' => '',
+	),
 	$border_attribute,
 );

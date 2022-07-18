@@ -11,7 +11,7 @@ import {
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 
-const Settings = (props) => {
+const Settings = ( props ) => {
 	props = props.parentProps;
 
 	const { setAttributes, attributes, deviceType } = props;
