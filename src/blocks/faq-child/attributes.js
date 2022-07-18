@@ -1,20 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { getBorderAttributes } from '@Controls/generateAttributes';
 
-const borderDefault = {
-	borderStyle: '',
-	borderTopWidth: '',
-	borderRightWidth: '',
-	borderBottomWidth: '',
-	borderLeftWidth: '',
-	borderTopLeftRadius: '',
-	borderTopRightRadius: '',
-	borderBottomLeftRadius: '',
-	borderBottomRightRadius: '',
-	borderColor: '',
-	borderHColor: '',
-}
-const borderAttributes = getBorderAttributes( 'inner', borderDefault );
+const borderAttributes = getBorderAttributes( 'inner' );
 
 const attributes = {
 	block_id: {

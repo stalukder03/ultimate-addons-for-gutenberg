@@ -6,6 +6,9 @@ import generateCSS from '@Controls/generateCSS';
 import generateBorderCSS from '@Controls/generateBorderCSS';
 
 function styling( props ) {
+
+    console.log( props.attributes );
+    console.log( "==================================================" );
  
     const borderCSS = generateBorderCSS( props.attributes, 'inner', '' );
     const borderCSSTablet = generateBorderCSS( props.attributes,'inner', 'tablet' );
