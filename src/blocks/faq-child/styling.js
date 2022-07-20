@@ -26,7 +26,7 @@ function styling( props ) {
         const id = `.uagb-block-${ props.clientId.substr( 0, 8 ) }`;
 
         selectors = {
-            '.uagb-faq-item': {
+            '.uagb-faq-item.uagb-faq-child__outer-wrap': {
                 ...borderCSS
             },
             '.uagb-faq-item:hover': {
@@ -35,13 +35,13 @@ function styling( props ) {
         };
 
         tabletSelectors = {
-            '.uagb-faq-item': {
+            '.uagb-faq-item.uagb-faq-child__outer-wrap': {
                 ...borderCSSTablet
             },
         };
 
         mobileSelectors = {
-            '.uagb-faq-item': {
+            '.uagb-faq-item.uagb-faq-child__outer-wrap': {
                 ...borderCSSMobile
             },
         };
@@ -61,6 +61,7 @@ function styling( props ) {
             true,
             'mobile'
         );
+
     }
 
     return stylingCss;
