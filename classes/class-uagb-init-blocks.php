@@ -44,6 +44,7 @@ class UAGB_Init_Blocks {
 
 		// Hook: Editor assets.
 		add_action( 'enqueue_block_editor_assets', array( $this, 'editor_assets' ) );
+		add_action( 'spectra_scripts_loaded', array( $this, 'editor_assets' ) );
 
 		if ( version_compare( get_bloginfo( 'version' ), '5.8', '>=' ) ) {
 			add_filter( 'block_categories_all', array( $this, 'register_block_category' ), 999999, 2 );
