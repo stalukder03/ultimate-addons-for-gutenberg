@@ -4,23 +4,25 @@ const addBlockEditorDynamicStyles = ( styleTagId, styling ) => {
 
 		addInlineStyle( styleTagId, styling, document );
 
-		const iframe = document.getElementById( 'sepctra-frame' ).contentWindow;
-		const iDocument = iframe.document;
+		const iframe = document.getElementById( 'sepctra-frame' );
+
+		if( iframe ) {
+			const iDocument = iframe.contentWindow.document;
 		
-		if( iDocument ) {
+			if( iDocument ) {
 
-			const LazyEditorStylesContainer = document.getElementById( 'uagb-editor-styles' );
-			const cloneLazEditorStyle = LazyEditorStylesContainer.cloneNode( true );
+				const LazyEditorStylesContainer = document.getElementById( 'uagb-editor-styles' );
+				const cloneLazEditorStyle = LazyEditorStylesContainer.cloneNode( true );
 
-			const IframeLazyStyleContainer = iDocument.getElementById( 'uagb-editor-styles' );
-			if( IframeLazyStyleContainer ) {
-				IframeLazyStyleContainer.remove();
+				const IframeLazyStyleContainer = iDocument.getElementById( 'uagb-editor-styles' );
+				if( IframeLazyStyleContainer ) {
+					IframeLazyStyleContainer.remove();
+				}
+				
+				iDocument.head.appendChild( cloneLazEditorStyle );
+				addInlineStyle( styleTagId, styling, iDocument );
 			}
-			
-			iDocument.head.appendChild( cloneLazEditorStyle );
-			addInlineStyle( styleTagId, styling, iDocument );
 		}
-		
 	} );
 }
 
