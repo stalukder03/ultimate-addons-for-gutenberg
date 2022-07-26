@@ -64,705 +64,712 @@ if ( ! class_exists( 'UAGB_Post_Timeline' ) ) {
 				return;
 			}
 
-			register_block_type(
-				'uagb/post-timeline',
+			register_block_type_from_metadata(
+				UAGB_ROOT . '/src/blocks/timeline/post-timeline',
 				array(
-					'attributes'      => array(
-						'blockName'                  => array(
-							'type'    => 'string',
-							'default' => 'post-timeline',
-						),
-						'align'                      => array(
-							'type'    => 'string',
-							'default' => '',
-						),
-						'alignTablet'                => array(
-							'type'    => 'string',
-							'default' => '',
-						),
-						'alignMobile'                => array(
-							'type'    => 'string',
-							'default' => '',
-						),
-						'headingColor'               => array(
-							'type'    => 'string',
-							'default' => '#333',
-						),
-						'subHeadingColor'            => array(
-							'type'    => 'string',
-							'default' => '#333',
-						),
-						'separatorBg'                => array(
-							'type'    => 'string',
-							'default' => '#eee',
-						),
-						'backgroundColor'            => array(
-							'type'    => 'string',
-							'default' => '#eee',
-						),
-						'separatorColor'             => array(
-							'type'    => 'string',
-							'default' => '#eee',
-						),
-						'separatorFillColor'         => array(
-							'type'    => 'string',
-							'default' => '#0693e3',
-						),
-						'separatorBorder'            => array(
-							'type'    => 'string',
-							'default' => '#eee',
-						),
-						'borderFocus'                => array(
-							'type'    => 'string',
-							'default' => '#5cb85c',
-						),
-						'headingTag'                 => array(
-							'type'    => 'string',
-							'default' => 'h3',
-						),
-						'horizontalSpace'            => array(
-							'type'    => 'number',
-							'default' => 10,
-						),
-						'verticalSpace'              => array(
-							'type'    => 'number',
-							'default' => 15,
-						),
-						'timelinAlignment'           => array(
-							'type'    => 'string',
-							'default' => 'center',
-						),
-						'arrowlinAlignment'          => array(
-							'type'    => 'string',
-							'default' => 'center',
-						),
-						'subHeadFontSizeType'        => array(
-							'type'    => 'string',
-							'default' => 'px',
-						),
-						'subHeadFontSize'            => array(
-							'type' => 'number',
-						),
-						'subHeadFontSizeTablet'      => array(
-							'type' => 'number',
-						),
-						'subHeadFontSizeMobile'      => array(
-							'type' => 'number',
-						),
-						'subHeadFontFamily'          => array(
-							'type'    => 'string',
-							'default' => '',
-						),
-						'subHeadFontWeight'          => array(
-							'type' => 'string',
-						),
-						'subHeadFontStyle'           => array(
-							'type' => 'string',
-						),
-						'subHeadLineHeightType'      => array(
-							'type'    => 'string',
-							'default' => 'em',
-						),
-						'subHeadLineHeight'          => array(
-							'type' => 'number',
-						),
-						'subHeadLineHeightTablet'    => array(
-							'type' => 'number',
-						),
-						'subHeadLineHeightMobile'    => array(
-							'type' => 'number',
-						),
-						'subHeadLoadGoogleFonts'     => array(
-							'type'    => 'boolean',
-							'default' => false,
-						),
-						'headSpace'                  => array(
-							'type'    => 'number',
-							'default' => 5,
-						),
-						'headSpaceTablet'            => array(
-							'type' => 'number',
-						),
-						'headSpaceMobile'            => array(
-							'type' => 'number',
-						),
-						'authorSpace'                => array(
-							'type'    => 'number',
-							'default' => 5,
-						),
-						'authorSpaceTablet'          => array(
-							'type' => 'number',
-						),
-						'authorSpaceMobile'          => array(
-							'type' => 'number',
-						),
-						'contentSpace'               => array(
-							'type'    => 'number',
-							'default' => 15,
-						),
-						'separatorwidth'             => array(
-							'type'    => 'number',
-							'default' => 3,
-						),
-						'borderwidth'                => array(
-							'type'    => 'number',
-							'default' => 0,
-						),
-						'iconColor'                  => array(
-							'type'    => 'string',
-							'default' => '#333',
-						),
-						'iconFocus'                  => array(
-							'type'    => 'string',
-							'default' => '#fff',
-						),
-						'iconBgFocus'                => array(
-							'type'    => 'string',
-							'default' => '#0693e3',
-						),
-						'authorColor'                => array(
-							'type'    => 'string',
-							'default' => '#333',
-						),
-						'authorFontSizeType'         => array(
-							'type'    => 'string',
-							'default' => 'px',
-						),
-						'authorFontSize'             => array(
-							'type'    => 'number',
-							'default' => 11,
-						),
-						'authorFontSizeTablet'       => array(
-							'type' => 'number',
-						),
-						'authorFontSizeMobile'       => array(
-							'type' => 'number',
-						),
-						'authorFontFamily'           => array(
-							'type'    => 'string',
-							'default' => '',
-						),
-						'authorFontWeight'           => array(
-							'type' => 'string',
-						),
-						'authorFontStyle'            => array(
-							'type' => 'string',
-						),
-						'authorLineHeightType'       => array(
-							'type'    => 'string',
-							'default' => 'em',
-						),
-						'authorLineHeight'           => array(
-							'type' => 'number',
-						),
-						'authorLineHeightTablet'     => array(
-							'type' => 'number',
-						),
-						'authorLineHeightMobile'     => array(
-							'type' => 'number',
-						),
-						'authorLoadGoogleFonts'      => array(
-							'type'    => 'boolean',
-							'default' => false,
-						),
-						'ctaFontSizeType'            => array(
-							'type'    => 'string',
-							'default' => 'px',
-						),
-						'ctaFontSize'                => array(
-							'type'    => 'number',
-							'default' => '',
-						),
-						'ctaFontSizeTablet'          => array(
-							'type' => 'number',
-						),
-						'ctaFontSizeMobile'          => array(
-							'type' => 'number',
-						),
-						'ctaFontFamily'              => array(
-							'type'    => 'string',
-							'default' => '',
-						),
-						'ctaFontWeight'              => array(
-							'type' => 'string',
-						),
-						'ctaFontStyle'               => array(
-							'type' => 'string',
-						),
-						'ctaLineHeightType'          => array(
-							'type'    => 'string',
-							'default' => 'em',
-						),
-						'ctaLineHeight'              => array(
-							'type' => 'number',
-						),
-						'ctaLineHeightTablet'        => array(
-							'type' => 'number',
-						),
-						'ctaLineHeightMobile'        => array(
-							'type' => 'number',
-						),
-						'ctaLoadGoogleFonts'         => array(
-							'type'    => 'boolean',
-							'default' => false,
-						),
-						'dateColor'                  => array(
-							'type'    => 'string',
-							'default' => '#333',
-						),
-						'dateFontsizeType'           => array(
-							'type'    => 'string',
-							'default' => 'px',
-						),
-						'dateFontsize'               => array(
-							'type'    => 'number',
-							'default' => 12,
-						),
-						'dateFontsizeTablet'         => array(
-							'type' => 'number',
-						),
-						'dateFontsizeMobile'         => array(
-							'type' => 'number',
-						),
-						'dateFontFamily'             => array(
-							'type'    => 'string',
-							'default' => '',
-						),
-						'dateFontWeight'             => array(
-							'type' => 'string',
-						),
-						'dateFontStyle'              => array(
-							'type' => 'string',
-						),
-						'dateLineHeightType'         => array(
-							'type'    => 'string',
-							'default' => 'em',
-						),
-						'dateLineHeight'             => array(
-							'type' => 'number',
-						),
-						'dateLineHeightTablet'       => array(
-							'type' => 'number',
-						),
-						'dateLineHeightMobile'       => array(
-							'type' => 'number',
-						),
-						'dateLoadGoogleFonts'        => array(
-							'type'    => 'boolean',
-							'default' => false,
-						),
-						'connectorBgsize'            => array(
-							'type'    => 'number',
-							'default' => 35,
-						),
-						'dateBottomspace'            => array(
-							'type'    => 'number',
-							'default' => 5,
-						),
-						'dateBottomspaceMobile'      => array(
-							'type' => 'number',
-						),
-						'dateBottomspaceTablet'      => array(
-							'type' => 'number',
-						),
-						'headFontSizeType'           => array(
-							'type'    => 'string',
-							'default' => 'px',
-						),
-						'headFontSize'               => array(
-							'type' => 'number',
-						),
-						'headFontSizeTablet'         => array(
-							'type' => 'number',
-						),
-						'headFontSizeMobile'         => array(
-							'type' => 'number',
-						),
-						'headFontFamily'             => array(
-							'type'    => 'string',
-							'default' => '',
-						),
-						'headFontWeight'             => array(
-							'type' => 'string',
-						),
-						'headFontStyle'              => array(
-							'type' => 'string',
-						),
-						'headLineHeightType'         => array(
-							'type'    => 'string',
-							'default' => 'em',
-						),
-						'headLineHeight'             => array(
-							'type' => 'number',
-						),
-						'headLineHeightTablet'       => array(
-							'type' => 'number',
-						),
-						'headLineHeightMobile'       => array(
-							'type' => 'number',
-						),
-						'headLoadGoogleFonts'        => array(
-							'type'    => 'boolean',
-							'default' => false,
-						),
-						'categories'                 => array(
-							'type' => 'string',
-						),
-						'postType'                   => array(
-							'type'    => 'string',
-							'default' => 'post',
-						),
-						'taxonomyType'               => array(
-							'type'    => 'string',
-							'default' => 'category',
-						),
-						'postsToShow'                => array(
-							'type'    => 'number',
-							'default' => 6,
-						),
-						'postsOffset'                => array(
-							'type'    => 'number',
-							'default' => 0,
-						),
-						'displayPostDate'            => array(
-							'type'    => 'boolean',
-							'default' => true,
-						),
-						'dateFormat'                 => array(
-							'type'    => 'string',
-							'default' => 'F j, Y',
-						),
-						'displayPostExcerpt'         => array(
-							'type'    => 'boolean',
-							'default' => true,
-						),
-						'displayPostAuthor'          => array(
-							'type'    => 'boolean',
-							'default' => true,
-						),
-						'displayPostImage'           => array(
-							'type'    => 'boolean',
-							'default' => true,
-						),
-						'displayPostLink'            => array(
-							'type'    => 'boolean',
-							'default' => true,
-						),
-						'exerptLength'               => array(
-							'type'    => 'number',
-							'default' => 15,
-						),
-						'postLayout'                 => array(
-							'type'    => 'string',
-							'default' => 'grid',
-						),
-						'columns'                    => array(
-							'type'    => 'number',
-							'default' => 2,
-						),
-						'width'                      => array(
-							'type'    => 'string',
-							'default' => 'wide',
-						),
-						'order'                      => array(
-							'type'    => 'string',
-							'default' => 'desc',
-						),
-						'orderBy'                    => array(
-							'type'    => 'string',
-							'default' => 'date',
-						),
-						'imageSize'                  => array(
-							'type'    => 'string',
-							'default' => 'large',
-						),
-						'readMoreText'               => array(
-							'type'    => 'string',
-							'default' => __( 'Read More', 'ultimate-addons-for-gutenberg' ),
-						),
-						'block_id'                   => array(
-							'type'    => 'string',
-							'default' => 'not_set',
-						),
-						'icon'                       => array(
-							'type'    => 'string',
-							'default' => 'fab fa fa-calendar-alt',
-						),
-						'borderRadius'               => array(
-							'type'    => 'number',
-							'default' => 2,
-						),
-						'borderRadiusTablet'         => array(
-							'type' => 'number',
-						),
-						'borderRadiusMobile'         => array(
-							'type' => 'number',
-						),
-						'bgPadding'                  => array(
-							'type'    => 'number',
-							'default' => 20,
-						),
-						'contentPadding'             => array(
-							'type'    => 'number',
-							'default' => 10,
-						),
-						'ctaBottomSpacing'           => array(
-							'type'    => 'number',
-							'default' => 0,
-						),
-						'ctaBottomSpacingTablet'     => array(
-							'type' => 'number',
-						),
-						'ctaBottomSpacingMobile'     => array(
-							'type' => 'number',
-						),
-						'headTopSpacing'             => array(
-							'type'    => 'number',
-							'default' => 0,
-						),
-						'headTopSpacingTablet'       => array(
-							'type' => 'number',
-						),
-						'headTopSpacingMobile'       => array(
-							'type' => 'number',
-						),
-						'iconSize'                   => array(
-							'type'    => 'number',
-							'default' => 15,
-						),
-						'ctaColor'                   => array(
-							'type'    => 'string',
-							'default' => '#fff',
-						),
-						'ctaBackground'              => array(
-							'type'    => 'string',
-							'default' => '#333',
-						),
-						'stack'                      => array(
-							'type'    => 'string',
-							'default' => 'tablet',
-						),
-						'linkTarget'                 => array(
-							'type'    => 'boolean',
-							'default' => false,
-						),
-						// Exclude Current Post.
-						'excludeCurrentPost'         => array(
-							'type'    => 'boolean',
-							'default' => false,
-						),
-						'leftMargin'                 => array(
-							'type' => 'number',
-						),
-						'rightMargin'                => array(
-							'type' => 'number',
-						),
-						'topMargin'                  => array(
-							'type' => 'number',
-						),
-						'bottomMargin'               => array(
-							'type' => 'number',
-						),
-						'leftMarginTablet'           => array(
-							'type' => 'number',
-						),
-						'rightMarginTablet'          => array(
-							'type' => 'number',
-						),
-						'topMarginTablet'            => array(
-							'type' => 'number',
-						),
-						'bottomMarginTablet'         => array(
-							'type' => 'number',
-						),
-						'leftMarginMobile'           => array(
-							'type' => 'number',
-						),
-						'rightMarginMobile'          => array(
-							'type' => 'number',
-						),
-						'topMarginMobile'            => array(
-							'type' => 'number',
-						),
-						'bottomMarginMobile'         => array(
-							'type' => 'number',
-						),
-						'marginUnit'                 => array(
-							'type'    => 'string',
-							'default' => 'px',
-						),
-						'mobileMarginUnit'           => array(
-							'type'    => 'string',
-							'default' => 'px',
-						),
-						'tabletMarginUnit'           => array(
-							'type'    => 'string',
-							'default' => 'px',
-						),
-						'marginLink'                 => array(
-							'type'    => 'boolean',
-							'default' => false,
-						),
-						'leftPadding'                => array(
-							'type' => 'number',
-						),
-						'rightPadding'               => array(
-							'type' => 'number',
-						),
-						'topPadding'                 => array(
-							'type' => 'number',
-						),
-						'bottomPadding'              => array(
-							'type' => 'number',
-						),
-						'leftPaddingTablet'          => array(
-							'type' => 'number',
-						),
-						'rightPaddingTablet'         => array(
-							'type' => 'number',
-						),
-						'topPaddingTablet'           => array(
-							'type' => 'number',
-						),
-						'bottomPaddingTablet'        => array(
-							'type' => 'number',
-						),
-						'leftPaddingMobile'          => array(
-							'type' => 'number',
-						),
-						'rightPaddingMobile'         => array(
-							'type' => 'number',
-						),
-						'topPaddingMobile'           => array(
-							'type' => 'number',
-						),
-						'bottomPaddingMobile'        => array(
-							'type' => 'number',
-						),
-						'paddingUnit'                => array(
-							'type'    => 'string',
-							'default' => 'px',
-						),
-						'mobilePaddingUnit'          => array(
-							'type'    => 'string',
-							'default' => 'px',
-						),
-						'tabletPaddingUnit'          => array(
-							'type'    => 'string',
-							'default' => 'px',
-						),
-						'paddingLink'                => array(
-							'type'    => 'boolean',
-							'default' => false,
-						),
-						'headTransform'              => array(
-							'type' => 'string',
-						),
-						'authorTransform'            => array(
-							'type' => 'string',
-						),
-						'subHeadTransform'           => array(
-							'type' => 'string',
-						),
-						'dateTransform'              => array(
-							'type' => 'string',
-						),
-						'ctaTransform'               => array(
-							'type' => 'string',
-						),
-						'headDecoration'             => array(
-							'type' => 'string',
-						),
-						'authorDecoration'           => array(
-							'type' => 'string',
-						),
-						'subHeadDecoration'          => array(
-							'type' => 'string',
-						),
-						'dateDecoration'             => array(
-							'type' => 'string',
-						),
-						'ctaDecoration'              => array(
-							'type' => 'string',
-						),
-						'isPreview'                  => array(
-							'type'    => 'boolean',
-							'default' => false,
-						),
-						'headLetterSpacing'          => array(
-							'type'    => 'number',
-							'default' => '',
-						),
-						'headLetterSpacingType'      => array(
-							'type'    => 'string',
-							'default' => 'px',
-						),
-						'headLetterSpacingMobile'    => array(
-							'type' => 'number',
-						),
-						'headLetterSpacingTablet'    => array(
-							'type' => 'number',
-						),
-						'subHeadLetterSpacing'       => array(
-							'type'    => 'number',
-							'default' => '',
-						),
-						'subHeadLetterSpacingType'   => array(
-							'type'    => 'string',
-							'default' => 'px',
-						),
-						'subHeadLetterSpacingMobile' => array(
-							'type' => 'number',
-						),
-						'subHeadLetterSpacingTablet' => array(
-							'type' => 'number',
-						),
-						'ctaLetterSpacing'           => array(
-							'type'    => 'number',
-							'default' => '',
-						),
-						'ctaLetterSpacingType'       => array(
-							'type'    => 'string',
-							'default' => 'px',
-						),
-						'ctaLetterSpacingMobile'     => array(
-							'type' => 'number',
-						),
-						'ctaLetterSpacingTablet'     => array(
-							'type' => 'number',
-						),
-						'dateLetterSpacing'          => array(
-							'type'    => 'number',
-							'default' => '',
-						),
-						'dateLetterSpacingType'      => array(
-							'type'    => 'string',
-							'default' => 'px',
-						),
-						'dateLetterSpacingMobile'    => array(
-							'type' => 'number',
-						),
-						'dateLetterSpacingTablet'    => array(
-							'type' => 'number',
-						),
-						'authorLetterSpacing'        => array(
-							'type'    => 'number',
-							'default' => '',
-						),
-						'authorLetterSpacingType'    => array(
-							'type'    => 'string',
-							'default' => 'px',
-						),
-						'authorLetterSpacingMobile'  => array(
-							'type' => 'number',
-						),
-						'authorLetterSpacingTablet'  => array(
-							'type' => 'number',
-						),
-					),
 					'render_callback' => array( $this, 'post_timeline_callback' ),
 				)
 			);
+
+			// register_block_type(
+			// 	'uagb/post-timeline',
+			// 	array(
+			// 		'attributes'      => array(
+			// 			'blockName'                  => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'post-timeline',
+			// 			),
+			// 			'align'                      => array(
+			// 				'type'    => 'string',
+			// 				'default' => '',
+			// 			),
+			// 			'alignTablet'                => array(
+			// 				'type'    => 'string',
+			// 				'default' => '',
+			// 			),
+			// 			'alignMobile'                => array(
+			// 				'type'    => 'string',
+			// 				'default' => '',
+			// 			),
+			// 			'headingColor'               => array(
+			// 				'type'    => 'string',
+			// 				'default' => '#333',
+			// 			),
+			// 			'subHeadingColor'            => array(
+			// 				'type'    => 'string',
+			// 				'default' => '#333',
+			// 			),
+			// 			'separatorBg'                => array(
+			// 				'type'    => 'string',
+			// 				'default' => '#eee',
+			// 			),
+			// 			'backgroundColor'            => array(
+			// 				'type'    => 'string',
+			// 				'default' => '#eee',
+			// 			),
+			// 			'separatorColor'             => array(
+			// 				'type'    => 'string',
+			// 				'default' => '#eee',
+			// 			),
+			// 			'separatorFillColor'         => array(
+			// 				'type'    => 'string',
+			// 				'default' => '#0693e3',
+			// 			),
+			// 			'separatorBorder'            => array(
+			// 				'type'    => 'string',
+			// 				'default' => '#eee',
+			// 			),
+			// 			'borderFocus'                => array(
+			// 				'type'    => 'string',
+			// 				'default' => '#5cb85c',
+			// 			),
+			// 			'headingTag'                 => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'h3',
+			// 			),
+			// 			'horizontalSpace'            => array(
+			// 				'type'    => 'number',
+			// 				'default' => 10,
+			// 			),
+			// 			'verticalSpace'              => array(
+			// 				'type'    => 'number',
+			// 				'default' => 15,
+			// 			),
+			// 			'timelinAlignment'           => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'center',
+			// 			),
+			// 			'arrowlinAlignment'          => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'center',
+			// 			),
+			// 			'subHeadFontSizeType'        => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'px',
+			// 			),
+			// 			'subHeadFontSize'            => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'subHeadFontSizeTablet'      => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'subHeadFontSizeMobile'      => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'subHeadFontFamily'          => array(
+			// 				'type'    => 'string',
+			// 				'default' => '',
+			// 			),
+			// 			'subHeadFontWeight'          => array(
+			// 				'type' => 'string',
+			// 			),
+			// 			'subHeadFontStyle'           => array(
+			// 				'type' => 'string',
+			// 			),
+			// 			'subHeadLineHeightType'      => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'em',
+			// 			),
+			// 			'subHeadLineHeight'          => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'subHeadLineHeightTablet'    => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'subHeadLineHeightMobile'    => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'subHeadLoadGoogleFonts'     => array(
+			// 				'type'    => 'boolean',
+			// 				'default' => false,
+			// 			),
+			// 			'headSpace'                  => array(
+			// 				'type'    => 'number',
+			// 				'default' => 5,
+			// 			),
+			// 			'headSpaceTablet'            => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'headSpaceMobile'            => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'authorSpace'                => array(
+			// 				'type'    => 'number',
+			// 				'default' => 5,
+			// 			),
+			// 			'authorSpaceTablet'          => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'authorSpaceMobile'          => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'contentSpace'               => array(
+			// 				'type'    => 'number',
+			// 				'default' => 15,
+			// 			),
+			// 			'separatorwidth'             => array(
+			// 				'type'    => 'number',
+			// 				'default' => 3,
+			// 			),
+			// 			'borderwidth'                => array(
+			// 				'type'    => 'number',
+			// 				'default' => 0,
+			// 			),
+			// 			'iconColor'                  => array(
+			// 				'type'    => 'string',
+			// 				'default' => '#333',
+			// 			),
+			// 			'iconFocus'                  => array(
+			// 				'type'    => 'string',
+			// 				'default' => '#fff',
+			// 			),
+			// 			'iconBgFocus'                => array(
+			// 				'type'    => 'string',
+			// 				'default' => '#0693e3',
+			// 			),
+			// 			'authorColor'                => array(
+			// 				'type'    => 'string',
+			// 				'default' => '#333',
+			// 			),
+			// 			'authorFontSizeType'         => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'px',
+			// 			),
+			// 			'authorFontSize'             => array(
+			// 				'type'    => 'number',
+			// 				'default' => 11,
+			// 			),
+			// 			'authorFontSizeTablet'       => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'authorFontSizeMobile'       => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'authorFontFamily'           => array(
+			// 				'type'    => 'string',
+			// 				'default' => '',
+			// 			),
+			// 			'authorFontWeight'           => array(
+			// 				'type' => 'string',
+			// 			),
+			// 			'authorFontStyle'            => array(
+			// 				'type' => 'string',
+			// 			),
+			// 			'authorLineHeightType'       => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'em',
+			// 			),
+			// 			'authorLineHeight'           => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'authorLineHeightTablet'     => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'authorLineHeightMobile'     => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'authorLoadGoogleFonts'      => array(
+			// 				'type'    => 'boolean',
+			// 				'default' => false,
+			// 			),
+			// 			'ctaFontSizeType'            => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'px',
+			// 			),
+			// 			'ctaFontSize'                => array(
+			// 				'type'    => 'number',
+			// 				'default' => '',
+			// 			),
+			// 			'ctaFontSizeTablet'          => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'ctaFontSizeMobile'          => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'ctaFontFamily'              => array(
+			// 				'type'    => 'string',
+			// 				'default' => '',
+			// 			),
+			// 			'ctaFontWeight'              => array(
+			// 				'type' => 'string',
+			// 			),
+			// 			'ctaFontStyle'               => array(
+			// 				'type' => 'string',
+			// 			),
+			// 			'ctaLineHeightType'          => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'em',
+			// 			),
+			// 			'ctaLineHeight'              => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'ctaLineHeightTablet'        => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'ctaLineHeightMobile'        => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'ctaLoadGoogleFonts'         => array(
+			// 				'type'    => 'boolean',
+			// 				'default' => false,
+			// 			),
+			// 			'dateColor'                  => array(
+			// 				'type'    => 'string',
+			// 				'default' => '#333',
+			// 			),
+			// 			'dateFontsizeType'           => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'px',
+			// 			),
+			// 			'dateFontsize'               => array(
+			// 				'type'    => 'number',
+			// 				'default' => 12,
+			// 			),
+			// 			'dateFontsizeTablet'         => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'dateFontsizeMobile'         => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'dateFontFamily'             => array(
+			// 				'type'    => 'string',
+			// 				'default' => '',
+			// 			),
+			// 			'dateFontWeight'             => array(
+			// 				'type' => 'string',
+			// 			),
+			// 			'dateFontStyle'              => array(
+			// 				'type' => 'string',
+			// 			),
+			// 			'dateLineHeightType'         => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'em',
+			// 			),
+			// 			'dateLineHeight'             => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'dateLineHeightTablet'       => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'dateLineHeightMobile'       => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'dateLoadGoogleFonts'        => array(
+			// 				'type'    => 'boolean',
+			// 				'default' => false,
+			// 			),
+			// 			'connectorBgsize'            => array(
+			// 				'type'    => 'number',
+			// 				'default' => 35,
+			// 			),
+			// 			'dateBottomspace'            => array(
+			// 				'type'    => 'number',
+			// 				'default' => 5,
+			// 			),
+			// 			'dateBottomspaceMobile'      => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'dateBottomspaceTablet'      => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'headFontSizeType'           => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'px',
+			// 			),
+			// 			'headFontSize'               => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'headFontSizeTablet'         => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'headFontSizeMobile'         => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'headFontFamily'             => array(
+			// 				'type'    => 'string',
+			// 				'default' => '',
+			// 			),
+			// 			'headFontWeight'             => array(
+			// 				'type' => 'string',
+			// 			),
+			// 			'headFontStyle'              => array(
+			// 				'type' => 'string',
+			// 			),
+			// 			'headLineHeightType'         => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'em',
+			// 			),
+			// 			'headLineHeight'             => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'headLineHeightTablet'       => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'headLineHeightMobile'       => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'headLoadGoogleFonts'        => array(
+			// 				'type'    => 'boolean',
+			// 				'default' => false,
+			// 			),
+			// 			'categories'                 => array(
+			// 				'type' => 'string',
+			// 			),
+			// 			'postType'                   => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'post',
+			// 			),
+			// 			'taxonomyType'               => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'category',
+			// 			),
+			// 			'postsToShow'                => array(
+			// 				'type'    => 'number',
+			// 				'default' => 6,
+			// 			),
+			// 			'postsOffset'                => array(
+			// 				'type'    => 'number',
+			// 				'default' => 0,
+			// 			),
+			// 			'displayPostDate'            => array(
+			// 				'type'    => 'boolean',
+			// 				'default' => true,
+			// 			),
+			// 			'dateFormat'                 => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'F j, Y',
+			// 			),
+			// 			'displayPostExcerpt'         => array(
+			// 				'type'    => 'boolean',
+			// 				'default' => true,
+			// 			),
+			// 			'displayPostAuthor'          => array(
+			// 				'type'    => 'boolean',
+			// 				'default' => true,
+			// 			),
+			// 			'displayPostImage'           => array(
+			// 				'type'    => 'boolean',
+			// 				'default' => true,
+			// 			),
+			// 			'displayPostLink'            => array(
+			// 				'type'    => 'boolean',
+			// 				'default' => true,
+			// 			),
+			// 			'exerptLength'               => array(
+			// 				'type'    => 'number',
+			// 				'default' => 15,
+			// 			),
+			// 			'postLayout'                 => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'grid',
+			// 			),
+			// 			'columns'                    => array(
+			// 				'type'    => 'number',
+			// 				'default' => 2,
+			// 			),
+			// 			'width'                      => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'wide',
+			// 			),
+			// 			'order'                      => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'desc',
+			// 			),
+			// 			'orderBy'                    => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'date',
+			// 			),
+			// 			'imageSize'                  => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'large',
+			// 			),
+			// 			'readMoreText'               => array(
+			// 				'type'    => 'string',
+			// 				'default' => __( 'Read More', 'ultimate-addons-for-gutenberg' ),
+			// 			),
+			// 			'block_id'                   => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'not_set',
+			// 			),
+			// 			'icon'                       => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'fab fa fa-calendar-alt',
+			// 			),
+			// 			'borderRadius'               => array(
+			// 				'type'    => 'number',
+			// 				'default' => 2,
+			// 			),
+			// 			'borderRadiusTablet'         => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'borderRadiusMobile'         => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'bgPadding'                  => array(
+			// 				'type'    => 'number',
+			// 				'default' => 20,
+			// 			),
+			// 			'contentPadding'             => array(
+			// 				'type'    => 'number',
+			// 				'default' => 10,
+			// 			),
+			// 			'ctaBottomSpacing'           => array(
+			// 				'type'    => 'number',
+			// 				'default' => 0,
+			// 			),
+			// 			'ctaBottomSpacingTablet'     => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'ctaBottomSpacingMobile'     => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'headTopSpacing'             => array(
+			// 				'type'    => 'number',
+			// 				'default' => 0,
+			// 			),
+			// 			'headTopSpacingTablet'       => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'headTopSpacingMobile'       => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'iconSize'                   => array(
+			// 				'type'    => 'number',
+			// 				'default' => 15,
+			// 			),
+			// 			'ctaColor'                   => array(
+			// 				'type'    => 'string',
+			// 				'default' => '#fff',
+			// 			),
+			// 			'ctaBackground'              => array(
+			// 				'type'    => 'string',
+			// 				'default' => '#333',
+			// 			),
+			// 			'stack'                      => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'tablet',
+			// 			),
+			// 			'linkTarget'                 => array(
+			// 				'type'    => 'boolean',
+			// 				'default' => false,
+			// 			),
+			// 			// Exclude Current Post.
+			// 			'excludeCurrentPost'         => array(
+			// 				'type'    => 'boolean',
+			// 				'default' => false,
+			// 			),
+			// 			'leftMargin'                 => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'rightMargin'                => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'topMargin'                  => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'bottomMargin'               => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'leftMarginTablet'           => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'rightMarginTablet'          => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'topMarginTablet'            => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'bottomMarginTablet'         => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'leftMarginMobile'           => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'rightMarginMobile'          => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'topMarginMobile'            => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'bottomMarginMobile'         => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'marginUnit'                 => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'px',
+			// 			),
+			// 			'mobileMarginUnit'           => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'px',
+			// 			),
+			// 			'tabletMarginUnit'           => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'px',
+			// 			),
+			// 			'marginLink'                 => array(
+			// 				'type'    => 'boolean',
+			// 				'default' => false,
+			// 			),
+			// 			'leftPadding'                => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'rightPadding'               => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'topPadding'                 => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'bottomPadding'              => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'leftPaddingTablet'          => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'rightPaddingTablet'         => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'topPaddingTablet'           => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'bottomPaddingTablet'        => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'leftPaddingMobile'          => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'rightPaddingMobile'         => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'topPaddingMobile'           => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'bottomPaddingMobile'        => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'paddingUnit'                => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'px',
+			// 			),
+			// 			'mobilePaddingUnit'          => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'px',
+			// 			),
+			// 			'tabletPaddingUnit'          => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'px',
+			// 			),
+			// 			'paddingLink'                => array(
+			// 				'type'    => 'boolean',
+			// 				'default' => false,
+			// 			),
+			// 			'headTransform'              => array(
+			// 				'type' => 'string',
+			// 			),
+			// 			'authorTransform'            => array(
+			// 				'type' => 'string',
+			// 			),
+			// 			'subHeadTransform'           => array(
+			// 				'type' => 'string',
+			// 			),
+			// 			'dateTransform'              => array(
+			// 				'type' => 'string',
+			// 			),
+			// 			'ctaTransform'               => array(
+			// 				'type' => 'string',
+			// 			),
+			// 			'headDecoration'             => array(
+			// 				'type' => 'string',
+			// 			),
+			// 			'authorDecoration'           => array(
+			// 				'type' => 'string',
+			// 			),
+			// 			'subHeadDecoration'          => array(
+			// 				'type' => 'string',
+			// 			),
+			// 			'dateDecoration'             => array(
+			// 				'type' => 'string',
+			// 			),
+			// 			'ctaDecoration'              => array(
+			// 				'type' => 'string',
+			// 			),
+			// 			'isPreview'                  => array(
+			// 				'type'    => 'boolean',
+			// 				'default' => false,
+			// 			),
+			// 			'headLetterSpacing'          => array(
+			// 				'type'    => 'number',
+			// 				'default' => '',
+			// 			),
+			// 			'headLetterSpacingType'      => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'px',
+			// 			),
+			// 			'headLetterSpacingMobile'    => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'headLetterSpacingTablet'    => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'subHeadLetterSpacing'       => array(
+			// 				'type'    => 'number',
+			// 				'default' => '',
+			// 			),
+			// 			'subHeadLetterSpacingType'   => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'px',
+			// 			),
+			// 			'subHeadLetterSpacingMobile' => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'subHeadLetterSpacingTablet' => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'ctaLetterSpacing'           => array(
+			// 				'type'    => 'number',
+			// 				'default' => '',
+			// 			),
+			// 			'ctaLetterSpacingType'       => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'px',
+			// 			),
+			// 			'ctaLetterSpacingMobile'     => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'ctaLetterSpacingTablet'     => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'dateLetterSpacing'          => array(
+			// 				'type'    => 'number',
+			// 				'default' => '',
+			// 			),
+			// 			'dateLetterSpacingType'      => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'px',
+			// 			),
+			// 			'dateLetterSpacingMobile'    => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'dateLetterSpacingTablet'    => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'authorLetterSpacing'        => array(
+			// 				'type'    => 'number',
+			// 				'default' => '',
+			// 			),
+			// 			'authorLetterSpacingType'    => array(
+			// 				'type'    => 'string',
+			// 				'default' => 'px',
+			// 			),
+			// 			'authorLetterSpacingMobile'  => array(
+			// 				'type' => 'number',
+			// 			),
+			// 			'authorLetterSpacingTablet'  => array(
+			// 				'type' => 'number',
+			// 			),
+			// 		),
+			// 		'render_callback' => array( $this, 'post_timeline_callback' ),
+			// 	)
+			// );
 		}
 
 		/**
