@@ -2,6 +2,7 @@ import {getBorderAttributes} from '@Controls/generateAttributes';
 import { __ } from '@wordpress/i18n';
 
 const highLightBorderAttributes = getBorderAttributes( 'highLight' )
+const mainBorderAttributes = getBorderAttributes( 'main' )
 
 const attributes = {
 	block_id: {
@@ -960,7 +961,8 @@ const attributes = {
 			styleType: 'highlight-padding-link'
 		}
 	},
-	...highLightBorderAttributes
+	...highLightBorderAttributes,
+	...mainBorderAttributes,
 };
 
 export default attributes;
