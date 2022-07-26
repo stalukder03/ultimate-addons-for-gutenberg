@@ -4,6 +4,7 @@
 import UAGB_Block_Icons from '@Controls/block-icons';
 import '.././style.scss';
 import edit from './edit';
+import attributes from './attributes';
 
 // Components.
 import { __ } from '@wordpress/i18n';

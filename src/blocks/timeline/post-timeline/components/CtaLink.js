@@ -6,6 +6,8 @@ const CtaLink = ( props ) => {
 		target = '_blank';
 	}
 
+	console.log( attributes );
+
 	if ( attributes.displayPostLink ) {
 		return (
 			<div className='uagb-timeline__link_parent'	>

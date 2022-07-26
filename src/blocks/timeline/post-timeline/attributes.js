@@ -26,14 +26,14 @@ const attributes = { // eslint-disable-line no-unused-vars
 	},
 	headingColor            : {
 		type    : 'string',
-		default : '#333',
+		default : '',
 		UAGCopyPaste: {
 			styleType: 'main-title-color'
 		},
 	},
 	subHeadingColor         : {
 		type    : 'string',
-		default : '#333',
+		default : '',
 		UAGCopyPaste: {
 			styleType: 'prefix-color'
 		},
