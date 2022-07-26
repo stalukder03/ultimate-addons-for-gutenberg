@@ -842,6 +842,13 @@ const Settings = ( props ) => {
 					}}
 					setAttributes={ setAttributes }
 				/>
+				<ResponsiveBorder
+					setAttributes={ setAttributes }
+					prefix={'main'}
+					attributes={ attributes }
+					deviceType={deviceType}
+					disableBottomSeparator={ true }
+				/>
 			</UAGAdvancedPanelBody>
 		)
 	}
