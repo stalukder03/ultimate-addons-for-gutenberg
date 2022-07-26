@@ -8,8 +8,10 @@
  */
 
 $highLight_border_attribute = UAGB_Block_Helper::uag_generate_border_attribute( 'highLight' );
+$main_border_attribute = UAGB_Block_Helper::uag_generate_border_attribute( 'main' );
 return array_merge(
 	$highLight_border_attribute,
+	$main_border_attribute,
 	array(
 		'classMigrate'                 => false,
 		'blockBackground'              => '',
