@@ -842,6 +842,16 @@ const Settings = ( props ) => {
 					}}
 					setAttributes={ setAttributes }
 				/>
+			</UAGAdvancedPanelBody>
+		)
+	}
+
+	const borderStylePanel = () => {
+		return (
+			<UAGAdvancedPanelBody
+				title={ __( 'Border', 'ultimate-addons-for-gutenberg' ) }
+				initialOpen={ false }
+			>
 				<ResponsiveBorder
 					setAttributes={ setAttributes }
 					prefix={'main'}
@@ -1276,6 +1286,7 @@ const Settings = ( props ) => {
 						{linkStylePanel()}
 						{highLightStylePanel()}
 						{backgroundStylePanel()}
+						{borderStylePanel()}
 						{spacingStylePanel()}
 					</InspectorTab>
 					<InspectorTab
