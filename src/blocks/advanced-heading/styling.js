@@ -148,6 +148,8 @@ function styling( props ) {
 		highLightPaddingUnit,
 		highLightPaddingUnitTablet,
 		highLightPaddingUnitMobile,
+		// Border Hover
+		mainBorderHColor,
 	} = props.attributes;
 
 	const tablet_selectors = {};
@@ -168,6 +170,9 @@ function styling( props ) {
 	const highLightBorderCSSTablet = generateBorderCSS( props.attributes, 'highLight', 'tablet' )
 	const highLightBorderCSSMobile = generateBorderCSS( props.attributes, 'highLight', 'mobile' )
 
+	const mainBorderCSS = generateBorderCSS( props.attributes, 'main' )
+	const mainBorderCSSTablet = generateBorderCSS( props.attributes, 'tablet' )
+	const mainBorderCSSMobile = generateBorderCSS( props.attributes, 'mobile' )
 
 	const selectors = {
 		'.wp-block-uagb-advanced-heading ':{
@@ -205,6 +210,10 @@ function styling( props ) {
 				blockLeftPadding,
 				blockPaddingUnit
 			),
+			...mainBorderCSS,
+		},
+		'.wp-block-uagb-advanced-heading:hover ': {
+			'border-color': mainBorderHColor,
 		},
 		' .uagb-desc-text': {
 			'margin': 0,
@@ -365,6 +374,7 @@ function styling( props ) {
 			blockLeftPaddingTablet,
 			blockPaddingUnitTablet
 		),
+		...mainBorderCSSTablet,
 	}
 
 	tablet_selectors[ ' ' + headingTag + '.uagb-heading-text' ] = {
@@ -453,6 +463,7 @@ function styling( props ) {
 			blockLeftPaddingMobile,
 			blockPaddingUnitMobile
 		),
+		...mainBorderCSSMobile,
 	}
 	tablet_selectors[ ' .uagb-separator' ] = {
 		'width': generateCSSUnit(
