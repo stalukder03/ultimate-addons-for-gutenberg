@@ -1,3 +1,5 @@
+import { __ } from '@wordpress/i18n';
+
 const attributes = { // eslint-disable-line no-unused-vars
 	blockName               : {
 		type    : 'string',
@@ -1170,6 +1172,10 @@ const attributes = { // eslint-disable-line no-unused-vars
 			styleType: 'author-letter-spacing-type'
 		}
 	},
+	readMoreText              : {
+		type    : 'string',
+		default : __( 'Read More', 'ultimate-addons-for-gutenberg' ),
+	}
 }
 
 export default attributes;
