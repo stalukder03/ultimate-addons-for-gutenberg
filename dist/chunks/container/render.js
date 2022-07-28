@@ -1,1 +1,123 @@
-(window.webpackJsonp_ultimate_addons_for_gutenberg=window.webpackJsonp_ultimate_addons_for_gutenberg||[]).push([[19],{464:function(e,n,t){"use strict";t.r(n);var a=t(4),o=t.n(a),r=t(5),l=t(0),c=t.n(l),i=t(106),p=t(9);function s(){return(s=Object.assign||function(e){for(var n=1;n<arguments.length;n++){var t=arguments[n];for(var a in t)Object.prototype.hasOwnProperty.call(t,a)&&(e[a]=t[a])}return e}).apply(this,arguments)}const u=e=>{e=e.parentProps;const{attributes:n,className:t,deviceType:a,clientId:l}=e,{block_id:u,htmlTag:b,htmlTagLink:_,topType:d,topFlip:m,topContentAboveShape:g,bottomType:v,bottomFlip:h,bottomContentAboveShape:k,backgroundType:f,backgroundVideo:w,topInvert:y,bottomInvert:E}=n,N="row"===n["direction"+a]?"horizontal":"vertical",T="none"!==d&&c.a.createElement("div",{className:o()("uagb-container__shape","uagb-container__shape-top",{"uagb-container__shape-flip":!0===m},{"uagb-container__shape-above-content":!0===g},{"uagb-container__invert":!0===y})},i.a[d]),I="none"!==v&&c.a.createElement("div",{className:o()("uagb-container__shape","uagb-container__shape-bottom",{"uagb-container__shape-flip":!0===h},{"uagb-container__shape-above-content":!0===k},{"uagb-container__invert":!0===E})},i.a[v]),{getBlockOrder:B}=Object(p.select)("core/block-editor"),O=B(l).length>0,A=""+b,j={};return"a"===b&&(j.rel="noopener",j.onClick=e=>e.preventDefault(),null!=_&&_.url&&(j.href=null==_?void 0:_.url),null!=_&&_.opensInNewTab&&(j.target="_blank"),null!=_&&_.noFollow&&(j.rel="nofollow noopener")),c.a.createElement(A,s({className:o()(t,"uagb-block-"+u),key:u},j),T,"video"===f&&c.a.createElement("div",{className:"uagb-container__video-wrap"},w&&c.a.createElement("video",{autoPlay:!0,loop:!0,muted:!0,playsinline:!0},c.a.createElement("source",{src:w.url,type:"video/mp4"}))),c.a.createElement("div",{className:"uagb-container-inner-blocks-wrap"},c.a.createElement(r.InnerBlocks,{__experimentalMoverDirection:N,renderAppender:O?void 0:r.InnerBlocks.ButtonBlockAppender})),I)};n.default=c.a.memo(u)}}]);
+(window["webpackJsonp_ultimate_addons_for_gutenberg"] = window["webpackJsonp_ultimate_addons_for_gutenberg"] || []).push([["chunks/container/render"],{
+
+/***/ "./src/blocks/container/render.js":
+/*!****************************************!*\
+  !*** ./src/blocks/container/render.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _shapes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./shapes */ "./src/blocks/container/shapes.js");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+
+
+
+
+const Render = props => {
+  props = props.parentProps;
+  const {
+    attributes,
+    className,
+    deviceType,
+    clientId
+  } = props;
+  const {
+    block_id,
+    htmlTag,
+    htmlTagLink,
+    topType,
+    topFlip,
+    topContentAboveShape,
+    bottomType,
+    bottomFlip,
+    bottomContentAboveShape,
+    backgroundType,
+    backgroundVideo,
+    topInvert,
+    bottomInvert
+  } = attributes;
+  const direction = attributes['direction' + deviceType];
+  const moverDirection = 'row' === direction ? 'horizontal' : 'vertical';
+  const topDividerHtml = 'none' !== topType && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()('uagb-container__shape', 'uagb-container__shape-top', {
+      'uagb-container__shape-flip': topFlip === true
+    }, {
+      'uagb-container__shape-above-content': topContentAboveShape === true
+    }, {
+      'uagb-container__invert': topInvert === true
+    })
+  }, _shapes__WEBPACK_IMPORTED_MODULE_3__["default"][topType]);
+  const bottomDividerHtml = 'none' !== bottomType && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()('uagb-container__shape', 'uagb-container__shape-bottom', {
+      'uagb-container__shape-flip': bottomFlip === true
+    }, {
+      'uagb-container__shape-above-content': bottomContentAboveShape === true
+    }, {
+      'uagb-container__invert': bottomInvert === true
+    })
+  }, _shapes__WEBPACK_IMPORTED_MODULE_3__["default"][bottomType]);
+  const {
+    getBlockOrder
+  } = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__["select"])('core/block-editor');
+  const hasChildBlocks = getBlockOrder(clientId).length > 0;
+  const CustomTag = `${htmlTag}`;
+  const customTagLinkAttributes = {};
+
+  if (htmlTag === 'a') {
+    customTagLinkAttributes.rel = 'noopener';
+
+    customTagLinkAttributes.onClick = e => e.preventDefault();
+
+    if (htmlTagLink !== null && htmlTagLink !== void 0 && htmlTagLink.url) {
+      customTagLinkAttributes.href = htmlTagLink === null || htmlTagLink === void 0 ? void 0 : htmlTagLink.url;
+    }
+
+    if (htmlTagLink !== null && htmlTagLink !== void 0 && htmlTagLink.opensInNewTab) {
+      customTagLinkAttributes.target = '_blank';
+    }
+
+    if (htmlTagLink !== null && htmlTagLink !== void 0 && htmlTagLink.noFollow) {
+      customTagLinkAttributes.rel = 'nofollow noopener';
+    }
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(CustomTag, _extends({
+    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()(className, `uagb-block-${block_id}`),
+    key: block_id
+  }, customTagLinkAttributes), topDividerHtml, 'video' === backgroundType && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    className: "uagb-container__video-wrap"
+  }, backgroundVideo && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("video", {
+    autoPlay: true,
+    loop: true,
+    muted: true,
+    playsinline: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("source", {
+    src: backgroundVideo.url,
+    type: "video/mp4"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    className: "uagb-container-inner-blocks-wrap"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__["InnerBlocks"], {
+    __experimentalMoverDirection: moverDirection,
+    renderAppender: hasChildBlocks ? undefined : _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__["InnerBlocks"].ButtonBlockAppender
+  })), bottomDividerHtml);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.memo(Render));
+
+/***/ })
+
+}]);
+//# sourceMappingURL=render.js.map

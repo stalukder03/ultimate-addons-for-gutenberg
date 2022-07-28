@@ -11,6 +11,7 @@ import '.././style.scss';
 
 // Components
 import { __ } from '@wordpress/i18n';
+import attributes from './attributes';
 
 // Register block controls
 import { registerBlockType } from '@wordpress/blocks';
@@ -32,6 +33,7 @@ registerBlockType( 'uagb/post-carousel', {
 			isPreview: true,
 		}
 	},
+	attributes,
 	// Render via PHP
 	save() {
 		return null;
