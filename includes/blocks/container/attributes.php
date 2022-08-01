@@ -24,7 +24,7 @@ return array_merge(
 		'directionDesktop'                  => 'column',
 		'directionTablet'                   => '',
 		'directionMobile'                   => '',
-		'alignItemsDesktop'                 => 'center',
+		'alignItemsDesktop'                 => 'flex-start',
 		'alignItemsTablet'                  => '',
 		'alignItemsMobile'                  => '',
 		'justifyContentDesktop'             => 'center',

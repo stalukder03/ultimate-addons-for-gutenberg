@@ -119,7 +119,7 @@ const attributes = {
 	},
 	alignItemsDesktop: {
 		type: 'string',
-		default: 'center',
+		default: 'flex-start',
 		UAGCopyPaste: {
 			styleType: 'container-align-items-desktop'
 		},
