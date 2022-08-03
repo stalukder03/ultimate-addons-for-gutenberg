@@ -17,5 +17,5 @@ export function getImageSize( sizes ) {
 }
 
 export function getBlockPrefix() {
-	return ['uagb/'];
+	return 'uagb/';
 }

@@ -18,9 +18,8 @@ const UAGReset = ( props ) => {
 	const { getSelectedBlock } = select( 'core/block-editor' );
 
 	const getBlockResetValue = () => {
-		let selectedBlockName = '';
-		
-		getBlockPrefix.map( ( prefix, i ) => selectedBlockName = getSelectedBlock()?.name.replace( prefix, '' ) );
+
+		const selectedBlockName = getSelectedBlock()?.name.replace( getBlockPrefix(), '' );
 
 		let defaultValues = false;
 
