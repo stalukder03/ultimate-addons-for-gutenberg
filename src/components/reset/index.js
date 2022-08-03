@@ -24,10 +24,11 @@ const UAGReset = ( props ) => {
 
 		let defaultValues = false;
 
-		if ( attributeNames ) {
+		if ( attributeNames && 'undefined' !== typeof blocksAttributes[selectedBlockName] ) {
 			attributeNames.map( ( attributeName ) => {
+
 				if ( attributeName ) {
-					const blockDefaultAttributeValue = blocksAttributes[selectedBlockName][attributeName]?.default;
+					const blockDefaultAttributeValue = ( 'undefined' !== typeof blocksAttributes[selectedBlockName][attributeName]?.default ) ? blocksAttributes[selectedBlockName][attributeName]?.default : '';
 					defaultValues = {
 						...defaultValues,
 						[attributeName] : blockDefaultAttributeValue,
@@ -47,7 +48,7 @@ const UAGReset = ( props ) => {
 		let resetDisableState = true;
 
 		attributeNames.map( ( attributeName ) => {
-			if ( selectedBlockAttributes?.[attributeName] !== defaultValues?.[attributeName] ) {
+			if ( selectedBlockAttributes?.[attributeName] && selectedBlockAttributes?.[attributeName] !== defaultValues?.[attributeName] ) {
 				resetDisableState = false;
 			}
 			return attributeName;

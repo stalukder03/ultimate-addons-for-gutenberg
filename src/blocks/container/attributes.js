@@ -6,6 +6,14 @@ const attributes = {
 	block_id: {
 		type: 'string',
 	},
+	// Container wrapper tag name and link are not required in PHP as it is only used in render and save.
+	htmlTag: {
+		type: 'string',
+		default: 'div',
+	},
+	htmlTagLink: {
+		type: 'object',
+	},
 	contentWidth: {
 		type: 'string',
 		default: 'alignfull',
@@ -53,11 +61,11 @@ const attributes = {
 	},
 	innerContentCustomWidthTablet: {
 		type: 'number',
-		default: 768
+		default: 1024
 	},
 	innerContentCustomWidthMobile: {
 		type: 'number',
-		default: 426
+		default: 767
 	},
 	innerContentCustomWidthType: {
 		type: 'string',
@@ -150,13 +158,22 @@ const attributes = {
 	wrapDesktop: {
 		type: 'string',
 		default: 'nowrap',
+		UAGCopyPaste: {
+			styleType: 'container-wrap-desktop'
+		},
 	},
 	wrapTablet: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'container-wrap-tablet'
+		},
 	},
 	wrapMobile: {
 		type: 'string',
 		default: 'wrap',
+		UAGCopyPaste: {
+			styleType: 'container-wrap-mobile'
+		},
 	},
 	alignContentDesktop: {
 		type: 'string',
@@ -303,7 +320,7 @@ const attributes = {
 	},
 	gradientValue: {
 		type: 'string',
-		default: 'linear-gradient(90deg, rgb(6, 147, 227, 0.5) 0%, rgb(155, 81, 224, 0.5) 100%)',
+		default: 'linear-gradient(90deg, rgba(6, 147, 227, 0.5) 0%, rgba(155, 81, 224, 0.5) 100%)',
 		UAGCopyPaste: {
 			styleType: 'container-bg-gradient-value'
 		},
@@ -408,28 +425,24 @@ const attributes = {
 
 	topPaddingDesktop: {
 		type: 'number',
-		default: 20,
 		UAGCopyPaste: {
 			styleType: 'container-top-padding-desktop'
 		},
 	},
 	bottomPaddingDesktop: {
 		type: 'number',
-		default: 20,
 		UAGCopyPaste: {
 			styleType: 'container-bottom-padding-desktop'
 		},
 	},
 	leftPaddingDesktop: {
 		type: 'number',
-		default: 20,
 		UAGCopyPaste: {
 			styleType: 'container-left-padding-desktop'
 		},
 	},
 	rightPaddingDesktop: {
 		type: 'number',
-		default: 20,
 		UAGCopyPaste: {
 			styleType: 'container-right-padding-desktop'
 		},
@@ -951,6 +964,22 @@ const attributes = {
 	overflow: {
 		type: 'string',
 		default: 'visible'
+	},
+	topDividerWidthType: {
+		type: 'string',
+		default: '%',
+	},
+	bottomDividerWidthType: {
+		type: 'string',
+		default: '%',
+	},
+	topDividerHeightType: {
+		type: 'string',
+		default: 'px',
+	},
+	bottomDividerHeightType: {
+		type: 'string',
+		default: 'px',
 	},
 	...inputBorderAttributes
 };
