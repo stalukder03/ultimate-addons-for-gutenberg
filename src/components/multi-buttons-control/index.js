@@ -9,7 +9,7 @@ import ResponsiveToggle from '../responsive-toggle';
  * Import Css
  */
 import styles from './editor.lazy.scss';
-import { blocksAttributes } from '@Controls/getBlocksDefaultAttributes';
+import { blocksAttributes } from '@Utils/getBlocksDefaultAttributes';
 import React, { useLayoutEffect, useState } from 'react';
 import { select } from '@wordpress/data';
 

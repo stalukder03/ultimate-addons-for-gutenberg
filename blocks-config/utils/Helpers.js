@@ -5,13 +5,17 @@
  * @return {Object} sizeArr - The sizeArr object.
  */
 
- export function getImageSize( sizes ) {
-    const sizeArr = [];
-    for( const size in sizes ){
-        if( sizes.hasOwnProperty( size ) ){
-         const p = { value: size, label: size };
-         sizeArr.push( p );
-        }
-    }
-    return sizeArr;
+export function getImageSize( sizes ) {
+	const sizeArr = [];
+	for ( const size in sizes ) {
+		if ( sizes.hasOwnProperty( size ) ) {
+			const p = { value: size, label: size };
+			sizeArr.push( p );
+		}
+	}
+	return sizeArr;
+}
+
+export function getBlockPrefix() {
+	return ['uagb/'];
 }
