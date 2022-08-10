@@ -38,6 +38,8 @@ module.exports = function ( grunt ) {
 					'!admin-core/webpack.config.js',
 					'!admin-core/package.json',
 					'!admin-core/package-lock.json',
+					'!blocks-config/uagb-controls/SpectraIconsV6.json',
+					'!blocks-config/uagb-controls/UAGBIcon.json',
 				],
 				dest: 'ultimate-addons-for-gutenberg/',
 			},
