@@ -9,7 +9,7 @@ import deprecated from './deprecated';
 import save from './save';
 import './style.scss';
 import { __ } from '@wordpress/i18n';
-import { registerBlockType } from '@wordpress/blocks';
+import { registerBlockType, createBlock } from '@wordpress/blocks';
 
 registerBlockType( 'uagb/buttons', {
 	title: __( 'Buttons', 'ultimate-addons-for-gutenberg' ),
@@ -35,5 +35,35 @@ registerBlockType( 'uagb/buttons', {
 	edit,
 	save,
 	deprecated,
+	transforms: {
+		from: [
+			{
+				type: 'block',
+				blocks: [ 'core/button' ],
+				transform: ( { attribute } ) => {
+					return createBlock( 'agb/buttons-child', {
+						label: attribute.heading,
+						url: attribute.link,
+						backgroundColor: attribute.background,
+						color: attribute.titleColor
+					} );
+				},
+			},
+		],
+		to: [
+			{
+				type: 'block',
+				blocks: [ 'core/button' ],
+				transform: ( { attribute } ) => {
+					return createBlock( 'core/button', {
+						heading: attribute.label,
+						link: attribute.url,
+						background: attribute.backgroundColor,
+						titleColor: attribute.color
+					} );
+				},
+			},
+		],
+	},
 } );
 

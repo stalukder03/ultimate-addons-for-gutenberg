@@ -10,7 +10,7 @@ import './style.scss';
 
 import { __ } from '@wordpress/i18n';
 
-import { registerBlockType } from '@wordpress/blocks';
+import { registerBlockType, createBlock } from '@wordpress/blocks';
 
 registerBlockType( 'uagb/marketing-button', {
 	title: __( 'Marketing Button', 'ultimate-addons-for-gutenberg' ),
@@ -34,4 +34,34 @@ registerBlockType( 'uagb/marketing-button', {
 		}
 	},
 	deprecated,
+	transforms: {
+		from: [
+			{
+				type: 'block',
+				blocks: [ 'core/button' ],
+				transform: ( { attribute } ) => {
+					return createBlock( 'uagb/marketing-button', {
+						text: attribute.heading,
+						url: attribute.link,
+						backgroundColor: attribute.backgroundColor,
+						textColor: attribute.titleColor
+					} );
+				},
+			},
+		],
+		to: [
+			{
+				type: 'block',
+				blocks: [ 'core/button' ],
+				transform: ( { attribute } ) => {
+					return createBlock( 'core/button', {
+						heading: attribute.text,
+						link: attribute.url,
+						backgroundColor: attribute.backgroundColor,
+						titleColor: attribute.textColor
+					} );
+				},
+			},
+		],
+	},
 } );
