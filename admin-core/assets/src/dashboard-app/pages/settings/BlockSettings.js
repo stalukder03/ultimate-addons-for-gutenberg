@@ -88,13 +88,13 @@ const BlockSettings = () => {
 	};
 
 	return (
-		<section className='block border-b border-solid border-slate-200 px-12 py-8 justify-between'>  
+		<section className='block border-b border-solid border-slate-200 px-12 py-8 justify-between'>
 			<div className='mr-16 w-full flex items-center'>
 				<h3 className="p-0 flex-1 justify-right inline-flex text-lg leading-8 font-medium text-gray-900">
-						{ __( 'Form', 'ultimate-addons-for-gutenberg' ) }
+						{ __( 'reCaptcha', 'ultimate-addons-for-gutenberg' ) }
 				</h3>
 			</div>
-			<p className="mt-2 w-9/12 text-sm text-slate-500">{ __( 'To enable reCAPTCHA for your form, please follow the steps mentioned ', 'ultimate-addons-for-gutenberg' ) }
+			<p className="mt-2 w-9/12 text-sm text-slate-500">{ __( 'To enable reCAPTCHA for your form, login and register blocks, please follow the steps mentioned ', 'ultimate-addons-for-gutenberg' ) }
 				<a className="text-spectra focus:text-spectra-hover active:text-spectra-hover hover:text-spectra-hover" href="https://www.google.com/recaptcha/admin/create" target="_blank" rel="noreferrer">
 					{ __( 'here. ', 'ultimate-addons-for-gutenberg' ) }
 				</a>
