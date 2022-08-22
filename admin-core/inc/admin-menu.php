@@ -90,7 +90,7 @@ class Admin_Menu {
 			'<a href="' . $default_url . '">' . __( 'Settings', 'ultimate-addons-for-gutenberg' ) . '</a>',
 		);
 
-		return array_merge( $links, $mylinks );
+		return array_merge( $mylinks, $links );
 	}
 
 	/**
@@ -199,6 +199,7 @@ class Admin_Menu {
 				'reusable_url'             => esc_url( admin_url( 'edit.php?post_type=wp_block' ) ),
 				'global_data'              => Admin_Helper::get_options(),
 				'uag_content_width_set_by' => \UAGB_Admin_Helper::get_admin_settings_option( 'uag_content_width_set_by', __( 'Spectra', 'ultimate-addons-for-gutenberg' ) ),
+				'spectra_custom_fonts'     => apply_filters( 'spectra_system_fonts', array() ),
 			)
 		);
 
@@ -273,12 +274,15 @@ class Admin_Menu {
 					$exclude_blocks[] = $addon;
 				}
 
-				if ( 'yes' !== get_option( 'uagb-old-user-less-than-2' ) ) {
+				$enable_legacy_blocks = \UAGB_Admin_Helper::get_admin_settings_option( 'uag_enable_legacy_blocks', ( 'yes' === get_option( 'uagb-old-user-less-than-2' ) ) ? 'yes' : 'no' );
+
+				if ( 'yes' !== get_option( 'uagb-old-user-less-than-2' ) || 'yes' !== $enable_legacy_blocks ) {
 					$exclude_blocks[] = 'wp-search';
 					$exclude_blocks[] = 'columns';
 					$exclude_blocks[] = 'section';
 					$exclude_blocks[] = 'cf7-styler';
 					$exclude_blocks[] = 'gf-styler';
+					$exclude_blocks[] = 'post-masonry';
 				}
 
 				if ( array_key_exists( 'extension', $info ) && $info['extension'] ) {
@@ -303,7 +307,7 @@ class Admin_Menu {
 	/**
 	 * Get plugin status
 	 *
-	 * @since 2.0.0-beta.3
+	 * @since 2.0.0
 	 *
 	 * @param  string $plugin_init_file Plguin init file.
 	 * @return mixed
@@ -380,7 +384,7 @@ class Admin_Menu {
 
 		$logs_page_url = '#';
 
-		echo '<span id="footer-thankyou"> Thank you for using <a href="#" class="focus:text-wphovercolor active:text-wphovercolor hover:text-wphovercolor">Spectra.</a></span>';
+		echo '<span id="footer-thankyou"> Thank you for using <a href="#" class="focus:text-spectra-hover active:text-spectra-hover hover:text-spectra-hover">Spectra.</a></span>';
 	}
 
 }
