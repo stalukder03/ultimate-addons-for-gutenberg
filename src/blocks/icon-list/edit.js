@@ -3,15 +3,19 @@
  */
 
 import styling from './styling';
-import React, {    useEffect } from 'react';
-
+import React, { lazy, Suspense, useEffect } from 'react';
+import lazyLoader from '@Controls/lazy-loader';
 import { useDeviceType } from '@Controls/getPreviewType';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
 import { select, dispatch } from '@wordpress/data';
 
-import Settings from './settings';
-import Render from './render';
+const Settings = lazy( () =>
+	import( /* webpackChunkName: "chunks/icon-list/settings" */ './settings' )
+);
+const Render = lazy( () =>
+	import( /* webpackChunkName: "chunks/icon-list/render" */ './render' )
+);
 
 const UAGBIconList = ( props ) => {
 
@@ -61,12 +65,10 @@ const UAGBIconList = ( props ) => {
 	}, [ props.attributes.parentIcon, props.attributes.hideLabel ] );
 
 	return (
-
-					<>
+		<Suspense fallback={ lazyLoader() }>
 			<Settings parentProps={ props } />
 			<Render parentProps={ props } />
-			</>
-
+		</Suspense>
 	);
 };
 

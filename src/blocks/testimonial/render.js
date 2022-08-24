@@ -1,8 +1,8 @@
 import classnames from 'classnames';
 import PositionClasses from './classes';
 import UAGB_Block_Icons from '@Controls/block-icons';
-import React, {    useLayoutEffect, useRef } from 'react';
-
+import React, { lazy, Suspense, useLayoutEffect, useRef } from 'react';
+import lazyLoader from '@Controls/lazy-loader';
 import TestimonialImage from './components/Image';
 import AuthorName from './components/AuthorName';
 import Company from './components/Company';
@@ -10,8 +10,12 @@ import Description from './components/Description';
 import styles from './editor.lazy.scss';
 import { useDeviceType } from '@Controls/getPreviewType';
 import { getFallbackNumber } from '@Controls/getAttributeFallback';
-import Slider from 'react-slick';
 
+const Slider = lazy( () =>
+	import(
+		/* webpackChunkName: "chunks/testimonial/react-slick" */ 'react-slick'
+	)
+);
 const Render = ( props ) => {
 	// Add and remove the CSS on the drop and remove of the component.
 	useLayoutEffect( () => {
@@ -141,7 +145,7 @@ const Render = ( props ) => {
 				isGridLayoutMobile
 			) }
 		>
-
+			<Suspense fallback={ lazyLoader() }>
 				<Slider
 					className={ classnames(
 						'is-carousel',
@@ -233,7 +237,7 @@ const Render = ( props ) => {
 						</div>
 					) ) }
 				</Slider>
-
+			</Suspense>
 		</div>
 	);
 };

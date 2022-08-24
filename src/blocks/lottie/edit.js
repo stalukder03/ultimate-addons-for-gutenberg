@@ -3,13 +3,17 @@
  */
 
 import styling from './styling';
-import React, { useState, useEffect,    } from 'react';
-
+import React, { useState, useEffect, lazy, Suspense } from 'react';
+import lazyLoader from '@Controls/lazy-loader';
 import { useDeviceType } from '@Controls/getPreviewType';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
-import Settings from './settings';
-import Render from './render';
+const Settings = lazy( () =>
+	import( /* webpackChunkName: "chunks/lottie/settings" */ './settings' )
+);
+const Render = lazy( () =>
+	import( /* webpackChunkName: "chunks/lottie/render" */ './render' )
+);
 
 const UAGBLottie = ( props ) => {
 	const deviceType = useDeviceType();
@@ -58,14 +62,14 @@ const UAGBLottie = ( props ) => {
 
 	return (
 		<>
-
+			<Suspense fallback={ lazyLoader() }>
 				<Render lottieplayer={ lottieplayer } parentProps={ props } />
 				<Settings
 					parentProps={ props }
 					loopLottie={ loopLottie }
 					reverseDirection={ reverseDirection }
 				/>
-
+			</Suspense>
 		</>
 	);
 };

@@ -4,8 +4,8 @@
  */
 
 import styling from '.././styling';
-import React, { useEffect, useState,    } from 'react';
-
+import React, { useEffect, useState, lazy, Suspense } from 'react';
+import lazyLoader from '@Controls/lazy-loader';
 import { __ } from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
 import { useDeviceType } from '@Controls/getPreviewType';
@@ -13,8 +13,12 @@ import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
 import { getFallbackNumber } from '@Controls/getAttributeFallback';
 
-import Settings from './settings';
-import Render from './render';
+const Settings = lazy( () =>
+	import( /* webpackChunkName: "chunks/post-grid/settings" */ './settings' )
+);
+const Render = lazy( () =>
+	import( /* webpackChunkName: "chunks/post-grid/render" */ './render' )
+);
 
 import { withSelect, withDispatch } from '@wordpress/data';
 import { compose } from '@wordpress/compose';
@@ -215,13 +219,13 @@ const PostGridComponent = ( props ) => {
 	if ( ! hasPosts ) {
 		return (
 			<>
-
+				<Suspense fallback={ lazyLoader() }>
 					<Settings
 						parentProps={ props }
 						state={ state }
 						setStateValue={ setStateValue }
 					/>
-
+				</Suspense>
 
 				<Placeholder
 					icon="admin-post"
@@ -238,7 +242,7 @@ const PostGridComponent = ( props ) => {
 	}
 
 	return (
-			<>
+		<Suspense fallback={ lazyLoader() }>
 			<Settings
 				parentProps={ props }
 				state={ state }
@@ -251,8 +255,7 @@ const PostGridComponent = ( props ) => {
 				setStateValue={ setStateValue }
 				togglePreview={ togglePreview }
 			/>
-			</>
-
+		</Suspense>
 	);
 };
 

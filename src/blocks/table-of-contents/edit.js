@@ -3,15 +3,23 @@
  */
 
 import styling from './styling';
-import React, {   useEffect,  } from 'react';
-
+import React, { lazy, useEffect, Suspense } from 'react';
+import lazyLoader from '@Controls/lazy-loader';
 import { useDeviceType } from '@Controls/getPreviewType';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
 import { migrateBorderAttributes } from '@Controls/generateAttributes';
 
-import Settings from './settings';
-import Render from './render';
+const Settings = lazy( () =>
+	import(
+		/* webpackChunkName: "chunks/table-of-contents/settings" */ './settings'
+	)
+);
+const Render = lazy( () =>
+	import(
+		/* webpackChunkName: "chunks/table-of-contents/render" */ './render'
+	)
+);
 
 import { withSelect } from '@wordpress/data';
 import { compose } from '@wordpress/compose';
@@ -246,12 +254,10 @@ const UAGBTableOfContentsEdit = ( props ) => {
 	/* eslint-enable no-undef */
 
 	return (
-
-					<>
+		<Suspense fallback={ lazyLoader() }>
 			<Settings parentProps={ props } />
 			<Render parentProps={ props } />
-			</>
-
+		</Suspense>
 	);
 };
 

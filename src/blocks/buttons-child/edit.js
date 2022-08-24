@@ -4,15 +4,21 @@
 
 // Import classes
 import styling from './styling';
-
-import React, { useEffect, useState,    } from 'react';
+import lazyLoader from '@Controls/lazy-loader';
+import React, { useEffect, useState, lazy, Suspense } from 'react';
 import { useDeviceType } from '@Controls/getPreviewType';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
 import { migrateBorderAttributes } from '@Controls/generateAttributes';
 
-import Settings from './settings';
-import Render from './render';
+const Settings = lazy( () =>
+	import(
+		/* webpackChunkName: "chunks/buttons-child/settings" */ './settings'
+	)
+);
+const Render = lazy( () =>
+	import( /* webpackChunkName: "chunks/buttons-child/render" */ './render' )
+);
 
 const ButtonsChildComponent = ( props ) => {
 	const deviceType = useDeviceType();
@@ -76,7 +82,7 @@ const ButtonsChildComponent = ( props ) => {
 			},
 			props.setAttributes
 			);
-
+			
 		}
 	}, [] );
 
@@ -97,7 +103,7 @@ const ButtonsChildComponent = ( props ) => {
 	}, [deviceType] );
 
 	return (
-			<>
+		<Suspense fallback={ lazyLoader() }>
 			<Settings
 				parentProps={ props }
 				state={ state }
@@ -105,8 +111,7 @@ const ButtonsChildComponent = ( props ) => {
 				deviceType = { deviceType }
 			/>
 			<Render parentProps={ props } />
-			</>
-
+		</Suspense>
 	);
 };
 export default ButtonsChildComponent;

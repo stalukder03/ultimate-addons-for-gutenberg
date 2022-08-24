@@ -3,14 +3,24 @@
  */
 
 import contentTimelineStyle from './styling';
-import React, { useEffect,    } from 'react';
-
+import React, { useEffect, lazy, Suspense } from 'react';
+import lazyLoader from '@Controls/lazy-loader';
 import { dispatch, select } from '@wordpress/data';
 import { useDeviceType } from '@Controls/getPreviewType';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
-import Settings from './settings';
-import Render from './render';
+const Settings = lazy( () =>
+    import (
+        /* webpackChunkName: "chunks/content-timeline/settings" */
+        './settings'
+    )
+);
+const Render = lazy( () =>
+    import (
+        /* webpackChunkName: "chunks/content-timeline/render" */
+        './render'
+    )
+);
 
 const ContentTimelineComponent = ( props ) => {
     const deviceType = useDeviceType();
@@ -165,10 +175,10 @@ const ContentTimelineComponent = ( props ) => {
 	}, [deviceType] );
 
     return (
-		<>
-			<Settings parentProps = { props }/>
-			<Render parentProps = { props }/>
-		</>
+		<Suspense fallback = { lazyLoader() }>
+            <Settings parentProps = { props }/>
+		    <Render parentProps = { props }/>
+		</Suspense>
     );
 };
 

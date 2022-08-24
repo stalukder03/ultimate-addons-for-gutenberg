@@ -3,16 +3,20 @@
  */
 
 import styling from './styling';
-import React, { useState, useEffect,    } from 'react';
-
+import React, { useState, useEffect, lazy, Suspense } from 'react';
+import lazyLoader from '@Controls/lazy-loader';
 import { useDeviceType } from '@Controls/getPreviewType';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
 
 import {migrateBorderAttributes} from '@Controls/generateAttributes';
 
-import Settings from './settings';
-import Render from './render';
+const Settings = lazy( () =>
+	import( /* webpackChunkName: "chunks/wp-search/settings" */ './settings' )
+);
+const Render = lazy( () =>
+	import( /* webpackChunkName: "chunks/wp-search/render" */ './render' )
+);
 
 const UAGBWpSearchEdit = ( props ) => {
 	const deviceType = useDeviceType();
@@ -178,12 +182,10 @@ const UAGBWpSearchEdit = ( props ) => {
 	}, [deviceType] );
 
 	return (
-
-					<>
+		<Suspense fallback={ lazyLoader() }>
 			<Settings parentProps={ props } />
 			<Render parentProps={ props } />
-			</>
-
+		</Suspense>
 	);
 };
 

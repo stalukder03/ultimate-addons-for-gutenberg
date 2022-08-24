@@ -3,13 +3,17 @@
  */
 
 import styling from './styling';
-
-import React, { useEffect, useState,    } from 'react';
+import lazyLoader from '@Controls/lazy-loader';
+import React, { useEffect, useState, lazy, Suspense } from 'react';
 import { useDeviceType } from '@Controls/getPreviewType';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
-import Settings from './settings';
-import Render from './render';
+const Settings = lazy( () =>
+	import( /* webpackChunkName: "chunks/buttons/settings" */ './settings' )
+);
+const Render = lazy( () =>
+	import( /* webpackChunkName: "chunks/buttons/render" */ './render' )
+);
 
 let prevState;
 
@@ -63,12 +67,10 @@ const ButtonsComponent = ( props ) => {
 	}, [deviceType] );
 
 	return (
-
-					<>
+		<Suspense fallback={ lazyLoader() }>
 			<Settings parentProps={ props } />
 			<Render parentProps={ props } />
-			</>
-
+		</Suspense>
 	);
 };
 

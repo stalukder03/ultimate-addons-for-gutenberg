@@ -5,14 +5,20 @@
 // Import classes
 
 import styling from './styling';
-import React, {    useEffect } from 'react';
-
+import React, { lazy, Suspense, useEffect } from 'react';
+import lazyLoader from '@Controls/lazy-loader';
 import { useDeviceType } from '@Controls/getPreviewType';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
 
-import Settings from './settings';
-import Render from './render';
+const Settings = lazy( () =>
+	import(
+		/* webpackChunkName: "chunks/icon-list-child/settings" */ './settings'
+	)
+);
+const Render = lazy( () =>
+	import( /* webpackChunkName: "chunks/icon-list-child/render" */ './render' )
+);
 
 let hideLabel;
 
@@ -43,11 +49,10 @@ const UAGBIconListChild = ( props ) => {
 	}, [ deviceType ] );
 
 	return (
-			<>
+		<Suspense fallback={ lazyLoader() }>
 			<Settings parentProps={ props } hideLabel={ hideLabel } />
 			<Render parentProps={ props } />
-			</>
-
+		</Suspense>
 	);
 };
 

@@ -4,13 +4,17 @@
 
 // Import block dependencies and components.
 import styling from './styling';
-import React, { useEffect,    } from 'react';
-
+import React, { useEffect, lazy, Suspense } from 'react';
+import lazyLoader from '@Controls/lazy-loader';
 import { useDeviceType } from '@Controls/getPreviewType';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
-import Settings from './settings';
-import Render from './render';
+const Settings = lazy( () =>
+	import( /* webpackChunkName: "chunks/star-rating/settings" */ './settings' )
+);
+const Render = lazy( () =>
+	import( /* webpackChunkName: "chunks/star-rating/render" */ './render' )
+);
 const UAGStarRating = ( props ) => {
 
 	const deviceType = useDeviceType();
@@ -37,12 +41,10 @@ const UAGStarRating = ( props ) => {
 	}, [deviceType] );
 
 	return (
-
-					<>
+		<Suspense fallback={ lazyLoader() }>
 			<Settings parentProps={ props } />
 			<Render parentProps={ props } />
-			</>
-
+		</Suspense>
 	);
 };
 

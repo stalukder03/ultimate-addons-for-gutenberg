@@ -3,13 +3,19 @@
  */
 
 import CtaStyle from './inline-styles';
-import React, { useEffect,    } from 'react';
-
+import React, { useEffect, lazy, Suspense } from 'react';
+import lazyLoader from '@Controls/lazy-loader';
 import { useDeviceType } from '@Controls/getPreviewType';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
-import Settings from './settings';
-import Render from './render';
+const Render = lazy( () =>
+	import( /* webpackChunkName: "chunks/call-to-action/render" */ './render' )
+);
+const Settings = lazy( () =>
+	import(
+		/* webpackChunkName: "chunks/call-to-action/settings" */ './settings'
+	)
+);
 
 import { migrateBorderAttributes } from '@Controls/generateAttributes';
 const UAGBCallToAction = ( props ) => {
@@ -114,12 +120,10 @@ const UAGBCallToAction = ( props ) => {
 	}, [deviceType] );
 
 	return (
-
-					<>
+		<Suspense fallback={ lazyLoader() }>
 			<Settings parentProps={ props } />
 			<Render parentProps={ props } />
-			</>
-
+		</Suspense>
 	);
 };
 

@@ -2,9 +2,11 @@
  * BLOCK: Tabs Child Block
  */
 
-import React, { useEffect,    } from 'react';
-
-import Render from './render';
+import React, { useEffect, lazy, Suspense } from 'react';
+import lazyLoader from '@Controls/lazy-loader';
+const Render = lazy( () =>
+	import( /* webpackChunkName: "chunks/tabs-child/render" */ './render' )
+);
 import { select } from '@wordpress/data';
 
 const UAGBTabsChildEdit = ( props ) => {
@@ -20,16 +22,16 @@ const UAGBTabsChildEdit = ( props ) => {
 
 		// Apply parent style if newly inserted
 		if ( rootBlockAttrs !== null && rootBlockAttrs.needUpdate !== false ) {
-			Object.keys( rootBlockAttrs ).map( ( attribute ) =>
+			Object.keys( rootBlockAttrs ).map( ( attribute ) => 
 				attributes[ attribute ] = rootBlockAttrs[ attribute ]
 			)
 		}
 	}, [] );
 
 	return (
-
+		<Suspense fallback={ lazyLoader() }>
 			<Render parentProps={ props } />
-
+		</Suspense>
 	);
 };
 export default UAGBTabsChildEdit;

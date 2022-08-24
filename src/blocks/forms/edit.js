@@ -1,13 +1,17 @@
 /**
  * BLOCK: Forms - Edit
- */import React, { useEffect, useCallback } from 'react';
+ */import React, { useEffect, useCallback, Suspense, lazy } from 'react';
 import styling from './styling';
 import UAGB_Block_Icons from '@Controls/block-icons';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
 import { useDeviceType } from '@Controls/getPreviewType';
-import Settings from './settings';
-import Render from './render';
+const Settings = lazy( () =>
+	import( /* webpackChunkName: "chunks/form/settings" */ './settings' )
+);
+const Render = lazy( () =>
+	import( /* webpackChunkName: "chunks/form/render" */ './render' )
+);
 
 import { withSelect, useDispatch } from '@wordpress/data';
 
@@ -20,7 +24,7 @@ import { __experimentalBlockVariationPicker } from '@wordpress/block-editor';
 import { withNotices } from '@wordpress/components';
 
 import { __ } from '@wordpress/i18n';
-
+import lazyLoader from '@Controls/lazy-loader';
 import apiFetch from '@wordpress/api-fetch';
 
 import {migrateBorderAttributes} from '@Controls/generateAttributes';
@@ -344,12 +348,10 @@ const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-im
 
 	return (
 		<>
-
-						<>
-			<Settings parentProps={ props } />
+			<Suspense fallback={ lazyLoader() }>
+				<Settings parentProps={ props } />
 				<Render parentProps={ props } />
-			</>
-
+			</Suspense>
 		</>
 	);
 };

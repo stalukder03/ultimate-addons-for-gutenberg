@@ -7,12 +7,16 @@ import { __ } from '@wordpress/i18n';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
 import { useDeviceType } from '@Controls/getPreviewType';
-import React, { useEffect,    useLayoutEffect } from 'react';
-
+import React, { useEffect, lazy, Suspense, useLayoutEffect } from 'react';
+import lazyLoader from '@Controls/lazy-loader';
 import { migrateBorderAttributes } from '@Controls/generateAttributes';
 
-import Settings from './settings';
-import Render from './render';
+const Settings = lazy( () =>
+	import( /* webpackChunkName: "chunks/columns/settings" */ './settings' )
+);
+const Render = lazy( () =>
+	import( /* webpackChunkName: "chunks/columns/render" */ './render' )
+);
 
 import { withSelect, useDispatch } from '@wordpress/data';
 
@@ -147,7 +151,7 @@ const ColumnsComponent = ( props ) => {
 			},
 			props.setAttributes
 			);
-
+			
 		}
 	}, [] );
 
@@ -221,11 +225,10 @@ const ColumnsComponent = ( props ) => {
 	}
 
 	return (
-			<>
+		<Suspense fallback={ lazyLoader() }>
 			<Settings parentProps={ props } deviceType = { deviceType } />
 			<Render parentProps={ props } />
-			</>
-
+		</Suspense>
 	);
 };
 

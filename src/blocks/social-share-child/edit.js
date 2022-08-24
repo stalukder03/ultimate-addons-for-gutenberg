@@ -5,15 +5,23 @@
 // Import classes
 
 import styling from './styling';
-
-import React, { useEffect,    } from 'react';
+import lazyLoader from '@Controls/lazy-loader';
+import React, { useEffect, lazy, Suspense } from 'react';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
 import { useDeviceType } from '@Controls/getPreviewType';
 import { select } from '@wordpress/data';
 
-import Settings from './settings';
-import Render from './render';
+const Settings = lazy( () =>
+	import(
+		/* webpackChunkName: "chunks/social-share-child/settings" */ './settings'
+	)
+);
+const Render = lazy( () =>
+	import(
+		/* webpackChunkName: "chunks/social-share-child/render" */ './render'
+	)
+);
 
 const SocialShareChildComponent = ( props ) => {
 	const deviceType = useDeviceType();
@@ -49,12 +57,10 @@ const SocialShareChildComponent = ( props ) => {
 
 
 	return (
-
-					<>
+		<Suspense fallback={ lazyLoader() }>
 			<Settings parentProps={ props } />
 			<Render parentProps={ props } />
-			</>
-
+		</Suspense>
 	);
 };
 

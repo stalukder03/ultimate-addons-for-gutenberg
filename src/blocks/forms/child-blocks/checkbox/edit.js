@@ -3,11 +3,17 @@
  */
 
 import { __ } from '@wordpress/i18n';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 
-
-import Settings from './settings';
-import Render from './render';
+import lazyLoader from '@Controls/lazy-loader';
+const Settings = lazy( () =>
+	import(
+		/* webpackChunkName: "chunks/form/checkbox-settings" */ './settings'
+	)
+);
+const Render = lazy( () =>
+	import( /* webpackChunkName: "chunks/form/checkbox-render" */ './render' )
+);
 
 const UAGBFormsCheckboxEdit = ( props ) => {
 
@@ -40,11 +46,10 @@ const UAGBFormsCheckboxEdit = ( props ) => {
 	return (
 		<>
 			{ props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
-				<>
-			<Settings parentProps={ props } />
-			<Render parentProps={ props } setState={ setState } />
-			</>
-
+				<Suspense fallback={ lazyLoader() }>
+					<Settings parentProps={ props } />
+					<Render parentProps={ props } setState={ setState } />
+				</Suspense>
 			) }
 		</>
 	);

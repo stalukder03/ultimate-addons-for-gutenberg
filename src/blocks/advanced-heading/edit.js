@@ -2,13 +2,22 @@
  * BLOCK: Advanced Heading
  */
 import styling from './styling';
-import React, {    useEffect } from 'react';
-
+import React, { lazy, Suspense, useEffect } from 'react';
+import lazyLoader from '@Controls/lazy-loader';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
 import { useDeviceType } from '@Controls/getPreviewType';
-import Settings from './settings';
-import Render from './render';
+const Settings = lazy( () =>
+	import(
+		/* webpackChunkName: "chunks/advanced-heading/settings" */ './settings'
+	)
+);
+const Render = lazy( () =>
+	import(
+		/* webpackChunkName: "chunks/advanced-heading/render" */ './render'
+	)
+);
+
 //  Import CSS.
 import './style.scss';
 
@@ -44,12 +53,10 @@ const UAGBAdvancedHeading = ( props ) => {
 
 	return (
 		<>
-
-						<>
-			<Settings parentProps={ props } />
+			<Suspense fallback={ lazyLoader() }>
+				<Settings parentProps={ props } />
 				<Render parentProps={ props } />
-			</>
-
+			</Suspense>
 		</>
 	);
 };

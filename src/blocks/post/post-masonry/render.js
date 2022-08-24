@@ -9,11 +9,15 @@ import { createBlock } from '@wordpress/blocks';
 import { InnerBlocks } from '@wordpress/block-editor';
 import { Placeholder, Button, Disabled, Tip } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import React, {    useLayoutEffect } from 'react';
-
+import React, { lazy, Suspense, useLayoutEffect } from 'react';
+import lazyLoader from '@Controls/lazy-loader';
 import styles from '.././editor.lazy.scss';
 
-import Blog from './blog';
+const Blog = lazy( () =>
+	import(
+		/* webpackChunkName: "chunks/post-masonry/react-masonry-component" */ './blog'
+	)
+);
 
 const Render = ( props ) => {
 	// Add and remove the CSS on the drop and remove of the component.
@@ -113,7 +117,7 @@ const Render = ( props ) => {
 
 	const renderViewMode = (
 		<Disabled>
-
+			<Suspense fallback={ lazyLoader() }>
 				<Blog
 					attributes={ attributes }
 					className={ props.className }
@@ -123,7 +127,7 @@ const Render = ( props ) => {
 					deviceType={ deviceType }
 					name={ name }
 				/>
-
+			</Suspense>
 		</Disabled>
 	);
 

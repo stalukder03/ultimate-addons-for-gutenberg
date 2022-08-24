@@ -4,15 +4,19 @@
 
 import styling from './styling';
 import SchemaNotices from './schema-notices';
-import React, {   useEffect,  } from 'react';
-
+import React, { lazy, useEffect, Suspense } from 'react';
+import lazyLoader from '@Controls/lazy-loader';
 import { withState, compose } from '@wordpress/compose';
 import { withSelect } from '@wordpress/data';
 import { useDeviceType } from '@Controls/getPreviewType';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
-import Settings from './settings';
-import Render from './render';
+const Settings = lazy( () =>
+	import( /* webpackChunkName: "chunks/review/settings" */ './settings' )
+);
+const Render = lazy( () =>
+	import( /* webpackChunkName: "chunks/review/render" */ './render' )
+);
 let prevState;
 
 const ReviewComponent = ( props ) => {
@@ -184,12 +188,10 @@ const ReviewComponent = ( props ) => {
 				operatingSystem={ operatingSystem }
 				reviewPublisher={ reviewPublisher }
 			/>
-
-						<>
-			<Settings parentProps={ props } />
+			<Suspense fallback={ lazyLoader() }>
+				<Settings parentProps={ props } />
 				<Render parentProps={ props } />
-			</>
-
+			</Suspense>
 		</>
 	);
 };

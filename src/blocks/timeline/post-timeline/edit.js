@@ -2,8 +2,8 @@
  * External dependencies
  */
 
-import React, { useEffect,    } from 'react';
-
+import React, { useEffect, lazy, Suspense } from 'react';
+import lazyLoader from '@Controls/lazy-loader';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
 import { useDeviceType } from '@Controls/getPreviewType';
@@ -11,8 +11,14 @@ import { getFallbackNumber } from '@Controls/getAttributeFallback';
 
 // Import css for timeline.
 import contentTimelineStyle from '.././inline-styles';
-import Settings from './settings';
-import Render from './render';
+const Settings = lazy( () =>
+	import(
+		/* webpackChunkName: "chunks/post-timeline/settings" */ './settings'
+	)
+);
+const Render = lazy( () =>
+	import( /* webpackChunkName: "chunks/post-timeline/render" */ './render' )
+);
 
 import { withSelect } from '@wordpress/data';
 
@@ -116,12 +122,10 @@ const PostTimelineComponent = ( props ) => {
 	}, [deviceType] );
 
 	return (
-
-					<>
+		<Suspense fallback={ lazyLoader() }>
 			<Settings parentProps={ props } />
 			<Render parentProps={ props } />
-			</>
-
+		</Suspense>
 	);
 };
 export default withSelect( ( select, props ) => {

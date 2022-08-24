@@ -4,13 +4,17 @@
 
 import RestMenuStyle from './inline-styles';
 import { select, dispatch } from '@wordpress/data';
-import React, {    useEffect } from 'react';
-
+import React, { lazy, Suspense, useEffect } from 'react';
+import lazyLoader from '@Controls/lazy-loader';
 import { useDeviceType } from '@Controls/getPreviewType';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
-import Settings from './settings';
-import Render from './render';
+const Settings = lazy( () =>
+	import( /* webpackChunkName: "chunks/price-list/settings" */ './settings' )
+);
+const Render = lazy( () =>
+	import( /* webpackChunkName: "chunks/price-list/render" */ './render' )
+);
 const UAGBRestaurantMenu = ( props ) => {
 	const deviceType = useDeviceType();
 	useEffect( () => {
@@ -141,12 +145,10 @@ const UAGBRestaurantMenu = ( props ) => {
 
 	return (
 		<>
-
-						<>
-			<Settings parentProps={ props } />
+			<Suspense fallback={ lazyLoader() }>
+				<Settings parentProps={ props } />
 				<Render parentProps={ props } />
-			</>
-
+			</Suspense>
 		</>
 	);
 };

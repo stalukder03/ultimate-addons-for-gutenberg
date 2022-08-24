@@ -7,14 +7,18 @@ import styling from './styling';
 import './style.scss';
 import { compose } from '@wordpress/compose';
 import { withSelect } from '@wordpress/data';
-
-import React from 'react';
+import lazyLoader from '@Controls/lazy-loader';
+import React, { lazy, Suspense } from 'react';
 import { useState, useEffect } from '@wordpress/element';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
 import { useDeviceType } from '@Controls/getPreviewType';
-import Settings from './settings';
-import Render from './render';
+const Settings = lazy( () =>
+	import( /* webpackChunkName: "chunks/how-to/settings" */ './settings' )
+);
+const Render = lazy( () =>
+	import( /* webpackChunkName: "chunks/how-to/render" */ './render' )
+);
 
 const HowToComponent = ( props ) => {
 	const deviceType = useDeviceType();
@@ -88,7 +92,7 @@ const HowToComponent = ( props ) => {
 	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/how-to.png`;
 
 	return (
-		<>
+		<Suspense fallback={ lazyLoader() }>
 			{ isPreview ? <img width='100%' src={previewImageData} alt=''/> :
 			<>
 			<SchemaNotices
@@ -114,7 +118,7 @@ const HowToComponent = ( props ) => {
 			<Render parentProps={ props } />
 			</>
 			}
-		</>
+		</Suspense>
 	);
 };
 

@@ -2,13 +2,19 @@
  * BLOCK: UAGB - Social Share Edit Class
  */
 import styling from './styling';
-
-import React, { useEffect,    } from 'react';
+import lazyLoader from '@Controls/lazy-loader';
+import React, { useEffect, lazy, Suspense } from 'react';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
 import { useDeviceType } from '@Controls/getPreviewType';
-import Settings from './settings';
-import Render from './render';
+const Settings = lazy( () =>
+	import(
+		/* webpackChunkName: "chunks/social-share/settings" */ './settings'
+	)
+);
+const Render = lazy( () =>
+	import( /* webpackChunkName: "chunks/social-share/render" */ './render' )
+);
 
 const SocialShareComponent = ( props ) => {
 	const deviceType = useDeviceType();
@@ -36,12 +42,10 @@ const SocialShareComponent = ( props ) => {
 	}, [deviceType] );
 
 	return (
-
-					<>
+		<Suspense fallback={ lazyLoader() }>
 			<Settings parentProps={ props } />
 			<Render parentProps={ props } />
-			</>
-
+		</Suspense>
 	);
 };
 
