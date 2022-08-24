@@ -367,6 +367,10 @@ const Settings = ( props ) => {
 					{ __( 'here on this' ) }{ ' ' }
 				</a>
 				{ __( 'website.' ) }
+				<p>
+					{ __( 'Currently we only support Lottie JSON files and links.',
+					'ultimate-addons-for-gutenberg' ) }
+				</p>
 			</span>
 		);
 		const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/lottie-animation.png`;
