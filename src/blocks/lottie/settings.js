@@ -368,7 +368,7 @@ const Settings = ( props ) => {
 				</a>
 				{ __( 'website.' ) }
 				<p>
-					{ __( 'Currently we only support Lottie JSON files and links.',
+					{ __( 'Recently Lottie team has changed their extension to .lottie. Please make sure you are using the .json URL or file.',
 					'ultimate-addons-for-gutenberg' ) }
 				</p>
 			</span>
