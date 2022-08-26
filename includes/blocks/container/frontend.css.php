@@ -105,6 +105,8 @@ $container_css       = array_merge(
 		'margin-bottom'  => UAGB_Helper::get_css_value( $attr['bottomMarginDesktop'], $attr['marginType'] ) . ' !important',
 		'margin-left'    => UAGB_Helper::get_css_value( $attr['leftMarginDesktop'], $attr['marginType'] ),
 		'margin-right'   => UAGB_Helper::get_css_value( $attr['rightMarginDesktop'], $attr['marginType'] ),
+		'row-gap'        => UAGB_Helper::get_css_value( $row_gap_desktop_fallback, $attr['rowGapType'] ),
+		'column-gap'     => UAGB_Helper::get_css_value( $column_gap_desktop_fallback, $attr['columnGapType'] ),
 		'overflow'       => $attr['overflow'],
 	),
 	$border
@@ -120,7 +122,7 @@ $inner_container_css = array(
 	'column-gap'      => UAGB_Helper::get_css_value( $column_gap_desktop_fallback, $attr['columnGapType'] ),
 );
 
-if ( ( $attr['isBlockRootParent'] && ! ( 'alignwide' === $attr['innerContentWidth'] && 'alignfull' === $attr['contentWidth'] ) ) || ! $attr['isBlockRootParent'] ) {
+if ( ( $attr['isBlockRootParent'] && ! ( 'alignwide' === $attr['innerContentWidth'] && 'alignfull' === $attr['contentWidth'] ) ) || ! $attr['isBlockRootParent'] || 'alignwide' !== $attr['innerContentWidth'] ) {
 	$container_css = array_merge( $container_css, $inner_container_css );
 }
 
@@ -128,7 +130,7 @@ $background_video_opacity_value = ( isset( $attr['backgroundVideoOpacity'] ) && 
 
 $selectors = array(
 	'.uagb-block-' . $id                                  => $container_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-	'.uagb-block-' . $id . ':hover'                       => array(
+	'.wp-block-uagb-container.uagb-block-' . $id . ':hover' => array(
 		'border-color' => $attr['containerBorderHColor'],
 	),
 	'.uagb-block-' . $id . '.wp-block-uagb-container'     => array(
@@ -221,6 +223,8 @@ $container_tablet_css       = array_merge(
 		'margin-bottom'  => UAGB_Helper::get_css_value( $bottom_margin_tablet, $attr['marginTypeTablet'] ) . ' !important',
 		'margin-left'    => UAGB_Helper::get_css_value( $left_margin_tablet, $attr['marginTypeTablet'] ),
 		'margin-right'   => UAGB_Helper::get_css_value( $right_margin_tablet, $attr['marginTypeTablet'] ),
+		'row-gap'        => UAGB_Helper::get_css_value( $attr['rowGapTablet'], $attr['rowGapTypeTablet'] ),
+		'column-gap'     => UAGB_Helper::get_css_value( $attr['columnGapTablet'], $attr['columnGapTypeTablet'] ),
 	),
 	$border_tablet
 );
@@ -234,7 +238,7 @@ $inner_container_tablet_css = array(
 	'row-gap'         => UAGB_Helper::get_css_value( $attr['rowGapTablet'], $attr['rowGapTypeTablet'] ),
 	'column-gap'      => UAGB_Helper::get_css_value( $attr['columnGapTablet'], $attr['columnGapTypeTablet'] ),
 );
-if ( ( $attr['isBlockRootParent'] && ! ( 'alignwide' === $attr['innerContentWidth'] && 'alignfull' === $attr['contentWidth'] ) ) || ! $attr['isBlockRootParent'] ) {
+if ( ( $attr['isBlockRootParent'] && ! ( 'alignwide' === $attr['innerContentWidth'] && 'alignfull' === $attr['contentWidth'] ) ) || ! $attr['isBlockRootParent'] || 'alignwide' !== $attr['innerContentWidth'] ) {
 	$container_tablet_css = array_merge( $container_tablet_css, $inner_container_tablet_css );
 }
 $t_selectors = array(
@@ -284,6 +288,8 @@ $container_mobile_css       = array_merge(
 		'margin-bottom'  => UAGB_Helper::get_css_value( $bottom_margin_mobile, $attr['marginTypeMobile'] ) . ' !important',
 		'margin-left'    => UAGB_Helper::get_css_value( $left_margin_mobile, $attr['marginTypeMobile'] ),
 		'margin-right'   => UAGB_Helper::get_css_value( $right_margin_mobile, $attr['marginTypeMobile'] ),
+		'row-gap'        => UAGB_Helper::get_css_value( $attr['rowGapMobile'], $attr['rowGapTypeMobile'] ),
+		'column-gap'     => UAGB_Helper::get_css_value( $attr['columnGapMobile'], $attr['columnGapTypeMobile'] ),
 	),
 	$border_mobile
 );
@@ -297,7 +303,7 @@ $inner_container_mobile_css = array(
 	'row-gap'         => UAGB_Helper::get_css_value( $attr['rowGapMobile'], $attr['rowGapTypeMobile'] ),
 	'column-gap'      => UAGB_Helper::get_css_value( $attr['columnGapMobile'], $attr['columnGapTypeMobile'] ),
 );
-if ( ( $attr['isBlockRootParent'] && ! ( 'alignwide' === $attr['innerContentWidth'] && 'alignfull' === $attr['contentWidth'] ) ) || ! $attr['isBlockRootParent'] ) {
+if ( ( $attr['isBlockRootParent'] && ! ( 'alignwide' === $attr['innerContentWidth'] && 'alignfull' === $attr['contentWidth'] ) ) || ! $attr['isBlockRootParent'] || 'alignwide' !== $attr['innerContentWidth'] ) {
 	$container_mobile_css = array_merge( $container_mobile_css, $inner_container_mobile_css );
 }
 $m_selectors = array(

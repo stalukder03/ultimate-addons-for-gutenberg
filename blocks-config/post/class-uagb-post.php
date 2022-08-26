@@ -260,7 +260,9 @@ if ( ! class_exists( 'UAGB_Post' ) ) {
 				)
 			);
 
-			if ( 'yes' === get_option( 'uagb-old-user-less-than-2' ) ) {
+			$enable_legacy_blocks = UAGB_Admin_Helper::get_admin_settings_option( 'uag_enable_legacy_blocks', ( 'yes' === get_option( 'uagb-old-user-less-than-2' ) ) ? 'yes' : 'no' );
+
+			if ( 'yes' === get_option( 'uagb-old-user-less-than-2' ) || 'yes' === $enable_legacy_blocks ) {
 				register_block_type(
 					'uagb/post-masonry',
 					array(
@@ -369,7 +371,7 @@ if ( ! class_exists( 'UAGB_Post' ) ) {
 									'default' => 'px',
 								),
 							),
-							$pagination_masonry_border_attribute,
+							$pagination_masonry_border_attribute
 						),
 						'render_callback' => array( $this, 'post_masonry_callback' ),
 					)
@@ -808,6 +810,18 @@ if ( ! class_exists( 'UAGB_Post' ) ) {
 					'paddingLeftMobile'             => array(
 						'type' => 'number',
 					),
+					'paddingTopTablet'              => array(
+						'type' => 'number',
+					),
+					'paddingBottomTablet'           => array(
+						'type' => 'number',
+					),
+					'paddingRightTablet'            => array(
+						'type' => 'number',
+					),
+					'paddingLeftTablet'             => array(
+						'type' => 'number',
+					),
 					'paddingBtnTop'                 => array(
 						'type' => 'number',
 					),
@@ -1102,7 +1116,7 @@ if ( ! class_exists( 'UAGB_Post' ) ) {
 						'type'    => 'number',
 						'default' => '',
 					),
-				),
+				)
 			);
 		}
 
@@ -1430,7 +1444,7 @@ if ( ! class_exists( 'UAGB_Post' ) ) {
 		 *
 		 * @param array $attributes plugin.
 		 * @return array of requred query attributes.
-		 * @since 2.0.0-beta.3
+		 * @since 2.0.0
 		 */
 		public function required_attribute_for_query( $attributes ) {
 			return array(

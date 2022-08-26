@@ -274,7 +274,9 @@ class Admin_Menu {
 					$exclude_blocks[] = $addon;
 				}
 
-				if ( 'yes' !== get_option( 'uagb-old-user-less-than-2' ) ) {
+				$enable_legacy_blocks = \UAGB_Admin_Helper::get_admin_settings_option( 'uag_enable_legacy_blocks', ( 'yes' === get_option( 'uagb-old-user-less-than-2' ) ) ? 'yes' : 'no' );
+
+				if ( 'yes' !== $enable_legacy_blocks ) {
 					$exclude_blocks[] = 'wp-search';
 					$exclude_blocks[] = 'columns';
 					$exclude_blocks[] = 'section';
@@ -305,7 +307,7 @@ class Admin_Menu {
 	/**
 	 * Get plugin status
 	 *
-	 * @since 2.0.0-beta.3
+	 * @since 2.0.0
 	 *
 	 * @param  string $plugin_init_file Plguin init file.
 	 * @return mixed
