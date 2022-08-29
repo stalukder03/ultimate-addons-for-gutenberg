@@ -5,7 +5,7 @@
 **Requires at least:** 4.7  
 **Requires PHP:** 5.6  
 **Tested up to:** 6.0  
-**Stable tag:** 2.0.4  
+**Stable tag:** 2.0.7  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -119,7 +119,7 @@ You may now contribute to the plugin on Github: <a href="https://github.com/brai
 
 <strong>CREDITS</strong>
 
-The awesome React FontIconPicker is developed by <a href="http://codeb.it/" target="_blank" rel="">Alessandro Benoit</a> & <a href="https://github.com/swashata" target="_blank" rel="">Swashata</a>. Our external packages use <a href="https://github.com/n49/react-stars" target="_blank" rel="">Star Ratings Components</a> that are distributed under the terms of the ISC. While <a href="https://github.com/akiran/react-slick" target="_blank" rel="">Slick</a>, <a href="https://github.com/chenqingspring/react-lottie" target="_blank" rel="">Lottie</a> and <a href="https://github.com/ericnorris/striptags" target="_blank" rel="">Striptags</a> is distributed under the terms of the MIT.
+The awesome React FontIconPicker is developed by <a href="http://codeb.it/" target="_blank" rel="">Alessandro Benoit</a> & <a href="https://github.com/swashata" target="_blank" rel="">Swashata</a>. Our external packages use <a href="https://github.com/n49/react-stars" target="_blank" rel="">Star Ratings Component</a> that are distributed under the terms of the ISC. While <a href="https://github.com/akiran/react-slick" target="_blank" rel="">Slick</a>, <a href="https://github.com/chenqingspring/react-lottie" target="_blank" rel="">Lottie</a> and <a href="https://github.com/ericnorris/striptags" target="_blank" rel="">Striptags</a> is distributed under the terms of the MIT.
 
 ## Installation ##
 
@@ -160,15 +160,47 @@ Absolutely no! The Spectra is built with ease and performance in mind. Its modul
 
 When you use the Spectra along with the free Astra theme, you get a huge library of ready-to-use starter sites that can be imported and used to build your own. Read an article about the <a href="https://wpspectra.com/ready-websites-for-gutenberg/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme" target="_blank" rel="">Starter Sites with Gutenberg</a> to know more.
 
-## Credits ##
-
-The awesome React FontIconPicker is developed by [Alessandro Benoit](http://codeb.it/) & [Swashata](https://github.com/swashata). Our external packages uses [Rating Star Component](https://github.com/n49/react-stars) that are distributed under the terms of the ISC. While [Slick](https://github.com/akiran/react-slick), [Lottie](https://github.com/chenqingspring/react-lottie) and [Striptags](https://github.com/ericnorris/striptags) is distributed under the terms of the MIT.
-
 ## Screenshots ##
 
 1. /assets/screenshots/1.png
 
 ## Changelog ##
+
+### 2.0.7 - FRIDAY, 26th AUGUST 2022 ###
+* Improvement: Added Legacy Labels in the Editor Block Inserter.
+* Improvement: Updated the design of inactive block/extension tabs in the admin dashboard.
+* Improvement: Social Share Child, Icon List Child, How to, Review Blocks - Added missing alt attributes for img tags.
+* Fix: Table of Content - Updated Font Awesome 6 migration on front-end refresh.
+* Fix: Borders - Borders styling not saving for multiple blocks for new block case.
+* Fix: CTA - Disabled CTA links in editor.
+* Fix: Post Carousel - Slider dots overlapping on below blocks.
+* Fix: Container - Flex properties do not work when Container Width & Content Width both are set as full width.
+* Fix: Legacy block not visible on Blocks/Extension page after enabling setting.
+* Fix: Review - Enabling schema support does not give valid schema JSON on frontend.
+* Fix: InfoBox - Default btn padding issue on front-end for old users.
+* Fix: Container - Inner Container overflow if the custom widths is set in pixels.
+* Fix: Post carousel - Broken and throwing console issue on shop page.
+
+### 2.0.6 - WEDNESDAY, 24th AUGUST 2022 ###
+* Fix: Testimonial - Bottom padding and gradient color not working on frontend.
+* Fix: Responsive preview in editor - Editor preview for mobile and tablets was not working across different languages.
+* Fix: Post Grid/Masonry/Carousel - Fixed hover color background leaking out of border radius.
+* Fix: Review - Fixed star size changing in editor, when text labels were long; Also reduced excess spacing between stars and delete icon for responsive preview.
+* Fix: Icon List - Font size and line height was not inherited from site/customizer settings.
+* Fix: Column-child - Migrate Border stylings on editor
+* Fix: Button - Default padding is not retained for old users on frontend.
+* Fix: Disabled Lazy Loading of Blocks Components in Editor to fix the chunkLoading error.
+* Fix: Copy Paste Styles - Updated logic to work using site's local storage.
+
+
+### 2.0.5 - TUESDAY, 23rd AUGUST 2022 ###
+* Fix: Inherit Heading Block Link Color from theme.
+* Fix: Post Grid - Pagination alignment not working on frontend.
+* Fix: Post Layout - Title content not visible after title HTML tag set to P.
+* Fix: Heading - Set default alignment for heading as center for old users.
+* Fix: Call to Action - Buttons Text not wrapping on smaller devices.
+* Fix: Updated Border styling on front-end in multiple blocks for old users.
+* Fix: Advanced Row (Section) & Advanced Columns - Background color and Video opacity issue for old users.
 
 ### 2.0.4 - SUNDAY, 21st AUGUST 2022 ###
 * Feature: Added Enable Legacy Blocks option in Admin Dashboard.

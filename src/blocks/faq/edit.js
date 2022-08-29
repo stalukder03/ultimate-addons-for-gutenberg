@@ -3,29 +3,21 @@
  */
 
 import styling from './styling';
-import React, { useEffect, lazy, Suspense } from 'react';
-import lazyLoader from '@Controls/lazy-loader';
+import React, { useEffect } from 'react';
+
 import { useDeviceType } from '@Controls/getPreviewType';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
 import {migrateBorderAttributes} from '@Controls/generateAttributes';
 import { select } from '@wordpress/data';
-const { isSavingPost } = select( 'core/editor' );
-
-const Settings = lazy( () =>
-	import( /* webpackChunkName: "chunks/faq/settings" */ './settings' )
-);
-const Render = lazy( () =>
-	import( /* webpackChunkName: "chunks/faq/render" */ './render' )
-);
+import Settings from './settings';
+import Render from './render';
 
 const FaqComponent = ( props ) => {
 
 	const deviceType = useDeviceType();
 
-	const isSavingPostState = isSavingPost();
-
-	useEffect( () => {
+	const updatePageSchema = () => {
 
 		const { setAttributes, clientId } = props;
 		const allBlocks = select( 'core/block-editor' ).getBlocks( clientId );
@@ -55,8 +47,7 @@ const FaqComponent = ( props ) => {
 		} );
 
 		setAttributes( {schema: JSON.stringify( jsonData )} );
-
-	}, [isSavingPostState] );
+	};
 
 	useEffect( () => {
 		// Replacement for componentDidMount.
@@ -216,11 +207,10 @@ const FaqComponent = ( props ) => {
 				} );
 			}
 		}
-
 		const {borderStyle,borderWidth,borderRadius,borderColor,borderHoverColor} = props.attributes
 		// border migration
 		if( borderWidth || borderRadius || borderColor || borderHoverColor || borderStyle ){
-			const migrationAttributes = migrateBorderAttributes( 'overall', {
+			migrateBorderAttributes( 'overall', {
 				label: 'borderWidth',
 				value: borderWidth,
 			}, {
@@ -235,9 +225,16 @@ const FaqComponent = ( props ) => {
 			},{
 				label: 'borderStyle',
 				value: borderStyle
-			}
+			},
+			props.setAttributes,
+			props.attributes
 			);
-			props.setAttributes( migrationAttributes )
+		}
+
+		const postSaveButton = document.getElementsByClassName( 'editor-post-publish-button' )?.[0];
+
+		if ( postSaveButton ) {
+			postSaveButton.addEventListener( 'click', updatePageSchema );
 		}
 	}, [] );
 
@@ -324,6 +321,13 @@ const FaqComponent = ( props ) => {
 			}
 		}
 
+		const postSaveButton = document.getElementsByClassName( 'editor-post-publish-button' )?.[0];
+
+		if ( postSaveButton ) {
+			postSaveButton.addEventListener( 'click', updatePageSchema );
+			return () => { postSaveButton?.removeEventListener( 'click', updatePageSchema ); }
+		}
+
 	}, [ props ] );
 
 	useEffect( () => {
@@ -336,10 +340,11 @@ const FaqComponent = ( props ) => {
 	}, [deviceType] );
 
 	return (
-		<Suspense fallback={ lazyLoader() }>
+			<>
 			<Settings parentProps={ props } deviceType = { deviceType } />
 			<Render parentProps={ props } />
-		</Suspense>
+			</>
+
 	);
 };
 
