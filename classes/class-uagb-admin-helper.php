@@ -37,6 +37,48 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 		}
 
 		/**
+		 * Get Option by checking some conditions.
+		 *
+		 * @param  string  $key     The option key.
+		 * @param  mixed   $default Option default value if option is not available.
+		 * @param  boolean $network Whether to allow the network admin setting to be overridden on subsites.
+		 * @return string           Return the option value
+		 * @since 0.0.1
+		 */
+		public static function spectra_get_option( $key, $default = false, $network = false ) {
+
+			// Get the site-wide option if we're in the network admin.
+			if ( $network && is_multisite() ) {
+				$value = get_site_option( $key, $default );
+			} else {
+				$value = get_option( $key, $default );
+			}
+
+			return $value;
+		}
+
+		/**
+		 * Update Option by checking some conditions.
+		 *
+		 * @param  string  $key     The option key.
+		 * @param  mixed   $default Option default value if option is not available.
+		 * @param  boolean $network Whether to allow the network admin setting to be overridden on subsites.
+		 * @return string           Return the option value
+		 * @since 0.0.1
+		 */
+		public static function spectra_update_option( $key, $value, $network = false ) {
+
+			// Get the site-wide option if we're in the network admin.
+			if ( $network && is_multisite() ) {
+				$value = update_site_option( $key, $value );
+			} else {
+				$value = update_option( $key, $value );
+			}
+
+			return $value;
+		}
+
+		/**
 		 * Returns an option from the database for
 		 * the admin settings page.
 		 *
@@ -48,14 +90,47 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 		 */
 		public static function get_admin_settings_option( $key, $default = false, $network_override = false ) {
 
-			// Get the site-wide option if we're in the network admin.
-			if ( $network_override && is_multisite() ) {
-				$value = get_site_option( $key, $default );
-			} else {
-				$value = get_option( $key, $default );
+			$spectra_admin_data = self::spectra_get_option( 'spectra_admin_data', $default, $network_override );
+
+			if ( isset( $spectra_admin_data ) && is_array( $spectra_admin_data ) ) {
+				if ( isset( $spectra_admin_data[ $key ] ) ) {
+					return $spectra_admin_data[ $key ];
+				} else {
+					return $default;
+				}
 			}
 
-			return $value;
+			return self::spectra_get_option( $key, $default, $network_override );
+		}
+
+		/**
+		 * Updates an option from the admin settings page.
+		 *
+		 * @param string $key       The option key.
+		 * @param mixed  $value     The value to update.
+		 * @param bool   $network   Whether to allow the network admin setting to be overridden on subsites.
+		 * @return mixed
+		 * @since 0.0.1
+		 */
+		public static function update_admin_settings_option( $key, $value, $network = false ) {
+
+			$spectra_admin_data = self::get_admin_settings_option( 'spectra_admin_data' );
+
+			$spectra_admin_data = $spectra_admin_data ? $spectra_admin_data : array();
+
+			$value = array_merge(
+				$spectra_admin_data,
+				array(
+					$key => $value,
+				)
+			);
+
+			// Update the site-wide option since we're in the network admin.
+			if ( $network && is_multisite() ) {
+				update_site_option( 'spectra_admin_data', $value );
+			} else {
+				update_option( 'spectra_admin_data', $value );
+			}
 		}
 
 		/**
@@ -87,25 +162,6 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 			UAGB_Helper::$block_list = $blocks;
 
 			return apply_filters( 'uagb_enabled_blocks', UAGB_Helper::$block_list );
-		}
-
-		/**
-		 * Updates an option from the admin settings page.
-		 *
-		 * @param string $key       The option key.
-		 * @param mixed  $value     The value to update.
-		 * @param bool   $network   Whether to allow the network admin setting to be overridden on subsites.
-		 * @return mixed
-		 * @since 0.0.1
-		 */
-		public static function update_admin_settings_option( $key, $value, $network = false ) {
-
-			// Update the site-wide option since we're in the network admin.
-			if ( $network && is_multisite() ) {
-				update_site_option( $key, $value );
-			} else {
-				update_option( $key, $value );
-			}
 		}
 
 		/**

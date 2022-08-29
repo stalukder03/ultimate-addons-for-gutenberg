@@ -110,6 +110,54 @@ if ( ! class_exists( 'UAGB_Update' ) ) :
 				update_option( '_uagb_allow_file_generation', 'enabled' );
 			}
 		}
+
+		/**
+		 * Update all individual admin options in the DB into a single option.
+		 *
+		 * @since x.x.x
+		 * @return void
+		 */
+		public function migrate_admin_data_options() {
+
+			$all_options = array(
+				uag_recaptcha_secret_key_v3,
+				uag_recaptcha_secret_key_v2,
+				uag_recaptcha_site_key_v2,
+				uag_recaptcha_site_key_v3,
+				uag_coming_soon_page,
+				uag_enable_coming_soon_mode,
+				uag_content_width,
+				uag_container_global_padding,
+				uag_container_global_elements_gap,
+				uag_blocks_editor_spacing,
+				uag_load_select_font_globally,
+				uag_select_font_globally,
+				uag_enable_masonry_gallery,
+				uag_load_gfonts_locally,
+				uag_collapse_panels,
+				uag_copy_paste,
+				uag_preload_local_fonts,
+				uag_enable_block_condition,
+				uag_enable_block_responsive,
+				uag_enable_templates_button,
+				_uagb_blocks,
+				uagb_beta,
+				uag_enable_legacy_blocks,
+				_uagb_allow_file_generation,
+				__uagb_asset_version,
+				uag_load_font_awesome_5,
+				uag_auto_block_recovery,
+			);
+
+			$combined_data = array();
+
+			foreach ( $option as $all_options ) {
+				$value                    = UAGB_Admin_Helper::spectra_get_option( $option );
+				$combined_data[ $option ] = $value;
+			}
+
+			UAGB_Admin_Helper::spectra_update_option( 'spectra_admin_data', $combined_data );
+		}
 	}
 
 	/**
