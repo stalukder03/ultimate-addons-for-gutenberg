@@ -10,21 +10,21 @@
 	text-align: center;
 }
 
-.block-editor-page #wpwrap .edit-post-visual-editor a.uagb-cta__block-link-wrap {
+.editor-styles-wrapper .edit-post-visual-editor a.uagb-cta__block-link-wrap {
 	color: inherit;
 }
 
-.block-editor-page #wpwrap .uagb-cta__title,
-.block-editor-page #wpwrap .uagb-cta-separator-parent,
-.block-editor-page #wpwrap .uagb-cta__desc {
+.editor-styles-wrapper .uagb-cta__title,
+.editor-styles-wrapper .uagb-cta-separator-parent,
+.editor-styles-wrapper .uagb-cta__desc {
 	margin-bottom: 10px;
 }
 
-.block-editor-page #wpwrap .uagb-cta__desc {
+.editor-styles-wrapper .uagb-cta__desc {
 	margin: 0;
 }
 
-.block-editor-page #wpwrap .uagb-cta__block-link i {
+.editor-styles-wrapper .uagb-cta__block-link i {
 	font-style: normal;
 }
 
@@ -32,7 +32,25 @@
 	z-index: 0;
 }
 
-.block-editor-page #wpwrap {
+.editor-styles-wrapper {
+
+	.uagb-cta__outer-wrap .uagb-cta__buttons {
+		display: inline-flex;
+	}
+
+	.uagb-cta__outer-wrap a.uagb-cta__button-link-wrapper,
+	.uagb-cta__outer-wrap a.uagb-cta-second__button {
+		text-decoration: none;
+		fill: currentColor;
+		width: 100%;
+	}
+
+	// Focus effects for better editing experience.
+	.uagb-cta__title[contenteditable="true"]:focus,
+	.uagb-cta__desc[contenteditable="true"]:focus {
+		border: 2px solid var(--wp-admin-theme-color);
+		border-radius: 8px;
+	}
 
 	.uagb-editor-preview-mode-tablet {
 

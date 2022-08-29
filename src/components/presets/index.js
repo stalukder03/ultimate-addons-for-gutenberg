@@ -5,6 +5,8 @@ import apiFetch from '@wordpress/api-fetch';
 import styles from './editor.lazy.scss';
 import React, { useLayoutEffect } from 'react';
 import { select, dispatch } from '@wordpress/data';
+import classnames from 'classnames';
+import UAGReset from '../reset';
 
 const UAGPresets = ( props ) => {
 
@@ -21,38 +23,64 @@ const UAGPresets = ( props ) => {
         setAttributes,
         presets,
         presetInputType,
-        label
+        label,
+		className
     } = props;
 
-	const { getSelectedBlock } = select( 'core/block-editor' );
-	const { name, attributes } = getSelectedBlock();
+	const resetAttributes = [];
 
-	const [availablePresets, setAvailablePresets] = useState( attributes.presets ? [...attributes.presets, ...presets] : presets );
+	if ( presets ) {
+		presets.map( ( preset ) => {
+			if ( preset?.attributes ) {
+				for ( const attribute of preset?.attributes ) {
+					if ( ! resetAttributes.includes( attribute?.label ) ) {
+						resetAttributes.push( attribute?.label );
+					}
+				}
+			}
+
+			return preset;
+		} );
+	}
+
 	const [ selectedPresetState, setPreset ] = useState( '' );
 
+	const onReset = () => {
+		setPreset( '' );
+		resetChildBlockAttributes();
+	};
+
+    const updatePresets = ( selectedPreset ) => {
 
 
     const updatePresets = ( selectedPreset ) => {
         setPreset( selectedPreset );
-        if ( availablePresets ) {
-            availablePresets.map( ( preset ) => {
-                if ( 'default' !== selectedPreset && 'default' === preset.value && preset.attributes ) {
-                    preset.attributes.map( ( presetItem ) => {
-                        setAttributes( { [presetItem.label]: presetItem.value } )
-                        return presetItem;
-                    } );
-                }
-                if ( preset.value && preset.value === selectedPreset && preset.attributes ) {
-                    preset.attributes.map( ( presetItem ) => {
-                        setAttributes( { [presetItem.label]: presetItem.value } )
-                        return presetItem;
-                    } );
+        if ( presets ) {
+            presets.map( ( preset ) => {
+				if ( preset.value ) {
+					if ( 'default' !== selectedPreset && 'default' === preset.value && preset.attributes ) {
+						preset.attributes.map( ( presetItem ) => {
+							setAttributes( { [presetItem.label]: presetItem.value } )
+							return presetItem;
+						} );
+					}
+					if ( preset.value && preset.value === selectedPreset && preset.attributes ) {
 
-                    if ( preset.childAttributes ) {
-                        updateChildBlockAttributes( preset );
-                    }
-                }
-                return preset;
+						presets[1]?.defaultPresetAttributes?.map( ( presetItem ) => {
+							setAttributes( { [presetItem.label]: presets[0]?.defaultAttributes[presetItem.label]?.default } )
+							return presetItem;
+						} );
+						preset.attributes.map( ( presetItem ) => {
+							setAttributes( { [presetItem.label]: presetItem.value } )
+							return presetItem;
+						} );
+
+						if ( preset.childAttributes ) {
+							updateChildBlockAttributes( preset );
+						}
+					}
+				}
+				return preset;
             } );
         }
     }
@@ -111,29 +139,57 @@ const UAGPresets = ( props ) => {
         } );
     }
 
-    const presetRadioImageOptions = availablePresets.map( ( preset ) => {
+	const resetChildBlockAttributes = () => {
+		const { getSelectedBlock } = select( 'core/block-editor' );
+
+        let childBlocks = [];
+
+        if ( getSelectedBlock().innerBlocks ) {
+            childBlocks = getSelectedBlock().innerBlocks;
+        }
+
+        const childBlocksClientIds = [];
+
+        childBlocks.map( ( childBlock ) => {
+            if ( childBlock.clientId ) {
+                childBlocksClientIds.push( childBlock.clientId );
+            }
+            return childBlock;
+        } );
+
+        const childBlocksAttributes = {};
+
+		presets.map( ( preset ) => {
+			if ( preset?.childAttributes ) {
+				preset?.childAttributes.map( ( attr ) => {
+					if ( presets[1]?.defaultChildAttributes && presets[1]?.defaultChildAttributes[attr.label] && undefined !== presets[1]?.defaultChildAttributes[attr.label].default ) {
+						childBlocksAttributes[attr.label] = presets[1]?.defaultChildAttributes[attr.label].default;
+					}
+					return attr;
+				} );
+			}
+			return preset;
+		} );
+
+        childBlocksClientIds.map( ( clientId ) => {
+            dispatch( 'core/block-editor' ).updateBlockAttributes( clientId, childBlocksAttributes );
+            return clientId;
+        } );
+	}
+    const presetRadioImageOptions = presets.map( ( preset ) => {
+		if ( ! preset.value ) {
+			return '';
+		}
+
         const key = preset.value;
 		const checked = selectedPresetState === key ? true : false;
 		return (
             <>
                 <input key={key} className="uag-presets-radio-input" type="radio" value={key} checked={checked} onChange={() => updatePresets( key )} onClick={() => updatePresets( key )}/>
-				<label htmlFor={key} className="uag-presets-radio-input-label">
-                    {
-						preset.icon ? (
-								<span dangerouslySetInnerHTML={{
-								__html: preset.icon
-									}}
-								/>
-							) : (
-							<span className='custom-preset'>
-								<span className='custom-preset__icon'>
-									<span className="dashicons dashicons-trash" onClick={() => deletePreset( key )}></span>
-								</span>
-								<span className='custom-preset__text'>{preset.label}</span>
-							</span>
-						)
-					}
-                    <span className="uag-presets-radio-image-clickable" onClick={() => updatePresets( key )} title={preset.label}></span> { /* eslint-disable-line */ }
+
+                <label htmlFor={key} className="uag-presets-radio-input-label" dangerouslySetInnerHTML={{// eslint-disable-line
+                        __html: preset.icon
+                    }} onClick={() => updatePresets( key )}>
                 </label>
             </>
         );
@@ -150,7 +206,6 @@ const UAGPresets = ( props ) => {
 
     const presetRadioImage = (
         <>
-            <label htmlFor="uag-presets-label" className="uag-presets-label">{label}</label>
             <div className='uagb-presets-radio-image-wrap'>
                 {presetRadioImageOptions}
             </div>
@@ -160,7 +215,19 @@ const UAGPresets = ( props ) => {
 	const registerPresets = wp.hooks.applyFilters( 'uagb.registerPresets', '', defaultAttributes, setAvailablePresets, setAttributes )
 
     return (
-        <div className="uagb-presets-main-wrap">
+		<div className={ classnames(
+			className,
+			'uagb-presets-main-wrap',
+			'components-base-control'
+		) }>
+			<div className='uagb-presets-label-reset-wrap'>
+				<label htmlFor="uag-presets-label" className="uag-presets-label">{label}</label>
+				<UAGReset
+					attributeNames = {resetAttributes}
+					setAttributes={ setAttributes }
+					onReset={onReset}
+				/>
+			</div>
             { 'dropdown' === presetInputType && presetDropdown }
             { 'radioImage' === presetInputType && presetRadioImage }
 			{registerPresets}

@@ -1,4 +1,5 @@
 import './masonry-gallery';
 import './condition-block';
-import './copy-paste-styles';
 import './presets'
+import './advanced-settings';
+import './copy-paste-styles';

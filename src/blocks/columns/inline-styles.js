@@ -2,6 +2,7 @@
  * Returns Dynamic Generated CSS
  */
 import generateCSSUnit from '@Controls/generateCSSUnit';
+import generateBorderCSS from '@Controls/generateBorderCSS';
 
 function inlineStyles( props ) {
 	const {
@@ -9,8 +10,8 @@ function inlineStyles( props ) {
 		rightPadding,
 		topPadding,
 		bottomPadding,
-		topMargin,
-		bottomMargin,
+		topMarginDesktop,
+		bottomMarginDesktop,
 		backgroundPosition,
 		backgroundSize,
 		backgroundAttachment,
@@ -18,16 +19,19 @@ function inlineStyles( props ) {
 		backgroundRepeat,
 		backgroundType,
 		desktopMarginType,
-		desktopPaddingType,
+		desktopPaddingType
 	} = props.attributes;
+
+	const borderCSS = generateBorderCSS( props.attributes, 'columns' );
 
 	const style = {
 		'padding-top': generateCSSUnit( topPadding, desktopPaddingType ),
 		'padding-bottom': generateCSSUnit( bottomPadding, desktopPaddingType ),
 		'padding-left': generateCSSUnit( leftPadding, desktopPaddingType ),
 		'padding-right': generateCSSUnit( rightPadding, desktopPaddingType ),
-		'margin-top': generateCSSUnit( topMargin, desktopMarginType ),
-		'margin-bottom': generateCSSUnit( bottomMargin, desktopMarginType ),
+		'margin-top': generateCSSUnit( topMarginDesktop, desktopMarginType ),
+		'margin-bottom': generateCSSUnit( bottomMarginDesktop, desktopMarginType ),
+		...borderCSS
 	};
 
 	const position = backgroundPosition.replace( '-', ' ' );

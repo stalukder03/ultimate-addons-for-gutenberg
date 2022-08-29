@@ -1,7 +1,17 @@
+import styles from './editor.lazy.scss';
+import { GradientPicker } from '@wordpress/components';
+import React, { useLayoutEffect } from 'react';
 
-import { __experimentalGradientPicker } from '@wordpress/components';
+const GradientSettings = ( props ) => {
+	
+	// Add and remove the CSS on the drop and remove of the component.
+	useLayoutEffect( () => {
+		styles.use();
+		return () => {
+			styles.unuse();
+		};
+	}, [] );
 
-function GradientSettings( props ) {
 	const { setAttributes, backgroundGradient } = props;
 
 	const onGradientChange = ( value ) => {
@@ -9,9 +19,10 @@ function GradientSettings( props ) {
 	};
 
 	return (
-		<__experimentalGradientPicker
+		<GradientPicker
 			value={ backgroundGradient.value }
 			onChange={ onGradientChange }
+			className="uagb-gradient-picker"
 		/>
 	);
 }

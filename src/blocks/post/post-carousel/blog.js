@@ -5,20 +5,20 @@ import {
 	renderPostLayout,
 } from '.././function';
 import { useDeviceType } from '@Controls/getPreviewType';
-import React, { lazy, Suspense } from 'react';
-import lazyLoader from '@Controls/lazy-loader';
+import React, {    useRef, useEffect } from 'react';
 
-const Slider = lazy( () =>
-	import(
-		/* webpackChunkName: "chunks/post-carousel/react-slick" */ 'react-slick'
-	)
-);
+import { getFallbackNumber } from '@Controls/getAttributeFallback';
+
+import Slider from 'react-slick';
 
 function Blog( props ) {
+	const blockName = props.name.replace( 'uagb/', '' );
+	const article = useRef();
 	const { attributes, className, latestPosts, block_id } = props;
 	const deviceType = useDeviceType();
 
 	const {
+		isPreview,
 		columns,
 		tcolumns,
 		mcolumns,
@@ -26,6 +26,7 @@ function Blog( props ) {
 		postsToShow,
 		autoplay,
 		pauseOnHover,
+		autoplaySpeed,
 		transitionSpeed,
 		infiniteLoop,
 		arrowSize,
@@ -35,12 +36,55 @@ function Blog( props ) {
 		arrowDots,
 		equalHeight,
 		layoutConfig,
+		rowGap,
 	} = attributes;
+
+	const postsToShowFallback = getFallbackNumber( postsToShow, 'postsToShow', blockName );
+	const columnsFallback = getFallbackNumber( columns, 'columns', blockName );
+	const tcolumnsFallback = getFallbackNumber( tcolumns, 'tcolumns', blockName );
+	const mcolumnsFallback = getFallbackNumber( mcolumns, 'mcolumns', blockName );
+	const rowGapFallback = getFallbackNumber( rowGap, 'rowGap', blockName );
+	const autoplaySpeedFallback = getFallbackNumber( autoplaySpeed, 'autoplaySpeed', blockName );
+	const transitionSpeedFallback = getFallbackNumber( transitionSpeed, 'transitionSpeed', blockName );
+	const arrowSizeFallback = getFallbackNumber( arrowSize, 'arrowSize', blockName );
+	const arrowBorderSizeFallback = getFallbackNumber( arrowBorderSize, 'arrowBorderSize', blockName );
+
+	const updateImageBgWidth = () => {
+
+		setTimeout( () => {
+
+			if( article?.current ){
+				const articleWidth  = article?.current?.offsetWidth;
+				const imageWidth = 100 - ( rowGapFallback / articleWidth ) * 100;
+				const parent = article?.current?.closest( '.uagb-post__image-position-background' );
+
+				if ( parent ) {
+					const images = parent?.getElementsByClassName( 'uagb-post__image' );
+					for( const image of images ) {
+						if ( image ) {
+							image.style.width = imageWidth + '%';
+							image.style.marginLeft = rowGapFallback / 2 + 'px';
+
+						}
+					}
+				}
+			}
+
+		}, 100 )
+	};
+
+	useEffect( () => {
+		updateImageBgWidth();
+    }, [article] );
+
+	useEffect( () => {
+		updateImageBgWidth();
+    }, [imgPosition] );
 
 	// Removing posts from display should be instant.
 	const displayPosts =
-		latestPosts.length > postsToShow
-			? latestPosts.slice( 0, postsToShow )
+		latestPosts.length > postsToShowFallback
+			? latestPosts.slice( 0, postsToShowFallback )
 			: latestPosts;
 
 	function NextArrow() {
@@ -54,7 +98,7 @@ function Blog( props ) {
 				style={ {
 					borderColor: arrowColor,
 					borderRadius: arrowBorderRadius,
-					borderWidth: arrowBorderSize,
+					borderWidth: arrowBorderSizeFallback,
 				} }
 			>
 				{ UAGB_Block_Icons.carousel_right }
@@ -73,7 +117,7 @@ function Blog( props ) {
 				style={ {
 					borderColor: arrowColor,
 					borderRadius: arrowBorderRadius,
-					borderWidth: arrowBorderSize,
+					borderWidth: arrowBorderSizeFallback,
 				} }
 			>
 				{ UAGB_Block_Icons.carousel_left }
@@ -91,13 +135,13 @@ function Blog( props ) {
 		: '';
 
 	const settings = {
-		slidesToShow: columns,
+		slidesToShow: columnsFallback,
 		slidesToScroll: 1,
-		autoplaySpeed: 2000,
+		autoplaySpeed: autoplaySpeedFallback,
 		autoplay,
 		infinite: infiniteLoop,
 		pauseOnHover,
-		speed: transitionSpeed,
+		speed: transitionSpeedFallback,
 		arrows,
 		dots,
 		rtl: false,
@@ -106,20 +150,20 @@ function Blog( props ) {
 				uagb_carousel_height( block_id ); // eslint-disable-line no-undef
 			}
 		},
-		nextArrow: <NextArrow arrowSize={ arrowSize } />,
-		prevArrow: <PrevArrow arrowSize={ arrowSize } />,
+		nextArrow: <NextArrow arrowSize={ arrowSizeFallback } />,
+		prevArrow: <PrevArrow arrowSize={ arrowSizeFallback } />,
 		responsive: [
 			{
 				breakpoint: 1024,
 				settings: {
-					slidesToShow: tcolumns,
+					slidesToShow: tcolumnsFallback,
 					slidesToScroll: 1,
 				},
 			},
 			{
 				breakpoint: 767,
 				settings: {
-					slidesToShow: mcolumns,
+					slidesToShow: mcolumnsFallback,
 					slidesToScroll: 1,
 				},
 			},
@@ -127,7 +171,7 @@ function Blog( props ) {
 	};
 
 	const all_posts = displayPosts.map( ( post, i ) => (
-		<article key={ i } className="uagb-post__inner-wrap">
+		<article ref={article} key={ i } className="uagb-post__inner-wrap">
 			{ renderPostLayout(
 				'uagb/post-carousel',
 				post,
@@ -138,14 +182,14 @@ function Blog( props ) {
 		</article>
 	) );
 
-	if ( columns >= displayPosts.length ) {
+	if ( columnsFallback >= displayPosts.length ) {
 		return (
 			<div
 				className={ classnames(
 					'is-carousel',
-					`uagb-post__columns-${ columns }`,
-					`uagb-post__columns-tablet-${ tcolumns }`,
-					`uagb-post__columns-mobile-${ mcolumns }`,
+					`uagb-post__columns-${ columnsFallback }`,
+					`uagb-post__columns-tablet-${ tcolumnsFallback }`,
+					`uagb-post__columns-mobile-${ mcolumnsFallback }`,
 					'uagb-post__items',
 					className,
 					'uagb-post-grid',
@@ -166,13 +210,15 @@ function Blog( props ) {
 			</div>
 		);
 	}
-
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/post-carousel.png`;
 	return (
-		<Suspense fallback={ lazyLoader() }>
+			<>
+			{ isPreview ? <img width='100%' src={previewImageData} alt=''/> :
+			<>
 			<Slider
 				className={ classnames(
 					'is-carousel',
-					`uagb-post__columns-${ columns }`,
+					`uagb-post__columns-${ columnsFallback }`,
 					'uagb-post__items',
 					className,
 					'uagb-post-grid',
@@ -180,6 +226,7 @@ function Blog( props ) {
 					'uagb-slick-carousel',
 					`uagb-post__image-position-${ imgPosition }`,
 					`${ equalHeightClass }`,
+					`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
 					`uagb-block-${ block_id }`
 				) }
 				data-blog-id={ block_id }
@@ -188,7 +235,9 @@ function Blog( props ) {
 			>
 				{ all_posts }
 			</Slider>
-		</Suspense>
+			</>
+			}
+</>
 	);
 }
 

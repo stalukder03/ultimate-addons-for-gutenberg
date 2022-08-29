@@ -3,18 +3,14 @@
  */
 
 import RestMenuStyle from './inline-styles';
-import { select } from '@wordpress/data';
-import React, { lazy, Suspense, useEffect } from 'react';
-import lazyLoader from '@Controls/lazy-loader';
+import { select, dispatch } from '@wordpress/data';
+import React, {    useEffect } from 'react';
+
 import { useDeviceType } from '@Controls/getPreviewType';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
-const Settings = lazy( () =>
-	import( /* webpackChunkName: "chunks/price-list/settings" */ './settings' )
-);
-const Render = lazy( () =>
-	import( /* webpackChunkName: "chunks/price-list/render" */ './render' )
-);
-
+import scrollBlockToView from '@Controls/scrollBlockToView';
+import Settings from './settings';
+import Render from './render';
 const UAGBRestaurantMenu = ( props ) => {
 	const deviceType = useDeviceType();
 	useEffect( () => {
@@ -77,15 +73,12 @@ const UAGBRestaurantMenu = ( props ) => {
 		if( imagePosition ){
 			if( 'left' === imagePosition ){
 				props.setAttributes( { imgAlign: 'side' } );
-				props.setAttributes( { imagePosition: 'left' } );
 			}
 			if( 'right' === imagePosition ){
 				props.setAttributes( { imgAlign: 'side' } );
-				props.setAttributes( { imagePosition: 'right' } );
 			}
 			if( 'top' === imagePosition ){
 				props.setAttributes( { imgAlign: 'top' } );
-				props.setAttributes( { imagePosition: 'top' } );
 			}
 		}
 
@@ -97,8 +90,7 @@ const UAGBRestaurantMenu = ( props ) => {
 			pricelistChild.attributes.imageAlignment =
 				props.attributes.imageAlignment;
 		} );
-		
-	
+
 	}, [] );
 
 	useEffect( () => {
@@ -107,28 +99,20 @@ const UAGBRestaurantMenu = ( props ) => {
 
 		addBlockEditorDynamicStyles( 'uagb-restaurant-menu-style-' + props.clientId.substr( 0, 8 ), blockStyling );
 
-		const getChildBlocks = select( 'core/block-editor' ).getBlocks(
-			props.clientId
-		);
+		const {
+			imgAlign,
+			imagePosition,
+		} = props.attributes;
 
-		if( 'side' === props.attributes.imgAlign && 'right' !== props.attributes.imagePosition ){
+
+		if( 'side' === imgAlign && 'right' !== imagePosition ){
 			props.setAttributes( { imagePosition : 'left' } );
 			props.setAttributes( { headingAlign : 'left' } );
-		} 
-		if( 'top' === props.attributes.imgAlign ){
+		}
+		if( 'top' === imgAlign ){
 			props.setAttributes( { imagePosition : 'top' } );
 		}
-		getChildBlocks.forEach( ( pricelistChild ) => {
-			pricelistChild.attributes.imagePosition =props.attributes.imagePosition;
-			pricelistChild.attributes.columns = props.attributes.columns;
-			pricelistChild.attributes.tcolumns = props.attributes.tcolumns;
-			pricelistChild.attributes.mcolumns = props.attributes.mcolumns;
-			pricelistChild.attributes.headingTag = props.attributes.headingTag;
-			pricelistChild.attributes.imageSize = props.attributes.imageSize;
-			pricelistChild.attributes.headingAlign = props.attributes.headingAlign;
-		} );
 
-	
 	}, [ props ] );
 
 	useEffect( () => {
@@ -136,16 +120,34 @@ const UAGBRestaurantMenu = ( props ) => {
 		const blockStyling = RestMenuStyle( props );
 
 		addBlockEditorDynamicStyles( 'uagb-restaurant-menu-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+
+		scrollBlockToView();
 	}, [deviceType] );
+
+
+	useEffect( () => {
+		// Set showImage attribute in child blocks based on current parent block's value.
+		select( 'core/block-editor' )
+            .getBlocksByClientId( props.clientId )[0]
+            ?.innerBlocks.forEach( function( block ) {
+                dispatch( 'core/block-editor' ).updateBlockAttributes(
+                    block.clientId, {
+                        showImage: props.attributes.showImage,
+                    }
+                );
+
+            } );
+	}, [ props.attributes.showImage ] );
 
 	return (
 		<>
-			<Suspense fallback={ lazyLoader() }>
-				<Settings parentProps={ props } />
+
+						<>
+			<Settings parentProps={ props } />
 				<Render parentProps={ props } />
-			</Suspense>
+			</>
+
 		</>
 	);
 };
-
 export default UAGBRestaurantMenu;

@@ -13,7 +13,7 @@ window.UAGBPostCarousel = {
 			Object.keys( postActive ).forEach( ( key ) => {
 				const thisHeight = postActive[key].offsetHeight,
 				blogPost = postActive[key].querySelector( '.uagb-post__inner-wrap' ),
-				blogPostHeight = blogPost.offsetHeight;
+				blogPostHeight = blogPost?.offsetHeight;
 
 				if ( maxHeight < blogPostHeight ) {
 					maxHeight = blogPostHeight;
@@ -27,11 +27,15 @@ window.UAGBPostCarousel = {
 
 			Object.keys( postActive ).forEach( ( key ) => {
 				const selector =  postActive[key].querySelector( '.uagb-post__inner-wrap' );
-				selector.style.height = maxHeight + 'px';
+				if( selector ){
+					selector.style.height = maxHeight + 'px';
+				}
 			} );
 
 			let selector = scope[0].querySelector( '.slick-list' );
-			selector.style.height = postActiveHeight + 'px';
+			if( selector ){
+				selector.style.height = postActiveHeight + 'px';
+			}
 			maxHeight = -1;
 			wrapperHeight = -1;
 			Object.keys( postWrapper ).forEach( ( key ) => {
@@ -41,8 +45,10 @@ window.UAGBPostCarousel = {
 				}
 
 				selector = $this.querySelector( '.uagb-post__inner-wrap' );
-				const blogPostHeight = selector.offsetHeight;
-				selector.style.height = blogPostHeight + 'px';
+				const blogPostHeight = selector?.offsetHeight;
+				if( blogPostHeight ){
+					selector.style.height = blogPostHeight + 'px';
+				}
 
 			} );
 		}
@@ -76,10 +82,10 @@ window.UAGBPostMasonry = {
 		const windowHeight50 = window.innerHeight / 1.25;
 		let $scope = document.querySelector( $selector );
 		const loader = $scope.querySelectorAll( '.uagb-post-inf-loader' )
-		if ( 'scroll' === $attr.paginationEventType ) {
+		if ( 'none' !== $attr.paginationType && 'scroll' === $attr.paginationEventType ) {
 
 			window.addEventListener( 'scroll', function() {
-				
+
 				let postItems = $scope.querySelector( '.uagb-post__items' );
 
 				if ( ! postItems ) {
@@ -120,6 +126,8 @@ window.UAGBPostMasonry = {
 
 			if( $scope.querySelector( '.uagb-post-pagination-button' ) ){
 
+				$scope.style.marginBottom ='40px';
+
 				$scope.querySelector( '.uagb-post-pagination-button' ).onclick = function () {
 
 					$scope = this.closest( '.uagb-post-grid' );
@@ -147,7 +155,6 @@ window.UAGBPostMasonry = {
 							loadStatus = false;
 						}
 					}
-
 				};
 			}
 		}
@@ -199,6 +206,22 @@ window.UAGBPostMasonry = {
 
 				if ( count === parseInt( $obj.total ) ) {
 					$scope.querySelector( '.uagb-post__load-more-wrap' ).style.display='none';
+				}
+				// This CSS is for Post BG Image Spacing
+				const articles = document.querySelectorAll( '.uagb-post__image-position-background .uagb-post__inner-wrap' );
+
+				for( const article of articles ) {
+
+					const articleWidth = article.offsetWidth;
+					const rowGap = $attr.rowGap;
+					const imageWidth = 100 - ( rowGap / articleWidth ) * 100;
+					const image = article.getElementsByClassName( 'uagb-post__image' );
+					if ( image[0] ) {
+						image[0].style.width = imageWidth + '%';
+						image[0].style.marginLeft = rowGap / 2 + 'px';
+
+					}
+
 				}
 		  } )
 		  .catch( function( error ) {

@@ -13,10 +13,24 @@
 	}
 }
 
-.uagb-infobox__content-wrap .uagb-ifb-title-wrap {
+.uagb-ifb-title-wrap {
 
 	.block-editor-rich-text__editable.uagb-ifb-title.rich-text {
-		margin: 0;
 		line-height: inherit;
+		margin-top: 0;
 	}
+}
+
+.uagb-infobox-icon-left,
+.uagb-infobox-icon-right {
+	// This is added since the editor Desktop View applies a default Border Box for all elements.
+	svg {
+		box-sizing: content-box;
+	}
+}
+
+.uagb-infobox-link-wrap {
+
+	pointer-events: none;
+
 }

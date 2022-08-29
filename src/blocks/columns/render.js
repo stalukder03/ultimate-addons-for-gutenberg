@@ -10,7 +10,6 @@ const ALLOWED_BLOCKS = [ 'uagb/column' ];
 import { InnerBlocks } from '@wordpress/block-editor';
 
 const Render = ( props ) => {
-	
 	const { attributes, isSelected, className } = props.parentProps;
 	const deviceType = useDeviceType();
 	const {
@@ -30,6 +29,7 @@ const Render = ( props ) => {
 		reverseMobile,
 		topContentAboveShape,
 		bottomContentAboveShape,
+		contentWidth,
 	} = attributes;
 
 	const getColumnsTemplate = useMemo( () => {
@@ -108,7 +108,7 @@ const Render = ( props ) => {
 				reverseTabletClass,
 				reverseMobileClass,
 				`uagb-block-${ props.parentProps.clientId.substr( 0, 8 ) }`,
-				`uagb-columns__columns-${ columns }`
+				`uagb-columns__max_width-${ contentWidth }`,
 			) }
 		>
 			<div className="uagb-columns__overlay"></div>
@@ -125,11 +125,18 @@ const Render = ( props ) => {
 					) }
 				</div>
 			) }
-			<InnerBlocks
-				template={ getColumnsTemplate }
-				templateLock="all"
-				allowedBlocks={ ALLOWED_BLOCKS }
-			/>
+			<div
+				className={ classnames(
+					'uagb-columns__inner-wrap',
+					`uagb-columns__columns-${ columns }`
+				) }
+			>
+				<InnerBlocks
+					template={ getColumnsTemplate }
+					templateLock="all"
+					allowedBlocks={ ALLOWED_BLOCKS }
+				/>
+			</div>
 			{ bottomDividerHtml }
 		</CustomTag>
 	);
