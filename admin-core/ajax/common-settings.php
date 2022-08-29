@@ -78,6 +78,7 @@ class Common_Settings extends Ajax_Base {
 			'load_font_awesome_5',
 			'auto_block_recovery',
 			'enable_legacy_blocks',
+			'editor_mode'
 		);
 
 		$this->init_ajax_events( $ajax_events );
@@ -1106,6 +1107,41 @@ class Common_Settings extends Ajax_Base {
 		}
 
 		\UAGB_Admin_Helper::update_admin_settings_option( 'uag_auto_block_recovery', sanitize_text_field( $_POST['value'] ) );
+
+		$response_data = array(
+			'messsage' => __( 'Successfully saved data!', 'ultimate-addons-for-gutenberg' ),
+		);
+		wp_send_json_success( $response_data );
+
+	}
+
+	/**
+	 * Save settings.
+	 *
+	 * @return void
+	 */
+	public function editor_mode() {
+
+		$response_data = array( 'messsage' => $this->get_error_msg( 'permission' ) );
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( $response_data );
+		}
+
+		/**
+		 * Nonce verification
+		 */
+		if ( ! check_ajax_referer( 'uag_editor_mode', 'security', false ) ) {
+			$response_data = array( 'messsage' => $this->get_error_msg( 'nonce' ) );
+			wp_send_json_error( $response_data );
+		}
+
+		if ( empty( $_POST ) ) {
+			$response_data = array( 'messsage' => __( 'No post data found!', 'ultimate-addons-for-gutenberg' ) );
+			wp_send_json_error( $response_data );
+		}
+
+		\UAGB_Admin_Helper::update_admin_settings_option( 'uag_editor_mode', sanitize_text_field( $_POST['value'] ) );
 
 		$response_data = array(
 			'messsage' => __( 'Successfully saved data!', 'ultimate-addons-for-gutenberg' ),

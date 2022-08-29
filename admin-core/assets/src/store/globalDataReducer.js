@@ -154,6 +154,11 @@ const globalDataReducer = ( state = {}, action ) => {
 				...state,
 				containerGlobalElementsGap: action.payload,
 				};
+        case 'UPDATE_EDITOR_MODE':
+                    return {
+                        ...state,
+                        editorMode: action.payload,
+                        };
         default:
             return state;
     }

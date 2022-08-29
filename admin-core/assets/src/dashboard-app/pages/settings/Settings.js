@@ -21,6 +21,7 @@ import SettingsSkeleton from '@DashboardApp/pages/settings/SettingsSkeleton';
 import BlockSettings from '@DashboardApp/pages/settings/BlockSettings';
 import LoadFontAwesome5 from '@DashboardApp/pages/settings/LoadFontAwesome5';
 import AutoBlockRecovery from '@DashboardApp/pages/settings/AutoBlockRecovery';
+import EditorMode from '@DashboardApp/pages/settings/EditorMode';
 import ContainerGlobalPadding from '@DashboardApp/pages/settings/ContainerGlobalPadding';
 import ContainerGlobalElementsGap from '@DashboardApp/pages/settings/ContainerGlobalElementsGap';
 import { Link, useLocation } from 'react-router-dom';
@@ -102,6 +103,7 @@ const Settings = () => {
                                 {  'yes' === uag_react.global_data.uagb_old_user_less_than_2 &&
                                     <LoadFontAwesome5/>
                                 }
+                                <EditorMode />
                             </>
                         }
                         { 'asset-generation' === activeSettingsNavigationTab &&

@@ -72,6 +72,7 @@ class Admin_Helper {
 			'load_font_awesome_5'                => \UAGB_Admin_Helper::get_admin_settings_option( 'uag_load_font_awesome_5', ( 'yes' === get_option( 'uagb-old-user-less-than-2' ) ) ? 'enabled' : 'disabled' ),
 			'auto_block_recovery'                => \UAGB_Admin_Helper::get_admin_settings_option( 'uag_auto_block_recovery', ( 'yes' === get_option( 'uagb-old-user-less-than-2' ) ) ? 'enabled' : 'disabled' ),
 			'uagb_old_user_less_than_2'          => get_option( 'uagb-old-user-less-than-2' ),
+			'editor_mode'           => \UAGB_Admin_Helper::get_admin_settings_option( 'uag_editor_mode', 'disabled' )
 		);
 
 		return $options;
