@@ -27,8 +27,12 @@ const UAGPresets = ( props ) => {
 		className
     } = props;
 
-	const resetAttributes = [];
+	const { getSelectedBlock } = select( 'core/block-editor' );
+	const { name, attributes } = getSelectedBlock();
 
+	const [availablePresets, setAvailablePresets] = useState( attributes.presets ? [...attributes.presets, ...presets] : presets );
+	const [ selectedPresetState, setPreset ] = useState( '' );
+	const resetAttributes = [];
 	if ( presets ) {
 		presets.map( ( preset ) => {
 			if ( preset?.attributes ) {
@@ -42,21 +46,16 @@ const UAGPresets = ( props ) => {
 			return preset;
 		} );
 	}
-
-	const [ selectedPresetState, setPreset ] = useState( '' );
-
 	const onReset = () => {
 		setPreset( '' );
 		resetChildBlockAttributes();
 	};
 
-    const updatePresets = ( selectedPreset ) => {
-
 
     const updatePresets = ( selectedPreset ) => {
         setPreset( selectedPreset );
-        if ( presets ) {
-            presets.map( ( preset ) => {
+        if ( availablePresets ) {
+            availablePresets.map( ( preset ) => {
 				if ( preset.value ) {
 					if ( 'default' !== selectedPreset && 'default' === preset.value && preset.attributes ) {
 						preset.attributes.map( ( presetItem ) => {
@@ -66,8 +65,8 @@ const UAGPresets = ( props ) => {
 					}
 					if ( preset.value && preset.value === selectedPreset && preset.attributes ) {
 
-						presets[1]?.defaultPresetAttributes?.map( ( presetItem ) => {
-							setAttributes( { [presetItem.label]: presets[0]?.defaultAttributes[presetItem.label]?.default } )
+						availablePresets[1]?.defaultPresetAttributes?.map( ( presetItem ) => {
+							setAttributes( { [presetItem.label]: availablePresets[0]?.defaultAttributes[presetItem.label]?.default } )
 							return presetItem;
 						} );
 						preset.attributes.map( ( presetItem ) => {
@@ -176,7 +175,7 @@ const UAGPresets = ( props ) => {
             return clientId;
         } );
 	}
-    const presetRadioImageOptions = presets.map( ( preset ) => {
+    const presetRadioImageOptions = availablePresets.map( ( preset ) => {
 		if ( ! preset.value ) {
 			return '';
 		}
@@ -186,10 +185,23 @@ const UAGPresets = ( props ) => {
 		return (
             <>
                 <input key={key} className="uag-presets-radio-input" type="radio" value={key} checked={checked} onChange={() => updatePresets( key )} onClick={() => updatePresets( key )}/>
-
-                <label htmlFor={key} className="uag-presets-radio-input-label" dangerouslySetInnerHTML={{// eslint-disable-line
-                        __html: preset.icon
-                    }} onClick={() => updatePresets( key )}>
+				<label htmlFor={key} className="uag-presets-radio-input-label">
+                    {
+						preset.icon ? (
+								<span dangerouslySetInnerHTML={{
+								__html: preset.icon
+									}}
+								/>
+							) : (
+							<span className='custom-preset'>
+								<span className='custom-preset__icon'>
+									<span className="dashicons dashicons-trash" onClick={() => deletePreset( key )}></span>
+								</span>
+								<span className='custom-preset__text'>{preset.label}</span>
+							</span>
+						)
+					}
+                    <span className="uag-presets-radio-image-clickable" onClick={() => updatePresets( key )} title={preset.label}></span> { /* eslint-disable-line */ }
                 </label>
             </>
         );
