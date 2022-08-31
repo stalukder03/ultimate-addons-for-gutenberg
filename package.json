@@ -60,7 +60,7 @@
     "webpack": "^4.46.0"
   },
   "scripts": {
-    "start": "wp-scripts start",
+    "start": "wp-scripts start && node index.js",
     "build:assets": "wp-scripts build && node scripts/generate-assets-files.js",
     "build:sass": "node scripts/generate-assets-files.js",
     "build:placeholder": "node scripts/generate-blocks-placeholder.js",
