@@ -438,7 +438,7 @@ class UAGB_Init_Blocks {
 
 		$uagb_ajax_nonce = wp_create_nonce( 'uagb_ajax_nonce' );
 
-		$script_dep_path = UAGB_DIR . 'dist/blocks.asset.php';
+		$script_dep_path = UAGB_DIR . sprintf('dist/blocks.%s.asset.php', UAGB_VER);
 		$script_info     = file_exists( $script_dep_path )
 			? include $script_dep_path
 			: array(
@@ -446,6 +446,7 @@ class UAGB_Init_Blocks {
 				'version'      => UAGB_VER,
 			);
 		global $pagenow;
+
 
 		$script_dep = array_merge( $script_info['dependencies'], array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-components', 'wp-api-fetch' ) );
 
@@ -458,7 +459,7 @@ class UAGB_Init_Blocks {
 		// Scripts.
 		wp_enqueue_script(
 			'uagb-block-editor-js', // Handle.
-			UAGB_URL . 'dist/blocks.js',
+			UAGB_URL . sprintf('dist/blocks.%s.js', UAGB_VER),
 			$script_dep, // Dependencies, defined above.
 			$script_info['version'], // UAGB_VER.
 			true // Enqueue the script in the footer.

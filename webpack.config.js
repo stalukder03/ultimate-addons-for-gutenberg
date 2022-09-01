@@ -57,6 +57,7 @@ module.exports = {
 	},
 	output: {
 		...defaultConfig.output,
+		filename: '[name].2.0.5.js',
 		// eslint-disable-next-line no-undef
 		path: path.resolve( __dirname, 'dist' ),
 	},
