@@ -1,0 +1,20 @@
+import { test, expect } from '@playwright/test';
+
+test.beforeEach( async ( { page } ) => {
+  // Runs before each test and signs in each page.
+  await page.goto( 'http://localhost:8888/wp-admin/' );
+  await page.locator( 'text=Username or Email Address' ).click();
+  await page.locator( 'input[name="log"]' ).fill( 'admin' );
+  await page.locator( 'input[name="pwd"]' ).fill( 'password' );
+  await page.locator( 'text=Log In' ).click();
+} );
+
+test( 'first', async ( { page } ) => {
+  await page.goto( 'http://localhost:8888/wp-admin/plugins.php' );
+
+  const spectra = page.locator( 'text=Spectra' );
+
+  await expect( spectra ).toContainText( 'Spectra' )
+  
+} );
+
