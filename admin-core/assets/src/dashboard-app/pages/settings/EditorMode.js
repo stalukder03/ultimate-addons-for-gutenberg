@@ -13,8 +13,6 @@ const EditorMode = () => {
 
     const editorMode = useSelector( ( state ) => state.editorMode );
 
-    console.log(  editorMode );
-
     const editorModeStatus = 'disabled' === editorMode ? false : true;
 
     const updateEnableEditorModeStatus = () => {
