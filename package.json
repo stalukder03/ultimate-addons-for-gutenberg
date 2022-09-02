@@ -78,6 +78,22 @@
     "check-engines": "wp-scripts check-engines",
     "makepot": "wp i18n make-pot . --skip-audit --exclude='.dev,.github,.wordpress-org,docs,src,node_modules,vendor,wordpress,block-icons.js,blocks-deactivate.js' languages/ultimate-addons-for-gutenberg.pot",
     "package": "rm *.zip && wp dist-archive . ultimate-addons-for-gutenberg",
+    "env": "wp-env",
+    "env:cli": "wp-env run",
+    "env:start": "wp-env start",
+    "env:activate-astra": "wp-env run cli wp theme activate astra",
+    "env:activate-ultimate-addons-for-gutenberg": "wp-env run cli wp plugin activate ultimate-addons-for-gutenberg",
+    "env:stop": "wp-env stop",
+    "env:clean": "wp-env clean all",
+    "env:destroy": "wp-env destroy",
+    "env:reset-site": "wp-env clean all",
+    "play:install": "npm i -D @playwright/test",
+    "play:interactive": "npx playwright test --workers=1 --headed",
+    "play:run": "npx playwright test --workers=1",
+    "pree2etests": "npm run env run cli rewrite structure %postname% --hard --quiet",
+    "test:e2e": "npm run pree2etests && cross-env WP_BASE_URL=http://localhost:8888 wp-scripts test-e2e --config=tests/e2e/jest.config.js",
+    "test:e2e:interactive": "npm run test:e2e -- --playwright-interactive",
+    "test:e2e:ci": "npm run test:e2e -- --runInBand",
     "packages-update": "wp-scripts packages-update"
   }
 }

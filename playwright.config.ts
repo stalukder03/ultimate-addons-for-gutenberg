@@ -1,4 +1,5 @@
 import type { PlaywrightTestConfig } from '@playwright/test';
+// eslint-disable-next-line no-duplicate-imports
 import { devices } from '@playwright/test';
 
 /**
