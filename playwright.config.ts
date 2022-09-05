@@ -13,7 +13,6 @@ import { devices } from '@playwright/test';
  */
 const config: PlaywrightTestConfig = {
 
-
   testDir: './e2e',
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
@@ -24,6 +23,9 @@ const config: PlaywrightTestConfig = {
      */
     timeout: 5000
   },
+
+  globalSetup: require.resolve( './/global-setup' ),
+  
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -36,6 +38,12 @@ const config: PlaywrightTestConfig = {
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
+    headless: false,
+    browserName: 'chromium',
+    viewport: { width: 1280, height: 720 },
+    ignoreHTTPSErrors: true,
+    video: 'on-first-retry',
+    storageState: 'storageState.json',
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
     actionTimeout: 0,
     /* Base URL to use in actions like `await page.goto('/')`. */
@@ -54,6 +62,7 @@ const config: PlaywrightTestConfig = {
       },
     },
 
+    
     // {
     //   name: 'firefox',
     //   use: {
