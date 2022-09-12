@@ -1145,6 +1145,7 @@ function styling( props ) {
 	if ( 'background' === imgPosition ){
 		selectors[ ' .uagb-post__inner-wrap .uagb-post__text:nth-child(2)' ] = {
 			'margin-top': generateCSSUnit( paddingTop, contentPaddingUnit ),
+			'margin-left': generateCSSUnit( paddingLeft, contentPaddingUnit ),
 		};
 	}
 
