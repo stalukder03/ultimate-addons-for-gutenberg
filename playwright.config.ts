@@ -24,7 +24,7 @@ const config: PlaywrightTestConfig = {
     timeout: 5000
   },
 
-  // globalSetup: require.resolve( './/global-setup' ),
+  globalSetup: require.resolve( './/global-setup' ),
   
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -38,7 +38,7 @@ const config: PlaywrightTestConfig = {
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    headless: true,
+    headless: false,
     browserName: 'chromium',
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
