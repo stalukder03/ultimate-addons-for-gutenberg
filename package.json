@@ -39,8 +39,6 @@
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@playwright/test": "^1.25.1",
-    "@wordpress/api-fetch": "^6.0.1",
-    "@wordpress/e2e-test-utils": "^6.0.1",
     "@wordpress/env": "^4.6.0",
     "@wordpress/eslint-plugin": "^7.1.0",
     "@wordpress/scripts": "^16.1.1",
@@ -69,7 +67,7 @@
     "build:placeholder": "node scripts/generate-blocks-placeholder.js",
     "build:admin": "cd admin-core && npm run build && grunt minify",
     "build": "wp-scripts build && npm run build:sass && grunt minify && npm run build:placeholder",
-    "test:ci": "npx playwright test",
+    "test:e2e:ci": "npx playwright test -- --runInBand",
     "test": "npx playwright test --headed",
     "format:js": "wp-scripts format-js",
     "lint-js": "wp-scripts lint-js",
@@ -98,7 +96,6 @@
     "pree2etests": "npm run env run cli rewrite structure %postname% --hard --quiet",
     "test:e2e": "npm run pree2etests && cross-env WP_BASE_URL=http://localhost:8888 wp-scripts test-e2e --config=tests/e2e/jest.config.js",
     "test:e2e:interactive": "npm run test:e2e -- --playwright-interactive",
-    "test:e2e:ci": "npm run test:e2e -- --runInBand",
     "packages-update": "wp-scripts packages-update"
   }
 }
