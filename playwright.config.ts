@@ -38,7 +38,7 @@ const config: PlaywrightTestConfig = {
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    headless: false,
+    headless: true,
     browserName: 'chromium',
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
