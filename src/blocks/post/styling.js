@@ -321,6 +321,10 @@ function styling( props ) {
 			'margin-top': generateCSSUnit( paddingTop, contentPaddingUnit ),
 			'margin-left': generateCSSUnit( paddingLeft, contentPaddingUnit ),
 		},
+		':not(.wp-block-uagb-post-grid) .uagb-post__inner-wrap .uagb-post__text.uagb-post__taxonomy.highlighted': {
+			'margin-left': ( align === 'left' ) ? generateCSSUnit( paddingLeft, contentPaddingUnit ) : 0,
+			'margin-right': ( align === 'right' ) ? generateCSSUnit( paddingRight, contentPaddingUnit ) : 0,
+		},
 		':not(.wp-block-uagb-post-grid) .uagb-post__inner-wrap .uagb-post__text:last-child': {
 			'margin-bottom': generateCSSUnit( paddingBottom, contentPaddingUnit ),
 		},
