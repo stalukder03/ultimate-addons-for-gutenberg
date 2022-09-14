@@ -23,6 +23,17 @@ $dots_margin_top_tablet_fallback = UAGB_Block_Helper::get_fallback_number( $attr
 $dots_margin_top_mobile_fallback = UAGB_Block_Helper::get_fallback_number( $attr['dotsMarginTopMobile'], 'dotsMarginTopMobile', $attr['blockName'] );
 
 $arrow_size                 = UAGB_Helper::get_css_value( $arrow_size_fallback, 'px' );
+
+$selectors['.wp-block-uagb-post-carousel.is-carousel .uagb-post__title.uagb-post__text'] = array(
+	'margin-top' => UAGB_Helper::get_css_value( $attr['paddingTop'], $attr['contentPaddingUnit'] ),
+);
+
+$selectors['.wp-block-uagb-post-carousel.is-carousel .uagb-post__inner-wrap .uagb-post__text.uagb-post__taxonomy.highlighted'] = array(
+	'margin-left'   => ( 'left' === $attr['align'] ) ? UAGB_Helper::get_css_value( $attr['paddingLeft'], $attr['contentPaddingUnit'] ) : 0,
+	'margin-right'  => ( 'right' === $attr['align'] ) ? UAGB_Helper::get_css_value( $attr['paddingRight'], $attr['contentPaddingUnit'] ) : 0,
+	'margin-bottom' => 0,
+);
+
 $selectors[' .slick-arrow'] = array(
 	'border-color' => $attr['arrowColor'],
 );
