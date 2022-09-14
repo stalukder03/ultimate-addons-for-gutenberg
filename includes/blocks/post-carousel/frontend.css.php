@@ -18,11 +18,11 @@ $m_selectors = UAGB_Block_Helper::get_post_mobile_selectors( $attr );
 
 $t_selectors = UAGB_Block_Helper::get_post_tablet_selectors( $attr );
 
-$dots_margin_top_fallback = UAGB_Block_Helper::get_fallback_number( $attr['dotsMarginTop'], 'dotsMarginTop', $attr['blockName'] );
+$dots_margin_top_fallback        = UAGB_Block_Helper::get_fallback_number( $attr['dotsMarginTop'], 'dotsMarginTop', $attr['blockName'] );
 $dots_margin_top_tablet_fallback = UAGB_Block_Helper::get_fallback_number( $attr['dotsMarginTopTablet'], 'dotsMarginTopTablet', $attr['blockName'] );
 $dots_margin_top_mobile_fallback = UAGB_Block_Helper::get_fallback_number( $attr['dotsMarginTopMobile'], 'dotsMarginTopMobile', $attr['blockName'] );
 
-$arrow_size                 = UAGB_Helper::get_css_value( $arrow_size_fallback, 'px' );
+$arrow_size = UAGB_Helper::get_css_value( $arrow_size_fallback, 'px' );
 
 $selectors['.wp-block-uagb-post-carousel.is-carousel .uagb-post__title.uagb-post__text'] = array(
 	'margin-top' => UAGB_Helper::get_css_value( $attr['paddingTop'], $attr['contentPaddingUnit'] ),
