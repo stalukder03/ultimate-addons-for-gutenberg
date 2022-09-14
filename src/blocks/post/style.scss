@@ -178,6 +178,8 @@
 	.uagb-post-grid-byline > *,
 	.uagb-post__inner-wrap .uagb-post__text.uagb-post-grid-byline > .uagb-post__taxonomy.uagb-post__text { // Adding margin-right 10px for meta.
 		margin-right: 10px;
+		margin-left: unset;
+		margin-bottom: unset;
 	}
 
 	.uagb-post-grid-byline,
