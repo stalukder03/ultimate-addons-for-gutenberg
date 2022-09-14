@@ -175,7 +175,8 @@
 		}
 	}
 
-	.uagb-post-grid-byline > * { // Adding margin-right 10px for meta.
+	.uagb-post-grid-byline > *,
+	.uagb-post__inner-wrap .uagb-post__text.uagb-post-grid-byline > .uagb-post__taxonomy.uagb-post__text { // Adding margin-right 10px for meta.
 		margin-right: 10px;
 	}
 
@@ -406,6 +407,14 @@
 .uagb-post-grid.is-masonry article,
 .uagb-post-grid.is-carousel article {
 	box-sizing: border-box;
+}
+
+.wp-block-uagb-post-carousel {
+	.uagb-post__inner-wrap {
+		.uagb-post__text.uagb-post__taxonomy.highlighted {
+			margin-bottom: 0;
+		}
+	}
 }
 
 /**
