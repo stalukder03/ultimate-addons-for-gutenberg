@@ -11,14 +11,15 @@ $block_slug = 'uagb/blockquote';
 $block_data = array(
 	'doc'              => 'blockquote',
 	'slug'             => '',
-	'admin_categories' => array( 'content' ),
+	'admin_categories' => array( 'social' ),
 	'link'             => 'blockquote',
 	'title'            => __( 'Blockquote', 'ultimate-addons-for-gutenberg' ),
-	'description'      => __( 'This block allows you to display your Blockquote.', 'ultimate-addons-for-gutenberg' ),
+	'description'      => __( 'Display qoutes/quoted texts using blockquote.', 'ultimate-addons-for-gutenberg' ),
 	'default'          => true,
 	'extension'        => false,
-	'priority'         => 4,
 	'dynamic_assets'   => array(
 		'dir' => 'blockquote',
 	),
+	'priority'         => 10,
+	'deprecated'       => false,
 );

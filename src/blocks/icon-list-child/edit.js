@@ -6,7 +6,6 @@
 import styling from './styling';
 import React, { lazy, Suspense, useEffect } from 'react';
 import lazyLoader from '@Controls/lazy-loader';
-import { select } from '@wordpress/data';
 import { useDeviceType } from '@Controls/getPreviewType';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 
@@ -36,7 +35,6 @@ const UAGBIconListChild = ( props ) => {
 		const blockStyling = styling( props );
 
 		addBlockEditorDynamicStyles( 'uagb-style-icon-list-child' + props.clientId.substr( 0, 8 ), blockStyling );
-		
 	}, [ props ] );
 
 	useEffect( () => {
@@ -44,16 +42,7 @@ const UAGBIconListChild = ( props ) => {
 		const blockStyling = styling( props );
 
 		addBlockEditorDynamicStyles( 'uagb-style-icon-list-child' + props.clientId.substr( 0, 8 ), blockStyling );
-		
 	}, [ deviceType ] );
-
-	const parentBlock = select( 'core/block-editor' ).getBlockParents(
-		props.clientId
-	);
-	const parentBlockAttributes = select(
-		'core/block-editor'
-	).getBlockAttributes( parentBlock );
-	hideLabel = ( parentBlockAttributes || null !== parentBlockAttributes ) ? parentBlockAttributes.hideLabel : '';
 
 	return (
 		<Suspense fallback={ lazyLoader() }>
