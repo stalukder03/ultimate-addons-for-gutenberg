@@ -416,6 +416,15 @@
 		.uagb-post__text.uagb-post__taxonomy.highlighted {
 			margin-bottom: 0;
 		}
+
+		.uagb-post__taxonomy.uagb-post__text {
+			display: contents;
+
+			&.default,
+			&.highlighted {
+				display: inline-block;
+			}
+		}
 	}
 }
 
