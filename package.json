@@ -35,7 +35,8 @@
     "react-select": "^2.2.0",
     "react-slick": "^0.24.0",
     "react-transition-group": "^2.4.0",
-    "striptags": "^3.2.0"
+    "striptags": "^3.2.0",
+    "wp-playwright-utils": "^0.1.0"
   },
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
