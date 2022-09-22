@@ -5,7 +5,7 @@ let scrollElement = null;
 
 
 UAGBTableOfContents = { // eslint-disable-line no-undef
-	init() {
+	init( id ) {
 		if( document.querySelector( '.uagb-toc__list' ) !== null ){
 			document.querySelector( '.uagb-toc__list' ).addEventListener( 'click',
 				UAGBTableOfContents._scroll // eslint-disable-line no-undef
@@ -16,26 +16,104 @@ UAGBTableOfContents = { // eslint-disable-line no-undef
 				UAGBTableOfContents._scrollTop// eslint-disable-line no-undef
 			);
 		}
-		if( document.querySelector( '.uagb-toc__title-wrap' ) !== null ){
-			document.querySelector( '.uagb-toc__title-wrap' ).addEventListener( 'click', function(){
 
-				const collapsible = this.querySelector( '.uag-toc__collapsible-wrap' );
+		const elementToOpen = document.querySelector( id );
 
-				if ( collapsible !== null ) {
+		/* We need the following fail-safe click listener cause an usual click-listener
+		 * will fail in case the 'Make TOC Collapsible' is not enabled right from the start/page-load.
+		*/ 
+		document.addEventListener( 'click', collapseListener );
 
-					const $root = this.closest( '.wp-block-uagb-table-of-contents' );
+		function collapseListener( event ){
+			
+			const element = event.target;
 
-					if ( $root.classList.contains( 'uagb-toc__collapse' ) ) {
-						$root.classList.remove( 'uagb-toc__collapse' );
-					} else {
-						$root.classList.add( 'uagb-toc__collapse' );
-					}
+			// These two conditions help us target the required element (collapsible icon beside TOC heading). 
+			const condition1 = ( element?.tagName === 'path' || element?.tagName === 'svg' );  // Check if the clicked element type is either path or SVG.
+			const condition2 = ( element?.parentNode?.className === 'uagb-toc__title' );  // Check if the clicked element's parent has the required class.
+			
+			if( condition1 && condition2 ){
+				
+				const $root = element?.closest( '.wp-block-uagb-table-of-contents' );
+
+				if ( $root.classList.contains( 'uagb-toc__collapse' ) ) {
+					$root.classList.remove( 'uagb-toc__collapse' );
+					UAGBTableOfContents._slideDown(
+						elementToOpen?.querySelector( '.wp-block-uagb-table-of-contents .uagb-toc__list-wrap' ),
+						500
+					);
+				} else {
+					$root.classList.add( 'uagb-toc__collapse' );
+					UAGBTableOfContents._slideUp(
+						elementToOpen?.querySelector( '.wp-block-uagb-table-of-contents.uagb-toc__collapse .uagb-toc__list-wrap' ),
+						500
+					);
+
 				}
-			} );
+
+			}
 		}
+
 		document.addEventListener( 'scroll',
 			UAGBTableOfContents._showHideScroll// eslint-disable-line no-undef
 		);
+	},
+
+	_slideUp( target, duration ) {
+		target.style.transitionProperty = 'height, margin, padding';
+		target.style.transitionDuration = duration + 'ms';
+		target.style.boxSizing = 'border-box';
+		target.style.height = target.offsetHeight + 'px';
+		target.offsetHeight; // eslint-disable-line no-unused-expressions
+		target.style.overflow = 'hidden';
+		target.style.height = 0;
+		target.style.paddingTop = 0;
+		target.style.paddingBottom = 0;
+		target.style.marginTop = 0;
+		target.style.marginBottom = 0;
+		window.setTimeout( () => {
+			target.style.display = 'none';
+			target.style.removeProperty( 'height' );
+			target.style.removeProperty( 'padding-top' );
+			target.style.removeProperty( 'padding-bottom' );
+			target.style.removeProperty( 'margin-top' );
+			target.style.removeProperty( 'margin-bottom' );
+			target.style.removeProperty( 'overflow' );
+			target.style.removeProperty( 'transition-duration' );
+			target.style.removeProperty( 'transition-property' );
+		}, duration );
+	},
+
+	_slideDown( target, duration ) {
+
+		target.style?.removeProperty( 'display' );
+		let display = window?.getComputedStyle( target ).display;
+
+		if ( display === 'none' ) display = 'block';
+
+		target.style.display = display;
+		const height = target.offsetHeight;
+		target.style.overflow = 'hidden';
+		target.style.height = 0;
+		target.style.paddingTop = 0;
+		target.style.paddingBottom = 0;
+		target.style.marginTop = 0;
+		target.style.marginBottom = 0;
+		target.offsetHeight; // eslint-disable-line no-unused-expressions
+		target.style.boxSizing = 'border-box';
+		target.style.transitionProperty = 'height, margin, padding';
+		target.style.transitionDuration = duration + 'ms';
+		target.style.height = height + 'px';
+		target.style.removeProperty( 'padding-top' );
+		target.style.removeProperty( 'padding-bottom' );
+		target.style.removeProperty( 'margin-top' );
+		target.style.removeProperty( 'margin-bottom' );
+		window.setTimeout( () => {
+			target.style.removeProperty( 'height' );
+			target.style.removeProperty( 'overflow' );
+			target.style.removeProperty( 'transition-duration' );
+			target.style.removeProperty( 'transition-property' );
+		}, duration );
 	},
 
 	hyperLinks() {
@@ -89,22 +167,32 @@ UAGBTableOfContents = { // eslint-disable-line no-undef
 
 		e.preventDefault();
 
-		const hash = e.target.getAttribute( 'href' );
-		if ( hash !== '' ) {
+		let hash = e.target.getAttribute( 'href' );
+		if ( hash ) {
 			const node = document.querySelector( '.wp-block-uagb-table-of-contents' ); // eslint-disable-line no-undef
 
 			scrollData = node.getAttribute( 'data-scroll' );
 			scrollOffset = node.getAttribute( 'data-offset' );
+			let offset = null;
+			
+			hash = hash.substring( 1 );
+
+			if ( document?.querySelector( "[id='" + hash + "']" ) ) {
+
+				offset = document.querySelector( "[id='" + hash + "']"  )?.getBoundingClientRect().top + window.scrollY;
+			}
 			if ( scrollData ) {
-
-				const offset = document.querySelector( hash ).offsetTop;
-
 				if ( null !== offset ) {
 					scroll( { // eslint-disable-line no-undef
 						top: offset - scrollOffset,
 						behavior: 'smooth'
 					} );
 				}
+			} else {
+				scroll( { // eslint-disable-line no-undef
+					top: offset,
+					behavior: 'auto'
+				} );
 			}
 		}
 	},
@@ -173,7 +261,9 @@ UAGBTableOfContents = { // eslint-disable-line no-undef
 					const searchText = divsArr[i].innerText;
 					for ( let j = 0; j < aTags.length; j++ ) {
 						if ( aTags[j].textContent === searchText ) {
-							headerText = aTags[j].setAttribute( 'href' , ' ' );
+							const randomID = '#toc_' + Math.random();
+							aTags[j].setAttribute( 'href' , randomID );
+							headerText =  randomID.substring( 1 );
 						}
 					}
 				}
@@ -192,7 +282,10 @@ UAGBTableOfContents = { // eslint-disable-line no-undef
 
 		if ( scrollElement === null ) {
 
-			document.body.innerHTML = document.body.innerHTML + '<div class="uagb-toc__scroll-top"> ' + scrollToTopSvg + '</div>';
+			const scrollToTopDiv = document.createElement( 'div' );
+			scrollToTopDiv.classList.add( 'uagb-toc__scroll-top' );
+			scrollToTopDiv.innerHTML = scrollToTopSvg;
+			document.body.appendChild( scrollToTopDiv );
 		}
 
 		if ( scrollElement !== null ) {
@@ -200,7 +293,7 @@ UAGBTableOfContents = { // eslint-disable-line no-undef
 		}
 		UAGBTableOfContents._showHideScroll(); // eslint-disable-line no-undef
 		UAGBTableOfContents.hyperLinks(); // eslint-disable-line no-undef
-		UAGBTableOfContents.init(); // eslint-disable-line no-undef
+		UAGBTableOfContents.init( id ); // eslint-disable-line no-undef
 	},
 };
 

@@ -19,27 +19,39 @@ const attributes = {
 	},
 	icon: {
 		type: 'string',
-		default: 'fab fa-facebook',
+		default: 'facebook',
 	},
 	image: {
 		type: 'object',
+		default: null
 	},
 	icon_color: {
 		type: 'string',
-		default: '#3a3a3a',
-		isUAGStyle: true,
+		default: '',
+		UAGCopyPaste: {
+			styleType: 'icon-color'
+		},
 	},
 	icon_hover_color: {
 		type: 'string',
-		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'icon-hover-color'
+		},
+		default: '',
 	},
 	icon_bg_color: {
 		type: 'string',
-		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'icon-bg-color'
+		},
+		default: '',
 	},
 	icon_bg_hover_color: {
 		type: 'string',
-		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'icon-bg-hover-color'
+		},
+		default: '',
 	},
 };
 

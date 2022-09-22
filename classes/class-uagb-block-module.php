@@ -131,6 +131,15 @@ class UAGB_Block_Module {
 		'lottie'             => array(
 			'dir' => 'lottie',
 		),
+		'container'          => array(
+			'dir' => 'container',
+		),
+		'image'              => array(
+			'dir' => 'image',
+		),
+		'google-map'         => array(
+			'dir' => 'google-map',
+		),
 	);
 
 	/**

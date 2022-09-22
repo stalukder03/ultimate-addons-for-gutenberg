@@ -1,6 +1,6 @@
 {
   "name": "ultimate-addons-for-gutenberg",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.12",
   "description": "The Ultimate Addons for Gutenberg extends the Gutenberg functionality with several unique and feature-rich blocks that help build websites faster.",
   "author": "Brainstorm Force",
   "license": "ISC",
@@ -43,21 +43,30 @@
     "@wordpress/eslint-plugin": "^7.1.0",
     "@wordpress/jest-puppeteer-axe": "^3.1.0",
     "@wordpress/scripts": "^16.1.1",
+<<<<<<< HEAD
     "cross-env": "^7.0.3",
     "grunt": "^1.4.0",
+=======
+    "grunt": "^1.5.3",
+>>>>>>> origin/next-release
     "grunt-bumpup": "^0.6.3",
     "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-compress": "^2.0.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-cssmin": "^4.0.0",
     "grunt-contrib-uglify": "^5.0.1",
+    "grunt-json2php": "^0.1.4",
     "grunt-rtlcss": "^2.0.2",
     "grunt-text-replace": "^0.4.0",
     "grunt-wp-i18n": "^1.0.3",
     "grunt-wp-readme-to-markdown": "^2.0.1",
     "install": "^0.13.0",
+<<<<<<< HEAD
     "jest-silent-reporter": "^0.5.0",
     "node-sass": "^4.14.1",
+=======
+    "node-sass": "^7.0",
+>>>>>>> origin/next-release
     "sass-loader": "^6.0.6",
     "style-loader": "^2.0.0",
     "webpack": "^4.46.0",

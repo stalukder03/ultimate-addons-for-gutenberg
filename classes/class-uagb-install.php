@@ -57,12 +57,6 @@ class UAGB_Install {
 				'content' => '',
 			),
 			array(
-				'base' => UAGB_UPLOAD_DIR . 'assets/js',
-			),
-			array(
-				'base' => UAGB_UPLOAD_DIR . 'assets/css',
-			),
-			array(
 				'base' => UAGB_UPLOAD_DIR . 'assets/fonts',
 			),
 		);
@@ -97,7 +91,7 @@ UAGB_Install::get_instance();
 /**
  * Install class
  *
- * @since x.x.x
+ * @since 2.0.0
  *
  * @return object
  */

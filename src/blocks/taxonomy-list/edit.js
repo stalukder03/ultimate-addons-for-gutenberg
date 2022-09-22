@@ -3,32 +3,23 @@
  */
 
 import styling from './styling';
-import React, { lazy, Suspense, useEffect } from 'react';
+import React, {    useEffect } from 'react';
 import apiFetch from '@wordpress/api-fetch';
-import lazyLoader from '@Controls/lazy-loader';
 
-const Settings = lazy( () =>
-	import(
-		/* webpackChunkName: "chunks/taxonomy-list/settings" */ './settings'
-	)
-);
-const Render = lazy( () =>
-	import( /* webpackChunkName: "chunks/taxonomy-list/render" */ './render' )
-);
+import { useDeviceType } from '@Controls/getPreviewType';
+import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
+import scrollBlockToView from '@Controls/scrollBlockToView';
+
+import Settings from './settings';
+import Render from './render';
 
 import { withSelect } from '@wordpress/data';
 
 const UAGBTaxonomyList = ( props ) => {
+	const deviceType = useDeviceType();
 	useEffect( () => {
 		// Assigning block_id in the attribute.
 		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
-		// Pushing Style tag for this block css.
-		const $style = document.createElement( 'style' );
-		$style.setAttribute(
-			'id',
-			'uagb-style-taxonomy-list-' + props.clientId.substr( 0, 8 )
-		);
-		document.head.appendChild( $style );
 
 		const {
 			contentPadding,
@@ -117,34 +108,111 @@ const UAGBTaxonomyList = ( props ) => {
 			url: uagb_blocks_info.ajax_url,
 			method: 'POST',
 			body: formData,
-		} ).then( ( data ) => {  
+		} ).then( ( data ) => {
 			props.setAttributes( { listInJson: data } );
 		} );
+		const {
+			borderStyle,
+			borderThickness,
+			borderRadius,
+			borderColor,
+			borderHoverColor,
+			overallBorderTopWidth,
+			overallBorderLeftWidth,
+			overallBorderRightWidth,
+			overallBorderBottomWidth,
+			overallBorderTopLeftRadius,
+			overallBorderTopRightRadius,
+			overallBorderBottomLeftRadius,
+			overallBorderBottomRightRadius,
+			overallBorderColor,
+			overallBorderHColor,
+			overallBorderStyle,
+		} = props.attributes;
 
+		if( borderThickness ){
+			if( undefined === overallBorderTopWidth ) {
+				props.setAttributes( {
+					overallBorderTopWidth: borderThickness,
+				} );
+			}
+			if( undefined === overallBorderLeftWidth ) {
+				props.setAttributes( { overallBorderLeftWidth : borderThickness} );
+			}
+			if( undefined === overallBorderRightWidth ) {
+				props.setAttributes( { overallBorderRightWidth : borderThickness} );
+			}
+			if( undefined === overallBorderBottomWidth ) {
+				props.setAttributes( { overallBorderBottomWidth : borderThickness} );
+			}
+		}
+
+		if( borderRadius ){
+
+			if( undefined === overallBorderTopLeftRadius ) {
+				props.setAttributes( { overallBorderTopLeftRadius : borderRadius} );
+			}
+			if( undefined === overallBorderTopRightRadius ) {
+				props.setAttributes( { overallBorderTopRightRadius : borderRadius} );
+			}
+			if( undefined === overallBorderBottomLeftRadius ) {
+				props.setAttributes( { overallBorderBottomLeftRadius : borderRadius} );
+			}
+			if( undefined === overallBorderBottomRightRadius ) {
+				props.setAttributes( { overallBorderBottomRightRadius : borderRadius} );
+			}
+		}
+
+		if( borderColor ){
+			if( undefined === overallBorderColor ) {
+				props.setAttributes( { overallBorderColor : borderColor} );
+			}
+		}
+
+		if( borderHoverColor ){
+			if( undefined === overallBorderHColor ) {
+				props.setAttributes( { overallBorderHColor : borderHoverColor} );
+			}
+		}
+
+		if( borderStyle ){
+			if( undefined === overallBorderStyle ) {
+				props.setAttributes( { overallBorderStyle : borderStyle} );
+			}
+		}
 	}, [] );
 
 	useEffect( () => {
-		const element = document.getElementById(
-			'uagb-style-taxonomy-list-' + props.clientId.substr( 0, 8 )
-		);
 
-		if ( null !== element && 'undefined' !== typeof element ) {
-			element.innerHTML = styling( props );
-		}
+		const blockStyling = styling( props );
+
+		addBlockEditorDynamicStyles( 'uagb-style-taxonomy-list-' + props.clientId.substr( 0, 8 ), blockStyling );
+
 	}, [ props ] );
+
+	useEffect( () => {
+		// Replacement for componentDidUpdate.
+		const blockStyling = styling( props );
+
+		addBlockEditorDynamicStyles( 'uagb-style-taxonomy-list-' + props.clientId.substr( 0, 8 ), blockStyling );
+
+		scrollBlockToView();
+	}, [deviceType] );
 
 	return (
 		<>
-			<Suspense fallback={ lazyLoader() }>
-				<Settings parentProps={ props } />
+
+						<>
+			<Settings parentProps={ props } />
 				<Render parentProps={ props } />
-			</Suspense>
+			</>
+
 		</>
 	);
 };
 
 export default withSelect( ( select, props ) => {
-	
+
 	const {
 		postsToShow,
 		order,
@@ -154,7 +222,7 @@ export default withSelect( ( select, props ) => {
 		showEmptyTaxonomy,
 		listInJson
 	} = props.attributes;
-	
+
 		const allTaxonomy = ( null !== listInJson ) ? listInJson.data : '';
 		const currentTax = ( '' !== allTaxonomy ) ? allTaxonomy[ postType ] : 'undefined';
 
@@ -172,7 +240,7 @@ export default withSelect( ( select, props ) => {
 				categoriesList = currentTax[ listToShowTaxonomy ][ taxonomyType ];
 			}
 		}
-	
+
 		const latestPostsQuery = {
 			order,
 			orderby: orderBy,

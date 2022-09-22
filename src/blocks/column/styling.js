@@ -5,6 +5,7 @@
 import inlineStyles from './inline-styles';
 import generateCSS from '@Controls/generateCSS';
 import generateCSSUnit from '@Controls/generateCSSUnit';
+import generateBorderCSS from '@Controls/generateBorderCSS';
 
 function styling( props ) {
 	const {
@@ -45,18 +46,18 @@ function styling( props ) {
 		backgroundAttachment,
 		backgroundRepeat,
 		backgroundSize,
-		borderStyle,
-		borderWidth,
-		borderRadius,
-		borderColor,
 		mobileMarginType,
 		tabletMarginType,
 		desktopMarginType,
 		mobilePaddingType,
 		tabletPaddingType,
 		desktopPaddingType,
-		borderHoverColor,
+		columnBorderHColor
 	} = props.attributes;
+
+	const borderCSS = generateBorderCSS( props.attributes, 'column' );
+	const borderCSSTablet = generateBorderCSS( props.attributes, 'column', 'tablet' );
+	const borderCSSMobile = generateBorderCSS( props.attributes, 'column', 'mobile' );
 
 	const position = backgroundPosition.replace( '-', ' ' );
 	let tabletSelectors = {};
@@ -71,14 +72,8 @@ function styling( props ) {
 		'margin-bottom': generateCSSUnit( bottomMargin, desktopMarginType ),
 		'margin-left': generateCSSUnit( leftMargin, desktopMarginType ),
 		'margin-right': generateCSSUnit( rightMargin, desktopMarginType ),
-		'border-radius': generateCSSUnit( borderRadius, desktopMarginType ),
+		...borderCSS
 	};
-
-	if ( borderStyle !== 'none' ) {
-		style[ 'border-style' ] = borderStyle;
-		style[ 'border-width' ] = generateCSSUnit( borderWidth, 'px' );
-		style[ 'border-color' ] = borderColor;
-	}
 
 	if ( 'image' === backgroundType ) {
 		style[ 'background-image' ] = backgroundImage
@@ -92,7 +87,11 @@ function styling( props ) {
 
 	const selectors = {
 		':before': inlineStyles( props ),
+		':after': inlineStyles( props ),
 		'': style,
+	};
+	selectors[ '.block-editor-block-list__block:hover' ] = {
+		'border-color': columnBorderHColor,
 	};
 
 	tabletSelectors = {
@@ -126,6 +125,7 @@ function styling( props ) {
 				rightMarginTablet,
 				tabletMarginType
 			),
+			...borderCSSTablet
 		},
 	};
 
@@ -160,6 +160,7 @@ function styling( props ) {
 				rightMarginMobile,
 				mobileMarginType
 			),
+			...borderCSSMobile
 		},
 	};
 
@@ -181,28 +182,22 @@ function styling( props ) {
 		};
 	}
 
-	if ( 'none' !== borderStyle ) {
-		selectors[ '.block-editor-block-list__block:hover' ] = {
-			'border-color': borderHoverColor,
-		};
-	}
-
 	let stylingCss = '';
 
-	const id = `#wpwrap .edit-post-visual-editor #block-${ props.clientId }`;
+	const id = `#block-${ props.clientId }`;
 
 	stylingCss = generateCSS( selectors, id );
 
 	stylingCss += generateCSS(
 		tabletSelectors,
-		`${ id }.uagb-editor-preview-mode-tablet`,
+		`.uagb-editor-preview-mode-tablet ${ id }`,
 		true,
 		'tablet'
 	);
 
 	stylingCss += generateCSS(
 		mobileSelectors,
-		`${ id }.uagb-editor-preview-mode-mobile`,
+		`.uagb-editor-preview-mode-mobile ${ id }`,
 		true,
 		'mobile'
 	);

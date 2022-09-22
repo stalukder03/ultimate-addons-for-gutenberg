@@ -1,5 +1,7 @@
+import { RichText } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import renderSVG from '@Controls/renderIcon';
+import { __ } from '@wordpress/i18n';
 
 const InfoBoxCta = ( props ) => {
 	const { attributes, setAttributes = 'not_set' } = props;
@@ -27,7 +29,19 @@ const InfoBoxCta = ( props ) => {
 						rel={ rel }
 					>
 						{ attributes.ctaIconPosition === 'before' && ctaIconOutput }
-						{ attributes.ctaText }
+							<RichText
+								tagName="span"
+								placeholder={ __(
+									'Read More',
+									'ultimate-addons-for-gutenberg'
+								) }
+								value={ attributes.ctaText }
+								className="uagb-inline-editing"
+								multiline={ false }
+								onChange={ ( value ) => {
+									setAttributes( { ctaText: value } );
+								} }
+							/>
 						{ attributes.ctaIconPosition === 'after' && ctaIconOutput }
 					</a>
 				) }
@@ -46,7 +60,19 @@ const InfoBoxCta = ( props ) => {
 						>
 
 							{ attributes.ctaIconPosition === 'before' && ctaIconOutput }
-							{ attributes.ctaText }
+							<RichText
+								tagName="span"
+								placeholder={ __(
+									'Read More',
+									'ultimate-addons-for-gutenberg'
+								) }
+								value={ attributes.ctaText }
+								className="uagb-inline-editing"
+								multiline={ false }
+								onChange={ ( value ) => {
+									setAttributes( { ctaText: value } );
+								} }
+							/>
 							{ attributes.ctaIconPosition === 'after' && ctaIconOutput }
 						</a>
 					</div>
@@ -56,20 +82,24 @@ const InfoBoxCta = ( props ) => {
 	}
 	return (
 			<>
-				{ attributes.ctaType === 'text' && (
-					<a
-						href={ attributes.ctaLink }
-						target={ target }
-						className="uagb-infobox-cta-link"
-						rel={ rel }
-						alt=""
-					>
-						{ attributes.ctaIconPosition === 'before' && ctaIconOutput }
-						{ attributes.ctaText }
-						{ attributes.ctaIconPosition === 'after' && ctaIconOutput }
-					</a>
-				) }
 				<div className= 'uagb-ifb-button-wrapper wp-block-button' >
+					{ attributes.ctaType === 'text' && (
+						<a
+							href={ attributes.ctaLink }
+							target={ target }
+							className="uagb-infobox-cta-link"
+							rel={ rel }
+							alt=""
+						>
+							{ attributes.ctaIconPosition === 'before' && ctaIconOutput }
+							<RichText.Content
+								tagName="span"
+								value={ attributes.ctaText }
+								className="uagb-inline-editing"
+							/>
+							{ attributes.ctaIconPosition === 'after' && ctaIconOutput }
+						</a>
+					) }
 					{ attributes.ctaType === 'button' && (
 						<a
 							href={ attributes.ctaLink }
@@ -79,7 +109,11 @@ const InfoBoxCta = ( props ) => {
 							alt=""
 						>
 							{ attributes.ctaIconPosition === 'before' && ctaIconOutput }
-							{ attributes.ctaText }
+							<RichText.Content
+								tagName="span"
+								value={ attributes.ctaText }
+								className="uagb-inline-editing"
+							/>
 							{ attributes.ctaIconPosition === 'after' && ctaIconOutput }
 						</a>
 					) }

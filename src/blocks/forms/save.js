@@ -18,14 +18,12 @@ export default function save( props ) {
 		failedMessage,
 		reCaptchaEnable,
 		reCaptchaType,
-		reCaptchaSiteKeyV2,
-		reCaptchaSecretKeyV2,
 		buttonSize,
 	} = attributes;
 
 	const renderButtonHtml = () => {
 		return (
-			<button className="uagb-forms-main-submit-button">
+			<button className="uagb-forms-main-submit-button wp-block-button__link">
 				<RichText.Content
 					tagName="div"
 					value={ submitButtonText }
@@ -46,6 +44,7 @@ export default function save( props ) {
 			<form
 				className="uagb-forms-main-form"
 				method="post"
+				autoComplete="on"
 				name={ `uagb-form-${ block_id }` }
 			>
 				<InnerBlocks.Content />
@@ -69,20 +68,18 @@ export default function save( props ) {
 					/>
 				</div>
 				{ reCaptchaEnable &&
-					'v2' === reCaptchaType &&
-					reCaptchaSiteKeyV2 &&
-					reCaptchaSecretKeyV2 && (
+					'v2' === reCaptchaType && (
 						<>
 							<div
 								className="g-recaptcha uagb-forms-field-set"
-								data-sitekey={ reCaptchaSiteKeyV2 }
-							></div>
-							<div
-								className={ `uagb-form-reacaptcha-error-${ block_id }` }
+								data-sitekey= ''
 							></div>
 						</>
 					) }
-				<div className="uagb-forms-main-submit-button-wrap">
+					<div
+						className={ `uagb-form-reacaptcha-error-${ block_id }` }
+					></div>
+				<div className="uagb-forms-main-submit-button-wrap wp-block-button">
 					{ renderButtonHtml() }
 				</div>
 			</form>

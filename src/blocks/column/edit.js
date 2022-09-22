@@ -3,26 +3,51 @@
  */
 
 import styling from './styling';
-import React, { useEffect, lazy, Suspense } from 'react';
-import lazyLoader from '@Controls/lazy-loader';
+import React, { useEffect,    } from 'react';
 
-const Settings = lazy( () =>
-	import( /* webpackChunkName: "chunks/column/settings" */ './settings' )
-);
-const Render = lazy( () =>
-	import( /* webpackChunkName: "chunks/column/render" */ './render' )
-);
+import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
+import scrollBlockToView from '@Controls/scrollBlockToView';
+import { useDeviceType } from '@Controls/getPreviewType';
+import { migrateBorderAttributes } from '@Controls/generateAttributes';
+
+import Settings from './settings';
+import Render from './render';
 
 import hexToRGBA from '@Controls/hexToRgba';
 
 import maybeGetColorForVariable from '@Controls/maybeGetColorForVariable';
 
 const ColumnComponent = ( props ) => {
+	const deviceType = useDeviceType();
 	useEffect( () => {
 
 		const { setAttributes, attributes } = props;
 
-		const { backgroundOpacity, backgroundImageColor } = attributes;
+		const {
+			backgroundOpacity,
+			backgroundImageColor,
+			gradientOverlayColor1,
+			gradientOverlayColor2,
+			backgroundType,
+			overlayType,
+			gradientOverlayAngle,
+			gradientOverlayLocation1,
+			gradientOverlayPosition,
+			gradientOverlayLocation2,
+			gradientOverlayType
+		   } = attributes;
+
+		   if( 101 !== backgroundOpacity && 'image' === backgroundType && 'gradient' === overlayType ){
+			const color1 = hexToRGBA( maybeGetColorForVariable( gradientOverlayColor1 ), backgroundOpacity );
+			const color2 = hexToRGBA( maybeGetColorForVariable( gradientOverlayColor2 ), backgroundOpacity );
+			let gradientVal;
+			if ( 'linear' === gradientOverlayType ) {
+				gradientVal = `linear-gradient(${ gradientOverlayAngle }deg, ${ color1 } ${ gradientOverlayLocation1 }%, ${ color2 } ${ gradientOverlayLocation2 }%)`;
+			} else {
+				gradientVal = `radial-gradient( at ${ gradientOverlayPosition }, ${ color1 } ${ gradientOverlayLocation1 }%, ${ color2 } ${ gradientOverlayLocation2 }%)`;
+			}
+			setAttributes( { gradientValue: gradientVal } );
+		}
 
 		// Replacement for componentDidMount.
 
@@ -31,38 +56,63 @@ const ColumnComponent = ( props ) => {
 
 		setAttributes( { classMigrate: true } );
 
-		// Pushing Style tag for this block css.
-		const $style = document.createElement( 'style' );
-		$style.setAttribute(
-			'id',
-			'uagb-column-style-' + props.clientId.substr( 0, 8 )
-		);
-		document.head.appendChild( $style );
-
-		if ( 101 !== backgroundOpacity ) {
-			const color = hexToRGBA( maybeGetColorForVariable( backgroundImageColor ), backgroundOpacity );
-			setAttributes( { backgroundImageColor: color } );
-			setAttributes( { backgroundOpacity: 101 } );
+		if ( 'image' === backgroundType ) {
+			if ( 101 !== backgroundOpacity ) {
+				const color = hexToRGBA( maybeGetColorForVariable( backgroundImageColor ), backgroundOpacity );
+				setAttributes( { backgroundImageColor: color } );
+				setAttributes( { backgroundOpacity: 101 } );
+			}
 		}
+		const { borderStyle, borderWidth, borderRadius, borderColor, borderHoverColor } = props.attributes;
 
+		// border migration
+		if( borderWidth || borderRadius || borderColor || borderHoverColor || borderStyle ){
+
+			migrateBorderAttributes( 'column', {
+				label: 'borderWidth',
+				value: borderWidth,
+			}, {
+				label: 'borderRadius',
+				value: borderRadius
+			}, {
+				label: 'borderColor',
+				value: borderColor
+			}, {
+				label: 'borderHoverColor',
+				value: borderHoverColor
+			},{
+				label: 'borderStyle',
+				value: borderStyle
+			},
+			props.setAttributes,
+			props.attributes
+		);
+		}
 	}, [] );
 
 	useEffect( () => {
-		// Replacement for componentDidUpdate.
-		const element = document.getElementById(
-			'uagb-column-style-' + props.clientId.substr( 0, 8 )
-		);
 
-		if ( null !== element && undefined !== element ) {
-			element.innerHTML = styling( props );
-		}
+		// Replacement for componentDidUpdate.
+		const blockStyling = styling( props );
+
+        addBlockEditorDynamicStyles( 'uagb-column-style-' + props.clientId.substr( 0, 8 ), blockStyling );
 	}, [ props ] );
 
+	useEffect( () => {
+		// Replacement for componentDidUpdate.
+	    const blockStyling = styling( props );
+
+        addBlockEditorDynamicStyles( 'uagb-column-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+
+		scrollBlockToView();
+	}, [deviceType] );
+
 	return (
-		<Suspense fallback={ lazyLoader() }>
-			<Settings parentProps={ props } />
+			<>
+			<Settings parentProps={ props } deviceType = { deviceType }/>
 			<Render parentProps={ props } />
-		</Suspense>
+			</>
+
 	);
 };
 

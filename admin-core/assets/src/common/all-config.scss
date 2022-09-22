@@ -1,3 +1,8 @@
-@import "colors-config.scss";
-@import "common.scss";
-@import "typography-config.scss";
+/* stylelint-disable */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "colors-config";
+@import "common";
+@import "typography-config";
+@import "tailwind-important";

@@ -46,9 +46,9 @@ class UAGB_Init_Blocks {
 		add_action( 'enqueue_block_editor_assets', array( $this, 'editor_assets' ) );
 
 		if ( version_compare( get_bloginfo( 'version' ), '5.8', '>=' ) ) {
-			add_filter( 'block_categories_all', array( $this, 'register_block_category' ), 10, 2 );
+			add_filter( 'block_categories_all', array( $this, 'register_block_category' ), 999999, 2 );
 		} else {
-			add_filter( 'block_categories', array( $this, 'register_block_category' ), 10, 2 );
+			add_filter( 'block_categories', array( $this, 'register_block_category' ), 999999, 2 );
 		}
 
 		add_action( 'wp_ajax_uagb_get_taxonomy', array( $this, 'get_taxonomy' ) );
@@ -59,10 +59,106 @@ class UAGB_Init_Blocks {
 		add_action( 'wp_ajax_uagb_cf7_shortcode', array( $this, 'cf7_shortcode' ) );
 		add_action( 'wp_ajax_nopriv_uagb_cf7_shortcode', array( $this, 'cf7_shortcode' ) );
 
+		add_action( 'wp_ajax_uagb_forms_recaptcha', array( $this, 'forms_recaptcha' ) );
+
 		if ( ! is_admin() ) {
 			add_action( 'render_block', array( $this, 'render_block' ), 5, 2 );
 		}
+
+		add_action( 'spectra_total_blocks_count_action', array( $this, 'blocks_count_logic' ) );
+
+		add_action( 'spectra_analytics_count_actions', array( $this, 'send_spectra_specific_stats' ) );
+
 	}
+
+	/**
+	 * Reset all the filters for scheduled actions to get post block count.
+	 */
+	public function send_spectra_specific_stats() {
+
+		delete_option( 'spectra_blocks_pages_counted' );
+		delete_option( 'spectra_blocks_count_status' );
+		delete_option( 'get_spectra_block_count' );
+		delete_option( 'spectra_settings_data' );
+
+	}
+
+	/**
+	 * Calculate Spectra blocks count.
+	 *
+	 * @since 2.0.12
+	 * @return void
+	 */
+	public function blocks_count_logic() {
+
+		// Number of posts to parse at a time.
+		$batch_size = 10;
+
+		$list_blocks         = UAGB_Helper::$block_list;
+		$spectra_block_count = 0;
+		$blocks_count        = array();
+		$all_blocks_data     = array();
+
+		$page = get_option( 'spectra_blocks_pages_counted', 1 );
+
+		$saved_block_count = get_option( 'get_spectra_block_count', 0 );
+
+		$count_status = get_option( 'spectra_blocks_count_status' );
+
+		if ( ! $saved_block_count ) {
+			// Update block list count.
+			foreach ( $list_blocks as $slug => $value ) {
+				$_slug                                       = str_replace( 'uagb/', '', $slug );
+				$all_blocks_data[ '<!-- wp:' . $slug . ' ' ] = array(
+					'name' => $_slug,
+				);
+				$blocks_count[ $_slug ]                      = array(
+					'name'  => $_slug,
+					'count' => 0,
+				);
+			}
+		} elseif ( is_array( $saved_block_count ) && count( $saved_block_count ) !== 0 ) {
+			$blocks_count = $saved_block_count;
+		}
+
+		$query_args = array(
+			'post_type'      => 'any',
+			'post_status'    => 'publish',
+			'posts_per_page' => $batch_size,
+			'paged'          => $page,
+		);
+
+		$query = new WP_Query( $query_args );
+
+		if ( $query->have_posts() && $query->max_num_pages >= $page ) {
+			foreach ( $query->posts as $key => $post ) {
+				foreach ( $all_blocks_data as $block_key => $block ) {
+					if ( false !== strpos( $post->post_content, $block_key ) ) {
+						$block_slug = str_replace( '<!-- wp:uagb/', '', $block_key );
+						$block_slug = str_replace( ' ', '', $block_slug );
+
+						$usage_count                          = $blocks_count[ $block_slug ]['count'];
+						$latest_count                         = substr_count( $post->post_content, $block_key );
+						$blocks_count[ $block_slug ]['count'] = $usage_count + $latest_count;
+						$spectra_block_count++;
+					}
+				}
+			}
+			$page++;
+			update_option( 'spectra_blocks_pages_counted', $page );
+			if ( function_exists( 'as_enqueue_async_action' ) ) {
+				as_enqueue_async_action( 'spectra_total_blocks_count_action' );
+			}
+		} else {
+			update_option( 'spectra_blocks_count_status', 'done' );
+		}
+
+		if ( $spectra_block_count > 0 ) {
+			update_option( 'get_spectra_block_count', $blocks_count );
+		}
+
+	}
+
 	/**
 	 * Render block.
 	 *
@@ -172,38 +268,11 @@ class UAGB_Init_Blocks {
 			return $block_content;
 		}
 
-		$browsers = array(
-			'ie'         => array(
-				'MSIE',
-				'Trident',
-			),
-			'firefox'    => 'Firefox',
-			'chrome'     => 'Chrome',
-			'opera_mini' => 'Opera Mini',
-			'opera'      => 'Opera',
-			'safari'     => 'Safari',
-		);
-
 		$value = $block_attributes['UAGBrowser'];
 
-		$show = false;
+		$user_agent = UAGB_Helper::get_browser_name( $_SERVER['HTTP_USER_AGENT'] );
 
-		if ( 'ie' === $value ) {
-			if ( false !== strpos( $_SERVER['HTTP_USER_AGENT'], $browsers[ $value ][0] ) || false !== strpos( $_SERVER['HTTP_USER_AGENT'], $browsers[ $value ][1] ) ) {
-				$show = true;
-			}
-		} else {
-			if ( false !== strpos( $_SERVER['HTTP_USER_AGENT'], $browsers[ $value ] ) ) {
-				$show = true;
-
-				// Additional check for Chrome that returns Safari.
-				if ( 'safari' === $value || 'firefox' === $value ) {
-					if ( false !== strpos( $_SERVER['HTTP_USER_AGENT'], 'Chrome' ) ) {
-						$show = false;
-					}
-				}
-			}
-		}
+		$show = ( $value === $user_agent ) ? true : false;
 
 		return ( $show ) ? '' : $block_content;
 	}
@@ -233,7 +302,7 @@ class UAGB_Init_Blocks {
 	/**
 	 * Ajax call to get Taxonomy List.
 	 *
-	 * @since x.x.x
+	 * @since 2.0.0
 	 */
 	public function get_taxonomy() {
 
@@ -367,6 +436,29 @@ class UAGB_Init_Blocks {
 	}
 
 	/**
+	 * Renders the forms recaptcha keys.
+	 *
+	 * @since 2.0.0
+	 */
+	public function forms_recaptcha() {
+
+		check_ajax_referer( 'uagb_ajax_nonce', 'nonce' );
+
+		$value = isset( $_POST['value'] ) ? json_decode( stripslashes( $_POST['value'] ), true ) : array(); // phpcs:ignore
+
+		\UAGB_Admin_Helper::update_admin_settings_option( 'uag_recaptcha_secret_key_v2', sanitize_text_field( $value['reCaptchaSecretKeyV2'] ) );
+		\UAGB_Admin_Helper::update_admin_settings_option( 'uag_recaptcha_secret_key_v3', sanitize_text_field( $value['reCaptchaSecretKeyV3'] ) );
+		\UAGB_Admin_Helper::update_admin_settings_option( 'uag_recaptcha_site_key_v2', sanitize_text_field( $value['reCaptchaSiteKeyV2'] ) );
+		\UAGB_Admin_Helper::update_admin_settings_option( 'uag_recaptcha_site_key_v3', sanitize_text_field( $value['reCaptchaSiteKeyV3'] ) );
+
+		$response_data = array(
+			'messsage' => __( 'Successfully saved data!', 'ultimate-addons-for-gutenberg' ),
+		);
+		wp_send_json_success( $response_data );
+
+	}
+
+	/**
 	 * Renders the Contect Form 7 shortcode.
 	 *
 	 * @since 1.10.0
@@ -394,13 +486,13 @@ class UAGB_Init_Blocks {
 	 */
 	public function register_block_category( $categories, $post ) {
 		return array_merge(
-			$categories,
 			array(
 				array(
 					'slug'  => 'uagb',
-					'title' => __( 'Ultimate Addons Blocks', 'ultimate-addons-for-gutenberg' ),
+					'title' => __( 'Spectra', 'ultimate-addons-for-gutenberg' ),
 				),
-			)
+			),
+			$categories
 		);
 	}
 
@@ -420,9 +512,15 @@ class UAGB_Init_Blocks {
 				'dependencies' => array(),
 				'version'      => UAGB_VER,
 			);
-		$script_dep      = array_merge( $script_info['dependencies'], array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-components', 'wp-editor', 'wp-api-fetch', 'uagb-cross-site-cp-helper-js' ) );
+		global $pagenow;
 
-		wp_enqueue_script( 'uagb-cross-site-cp-helper-js', UAGB_URL . 'assets/js/cross-site-cp-helper.js', array(), UAGB_VER, true ); // 3rd Party Library JS for Cross-Domain Local Storage usage for the Copy/Paste styles feature.
+		$script_dep = array_merge( $script_info['dependencies'], array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-components', 'wp-api-fetch' ) );
+
+		if ( 'widgets.php' !== $pagenow ) {
+			$script_dep = array_merge( $script_info['dependencies'], array( 'wp-editor' ) );
+		}
+
+		$js_ext = ( SCRIPT_DEBUG ) ? '.js' : '.min.js';
 
 		// Scripts.
 		wp_enqueue_script(
@@ -482,7 +580,8 @@ class UAGB_Init_Blocks {
 				'deactivated_blocks' => $blocks,
 			)
 		);
-		$displayCondition = UAGB_Admin_Helper::get_admin_settings_option( 'uag_enable_block_condition', 'enabled' );
+		$display_condition            = UAGB_Admin_Helper::get_admin_settings_option( 'uag_enable_block_condition', 'enabled' );
+		$display_responsive_condition = UAGB_Admin_Helper::get_admin_settings_option( 'uag_enable_block_responsive', 'enabled' );
 
 		$enable_selected_fonts = UAGB_Admin_Helper::get_admin_settings_option( 'uag_load_select_font_globally', 'disabled' );
 		$selected_fonts        = array();
@@ -516,6 +615,21 @@ class UAGB_Init_Blocks {
 
 		$uagb_exclude_blocks_from_extension = array( 'core/archives', 'core/calendar', 'core/latest-comments', 'core/tag-cloud', 'core/rss' );
 
+		$content_width = \UAGB_Admin_Helper::get_global_content_width();
+
+		if ( '' === $content_width ) {
+			$content_width = 1140;
+		}
+
+		$container_padding = UAGB_Admin_Helper::get_admin_settings_option( 'uag_container_global_padding', 'default' );
+
+		if ( 'default' === $container_padding ) {
+			\UAGB_Admin_Helper::update_admin_settings_option( 'uag_container_global_padding', 10 );
+			$container_padding = 10;
+		}
+
+		$container_elements_gap = UAGB_Admin_Helper::get_admin_settings_option( 'uag_container_global_elements_gap', 20 );
+
 		wp_localize_script(
 			'uagb-block-editor-js',
 			'uagb_blocks_info',
@@ -536,8 +650,10 @@ class UAGB_Init_Blocks {
 				'uagb_url'                           => UAGB_URL,
 				'uagb_mime_type'                     => UAGB_Helper::get_mime_type(),
 				'uagb_site_url'                      => UAGB_URI,
-				'enableConditions'                   => apply_filters_deprecated( 'enable_block_condition', array( $displayCondition ), '1.23.4', 'uag_enable_block_condition' ),
+				'enableConditions'                   => apply_filters_deprecated( 'enable_block_condition', array( $display_condition ), '1.23.4', 'uag_enable_block_condition' ),
+				'enableConditionsForCoreBlocks'      => apply_filters( 'enable_block_condition_for_core', true ),
 				'enableMasonryGallery'               => apply_filters( 'uag_enable_masonry_gallery', UAGB_Admin_Helper::get_admin_settings_option( 'uag_enable_masonry_gallery', 'enabled' ) ),
+				'enableResponsiveConditions'         => apply_filters( 'enable_block_responsive', UAGB_Admin_Helper::get_admin_settings_option( 'uag_enable_block_responsive', 'enabled' ) ),
 				'uagb_svg_icons'                     => UAGB_Helper::backend_load_font_awesome_icons(),
 				'uagb_enable_extensions_for_blocks'  => apply_filters( 'uagb_enable_extensions_for_blocks', array() ),
 				'uagb_exclude_blocks_from_extension' => $uagb_exclude_blocks_from_extension,
@@ -545,7 +661,20 @@ class UAGB_Init_Blocks {
 				'uag_select_font_globally'           => $selected_fonts,
 				'uagb_old_user_less_than_2'          => get_option( 'uagb-old-user-less-than-2' ),
 				'collapse_panels'                    => UAGB_Admin_Helper::get_admin_settings_option( 'uag_collapse_panels', 'enabled' ),
+				'enable_legacy_blocks'               => UAGB_Admin_Helper::get_admin_settings_option( 'uag_enable_legacy_blocks', ( 'yes' === get_option( 'uagb-old-user-less-than-2' ) ) ? 'yes' : 'no' ),
 				'copy_paste'                         => UAGB_Admin_Helper::get_admin_settings_option( 'uag_copy_paste', 'enabled' ),
+				'content_width'                      => $content_width,
+				'container_global_padding'           => $container_padding,
+				'container_elements_gap'             => $container_elements_gap,
+				'recaptcha_site_key_v2'              => UAGB_Admin_Helper::get_admin_settings_option( 'uag_recaptcha_site_key_v2', '' ),
+				'recaptcha_site_key_v3'              => UAGB_Admin_Helper::get_admin_settings_option( 'uag_recaptcha_site_key_v3', '' ),
+				'recaptcha_secret_key_v2'            => UAGB_Admin_Helper::get_admin_settings_option( 'uag_recaptcha_secret_key_v2', '' ),
+				'recaptcha_secret_key_v3'            => UAGB_Admin_Helper::get_admin_settings_option( 'uag_recaptcha_secret_key_v3', '' ),
+				'blocks_editor_spacing'              => UAGB_Admin_Helper::get_admin_settings_option( 'uag_blocks_editor_spacing', 0 ),
+				'load_font_awesome_5'                => UAGB_Admin_Helper::get_admin_settings_option( 'uag_load_font_awesome_5', ( 'yes' === get_option( 'uagb-old-user-less-than-2' ) ) ? 'enabled' : 'disabled' ),
+				'auto_block_recovery'                => UAGB_Admin_Helper::get_admin_settings_option( 'uag_auto_block_recovery', ( 'yes' === get_option( 'uagb-old-user-less-than-2' ) ) ? 'enabled' : 'disabled' ),
+				'font_awesome_5_polyfill'            => get_spectra_font_awesome_polyfiller(),
+				'spectra_custom_fonts'               => apply_filters( 'spectra_system_fonts', array() ),
 			)
 		);
 		// To match the editor with frontend.

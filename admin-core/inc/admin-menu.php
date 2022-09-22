@@ -48,7 +48,7 @@ class Admin_Menu {
 	 * @var string Class object.
 	 * @since 1.0.0
 	 */
-	private $menu_slug = 'uag';
+	private $menu_slug = 'spectra';
 
 	/**
 	 * Constructor
@@ -74,6 +74,13 @@ class Admin_Menu {
 		/* Render admin content view */
 		add_action( 'uag_render_admin_page_content', array( $this, 'render_content' ), 10, 2 );
 
+		/* Action to get total blocks count */
+		if ( function_exists( 'as_enqueue_async_action' ) && 'done' !== get_option( 'spectra_blocks_count_status' ) ) {
+
+			as_enqueue_async_action( 'spectra_total_blocks_count_action' );
+			update_option( 'spectra_blocks_count_status', 'processing' );
+		}
+
 	}
 
 	/**
@@ -90,19 +97,29 @@ class Admin_Menu {
 			'<a href="' . $default_url . '">' . __( 'Settings', 'ultimate-addons-for-gutenberg' ) . '</a>',
 		);
 
-		return array_merge( $links, $mylinks );
+		return array_merge( $mylinks, $links );
 	}
 
 	/**
-	 *  Initialize after Cartflows pro get loaded.
+	 *  Initialize after Spectra gets loaded.
 	 */
 	public function settings_admin_scripts() {
+
 		// Enqueue admin scripts.
 		if ( ! empty( $_GET['page'] ) && ( $this->menu_slug === $_GET['page'] || false !== strpos( $_GET['page'], $this->menu_slug . '_' ) ) ) { //phpcs:ignore
 
 			add_action( 'admin_enqueue_scripts', array( $this, 'styles_scripts' ) );
 
 			add_filter( 'admin_footer_text', array( $this, 'add_footer_link' ), 99 );
+		}
+
+		if ( 'done' === get_option( 'spectra_blocks_count_status' ) ) {
+
+			if ( function_exists( 'as_next_scheduled_action' ) && false === \as_next_scheduled_action( 'spectra_analytics_count_actions' ) ) {
+
+				// It will automatically reschedule the action once initiated.
+				as_schedule_recurring_action( strtotime( 'now' ), 2 * WEEK_IN_SECONDS, 'spectra_analytics_count_actions' );
+			}
 		}
 	}
 
@@ -121,8 +138,8 @@ class Admin_Menu {
 
 		add_submenu_page(
 			'options-general.php',
-			'UAG',
-			'UAG',
+			'Spectra',
+			'Spectra',
 			$capability,
 			$menu_slug,
 			array( $this, 'render' ),
@@ -161,7 +178,7 @@ class Admin_Menu {
 	public function render_content( $menu_page_slug, $page_action ) {
 
 		if ( $this->menu_slug === $menu_page_slug ) {
-			include_once UAG_ADMIN_DIR . 'views/settings-app.php';
+			include_once UAG_ADMIN_DIR . 'views/dashboard-app.php';
 		}
 	}
 
@@ -184,23 +201,28 @@ class Admin_Menu {
 		$localize = apply_filters(
 			'uag_react_admin_localize',
 			array(
-				'current_user'   => ! empty( wp_get_current_user()->user_firstname ) ? wp_get_current_user()->user_firstname : wp_get_current_user()->display_name,
-				'admin_base_url' => admin_url(),
-				'plugin_dir'     => UAGB_URL,
-				'plugin_ver'     => UAGB_VER,
-				'logo_url'       => UAGB_URL . 'admin-core/assets/images/uagb_logo.svg',
-				'admin_url'      => admin_url( 'admin.php' ),
-				'ajax_url'       => admin_url( 'admin-ajax.php' ),
-				'wp_pages_url'   => admin_url( 'post-new.php?post_type=page' ),
-				'home_slug'      => $this->menu_slug,
-				'rollback_url'   => esc_url( add_query_arg( 'version', 'VERSION', wp_nonce_url( admin_url( 'admin-post.php?action=uag_rollback' ), 'uag_rollback' ) ) ),
-				'blocks_info'    => $blocks_info,
-				'reusable_url'   => esc_url( admin_url( 'edit.php?post_type=wp_block' ) ),
+				'current_user'             => ! empty( wp_get_current_user()->user_firstname ) ? wp_get_current_user()->user_firstname : wp_get_current_user()->display_name,
+				'admin_base_url'           => admin_url(),
+				'uag_base_url'             => admin_url( 'options-general.php?page=' . $this->menu_slug ),
+				'plugin_dir'               => UAGB_URL,
+				'plugin_ver'               => UAGB_VER,
+				'logo_url'                 => UAGB_URL . 'admin-core/assets/images/dashboard-uag-logo.svg',
+				'admin_url'                => admin_url( 'admin.php' ),
+				'ajax_url'                 => admin_url( 'admin-ajax.php' ),
+				'wp_pages_url'             => admin_url( 'post-new.php?post_type=page' ),
+				'home_slug'                => $this->menu_slug,
+				'rollback_url'             => esc_url( add_query_arg( 'version', 'VERSION', wp_nonce_url( admin_url( 'admin-post.php?action=uag_rollback' ), 'uag_rollback' ) ) ),
+				'blocks_info'              => $blocks_info,
+				'reusable_url'             => esc_url( admin_url( 'edit.php?post_type=wp_block' ) ),
+				'global_data'              => Admin_Helper::get_options(),
+				'uag_content_width_set_by' => \UAGB_Admin_Helper::get_admin_settings_option( 'uag_content_width_set_by', __( 'Spectra', 'ultimate-addons-for-gutenberg' ) ),
+				'spectra_custom_fonts'     => apply_filters( 'spectra_system_fonts', array() ),
 			)
 		);
 
 		$this->settings_app_scripts( $localize );
 	}
+
 
 	/**
 	 * Create an Array of Blocks info which we need to show in Admin dashboard.
@@ -257,6 +279,7 @@ class Admin_Menu {
 					'post-image',
 					'post-button',
 					'post-excerpt',
+					'post-taxonomy',
 					'post-meta',
 					'restaurant-menu-child',
 					'content-timeline-child',
@@ -268,9 +291,15 @@ class Admin_Menu {
 					$exclude_blocks[] = $addon;
 				}
 
-				if ( 'yes' !== get_option( 'uagb-old-user-less-than-2' ) ) {
-					$exclude_blocks[] = 'buttons';
+				$enable_legacy_blocks = \UAGB_Admin_Helper::get_admin_settings_option( 'uag_enable_legacy_blocks', ( 'yes' === get_option( 'uagb-old-user-less-than-2' ) ) ? 'yes' : 'no' );
+
+				if ( 'yes' !== $enable_legacy_blocks ) {
 					$exclude_blocks[] = 'wp-search';
+					$exclude_blocks[] = 'columns';
+					$exclude_blocks[] = 'section';
+					$exclude_blocks[] = 'cf7-styler';
+					$exclude_blocks[] = 'gf-styler';
+					$exclude_blocks[] = 'post-masonry';
 				}
 
 				if ( array_key_exists( 'extension', $info ) && $info['extension'] ) {
@@ -295,7 +324,7 @@ class Admin_Menu {
 	/**
 	 * Get plugin status
 	 *
-	 * @since x.x.x
+	 * @since 2.0.0
 	 *
 	 * @param  string $plugin_init_file Plguin init file.
 	 * @return mixed
@@ -322,7 +351,7 @@ class Admin_Menu {
 		$handle            = 'uag-admin-settings';
 		$build_path        = UAG_ADMIN_DIR . 'assets/build/';
 		$build_url         = UAG_ADMIN_URL . 'assets/build/';
-		$script_asset_path = $build_path . 'settings-app.asset.php';
+		$script_asset_path = $build_path . 'dashboard-app.asset.php';
 		$script_info       = file_exists( $script_asset_path )
 			? include $script_asset_path
 			: array(
@@ -334,7 +363,7 @@ class Admin_Menu {
 
 		wp_register_script(
 			$handle,
-			$build_url . 'settings-app.js',
+			$build_url . 'dashboard-app.js',
 			$script_dep,
 			$script_info['version'],
 			true
@@ -342,7 +371,14 @@ class Admin_Menu {
 
 		wp_register_style(
 			$handle,
-			$build_url . 'settings-app.css',
+			$build_url . 'dashboard-app.css',
+			array(),
+			UAGB_VER
+		);
+
+		wp_register_style(
+			'uag-admin-google-fonts',
+			'https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap',
 			array(),
 			UAGB_VER
 		);
@@ -350,7 +386,7 @@ class Admin_Menu {
 		wp_enqueue_script( $handle );
 
 		wp_set_script_translations( $handle, 'ultimate-addons-for-gutenberg' );
-
+		wp_enqueue_style( 'uag-admin-google-fonts' );
 		wp_enqueue_style( $handle );
 		wp_style_add_data( $handle, 'rtl', 'replace' );
 		wp_localize_script( $handle, 'uag_admin_react', $localize );
@@ -365,7 +401,7 @@ class Admin_Menu {
 
 		$logs_page_url = '#';
 
-		echo '<span id="footer-thankyou"> Thank you for using <a href="#">UAG</a></span> | <a href="' . esc_url( $logs_page_url ) . '">Logs</a>';
+		echo '<span id="footer-thankyou"> Thank you for using <a href="#" class="focus:text-spectra-hover active:text-spectra-hover hover:text-spectra-hover">Spectra.</a></span>';
 	}
 
 }

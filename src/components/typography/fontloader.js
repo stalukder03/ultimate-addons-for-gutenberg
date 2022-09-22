@@ -30,7 +30,7 @@ const WebfontLoader = ( props ) => {
 			loadFonts();
 		}
 	}, [ props ] );
-	
+
 	const handleLoading = () => {
 		setValue( { status: statuses.loading } );
 	};
@@ -59,6 +59,28 @@ const WebfontLoader = ( props ) => {
 			} );
 			addFont( props.config.google.families[ 0 ] );
 		}
+
+		const tabletPreview = document.getElementsByClassName( 'is-tablet-preview' );
+		const mobilePreview = document.getElementsByClassName( 'is-mobile-preview' );
+
+		if ( 0 !== tabletPreview.length || 0 !== mobilePreview.length ) {
+
+			const preview = tabletPreview[0] || mobilePreview[0];
+
+			const iframe = preview.getElementsByTagName( 'iframe' )[0];
+
+			if ( iframe ) {
+
+				WebFont.load( {
+					...props.config,
+					loading: handleLoading,
+					active: handleActive,
+					inactive: handleInactive,
+					context: iframe?.contentWindow
+				} );
+				addFont( props.config.google.families[ 0 ] );
+			}
+		}
 	};
 
 	const { children } = props;
@@ -66,9 +88,9 @@ const WebfontLoader = ( props ) => {
 };
 
 WebfontLoader.propTypes = {
-	config: PropTypes.object.isRequired,
+	config: PropTypes.object?.isRequired,
 	children: PropTypes.element,
-	onStatus: PropTypes.func.isRequired,
+	onStatus: PropTypes.func?.isRequired,
 };
 
 WebfontLoader.defaultProps = {

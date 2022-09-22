@@ -1,28 +1,24 @@
 import styling from './styling';
-import React, { lazy, useEffect, Suspense } from 'react';
-import lazyLoader from '@Controls/lazy-loader';
+import React, {   useEffect,  } from 'react';
+
 import apiFetch from '@wordpress/api-fetch';
-const Settings = lazy( () =>
-	import( /* webpackChunkName: "chunks/cf7-styler/settings" */ './settings' )
-);
-const Render = lazy( () =>
-	import( /* webpackChunkName: "chunks/cf7-styler/render" */ './render' )
-);
+import { useDeviceType } from '@Controls/getPreviewType';
+import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
+import scrollBlockToView from '@Controls/scrollBlockToView';
+
+import Settings from './settings';
+import Render from './render';
 
 import { withSelect } from '@wordpress/data';
 
 const UAGBCF7 = ( props ) => {
+
+	const deviceType = useDeviceType();
+
 	useEffect( () => {
 		// Assigning block_id in the attribute.
 		props.setAttributes( { isHtml: false } );
 		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
-		// Pushing Style tag for this block css.
-		const $style = document.createElement( 'style' );
-		$style.setAttribute(
-			'id',
-			'uagb-cf7-styler-' + props.clientId.substr( 0, 8 )
-		);
-		document.head.appendChild( $style );
 
 		const { attributes, setAttributes } = props;
 		const {
@@ -44,6 +40,40 @@ const UAGBCF7 = ( props ) => {
 			fieldBottomPaddingDesktop,
 			fieldRightPaddingDesktop,
 			fieldLeftPaddingDesktop,
+
+			fieldBorderStyle,
+			fieldBorderWidth,
+			fieldBorderColor,
+			fieldBorderHColor,
+			fieldBorderRadius,
+			inputBorderTopWidth,
+			inputBorderLeftWidth,
+			inputBorderRightWidth,
+			inputBorderBottomWidth,
+			inputBorderTopLeftRadius,
+			inputBorderTopRightRadius,
+			inputBorderBottomLeftRadius,
+			inputBorderBottomRightRadius,
+			inputBorderColor,
+			inputBorderHColor,
+			inputBorderStyle,
+
+			buttonBorderWidth,
+			buttonBorderRadius,
+			buttonBorderColor,
+			buttonBorderHColor,
+			buttonBorderStyle,
+			btnBorderTopWidth,
+			btnBorderLeftWidth,
+			btnBorderRightWidth,
+			btnBorderBottomWidth,
+			btnBorderTopLeftRadius,
+			btnBorderTopRightRadius,
+			btnBorderBottomLeftRadius,
+			btnBorderBottomRightRadius,
+			btnBorderColor,
+			btnBorderHColor,
+			btnBorderStyle,
 		} = attributes;
 
 		if ( msgVrPadding ) {
@@ -98,6 +128,109 @@ const UAGBCF7 = ( props ) => {
 				setAttributes( { fieldLeftPaddingDesktop: fieldHrPadding } );
 			}
 		}
+
+		if( fieldBorderWidth ){
+			if( undefined === inputBorderTopWidth ) {
+				props.setAttributes( {
+					inputBorderTopWidth: fieldBorderWidth,
+				} );
+			}
+			if( undefined === inputBorderLeftWidth ) {
+				props.setAttributes( { inputBorderLeftWidth : fieldBorderWidth} );
+			}
+			if( undefined === inputBorderRightWidth ) {
+				props.setAttributes( { inputBorderRightWidth : fieldBorderWidth} );
+			}
+			if( undefined === inputBorderBottomWidth ) {
+				props.setAttributes( { inputBorderBottomWidth : fieldBorderWidth} );
+			}
+		}
+
+		if( fieldBorderRadius ){
+
+			if( undefined === inputBorderTopLeftRadius ) {
+				props.setAttributes( { inputBorderTopLeftRadius : fieldBorderRadius} );
+			}
+			if( undefined === inputBorderTopRightRadius ) {
+				props.setAttributes( { inputBorderTopRightRadius : fieldBorderRadius} );
+			}
+			if( undefined === inputBorderBottomLeftRadius ) {
+				props.setAttributes( { inputBorderBottomLeftRadius : fieldBorderRadius} );
+			}
+			if( undefined === inputBorderBottomRightRadius ) {
+				props.setAttributes( { inputBorderBottomRightRadius : fieldBorderRadius} );
+			}
+		}
+
+		if( fieldBorderColor ){
+			if( undefined === inputBorderColor ) {
+				props.setAttributes( { inputBorderColor : fieldBorderColor} );
+			}
+		}
+
+		if( fieldBorderHColor ){
+			if( undefined === inputBorderHColor ) {
+				props.setAttributes( { inputBorderHColor : fieldBorderHColor} );
+			}
+		}
+
+		if( fieldBorderStyle ){
+			if( undefined === inputBorderStyle ) {
+				props.setAttributes( { inputBorderStyle : fieldBorderStyle} );
+			}
+		}
+
+
+		if( buttonBorderWidth ){
+			if( undefined === btnBorderTopWidth ) {
+				props.setAttributes( {
+					btnBorderTopWidth: buttonBorderWidth,
+				} );
+			}
+			if( undefined === btnBorderLeftWidth ) {
+				props.setAttributes( { btnBorderLeftWidth : buttonBorderWidth} );
+			}
+			if( undefined === btnBorderRightWidth ) {
+				props.setAttributes( { btnBorderRightWidth : buttonBorderWidth} );
+			}
+			if( undefined === btnBorderBottomWidth ) {
+				props.setAttributes( { btnBorderBottomWidth : buttonBorderWidth} );
+			}
+		}
+
+		if( buttonBorderRadius ){
+
+			if( undefined === btnBorderTopLeftRadius ) {
+				props.setAttributes( { btnBorderTopLeftRadius : buttonBorderRadius} );
+			}
+			if( undefined === btnBorderTopRightRadius ) {
+				props.setAttributes( { btnBorderTopRightRadius : buttonBorderRadius} );
+			}
+			if( undefined === btnBorderBottomLeftRadius ) {
+				props.setAttributes( { btnBorderBottomLeftRadius : buttonBorderRadius} );
+			}
+			if( undefined === btnBorderBottomRightRadius ) {
+				props.setAttributes( { btnBorderBottomRightRadius : buttonBorderRadius} );
+			}
+		}
+
+		if( buttonBorderColor ){
+			if( undefined === btnBorderColor ) {
+				props.setAttributes( { btnBorderColor : buttonBorderColor} );
+			}
+		}
+
+		if( buttonBorderHColor ){
+			if( undefined === btnBorderHColor ) {
+				props.setAttributes( { btnBorderHColor : buttonBorderHColor} );
+			}
+		}
+
+		if( buttonBorderStyle ){
+			if( undefined === btnBorderStyle ) {
+				props.setAttributes( { btnBorderStyle : buttonBorderStyle} );
+			}
+		}
 	}, [] );
 
 	useEffect( () => {
@@ -107,20 +240,27 @@ const UAGBCF7 = ( props ) => {
 				event.preventDefault();
 			} );
 		}
-		const element = document.getElementById(
-			'uagb-cf7-styler-' + props.clientId.substr( 0, 8 )
-		);
 
-		if ( null !== element && undefined !== element ) {
-			element.innerHTML = styling( props );
-		}
+		const blockStyling = styling( props );
+
+		addBlockEditorDynamicStyles( 'uagb-cf7-styler-' + props.clientId.substr( 0, 8 ), blockStyling );
 	}, [ props ] );
 
+	useEffect( () => {
+		// Replacement for componentDidUpdate.
+		const blockStyling = styling( props );
+
+		addBlockEditorDynamicStyles( 'uagb-cf7-styler-' + props.clientId.substr( 0, 8 ), blockStyling );
+
+		scrollBlockToView();
+	}, [deviceType] );
+
 	return (
-		<Suspense fallback={ lazyLoader() }>
-			<Settings parentProps={ props } />
+			<>
+			<Settings parentProps={ props } deviceType = { deviceType }/>
 			<Render parentProps={ props } />
-		</Suspense>
+			</>
+
 	);
 };
 

@@ -7,19 +7,17 @@ import styling from './styling';
 import './style.scss';
 import { compose } from '@wordpress/compose';
 import { withSelect } from '@wordpress/data';
-import lazyLoader from '@Controls/lazy-loader';
-import React, { lazy, Suspense } from 'react';
-import { useState, useEffect } from '@wordpress/element';
 
-const Settings = lazy( () =>
-	import( /* webpackChunkName: "chunks/how-to/settings" */ './settings' )
-);
-const Render = lazy( () =>
-	import( /* webpackChunkName: "chunks/how-to/render" */ './render' )
-);
+import React from 'react';
+import { useState, useEffect } from '@wordpress/element';
+import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
+import scrollBlockToView from '@Controls/scrollBlockToView';
+import { useDeviceType } from '@Controls/getPreviewType';
+import Settings from './settings';
+import Render from './render';
 
 const HowToComponent = ( props ) => {
-
+	const deviceType = useDeviceType();
 	const [ prevState, setPrevState ] = useState( '' );
 
 	useEffect( () => {
@@ -31,14 +29,6 @@ const HowToComponent = ( props ) => {
 		props.setAttributes( {
 			schema: JSON.stringify( props.schemaJsonData ),
 		} );
-
-		// Pushing Style tag for this block css.
-		const $style = document.createElement( 'style' );
-		$style.setAttribute(
-			'id',
-			'uagb-how-to-schema-style-' + props.clientId.substr( 0, 8 )
-		);
-		document.head.appendChild( $style );
 
 		setPrevState( props.schemaJsonData );
 	}, [] );
@@ -55,14 +45,20 @@ const HowToComponent = ( props ) => {
 
 			setPrevState( props.schemaJsonData );
 		}
-		const element = document.getElementById(
-			'uagb-how-to-schema-style-' + props.clientId.substr( 0, 8 )
-		);
+		const blockStyling = styling( props );
 
-		if ( null !== element && undefined !== element ) {
-			element.innerHTML = styling( props );
-		}
+        addBlockEditorDynamicStyles( 'uagb-how-to-schema-style-' + props.clientId.substr( 0, 8 ), blockStyling );
 	}, [ props ] );
+
+
+	useEffect( () => {
+		// Replacement for componentDidUpdate.
+	    const blockStyling = styling( props );
+
+        addBlockEditorDynamicStyles( 'uagb-how-to-schema-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+
+		scrollBlockToView();
+	}, [deviceType] );
 
 	// Setup the attributes
 	const {
@@ -84,12 +80,17 @@ const HowToComponent = ( props ) => {
 			timeInDays,
 			timeInMonths,
 			timeInYears,
+			isPreview,
 		},
 	} = props;
 	const minsValue = timeInMins ? timeInMins : time;
 
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/how-to.png`;
+
 	return (
-		<Suspense fallback={ lazyLoader() }>
+		<>
+			{ isPreview ? <img width='100%' src={previewImageData} alt=''/> :
+			<>
 			<SchemaNotices
 				headingTitle={ headingTitle }
 				headingDesc={ headingDesc }
@@ -111,7 +112,9 @@ const HowToComponent = ( props ) => {
 			/>
 			<Settings parentProps={ props } />
 			<Render parentProps={ props } />
-		</Suspense>
+			</>
+			}
+		</>
 	);
 };
 
@@ -196,13 +199,13 @@ export default compose(
 				jsonData.supply[ key ] = materialsData;
 			} );
 		}
-		
+
 		const getChildBlocks = select( 'core/block-editor' ).getBlocks(
 			ownProps.clientId
 		);
 
 		getChildBlocks.forEach( ( steps, key ) => {
-			stepsData = {	
+			stepsData = {
 					'@type': 'HowToStep',
 					'url': steps.attributes?.ctaLink || steps.attributes?.url,
 					'name': steps.attributes?.infoBoxTitle || steps.attributes?.name,
@@ -210,8 +213,8 @@ export default compose(
 					'image': steps.attributes?.iconImage?.url || steps.attributes?.image?.url
 			}
 			jsonData.step[key] = stepsData;
-		} );	
-		
+		} );
+
 		return {
 			schemaJsonData: jsonData,
 		};

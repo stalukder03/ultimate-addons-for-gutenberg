@@ -9,21 +9,24 @@ import classnames from 'classnames';
 import Title from './components/Title';
 import Description from './components/Description';
 import CTA from './components/CallToActionNew';
+import SecondCTAButton from './components/SecondCTAButton';
 
 export default function save( props ) {
 	const {
-		ctaPosition,
 		block_id,
 		ctaType,
 		ctaLink,
 		ctaTarget,
 		ctaTitle,
 		description,
-		stack
+		enabledSecondCtaButton
 	} = props.attributes;
+
 	const isCta = (
 		<CTA attributes={ props.attributes } setAttributes="not_set" />
 	);
+
+	const secondCtaButton = ( 'button' === ctaType && enabledSecondCtaButton ) ? <SecondCTAButton attributes={ props.attributes } setAttributes="not_set" /> : '';
 
 	// Get description and seperator components.
 	const desc = (
@@ -51,23 +54,14 @@ export default function save( props ) {
 
 	const output = (
 		<>
-			{ ctaPosition === 'below-title' && (
-				<>
-					{ titleText }
-					{ desc }
-					{ isCta }
-				</>
-			) }
-
-			{ ( ctaPosition === 'right' ) && (
-				<>
-					<div className="uagb-cta__wrap">
-						{ titleText }
-						{ desc }
-					</div>
-					{isCta}
-				</>
-			) }
+			<div className="uagb-cta__wrap">
+				{ titleText }
+				{ desc }
+			</div>
+			<div className='uagb-cta__buttons'>
+				{isCta}
+				{secondCtaButton}
+			</div>
 		</>
 	);
 
@@ -76,30 +70,26 @@ export default function save( props ) {
 		target = '_blank';
 	}
 
-	let stackContent;
-	if ( ctaPosition === 'right' && stack !== 'none' ) {
-		stackContent = 'uagb-cta__content-stacked-' + stack + ' ';
-	}
-
 	return (
 		<div
 			className={ classnames(
 				`uagb-block-${ block_id }`,
 				'button' === ctaType ? 'wp-block-button' : '',
-				stackContent
 			) }
 		>
 			{ ctaType === 'all' && (
+				<>
 				<a
 					href={ ctaLink }
 					className="uagb-cta__link-to-all"
 					target={ target }
 					rel="noopener noreferrer"
 				>
-					{ ' ' }
 				</a>
+				{ output }
+				</>
 			) }
-			{ output }
+			{ ctaType !== 'all' && output }
 		</div>
 	);
 }
