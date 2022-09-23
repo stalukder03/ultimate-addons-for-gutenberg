@@ -1,4 +1,20 @@
 import { __ } from '@wordpress/i18n';
+import { getBorderAttributes } from '@Controls/generateAttributes';
+
+const borderDefault = {
+	borderStyle: 'solid',
+	borderTopWidth: '',
+	borderRightWidth: '',
+	borderBottomWidth: '',
+	borderLeftWidth: '',
+	borderTopLeftRadius: '',
+	borderTopRightRadius: '',
+	borderBottomLeftRadius: '',
+	borderBottomRightRadius: '',
+	borderColor: '',
+	borderHColor: '',
+}
+const borderAttributes = getBorderAttributes( 'inner', borderDefault );
 
 const attributes = {
 	block_id: {
@@ -32,6 +48,11 @@ const attributes = {
 		selector: 'span,p,h1,h2,h3,h4,h5,h6',
 		default: 'span',
 	},
+	overrideStyle: {
+		type: 'boolean',
+		default: false,
+	},
+	...borderAttributes,
 };
 
 export default attributes;

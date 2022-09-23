@@ -134,6 +134,9 @@ function styling( props ) {
 		iconActiveColorTemp = questionTextActiveColor;
 	}
 
+	let rowsGapUnitCheck = ( 'undefined' !== typeof rowsGapUnit ) ? rowsGapUnit : 'px';
+	let columnsGapUnitCheck = ( 'undefined' !== typeof columnsGapUnit ) ? columnsGapUnit : 'px';
+
 	selectors = {
 		' .uagb-icon svg': {
 			'width': generateCSSUnit( getFallbackNumber( iconSize, 'iconSize', blockName ), iconSizeType ),
@@ -148,11 +151,11 @@ function styling( props ) {
 			'fill': iconActiveColorTemp,
 		},
 		' .uagb-faq-child__outer-wrap': {
-			'margin-bottom': generateCSSUnit( getFallbackNumber( rowsGap, 'rowsGap', blockName ), rowsGapUnit ),
+			'margin-bottom': generateCSSUnit( getFallbackNumber( rowsGap, 'rowsGap', blockName ), rowsGapUnitCheck ),
 		},
 		'.uagb-faq-layout-grid .block-editor-inner-blocks .block-editor-block-list__layout': {
-			'grid-column-gap': generateCSSUnit( getFallbackNumber( columnsGap, 'columnsGap', blockName ), columnsGapUnit ),
-			'grid-row-gap': generateCSSUnit( getFallbackNumber( rowsGap, 'rowsGap', blockName ), rowsGapUnit ),
+			'grid-column-gap': generateCSSUnit( getFallbackNumber( columnsGap, 'columnsGap', blockName ), columnsGapUnitCheck ),
+			'grid-row-gap': generateCSSUnit( getFallbackNumber( rowsGap, 'rowsGap', blockName ), rowsGapUnitCheck ),
 		},
 		' .uagb-faq-item': {
 			'background-color': boxBgColor,
@@ -337,11 +340,11 @@ function styling( props ) {
 			'font-size': generateCSSUnit( iconSizeTablet, iconSizeType ),
 		},
 		' .uagb-faq-child__outer-wrap': {
-			'margin-bottom': generateCSSUnit( rowsGapTablet, rowsGapUnit ),
+			'margin-bottom': generateCSSUnit( rowsGapTablet, rowsGapUnitCheck ),
 		},
 		'.uagb-faq-layout-grid .block-editor-inner-blocks .block-editor-block-list__layout': {
-			'grid-column-gap': generateCSSUnit( columnsGapTablet, columnsGapUnit ),
-			'grid-row-gap': generateCSSUnit( rowsGapTablet, rowsGapUnit ),
+			'grid-column-gap': generateCSSUnit( columnsGapTablet, columnsGapUnitCheck ),
+			'grid-row-gap': generateCSSUnit( rowsGapTablet, rowsGapUnitCheck ),
 		},
 	};
 
@@ -424,11 +427,11 @@ function styling( props ) {
 			'font-size': generateCSSUnit( iconSizeMobile, iconSizeType ),
 		},
 		' .uagb-faq-child__outer-wrap': {
-			'margin-bottom': generateCSSUnit( rowsGapMobile, rowsGapUnit ),
+			'margin-bottom': generateCSSUnit( rowsGapMobile, rowsGapUnitCheck ),
 		},
 		'.uagb-faq-layout-grid .block-editor-inner-blocks .block-editor-block-list__layout': {
-			'grid-column-gap': generateCSSUnit( columnsGapMobile, columnsGapUnit ),
-			'grid-row-gap': generateCSSUnit( rowsGapMobile, rowsGapUnit ),
+			'grid-column-gap': generateCSSUnit( columnsGapMobile, columnsGapUnitCheck ),
+			'grid-row-gap': generateCSSUnit( rowsGapMobile, rowsGapUnitCheck ),
 		},
 	};
 

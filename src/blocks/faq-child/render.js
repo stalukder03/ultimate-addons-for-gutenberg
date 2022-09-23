@@ -3,6 +3,7 @@ import renderSVG from '@Controls/renderIcon';
 import { __ } from '@wordpress/i18n';
 import styles from './editor.lazy.scss';
 import { RichText } from '@wordpress/block-editor';
+import { useDeviceType } from '@Controls/getPreviewType';
 import React, { useLayoutEffect } from 'react';
 const Render = ( props ) => {
 	// Add and remove the CSS on the drop and remove of the component.
@@ -14,6 +15,7 @@ const Render = ( props ) => {
 	}, [] );
 
 	const state = props.state;
+	const deviceType = useDeviceType();
 	props = props.parentProps;
 
 	const { attributes, setAttributes } = props;
@@ -85,6 +87,7 @@ const Render = ( props ) => {
 			className={ classnames(
 				'uagb-faq-child__outer-wrap',
 				'uagb-faq-item',
+				`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
 				`uagb-block-${ props.clientId.substr( 0, 8 ) }`,
 				props.isSelected && false !== state.isFocused
 					? 'uagb-faq__active'
