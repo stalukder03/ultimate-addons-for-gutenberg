@@ -29,7 +29,7 @@ function styling( props ) {
             '.uagb-faq-item.uagb-faq-child__outer-wrap': {
                 ...borderCSS
             },
-            '.uagb-faq-item:hover': {
+            '.uagb-faq-item.uagb-faq-child__outer-wrap:hover': {
                 'border-color': innerBorderHColor,
             },
         };
