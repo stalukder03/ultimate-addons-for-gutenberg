@@ -20,3 +20,8 @@
 - [ ] I've included any necessary tests <!-- if applicable -->
 - [ ] I've included developer documentation <!-- if applicable -->
 - [ ] I've added proper labels to this pull request <!-- if applicable -->
+- [ ] I've reviewed my PR.
+- [ ] All PHP variables I've used are in snake_case. 
+- [ ] All JS variables I've used are in camelCase.
+- [ ] I've checked readme on Grammarly.
+- [ ] I've added a screencast/screenshot of testing.
