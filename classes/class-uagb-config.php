@@ -267,6 +267,12 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 					'uagb/social-share'           => array(
 						'name' => 'social-share',
 					),
+					'uagb/social-profile'           => array(
+						'name' => 'social-profile',
+					),
+					'uagb/social-profile-child'     => array(
+						'name' => 'social-profile-child',
+					),
 					'uagb/tabs-child'             => array(
 						'name' => 'tabs-child',
 					),

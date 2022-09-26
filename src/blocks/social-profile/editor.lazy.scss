@@ -1,0 +1,21 @@
+/**
+ * Editor styles for the admin
+ */
+
+ #wpwrap .edit-post-visual-editor a.uagb-ss__link {
+	color: #3a3a3a;
+}
+
+.uagb-social-profile__layout-vertical .uagb-social-profile__outer-wrap > .block-editor-inner-blocks {
+	width: 100%;
+}
+
+[data-type="uagb/social-profile"] .uagb-social-profile__layout-horizontal .block-editor-inner-blocks > .block-editor-block-list__layout {
+	display: flex;
+}
+
+[data-type="uagb/social-profile"] .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block {
+	width: auto;
+	padding-right: 0;
+	padding-left: 0;
+}

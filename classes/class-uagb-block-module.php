@@ -104,6 +104,12 @@ class UAGB_Block_Module {
 		'social-share'       => array(
 			'dir' => 'social-share',
 		),
+		'social-profile'       => array(
+			'dir' => 'social-profile',
+		),
+		'social-profile-child' => array(
+			'dir' => 'social-profile-child',
+		),
 		'social-share-child' => array(
 			'dir' => 'social-share-child',
 		),

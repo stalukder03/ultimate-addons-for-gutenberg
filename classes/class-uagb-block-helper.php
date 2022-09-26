@@ -273,6 +273,45 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			return $selectors;
 		}
 
+	/**
+		 * Get Social profile Block CSS
+		 *
+		 * @since 1.14.9
+		 * @param array  $attr The block attributes.
+		 * @param string $id The key for the Icon List Item.
+		 * @param string $childMigrate The child migration flag.
+		 * @return array The Widget List.
+		 */
+		public static function get_social_profile_child_selectors( $attr, $id, $childMigrate ) {
+
+			$wrapper = ( ! $childMigrate ) ? ' .uagb-ss-repeater-' . $id : '.uagb-ss-repeater';
+
+			$selectors[ $wrapper . ' a.uagb-ss__link' ]           = array(
+				'color' => $attr['icon_color'],
+			);
+			$selectors[ $wrapper . ' a.uagb-ss__link' ]           = array(
+				'color' => $attr['icon_color'],
+			);
+			$selectors[ $wrapper . ' a.uagb-ss__link svg' ]       = array(
+				'fill' => $attr['icon_color'],
+			);
+			$selectors[ $wrapper . ':hover a.uagb-ss__link' ]     = array(
+				'color' => $attr['icon_hover_color'],
+			);
+			$selectors[ $wrapper . ':hover a.uagb-ss__link svg' ] = array(
+				'fill' => $attr['icon_hover_color'],
+			);
+
+			$selectors[ $wrapper . '.uagb-ss__wrapper' ]       = array(
+				'background' => $attr['icon_bg_color'],
+			);
+			$selectors[ $wrapper . '.uagb-ss__wrapper:hover' ] = array(
+				'background' => $attr['icon_bg_hover_color'],
+			);
+
+			return $selectors;
+		}
+
 		/**
 		 * Get Icon List Block CSS
 		 *
