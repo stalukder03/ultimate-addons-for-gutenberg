@@ -31,7 +31,8 @@
     "installer-paths": {
         "lib/{$name}/": [
             "brainstormforce/astra-notices",
-            "brainstormforce/gutenberg-templates"
+            "brainstormforce/gutenberg-templates",
+            "woocommerce/action-scheduler"
         ]
     }
   },
