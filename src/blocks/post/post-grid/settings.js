@@ -25,6 +25,7 @@ import UAGPresets from '@Components/presets';
 import BoxShadowControl from '@Components/box-shadow';
 import { decodeEntities } from '@wordpress/html-entities';
 import UAGNumberControl from '@Components/number-control';
+import UAGSelectTerms from '@Components/select-terms';
 
 const MAX_POSTS_COLUMNS = 8;
 
@@ -476,6 +477,18 @@ const Settings = ( props ) => {
 					} }
 					onChange={ onSelectPostType }
 					options={ uagb_blocks_info.post_types }
+				/>
+				<UAGSelectTerms
+					label={ __(
+						'Taxonomy',
+						'ultimate-addons-for-gutenberg'
+					) }
+					data={ {
+						value: taxonomyType,
+					} }
+					onChange={ onSelectTaxonomyType }
+					restBase={'wp/v2/categories'}
+					postType={postType}
 				/>
 				{ '' !== taxonomyList && (
 					<UAGSelectControl
