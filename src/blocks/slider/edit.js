@@ -171,35 +171,6 @@ const UAGBContainer = ( props ) => {
 		);
 	};
 
-	const { variations } = props;
-
-	const { variationSelected, isPreview } = props.attributes;
-
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/container.png`;
-
-	if ( ! variationSelected && 0 === select( 'core/block-editor' ).getBlockParents( props.clientId ).length ) {
-
-		return (
-			isPreview ? <img width='100%' src={previewImageData} alt=''/> :
-			<>
-			<div className='uagb-container-variation-picker'>
-				<BlockVariationPicker
-					icon={ '' }
-					label={ __(
-						'Select a Layout',
-						'ultimate-addons-for-gutenberg'
-					) }
-					instructions={ false }
-					variations={ variations }
-					onSelect={ ( nextVariation ) =>
-						blockVariationPickerOnSelect( nextVariation )
-					}
-				/>
-			</div>
-			</>
-		);
-	}
-
 	return (
 		<>
 

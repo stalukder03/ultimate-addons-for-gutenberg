@@ -85,7 +85,8 @@ import './blocks/cf7-designer/block.js'; // P92.
 import './blocks/gf-designer/block.js'; // P93.
 import './blocks/post/deprecated-block.js'; // Masonry P94.
 import './blocks/wp-search/block.js'; // P95.
-import './blocks/slider/block.js'
+import './blocks/slider/block.js';
+import './blocks/slider-child/block.js';
 
 // Responsive Device Icons on Editor
 import './components/responsive-icons/index.js';

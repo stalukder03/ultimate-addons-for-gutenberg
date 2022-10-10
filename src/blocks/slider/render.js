@@ -1,6 +1,8 @@
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { select } from '@wordpress/data';
+const ALLOWED_BLOCKS = [ 'uagb/slider-child' ];
+
 
 const Render = ( props ) => {
 
@@ -8,7 +10,8 @@ const Render = ( props ) => {
 	const {
 		attributes,
 		deviceType,
-		clientId
+		clientId,
+		attributes: { slide_content, slideItem },
 	} = props;
 
 	const {
@@ -18,17 +21,12 @@ const Render = ( props ) => {
 		backgroundType,
 		backgroundVideo,
 		isBlockRootParent,
-		contentWidth,
-		innerContentWidth
+		contentWidth
 	} = attributes;
 
-	const direction = attributes[ 'direction' + deviceType ];
-
-	const moverDirection = 'row' === direction ? 'horizontal' : 'vertical';
-
-	const { getBlockOrder } = select( 'core/block-editor' );
-
-	const hasChildBlocks = getBlockOrder( clientId ).length > 0;
+	const getSliderTemplate = useMemo( () => {
+		return slide_content;
+	}, [ slideItem, slide_content ] );
 
 	const CustomTag = `${htmlTag}`;
 	const customTagLinkAttributes = {};
@@ -72,24 +70,11 @@ const Render = ( props ) => {
 						) }
 					</div>
 				) }
-				{ isBlockRootParent && 'alignfull' === contentWidth && 'alignwide' === innerContentWidth
-				?  (
-					<div className='uagb-container-inner-blocks-wrap'>
-						<InnerBlocks
-							__experimentalMoverDirection={ moverDirection }
-							renderAppender = { hasChildBlocks
-							? undefined
-							: InnerBlocks.ButtonBlockAppender }
-						/>
-					</div>
-				)
-				: <InnerBlocks
-						__experimentalMoverDirection={ moverDirection }
-						renderAppender = { hasChildBlocks
-						? undefined
-						: InnerBlocks.ButtonBlockAppender }
-					/>
-				}
+				<InnerBlocks
+						allowedBlocks={ ALLOWED_BLOCKS }
+						template={ getSliderTemplate }
+						templateLock={ false }
+				/>
 			</CustomTag>
 		</>
 	);
