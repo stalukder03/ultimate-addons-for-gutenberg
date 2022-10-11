@@ -42,16 +42,6 @@ import starRatingAttribute from '@Blocks/star-rating/attributes';
 import containerAttribute from '@Blocks/container/attributes';
 import imageAttribute from '@Blocks/image/attributes';
 
-import instagramFeedAttribute from '@ProBlocks/instagram-feed/attributes';
-
-let proBlocksAttributes = undefined;
-
-if ( uagb_blocks_info.spectra_pro_status ) {
-	proBlocksAttributes = {
-		'instagram-feed': instagramFeedAttribute,
-	}
-}
-
 export const blocksAttributes = {
 	'advanced-heading' : advancedHeadingAttribute,
 	'post-grid' : postGridAttribute,
@@ -96,5 +86,4 @@ export const blocksAttributes = {
     'how-to-step' : howToStepAttribute,
 	'container' : containerAttribute,
 	'image': imageAttribute,
-	...( proBlocksAttributes || {} ),
 };
