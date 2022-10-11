@@ -10,9 +10,9 @@ import {
 
 
 describe( 'heading in gutenberg editor', () => {
-	it( 'assert wide width of the columns in the block editor', async () => {
+	it( 'asserts the default alignment for new users', async () => {
 		await createNewPost( {
-			'postType': 'post',
+			'postType': 'page',
 			'title': 'test heading',
 		} );
 		const searchTerm = 'Heading';
@@ -28,7 +28,7 @@ describe( 'heading in gutenberg editor', () => {
 		} );
         await expect( {
 			'selector':
-				'.uagb-block-a92d7c60.wp-block-uagb-advanced-heading',
+				'.wp-block-uagb-advanced-heading',
 			'property': 'text-align',
 		} ).cssValueToBe( `left` );
     } );
