@@ -1,5 +1,7 @@
 import {
-	insertBlock,
+	searchForBlock,
+	focusSelectedBlock,
+	waitForInserterCloseAndContentFocus,
 	createNewPost,
 	closeGlobalBlockInserter,
     publishPost,
@@ -7,22 +9,26 @@ import {
 } from '@wordpress/e2e-test-utils';
 
 
-describe( 'columns in gutenberg editor', () => {
+describe( 'heading in gutenberg editor', () => {
 	it( 'assert wide width of the columns in the block editor', async () => {
 		await createNewPost( {
 			'postType': 'post',
 			'title': 'test heading',
 		} );
-        await insertBlock( 'uagb/advanced-heading' );
+		const searchTerm = 'Heading';
+        await searchForBlock( searchTerm );
+		const insertButton = await page.waitForXPath(
+			`/html/body/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div/div[1]/div[1]/div[2]/div[1]/div/div[2]/div/div/div/div[3]/div/div/div[3]/button`
+		);
+		await insertButton.click();
         await closeGlobalBlockInserter();
-        await page.click( '#editor > div > div.edit-post-layout.is-mode-visual.is-sidebar-opened.interface-interface-skeleton.has-footer > div.interface-interface-skeleton__editor > div.interface-interface-skeleton__body > div.interface-interface-skeleton__sidebar > div > div.components-panel > div > div:nth-child(2) > div.uagb-inspector-tab.uagb-tab-content-general > div > div.components-base-control.uagb-multi-buttons-control.uag-multibutton-icons.spectra-multi-buttons__color-scheme--primary.spectra-multi-buttons__layout--full > div.components-button-group.uagb-multi-button-button-group > button.components-button.uagb-multi-button.is-primary' );
         await publishPost();
         await page.goto( createURL( '/test-heading' ), {
 			'waitUntil': 'networkidle0',
 		} );
         await expect( {
 			'selector':
-				'.uagb-block-82ff84f3.wp-block-uagb-advanced-heading',
+				'.uagb-block-a92d7c60.wp-block-uagb-advanced-heading',
 			'property': 'text-align',
 		} ).cssValueToBe( `left` );
     } );
