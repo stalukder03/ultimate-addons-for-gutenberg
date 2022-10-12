@@ -1,7 +1,5 @@
 import {
 	searchForBlock,
-	focusSelectedBlock,
-	waitForInserterCloseAndContentFocus,
 	createNewPost,
 	closeGlobalBlockInserter,
     publishPost,
