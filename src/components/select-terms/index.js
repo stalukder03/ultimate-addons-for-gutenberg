@@ -3,19 +3,22 @@ import { useState, useEffect } from '@wordpress/element';
 import fetchJson from '@Controls/fetchJson';
 import uniqBy from '@Controls/uniqBy';
 import { addQueryArgs } from '@wordpress/url';
+import { __ } from '@wordpress/i18n';
 
 const UAGSelectTerms = (props) => {
 
     const {
         label,
         data,
-        onChange,
-        restBase
+        restBase,
+		setAttributes
     } = props;
-console.log(data.value);
+
     const [ currentState, setCurrentState ] = useState( {
-        options: [],
+        options: [ {value: '', label: __('All')}],
         isLoading: false,
+		value: data?.value,
+		selectedLabel: __('All')
     } );
 
     let fetchPostAbortController;
@@ -41,20 +44,37 @@ console.log(data.value);
 		}
 
 		setCurrentState( { isLoading: true } );
+
+		let selectedLabelValue = __('All');
         
 		fetchJson( {
 			path: addQueryArgs( `${ restBase }/`, query ),
 			signal: fetchPostAbortController.signal,
 		} ).then( ( [ terms ] ) => {
-
-			const newOptions = uniqBy( [ ...options, ...terms.map( term => ( {
-				value: term.id,
-				label: term.name,
-			} ) ) ], 'value' );
-
+			const termsObject = terms.map( term => {
+				
+				if ( term?.count <= 0 ) {
+					return false;
+				}
+				if ( term.id === data?.value ) {
+					selectedLabelValue = term.name
+				}
+				if ( term?.count >= 0 ) {
+					return (
+						{
+							value: term.id,
+							label: term.name
+						}
+					);
+				}
+			})
+			
+			const newOptions = uniqBy( [ ...options, ...termsObject.filter(Boolean) ], 'value' );
+			console.log(selectedLabelValue);
 			setCurrentState( {
 				options: newOptions,
 				isLoading: false,
+				selectedLabel: selectedLabelValue
 			} );
 		} );
 	}
@@ -68,21 +88,24 @@ console.log(data.value);
 	}
 
 	const handleChange = ( value ) => {
-		console.log(value);
-		onChange( value?.value);
+		setAttributes( { [data?.label]: value?.value } )
+		setCurrentState( {
+			value: data?.value,
+		} );
 	}
 
     return (
 
         <Select
-            value={ data.value }
+			defaultValue={ {label: currentState.selectedLabel, value: currentState.value} }
             onChange={ handleChange }
             options={ currentState.options }
             isMulti={ false }
-            isLoading={ currentState.isLoading }
+            // isLoading={ currentState.isLoading }
             onInputChange={ s => updateSearch( s ) }
             maxMenuHeight={ 300 }
             placeholder={ label }
+			className="spectra-multi-select components-base-control"
         />
     );
 }

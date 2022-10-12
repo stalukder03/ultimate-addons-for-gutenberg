@@ -479,18 +479,6 @@ const Settings = ( props ) => {
 					onChange={ onSelectPostType }
 					options={ uagb_blocks_info.post_types }
 				/>
-				<UAGSelectTerms
-					label={ __(
-						'Taxonomy',
-						'ultimate-addons-for-gutenberg'
-					) }
-					data={ {
-						value: taxonomyType,
-					} }
-					onChange={ onSelectTaxonomyType }
-					restBase={'wp/v2/categories'}
-					postType={postType}
-				/>
 				{ '' !== taxonomyList && (
 					<UAGSelectControl
 						label={ __(
@@ -504,6 +492,15 @@ const Settings = ( props ) => {
 						options={ taxonomyListOptions }
 					/>
 				) }
+				<UAGSelectTerms
+					label={ taxonomyList[ taxonomyType ].label }
+					data={ {
+						value: categories,
+						label: 'categories'
+					} }
+					setAttributes={ setAttributes }
+					restBase={'wp/v2/categories'}
+				/>
 				{ '' != categoriesList && ( // eslint-disable-line eqeqeq
 					<>
 						<UAGSelectControl
