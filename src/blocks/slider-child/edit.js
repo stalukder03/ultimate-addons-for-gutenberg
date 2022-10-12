@@ -16,9 +16,7 @@ import Render from './render';
 import './style.scss';
 import { __ } from '@wordpress/i18n';
 
-import { withSelect, useDispatch, select } from '@wordpress/data';
-
-import { compose } from '@wordpress/compose';
+import { select } from '@wordpress/data';
 
 import {
 	__experimentalBlockVariationPicker as BlockVariationPicker,
@@ -28,7 +26,7 @@ import { createBlock } from '@wordpress/blocks';
 
 import styles from './editor.lazy.scss';
 
-const UAGBSlider = ( props ) => {
+const UAGBSlide = ( props ) => {
 
 	const deviceType = useDeviceType();
 
@@ -212,37 +210,5 @@ const UAGBSlider = ( props ) => {
 	);
 };
 
-const applyWithSelect = withSelect( ( select, props ) => { // eslint-disable-line no-shadow
-	const { __experimentalGetPreviewDeviceType = null } = select(
-		'core/edit-post'
-	);
-	const deviceType = __experimentalGetPreviewDeviceType
-		? __experimentalGetPreviewDeviceType()
-		: null;
-		const { getBlocks } = select( 'core/block-editor' );
-	const {
-		getBlockType,
-		getBlockVariations,
-		getDefaultBlockVariation,
-	} = select( 'core/blocks' );
-	const innerBlocks = getBlocks( props.clientId );
-	const { replaceInnerBlocks } = useDispatch( 'core/block-editor' );
 
-	return {
-		// Subscribe to changes of the innerBlocks to control the display of the layout selection placeholder.
-		innerBlocks,
-		blockType: getBlockType( props.name ),
-		defaultVariation:
-			typeof getDefaultBlockVariation === 'undefined'
-				? null
-				: getDefaultBlockVariation( props.name ),
-		variations:
-			typeof getBlockVariations === 'undefined'
-				? null
-				: getBlockVariations( props.name ),
-		replaceInnerBlocks,
-		deviceType,
-		isParentOfSelectedBlock: select( 'core/block-editor' ).hasSelectedInnerBlock( props.clientId, true )
-	};
-} );
-export default compose( applyWithSelect )( UAGBSlider );
+export default UAGBSlide;

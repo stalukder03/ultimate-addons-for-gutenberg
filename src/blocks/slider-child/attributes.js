@@ -14,7 +14,14 @@ const attributes = {
 	htmlTagLink: {
 		type: 'object',
 	},
-
+	variationSelected: {
+		type: 'boolean',
+		default: false,
+	},
+	isPreview: {
+		type: 'boolean',
+		default: false,
+	},
 	widthDesktop: {
 		type: 'number',
 		default: 100,

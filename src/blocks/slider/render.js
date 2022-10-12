@@ -9,7 +9,6 @@ const Render = ( props ) => {
 	props = props.parentProps;
 	const {
 		attributes,
-		deviceType,
 		clientId,
 		attributes: { slide_content, slideItem },
 	} = props;
@@ -18,14 +17,20 @@ const Render = ( props ) => {
 		block_id,
 		htmlTag,
 		htmlTagLink,
-		backgroundType,
-		backgroundVideo,
 		isBlockRootParent,
 		contentWidth
 	} = attributes;
 
 	const getSliderTemplate = useMemo( () => {
-		return slide_content;
+		const childSlide = [];
+
+		for ( let i = 0; i < slideItem; i++ ) {
+			childSlide.push( [
+				'uagb/slider-child',
+				slide_content[ i ],
+			] );
+		}
+		return childSlide;
 	}, [ slideItem, slide_content ] );
 
 	const CustomTag = `${htmlTag}`;
@@ -48,7 +53,7 @@ const Render = ( props ) => {
 	const hasChildrenClass = hasChildren ? 'uagb-container-has-children' : '';
 	const isRootContainerClass = isBlockRootParent ? 'uagb-is-root-container' : '';
 	const blockProps = useBlockProps( {
-		className: `uagb-block-${ block_id } ${contentWidth} ${hasChildrenClass} uagb-editor-preview-mode-${ deviceType.toLowerCase() } ${isRootContainerClass}`,
+		className: `uagb-block-${ block_id } ${contentWidth} ${hasChildrenClass} ${isRootContainerClass}`,
 	} );
 
 	return (
@@ -58,23 +63,20 @@ const Render = ( props ) => {
 				key = { block_id }
 				{...customTagLinkAttributes}
 			>
-				{ 'video' === backgroundType && (
-					<div className="uagb-container__video-wrap">
-						{ backgroundVideo && (
-							<video autoPlay loop muted playsinline>
-								<source
-									src={ backgroundVideo.url }
-									type="video/mp4"
-								/>
-							</video>
-						) }
+				<div className='uagb-slides'
+				>
+					<InnerBlocks
+							allowedBlocks={ ALLOWED_BLOCKS }
+							template={ getSliderTemplate }
+							templateLock={ false }
+					/>
+					<div className='uagb-slider-button-prev'>
+						<i aria-hidden="true" className="eicon-chevron-left"></i>
 					</div>
-				) }
-				<InnerBlocks
-						allowedBlocks={ ALLOWED_BLOCKS }
-						template={ getSliderTemplate }
-						templateLock={ false }
-				/>
+					<div className='uagb-slider-button-next'>
+						<i aria-hidden="true" className="eicon-chevron-right"></i>
+					</div>
+				</div>
 			</CustomTag>
 		</>
 	);

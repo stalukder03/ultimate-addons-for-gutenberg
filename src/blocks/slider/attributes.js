@@ -3,9 +3,14 @@ import { __ } from '@wordpress/i18n';
 
 const inputBorderAttributes = getBorderAttributes( 'slider' )
 
-const slideCount = 1;
-const slideContent = __( 'Add slide content here', 'ultimate-addons-for-gutenberg'  )
+const slideCount = 2;
+const slideContent = []; 
 
+for ( let i = 1; i <= slideCount; i++ ) {
+	slideContent.push( {
+		isPreview: false
+	} );
+}
 
 const attributes = {
 	block_id: {
@@ -13,7 +18,7 @@ const attributes = {
 	},
 
 	slide_content: {
-		type: 'string',
+		type: 'array',
 		default: slideContent,
 	},
 

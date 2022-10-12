@@ -22,10 +22,8 @@ const Render = ( props ) => {
 	props = props.parentProps;
 	const deviceType = useDeviceType();
 
-	console.log( props );
-
 	return (
-		<>{}</>
+		<p>This is first slide</p>
 	);
 };
 
