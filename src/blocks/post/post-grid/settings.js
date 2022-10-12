@@ -274,6 +274,7 @@ const Settings = ( props ) => {
 		setAttributes( { taxonomyType: 'category' } );
 	};
 	const onSelectTaxonomyType = ( value ) => {
+		console.log(value);
 		setAttributes( { taxonomyType: value } );
 		setAttributes( { categories: '' } );
 	};
