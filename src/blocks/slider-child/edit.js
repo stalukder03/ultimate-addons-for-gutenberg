@@ -19,12 +19,6 @@ import { __ } from '@wordpress/i18n';
 import { withSelect, useDispatch, select } from '@wordpress/data';
 import { compose } from '@wordpress/compose';
 
-import {
-	__experimentalBlockVariationPicker as BlockVariationPicker,
-} from '@wordpress/block-editor';
-
-import { createBlock } from '@wordpress/blocks';
-
 import styles from './editor.lazy.scss';
 
 const UAGBSlide = ( props ) => {
@@ -143,65 +137,6 @@ const UAGBSlide = ( props ) => {
 		scrollBlockToView();
 
 	}, [ deviceType ] );
-
-	const blockVariationPickerOnSelect = (
-		nextVariation = props.defaultVariation
-	) => {
-		if ( nextVariation.attributes ) {
-			props.setAttributes( nextVariation.attributes );
-		}
-
-		if ( nextVariation.innerBlocks && 'one-column' !== nextVariation.name ) {
-			props.replaceInnerBlocks(
-				props.clientId,
-				createBlocksFromInnerBlocksTemplate( nextVariation.innerBlocks )
-			);
-		}
-	};
-
-	const createBlocksFromInnerBlocksTemplate = ( innerBlocksTemplate ) => {
-		return innerBlocksTemplate.map(
-			( [ name, attributes, innerBlocks = [] ] ) =>
-				createBlock(
-					name,
-					attributes,
-					createBlocksFromInnerBlocksTemplate( innerBlocks )
-				)
-		);
-	};
-
-	const { variations } = props;
-
-	const { variationSelected, isPreview } = props.attributes;
-
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/container.png`;
-
-	console.log( variationSelected );
-	console.log( select( 'core/block-editor' ).getBlockParents( props.clientId ).length );
-
-
-	if ( ! variationSelected && 0 === select( 'core/block-editor' ).getBlockParents( props.clientId ).length ) {
-
-		return (
-			isPreview ? <img width='100%' src={previewImageData} alt=''/> :
-			<>
-			<div className='uagb-container-variation-picker'>
-				<BlockVariationPicker
-					icon={ '' }
-					label={ __(
-						'Select a Layout',
-						'ultimate-addons-for-gutenberg'
-					) }
-					instructions={ false }
-					variations={ variations }
-					onSelect={ ( nextVariation ) =>
-						blockVariationPickerOnSelect( nextVariation )
-					}
-				/>
-			</div>
-			</>
-		);
-	}
 
 	return (
 		<>

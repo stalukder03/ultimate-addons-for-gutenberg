@@ -35,8 +35,6 @@ const Render = ( props ) => {
 
 	const {
 		block_id,
-		htmlTag,
-		htmlTagLink,
 		isBlockRootParent,
 		contentWidth
 	} = attributes;
@@ -53,22 +51,6 @@ const Render = ( props ) => {
 		return childSlide;
 	}, [ slideItem, slide_content ] );
 
-	const CustomTag = `${htmlTag}`;
-	const customTagLinkAttributes = {};
-	if( htmlTag === 'a' ){
-		customTagLinkAttributes.rel = 'noopener'
-		customTagLinkAttributes.onClick = ( e ) => e.preventDefault()
-		if( htmlTagLink?.url ){
-			customTagLinkAttributes.href = htmlTagLink?.url;
-		}
-		if( htmlTagLink?.opensInNewTab ){
-			customTagLinkAttributes.target = '_blank';
-		}
-		if( htmlTagLink?.noFollow ){
-			customTagLinkAttributes.rel = 'nofollow noopener';
-		}
-	}
-
 	const hasChildren = 0 !== select( 'core/block-editor' ).getBlocks( clientId ).length;
 	const hasChildrenClass = hasChildren ? 'uagb-container-has-children' : '';
 	const isRootContainerClass = isBlockRootParent ? 'uagb-is-root-container' : '';
@@ -78,10 +60,9 @@ const Render = ( props ) => {
 
 	return (
 		<>
-			<CustomTag
+			<div
 				{ ...blockProps }
 				key = { block_id }
-				{...customTagLinkAttributes}
 			>
 				<div className='uagb-slider'
 				>	
@@ -99,7 +80,7 @@ const Render = ( props ) => {
 						<i aria-hidden="true" className="eicon-chevron-right" onClick={nextSlide} direction={'next'}></i>
 					</div>
 				</div>
-			</CustomTag>
+			</div>
 		</>
 	);
 };
