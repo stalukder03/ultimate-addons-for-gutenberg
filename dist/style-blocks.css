@@ -6684,30 +6684,7 @@ html[dir=rtl] .uagb-gf-styler__btn-align-mobile-left .gform_page .gform_page_foo
 .wp-block-uagb-wp-search.uagb-wp-search__outer-wrap .uagb-search-wrapper .uagb-search-form__container .uagb-search-form__input::-webkit-input-placeholder {
   overflow: unset;
 }
-.uagb-slide-navigation-wrap {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: #f1f1f1;
-  border: 1px solid rgba(34, 34, 34, 0.287);
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
 
-.uagb-slide-prev {
-  top: 50%;
-  left: 20px;
-  transform: translateY(-60%);
-}
-
-.uagb-slide-next {
-  top: 50%;
-  right: 20px;
-  transform: translateY(-60%);
-}
 .wp-block-uagb-container {
   display: flex;
   position: relative;

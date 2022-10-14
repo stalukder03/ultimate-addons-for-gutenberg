@@ -26,13 +26,71 @@ const attributes = {
 		type: 'number',
 		default: slideCount,
 	},
-	// Container wrapper tag name and link are not required in PHP as it is only used in render and save.
-	htmlTag: {
-		type: 'string',
-		default: 'div',
+	pauseOnHover: {
+		type: 'boolean',
+		default: true,
 	},
-	htmlTagLink: {
-		type: 'object',
+	infiniteLoop: {
+		type: 'boolean',
+		default: true,
+	},
+	transitionSpeed: {
+		type: 'number',
+		default: 500,
+	},
+	autoplay: {
+		type: 'boolean',
+		default: true,
+	},
+	autoplaySpeed: {
+		type: 'number',
+		default: 2000,
+	},
+	arrowDots: {
+		type: 'string',
+		default: 'arrows_dots',
+	},
+	arrowSize: {
+		type: 'number',
+		default: 20,
+		UAGCopyPaste: {
+			styleType: 'arrow-size'
+		},
+	},
+	arrowBorderSize: {
+		type: 'number',
+		default: 0,
+		UAGCopyPaste: {
+			styleType: 'arrow-border-size'
+		},
+	},
+	arrowBorderSizeUnit: {
+		type: 'string',
+		default: 'px',
+		UAGCopyPaste: {
+			styleType: 'arrow-unit'
+		},
+	},
+	arrowBorderRadius: {
+		type: 'number',
+		default: 0,
+		UAGCopyPaste: {
+			styleType: 'arrow-border-radius'
+		},
+	},
+	arrowBorderRadiusUnit: {
+		type: 'string',
+		default: 'px',
+		UAGCopyPaste: {
+			styleType: 'arrow-unit'
+		},
+	},
+	arrowColor: {
+		type: 'string',
+		default: '#333',
+		UAGCopyPaste: {
+			styleType: 'arrow-color'
+		},
 	},
 	contentWidth: {
 		type: 'string',
