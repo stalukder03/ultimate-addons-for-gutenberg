@@ -9,8 +9,6 @@
  import './style.scss';
  import { __ } from '@wordpress/i18n';
  import { registerBlockType } from '@wordpress/blocks';
-//  import variations from './variations';
-//  import transforms from './transforms';
  
  registerBlockType( 'uagb/slider', {
      apiVersion: 2,
@@ -35,9 +33,7 @@
              isPreview: true,
          }
      },
-    //  variations,
      edit,
     //  save,
-    //  transforms,
  } );
  

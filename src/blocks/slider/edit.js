@@ -49,28 +49,6 @@ const UAGBSlider = ( props ) => {
 		// Assigning block_id in the attribute.
 		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
 
-		const iframeEl = document.querySelector( `iframe[name='editor-canvas']` );
-		let element;
-		if( iframeEl ){
-			element = iframeEl.contentDocument.getElementById( 'block-' + props.clientId )
-		} else {
-			element = document.getElementById( 'block-' + props.clientId )
-		}
-		// Add Close Button for Variation Selector.
-		const variationPicker = element?.querySelector( '.uagb-container-variation-picker .block-editor-block-variation-picker' );
-		const closeButton = document.createElement( 'button' );
-		closeButton.onclick = function() {
-			if ( props.defaultVariation.attributes ) {
-				props.setAttributes( props.defaultVariation.attributes );
-			}
-		};
-		closeButton.setAttribute( 'class', 'uagb-variation-close' );
-		closeButton.innerHTML = '×';
-		if ( variationPicker ) {
-			const variationPickerLabel = variationPicker.querySelector( '.components-placeholder__label' );
-			variationPicker.insertBefore( closeButton,variationPickerLabel );
-		}
-
 		const descendants = select( 'core/block-editor' ).getBlocks( props.clientId );
 
 		if ( props.attributes.blockDescendants && descendants.length !== props.attributes.blockDescendants.length ) {

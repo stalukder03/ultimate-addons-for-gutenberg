@@ -13,23 +13,23 @@ const Render = ( props ) => {
 		attributes: { slide_content, slideItem },
 	} = props;
 
-	const [slideIndex, setSlideIndex] = useState( 1 );
+	const [activeSlide, setActiveSlide] = useState( 0 );
 
 	const nextSlide = () => {
-        if( slideIndex !== slideItem ){
-            setSlideIndex( slideIndex + 1 )
+        if( activeSlide !== slideItem ){
+            setActiveSlide( activeSlide + 1 )
         } 
-        else if ( slideIndex === slideItem ){
-            setSlideIndex( 1 )
+        else if ( activeSlide === slideItem ){
+            setActiveSlide( 1 )
         }
     }
 
     const prevSlide = () => {
-        if( slideIndex !== 1 ){
-            setSlideIndex( slideIndex - 1 )
+        if( activeSlide !== 0 ){
+            setActiveSlide( activeSlide - 1 )
         }
-        else if ( slideIndex === 1 ){
-            setSlideIndex( slideItem )
+        else if ( activeSlide === 0 ){
+            setActiveSlide( slideItem )
         }
     }
 
@@ -45,13 +45,14 @@ const Render = ( props ) => {
 			childSlide.push( [
 				'uagb/slider-child',
 				slide_content[ i ],
+				activeSlide
 			] );
 		}
 		return childSlide;
 	}, [ slideItem, slide_content ] );
 
 	const hasChildren = 0 !== select( 'core/block-editor' ).getBlocks( clientId ).length;
-	const hasChildrenClass = hasChildren ? 'uagb-container-has-children' : '';
+	const hasChildrenClass = hasChildren ? 'uagb-slider-has-children' : '';
 	const blockProps = useBlockProps( {
 		className: `uagb-block-${ block_id } ${contentWidth} ${hasChildrenClass}`,
 	} );

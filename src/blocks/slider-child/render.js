@@ -11,6 +11,8 @@ const Render = ( props ) => {
 		clientId
 	} = props;
 
+	// console.log( props );
+
 	const {
 		block_id,
 		backgroundType,
@@ -19,9 +21,10 @@ const Render = ( props ) => {
 		contentWidth,
 	} = attributes;
 
-	const { getBlockOrder } = select( 'core/block-editor' );
+	const { getBlockOrder, getBlockIndex } = select( 'core/block-editor' );
 
 	const hasChildBlocks = getBlockOrder( clientId ).length > 0;
+	const slideIndex = getBlockIndex( clientId );
 
 	const hasChildren = 0 !== select( 'core/block-editor' ).getBlocks( clientId ).length;
 	const hasChildrenClass = hasChildren ? 'uagb-container-has-children' : '';
