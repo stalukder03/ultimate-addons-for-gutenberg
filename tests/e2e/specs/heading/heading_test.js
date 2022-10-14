@@ -6,7 +6,6 @@ import {
     createURL,
 } from '@wordpress/e2e-test-utils';
 
-
 describe( 'heading in gutenberg editor', () => {
 	it( 'asserts the default alignment for new users', async () => {
 		await createNewPost( {
