@@ -19,10 +19,6 @@ const Render = ( props ) => {
 		contentWidth,
 	} = attributes;
 
-	const direction = attributes[ 'direction' + deviceType ];
-
-	const moverDirection = 'row' === direction ? 'horizontal' : 'vertical';
-
 	const { getBlockOrder } = select( 'core/block-editor' );
 
 	const hasChildBlocks = getBlockOrder( clientId ).length > 0;
@@ -31,7 +27,7 @@ const Render = ( props ) => {
 	const hasChildrenClass = hasChildren ? 'uagb-container-has-children' : '';
 	const isRootContainerClass = isBlockRootParent ? 'uagb-is-root-container' : '';
 	const blockProps = useBlockProps( {
-		className: `uagb-block-${ block_id } ${contentWidth} ${hasChildrenClass} uagb-editor-preview-mode-${ deviceType.toLowerCase() } ${isRootContainerClass}`,
+		className: `uagb-slider-child-wrap uagb-block-${ block_id } ${contentWidth} ${hasChildrenClass} uagb-editor-preview-mode-${ deviceType.toLowerCase() } ${isRootContainerClass}`,
 	} );
 
 	return (
@@ -53,7 +49,6 @@ const Render = ( props ) => {
 					</div>
 				) }
 				<InnerBlocks
-						__experimentalMoverDirection={ moverDirection }
 						renderAppender = { hasChildBlocks
 						? undefined
 						: InnerBlocks.ButtonBlockAppender }
