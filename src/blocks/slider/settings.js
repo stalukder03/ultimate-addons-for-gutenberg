@@ -18,8 +18,6 @@ import ResponsiveBorder from '@Components/responsive-border';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import MultiButtonsControl from '@Components/multi-buttons-control';
 import UAGSelectControl from '@Components/select-control';
-import { Icon } from '@wordpress/components';
-import renderCustomIcon from '@Controls/renderCustomIcon';
 import UAGTabsControl from '@Components/tabs';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control';
 import innerContainerPresets, { boxShadowPresets, boxShadowHoverPresets } from './presets';
@@ -41,21 +39,6 @@ const Settings = ( props ) => {
 		minHeightTablet,
 		minHeightMobile,
 		minHeightType,
-		directionDesktop,
-		directionTablet,
-		directionMobile,
-		alignItemsDesktop,
-		alignItemsTablet,
-		alignItemsMobile,
-		justifyContentDesktop,
-		justifyContentTablet,
-		justifyContentMobile,
-		wrapDesktop,
-		wrapTablet,
-		wrapMobile,
-		alignContentDesktop,
-		alignContentTablet,
-		alignContentMobile,
 
 		backgroundType,
 		backgroundImageDesktop,
@@ -121,41 +104,12 @@ const Settings = ( props ) => {
 		marginTypeTablet,
 		marginTypeMobile,
 		marginLink,
-		rowGapDesktop,
-		rowGapTablet,
-		rowGapMobile,
-		rowGapType,
-		rowGapTypeTablet,
-		rowGapTypeMobile,
-		columnGapDesktop,
-		columnGapTablet,
-		columnGapMobile,
-		columnGapType,
-		columnGapTypeTablet,
-		columnGapTypeMobile,
 		contentWidth,
-		isBlockRootParent,
 		innerContentWidth,
 		innerContentCustomWidthDesktop,
 		innerContentCustomWidthTablet,
 		innerContentCustomWidthMobile,
 		innerContentCustomWidthType,
-		bottomType,
-		bottomColor,
-		bottomHeight,
-		bottomHeightTablet,
-		bottomHeightMobile,
-		bottomWidth,
-		topType,
-		topColor,
-		topHeight,
-		topHeightTablet,
-		topHeightMobile,
-		topWidth,
-		bottomFlip,
-		topFlip,
-		topContentAboveShape,
-		bottomContentAboveShape,
 		backgroundCustomSizeDesktop,
 		backgroundCustomSizeTablet,
 		backgroundCustomSizeMobile,
@@ -176,8 +130,6 @@ const Settings = ( props ) => {
 		yPositionTypeMobile,
 		backgroundVideoColor,
 		backgroundVideo,
-		topInvert,
-		bottomInvert,
 
 		textColor,
 		linkColor,
@@ -190,34 +142,10 @@ const Settings = ( props ) => {
 		widthTypeMobile,
 		minHeightTypeTablet,
 		minHeightTypeMobile,
-		topHeightType,
-		topHeightTypeTablet,
-		topHeightTypeMobile,
-		bottomHeightType,
-		bottomHeightTypeTablet,
-		bottomHeightTypeMobile,
 
 		overflow,
-		topDividerWidthType,
-		bottomDividerWidthType,
-		topDividerHeightType,
-		bottomDividerHeightType
 	} = attributes;
 
-	let currentDirection = directionDesktop?.split( '-' )?.[0];
-
-	if ( attributes[ 'direction' + deviceType ] && attributes[ 'direction' + deviceType ].split( '-' )[0] ) {
-
-		currentDirection = attributes[ 'direction' + deviceType ].split( '-' )[0];
-	}
-
-	const currentOppAxisDirection = 'row' === currentDirection ? 'column' : 'row';
-
-	const verticalAlignmentHint = __( 'Define the vertical alignment inside this container', 'ultimate-addons-for-gutenberg' );
-	const horizontalAlignmentHint = __( 'Define the horizontal alignment inside this container', 'ultimate-addons-for-gutenberg' );
-	const alignContentHint = ( 'row' === currentDirection )
-	? __( 'Define the vertical alignment of every line of blocks inside this flex container', 'ultimate-addons-for-gutenberg' )
-	: __( 'Define the horizontal alignment of every line of blocks inside this flex container', 'ultimate-addons-for-gutenberg' );
 
 	// This useEffect ensures that background size is set to cover, so as to ensure color takes up entire width and height,
 	// in case bg type was set to Image before and given a custom width and height.
@@ -232,229 +160,6 @@ const Settings = ( props ) => {
 	}, [backgroundType] );
 
 	const generalSettings = () => {
-
-		const directionOptions = [
-			{
-				value: 'row',
-				tooltip: __( 'Row', 'ultimate-addons-for-gutenberg' ),
-				icon: (
-					<Icon
-						icon={ renderCustomIcon( 'flex-direction-row' ) }
-					/>
-				),
-			},
-			{
-				value: 'column',
-				tooltip: __( 'Column', 'ultimate-addons-for-gutenberg' ),
-				icon: (
-					<Icon
-						icon={ renderCustomIcon( 'flex-direction-column' ) }
-					/>
-				),
-			},
-			{
-				value: 'row-reverse',
-				tooltip: __( 'Row Reverse', 'ultimate-addons-for-gutenberg' ),
-				icon: (
-					<Icon
-						icon={ renderCustomIcon( 'flex-direction-row-reverse' ) }
-					/>
-				),
-			},
-			{
-				value: 'column-reverse',
-				tooltip: __( 'Column Reverse', 'ultimate-addons-for-gutenberg' ),
-				icon: (
-					<Icon
-						icon={ renderCustomIcon( 'flex-direction-column-reverse' ) }
-					/>
-				),
-			},
-		];
-
-		const alignItemsOptions = [
-			{
-				value: 'flex-start',
-				tooltip: __( 'Flex Start', 'ultimate-addons-for-gutenberg' ),
-				icon: (
-					<Icon
-						icon={ renderCustomIcon( `flex-${currentOppAxisDirection}-start` ) }
-					/>
-				),
-			},
-			{
-				value: 'center',
-				tooltip: __( 'Center', 'ultimate-addons-for-gutenberg' ),
-				icon: (
-					<Icon
-						icon={ renderCustomIcon( `flex-${currentOppAxisDirection}-center` ) }
-					/>
-				),
-			},
-			{
-				value: 'flex-end',
-				tooltip: __( 'Flex End', 'ultimate-addons-for-gutenberg' ),
-				icon: (
-					<Icon
-						icon={ renderCustomIcon( `flex-${currentOppAxisDirection}-end` ) }
-					/>
-				),
-			},
-			{
-				value: 'stretch',
-				tooltip: __( 'Stretch', 'ultimate-addons-for-gutenberg' ),
-				icon: (
-					<Icon
-						icon={ renderCustomIcon( `flex-${currentOppAxisDirection}-strech` ) }
-					/>
-				),
-			},
-		];
-
-		const justifyContentOptions = [
-			{
-				value: 'flex-start',
-				tooltip: __( 'Flex Start', 'ultimate-addons-for-gutenberg' ),
-				icon: (
-					<Icon
-						icon={ renderCustomIcon( `flex-${currentDirection}-start` ) }
-					/>
-				),
-			},
-			{
-				value: 'center',
-				tooltip: __( 'Center', 'ultimate-addons-for-gutenberg' ),
-				icon: (
-					<Icon
-						icon={ renderCustomIcon( `flex-${currentDirection}-center` ) }
-					/>
-				),
-			},
-			{
-				value: 'flex-end',
-				tooltip: __( 'Flex End', 'ultimate-addons-for-gutenberg' ),
-				icon: (
-					<Icon
-						icon={ renderCustomIcon( `flex-${currentDirection}-end` ) }
-					/>
-				),
-			},
-			{
-				value: 'space-between',
-				tooltip: __( 'Space Between', 'ultimate-addons-for-gutenberg' ),
-				icon: (
-					<Icon
-						icon={ renderCustomIcon( `flex-${currentDirection}-space-between` ) }
-					/>
-				),
-			},
-			{
-				value: 'space-around',
-				tooltip: __( 'Space Around', 'ultimate-addons-for-gutenberg' ),
-				icon: (
-					<Icon
-						icon={ renderCustomIcon( `flex-${currentDirection}-space-around` ) }
-					/>
-				),
-			},
-			{
-				value: 'space-evenly',
-				tooltip: __( 'Space Evenly', 'ultimate-addons-for-gutenberg' ),
-				icon: (
-					<Icon
-						icon={ renderCustomIcon( `flex-${currentDirection}-space-evenly` ) }
-					/>
-				),
-			},
-		];
-
-		const alignContentOptions = [
-			{
-				value: 'flex-start',
-				tooltip: __( 'Flex Start', 'ultimate-addons-for-gutenberg' ),
-				icon: (
-					<Icon
-						icon={ renderCustomIcon( `flex-${currentOppAxisDirection}-start` ) }
-					/>
-				),
-			},
-			{
-				value: 'center',
-				tooltip: __( 'Center', 'ultimate-addons-for-gutenberg' ),
-				icon: (
-					<Icon
-						icon={ renderCustomIcon( `flex-${currentOppAxisDirection}-center` ) }
-					/>
-				),
-			},
-			{
-				value: 'flex-end',
-				tooltip: __( 'Flex End', 'ultimate-addons-for-gutenberg' ),
-				icon: (
-					<Icon
-						icon={ renderCustomIcon( `flex-${currentOppAxisDirection}-end` ) }
-					/>
-				),
-			},
-			{
-				value: 'space-between',
-				tooltip: __( 'Space Between', 'ultimate-addons-for-gutenberg' ),
-				icon: (
-					<Icon
-						icon={ renderCustomIcon( `flex-${currentOppAxisDirection}-space-between` ) }
-					/>
-				),
-			},
-			{
-				value: 'space-around',
-				tooltip: __( 'Space Around', 'ultimate-addons-for-gutenberg' ),
-				icon: (
-					<Icon
-						icon={ renderCustomIcon( `flex-${currentOppAxisDirection}-space-around` ) }
-					/>
-				),
-			},
-			{
-				value: 'space-evenly',
-				tooltip: __( 'Space Evenly', 'ultimate-addons-for-gutenberg' ),
-				icon: (
-					<Icon
-						icon={ renderCustomIcon( `flex-${currentOppAxisDirection}-space-evenly` ) }
-					/>
-				),
-			},
-		];
-
-		const wrapOptions = [
-			{
-				value: 'wrap',
-				tooltip: __( 'Wrap', 'ultimate-addons-for-gutenberg' ),
-				icon: (
-					<Icon
-						icon={ renderCustomIcon( 'flex-wrap' ) }
-					/>
-				),
-			},
-			{
-				value: 'nowrap',
-				tooltip: __( 'No Wrap', 'ultimate-addons-for-gutenberg' ),
-				icon: (
-					<Icon
-						icon={ renderCustomIcon( 'flex-no-wrap' ) }
-					/>
-				),
-			},
-			{
-				value: 'wrap-reverse',
-				tooltip: __( 'Wrap Reverse', 'ultimate-addons-for-gutenberg' ),
-				icon: (
-					<Icon
-						icon={ renderCustomIcon( 'flex-wrap-reverse' ) }
-					/>
-				),
-			},
-		];
-
 		const contentWidthOptions = [
 			{
 				value: 'alignfull',
@@ -834,124 +539,6 @@ const Settings = ( props ) => {
 						showIcons={ false }
 						responsive={false}
 					/>
-				</UAGAdvancedPanelBody>
-				<UAGAdvancedPanelBody
-					title={ __( 'Flex Properties', 'ultimate-addons-for-gutenberg' ) }
-					initialOpen={ false }
-				>
-					<MultiButtonsControl
-						setAttributes={ setAttributes }
-						label={ __( 'Direction', 'ultimate-addons-for-gutenberg' ) }
-						data={ {
-							desktop: {
-								value: directionDesktop,
-								label: 'directionDesktop',
-							},
-							tablet: {
-								value: directionTablet,
-								label: 'directionTablet',
-							},
-							mobile: {
-								value: directionMobile,
-								label: 'directionMobile',
-							},
-						} }
-						options={ directionOptions }
-						showIcons={ true }
-						responsive={ true }
-						help={ __( 'Define the direction in which blocks inside this container will be placed one after the other.', 'ultimate-addons-for-gutenberg' ) }
-					/>
-
-					<MultiButtonsControl
-						setAttributes={ setAttributes }
-						label={ __( 'Align Items', 'ultimate-addons-for-gutenberg' ) }
-						data={ {
-							desktop: {
-								value: alignItemsDesktop,
-								label: 'alignItemsDesktop',
-							},
-							tablet: {
-								value: alignItemsTablet,
-								label: 'alignItemsTablet',
-							},
-							mobile: {
-								value: alignItemsMobile,
-								label: 'alignItemsMobile',
-							},
-						} }
-						options={ alignItemsOptions }
-						showIcons={ true }
-						responsive={ true }
-						help={ ( 'row' === currentOppAxisDirection ) ? horizontalAlignmentHint : verticalAlignmentHint }
-					/>
-					<MultiButtonsControl
-						setAttributes={ setAttributes }
-						label={ __( 'Justify Content', 'ultimate-addons-for-gutenberg' ) }
-						data={ {
-							desktop: {
-								value: justifyContentDesktop,
-								label: 'justifyContentDesktop',
-							},
-							tablet: {
-								value: justifyContentTablet,
-								label: 'justifyContentTablet',
-							},
-							mobile: {
-								value: justifyContentMobile,
-								label: 'justifyContentMobile',
-							},
-						} }
-						options={ justifyContentOptions }
-						showIcons={ true }
-						responsive={ true }
-						help={ ( 'row' === currentDirection ) ? horizontalAlignmentHint : verticalAlignmentHint }
-					/>
-					<MultiButtonsControl
-						setAttributes={ setAttributes }
-						label={ __( 'Wrap', 'ultimate-addons-for-gutenberg' ) }
-						data={ {
-							desktop: {
-								value: wrapDesktop,
-								label: 'wrapDesktop',
-							},
-							tablet: {
-								value: wrapTablet,
-								label: 'wrapTablet',
-							},
-							mobile: {
-								value: wrapMobile,
-								label: 'wrapMobile',
-							},
-						} }
-						options={ wrapOptions }
-						showIcons={ true }
-						responsive={ true }
-						help={ __( 'Define whether the items are forced in a single line (No Wrap) or can be flowed into multiple lines (Wrap)', 'ultimate-addons-for-gutenberg' ) }
-					/>
-					{ ( 'wrap' === attributes[ 'wrap' + deviceType ] || 'wrap-reverse' === attributes[ 'wrap' + deviceType ] ) &&
-						<MultiButtonsControl
-							setAttributes={ setAttributes }
-							label={ __( 'Align Content', 'ultimate-addons-for-gutenberg' ) }
-							data={ {
-								desktop: {
-									value: alignContentDesktop,
-									label: 'alignContentDesktop',
-								},
-								tablet: {
-									value: alignContentTablet,
-									label: 'alignContentTablet',
-								},
-								mobile: {
-									value: alignContentMobile,
-									label: 'alignContentMobile',
-								},
-							} }
-							options={ alignContentOptions }
-							showIcons={ true }
-							responsive={ true }
-							help={ alignContentHint }
-						/>
-					}
 				</UAGAdvancedPanelBody>
 			</>
 		);

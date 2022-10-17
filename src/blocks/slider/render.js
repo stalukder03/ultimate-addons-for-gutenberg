@@ -81,7 +81,7 @@ const Render = ( props ) => {
 
 	const settings = {
 		accessibility: false,
-		slidesToShow: 2, // eslint-disable-line no-nested-ternary
+		slidesToShow: 1, // eslint-disable-line no-nested-ternary
 		slidesToScroll: 1,
 		autoplaySpeed: getFallbackNumber( autoplaySpeed, 'autoplaySpeed', blockName ),
 		autoplay,
@@ -129,18 +129,18 @@ const Render = ( props ) => {
 				>	
 					<div className='uagb-slides'>
 						<Slider
-						className={ classnames(
-							'is-carousel',
-							'uagb-slider__items',
-						) }
-						{ ...settings }
-						ref={ sliderRef }
-					>
-						<InnerBlocks
-								allowedBlocks={ ALLOWED_BLOCKS }
-								template={ getSliderTemplate }
-								templateLock={ false }
-						/>
+							className={ classnames(
+								'is-carousel',
+								'uagb-slider__items',
+							) }
+							{ ...settings }
+							ref={ sliderRef }
+						>
+							<InnerBlocks
+									allowedBlocks={ ALLOWED_BLOCKS }
+									template={ getSliderTemplate }
+									templateLock={ false }
+							/>
 						</Slider>
 					</div>
 				</div>

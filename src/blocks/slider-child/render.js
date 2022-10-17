@@ -21,10 +21,9 @@ const Render = ( props ) => {
 		contentWidth,
 	} = attributes;
 
-	const { getBlockOrder, getBlockIndex } = select( 'core/block-editor' );
+	const { getBlockOrder } = select( 'core/block-editor' );
 
 	const hasChildBlocks = getBlockOrder( clientId ).length > 0;
-	const slideIndex = getBlockIndex( clientId );
 
 	const hasChildren = 0 !== select( 'core/block-editor' ).getBlocks( clientId ).length;
 	const hasChildrenClass = hasChildren ? 'uagb-container-has-children' : '';
@@ -32,6 +31,7 @@ const Render = ( props ) => {
 	const blockProps = useBlockProps( {
 		className: `uagb-slider-child-wrap uagb-block-${ block_id } ${contentWidth} ${hasChildrenClass} uagb-editor-preview-mode-${ deviceType.toLowerCase() } ${isRootContainerClass}`,
 	} );
+	
 
 	return (
 		<>
