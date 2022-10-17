@@ -1727,7 +1727,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			}
 			return $alignment_property;
 		}
-		
+
 		/**
 		 * Generate Border Radius
 		 *
@@ -1740,18 +1740,18 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 		 *  generate_border_radius( 'em', 9, 7, 5, 3 );
 		 *
 		 * @param string $unit  Alignment Matrix value.
-		 * @param int $topLeft  Top Left Value.
-		 * @param int $topRight  Top Right Value.
-		 * @param int $bottomRight  Bottom Right Value.
-		 * @param int $bottomLeft  Bottom Left Value.
-		 * @since 2.0.0
+		 * @param int    $topLeft  Top Left Value.
+		 * @param int    $topRight  Top Right Value.
+		 * @param int    $bottomRight  Bottom Right Value.
+		 * @param int    $bottomLeft  Bottom Left Value.
+		 * @since 2.1.0
 		 */
-		public static function generate_border_radius( $unit, $topLeft, $topRight=NAN, $bottomRight=NAN, $bottomLeft=NAN ){
-			$borderRadius =  ! is_nan( $topRight )
+		public static function generate_border_radius( $unit, $topLeft, $topRight = null, $bottomRight = null, $bottomLeft = null ) {
+			$borderRadius = ! is_null( $topRight )
 				? (
-					! is_nan( $bottomRight )
+					! is_null( $bottomRight )
 					? (
-						! is_nan( $bottomLeft )
+						! is_null( $bottomLeft )
 						? UAGB_Helper::get_css_value( $topLeft, $unit ) . ' ' . UAGB_Helper::get_css_value( $topRight, $unit ) . ' ' . UAGB_Helper::get_css_value( $bottomRight, $unit ) . ' ' . UAGB_Helper::get_css_value( $bottomLeft, $unit )
 						: UAGB_Helper::get_css_value( $topLeft, $unit ) . ' ' . UAGB_Helper::get_css_value( $topRight, $unit ) . ' ' . UAGB_Helper::get_css_value( $bottomRight, $unit )
 					)
@@ -1760,7 +1760,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 				: UAGB_Helper::get_css_value( $topLeft, $unit );
 			return $borderRadius;
 		}
-		
+
 		/**
 		 * Generate Spacing
 		 *
@@ -1772,19 +1772,19 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 		 *
 		 *  generate_spacing( 'em', 9, 7, 5, 3 );
 		 *
-		 * @param string $unit  Alignment Matrix value.
-		 * @param int $top  Top Value.
-		 * @param int $right  Right Value.
-		 * @param int $bottom  Bottom Value.
-		 * @param int $left  Left Value.
-		 * @since 2.0.0
+		 * @param string $unit   Alignment Matrix value.
+		 * @param int    $top    Top Value.
+		 * @param int    $right  Right Value.
+		 * @param int    $bottom Bottom Value.
+		 * @param int    $left   Left Value.
+		 * @since 2.1.0
 		 */
-		public static function generate_spacing( $unit, $top, $right=NAN, $bottom=NAN, $left=NAN ){
-			$spacing =  ! is_nan( $top )
+		public static function generate_spacing( $unit, $top, $right = null, $bottom = null, $left = null ) {
+			$spacing = ! is_null( $right )
 				? (
-					! is_nan( $right )
+					! is_null( $bottom )
 					? (
-						! is_nan( $bottom )
+						! is_null( $left )
 						? UAGB_Helper::get_css_value( $top, $unit ) . ' ' . UAGB_Helper::get_css_value( $right, $unit ) . ' ' . UAGB_Helper::get_css_value( $bottom, $unit ) . ' ' . UAGB_Helper::get_css_value( $left, $unit )
 						: UAGB_Helper::get_css_value( $top, $unit ) . ' ' . UAGB_Helper::get_css_value( $right, $unit ) . ' ' . UAGB_Helper::get_css_value( $bottom, $unit )
 					)
