@@ -34,30 +34,24 @@ const Render = ( props ) => {
 	
 
 	return (
-		<>
-			<div
-				{ ...blockProps }
-				key = { block_id }
-			>
-				{ 'video' === backgroundType && (
-					<div className="uagb-container__video-wrap">
-						{ backgroundVideo && (
-							<video autoPlay loop muted playsinline>
-								<source
-									src={ backgroundVideo.url }
-									type="video/mp4"
-								/>
-							</video>
-						) }
-					</div>
-				) }
-				<InnerBlocks
-						renderAppender = { hasChildBlocks
-						? undefined
-						: InnerBlocks.ButtonBlockAppender }
-					/>
-			</div>
-		</>
+		<div
+			{ ...blockProps }
+			key = { block_id }
+		>
+			{ 'video' === backgroundType && (
+				<div className="uagb-container__video-wrap">
+					{ backgroundVideo && (
+						<video autoPlay loop muted playsinline>
+							<source
+								src={ backgroundVideo.url }
+								type="video/mp4"
+							/>
+						</video>
+					) }
+				</div>
+			) }
+			<p>Slide one</p>
+		</div>
 	);
 };
 

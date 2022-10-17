@@ -20,7 +20,7 @@ import MultiButtonsControl from '@Components/multi-buttons-control';
 import UAGSelectControl from '@Components/select-control';
 import UAGTabsControl from '@Components/tabs';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control';
-import innerContainerPresets, { boxShadowPresets, boxShadowHoverPresets } from './presets';
+import { boxShadowPresets, boxShadowHoverPresets } from './presets';
 import UAGPresets from '@Components/presets';
 
 const Settings = ( props ) => {
@@ -1117,25 +1117,11 @@ const Settings = ( props ) => {
 		);
 	}
 
-	const presetSettings = () => {
-		return <UAGAdvancedPanelBody
-					title={ __( 'Inner Container Presets', 'ultimate-addons-for-gutenberg' ) }
-					initialOpen={ true }
-				>
-					<UAGPresets
-						setAttributes = { setAttributes }
-						presets = { innerContainerPresets }
-						presetInputType = 'radioImage'
-					/>
-				</UAGAdvancedPanelBody>
-	};
-
 	return (
 
 			<InspectorControls>
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>
-						{ presetSettings() }
 						{ generalSettings() }
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>

@@ -1,12 +1,11 @@
-import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import React, { useMemo, useRef } from 'react';
 import { select } from '@wordpress/data';
 const ALLOWED_BLOCKS = [ 'uagb/slider-child' ];
-import { useDeviceType } from '@Controls/getPreviewType';
 import { getFallbackNumber } from '@Controls/getAttributeFallback';
 import Slider from 'react-slick';
-
+import UAGB_Block_Icons from '@Controls/block-icons';
 
 const Render = ( props ) => {
 
@@ -28,6 +27,9 @@ const Render = ( props ) => {
 		arrowBorderSize,
 		arrowBorderRadius,
 		autoplay,
+		columns,
+		tcolumns,
+		mcolumns,
 		autoplaySpeed,
 		arrowColor,
 	} = attributes;
@@ -81,8 +83,8 @@ const Render = ( props ) => {
 
 	const settings = {
 		accessibility: false,
-		slidesToShow: 1, // eslint-disable-line no-nested-ternary
-		slidesToScroll: 1,
+		// slidesToShow: 1, // eslint-disable-line no-nested-ternary
+		// slidesToScroll: 1,
 		autoplaySpeed: getFallbackNumber( autoplaySpeed, 'autoplaySpeed', blockName ),
 		autoplay,
 		infinite: infiniteLoop,
@@ -119,33 +121,42 @@ const Render = ( props ) => {
 		className: `uagb-block-${ block_id } ${contentWidth} ${hasChildrenClass}`,
 	} );
 
+    const innerBlocksProps = useInnerBlocksProps(
+        blockProps,
+        { 
+			allowedBlocks: ALLOWED_BLOCKS,
+			template : getSliderTemplate 
+		}
+    );
+
 	return (
-		<>
-			<div
-				{ ...blockProps }
-				key = { block_id }
-			>
-				<div className='uagb-slider'
-				>	
-					<div className='uagb-slides'>
-						<Slider
-							className={ classnames(
-								'is-carousel',
-								'uagb-slider__items',
-							) }
-							{ ...settings }
-							ref={ sliderRef }
-						>
-							<InnerBlocks
-									allowedBlocks={ ALLOWED_BLOCKS }
-									template={ getSliderTemplate }
-									templateLock={ false }
-							/>
-						</Slider>
-					</div>
+		<div
+			{ ...blockProps }
+			key = { block_id }
+		>
+			<div className='uagb-slider'
+			>	
+				<div className='uagb-slides uagb-slick-carousel uagb-slide__arrow-outside'>
+					<Slider
+						className={ classnames(
+							'is-carousel',
+							'uagb-slider__items',
+							`uagb-slider__columns-${ getFallbackNumber( columns, 'columns', blockName ) }`,
+						) }
+						{ ...settings }
+						ref={ sliderRef }
+					>
+						<div 
+							
+						><h1>Slider 1</h1></div>
+
+							<div 
+							
+							><h1>Slider 2</h1></div>
+					</Slider>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 export default React.memo( Render );

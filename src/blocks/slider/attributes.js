@@ -57,6 +57,18 @@ const attributes = {
 			styleType: 'arrow-size'
 		},
 	},
+	columns: {
+		type: 'number',
+		default: 1,
+	},
+	tcolumns: {
+		type: 'number',
+		default: 1,
+	},
+	mcolumns: {
+		type: 'number',
+		default: 1,
+	},
 	arrowBorderSize: {
 		type: 'number',
 		default: 0,

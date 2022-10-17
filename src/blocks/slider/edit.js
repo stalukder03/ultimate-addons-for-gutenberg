@@ -117,12 +117,8 @@ const UAGBSlider = ( props ) => {
 
 	return (
 		<>
-
-						<>
 			<Settings parentProps={ props } />
-				<Render parentProps={ props } />
-			</>
-
+			<Render parentProps={ props } />
 		</>
 	);
 };
