@@ -58,6 +58,12 @@ class Admin_Helper {
 			'copy_paste'                         => \UAGB_Admin_Helper::get_admin_settings_option( 'uag_copy_paste', 'enabled' ),
 			'dynamic_content_mode'               => \UAGB_Admin_Helper::get_admin_settings_option( 'uag_dynamic_content_mode', 'popup' ),
 			'preload_local_fonts'                => \UAGB_Admin_Helper::get_admin_settings_option( 'uag_preload_local_fonts', 'disabled' ),
+			'social'                		 => \UAGB_Admin_Helper::get_admin_settings_option( 'uag_social', [
+				'socialRegister'	=> true,
+				'googleClientId' =>  '',
+				'facebookAppId' => '',
+				'facebookAppSecret' => ''
+			] ),
 			'enable_coming_soon_mode'            => \UAGB_Admin_Helper::get_admin_settings_option( 'uag_enable_coming_soon_mode', 'disabled' ),
 			'coming_soon_page'                   => self::get_coming_soon_page(),
 			'uag_previous_versions'              => $uag_versions,

@@ -19,6 +19,16 @@ const initialState = {
     enableMasonryExtension : '',
 	enableDynamicContentExtension: '',
 	dynamicContentMode: 'popup',
+	socialLogin: {
+		recaptchaVersion: 'v2',
+		recaptchaSiteKey: '',
+		recaptchaSecretKey: '',
+		recaptchaBadgeHide: false,
+		socialRegister: true,
+		googleClientId: '',
+		facebookAppId: '',
+		facebookAppSecret: ''
+	},
 	enableResponsiveConditions : '',
 	contentWidth: '',
 	siteKeyV2: '',

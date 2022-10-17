@@ -15,6 +15,7 @@ import PreloadLocalFonts from '@DashboardApp/pages/settings/PreloadLocalFonts';
 import CollapsePanels from '@DashboardApp/pages/settings/CollapsePanels';
 import CopyPasteStyles from '@DashboardApp/pages/settings/CopyPasteStyles';
 import DynamicContent from './block-settings/dynamic-content';
+import Login from '@DashboardApp/pages/settings/block-settings/Login';
 import ContentWidth from '@DashboardApp/pages/settings/ContentWidth';
 import BlocksEditorSpacing from '@DashboardApp/pages/settings/BlocksEditorSpacing';
 import ComingSoon from '@DashboardApp/pages/settings/ComingSoon';
@@ -26,6 +27,7 @@ import ContainerGlobalPadding from '@DashboardApp/pages/settings/ContainerGlobal
 import ContainerGlobalElementsGap from '@DashboardApp/pages/settings/ContainerGlobalElementsGap';
 import { Link, useLocation } from 'react-router-dom';
 import{ useEffect } from 'react';
+
 
 function classNames( ...classes ) {
     return classes.filter( Boolean ).join( ' ' )
@@ -141,14 +143,17 @@ const Settings = () => {
                             </>
                         }
                         { 'block-settings' === activeSettingsNavigationTab &&
-                            <>
+							<>
 								{
 									dynamicContentStatus && (
 										<DynamicContent />
 									)
 								}
+								<Login />
+								<CollapsePanels/>
+								<CopyPasteStyles/>
 								<BlockSettings/>
-                            </>
+							</>
                         }
                         {
                             'coming-soon' === activeSettingsNavigationTab &&
