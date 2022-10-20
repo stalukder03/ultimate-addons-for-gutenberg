@@ -4,7 +4,6 @@ import { select } from '@wordpress/data';
 const ALLOWED_BLOCKS = [ 'uagb/slider-child' ];
 import { getFallbackNumber } from '@Controls/getAttributeFallback';
 import UAGB_Block_Icons from '@Controls/block-icons';
-import domReady from '@wordpress/dom-ready';
 
 import Swiper, { Navigation, Pagination, Scrollbar } from 'swiper';
 
@@ -78,28 +77,6 @@ const Render = ( props ) => {
 		);
 	};
 
-	const dots =
-		'dots' === arrowDots || 'arrows_dots' === arrowDots ? true : false;
-	const arrows =
-		'arrows' === arrowDots || 'arrows_dots' === arrowDots ? true : false;
-
-	const settings = {
-		accessibility: false,
-		// slidesToShow: 1, // eslint-disable-line no-nested-ternary
-		// slidesToScroll: 1,
-		autoplaySpeed: getFallbackNumber( autoplaySpeed, 'autoplaySpeed', blockName ),
-		autoplay,
-		infinite: infiniteLoop,
-		pauseOnHover,
-		speed: getFallbackNumber( transitionSpeed, 'transitionSpeed', blockName ),
-		arrows,
-		dots,
-		rtl: false,
-		draggable: false,
-		nextArrow: <NextArrow arrowSize={ arrowSize } onClick={sliderRef.slickNext} />,
-		prevArrow: <PrevArrow arrowSize={ arrowSize } onClick={sliderRef.slickPrev} />,
-	};
-
 	const {
 		block_id,
 		contentWidth
@@ -158,14 +135,18 @@ const Render = ( props ) => {
 				} );
 
 				new Swiper( '.swiper', {
-					// Install modules
-					modules: [Navigation, Pagination, Scrollbar],
-					speed: 500,
-					navigation: {
-					nextEl: '.swiper-button-next',
-					prevEl: '.swiper-button-prev',
+					slidesPerView: 1,
+					spaceBetween: 30,
+					loop: true,
+					pagination: {
+					el: '.swiper-pagination',
+						clickable: true,
 					},
-					// ...
+					navigation: {
+						nextEl: '.swiper-button-next',
+						prevEl: '.swiper-button-prev',
+					},
+					modules: [Navigation, Pagination, Scrollbar],
 				} );
 			}
 				
