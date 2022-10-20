@@ -1,4 +1,4 @@
-import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import { InnerBlocks } from '@wordpress/block-editor';
 import React from 'react';
 import { select } from '@wordpress/data';
 
@@ -10,8 +10,6 @@ const Render = ( props ) => {
 		deviceType,
 		clientId
 	} = props;
-
-	// console.log( props );
 
 	const {
 		block_id,
@@ -25,33 +23,12 @@ const Render = ( props ) => {
 
 	const hasChildBlocks = getBlockOrder( clientId ).length > 0;
 
-	const hasChildren = 0 !== select( 'core/block-editor' ).getBlocks( clientId ).length;
-	const hasChildrenClass = hasChildren ? 'uagb-container-has-children' : '';
-	const isRootContainerClass = isBlockRootParent ? 'uagb-is-root-container' : '';
-	const blockProps = useBlockProps( {
-		className: `uagb-slider-child-wrap uagb-block-${ block_id } ${contentWidth} ${hasChildrenClass} uagb-editor-preview-mode-${ deviceType.toLowerCase() } ${isRootContainerClass}`,
-	} );
-	
-
 	return (
-		<div
-			{ ...blockProps }
-			key = { block_id }
-		>
-			{ 'video' === backgroundType && (
-				<div className="uagb-container__video-wrap">
-					{ backgroundVideo && (
-						<video autoPlay loop muted playsinline>
-							<source
-								src={ backgroundVideo.url }
-								type="video/mp4"
-							/>
-						</video>
-					) }
-				</div>
-			) }
-			<p>Slide one</p>
-		</div>
+		<InnerBlocks
+			renderAppender = { hasChildBlocks
+			? undefined
+			: InnerBlocks.ButtonBlockAppender }
+		/>
 	);
 };
 

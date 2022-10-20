@@ -1,11 +1,12 @@
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
-import classnames from 'classnames';
 import React, { useMemo, useRef } from 'react';
 import { select } from '@wordpress/data';
 const ALLOWED_BLOCKS = [ 'uagb/slider-child' ];
 import { getFallbackNumber } from '@Controls/getAttributeFallback';
-import Slider from 'react-slick';
 import UAGB_Block_Icons from '@Controls/block-icons';
+import domReady from '@wordpress/dom-ready';
+
+import Swiper, { Navigation, Pagination, Scrollbar } from 'swiper';
 
 const Render = ( props ) => {
 
@@ -121,13 +122,42 @@ const Render = ( props ) => {
 		className: `uagb-block-${ block_id } ${contentWidth} ${hasChildrenClass}`,
 	} );
 
+	const swiperProps = useBlockProps( {
+		className: `swiper-wrapper`,
+	} );
+
     const innerBlocksProps = useInnerBlocksProps(
-        blockProps,
+        swiperProps,
         { 
 			allowedBlocks: ALLOWED_BLOCKS,
 			template : getSliderTemplate 
 		}
     );
+
+	domReady( function () {
+
+		const sliderChilds = document.querySelectorAll( '[data-type="uagb/slider-child"]' );
+
+		if( sliderChilds ) {
+
+			[].forEach.call( sliderChilds, function( div ) {
+				// do whatever
+				div.classList.add( 'swiper-slide' );
+			} );
+
+			new Swiper( '.swiper', {
+				// Install modules
+				modules: [Navigation, Pagination, Scrollbar],
+				speed: 500,
+				navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+				},
+				// ...
+			} );
+		}
+	} );
+	
 
 	return (
 		<div
@@ -136,24 +166,15 @@ const Render = ( props ) => {
 		>
 			<div className='uagb-slider'
 			>	
-				<div className='uagb-slides uagb-slick-carousel uagb-slide__arrow-outside'>
-					<Slider
-						className={ classnames(
-							'is-carousel',
-							'uagb-slider__items',
-							`uagb-slider__columns-${ getFallbackNumber( columns, 'columns', blockName ) }`,
-						) }
-						{ ...settings }
-						ref={ sliderRef }
-					>
-						<div 
-							
-						><h1>Slider 1</h1></div>
+				<div className='uagb-slides swiper uagb-slick-carousel uagb-slide__arrow-outside'>	
+					<div
+						
+						{ ...innerBlocksProps }
+					/>
+					<div className="swiper-pagination"></div>
 
-							<div 
-							
-							><h1>Slider 2</h1></div>
-					</Slider>
+					<div className="swiper-button-prev"></div>
+					<div className="swiper-button-next"></div>
 				</div>
 			</div>
 		</div>
