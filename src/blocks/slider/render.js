@@ -17,7 +17,6 @@ const Render = ( props ) => {
 	} = props;
 
 	const blockName = props.name.replace( 'uagb/', '' );
-	const sliderWrapAdded = false;
 
 	const {
 		pauseOnHover,
@@ -34,48 +33,6 @@ const Render = ( props ) => {
 		autoplaySpeed,
 		arrowColor,
 	} = attributes;
-
-	const sliderRef = useRef();
-
-	const NextArrow = ( { onClick } ) => {
-		return (
-			<button
-				type="button"
-				data-role="none"
-				className="slick-next slick-arrow"
-				aria-label="Next"
-				tabIndex="0"
-				style={ {
-					borderColor: arrowColor,
-					borderRadius: arrowBorderRadius,
-					borderWidth: getFallbackNumber( arrowBorderSize, 'arrowBorderSize', blockName ),
-				} }
-				onClick = { onClick }
-			>
-				{ UAGB_Block_Icons.carousel_right }
-			</button>
-		);
-	};
-
-	const PrevArrow = ( { onClick } ) => {
-		return (
-			<button
-				type="button"
-				data-role="none"
-				className="slick-prev slick-arrow"
-				aria-label="Previous"
-				tabIndex="0"
-				style={ {
-					borderColor: arrowColor,
-					borderRadius: arrowBorderRadius,
-					borderWidth: getFallbackNumber( arrowBorderSize, 'arrowBorderSize', blockName ),
-				} }
-				onClick= { onClick }
-			>
-				{ UAGB_Block_Icons.carousel_left }
-			</button>
-		);
-	};
 
 	const {
 		block_id,
@@ -112,6 +69,21 @@ const Render = ( props ) => {
 		}
     );
 
+	const settings = {
+		slidesPerView: 1,
+		autoplay,
+		spaceBetween: 30,
+		speed: autoplaySpeed,
+		loop: infiniteLoop,
+		pagination: {
+			el: '.swiper-pagination',
+			clickable: true,
+		},
+		navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev',
+		},
+	}
 
 	useEffect( () => {
 
@@ -124,8 +96,6 @@ const Render = ( props ) => {
 				[].forEach.call( sliderChilds, function( div ) {
 
 					const wrapper = document.createElement( 'div' );
-
-					// do whatever
 					wrapper.classList.add( 'swiper-slide' );
 
 					div.parentNode.insertBefore( wrapper, div );
@@ -135,23 +105,11 @@ const Render = ( props ) => {
 				} );
 
 				new Swiper( '.swiper', {
-					slidesPerView: 1,
-					spaceBetween: 30,
-					loop: true,
-					pagination: {
-					el: '.swiper-pagination',
-						clickable: true,
-					},
-					navigation: {
-						nextEl: '.swiper-button-next',
-						prevEl: '.swiper-button-prev',
-					},
+					...settings,
 					modules: [Navigation, Pagination, Scrollbar],
 				} );
-			}
-				
+			}	
 		} );
-		
 		
 	}, [] )
 	

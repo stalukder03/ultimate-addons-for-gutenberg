@@ -4,7 +4,7 @@ import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
 import InspectorTab, {
 	UAGTabs,
 } from '@Components/inspector-tabs/InspectorTab.js';
-import ResponsiveSlider from '@Components/responsive-slider';
+import Range from '@Components/range/Range.js';
 import { __ } from '@wordpress/i18n';
 
 import {
@@ -17,7 +17,7 @@ import Background from '@Components/background';
 import ResponsiveBorder from '@Components/responsive-border';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import MultiButtonsControl from '@Components/multi-buttons-control';
-import UAGSelectControl from '@Components/select-control';
+import { ToggleControl } from '@wordpress/components';
 import UAGTabsControl from '@Components/tabs';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control';
 import { boxShadowPresets, boxShadowHoverPresets } from './presets';
@@ -29,16 +29,13 @@ const Settings = ( props ) => {
 	const { attributes, setAttributes, deviceType } = props;
 	const {
 		block_id,
-		htmlTag,
-		htmlTagLink,
-		widthDesktop,
-		widthTablet,
-		widthMobile,
-		widthType,
-		minHeightDesktop,
-		minHeightTablet,
-		minHeightMobile,
-		minHeightType,
+		
+		pauseOnHover,
+		infiniteLoop,
+		transitionSpeed,
+		arrowDots,
+		autoplay,
+		autoplaySpeed,
 
 		backgroundType,
 		backgroundImageDesktop,
@@ -104,12 +101,7 @@ const Settings = ( props ) => {
 		marginTypeTablet,
 		marginTypeMobile,
 		marginLink,
-		contentWidth,
-		innerContentWidth,
-		innerContentCustomWidthDesktop,
-		innerContentCustomWidthTablet,
-		innerContentCustomWidthMobile,
-		innerContentCustomWidthType,
+	
 		backgroundCustomSizeDesktop,
 		backgroundCustomSizeTablet,
 		backgroundCustomSizeMobile,
@@ -135,15 +127,6 @@ const Settings = ( props ) => {
 		linkColor,
 		linkHoverColor,
 
-		// responsive
-		innerContentCustomWidthTypeTablet,
-		innerContentCustomWidthTypeMobile,
-		widthTypeTablet,
-		widthTypeMobile,
-		minHeightTypeTablet,
-		minHeightTypeMobile,
-
-		overflow,
 	} = attributes;
 
 
@@ -160,386 +143,119 @@ const Settings = ( props ) => {
 	}, [backgroundType] );
 
 	const generalSettings = () => {
-		const contentWidthOptions = [
-			{
-				value: 'alignfull',
-				label: __( 'Full Width', 'ultimate-addons-for-gutenberg' ),
-			},
-			{
-				value: 'alignwide',
-				label: __( 'Boxed', 'ultimate-addons-for-gutenberg' ),
-			},
-			{
-				value: 'default',
-				label: __( 'Custom', 'ultimate-addons-for-gutenberg' ),
-			},
-		];
 
-		const overflowOptions = [
-			{
-				value: 'visible',
-				label: __( 'Visible', 'ultimate-addons-for-gutenberg' ),
-			},
-			{
-				value: 'hidden',
-				label: __( 'Hidden', 'ultimate-addons-for-gutenberg' ),
-			},
-			{
-				value: 'auto',
-				label: __( 'Auto', 'ultimate-addons-for-gutenberg' ),
-			},
-		];
+		const togglePauseOnHover = () => {
+			setAttributes( { pauseOnHover: ! pauseOnHover } );
+		};
+	
+		const toggleInfiniteLoop = () => {
+			setAttributes( { infiniteLoop: ! infiniteLoop } );
+		};
+	
+		const toggleAutoplay = () => {
+			setAttributes( { autoplay: ! autoplay } );
+		};
 
-		const innerContentWidthOptions = [
-			{
-				value: 'alignwide',
-				label: __( 'Boxed', 'ultimate-addons-for-gutenberg' ),
-			},
-			{
-				value: 'alignfull',
-				label: __( 'Full Width', 'ultimate-addons-for-gutenberg' ),
-			},
-		];
-
-		const onWidthChange = () => {
-			setAttributes( { widthSetByUser: true } );
+		const sliderSettings = () => {
+			return (
+				<UAGAdvancedPanelBody
+					title={ __( 'Slider', 'ultimate-addons-for-gutenberg' ) }
+					initialOpen={ false }
+				>
+					<ToggleControl
+						label={ __(
+							'Pause On Hover',
+							'ultimate-addons-for-gutenberg'
+						) }
+						checked={ pauseOnHover }
+						onChange={ togglePauseOnHover }
+					/>
+					<ToggleControl
+						label={ __( 'Autoplay' ) }
+						checked={ autoplay }
+						onChange={ toggleAutoplay }
+					/>
+					{ autoplay === true && (
+						<Range
+							label={ __(
+								'Autoplay Speed (ms)',
+								'ultimate-addons-for-gutenberg'
+							) }
+							setAttributes={ setAttributes }
+							value={ autoplaySpeed }
+							data={ {
+								value: autoplaySpeed,
+								label: 'autoplaySpeed',
+							} }
+							min={ 100 }
+							max={ 15000 }
+							displayUnit={ false }
+						/>
+					) }
+					<ToggleControl
+						label={ __(
+							'Infinite Loop',
+							'ultimate-addons-for-gutenberg'
+						) }
+						checked={ infiniteLoop }
+						onChange={ toggleInfiniteLoop }
+					/>
+					<Range
+						label={ __(
+							'Transition Speed (ms)',
+							'ultimate-addons-for-gutenberg'
+						) }
+						setAttributes={ setAttributes }
+						value={ transitionSpeed }
+						data={ {
+							value: transitionSpeed,
+							label: 'transitionSpeed',
+						} }
+						min={ 100 }
+						max={ 5000 }
+						displayUnit={ false }
+					/>
+					<MultiButtonsControl
+						setAttributes={ setAttributes }
+						label={ __(
+							'Show Arrows & Dots',
+							'ultimate-addons-for-gutenberg'
+						) }
+						data={ {
+							value: arrowDots,
+							label: 'arrowDots',
+						} }
+						options={ [
+							{
+								value: 'arrows',
+								label: __(
+									'Arrows',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+							{
+								value: 'dots',
+								label: __(
+									'Dots',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+							{
+								value: 'arrows_dots',
+								label: __(
+									'Both',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+						] }
+					/>
+				</UAGAdvancedPanelBody>
+			);
 		};
 
 		return (
 			<>
-				<UAGAdvancedPanelBody
-					title={ __( 'Container', 'ultimate-addons-for-gutenberg' ) }
-					initialOpen={ false }
-				>
-						<>
-							<MultiButtonsControl
-								setAttributes={ setAttributes }
-								label={ __( 'Container Width', 'ultimate-addons-for-gutenberg' ) }
-								data={ {
-									value: contentWidth,
-									label: 'contentWidth',
-								} }
-								options={ contentWidthOptions }
-								showIcons={ false }
-								responsive={false}
-							/>
-							{ 'alignfull' === contentWidth &&
-								<>
-									<MultiButtonsControl
-										setAttributes={ setAttributes }
-										label={ __( 'Content Width', 'ultimate-addons-for-gutenberg' ) }
-										data={ {
-											value: innerContentWidth,
-											label: 'innerContentWidth',
-										} }
-										options={ innerContentWidthOptions }
-										showIcons={ false }
-										responsive={false}
-									/>
-									{ 'alignwide' === innerContentWidth &&
-										<ResponsiveSlider
-											label={ __( 'Content Box Width', 'ultimate-addons-for-gutenberg' ) }
-											data={ {
-												desktop: {
-													value: innerContentCustomWidthDesktop,
-													label: 'innerContentCustomWidthDesktop',
-													unit: {
-														value: innerContentCustomWidthType,
-														label: 'innerContentCustomWidthType',
-													},
-												},
-												tablet: {
-													value: innerContentCustomWidthTablet,
-													label: 'innerContentCustomWidthTablet',
-													unit: {
-														value: innerContentCustomWidthTypeTablet,
-														label: 'innerContentCustomWidthTypeTablet',
-													},
-												},
-												mobile: {
-													value: innerContentCustomWidthMobile,
-													label: 'innerContentCustomWidthMobile',
-													unit: {
-														value: innerContentCustomWidthTypeMobile,
-														label: 'innerContentCustomWidthTypeMobile',
-													},
-												},
-											} }
-											min={ 0 }
-											limitMax={ { 'px': 1600, '%': 100, 'vw': 100 } }
-											units={ [
-												{
-													name: __(
-														'PX',
-														'ultimate-addons-for-gutenberg'
-													),
-													unitValue: 'px',
-												},
-												{
-													name: __( '%', 'ultimate-addons-for-gutenberg' ),
-													unitValue: '%',
-												},
-												{
-													name: __( 'VW', 'ultimate-addons-for-gutenberg' ),
-													unitValue: 'vw',
-												},
-											] }
-											unit={ {
-												value: innerContentCustomWidthType,
-												label: 'innerContentCustomWidthType',
-											} }
-											setAttributes={ setAttributes }
-										/>
-									}
-								</>
-							}
-						</>
-					{ ( ( 'default' === contentWidth ) ) &&
-						<>
-							<ResponsiveSlider
-								label={ __( 'Custom Width', 'ultimate-addons-for-gutenberg' ) }
-								data={ {
-									desktop: {
-										value: widthDesktop,
-										label: 'widthDesktop',
-										unit: {
-											value: widthType,
-											label: 'widthType',
-										},
-									},
-									tablet: {
-										value: widthTablet,
-										label: 'widthTablet',
-										unit: {
-											value: widthTypeTablet,
-											label: 'widthTypeTablet',
-										},
-									},
-									mobile: {
-										value: widthMobile,
-										label: 'widthMobile',
-										unit: {
-											value: widthTypeMobile,
-											label: 'widthTypeMobile',
-										},
-									},
-								} }
-								min={ 0 }
-								unit={ {
-									value: widthType,
-									label: 'widthType',
-								} }
-								limitMax={ { 'px': 1600, '%': 100, 'vw': 100 } }
-								units={ [
-									{
-										name: __(
-											'PX',
-											'ultimate-addons-for-gutenberg'
-										),
-										unitValue: 'px',
-									},
-									{
-										name: __( '%', 'ultimate-addons-for-gutenberg' ),
-										unitValue: '%',
-									},
-									{
-										name: __( 'VW', 'ultimate-addons-for-gutenberg' ),
-										unitValue: 'vw',
-									},
-								] }
-								setAttributes={ setAttributes }
-								onChange={onWidthChange}
-							/>
-						</>
-					}
-					<ResponsiveSlider
-						label={ __( 'Minimum Height', 'ultimate-addons-for-gutenberg' ) }
-						data={ {
-							desktop: {
-								value: minHeightDesktop,
-								label: 'minHeightDesktop',
-								unit: {
-									value: minHeightType,
-									label: 'minHeightType',
-								},
-							},
-							tablet: {
-								value: minHeightTablet,
-								label: 'minHeightTablet',
-								unit: {
-									value: minHeightTypeTablet,
-									label: 'minHeightTypeTablet',
-								},
-							},
-							mobile: {
-								value: minHeightMobile,
-								label: 'minHeightMobile',
-								unit: {
-									value: minHeightTypeMobile,
-									label: 'minHeightTypeMobile',
-								},
-							},
-						} }
-						min={ 0 }
-						limitMax={ { px: 1000, vh: 100 } }
-						unit={ {
-							value: minHeightType,
-							label: 'minHeightType',
-						} }
-						units={ [
-							{
-								name: __(
-									'PX',
-									'ultimate-addons-for-gutenberg'
-								),
-								unitValue: 'px',
-							},
-							{
-								name: __( 'VH', 'ultimate-addons-for-gutenberg' ),
-								unitValue: 'vh',
-							},
-						] }
-						setAttributes={ setAttributes }
-					/>
-					<UAGSelectControl
-						label={ __(
-							'HTML Tag',
-							'ultimate-addons-for-gutenberg'
-						) }
-						data={ {
-							value: htmlTag,
-							label: 'htmlTag',
-						} }
-						setAttributes={ setAttributes }
-						options={ [
-							{
-								value: 'div',
-								label: __(
-									'div',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-							{
-								value: 'header',
-								label: __(
-									'header',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-							{
-								value: 'footer',
-								label: __(
-									'footer',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-							{
-								value: 'main',
-								label: __(
-									'main',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-							{
-								value: 'article',
-								label: __(
-									'article',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-							{
-								value: 'section',
-								label: __(
-									'section',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-							{
-								value: 'aside',
-								label: __(
-									'aside',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-							{
-								value: 'figure',
-								label: __(
-									'figure',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-							{
-								value: 'figcaption',
-								label: __(
-									'figcaption',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-							{
-								value: 'summary',
-								label: __(
-									'summary',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-							{
-								value: 'nav',
-								label: __(
-									'nav',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-							{
-								value: 'a',
-								label: __(
-									'link',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-						] }
-					/>
-					{
-						htmlTag === 'a' && (
-							<LinkControl
-								searchInputPlaceholder="Search here..."
-								value={ htmlTagLink }
-								settings={[
-									{
-										id: 'opensInNewTab',
-										title: __( 'Open in new window', 'ultimate-addons-for-gutenberg' ),
-									},
-									{
-										id: 'noFollow',
-										title: __( 'Add nofollow', 'ultimate-addons-for-gutenberg' )
-									}
-								]}
-								onChange={ ( link ) => {
-									setAttributes( { htmlTagLink: link } )
-								} }
-								withCreateSuggestion={true}
-								createSuggestion={ ( inputValue ) => setAttributes( { post: {
-									...attributes.post,
-									title: inputValue,
-									type: 'custom-url',
-									id: Date.now(),
-									url: inputValue
-								} } ) }
-								createSuggestionButtonText={ ( newValue ) => `${__( 'New:', 'ultimate-addons-for-gutenberg' )} ${newValue}` }
-							/>
-						)
-					}
-					<MultiButtonsControl
-						setAttributes={ setAttributes }
-						label={ __( 'Overflow', 'ultimate-addons-for-gutenberg' ) }
-						data={ {
-							value: overflow,
-							label: 'overflow',
-						} }
-						options={ overflowOptions }
-						showIcons={ false }
-						responsive={false}
-					/>
-				</UAGAdvancedPanelBody>
+				{ sliderSettings() }
 			</>
 		);
 	};
