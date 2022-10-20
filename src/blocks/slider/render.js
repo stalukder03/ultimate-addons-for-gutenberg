@@ -1,5 +1,5 @@
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
-import React, { useMemo, useRef } from 'react';
+import React, { useMemo, useRef, useEffect } from 'react';
 import { select } from '@wordpress/data';
 const ALLOWED_BLOCKS = [ 'uagb/slider-child' ];
 import { getFallbackNumber } from '@Controls/getAttributeFallback';
@@ -18,6 +18,7 @@ const Render = ( props ) => {
 	} = props;
 
 	const blockName = props.name.replace( 'uagb/', '' );
+	const sliderWrapAdded = false;
 
 	const {
 		pauseOnHover,
@@ -134,29 +135,44 @@ const Render = ( props ) => {
 		}
     );
 
-	domReady( function () {
 
-		const sliderChilds = document.querySelectorAll( '[data-type="uagb/slider-child"]' );
+	useEffect( () => {
 
-		if( sliderChilds ) {
+		setTimeout( function()  {
+		
+			const sliderChilds = document.querySelectorAll( '[data-type="uagb/slider-child"]' );
 
-			[].forEach.call( sliderChilds, function( div ) {
-				// do whatever
-				div.classList.add( 'swiper-slide' );
-			} );
+			if( sliderChilds ) {
 
-			new Swiper( '.swiper', {
-				// Install modules
-				modules: [Navigation, Pagination, Scrollbar],
-				speed: 500,
-				navigation: {
-				nextEl: '.swiper-button-next',
-				prevEl: '.swiper-button-prev',
-				},
-				// ...
-			} );
-		}
-	} );
+				[].forEach.call( sliderChilds, function( div ) {
+
+					const wrapper = document.createElement( 'div' );
+
+					// do whatever
+					wrapper.classList.add( 'swiper-slide' );
+
+					div.parentNode.insertBefore( wrapper, div );
+					
+					wrapper.appendChild( div );
+					
+				} );
+
+				new Swiper( '.swiper', {
+					// Install modules
+					modules: [Navigation, Pagination, Scrollbar],
+					speed: 500,
+					navigation: {
+					nextEl: '.swiper-button-next',
+					prevEl: '.swiper-button-prev',
+					},
+					// ...
+				} );
+			}
+				
+		} );
+		
+		
+	}, [] )
 	
 
 	return (

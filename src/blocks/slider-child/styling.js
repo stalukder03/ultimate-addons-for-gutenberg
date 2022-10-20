@@ -332,25 +332,7 @@ function styling( props ) {
 	if ( ! isBlockRootParent || 'alignfull' !== contentWidth || 'alignwide' !== innerContentWidth ) {
 		containerFlexSelector = '.wp-block-uagb-container > .block-editor-inner-blocks > .block-editor-block-list__layout';
 	}
-
-	selectors[containerFlexSelector] = {
-		'min-height' : generateCSSUnit( minHeightDesktop, minHeightType ),
-		'flex-direction' : directionDesktop,
-		'align-items' : alignItemsDesktop,
-		'justify-content' : justifyContentDesktop,
-		'flex-wrap' : wrapDesktop,
-		'align-content' : alignContentDesktop,
-		'row-gap' : generateCSSUnit( rowGapDesktopFallback, rowGapType ),
-		'column-gap' : generateCSSUnit( columnGapDesktopFallback, columnGapType ),
-	}
-	selectors['.block-editor-block-list__block'] = {
-		'min-height' : generateCSSUnit( minHeightDesktop, minHeightType ),
-		'flex-direction' : directionDesktop,
-		'align-items' : alignItemsDesktop,
-		'justify-content' : justifyContentDesktop,
-		'flex-wrap' : wrapDesktop,
-		'align-content' : alignContentDesktop,
-	}
+	
 
 	const widthSelectorsDesktop = {
 		[`.is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${ props.clientId } `] : {
@@ -438,30 +420,6 @@ function styling( props ) {
 			...containerBackgroundCSSTablet,
 			...borderCSSTablet
 		},
-		[containerFlexSelector] : {
-			'flex-direction' : directionTablet,
-			'align-items' : alignItemsTablet,
-			'justify-content' : justifyContentTablet,
-			'flex-wrap' : wrapTablet,
-			'align-content' : alignContentTablet,
-			'row-gap' : generateCSSUnit( rowGapTablet, rowGapTypeTablet ),
-			'column-gap' : generateCSSUnit( columnGapTablet, columnGapTypeTablet ),
-			'min-height' : generateCSSUnit( minHeightTablet, minHeightTypeTablet ),
-		},
-		'.block-editor-block-list__block' : {
-			'min-height' : generateCSSUnit( minHeightTablet, minHeightTypeTablet ),
-			'flex-direction' : directionTablet,
-			'align-items' : alignItemsTablet,
-			'justify-content' : justifyContentTablet,
-			'flex-wrap' : wrapTablet,
-			'align-content' : alignContentTablet,
-		},
-		' > .uagb-container__shape-top svg' : {
-			'height': generateCSSUnit( topHeightTablet, 'px' )
-		},
-		' > .uagb-container__shape-bottom svg' : {
-			'height': generateCSSUnit( bottomHeightTablet, 'px' )
-		},
 	};
 
 	const backgroundAttributesMobile = {
@@ -501,30 +459,6 @@ function styling( props ) {
 			'min-height' : generateCSSUnit( minHeightMobile, minHeightTypeMobile ),
 			...containerBackgroundCSSMobile,
 			...borderCSSMobile
-		},
-		[containerFlexSelector] : {
-			'flex-direction' : directionMobile,
-			'align-items' : alignItemsMobile,
-			'justify-content' : justifyContentMobile,
-			'flex-wrap' : wrapMobile,
-			'align-content' : alignContentMobile,
-			'row-gap' : generateCSSUnit( rowGapMobile, rowGapTypeMobile ),
-			'column-gap' : generateCSSUnit( columnGapMobile, columnGapTypeMobile ),
-			'min-height' : generateCSSUnit( minHeightMobile, minHeightTypeMobile ),
-		},
-		'.block-editor-block-list__block' : {
-			'min-height' : generateCSSUnit( minHeightMobile, minHeightTypeMobile ),
-			'flex-direction' : directionMobile,
-			'align-items' : alignItemsMobile,
-			'justify-content' : justifyContentMobile,
-			'flex-wrap' : wrapMobile,
-			'align-content' : alignContentMobile,
-		},
-		' > .uagb-container__shape-top svg' : {
-			'height': generateCSSUnit( topHeightMobile, 'px' )
-		},
-		' > .uagb-container__shape-bottom svg' : {
-			'height': generateCSSUnit( bottomHeightMobile, 'px' )
 		},
 	};
 
