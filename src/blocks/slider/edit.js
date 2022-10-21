@@ -24,6 +24,8 @@ const UAGBSlider = ( props ) => {
 
 	const deviceType = useDeviceType();
 
+	const { setAttributes, attributes } = props;
+
 	// Add and remove the CSS on the drop and remove of the component.
 	useLayoutEffect( () => {
 		styles.use();

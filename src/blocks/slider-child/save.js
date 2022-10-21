@@ -30,18 +30,6 @@ export default function save( props ) {
 				{ ...blockProps }
 				key = { block_id }
 			>
-				{ 'video' === backgroundType && (
-					<div className="uagb-container__video-wrap">
-						{ backgroundVideo && (
-							<video autoPlay loop muted playsinline>
-								<source
-									src={ backgroundVideo.url }
-									type="video/mp4"
-								/>
-							</video>
-						) }
-					</div>
-				) }
 				<InnerBlocks
 						renderAppender = { hasChildBlocks
 						? undefined

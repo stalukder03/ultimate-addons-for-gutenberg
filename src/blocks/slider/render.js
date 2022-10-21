@@ -5,33 +5,24 @@ const ALLOWED_BLOCKS = [ 'uagb/slider-child' ];
 import { getFallbackNumber } from '@Controls/getAttributeFallback';
 import UAGB_Block_Icons from '@Controls/block-icons';
 
-import Swiper, { Navigation, Pagination, Scrollbar } from 'swiper';
+import Swiper, { Navigation, Pagination, Scrollbar, Autoplay, EffectFade } from 'swiper';
+import { Seeker } from '@lottiefiles/react-lottie-player';
 
 const Render = ( props ) => {
 
 	props = props.parentProps;
 	const {
 		attributes,
+		setAttributes,
 		clientId,
 		attributes: { slide_content, slideItem },
 	} = props;
 
-	const blockName = props.name.replace( 'uagb/', '' );
-
 	const {
-		pauseOnHover,
 		infiniteLoop,
 		transitionSpeed,
-		arrowDots,
-		arrowSize,
-		arrowBorderSize,
-		arrowBorderRadius,
 		autoplay,
-		columns,
-		tcolumns,
-		mcolumns,
 		autoplaySpeed,
-		arrowColor,
 	} = attributes;
 
 	const {
@@ -71,9 +62,15 @@ const Render = ( props ) => {
 
 	const settings = {
 		slidesPerView: 1,
-		autoplay,
+		autoplay: autoplay ? {
+			delay: autoplaySpeed,
+		} : false,
 		spaceBetween: 30,
-		speed: autoplaySpeed,
+		effect: 'fade', 
+		fadeEffect: {
+			crossFade: true
+		},
+		speed: transitionSpeed,
 		loop: infiniteLoop,
 		pagination: {
 			el: '.swiper-pagination',
@@ -106,13 +103,23 @@ const Render = ( props ) => {
 
 				new Swiper( '.swiper', {
 					...settings,
-					modules: [Navigation, Pagination, Scrollbar],
+					modules: [Navigation, Pagination, Scrollbar,Autoplay,EffectFade],
 				} );
 			}	
 		} );
 		
-	}, [] )
-	
+	}, [] );
+
+	useEffect( () => {
+
+		const swiper = document.querySelector( '.swiper' ).swiper;
+
+		if( swiper ) {
+			swiper.params.speed = transitionSpeed;
+ 			swiper.update();
+		}
+
+	}, [ props ] );
 
 	return (
 		<div
