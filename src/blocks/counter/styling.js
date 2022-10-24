@@ -415,7 +415,6 @@ export default function styling( props ) {
 		},
 		'.wp-block-uagb-counter--circle .wp-block-uagb-counter-circle-container': {
 			'width': generateCSSUnit( circleSizeFallback, 'px' ),
-			'height': generateCSSUnit( circleSizeFallback, 'px' )
 		},
 		'.wp-block-uagb-counter--circle .wp-block-uagb-counter-circle-container svg circle': {
 			'stroke-width': generateCSSUnit( circleStrokeSizeFallback, 'px' ),

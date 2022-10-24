@@ -52,6 +52,8 @@
 		.wp-block-uagb-counter-circle-container {
 			position: relative;
 			display: inline-block;
+			max-width: 100%;
+			aspect-ratio: 1;
 
 			.wp-block-uagb-counter__icon svg {
 				width: 30px;
