@@ -643,7 +643,6 @@ if ( ! class_exists( 'UAGB_Block_JS' ) ) {
 			UAGB_Helper::blocks_google_font( $heading_load_google_font, $heading_font_family, $heading_font_weight );
 			UAGB_Helper::blocks_google_font( $caption_load_google_font, $caption_font_family, $caption_font_weight );
 		}
-		
 
 		/**
 		 * Adds Google fonts for Instagram block.
