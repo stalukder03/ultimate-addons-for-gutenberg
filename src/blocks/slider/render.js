@@ -1,12 +1,9 @@
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
-import React, { useMemo, useRef, useEffect } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { select } from '@wordpress/data';
 const ALLOWED_BLOCKS = [ 'uagb/slider-child' ];
-import { getFallbackNumber } from '@Controls/getAttributeFallback';
-import UAGB_Block_Icons from '@Controls/block-icons';
 
 import Swiper, { Navigation, Pagination, Scrollbar, Autoplay, EffectFade } from 'swiper';
-import { Seeker } from '@lottiefiles/react-lottie-player';
 
 const Render = ( props ) => {
 
@@ -101,7 +98,7 @@ const Render = ( props ) => {
 					
 				} );
 
-				new Swiper( '.swiper', {
+				new Swiper( '.uagb-swiper', {
 					...settings,
 					modules: [Navigation, Pagination, Scrollbar,Autoplay,EffectFade],
 				} );
