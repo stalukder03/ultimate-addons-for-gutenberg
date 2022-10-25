@@ -14,14 +14,11 @@ export default function save( props ) {
 		backgroundVideo,
 	} = props.attributes;
 
-	props = props.parentProps;
 	const {
 		clientId
 	} = props;
 
 	const blockProps = useBlockProps.save();
-	const { getBlockOrder } = select( 'core/block-editor' );
-	const hasChildBlocks = getBlockOrder( clientId ).length > 0;
 
 	return (
 		<>
@@ -30,11 +27,7 @@ export default function save( props ) {
 				{ ...blockProps }
 				key = { block_id }
 			>
-				<InnerBlocks
-						renderAppender = { hasChildBlocks
-						? undefined
-						: InnerBlocks.ButtonBlockAppender }
-					/>
+				<InnerBlocks.Content />
 			</div>
 		</>
 	);

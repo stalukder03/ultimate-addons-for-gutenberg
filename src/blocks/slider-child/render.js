@@ -23,11 +23,13 @@ const Render = ( props ) => {
 
 	const hasChildBlocks = getBlockOrder( clientId ).length > 0;
 
+	const hasChildren = 0 !== select( 'core/block-editor' ).getBlocks( clientId ).length;
+
+	console.log( hasChildren );
+
 	return (
 		<InnerBlocks
-			renderAppender = { hasChildBlocks
-			? undefined
-			: InnerBlocks.ButtonBlockAppender }
+			renderAppender = { InnerBlocks.ButtonBlockAppender }
 		/>
 	);
 };
