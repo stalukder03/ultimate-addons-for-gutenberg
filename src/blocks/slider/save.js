@@ -12,17 +12,14 @@ export default function save( props ) {
 				props.className,
 				`uagb-block-${ block_id }`,
 			) }
-		>
-			<div className='uagb-slider'
-			>	
-				<div className='uagb-slides swiper uagb-slick-carousel uagb-slide__arrow-outside'>	
-					<InnerBlocks.Content />
-					
-					<div className="swiper-pagination"></div>
+		>			
+			<div className='uagb-slides uagb-swiper'>	
+				<InnerBlocks.Content />
+				
+				<div className="swiper-pagination"></div>
 
-					<div className="swiper-button-prev"></div>
-					<div className="swiper-button-next"></div>
-				</div>
+				<div className="swiper-button-prev"></div>
+				<div className="swiper-button-next"></div>
 			</div>
 		</div>
 	);    

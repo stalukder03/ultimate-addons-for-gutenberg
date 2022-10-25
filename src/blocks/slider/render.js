@@ -66,10 +66,10 @@ const Render = ( props ) => {
 			delay: autoplaySpeed,
 		} : false,
 		spaceBetween: 30,
-		effect: 'fade', 
-		fadeEffect: {
-			crossFade: true
-		},
+		// effect: 'fade', 
+		// fadeEffect: {
+		// 	crossFade: true
+		// },
 		speed: transitionSpeed,
 		loop: infiniteLoop,
 		pagination: {
@@ -112,7 +112,7 @@ const Render = ( props ) => {
 
 	useEffect( () => {
 
-		const swiper = document.querySelector( '.swiper' ).swiper;
+		const swiper = document.querySelector( '.uagb-swiper' ).swiper;
 
 		if( swiper ) {
 			swiper.params.speed = transitionSpeed;
@@ -126,9 +126,7 @@ const Render = ( props ) => {
 			{ ...blockProps }
 			key = { block_id }
 		>
-			<div className='uagb-slider'
-			>	
-				<div className='uagb-slides swiper uagb-slick-carousel uagb-slide__arrow-outside'>	
+				<div className='uagb-slides uagb-swiper'>	
 					<div
 						
 						{ ...innerBlocksProps }
@@ -138,7 +136,6 @@ const Render = ( props ) => {
 					<div className="swiper-button-prev"></div>
 					<div className="swiper-button-next"></div>
 				</div>
-			</div>
 		</div>
 	);
 };
