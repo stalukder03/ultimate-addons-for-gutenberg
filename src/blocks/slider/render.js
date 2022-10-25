@@ -1,11 +1,13 @@
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
-import React, { useMemo, useEffect } from 'react';
+import React, { useMemo, useRef, useEffect } from 'react';
 import { select } from '@wordpress/data';
 const ALLOWED_BLOCKS = [ 'uagb/slider-child' ];
 
 import Swiper, { Navigation, Pagination, Scrollbar, Autoplay, EffectFade } from 'swiper';
 
 const Render = ( props ) => {
+
+	const sliderElement = useRef();
 
 	props = props.parentProps;
 	const {
@@ -47,6 +49,7 @@ const Render = ( props ) => {
 
 	const swiperProps = useBlockProps( {
 		className: `swiper-wrapper`,
+		ref: sliderElement
 	} );
 
     const innerBlocksProps = useInnerBlocksProps(
@@ -103,7 +106,7 @@ const Render = ( props ) => {
 					modules: [Navigation, Pagination, Scrollbar,Autoplay,EffectFade],
 				} );
 			}	
-		} );
+		}, 500 );
 		
 	}, [] );
 
