@@ -68,7 +68,7 @@ const UAGBSlider = ( props ) => {
 
         addBlockEditorDynamicStyles( 'uagb-slider-style-' + props.clientId.substr( 0, 8 ), blockStyling );
 
-		scrollBlockToView();
+		// scrollBlockToView();
 
 	}, [ deviceType ] );
 

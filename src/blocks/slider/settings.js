@@ -132,7 +132,8 @@ const Settings = ( props ) => {
 		textColor,
 		linkColor,
 		linkHoverColor,
-		slideItem
+		slideItem,
+		activeSlide
 
 	} = attributes;
 
@@ -164,10 +165,22 @@ const Settings = ( props ) => {
 								block.clientId
 							);
 
-							setAttributes( {
-								slideItem: attributes.slideItem + 1,
-								activeSlide:  attributes.slideItem + 1
-							} );
+							setAttributes( { slideItem: attributes.slideItem + 1 } );
+							setAttributes( { activeSlide: attributes.slideItem + 2 } );
+
+							setTimeout( function()  {
+
+								const swiper = document.querySelector( '.uagb-swiper' ).swiper;
+
+								if( swiper ) {
+
+									swiper.params.speed = transitionSpeed;
+									swiper.update();
+									swiper.slideTo( attributes.slideItem + 1, transitionSpeed, false );
+								}
+
+							}, 200 );
+
 						} }
 					/>
 				</ToolbarGroup>

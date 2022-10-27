@@ -112,7 +112,7 @@ const UAGBSlide = ( props ) => {
 
         addBlockEditorDynamicStyles( 'uagb-container-style-' + props.clientId.substr( 0, 8 ), blockStyling );
 
-		scrollBlockToView();
+		// scrollBlockToView();
 
 	}, [ deviceType ] );
 

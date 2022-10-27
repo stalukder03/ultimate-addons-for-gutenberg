@@ -118,8 +118,6 @@ const Render = ( props ) => {
 		if( swiper ) {
 			swiper.params.speed = transitionSpeed;
  			swiper.update();
-			swiper.updateSlides();
-			swiper.slideTo( 1, false,false );
 		}
 
 	}, [ props ] );

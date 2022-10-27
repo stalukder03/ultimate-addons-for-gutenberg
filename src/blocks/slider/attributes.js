@@ -24,7 +24,7 @@ const attributes = {
 
 	activeSlide: {
 		type: 'number',
-		default: 0,
+		default: 1,
 	},
 
 	slideItem: {

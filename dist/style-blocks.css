@@ -7355,6 +7355,10 @@ button.swiper-pagination-bullet {
   backface-visibility: hidden;
   overflow: hidden;
 }
+
+.uagb-swiper {
+  overflow: hidden;
+}
 .wp-block-uagb-container {
   display: flex;
   position: relative;
