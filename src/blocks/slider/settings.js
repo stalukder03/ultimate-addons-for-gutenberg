@@ -9,7 +9,8 @@ import { __ } from '@wordpress/i18n';
 
 import {
 	InspectorControls,
-	__experimentalLinkControl as LinkControl
+	__experimentalLinkControl as LinkControl,
+	BlockControls,
 } from '@wordpress/block-editor';
 import BoxShadowControl from '@Components/box-shadow';
 import SpacingControl from '@Components/spacing-control';
@@ -17,16 +18,21 @@ import Background from '@Components/background';
 import ResponsiveBorder from '@Components/responsive-border';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import MultiButtonsControl from '@Components/multi-buttons-control';
-import { ToggleControl } from '@wordpress/components';
+import { ToggleControl, 
+	ToolbarGroup,
+	ToolbarButton,
+	Icon,
+} from '@wordpress/components';
 import UAGTabsControl from '@Components/tabs';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control';
 import { boxShadowPresets, boxShadowHoverPresets } from './presets';
 import UAGPresets from '@Components/presets';
+import { createBlock } from '@wordpress/blocks';
 
 const Settings = ( props ) => {
 
 	props = props.parentProps;
-	const { attributes, setAttributes, deviceType } = props;
+	const { attributes, setAttributes, deviceType, insertBlock, block } = props;
 	const {
 		block_id,
 		
@@ -126,6 +132,7 @@ const Settings = ( props ) => {
 		textColor,
 		linkColor,
 		linkHoverColor,
+		slideItem
 
 	} = attributes;
 
@@ -141,6 +148,32 @@ const Settings = ( props ) => {
 			} );
 		}
 	}, [backgroundType] );
+
+	const getBlockControls = () => {
+		return (
+			<BlockControls>
+				<ToolbarGroup>
+					<ToolbarButton
+						icon='insert'
+						label={__( 'Add Slide' )}
+						onClick={ () => {
+
+							insertBlock(
+								createBlock( 'uagb/slider-child' ),
+								attributes.slideItem,
+								block.clientId
+							);
+
+							setAttributes( {
+								slideItem: attributes.slideItem + 1,
+								activeSlide:  attributes.slideItem + 1
+							} );
+						} }
+					/>
+				</ToolbarGroup>
+			</BlockControls>
+		);
+	};
 
 	const generalSettings = () => {
 
@@ -834,7 +867,8 @@ const Settings = ( props ) => {
 	}
 
 	return (
-
+		<>
+		{ getBlockControls() }
 			<InspectorControls>
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>
@@ -853,7 +887,7 @@ const Settings = ( props ) => {
 					></InspectorTab>
 				</InspectorTabs>
 			</InspectorControls>
-
+		</>
 	);
 };
 export default React.memo( Settings );

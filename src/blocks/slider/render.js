@@ -14,7 +14,7 @@ const Render = ( props ) => {
 		attributes,
 		setAttributes,
 		clientId,
-		attributes: { slide_content, slideItem },
+		attributes: { slide_content },
 	} = props;
 
 	const {
@@ -22,11 +22,10 @@ const Render = ( props ) => {
 		transitionSpeed,
 		autoplay,
 		autoplaySpeed,
-	} = attributes;
-
-	const {
+		slideItem,
 		block_id,
-		contentWidth
+		contentWidth,
+		activeSlide
 	} = attributes;
 
 	const getSliderTemplate = useMemo( () => {
@@ -91,14 +90,7 @@ const Render = ( props ) => {
 			if( sliderChilds ) {
 
 				[].forEach.call( sliderChilds, function( div ) {
-
-					const wrapper = document.createElement( 'div' );
-					wrapper.classList.add( 'swiper-slide' );
-
-					div.parentNode.insertBefore( wrapper, div );
-					
-					wrapper.appendChild( div );
-					
+					div.classList.add( 'swiper-slide' );
 				} );
 
 				new Swiper( '.uagb-swiper', {
@@ -112,11 +104,22 @@ const Render = ( props ) => {
 
 	useEffect( () => {
 
+		const sliderChilds = document.querySelectorAll( '[data-type="uagb/slider-child"]' );
+
+		if( sliderChilds ) {
+
+			[].forEach.call( sliderChilds, function( div ) {
+				div.classList.add( 'swiper-slide' );
+			} );
+		}
+
 		const swiper = document.querySelector( '.uagb-swiper' ).swiper;
 
 		if( swiper ) {
 			swiper.params.speed = transitionSpeed;
  			swiper.update();
+			swiper.updateSlides();
+			swiper.slideTo( 1, false,false );
 		}
 
 	}, [ props ] );

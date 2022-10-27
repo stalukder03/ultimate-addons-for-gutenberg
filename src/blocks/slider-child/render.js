@@ -25,8 +25,6 @@ const Render = ( props ) => {
 
 	const hasChildren = 0 !== select( 'core/block-editor' ).getBlocks( clientId ).length;
 
-	console.log( hasChildren );
-
 	return (
 		<InnerBlocks
 			renderAppender = { InnerBlocks.ButtonBlockAppender }

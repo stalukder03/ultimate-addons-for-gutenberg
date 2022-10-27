@@ -22,6 +22,11 @@ const attributes = {
 		default: slideContent,
 	},
 
+	activeSlide: {
+		type: 'number',
+		default: 0,
+	},
+
 	slideItem: {
 		type: 'number',
 		default: slideCount,
