@@ -56,7 +56,7 @@ const Render = ( props ) => {
         { 
 			allowedBlocks: ALLOWED_BLOCKS,
 			template : getSliderTemplate,
-			templateLock: 'insert' 
+			templateLock: 'all' 
 		}
     );
 

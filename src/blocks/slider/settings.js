@@ -197,9 +197,7 @@ const Settings = ( props ) => {
 								if( swiper ) {
 									swiper.update();
 									swiper.updateSlidesClasses();
-									setTimeout( function()  {
-										swiper.slideTo( attributes.slideItem, transitionSpeed, false );
-									}, 200 );
+									swiper.slideTo( attributes.slideItem, transitionSpeed, false );
 								}
 
 							}, 100 );
