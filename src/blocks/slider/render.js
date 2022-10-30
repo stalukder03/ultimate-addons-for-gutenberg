@@ -55,7 +55,8 @@ const Render = ( props ) => {
         swiperProps,
         { 
 			allowedBlocks: ALLOWED_BLOCKS,
-			template : getSliderTemplate 
+			template : getSliderTemplate,
+			templateLock: 'insert' 
 		}
     );
 
