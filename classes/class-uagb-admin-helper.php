@@ -180,6 +180,7 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 			$is_already_button    = false;
 			$is_already_faq       = false;
 
+
 			foreach ( UAGB_Config::$block_attributes as $key => $block ) {
 
 				$block_name = str_replace( 'uagb/', '', $key );
@@ -249,6 +250,10 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 							$combined[]     = 'faq-child';
 							$is_already_faq = true;
 						}
+						break;
+
+					case 'slider': 
+						$combined[] = 'swiper';
 						break;
 
 					default:

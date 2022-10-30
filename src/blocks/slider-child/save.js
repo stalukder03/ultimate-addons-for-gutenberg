@@ -6,7 +6,6 @@ import classnames from 'classnames';
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import { select } from '@wordpress/data';
 
-
 export default function save( props ) {
 	const {
 		block_id,
@@ -23,8 +22,7 @@ export default function save( props ) {
 	return (
 		<>
 			<div
-				className='uagb-slider-child-wrap'
-				{ ...blockProps }
+				className='uagb-slider-child-wrap swiper-slide'
 				key = { block_id }
 			>
 				<InnerBlocks.Content />

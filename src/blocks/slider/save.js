@@ -1,4 +1,5 @@
 import { InnerBlocks } from '@wordpress/block-editor';
+
 import classnames from 'classnames';
 
 export default function save( props ) {
@@ -14,7 +15,11 @@ export default function save( props ) {
 			) }
 		>			
 			<div className='uagb-slides uagb-swiper'>	
-				<InnerBlocks.Content />
+				<div 
+				className='swiper-wrapper'
+				>
+					<InnerBlocks.Content />
+				</div>
 				
 				<div className="swiper-pagination"></div>
 
