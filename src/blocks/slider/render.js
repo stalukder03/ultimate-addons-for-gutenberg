@@ -3,7 +3,7 @@ import React, { useMemo, useRef, useEffect } from 'react';
 import { select } from '@wordpress/data';
 const ALLOWED_BLOCKS = [ 'uagb/slider-child' ];
 
-import Swiper, { Navigation, Pagination, Scrollbar, Autoplay, EffectFade } from 'swiper';
+import Swiper, { Navigation, Pagination, Scrollbar, Autoplay, EffectFade, Manipulation, Virtual } from 'swiper';
 
 const Render = ( props ) => {
 
@@ -65,12 +65,13 @@ const Render = ( props ) => {
 			delay: autoplaySpeed,
 		} : false,
 		spaceBetween: 30,
+		observer: true,
 		// effect: 'fade', 
 		// fadeEffect: {
 		// 	crossFade: true
 		// },
 		speed: transitionSpeed,
-		loop: infiniteLoop,
+		loop: false,
 		pagination: {
 			el: '.swiper-pagination',
 			clickable: true,
@@ -107,10 +108,10 @@ const Render = ( props ) => {
 
 				new Swiper( '.uagb-swiper', {
 					...settings,
-					modules: [Navigation, Pagination, Scrollbar,Autoplay,EffectFade],
+					modules: [Navigation, Pagination, Scrollbar,Autoplay,EffectFade, Manipulation, Virtual],
 				} );
 			}	
-		}, 500 );
+		}, 200 );
 		
 	}, [] );
 

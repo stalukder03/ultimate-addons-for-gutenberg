@@ -182,6 +182,7 @@ const Settings = ( props ) => {
 										const wrapper = document.createElement( 'div' );
 
 										wrapper.classList.add( 'swiper-slide' );
+										wrapper.setAttribute( 'data-swiper-slide-index', attributes.slideItem );
 
 										// insert wrapper before el in the DOM tree
 										sliderChilds[i].parentNode.insertBefore( wrapper,  sliderChilds[i] );
@@ -194,13 +195,14 @@ const Settings = ( props ) => {
 								const swiper = document.querySelector( '.uagb-swiper' ).swiper;
 
 								if( swiper ) {
-
-									swiper.params.speed = transitionSpeed;
 									swiper.update();
-									swiper.slideTo( attributes.slideItem + 1, transitionSpeed, false );
+									swiper.updateSlidesClasses();
+									setTimeout( function()  {
+										swiper.slideTo( attributes.slideItem, transitionSpeed, false );
+									}, 200 );
 								}
 
-							}, 200 );
+							}, 100 );
 
 						} }
 					/>
