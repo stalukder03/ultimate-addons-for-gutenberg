@@ -5,7 +5,6 @@
 import UAGB_Block_Icons from '@Controls/block-icons';
 import save from './save';
 import attributes from './attributes';
-import variations from './variations';
 import edit from './edit';
 
 import { __ } from '@wordpress/i18n';
@@ -23,7 +22,6 @@ registerBlockType( 'uagb/slider-child', {
 		__( 'uag', 'ultimate-addons-for-gutenberg' ),
 	],
 	attributes,
-	variations,
 	edit,
 	save,
 } );
