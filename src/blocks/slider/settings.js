@@ -161,7 +161,7 @@ const Settings = ( props ) => {
 
 							insertBlock(
 								createBlock( 'uagb/slider-child' ),
-								attributes.slideItem,
+								block.innerBlocks.length,
 								block.clientId
 							);
 
