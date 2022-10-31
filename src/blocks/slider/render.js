@@ -2,7 +2,7 @@ import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 import React, { useMemo, useEffect } from 'react';
 import { select } from '@wordpress/data';
 const ALLOWED_BLOCKS = [ 'uagb/slider-child' ];
-
+import { useDeviceType } from '@Controls/getPreviewType';
 import Swiper, { Navigation, Pagination, Scrollbar, Autoplay, EffectFade, Manipulation, Virtual } from 'swiper';
 
 const Render = ( props ) => {
@@ -23,6 +23,8 @@ const Render = ( props ) => {
 		contentWidth,
 	} = attributes;
 
+	const deviceType = useDeviceType();
+
 	const getSliderTemplate = useMemo( () => {
 		const childSlide = [];
 
@@ -38,7 +40,7 @@ const Render = ( props ) => {
 	const hasChildren = 0 !== select( 'core/block-editor' ).getBlocks( clientId ).length;
 	const hasChildrenClass = hasChildren ? 'uagb-slider-has-children' : '';
 	const blockProps = useBlockProps( {
-		className: `uagb-block-${ block_id } ${contentWidth} ${hasChildrenClass}`,
+		className: `uagb-block-${ block_id } ${contentWidth} ${hasChildrenClass} uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
 	} );
 
 	const swiperProps = useBlockProps( {
@@ -47,10 +49,10 @@ const Render = ( props ) => {
 
     const innerBlocksProps = useInnerBlocksProps(
         swiperProps,
-        { 
+        {
 			allowedBlocks: ALLOWED_BLOCKS,
 			template : getSliderTemplate,
-			renderAppender: false 
+			renderAppender: false
 		}
     );
 
@@ -61,7 +63,7 @@ const Render = ( props ) => {
 		} : false,
 		spaceBetween: 30,
 		observer: true,
-		// effect: 'fade', 
+		// effect: 'fade',
 		// fadeEffect: {
 		// 	crossFade: true
 		// },
@@ -85,9 +87,9 @@ const Render = ( props ) => {
 					...settings,
 					modules: [Navigation, Pagination, Scrollbar,Autoplay,EffectFade, Manipulation, Virtual],
 				} );
-		
+
 		}, 200 );
-		
+
 	}, [] );
 
 	return (
@@ -95,9 +97,9 @@ const Render = ( props ) => {
 			{ ...blockProps }
 			key = { block_id }
 		>
-				<div className='uagb-slides uagb-swiper'>	
+				<div className='uagb-slides uagb-swiper'>
 					<div
-						
+
 						{ ...innerBlocksProps }
 					/>
 					<div className="swiper-pagination"></div>

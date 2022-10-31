@@ -3,18 +3,18 @@
  */
 import React, {    useEffect, useLayoutEffect } from 'react';
 import { withSelect, useDispatch } from '@wordpress/data';
-
+import styling from './styling';
 import Settings from './settings';
 import Render from './render';
-
+import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 //  Import CSS.
 import './style.scss';
 import { compose } from '@wordpress/compose';
-
+import { useDeviceType } from '@Controls/getPreviewType';
 import styles from './editor.lazy.scss';
 
 const UAGBSlider = ( props ) => {
-
+	const deviceType = useDeviceType();
 	// Add and remove the CSS on the drop and remove of the component.
 	useLayoutEffect( () => {
 		styles.use();
@@ -29,6 +29,21 @@ const UAGBSlider = ( props ) => {
 		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
 
 	}, [] );
+
+	useEffect( () => {
+		// Replacement for componentDidUpdate.
+		const blockStyling = styling( props );
+
+        addBlockEditorDynamicStyles( 'uagb-slider-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+	}, [ props ] );
+
+	useEffect( () => {
+		// Replacement for componentDidUpdate.
+	    const blockStyling = styling( props );
+
+        addBlockEditorDynamicStyles( 'uagb-slider-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+
+	}, [deviceType] );
 
 	return (
 		<>
@@ -63,14 +78,14 @@ const uagbSlideClass = createHigherOrderComponent( ( BlockListBlock ) => {
 			};
 
 			return <BlockListBlock
-			{ ...props } 
+			{ ...props }
 			wrapperProps={ wrapperProps } />;
 		}
 
 		return <BlockListBlock
-			{ ...props } 
+			{ ...props }
 		/>;
-        
+
     };
 }, 'uagbSlideClass' );
 
