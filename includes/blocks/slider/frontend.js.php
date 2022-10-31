@@ -16,9 +16,14 @@ ob_start();
 ?>
 window.addEventListener("DOMContentLoaded", function(){
 	var swiper = new Swiper(".uagb-swiper", {
-        pagination: {
-          el: ".swiper-pagination",
-        },
+		pagination: {
+			el: '.swiper-pagination',
+			clickable: true,
+		},
+		navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev',
+		},
     });
 });
 <?php
