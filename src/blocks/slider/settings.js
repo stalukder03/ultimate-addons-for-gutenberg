@@ -170,28 +170,6 @@ const Settings = ( props ) => {
 
 							setTimeout( function()  {
 
-								const sliderChilds = document.querySelectorAll( '[data-type="uagb/slider-child"]' );
-
-								for ( let i = 0, len = sliderChilds.length; i < len; i++ ) {
-
-									const directParentHasClass = sliderChilds[i].parentElement?.classList.contains( 'swiper-slide' );
-
-									if( ! directParentHasClass ) {
-
-										// create wrapper container
-										const wrapper = document.createElement( 'div' );
-
-										wrapper.classList.add( 'swiper-slide' );
-										wrapper.setAttribute( 'data-swiper-slide-index', attributes.slideItem );
-
-										// insert wrapper before el in the DOM tree
-										sliderChilds[i].parentNode.insertBefore( wrapper,  sliderChilds[i] );
-
-										// move el into wrapper
-										wrapper.appendChild(  sliderChilds[i] );
-									}
-								}
-
 								const swiper = document.querySelector( '.uagb-swiper' ).swiper;
 
 								if( swiper ) {

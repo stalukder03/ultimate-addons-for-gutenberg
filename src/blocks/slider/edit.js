@@ -9,6 +9,7 @@ import scrollBlockToView from '@Controls/scrollBlockToView';
 import { useDeviceType } from '@Controls/getPreviewType';
 import { migrateBorderAttributes } from '@Controls/generateAttributes';
 import { withSelect, useDispatch, select } from '@wordpress/data';
+import classnames from 'classnames';
 
 import Settings from './settings';
 import Render from './render';
@@ -91,3 +92,33 @@ const applyWithSelect = withSelect( ( select, props ) => { // eslint-disable-lin
 	};
 } );
 export default compose( applyWithSelect )( UAGBSlider );
+
+const { createHigherOrderComponent } = wp.compose;
+
+const withMyWrapperProp = createHigherOrderComponent( ( BlockListBlock ) => {
+    return ( props ) => {
+
+		if( 'uagb/slider-child' === props.name ) {
+
+			const wrapperProps = {
+				...props.wrapperProps,
+				className : 'swiper-slide'
+			};
+
+			return <BlockListBlock
+			{ ...props } 
+			wrapperProps={ wrapperProps } />;
+		}
+
+		return <BlockListBlock
+			{ ...props } 
+		/>;
+        
+    };
+}, 'withMyWrapperProp' );
+
+wp.hooks.addFilter(
+    'editor.BlockListBlock',
+    'uagb/slider-child',
+    withMyWrapperProp
+);

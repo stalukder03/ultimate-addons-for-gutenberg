@@ -55,8 +55,7 @@ const Render = ( props ) => {
         swiperProps,
         { 
 			allowedBlocks: ALLOWED_BLOCKS,
-			template : getSliderTemplate,
-			templateLock: 'all' 
+			template : getSliderTemplate
 		}
     );
 
@@ -86,32 +85,12 @@ const Render = ( props ) => {
 	useEffect( () => {
 
 		setTimeout( function()  {
-		
-			const sliderChilds = document.querySelectorAll( '[data-type="uagb/slider-child"]' );
-
-			if( sliderChilds ) {
-
-				[].forEach.call( sliderChilds, function( div ) {
-					// div.classList.add( 'swiper-slide' );
-
-					// create wrapper container
-					const wrapper = document.createElement( 'div' );
-
-					wrapper.classList.add( 'swiper-slide' );
-
-					// insert wrapper before el in the DOM tree
-					div.parentNode.insertBefore( wrapper, div );
-
-					// move el into wrapper
-					wrapper.appendChild( div );
-
-				} );
 
 				new Swiper( '.uagb-swiper', {
 					...settings,
 					modules: [Navigation, Pagination, Scrollbar,Autoplay,EffectFade, Manipulation, Virtual],
 				} );
-			}	
+		
 		}, 200 );
 		
 	}, [] );
