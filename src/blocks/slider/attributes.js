@@ -34,6 +34,10 @@ const attributes = {
 		type: 'boolean',
 		default: true,
 	},
+	pauseOnInteraction: {
+		type: 'boolean',
+		default: true,
+	},
 	infiniteLoop: {
 		type: 'boolean',
 		default: true,

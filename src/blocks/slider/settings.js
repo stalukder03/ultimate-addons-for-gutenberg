@@ -35,6 +35,7 @@ const Settings = ( props ) => {
 		block_id,
 		
 		pauseOnHover,
+		pauseOnInteraction,
 		infiniteLoop,
 		transitionSpeed,
 		arrowDots,
@@ -188,6 +189,10 @@ const Settings = ( props ) => {
 		const togglePauseOnHover = () => {
 			setAttributes( { pauseOnHover: ! pauseOnHover } );
 		};
+
+		const togglePauseOnInteraction = () => {
+			setAttributes( { pauseOnInteraction: ! pauseOnInteraction } );
+		};
 	
 		const toggleInfiniteLoop = () => {
 			setAttributes( { infiniteLoop: ! infiniteLoop } );
@@ -210,6 +215,14 @@ const Settings = ( props ) => {
 						) }
 						checked={ pauseOnHover }
 						onChange={ togglePauseOnHover }
+					/>
+					<ToggleControl
+						label={ __(
+							'Pause On Interaction',
+							'ultimate-addons-for-gutenberg'
+						) }
+						checked={ pauseOnInteraction }
+						onChange={ togglePauseOnInteraction }
 					/>
 					<ToggleControl
 						label={ __( 'Autoplay' ) }

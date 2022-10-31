@@ -21,6 +21,7 @@ const Render = ( props ) => {
 		slideItem,
 		block_id,
 		contentWidth,
+		arrowDots
 	} = attributes;
 
 	const getSliderTemplate = useMemo( () => {
@@ -61,34 +62,23 @@ const Render = ( props ) => {
 		} : false,
 		spaceBetween: 30,
 		observer: true,
-		// effect: 'fade', 
-		// fadeEffect: {
-		// 	crossFade: true
-		// },
 		speed: transitionSpeed,
 		loop: false,
-		pagination: {
+		pagination: 'arrows' === arrowDots ? false : {
 			el: '.swiper-pagination',
 			clickable: true,
+			hideOnClick: false
 		},
-		navigation: {
+		navigation: 'dots' === arrowDots ? false : {
 			nextEl: '.swiper-button-next',
 			prevEl: '.swiper-button-prev',
-		},
+		}
 	}
 
-	useEffect( () => {
-
-		setTimeout( function()  {
-
-				new Swiper( '.uagb-swiper', {
-					...settings,
-					modules: [Navigation, Pagination, Scrollbar,Autoplay,EffectFade, Manipulation, Virtual],
-				} );
-		
-		}, 200 );
-		
-	}, [] );
+	new Swiper( '.uagb-swiper', {
+		...settings,
+		modules: [Navigation, Pagination, Scrollbar,Autoplay,EffectFade, Manipulation, Virtual],
+	} );
 
 	return (
 		<div
@@ -100,10 +90,17 @@ const Render = ( props ) => {
 						
 						{ ...innerBlocksProps }
 					/>
-					<div className="swiper-pagination"></div>
 
-					<div className="swiper-button-prev"></div>
-					<div className="swiper-button-next"></div>
+					{  'arrows' !== arrowDots && 
+						<div className="swiper-pagination"></div>
+					}	
+
+					{ 'dots' !== arrowDots && 
+						<>
+						<div className="swiper-button-prev"></div>
+						<div className="swiper-button-next"></div>
+						</>
+					}
 				</div>
 		</div>
 	);
