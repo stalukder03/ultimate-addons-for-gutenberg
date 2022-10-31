@@ -1,12 +1,8 @@
 /**
- * BLOCK: Container
+ * BLOCK: Slider
  */
-import styling from './styling';
 import React, {    useEffect, useLayoutEffect } from 'react';
-
-import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
-import { useDeviceType } from '@Controls/getPreviewType';
-import { withSelect, useDispatch, select } from '@wordpress/data';
+import { withSelect, useDispatch } from '@wordpress/data';
 
 import Settings from './settings';
 import Render from './render';
@@ -19,8 +15,6 @@ import styles from './editor.lazy.scss';
 
 const UAGBSlider = ( props ) => {
 
-	const deviceType = useDeviceType();
-
 	// Add and remove the CSS on the drop and remove of the component.
 	useLayoutEffect( () => {
 		styles.use();
@@ -29,43 +23,12 @@ const UAGBSlider = ( props ) => {
 		};
 	}, [] );
 
-	if ( props.isParentOfSelectedBlock ) {
-		const emptyBlockInserter = document.querySelector( '.block-editor-block-list__empty-block-inserter' );
-		if ( emptyBlockInserter ) {
-			emptyBlockInserter.style.display = 'none';
-		}
-	}
-
 	useEffect( () => {
 
 		// Assigning block_id in the attribute.
 		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
 
 	}, [] );
-
-	useEffect( () => {
-
-		const blockStyling = styling( props );
-
-        addBlockEditorDynamicStyles( 'uagb-container-style-' + props.clientId.substr( 0, 8 ), blockStyling );
-
-		const descendants = select( 'core/block-editor' ).getBlocks( props.clientId );
-
-		if ( props.attributes.blockDescendants && descendants.length !== props.attributes.blockDescendants.length ) {
-			props.setAttributes( { blockDescendants: descendants } );
-		}
-
-	}, [ props ] );
-
-	useEffect( () => {
-
-		const blockStyling = styling( props );
-
-        addBlockEditorDynamicStyles( 'uagb-slider-style-' + props.clientId.substr( 0, 8 ), blockStyling );
-
-		// scrollBlockToView();
-
-	}, [ deviceType ] );
 
 	return (
 		<>
