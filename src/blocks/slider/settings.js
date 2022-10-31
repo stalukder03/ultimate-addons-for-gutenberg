@@ -171,7 +171,7 @@ const Settings = ( props ) => {
 								if( swiper ) {
 									swiper.update();
 									swiper.updateSlidesClasses();
-									swiper.slideTo( attributes.slideItem, transitionSpeed, false );
+									swiper.slideTo( attributes.slideItem, false, false );
 								}
 
 							}, 100 );
