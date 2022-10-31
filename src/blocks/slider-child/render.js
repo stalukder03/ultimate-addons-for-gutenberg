@@ -11,25 +11,18 @@ const Render = ( props ) => {
 		clientId
 	} = props;
 
-	const {
-		block_id,
-		backgroundType,
-		backgroundVideo,
-		isBlockRootParent,
-		contentWidth,
-	} = attributes;
-
-	const { getBlockOrder } = select( 'core/block-editor' );
-
-	const hasChildBlocks = getBlockOrder( clientId ).length > 0;
-
-	const hasChildren = 0 !== select( 'core/block-editor' ).getBlocks( clientId ).length;
+	const SLIDE_CHILD_TEMPLATE = [
+		[ 'core/paragraph', { placeholder: 'Type / to choose a block' } ],
+	];
 
 	return (
-		<InnerBlocks
-			templateLock ={false}
-			renderAppender = { false } 
-		/>
+		<div className='swiper-content' >
+			<InnerBlocks
+				template={ SLIDE_CHILD_TEMPLATE }
+				templateLock ={false}
+				renderAppender = { false } 
+			/>
+		</div>
 	);
 };
 

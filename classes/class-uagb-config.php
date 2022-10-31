@@ -310,6 +310,9 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 					'uagb/image'                  => array(
 						'name' => 'image',
 					),
+					'uagb/slider'                  => array(
+						'name' => 'slider',
+					),
 				);
 			}
 			return self::$block_assets_css;

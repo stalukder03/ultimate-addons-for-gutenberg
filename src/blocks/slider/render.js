@@ -47,15 +47,15 @@ const Render = ( props ) => {
 	} );
 
 	const swiperProps = useBlockProps( {
-		className: `swiper-wrapper`,
-		ref: sliderElement
+		className: `swiper-wrapper`
 	} );
 
     const innerBlocksProps = useInnerBlocksProps(
         swiperProps,
         { 
 			allowedBlocks: ALLOWED_BLOCKS,
-			template : getSliderTemplate
+			template : getSliderTemplate,
+			renderAppender: false 
 		}
     );
 

@@ -255,10 +255,6 @@ if ( ! class_exists( 'UAGB_Admin_Helper' ) ) {
 						}
 						break;
 
-					case 'slider': 
-						$combined[] = 'swiper';
-						break;
-
 					default:
 						$combined[] = $block_name;
 						break;

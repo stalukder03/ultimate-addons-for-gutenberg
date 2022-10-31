@@ -21,7 +21,9 @@ export default function save( props ) {
 				className='uagb-slider-child-wrap swiper-slide'
 				key = { block_id }
 			>
-				<InnerBlocks.Content />
+				<div className='swiper-content' >
+					<InnerBlocks.Content />
+				</div>
 			</div>
 		</>
 	);
