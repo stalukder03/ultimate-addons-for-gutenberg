@@ -74,7 +74,6 @@ const attributes = {
 		UAGCopyPaste: {
 			styleType: 'container-min-height-tablet'
 		},
-
 	},
 	minHeightMobile: {
 		type: 'number',

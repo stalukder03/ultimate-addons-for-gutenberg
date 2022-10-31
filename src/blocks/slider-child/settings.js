@@ -8,17 +8,12 @@ import ResponsiveSlider from '@Components/responsive-slider';
 import { __ } from '@wordpress/i18n';
 
 import {
-	InspectorControls,
-	__experimentalLinkControl as LinkControl
+	InspectorControls
 } from '@wordpress/block-editor';
 import SpacingControl from '@Components/spacing-control';
 import Background from '@Components/background';
 import ResponsiveBorder from '@Components/responsive-border';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
-import MultiButtonsControl from '@Components/multi-buttons-control';
-import UAGSelectControl from '@Components/select-control';
-import { Icon, ToggleControl } from '@wordpress/components';
-import renderCustomIcon from '@Controls/renderCustomIcon';
 import UAGTabsControl from '@Components/tabs';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control';
 
@@ -27,30 +22,6 @@ const Settings = ( props ) => {
 	props = props.parentProps;
 	const { attributes, setAttributes, deviceType } = props;
 	const {
-		block_id,
-		widthDesktop,
-		widthTablet,
-		widthMobile,
-		widthType,
-		minHeightDesktop,
-		minHeightTablet,
-		minHeightMobile,
-		minHeightType,
-		directionDesktop,
-		directionTablet,
-		directionMobile,
-		alignItemsDesktop,
-		alignItemsTablet,
-		alignItemsMobile,
-		justifyContentDesktop,
-		justifyContentTablet,
-		justifyContentMobile,
-		wrapDesktop,
-		wrapTablet,
-		wrapMobile,
-		alignContentDesktop,
-		alignContentTablet,
-		alignContentMobile,
 
 		backgroundType,
 		backgroundImageDesktop,
@@ -116,13 +87,6 @@ const Settings = ( props ) => {
 		columnGapType,
 		columnGapTypeTablet,
 		columnGapTypeMobile,
-		contentWidth,
-		isBlockRootParent,
-		innerContentWidth,
-		innerContentCustomWidthDesktop,
-		innerContentCustomWidthTablet,
-		innerContentCustomWidthMobile,
-		innerContentCustomWidthType,
 		backgroundCustomSizeDesktop,
 		backgroundCustomSizeTablet,
 		backgroundCustomSizeMobile,
@@ -143,48 +107,10 @@ const Settings = ( props ) => {
 		yPositionTypeMobile,
 		backgroundVideoColor,
 		backgroundVideo,
-		topInvert,
-		bottomInvert,
-
 		textColor,
 		linkColor,
 		linkHoverColor,
-
-		// responsive
-		innerContentCustomWidthTypeTablet,
-		innerContentCustomWidthTypeMobile,
-		widthTypeTablet,
-		widthTypeMobile,
-		minHeightTypeTablet,
-		minHeightTypeMobile,
-		topHeightType,
-		topHeightTypeTablet,
-		topHeightTypeMobile,
-		bottomHeightType,
-		bottomHeightTypeTablet,
-		bottomHeightTypeMobile,
-
-		overflow,
-		topDividerWidthType,
-		bottomDividerWidthType,
-		topDividerHeightType,
-		bottomDividerHeightType
 	} = attributes;
-
-	let currentDirection = directionDesktop?.split( '-' )?.[0];
-
-	if ( attributes[ 'direction' + deviceType ] && attributes[ 'direction' + deviceType ].split( '-' )[0] ) {
-
-		currentDirection = attributes[ 'direction' + deviceType ].split( '-' )[0];
-	}
-
-	const currentOppAxisDirection = 'row' === currentDirection ? 'column' : 'row';
-
-	const verticalAlignmentHint = __( 'Define the vertical alignment inside this container', 'ultimate-addons-for-gutenberg' );
-	const horizontalAlignmentHint = __( 'Define the horizontal alignment inside this container', 'ultimate-addons-for-gutenberg' );
-	const alignContentHint = ( 'row' === currentDirection )
-	? __( 'Define the vertical alignment of every line of blocks inside this flex container', 'ultimate-addons-for-gutenberg' )
-	: __( 'Define the horizontal alignment of every line of blocks inside this flex container', 'ultimate-addons-for-gutenberg' );
 
 	// This useEffect ensures that background size is set to cover, so as to ensure color takes up entire width and height,
 	// in case bg type was set to Image before and given a custom width and height.

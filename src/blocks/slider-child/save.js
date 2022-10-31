@@ -2,18 +2,12 @@
  * BLOCK: Container - Save Block
  */
 
-import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import { InnerBlocks } from '@wordpress/block-editor';
 
 export default function save( props ) {
 	const {
 		block_id,
-		backgroundType,
-		backgroundVideo,
 	} = props.attributes;
-
-	const {
-		clientId
-	} = props;
 
 	return (
 		<>

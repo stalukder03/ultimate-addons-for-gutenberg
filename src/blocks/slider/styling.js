@@ -132,7 +132,6 @@ function styling( props ) {
 		innerContentCustomWidthTypeTablet,
 
 		overflow,
-		isBlockRootParent,
 
 		widthTypeTablet,
 		widthTypeMobile

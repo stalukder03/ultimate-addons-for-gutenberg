@@ -9,7 +9,6 @@ import { __ } from '@wordpress/i18n';
 
 import {
 	InspectorControls,
-	__experimentalLinkControl as LinkControl,
 	BlockControls,
 } from '@wordpress/block-editor';
 import BoxShadowControl from '@Components/box-shadow';
@@ -21,7 +20,6 @@ import MultiButtonsControl from '@Components/multi-buttons-control';
 import { ToggleControl, 
 	ToolbarGroup,
 	ToolbarButton,
-	Icon,
 } from '@wordpress/components';
 import UAGTabsControl from '@Components/tabs';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control';
@@ -132,8 +130,6 @@ const Settings = ( props ) => {
 		textColor,
 		linkColor,
 		linkHoverColor,
-		slideItem,
-		activeSlide
 
 	} = attributes;
 

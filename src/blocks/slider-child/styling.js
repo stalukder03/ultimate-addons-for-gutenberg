@@ -87,9 +87,6 @@ function styling( props ) {
 		marginType,
 		marginTypeTablet,
 		marginTypeMobile,
-		rowGapDesktop,
-		
-		columnGapDesktop,
 		contentWidth,
 		innerContentWidth,
 		bottomColor,
@@ -133,7 +130,6 @@ function styling( props ) {
 		innerContentCustomWidthTypeTablet,
 
 		overflow,
-		isBlockRootParent,
 
 		widthTypeTablet,
 		widthTypeMobile
