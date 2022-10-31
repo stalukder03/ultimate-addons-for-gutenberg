@@ -21,7 +21,6 @@ import { Icon, ToggleControl } from '@wordpress/components';
 import renderCustomIcon from '@Controls/renderCustomIcon';
 import UAGTabsControl from '@Components/tabs';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control';
-import UAGPresets from '@Components/presets';
 
 const Settings = ( props ) => {
 
@@ -1211,25 +1210,11 @@ const Settings = ( props ) => {
 		);
 	}
 
-	const presetSettings = () => {
-		return <UAGAdvancedPanelBody
-					title={ __( 'Inner Container Presets', 'ultimate-addons-for-gutenberg' ) }
-					initialOpen={ true }
-				>
-					<UAGPresets
-						setAttributes = { setAttributes }
-						presets = { innerContainerPresets }
-						presetInputType = 'radioImage'
-					/>
-				</UAGAdvancedPanelBody>
-	};
-
 	return (
 
 			<InspectorControls>
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>
-						{ isBlockRootParent && presetSettings() }
 						{ generalSettings() }
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
