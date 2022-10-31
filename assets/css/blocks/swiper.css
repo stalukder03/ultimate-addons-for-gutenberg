@@ -2,3 +2,7 @@
     overflow: hidden;
     position: relative;
 }
+
+.uagb-slides .swiper-slide{
+    padding: 40px;
+}

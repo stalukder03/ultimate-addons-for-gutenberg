@@ -7359,6 +7359,9 @@ button.swiper-pagination-bullet {
 .uagb-swiper {
   overflow: hidden;
 }
+.uagb-swiper .swiper-slide {
+  padding: 30px;
+}
 .wp-block-uagb-container {
   display: flex;
   position: relative;
