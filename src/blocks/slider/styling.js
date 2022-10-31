@@ -25,21 +25,6 @@ function styling( props ) {
 		minHeightType,
 		minHeightTypeTablet,
 		minHeightTypeMobile,
-		directionDesktop,
-		directionTablet,
-		directionMobile,
-		alignItemsDesktop,
-		alignItemsTablet,
-		alignItemsMobile,
-		justifyContentDesktop,
-		justifyContentTablet,
-		justifyContentMobile,
-		wrapDesktop,
-		wrapTablet,
-		wrapMobile,
-		alignContentDesktop,
-		alignContentTablet,
-		alignContentMobile,
 		backgroundType,
 		backgroundImageDesktop,
 		backgroundImageTablet,
@@ -102,27 +87,15 @@ function styling( props ) {
 		marginType,
 		marginTypeTablet,
 		marginTypeMobile,
-		rowGapTablet,
-		rowGapMobile,
-		rowGapType,
-		rowGapTypeTablet,
-		rowGapTypeMobile,
-		columnGapTablet,
-		columnGapMobile,
-		columnGapType,
-		columnGapTypeTablet,
-		columnGapTypeMobile,
 		contentWidth,
 		innerContentWidth,
 		bottomColor,
 		bottomHeight,
 		bottomHeightTablet,
-		bottomHeightMobile,
 		bottomWidth,
 		topColor,
 		topHeight,
 		topHeightTablet,
-		topHeightMobile,
 		topWidth,
 		backgroundCustomSizeDesktop,
 		backgroundCustomSizeTablet,
@@ -322,11 +295,6 @@ function styling( props ) {
 		selectors['.wp-block:hover']['box-shadow'] = generateCSSUnit( boxShadowHOffsetHover, 'px' ) + ' ' + generateCSSUnit( boxShadowVOffsetHover, 'px' ) +	' ' +
 													boxShadowBlurHoverCSSUnit + ' ' +	generateCSSUnit( boxShadowSpreadHover, 'px' ) + ' ' +
 													boxShadowColorHover + ' ' +	boxShadowPositionCSSHover;
-	}
-
-	let containerFlexSelector = '.wp-block-uagb-container > .uagb-container-inner-blocks-wrap > .block-editor-inner-blocks > .block-editor-block-list__layout';
-	if ( ! isBlockRootParent || 'alignfull' !== contentWidth || 'alignwide' !== innerContentWidth ) {
-		containerFlexSelector = '.wp-block-uagb-container > .block-editor-inner-blocks > .block-editor-block-list__layout';
 	}
 
 	const widthSelectorsDesktop = {

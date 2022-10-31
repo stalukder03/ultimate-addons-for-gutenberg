@@ -28,7 +28,7 @@ const Render = ( props ) => {
 	return (
 		<InnerBlocks
 			templateLock ={false}
-			renderAppender = { InnerBlocks.ButtonBlockAppender }
+			renderAppender = { false } 
 		/>
 	);
 };

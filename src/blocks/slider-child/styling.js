@@ -25,21 +25,6 @@ function styling( props ) {
 		minHeightType,
 		minHeightTypeTablet,
 		minHeightTypeMobile,
-		directionDesktop,
-		directionTablet,
-		directionMobile,
-		alignItemsDesktop,
-		alignItemsTablet,
-		alignItemsMobile,
-		justifyContentDesktop,
-		justifyContentTablet,
-		justifyContentMobile,
-		wrapDesktop,
-		wrapTablet,
-		wrapMobile,
-		alignContentDesktop,
-		alignContentTablet,
-		alignContentMobile,
 		backgroundType,
 		backgroundImageDesktop,
 		backgroundImageTablet,
@@ -103,28 +88,15 @@ function styling( props ) {
 		marginTypeTablet,
 		marginTypeMobile,
 		rowGapDesktop,
-		rowGapTablet,
-		rowGapMobile,
-		rowGapType,
-		rowGapTypeTablet,
-		rowGapTypeMobile,
+		
 		columnGapDesktop,
-		columnGapTablet,
-		columnGapMobile,
-		columnGapType,
-		columnGapTypeTablet,
-		columnGapTypeMobile,
 		contentWidth,
 		innerContentWidth,
 		bottomColor,
 		bottomHeight,
-		bottomHeightTablet,
-		bottomHeightMobile,
 		bottomWidth,
 		topColor,
 		topHeight,
-		topHeightTablet,
-		topHeightMobile,
 		topWidth,
 		backgroundCustomSizeDesktop,
 		backgroundCustomSizeTablet,
@@ -169,8 +141,6 @@ function styling( props ) {
 
 	const innerContentCustomWidthDesktopFallback = getFallbackNumber( innerContentCustomWidthDesktop, 'innerContentCustomWidthDesktop', blockName );
 	const widthDesktopFallback = getFallbackNumber( widthDesktop, 'widthDesktop', blockName );
-	const rowGapDesktopFallback = getFallbackNumber( rowGapDesktop, 'rowGapDesktop', blockName );
-	const columnGapDesktopFallback = getFallbackNumber( columnGapDesktop, 'columnGapDesktop', blockName );
 
 	const borderCSS = generateBorderCSS( props.attributes, 'container' );
 	const borderCSSTablet = generateBorderCSS( props.attributes, 'container', 'tablet' );
@@ -327,13 +297,7 @@ function styling( props ) {
 													boxShadowBlurHoverCSSUnit + ' ' +	generateCSSUnit( boxShadowSpreadHover, 'px' ) + ' ' +
 													boxShadowColorHover + ' ' +	boxShadowPositionCSSHover;
 	}
-
-	let containerFlexSelector = '.wp-block-uagb-container > .uagb-container-inner-blocks-wrap > .block-editor-inner-blocks > .block-editor-block-list__layout';
-	if ( ! isBlockRootParent || 'alignfull' !== contentWidth || 'alignwide' !== innerContentWidth ) {
-		containerFlexSelector = '.wp-block-uagb-container > .block-editor-inner-blocks > .block-editor-block-list__layout';
-	}
 	
-
 	const widthSelectorsDesktop = {
 		[`.is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${ props.clientId } `] : {
 			'max-width' : generateCSSUnit( widthDesktopFallback, widthType ),

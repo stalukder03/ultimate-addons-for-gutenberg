@@ -5,11 +5,8 @@ import styling from './styling';
 import React, {    useEffect, useLayoutEffect } from 'react';
 
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
-import scrollBlockToView from '@Controls/scrollBlockToView';
 import { useDeviceType } from '@Controls/getPreviewType';
-import { migrateBorderAttributes } from '@Controls/generateAttributes';
 import { withSelect, useDispatch, select } from '@wordpress/data';
-import classnames from 'classnames';
 
 import Settings from './settings';
 import Render from './render';
@@ -24,8 +21,6 @@ import styles from './editor.lazy.scss';
 const UAGBSlider = ( props ) => {
 
 	const deviceType = useDeviceType();
-
-	const { setAttributes, attributes } = props;
 
 	// Add and remove the CSS on the drop and remove of the component.
 	useLayoutEffect( () => {
@@ -95,7 +90,7 @@ export default compose( applyWithSelect )( UAGBSlider );
 
 const { createHigherOrderComponent } = wp.compose;
 
-const withMyWrapperProp = createHigherOrderComponent( ( BlockListBlock ) => {
+const uagbSlideClass = createHigherOrderComponent( ( BlockListBlock ) => {
     return ( props ) => {
 
 		if( 'uagb/slider-child' === props.name ) {
@@ -115,10 +110,10 @@ const withMyWrapperProp = createHigherOrderComponent( ( BlockListBlock ) => {
 		/>;
         
     };
-}, 'withMyWrapperProp' );
+}, 'uagbSlideClass' );
 
 wp.hooks.addFilter(
     'editor.BlockListBlock',
     'uagb/slider-child',
-    withMyWrapperProp
+    uagbSlideClass
 );

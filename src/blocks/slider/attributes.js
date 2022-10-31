@@ -1143,22 +1143,6 @@ const attributes = {
 		type: 'string',
 		default: 'visible'
 	},
-	topDividerWidthType: {
-		type: 'string',
-		default: '%',
-	},
-	bottomDividerWidthType: {
-		type: 'string',
-		default: '%',
-	},
-	topDividerHeightType: {
-		type: 'string',
-		default: 'px',
-	},
-	bottomDividerHeightType: {
-		type: 'string',
-		default: 'px',
-	},
 	...inputBorderAttributes
 };
 
