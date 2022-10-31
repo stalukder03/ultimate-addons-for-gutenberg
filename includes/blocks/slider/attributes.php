@@ -8,6 +8,6 @@
  */
 
 return array(
-	'classMigrate'               => false,
-	'blockName'                  => 'slider',
+	'classMigrate' => false,
+	'blockName'    => 'slider',
 );

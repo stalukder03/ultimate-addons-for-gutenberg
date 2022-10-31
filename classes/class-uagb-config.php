@@ -110,11 +110,11 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 						'skipEditor' => true,
 					),
 
-					'uagb-slider-js'          => array(
+					'uagb-slider-js'         => array(
 						'src' => UAGB_URL . 'assets/js/swiper-bundle.min.js',
 						'dep' => array( 'jquery' ),
 					),
-					'uagb-slider-css'         => array(
+					'uagb-slider-css'        => array(
 						'src' => UAGB_URL . 'assets/css/swiper-bundle.min.css',
 						'dep' => array(),
 					),
@@ -164,7 +164,7 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 						'skipEditor' => true,
 						'dep'        => array(),
 					),
-					'uagb-slider'       => array(
+					'uagb-slider'            => array(
 						'src' => UAGB_Scripts_Utils::get_js_url( 'timeline' ),
 						'dep' => array(),
 					),
@@ -310,7 +310,7 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 					'uagb/image'                  => array(
 						'name' => 'image',
 					),
-					'uagb/slider'                  => array(
+					'uagb/slider'                 => array(
 						'name' => 'slider',
 					),
 				);
