@@ -5,7 +5,6 @@ import styling from './styling';
 import React, {    useEffect, useLayoutEffect } from 'react';
 
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
-import scrollBlockToView from '@Controls/scrollBlockToView';
 import { useDeviceType } from '@Controls/getPreviewType';
 import { migrateBorderAttributes } from '@Controls/generateAttributes';
 

@@ -2,9 +2,7 @@
  * BLOCK: Container - Save Block
  */
 
-import classnames from 'classnames';
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
-import { select } from '@wordpress/data';
 
 export default function save( props ) {
 	const {
@@ -16,8 +14,6 @@ export default function save( props ) {
 	const {
 		clientId
 	} = props;
-
-	const blockProps = useBlockProps.save();
 
 	return (
 		<>
