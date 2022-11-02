@@ -3,7 +3,7 @@ import React, { useMemo, useEffect } from 'react';
 import { select } from '@wordpress/data';
 const ALLOWED_BLOCKS = [ 'uagb/slider-child' ];
 
-import Swiper, { Navigation, Pagination, Scrollbar, Autoplay, EffectFade, Manipulation, Virtual } from 'swiper';
+import Swiper, { Navigation, Pagination, Scrollbar, Autoplay, EffectFade, Manipulation, Virtual, EffectFlip } from 'swiper';
 
 const Render = ( props ) => {
 
@@ -21,7 +21,8 @@ const Render = ( props ) => {
 		slideItem,
 		block_id,
 		contentWidth,
-		arrowDots
+		arrowDots,
+		transitionEffect
 	} = attributes;
 
 	const getSliderTemplate = useMemo( () => {
@@ -61,7 +62,14 @@ const Render = ( props ) => {
 			delay: autoplaySpeed,
 		} : false,
 		spaceBetween: 30,
+		fadeEffect: {
+			crossFade: true
+		},
+		flipEffect: {
+			slideShadows: false,
+		},
 		observer: true,
+		effect: transitionEffect,
 		speed: transitionSpeed,
 		loop: false,
 		pagination: 'arrows' === arrowDots ? false : {
@@ -75,10 +83,35 @@ const Render = ( props ) => {
 		}
 	}
 
-	new Swiper( '.uagb-swiper', {
-		...settings,
-		modules: [Navigation, Pagination, Scrollbar,Autoplay,EffectFade, Manipulation, Virtual],
-	} );
+	useEffect( () => {
+
+		setTimeout( function()  {
+
+			new Swiper( '.uagb-swiper', {
+				...settings,
+				modules: [Navigation, Pagination, Scrollbar,Autoplay,EffectFade, EffectFlip, Manipulation, Virtual],
+			} );
+		
+		}, 200 );
+		
+	}, [] );
+	
+	useEffect( () => {
+		
+		const swiperInstance = document.querySelector( '.uagb-swiper' ).swiper;
+		
+		if( swiperInstance ) {
+
+			swiperInstance.destroy();
+
+			new Swiper( '.uagb-swiper', {
+				...settings,
+				modules: [Navigation, Pagination, Scrollbar,Autoplay,EffectFade, EffectFlip, Manipulation, Virtual],
+			} );
+		}
+
+	}, [ props ] );
+	
 
 	return (
 		<div

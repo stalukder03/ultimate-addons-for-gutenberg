@@ -46,6 +46,10 @@ const attributes = {
 		type: 'number',
 		default: 500,
 	},
+	transitionEffect: {
+		type: 'string',
+		default: 'slide'
+	},
 	autoplay: {
 		type: 'boolean',
 		default: false,

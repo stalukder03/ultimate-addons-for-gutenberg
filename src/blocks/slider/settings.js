@@ -5,6 +5,7 @@ import InspectorTab, {
 	UAGTabs,
 } from '@Components/inspector-tabs/InspectorTab.js';
 import Range from '@Components/range/Range.js';
+import UAGSelectControl from '@Components/select-control';
 import { __ } from '@wordpress/i18n';
 
 import {
@@ -41,6 +42,7 @@ const Settings = ( props ) => {
 		arrowDots,
 		autoplay,
 		autoplaySpeed,
+		transitionEffect,
 
 		backgroundType,
 		backgroundImageDesktop,
@@ -253,6 +255,43 @@ const Settings = ( props ) => {
 						) }
 						checked={ infiniteLoop }
 						onChange={ toggleInfiniteLoop }
+					/>
+					<UAGSelectControl
+						label={ __(
+							'Transition Effect',
+							'ultimate-addons-for-gutenberg'
+						) }
+						data={ {
+							value: transitionEffect,
+							label: 'transitionEffect',
+						} }
+						onChange={ ( value ) =>
+							setAttributes( { transitionEffect: value } )
+						}
+						setAttributes={ setAttributes }
+						options={ [
+							{
+								value: 'slide',
+								label: __(
+									'Slide',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+							{
+								value: 'fade',
+								label: __(
+									'Fade',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+							{
+								value: 'flip',
+								label: __(
+									'Flip',
+									'ultimate-addons-for-gutenberg'
+								),
+							}
+						] }
 					/>
 					<Range
 						label={ __(
