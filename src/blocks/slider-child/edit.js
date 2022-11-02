@@ -1,27 +1,14 @@
 /**
  * BLOCK: Slider Child
  */
-import React, {  useLayoutEffect } from 'react';
 
 import Settings from './settings';
 import Render from './render';
 
-//  Import CSS.
-import './style.scss';
-
 import { withSelect, useDispatch } from '@wordpress/data';
 import { compose } from '@wordpress/compose';
 
-import styles from './editor.lazy.scss';
-
 const UAGBSlide = ( props ) => {
-	// Add and remove the CSS on the drop and remove of the component.
-	useLayoutEffect( () => {
-		styles.use();
-		return () => {
-			styles.unuse();
-		};
-	}, [] );
 
 	return (
 		<>
