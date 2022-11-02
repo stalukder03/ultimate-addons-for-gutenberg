@@ -17,7 +17,9 @@ $js_attr = array(
 $slider_options = apply_filters(
 	'uagb_slider_options',
 	array(
-		'autoplay'       => (bool) $attr['autoplay'],
+		'autoplay'       => (bool) $attr['autoplay'] ? array(
+			'delay' => (int) $attr['autoplaySpeed']
+		) : false,
 		'loop'           => (bool) $attr['infiniteLoop'],
 		'speed'          => (int) esc_html( UAGB_Block_Helper::get_fallback_number( $attr['transitionSpeed'], 'transitionSpeed', $block_name ) ),
 		'effect'         => $attr['transitionEffect'],
@@ -39,6 +41,8 @@ $slider_options = apply_filters(
 	),
 	$id
 );
+
+$settings = wp_json_encode( $slider_options );
 
 ob_start();
 ?>
