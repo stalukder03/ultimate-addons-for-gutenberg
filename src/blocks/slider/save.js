@@ -4,7 +4,16 @@ import classnames from 'classnames';
 
 export default function save( props ) {
 
-	const { block_id } = props.attributes;
+	const {
+		attributes,
+		clientId,
+		attributes: { slide_content },
+	} = props;
+
+	const {
+		block_id,
+		arrowDots
+	} = attributes;
 	
     return (
 		<div
@@ -21,10 +30,16 @@ export default function save( props ) {
 					<InnerBlocks.Content />
 				</div>
 				
-				<div className="swiper-pagination"></div>
+				{  'arrows' !== arrowDots && 
+						<div className="swiper-pagination"></div>
+					}	
 
-				<div className="swiper-button-prev"></div>
-				<div className="swiper-button-next"></div>
+					{ 'dots' !== arrowDots && 
+						<>
+						<div className="swiper-button-prev"></div>
+						<div className="swiper-button-next"></div>
+						</>
+					}
 			</div>
 		</div>
 	);    
