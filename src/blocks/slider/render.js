@@ -110,7 +110,7 @@ const Render = ( props ) => {
 			} );
 		}
 
-	}, [ props ] );
+	}, [ attributes ] );
 	
 
 	return (
