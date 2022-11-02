@@ -12,7 +12,7 @@
  
  registerBlockType( 'uagb/slider', {
      apiVersion: 2,
-     title: __( 'slider', 'ultimate-addons-for-gutenberg' ),
+     title: __( 'Slider', 'ultimate-addons-for-gutenberg' ),
      description: __(
          'Create beautiful sliders with slider block.',
          'ultimate-addons-for-gutenberg'
