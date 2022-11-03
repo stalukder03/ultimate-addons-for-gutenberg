@@ -496,7 +496,7 @@ const UAGB_Block_Icons = {
 			strokeWidth: 1.4,
 		} ),
 	),
-	instagram: el(
+	'instagram-feed': el(
 		'svg',
 		{ width: 40, height: 40, viewBox: '0 0 24 24', fill: 'none' },
 		el( 'path', {
