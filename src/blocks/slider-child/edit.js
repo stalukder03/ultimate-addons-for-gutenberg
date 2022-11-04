@@ -29,12 +29,14 @@ const applyWithSelect = withSelect( ( select, props ) => { // eslint-disable-lin
 	const {
 		getBlockType,
 	} = select( 'core/blocks' );
+	const { insertBlock } = useDispatch( 'core/block-editor' );
 	const innerBlocks = getBlocks( props.clientId );
 	const { replaceInnerBlocks } = useDispatch( 'core/block-editor' );
 
 	return {
 		// Subscribe to changes of the innerBlocks to control the display of the layout selection placeholder.
 		innerBlocks,
+		insertBlock,
 		blockType: getBlockType( props.name ),
 		replaceInnerBlocks,
 		deviceType,
