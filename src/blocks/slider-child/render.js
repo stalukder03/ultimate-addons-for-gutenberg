@@ -10,7 +10,13 @@ const Render = ( props ) => {
 		innerBlocks,
 	} = props;
 
-	const ALLOWED_BLOCKS = wp.blocks.getBlockTypes().map( block => block.name ).filter( blockName =>  [ 'uagb/slider','uagb/slider-child' ].indexOf( blockName ) === -1 );
+	// Only parent blocks.
+	const parentBlocks = wp.blocks.getBlockTypes().filter( function( item ) { 
+		return ! item.parent
+	} );
+
+	// Hide slider block.
+	const ALLOWED_BLOCKS = parentBlocks.map( block => block.name ).filter( blockName => [ 'uagb/slider' ].indexOf( blockName ) === -1 );
 
 	return (
 		<div className='swiper-content'>
