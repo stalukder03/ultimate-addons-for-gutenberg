@@ -50,7 +50,7 @@ const Render = ( props ) => {
         { 
 			allowedBlocks: ALLOWED_BLOCKS,
 			template : getSliderTemplate,
-			renderAppender: false 
+			renderAppender: false
 		}
     );
 
@@ -61,10 +61,6 @@ const Render = ( props ) => {
 		} : false,
 		spaceBetween: 30,
 		observer: true,
-		// effect: 'fade', 
-		// fadeEffect: {
-		// 	crossFade: true
-		// },
 		speed: transitionSpeed,
 		loop: false,
 		pagination: {
@@ -99,7 +95,7 @@ const Render = ( props ) => {
 					<div
 						
 						{ ...innerBlocksProps }
-					/>
+					/> 
 					<div className="swiper-pagination"></div>
 
 					<div className="swiper-button-prev"></div>
