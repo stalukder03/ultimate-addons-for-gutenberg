@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { Fragment, useState  } from 'react';
+import { useState  } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Switch } from '@headlessui/react'
 import apiFetch from '@wordpress/api-fetch';
@@ -202,15 +202,13 @@ const InstagramUsers = () => {
 		theButton.disabled = true;
 		handleInstaLinkUserLable( 'Saving' );
 		fetch( checkUser ).then( ( response ) => response.json() ).then( ( data ) => {
-			// console.log( `SZSZSZSZSZSZSZSZS\n${ data.id }\n${ data.username }\nSZSZSZSZSZSZSZSZS` );
 			handleNewUserCreation( data.id, data.username, theButton );
 		} ).catch( () => {
-			// console.warn ( err );
 			setLinkingUser( false );
-			theButton.classList.toggle( 'bg-rose-600' );
+			// theButton.classList.toggle( 'bg-rose-600' );
 			handleInstaLinkUserLable( 'Invalid Token' );
 			setTimeout( () => {
-				theButton.classList.toggle( 'bg-rose-600' );
+				// theButton.classList.toggle( 'bg-rose-600' );
 				handleInstaLinkUserLable( '' );
 				theButton.disabled = false;
 			}, 1000 );
@@ -234,10 +232,10 @@ const InstagramUsers = () => {
 			} );
 			if ( isFound ){
 				setLinkingUser( false );
-				theButton.classList.toggle( 'bg-rose-600' );
+				// theButton.classList.toggle( 'bg-rose-600' );
 				handleInstaLinkUserLable( 'Account Exists!' );
 				setTimeout( () => {
-					theButton.classList.toggle( 'bg-rose-600' );
+					// theButton.classList.toggle( 'bg-rose-600' );
 					handleInstaLinkUserLable( '' );
 					theButton.disabled = false;
 				}, 1000 );
@@ -269,20 +267,20 @@ const InstagramUsers = () => {
 			} ).then( ( data ) => {
 				if ( data.success ) {
 					setLinkingUser( false );
-					theButton.classList.toggle( 'bg-lime-500' );
+					// theButton.classList.toggle( 'bg-lime-500' );
 					handleInstaLinkUserLable( 'Account Linked!' );
 					setTimeout( () => {
-						theButton.classList.toggle( 'bg-lime-500' );
+						// theButton.classList.toggle( 'bg-lime-500' );
 						handleInstaLinkUserLable( '' );
 						theButton.disabled = false;
 					}, 1000 );
 				}
 				else{
 					setLinkingUser( false );
-					theButton.classList.toggle( 'bg-rose-600' );
+					// theButton.classList.toggle( 'bg-rose-600' );
 					handleInstaLinkUserLable( 'Failed to add account' );
 					setTimeout( () => {
-						theButton.classList.toggle( 'bg-rose-600' );
+						// theButton.classList.toggle( 'bg-rose-600' );
 						handleInstaLinkUserLable( '' );
 						theButton.disabled = false;
 					}, 1000 );
@@ -331,12 +329,16 @@ const InstagramUsers = () => {
 
 	
 	const renderAllLinkedAccounts = () => {
-		// console.log( `%c${ instaLinkedAccounts }`, 'color:  lime; font-weight: bold; font-family: Raleway;' );
 		if ( 0 === Object.keys( instaLinkedAccounts ).length ){
 			return (
-				<p className='mt-[0.6rem] text-sm'>
-					{ __( 'No new users... Link a new Instagram User to start using them in your UAG Instagram Feed Block!', 'ultimate-addons-for-gutenberg' ) }
-				</p>
+				<>
+					<p className='text-sm text-slate-400'>
+						{ __( 'No linked accounts.', 'ultimate-addons-for-gutenberg' ) }
+					</p>
+					<p className='text-sm text-slate-400'>
+						{ __( 'Please link an Instagram Account to start using it with Spectra!', 'ultimate-addons-for-gutenberg' ) }
+					</p>
+				</>
 			);
 		}
 		const userMatrix = instaLinkedAccounts.map( ( user ) => (
@@ -393,26 +395,28 @@ const InstagramUsers = () => {
 	};
 
 	const renderDevSettings = () => (
-		<Fragment>
-			<p className='mt-[0.6rem] text-sm'>
-				{ __( 'No need to share passwords. Share your client our ', 'ultimate-addons-for-gutenberg' ) }
-				<a className='text-wpcolor hover:text-wphovercolor' href={ SPECTRA_IG_TOKEN_GENERATOR } target="_blank">{ __( 'Access Token Generator', 'ultimate-addons-for-gutenberg' ) }</a>
-				{ __( ' and ask them to share their token with you.', 'ultimate-addons-for-gutenberg' ) }
+		<>
+			<p className="mt-5 text-sm text-slate-500">
+				{ __( 'No need to share passwords. Share our', 'ultimate-addons-for-gutenberg' ) }
+				&nbsp;
+				<a className="text-spectra focus:text-spectra-hover active:text-spectra-hover hover:text-spectra-hover" href={ SPECTRA_IG_TOKEN_GENERATOR } target="_blank">{ __( 'Access Token Generator', 'ultimate-addons-for-gutenberg' ) }</a>
+				&nbsp;
+				{ __( 'with your client and ask them to share their token with you.', 'ultimate-addons-for-gutenberg' ) }
 			</p>
 			<div className='mt-4 grid grid-cols-[1fr_auto] w-full'>
 				<input
+					className="mr-5 h-10 text-sm placeholder-slate-400 transition spectra-admin__input-field"
 					type='text'
 					aria-label='Token'
 					placeholder='Token'
 					value={ tempToken }
 					onChange={ ( event ) => setTempToken( event.target.value ) }
-					className='mb-2 mr-2 px-4 py-2 border !border-slate-300 placeholder-slate-300 !text-gray-600 text-sm font-medium rounded-[0.2rem] shadow-sm focus:!border-transparent focus:!ring-2 focus:!ring-wpcolor focus:!text-wpcolor transition'
 				/>
 				<button
 					type='button'
 					className={ classNames(
-						! tempToken ? 'cursor-not-allowed opacity-10' : '',
-						'flex items-center w-auto mb-2 px-4 py-2 border border-transparent text-sm font-medium rounded-[0.2rem] shadow-sm text-white bg-wpcolor hover:bg-wphovercolor focus:outline-none transition-all'
+						! tempToken ? 'cursor-not-allowed bg-slate-200 text-slate-400' : 'bg-spectra text-white hover:bg-spectra-hover focus:bg-spectra-hover',
+						'flex items-center w-auto px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm focus:outline-none transition-all'
 					) }
 					disabled={ ( '' === tempToken ) ? true : false }
 					onClick={ ( event ) => handleInstaLinkAccount( event ) }
@@ -421,59 +425,68 @@ const InstagramUsers = () => {
 					{ __( instaLinkUserLabel, 'ultimate-addons-for-gutenberg' ) }
 				</button>
 			</div>
-		</Fragment>
+		</>
 	);
 
 	return (
-		<section className='block border-b border-solid border-slate-200 px-12 py-8 justify-between'>  
-			<div className='mr-16 w-full flex items-center'>
-				<h3 className="p-0 flex-1 justify-right inline-flex text-lg leading-8 font-medium text-gray-900">
-					{ __( 'Instagram Accounts', 'ultimate-addons-for-gutenberg' ) }
-				</h3>
-				<Switch
-					checked={ instagramDevMode }
-					onChange={ () => setInstagramDevMode( ! instagramDevMode ) }
-					className={ classNames(
-						instagramDevMode ? 'bg-spectra' : 'bg-slate-200',
-						'relative inline-flex flex-shrink-0 h-5 w-[2.4rem] items-center border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none'
-					) }
-				>
-					<span
-						aria-hidden="true"
+		<>
+			<section className='block border-b border-solid border-slate-200 px-12 py-8 justify-between'>  
+				<div className='mr-16 w-full flex items-center'>
+					<h3 className="p-0 flex-1 justify-right inline-flex text-lg leading-8 font-medium text-gray-900">
+						{ __( 'Instagram Accounts', 'ultimate-addons-for-gutenberg' ) }
+					</h3>
+					<Switch
+						checked={ instagramDevMode }
+						onChange={ () => setInstagramDevMode( ! instagramDevMode ) }
 						className={ classNames(
-							instagramDevMode ? 'translate-x-5' : 'translate-x-0',
-							'pointer-events-none inline-block h-3.5 w-3.5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200'
+							instagramDevMode ? 'bg-spectra' : 'bg-slate-200',
+							'relative inline-flex flex-shrink-0 h-5 w-[2.4rem] items-center border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none'
 						) }
-					/>
-				</Switch>
-			</div>
-			<div className='mr-16 mt-2 w-full flex items-start'>
-				<div className="w-9/12">
-					<p className="text-sm text-slate-500">
-						{ __( 'Link your Instagram account(s), or enable Developer Mode to link your someone else\'s account(s).', 'ultimate-addons-for-gutenberg' ) }
-					</p>
-					{ instagramDevMode ? (
-					<></>
-					) : (
-						<button
-							type="button"
-							className="inline-flex items-center mt-5 px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-spectra transition focus:bg-spectra-hover hover:bg-spectra-hover focus:outline-none"
-							onClick={ () => displayAuthWindow( 'personal' ) }
-						>
-							{ __( 'Link a Personal Account', 'ultimate-addons-for-gutenberg' ) }
-							{ authLinkingUser && svgSpinner }
-						</button>
-					) }
+					>
+						<span
+							aria-hidden="true"
+							className={ classNames(
+								instagramDevMode ? 'translate-x-5' : 'translate-x-0',
+								'pointer-events-none inline-block h-3.5 w-3.5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200'
+							) }
+						/>
+					</Switch>
 				</div>
-				<p className="flex-1 flex justify-end text-sm text-slate-800">
-					{ __( 'Developer Mode', 'ultimate-addons-for-gutenberg' ) }
-				</p>
-			</div>
-		</section>
+				<div className="mr-16 mt-2 w-full flex items-start">
+					<div className="w-9/12">
+						<p className="text-sm text-slate-500">
+							{ __( 'Link your Instagram account(s), or enable Developer Mode to link your someone else\'s account(s).', 'ultimate-addons-for-gutenberg' ) }
+						</p>
+						{ instagramDevMode ? renderDevSettings() : (
+							<button
+								type="button"
+								className="flex items-center mt-5 px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-spectra transition focus:bg-spectra-hover hover:bg-spectra-hover focus:outline-none"
+								onClick={ () => displayAuthWindow( 'personal' ) }
+							>
+								{ __( 'Link a Personal Account', 'ultimate-addons-for-gutenberg' ) }
+								{ authLinkingUser && svgSpinner }
+							</button>
+						) }
+					</div>
+					<p className="flex-1 flex justify-end text-sm text-slate-800">
+						{ __( 'Developer Mode', 'ultimate-addons-for-gutenberg' ) }
+					</p>
+				</div>
+				<div className="mr-16 mt-9 pt-5 w-full border-t border-t-slate-200">
+					{ renderAllLinkedAccounts() }
+				</div>			
+			</section>
+	 		<InstagramUnlinkPopup
+	 			openPopup={ openPopup }
+	 			poppedUser={ poppedUser }
+	 			setOpenPopup={ setOpenPopup }
+	 			setPoppedUser={ setPoppedUser }
+	 		/>
+		</>
 	);
 
 	// return (
-	// 	<Fragment>
+	// 	<>
 	// 		<section className='flex border-b border-solid border-slate-200'>
 	// 			<div className='pr-16 pb-8 w-[78%]'>
 	// 				<h3 className='text-lg leading-6 font-medium text-gray-900'>
@@ -530,7 +543,7 @@ const InstagramUsers = () => {
 	// 			setOpenPopup={ setOpenPopup }
 	// 			setPoppedUser={ setPoppedUser }
 	// 		/>
-	// 	</Fragment>
+	// 	</>
 	// );
 };
 
