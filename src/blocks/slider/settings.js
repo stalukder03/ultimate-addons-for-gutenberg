@@ -304,6 +304,9 @@ const Settings = ( props ) => {
 							value: transitionSpeed,
 							label: 'transitionSpeed',
 						} }
+						onChange={ ( value ) =>
+							setAttributes( { transitionSpeed: value } )
+						}
 						min={ 100 }
 						max={ 5000 }
 						displayUnit={ false }

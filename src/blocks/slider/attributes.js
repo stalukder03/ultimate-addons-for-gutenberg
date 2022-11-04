@@ -56,7 +56,7 @@ const attributes = {
 	},
 	autoplaySpeed: {
 		type: 'number',
-		default: 2000,
+		default: 500,
 	},
 	arrowDots: {
 		type: 'string',

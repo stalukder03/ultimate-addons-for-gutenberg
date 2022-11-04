@@ -8,6 +8,14 @@
  */
 
 return array(
-	'classMigrate' => false,
-	'blockName'    => 'slider',
+	'blockName'          => 'slider',
+	'block_id'           => '',
+	'pauseOnHover'       => true,
+	'pauseOnInteraction' => true,
+	'infiniteLoop'       => true,
+	'transitionSpeed'    => 500,
+	'transitionEffect'   => 'slide',
+	'autoplay' 			 => true,
+	'autoplaySpeed' 	 => 500,
+	'arrowDots'          => 'arrows_dots'
 );
