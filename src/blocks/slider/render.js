@@ -23,7 +23,6 @@ const Render = ( props ) => {
 		autoplaySpeed,
 		slideItem,
 		block_id,
-		contentWidth,
 		arrowDots,
 		transitionEffect,
 		infiniteLoop
@@ -44,7 +43,7 @@ const Render = ( props ) => {
 	const hasChildren = 0 !== select( 'core/block-editor' ).getBlocks( clientId ).length;
 	const hasChildrenClass = hasChildren ? 'uagb-slider-has-children' : '';
 	const blockProps = useBlockProps( {
-		className: `uagb-block-${ block_id } ${contentWidth} ${hasChildrenClass}`,
+		className: `uagb-block-${ block_id } ${hasChildrenClass}`,
 	} );
 
 	const swiperProps = useBlockProps( {

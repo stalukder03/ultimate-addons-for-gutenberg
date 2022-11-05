@@ -112,13 +112,6 @@ const attributes = {
 			styleType: 'arrow-color'
 		},
 	},
-	contentWidth: {
-		type: 'string',
-		default: 'alignfull',
-		UAGCopyPaste: {
-			styleType: 'content-width'
-		}
-	},
 	innerContentWidth: {
 		type: 'string',
 		default: 'alignwide',
