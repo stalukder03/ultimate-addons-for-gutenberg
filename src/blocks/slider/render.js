@@ -87,24 +87,6 @@ const Render = ( props ) => {
 		}
 	}
 
-	domReady( function () {
-		
-		const swiperWrapper = document.querySelector( '.uagb-swiper' );
-
-		if( swiperWrapper ) {
-			
-			swiperWrapper.onmouseover = function() {
-				
-				const swiperInstance = document.querySelector( '.uagb-swiper' ).swiper;
-
-				if( swiperInstance && autoplay ) {
-					// swiperInstance.autoplay.stop();
-				}
-			};
-		}
-
-	} );
-
 	useEffect( () => {
 
 		setTimeout( function()  {
@@ -117,6 +99,21 @@ const Render = ( props ) => {
 		}, 200 );
 		
 	}, [] );
+
+	useEffect( () => {
+
+		const swiperInstance = document.querySelector( '.uagb-swiper' ).swiper;
+
+		setTimeout( function()  {
+		
+			if( swiperInstance ) {
+				swiperInstance.updateSlidesClasses();
+			}
+
+		}, 500 );
+
+	}, [ props ] );
+	
 	
 	useEffect( () => {
 		
