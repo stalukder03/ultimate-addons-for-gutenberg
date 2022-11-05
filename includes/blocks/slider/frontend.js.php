@@ -47,8 +47,6 @@ $slider_options = apply_filters(
 
 $settings = wp_json_encode( $slider_options );
 
-error_log( $attr['infiniteLoop'] );
-
 ob_start();
 ?>
 window.addEventListener("DOMContentLoaded", function(){

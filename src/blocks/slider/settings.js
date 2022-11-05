@@ -31,7 +31,8 @@ import { createBlock } from '@wordpress/blocks';
 const Settings = ( props ) => {
 
 	props = props.parentProps;
-	const { attributes, setAttributes, deviceType, insertBlock, block } = props;
+	const { attributes, setAttributes, deviceType, insertBlock, block, clientId } = props;
+	const swiperSelector = '#block-' + clientId + ' .uagb-swiper';
 	const {
 		block_id,
 		
@@ -168,7 +169,7 @@ const Settings = ( props ) => {
 
 							setTimeout( function()  {
 
-								const swiper = document.querySelector( '.uagb-swiper' ).swiper;
+								const swiper = document.querySelector( swiperSelector ).swiper;
 
 								if( swiper ) {
 									swiper.update();

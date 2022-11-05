@@ -15,6 +15,8 @@ const Render = ( props ) => {
 		attributes: { slide_content },
 	} = props;
 
+	const swiperSelector = '#block-' + clientId + ' .uagb-swiper';
+
 	const {
 		transitionSpeed,
 		autoplay,
@@ -91,7 +93,7 @@ const Render = ( props ) => {
 
 		setTimeout( function()  {
 
-			new Swiper( '.uagb-swiper', {
+			new Swiper( swiperSelector, {
 				...settings,
 				modules: [Navigation, Pagination, Scrollbar,Autoplay,EffectFade, EffectFlip, Manipulation, Virtual],
 			} );
@@ -102,7 +104,7 @@ const Render = ( props ) => {
 
 	useEffect( () => {
 
-		const swiperInstance = document.querySelector( '.uagb-swiper' ).swiper;
+		const swiperInstance = document.querySelector( swiperSelector ).swiper;
 
 		setTimeout( function()  {
 		
@@ -117,13 +119,13 @@ const Render = ( props ) => {
 	
 	useEffect( () => {
 		
-		const swiperInstance = document.querySelector( '.uagb-swiper' ).swiper;
+		const swiperInstance = document.querySelector( swiperSelector ).swiper;
 		
 		if( swiperInstance ) {
 
 			swiperInstance.destroy();
 
-			new Swiper( '.uagb-swiper', {
+			new Swiper( swiperSelector, {
 				...settings,
 				modules: [Navigation, Pagination, Scrollbar,Autoplay,EffectFade, EffectFlip, Manipulation, Virtual],
 			} );

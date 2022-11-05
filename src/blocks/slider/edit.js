@@ -57,8 +57,6 @@ const uagbSlideClass = createHigherOrderComponent( ( BlockListBlock ) => {
 
 		if( 'uagb/slider-child' === props.name ) {
 
-			console.log( 'In filter' );
-
 			const wrapperProps = {
 				...props.wrapperProps,
 				className : 'swiper-slide'
