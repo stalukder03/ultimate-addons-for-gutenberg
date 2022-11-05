@@ -35,8 +35,7 @@ const Settings = ( props ) => {
 	const {
 		block_id,
 		
-		pauseOnHover,
-		pauseOnInteraction,
+		pauseOn,
 		infiniteLoop,
 		transitionSpeed,
 		arrowDots,
@@ -187,14 +186,6 @@ const Settings = ( props ) => {
 	};
 
 	const generalSettings = () => {
-
-		const togglePauseOnHover = () => {
-			setAttributes( { pauseOnHover: ! pauseOnHover } );
-		};
-
-		const togglePauseOnInteraction = () => {
-			setAttributes( { pauseOnInteraction: ! pauseOnInteraction } );
-		};
 	
 		const toggleInfiniteLoop = () => {
 			setAttributes( { infiniteLoop: ! infiniteLoop } );
@@ -210,21 +201,39 @@ const Settings = ( props ) => {
 					title={ __( 'Slider', 'ultimate-addons-for-gutenberg' ) }
 					initialOpen={ false }
 				>
-					<ToggleControl
+					<MultiButtonsControl
+						setAttributes={ setAttributes }
 						label={ __(
-							'Pause On Hover',
+							'Pause On',
 							'ultimate-addons-for-gutenberg'
 						) }
-						checked={ pauseOnHover }
-						onChange={ togglePauseOnHover }
-					/>
-					<ToggleControl
-						label={ __(
-							'Pause On Interaction',
-							'ultimate-addons-for-gutenberg'
-						) }
-						checked={ pauseOnInteraction }
-						onChange={ togglePauseOnInteraction }
+						data={ {
+							value: pauseOn,
+							label: 'pauseOn',
+						} }
+						options={ [
+							{
+								value: 'hover',
+								label: __(
+									'Hover',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+							{
+								value: 'click',
+								label: __(
+									'Click',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+							{
+								value: 'none',
+								label: __(
+									'None',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+						] }
 					/>
 					<ToggleControl
 						label={ __( 'Autoplay' ) }

@@ -2,6 +2,7 @@ import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 import React, { useMemo, useEffect } from 'react';
 import { select } from '@wordpress/data';
 const ALLOWED_BLOCKS = [ 'uagb/slider-child' ];
+import domReady from '@wordpress/dom-ready';
 
 import Swiper, { Navigation, Pagination, Scrollbar, Autoplay, EffectFade, Manipulation, Virtual, EffectFlip } from 'swiper';
 
@@ -22,7 +23,8 @@ const Render = ( props ) => {
 		block_id,
 		contentWidth,
 		arrowDots,
-		transitionEffect
+		transitionEffect,
+		infiniteLoop
 	} = attributes;
 
 	const getSliderTemplate = useMemo( () => {
@@ -60,6 +62,8 @@ const Render = ( props ) => {
 		slidesPerView: 1,
 		autoplay: autoplay ? {
 			delay: autoplaySpeed,
+			disableOnInteraction: true,
+			pauseOnMouseEnter: true
 		} : false,
 		spaceBetween: 30,
 		fadeEffect: {
@@ -82,6 +86,24 @@ const Render = ( props ) => {
 			prevEl: '.swiper-button-prev',
 		}
 	}
+
+	domReady( function () {
+		
+		const swiperWrapper = document.querySelector( '.uagb-swiper' );
+
+		if( swiperWrapper ) {
+			
+			swiperWrapper.onmouseover = function() {
+				
+				const swiperInstance = document.querySelector( '.uagb-swiper' ).swiper;
+
+				if( swiperInstance && autoplay ) {
+					// swiperInstance.autoplay.stop();
+				}
+			};
+		}
+
+	} );
 
 	useEffect( () => {
 
@@ -110,7 +132,13 @@ const Render = ( props ) => {
 			} );
 		}
 
-	}, [ attributes ] );
+	}, [ transitionSpeed,
+		autoplay,
+		autoplaySpeed,
+		arrowDots,
+		transitionEffect,
+		infiniteLoop 
+	] );
 	
 
 	return (

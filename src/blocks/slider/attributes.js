@@ -30,13 +30,9 @@ const attributes = {
 		type: 'number',
 		default: slideCount,
 	},
-	pauseOnHover: {
-		type: 'boolean',
-		default: true,
-	},
-	pauseOnInteraction: {
-		type: 'boolean',
-		default: true,
+	pauseOn: { 
+		type: 'string',
+		default: 'hover'
 	},
 	infiniteLoop: {
 		type: 'boolean',
@@ -44,7 +40,7 @@ const attributes = {
 	},
 	transitionSpeed: {
 		type: 'number',
-		default: 500,
+		default: 800,
 	},
 	transitionEffect: {
 		type: 'string',
@@ -52,11 +48,11 @@ const attributes = {
 	},
 	autoplay: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	autoplaySpeed: {
 		type: 'number',
-		default: 500,
+		default: 800,
 	},
 	arrowDots: {
 		type: 'string',

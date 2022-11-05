@@ -10,12 +10,11 @@
 return array(
 	'blockName'          => 'slider',
 	'block_id'           => '',
-	'pauseOnHover'       => true,
-	'pauseOnInteraction' => true,
+	'pauseOn'            => 'hover',
 	'infiniteLoop'       => true,
-	'transitionSpeed'    => 500,
+	'transitionSpeed'    => 800,
 	'transitionEffect'   => 'slide',
 	'autoplay' 			 => true,
-	'autoplaySpeed' 	 => 500,
+	'autoplaySpeed' 	 => 800,
 	'arrowDots'          => 'arrows_dots'
 );
