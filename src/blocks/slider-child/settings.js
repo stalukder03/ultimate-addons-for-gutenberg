@@ -89,8 +89,6 @@ const Settings = ( props ) => {
 		yPositionType,
 		yPositionTypeTablet,
 		yPositionTypeMobile,
-		backgroundVideoColor,
-		backgroundVideo,
 	} = attributes;
 
 	// This useEffect ensures that background size is set to cover, so as to ensure color takes up entire width and height,
@@ -278,17 +276,8 @@ const Settings = ( props ) => {
 						label: 'yPositionTypeMobile'
 					}}
 					backgroundVideoType={ {
-						value: true,
+						value: false,
 					} }
-					backgroundVideo={ {
-						value: backgroundVideo,
-						label: 'backgroundVideo',
-					} }
-					backgroundVideoColor={ {
-						value: backgroundVideoColor,
-						label: 'backgroundVideoColor',
-					} }
-					onOpacityChange = { ( opacity ) => setAttributes( { backgroundVideoOpacity: opacity } ) }
 					{ ...props }
 				/>
 			</UAGAdvancedPanelBody>
