@@ -79,10 +79,6 @@ function styling( props ) {
 		yPositionType,
 		yPositionTypeTablet,
 		yPositionTypeMobile,
-		backgroundVideoOpacity,
-		backgroundVideoColor,
-		backgroundVideo,
-
 		overflow,
 
 	} = attributes;
@@ -114,35 +110,7 @@ function styling( props ) {
 	rightMarginTablet = 'undefined' !== typeof rightMarginTablet ? rightMarginTablet : rightMarginDesktop;
 	rightMarginMobile = 'undefined' !== typeof rightMarginMobile ? rightMarginMobile : rightMarginTablet;
 
-	const backgroundVideoOpacityValue = ( backgroundVideoOpacity && 'none' !== overlayType && ( ( 'color' === overlayType &&backgroundVideoColor ) || ( 'gradient' === overlayType && gradientValue ) ) ) ? 1 - backgroundVideoOpacity : 1;
-
-	const videoBackgroundAttributes = {
-        'backgroundType': backgroundType,
-        'backgroundImage': backgroundImageDesktop,
-        'backgroundColor': backgroundColor,
-        'gradientValue': gradientValue,
-        'backgroundRepeat': backgroundRepeatDesktop,
-        'backgroundPosition': backgroundPositionDesktop,
-        'backgroundSize': backgroundSizeDesktop,
-        'backgroundAttachment': backgroundAttachmentDesktop,
-		'backgroundCustomSize' : backgroundCustomSizeDesktop,
-		'backgroundCustomSizeType' : backgroundCustomSizeType,
-		'backgroundImageColor' : backgroundImageColor,
-		'overlayType' : overlayType,
-		'backgroundVideo' : backgroundVideo,
-		'backgroundVideoColor' : backgroundVideoColor,
-    };
-
-	const videoBackgroundCSS = generateBackgroundCSS( videoBackgroundAttributes );
-
-	const selectors = {
-		' .uagb-container__video-wrap' : {
-			...videoBackgroundCSS
-		},
-		' .uagb-container__video-wrap video' : {
-			'opacity': backgroundVideoOpacityValue
-		}
-	};
+	const selectors = {};
 
 	const backgroundAttributesDesktop = {
         'backgroundType': backgroundType,
@@ -157,8 +125,6 @@ function styling( props ) {
 		'backgroundCustomSizeType' : backgroundCustomSizeType,
 		'backgroundImageColor' : backgroundImageColor,
 		'overlayType' : overlayType,
-		'backgroundVideo' : backgroundVideo,
-		'backgroundVideoColor' : backgroundVideoColor,
 		'customPosition': customPosition,
 		'xPosition': xPositionDesktop,
 		'xPositionType': xPositionType,
@@ -166,9 +132,9 @@ function styling( props ) {
 		'yPositionType': yPositionType,
     };
 
-	const containerBackgroundCSSDesktop = generateBackgroundCSS( backgroundAttributesDesktop );
+	const BackgroundCSSDesktop = generateBackgroundCSS( backgroundAttributesDesktop );
 
-	const containerCSS = {
+	const sliderCSS = {
 		'padding-top': generateCSSUnit( topPaddingDesktop, paddingType ),
 		'padding-bottom': generateCSSUnit( bottomPaddingDesktop, paddingType ),
 		'padding-left': generateCSSUnit( leftPaddingDesktop, paddingType ),
@@ -177,11 +143,11 @@ function styling( props ) {
 		'margin-bottom': generateCSSUnit( bottomMarginDesktop, marginType ) + ' !important',
 		'margin-left': generateCSSUnit( leftMarginDesktop, marginType ),
 		'margin-right': generateCSSUnit( rightMarginDesktop, marginType ),
-		...containerBackgroundCSSDesktop,
+		...BackgroundCSSDesktop,
 		'overflow' : overflow
 	}
 
-	selectors['.wp-block'] = containerCSS;
+	selectors[' .swiper-content'] = sliderCSS;
 
 	const backgroundAttributesTablet = {
         'backgroundType': backgroundType,
@@ -196,8 +162,6 @@ function styling( props ) {
 		'backgroundCustomSizeType' : backgroundCustomSizeType,
 		'backgroundImageColor' : backgroundImageColor,
 		'overlayType' : overlayType,
-		'backgroundVideo' : backgroundVideo,
-		'backgroundVideoColor' : backgroundVideoColor,
 		'customPosition': customPosition,
 		'xPosition': xPositionTablet,
 		'xPositionType': xPositionTypeTablet,
@@ -208,7 +172,7 @@ function styling( props ) {
 	const containerBackgroundCSSTablet = generateBackgroundCSS( backgroundAttributesTablet );
 
 	const tablet_selectors = {
-		'.wp-block' : {
+		'.swiper-content' : {
 			'padding-top': generateCSSUnit( topPaddingTablet, paddingTypeTablet ),
 			'padding-bottom': generateCSSUnit( bottomPaddingTablet, paddingTypeTablet ),
 			'padding-left': generateCSSUnit( leftPaddingTablet, paddingTypeTablet ),
@@ -235,8 +199,6 @@ function styling( props ) {
 		'backgroundCustomSizeType' : backgroundCustomSizeType,
 		'backgroundImageColor' : backgroundImageColor,
 		'overlayType' : overlayType,
-		'backgroundVideo' : backgroundVideo,
-		'backgroundVideoColor' : backgroundVideoColor,
 		'customPosition': customPosition,
 		'xPosition': xPositionMobile,
 		'xPositionType': xPositionTypeMobile,
@@ -247,7 +209,7 @@ function styling( props ) {
 	const containerBackgroundCSSMobile = generateBackgroundCSS( backgroundAttributesMobile );
 
 	const mobile_selectors = {
-		'.wp-block' : {
+		'.swiper-content' : {
 			'padding-top': generateCSSUnit( topPaddingMobile, paddingTypeMobile ),
 			'padding-bottom': generateCSSUnit( bottomPaddingMobile, paddingTypeMobile ),
 			'padding-left': generateCSSUnit( leftPaddingMobile, paddingTypeMobile ),

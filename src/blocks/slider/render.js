@@ -2,6 +2,7 @@ import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 import React, { useMemo, useEffect } from 'react';
 import { select } from '@wordpress/data';
 const ALLOWED_BLOCKS = [ 'uagb/slider-child' ];
+import { useDeviceType } from '@Controls/getPreviewType';
 
 import Swiper, { Navigation, Pagination, Scrollbar, Autoplay, EffectFade, Manipulation, Virtual, EffectFlip } from 'swiper';
 
@@ -14,9 +15,12 @@ const Render = ( props ) => {
 		attributes: { slide_content },
 	} = props;
 
+	const deviceType = useDeviceType();
+
 	const swiperSelector = '#block-' + clientId + ' .uagb-swiper';
 
 	const {
+		isPreview,
 		transitionSpeed,
 		autoplay,
 		autoplaySpeed,
@@ -42,7 +46,7 @@ const Render = ( props ) => {
 	const hasChildren = 0 !== select( 'core/block-editor' ).getBlocks( clientId ).length;
 	const hasChildrenClass = hasChildren ? 'uagb-slider-has-children' : '';
 	const blockProps = useBlockProps( {
-		className: `uagb-block-${ block_id } ${hasChildrenClass}`,
+		className: `uagb-block-${ block_id } ${hasChildrenClass} uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
 	} );
 
 	const swiperProps = useBlockProps( {
@@ -97,36 +101,46 @@ const Render = ( props ) => {
 			} );
 		
 		}, 200 );
-
-	}, [] );
+		
+	}, [ deviceType ] );
 
 	useEffect( () => {
 
-		const swiperInstance = document.querySelector( swiperSelector ).swiper;
+		const swaperWrapper = document.querySelector( swiperSelector );
 
-		setTimeout( function()  {
+		if( swaperWrapper ) {
+
+			const swiperInstance = document.querySelector( swiperSelector ).swiper;
+
+			setTimeout( function()  {
+			
+				if( swiperInstance ) {
+					swiperInstance.updateSlidesClasses();
+				}
+
+			}, 500 );
+		}
+
+	}, [ props, deviceType ] );
+	
+	
+	useEffect( () => {
+
+		const swaperWrapper = document.querySelector( swiperSelector );
 		
+		if( swaperWrapper ) {
+
+			const swiperInstance = document.querySelector( swiperSelector ).swiper;
+			
 			if( swiperInstance ) {
-				swiperInstance.updateSlidesClasses();
+
+				swiperInstance.destroy();
+
+				new Swiper( swiperSelector, {
+					...settings,
+					modules: [Navigation, Pagination, Scrollbar,Autoplay,EffectFade, EffectFlip, Manipulation, Virtual],
+				} );
 			}
-
-		}, 500 );
-
-	}, [ props ] );
-	
-	
-	useEffect( () => {
-		
-		const swiperInstance = document.querySelector( swiperSelector ).swiper;
-		
-		if( swiperInstance ) {
-
-			swiperInstance.destroy();
-
-			new Swiper( swiperSelector, {
-				...settings,
-				modules: [Navigation, Pagination, Scrollbar,Autoplay,EffectFade, EffectFlip, Manipulation, Virtual],
-			} );
 		}
 
 	}, [ transitionSpeed,
@@ -139,6 +153,8 @@ const Render = ( props ) => {
 	
 
 	return (
+		isPreview ? '' :
+
 		<div
 			{ ...blockProps }
 			key = { block_id }
