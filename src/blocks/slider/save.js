@@ -6,8 +6,6 @@ export default function save( props ) {
 
 	const {
 		attributes,
-		clientId,
-		attributes: { slide_content },
 	} = props;
 
 	const {

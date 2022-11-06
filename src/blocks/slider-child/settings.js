@@ -16,7 +16,7 @@ import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 const Settings = ( props ) => {
 
 	props = props.parentProps;
-	const { attributes, setAttributes, deviceType } = props;
+	const { attributes, setAttributes } = props;
 	const {
 
 		backgroundType,

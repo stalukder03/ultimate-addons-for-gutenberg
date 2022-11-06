@@ -7,7 +7,7 @@
  * @package uagb
  */
 
-$selector = '.uagb-block-' . $id . ' .uagb-swiper';
+$selector   = '.uagb-block-' . $id . ' .uagb-swiper';
 $block_name = 'slider';
 
 $js_attr = array(
@@ -17,25 +17,25 @@ $js_attr = array(
 $slider_options = apply_filters(
 	'uagb_slider_options',
 	array(
-		'autoplay'       => $attr['autoplay'] ? array(
-			'delay' => (int) $attr['autoplaySpeed'],
+		'autoplay'   => $attr['autoplay'] ? array(
+			'delay'                => (int) $attr['autoplaySpeed'],
 			'disableOnInteraction' => false,
-			'pauseOnMouseEnter' => 'hover' === $attr['pauseOn'] ? true : false,
-			'stopOnLastSlide' => $attr['infiniteLoop'] ? false : true
+			'pauseOnMouseEnter'    => 'hover' === $attr['pauseOn'] ? true : false,
+			'stopOnLastSlide'      => $attr['infiniteLoop'] ? false : true,
 		) : false,
-		'loop'           => $attr['infiniteLoop'],
-		'speed'          => (int) $attr['transitionSpeed'],
-		'effect'         => $attr['transitionEffect'],
-		'flipEffect'     => array(
-			'slideShadows' => false
+		'loop'       => $attr['infiniteLoop'],
+		'speed'      => (int) $attr['transitionSpeed'],
+		'effect'     => $attr['transitionEffect'],
+		'flipEffect' => array(
+			'slideShadows' => false,
 		),
 		'fadeEffect' => array(
-			'crossFade' => true
+			'crossFade' => true,
 		),
 		'pagination' => ( 'arrows' === $attr['arrowDots'] ) ? false : array(
 			'el'          => '.swiper-pagination',
 			'clickable'   => true,
-			'hideOnClick' => false
+			'hideOnClick' => false,
 		),
 		'navigation' => ( 'dots' === $attr['arrowDots'] ) ? false : array(
 			'nextEl' => '.swiper-button-next',
@@ -51,14 +51,14 @@ ob_start();
 ?>
 window.addEventListener("DOMContentLoaded", function(){
 	var swiper = new Swiper( "<?php echo esc_attr( $selector ); ?>",
-		<?php echo $settings; ?>
+		<?php echo $settings; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	);
 });
 
 var swiperWrapper = document.querySelector( "<?php echo esc_attr( $selector ); ?>" );
 var autoPlay = <?php echo (int) $attr['autoplay']; ?>;
-var pauseOnHover = <?php echo 'hover' === $attr['pauseOn'] ? 1 : 0 ?>;
-var pauseOnInteraction = <?php echo 'click' === $attr['pauseOn'] ? 1 : 0 ?>;
+var pauseOnHover = <?php echo 'hover' === $attr['pauseOn'] ? 1 : 0; ?>;
+var pauseOnInteraction = <?php echo 'click' === $attr['pauseOn'] ? 1 : 0; ?>;
 
 swiperWrapper.addEventListener( "onscroll", UagbPauseOnInteraction );
 swiperWrapper.addEventListener( "onkeydown", UagbPauseOnInteraction );

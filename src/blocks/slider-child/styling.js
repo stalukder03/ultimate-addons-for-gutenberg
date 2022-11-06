@@ -9,11 +9,8 @@ import generateBorderCSS from '@Controls/generateBorderCSS';
 
 function styling( props ) {
 
-	const blockName = props.name.replace( 'uagb/', '' );
-
 	const { attributes } = props;
 	let {
-		block_id,
 		backgroundType,
 		backgroundImageDesktop,
 		backgroundImageTablet,

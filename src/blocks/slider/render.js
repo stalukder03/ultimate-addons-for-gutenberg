@@ -2,7 +2,6 @@ import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 import React, { useMemo, useEffect } from 'react';
 import { select } from '@wordpress/data';
 const ALLOWED_BLOCKS = [ 'uagb/slider-child' ];
-import domReady from '@wordpress/dom-ready';
 
 import Swiper, { Navigation, Pagination, Scrollbar, Autoplay, EffectFade, Manipulation, Virtual, EffectFlip } from 'swiper';
 
