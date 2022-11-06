@@ -1,14 +1,10 @@
-.uagb-swiper{
-   overflow: hidden;
-   position: relative;
+.uagb-swiper {
+	overflow: hidden;
+	position: relative;
 
-  .swiper-slide{
-     padding: 30px;
-  }
-   
-  .swiper-content{
-       display: flex;
-       align-items: center;
-       justify-content: center;
-   }
+	.swiper-content {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 }

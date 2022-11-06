@@ -30,9 +30,9 @@ const attributes = {
 		type: 'number',
 		default: slideCount,
 	},
-	pauseOnHover: {
-		type: 'boolean',
-		default: true,
+	pauseOn: { 
+		type: 'string',
+		default: 'hover'
 	},
 	infiniteLoop: {
 		type: 'boolean',
@@ -40,11 +40,15 @@ const attributes = {
 	},
 	transitionSpeed: {
 		type: 'number',
-		default: 500,
+		default: 800,
+	},
+	transitionEffect: {
+		type: 'string',
+		default: 'slide'
 	},
 	autoplay: {
 		type: 'boolean',
-		default: false,
+		default: true,
 	},
 	autoplaySpeed: {
 		type: 'number',
@@ -107,13 +111,6 @@ const attributes = {
 		UAGCopyPaste: {
 			styleType: 'arrow-color'
 		},
-	},
-	contentWidth: {
-		type: 'string',
-		default: 'alignfull',
-		UAGCopyPaste: {
-			styleType: 'content-width'
-		}
 	},
 	innerContentWidth: {
 		type: 'string',

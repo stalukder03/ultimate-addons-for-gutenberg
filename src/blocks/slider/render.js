@@ -2,8 +2,8 @@ import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 import React, { useMemo, useEffect } from 'react';
 import { select } from '@wordpress/data';
 const ALLOWED_BLOCKS = [ 'uagb/slider-child' ];
-import { useDeviceType } from '@Controls/getPreviewType';
-import Swiper, { Navigation, Pagination, Scrollbar, Autoplay, EffectFade, Manipulation, Virtual } from 'swiper';
+
+import Swiper, { Navigation, Pagination, Scrollbar, Autoplay, EffectFade, Manipulation, Virtual, EffectFlip } from 'swiper';
 
 const Render = ( props ) => {
 
@@ -14,13 +14,17 @@ const Render = ( props ) => {
 		attributes: { slide_content },
 	} = props;
 
+	const swiperSelector = '#block-' + clientId + ' .uagb-swiper';
+
 	const {
 		transitionSpeed,
 		autoplay,
 		autoplaySpeed,
 		slideItem,
 		block_id,
-		contentWidth,
+		arrowDots,
+		transitionEffect,
+		infiniteLoop
 	} = attributes;
 
 	const deviceType = useDeviceType();
@@ -40,7 +44,7 @@ const Render = ( props ) => {
 	const hasChildren = 0 !== select( 'core/block-editor' ).getBlocks( clientId ).length;
 	const hasChildrenClass = hasChildren ? 'uagb-slider-has-children' : '';
 	const blockProps = useBlockProps( {
-		className: `uagb-block-${ block_id } ${contentWidth} ${hasChildrenClass} uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
+		className: `uagb-block-${ block_id } ${hasChildrenClass}`,
 	} );
 
 	const swiperProps = useBlockProps( {
@@ -60,37 +64,81 @@ const Render = ( props ) => {
 		slidesPerView: 1,
 		autoplay: autoplay ? {
 			delay: autoplaySpeed,
+			disableOnInteraction: true,
+			pauseOnMouseEnter: true
 		} : false,
 		spaceBetween: 30,
+		fadeEffect: {
+			crossFade: true
+		},
+		flipEffect: {
+			slideShadows: false,
+		},
 		observer: true,
-		// effect: 'fade',
-		// fadeEffect: {
-		// 	crossFade: true
-		// },
+		effect: transitionEffect,
 		speed: transitionSpeed,
 		loop: false,
-		pagination: {
+		pagination: 'arrows' === arrowDots ? false : {
 			el: '.swiper-pagination',
 			clickable: true,
+			hideOnClick: false
 		},
-		navigation: {
+		navigation: 'dots' === arrowDots ? false : {
 			nextEl: '.swiper-button-next',
 			prevEl: '.swiper-button-prev',
-		},
+		}
 	}
 
 	useEffect( () => {
 
 		setTimeout( function()  {
 
-				new Swiper( '.uagb-swiper', {
-					...settings,
-					modules: [Navigation, Pagination, Scrollbar,Autoplay,EffectFade, Manipulation, Virtual],
-				} );
-
+			new Swiper( swiperSelector, {
+				...settings,
+				modules: [Navigation, Pagination, Scrollbar,Autoplay,EffectFade, EffectFlip, Manipulation, Virtual],
+			} );
+		
 		}, 200 );
 
 	}, [] );
+
+	useEffect( () => {
+
+		const swiperInstance = document.querySelector( swiperSelector ).swiper;
+
+		setTimeout( function()  {
+		
+			if( swiperInstance ) {
+				swiperInstance.updateSlidesClasses();
+			}
+
+		}, 500 );
+
+	}, [ props ] );
+	
+	
+	useEffect( () => {
+		
+		const swiperInstance = document.querySelector( swiperSelector ).swiper;
+		
+		if( swiperInstance ) {
+
+			swiperInstance.destroy();
+
+			new Swiper( swiperSelector, {
+				...settings,
+				modules: [Navigation, Pagination, Scrollbar,Autoplay,EffectFade, EffectFlip, Manipulation, Virtual],
+			} );
+		}
+
+	}, [ transitionSpeed,
+		autoplay,
+		autoplaySpeed,
+		arrowDots,
+		transitionEffect,
+		infiniteLoop 
+	] );
+	
 
 	return (
 		<div
@@ -102,10 +150,17 @@ const Render = ( props ) => {
 
 						{ ...innerBlocksProps }
 					/>
-					<div className="swiper-pagination"></div>
 
-					<div className="swiper-button-prev"></div>
-					<div className="swiper-button-next"></div>
+					{  'arrows' !== arrowDots && 
+						<div className="swiper-pagination"></div>
+					}	
+
+					{ 'dots' !== arrowDots && 
+						<>
+						<div className="swiper-button-prev"></div>
+						<div className="swiper-button-next"></div>
+						</>
+					}
 				</div>
 		</div>
 	);

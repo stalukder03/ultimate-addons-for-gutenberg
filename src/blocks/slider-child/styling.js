@@ -5,26 +5,12 @@
 import generateCSS from '@Controls/generateCSS';
 import generateCSSUnit from '@Controls/generateCSSUnit';
 import generateBackgroundCSS from '@Controls/generateBackgroundCSS';
-import { getFallbackNumber } from '@Controls/getAttributeFallback';
 import generateBorderCSS from '@Controls/generateBorderCSS';
 
 function styling( props ) {
 
-	const blockName = props.name.replace( 'uagb/', '' );
-
 	const { attributes } = props;
 	let {
-		block_id,
-		widthDesktop,
-		widthTablet,
-		widthMobile,
-		widthType,
-		minHeightDesktop,
-		minHeightTablet,
-		minHeightMobile,
-		minHeightType,
-		minHeightTypeTablet,
-		minHeightTypeMobile,
 		backgroundType,
 		backgroundImageDesktop,
 		backgroundImageTablet,
@@ -43,19 +29,6 @@ function styling( props ) {
 		backgroundSizeTablet,
 		backgroundSizeMobile,
 		gradientValue,
-		containerBorderHColor,
-		boxShadowColor,
-		boxShadowHOffset,
-		boxShadowVOffset,
-		boxShadowBlur,
-		boxShadowSpread,
-		boxShadowPosition,
-		boxShadowColorHover,
-		boxShadowHOffsetHover,
-		boxShadowVOffsetHover,
-		boxShadowBlurHover,
-		boxShadowSpreadHover,
-		boxShadowPositionHover,
 
 		topPaddingDesktop,
 		bottomPaddingDesktop,
@@ -87,14 +60,6 @@ function styling( props ) {
 		marginType,
 		marginTypeTablet,
 		marginTypeMobile,
-		contentWidth,
-		innerContentWidth,
-		bottomColor,
-		bottomHeight,
-		bottomWidth,
-		topColor,
-		topHeight,
-		topWidth,
 		backgroundCustomSizeDesktop,
 		backgroundCustomSizeTablet,
 		backgroundCustomSizeMobile,
@@ -116,29 +81,12 @@ function styling( props ) {
 		yPositionTypeMobile,
 		backgroundVideoOpacity,
 		backgroundVideoColor,
-		innerContentCustomWidthType,
 		backgroundVideo,
-
-		textColor,
-		linkColor,
-		linkHoverColor,
-
-		innerContentCustomWidthDesktop,
-		innerContentCustomWidthTablet,
-		innerContentCustomWidthMobile,
-		innerContentCustomWidthTypeMobile,
-		innerContentCustomWidthTypeTablet,
 
 		overflow,
 
-		widthTypeTablet,
-		widthTypeMobile
 	} = attributes;
 
-	const innerContentCustomWidthDesktopFallback = getFallbackNumber( innerContentCustomWidthDesktop, 'innerContentCustomWidthDesktop', blockName );
-	const widthDesktopFallback = getFallbackNumber( widthDesktop, 'widthDesktop', blockName );
-
-	const borderCSS = generateBorderCSS( props.attributes, 'container' );
 	const borderCSSTablet = generateBorderCSS( props.attributes, 'container', 'tablet' );
 	const borderCSSMobile = generateBorderCSS( props.attributes, 'container', 'mobile' );
 
@@ -166,8 +114,6 @@ function styling( props ) {
 	rightMarginTablet = 'undefined' !== typeof rightMarginTablet ? rightMarginTablet : rightMarginDesktop;
 	rightMarginMobile = 'undefined' !== typeof rightMarginMobile ? rightMarginMobile : rightMarginTablet;
 
-	const containerFullWidth = '100vw';
-
 	const backgroundVideoOpacityValue = ( backgroundVideoOpacity && 'none' !== overlayType && ( ( 'color' === overlayType &&backgroundVideoColor ) || ( 'gradient' === overlayType && gradientValue ) ) ) ? 1 - backgroundVideoOpacity : 1;
 
 	const videoBackgroundAttributes = {
@@ -190,29 +136,6 @@ function styling( props ) {
 	const videoBackgroundCSS = generateBackgroundCSS( videoBackgroundAttributes );
 
 	const selectors = {
-		'.wp-block-uagb-container .block-editor-block-list__block' : {
-			'color': textColor,
-		},
-		'.wp-block-uagb-container .block-editor-block-list__block a' : {
-			'color': linkColor,
-		},
-		'.wp-block-uagb-container .block-editor-block-list__block a:hover' : {
-			'color': linkHoverColor,
-		},
-		' > .uagb-container__shape-top svg' : {
-			'width': 'calc( ' + topWidth + '% + 1.3px )',
-			'height': generateCSSUnit( topHeight, 'px' )
-		},
-		' > .uagb-container__shape-top .uagb-container__shape-fill' : {
-			'fill': topColor,
-		},
-		' > .uagb-container__shape-bottom svg' : {
-			'width': 'calc( ' + bottomWidth + '% + 1.3px )',
-			'height': generateCSSUnit( bottomHeight, 'px' )
-		},
-		' > .uagb-container__shape-bottom .uagb-container__shape-fill' : {
-			'fill': bottomColor,
-		},
 		' .uagb-container__video-wrap' : {
 			...videoBackgroundCSS
 		},
@@ -245,18 +168,6 @@ function styling( props ) {
 
 	const containerBackgroundCSSDesktop = generateBackgroundCSS( backgroundAttributesDesktop );
 
-	let boxShadowPositionCSS = boxShadowPosition;
-
-	if ( 'outset' === boxShadowPosition ) {
-		boxShadowPositionCSS = '';
-	}
-
-	let boxShadowPositionCSSHover = boxShadowPositionHover;
-
-	if ( 'outset' === boxShadowPositionHover ) {
-		boxShadowPositionCSSHover = '';
-	}
-
 	const containerCSS = {
 		'padding-top': generateCSSUnit( topPaddingDesktop, paddingType ),
 		'padding-bottom': generateCSSUnit( bottomPaddingDesktop, paddingType ),
@@ -267,80 +178,10 @@ function styling( props ) {
 		'margin-left': generateCSSUnit( leftMarginDesktop, marginType ),
 		'margin-right': generateCSSUnit( rightMarginDesktop, marginType ),
 		...containerBackgroundCSSDesktop,
-		'box-shadow':
-		generateCSSUnit( boxShadowHOffset, 'px' ) + ' ' + generateCSSUnit( boxShadowVOffset, 'px' ) +	' ' +
-		generateCSSUnit( boxShadowBlur, 'px' ) + ' ' +	generateCSSUnit( boxShadowSpread, 'px' ) + ' ' +
-		boxShadowColor + ' ' +	boxShadowPositionCSS,
-		'min-height' : generateCSSUnit( minHeightDesktop, minHeightType ),
-		...borderCSS,
 		'overflow' : overflow
 	}
 
 	selectors['.wp-block'] = containerCSS;
-	selectors['.wp-block:hover'] = {
-		'border-color': containerBorderHColor,
-		'box-shadow': '',
-	};
-
-	boxShadowBlurHover = isNaN( boxShadowBlurHover ) ? '' : boxShadowBlurHover;
-	boxShadowColorHover = boxShadowColorHover ? boxShadowColorHover : '';
-
-	if( '' !== boxShadowColorHover || '' !== boxShadowBlurHover ) {
-
-		const boxShadowBlurHoverCSSUnit = ( '' === boxShadowBlurHover ) ? '' : generateCSSUnit( boxShadowBlurHover, 'px' );
-
-		selectors['.wp-block:hover']['box-shadow'] = generateCSSUnit( boxShadowHOffsetHover, 'px' ) + ' ' + generateCSSUnit( boxShadowVOffsetHover, 'px' ) +	' ' +
-													boxShadowBlurHoverCSSUnit + ' ' +	generateCSSUnit( boxShadowSpreadHover, 'px' ) + ' ' +
-													boxShadowColorHover + ' ' +	boxShadowPositionCSSHover;
-	}
-	
-	const widthSelectorsDesktop = {
-		[`.is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${ props.clientId } `] : {
-			'max-width' : generateCSSUnit( widthDesktopFallback, widthType ),
-			'width' :'100%'
-		}
-	};
-
-	const widthSelectorsTablet = {
-		[`.is-root-container > .block-editor-block-list__block .uagb-editor-preview-mode-tablet.block-editor-block-list__block#block-${ props.clientId } `] : {
-			'max-width' : generateCSSUnit( widthTablet, widthTypeTablet ),
-			'width' :'100%'
-		},
-	};
-
-	const widthSelectorsMobile = {
-		[`.is-root-container > .block-editor-block-list__block .uagb-editor-preview-mode-mobile.block-editor-block-list__block#block-${ props.clientId } `] : {
-			'max-width' : generateCSSUnit( widthMobile, widthTypeMobile ),
-			'width' :'100%'
-		},
-	};
-
-	if ( 'alignfull' === contentWidth && 'alignwide' === innerContentWidth ) {
-
-		widthSelectorsDesktop[`.is-root-container > .block-editor-block-list__block.wp-block-uagb-container.uagb-block-${ block_id } > .uagb-container-inner-blocks-wrap`] = {
-			'--inner-content-custom-width' : `min(${ containerFullWidth },${ innerContentCustomWidthDesktopFallback }${ innerContentCustomWidthType })`,
-			'max-width' : 'var(--inner-content-custom-width)',
-			'width' : '100%',
-			'margin-left': 'auto',
-			'margin-right': 'auto'
-		};
-
-		widthSelectorsTablet[`.is-root-container > .block-editor-block-list__block.uagb-editor-preview-mode-table.wp-block-uagb-container.uagb-block-${ block_id } > .uagb-container-inner-blocks-wrap`] = {
-			'--inner-content-custom-width' : `min(${ containerFullWidth },${ innerContentCustomWidthTablet || innerContentCustomWidthDesktopFallback }${ innerContentCustomWidthTypeTablet })`,
-			'max-width' : 'var(--inner-content-custom-width)',
-			'width' :'100%',
-			'margin-left': 'auto',
-			'margin-right': 'auto'
-		};
-
-		widthSelectorsMobile[`.is-root-container > .block-editor-block-list__block.uagb-editor-preview-mode-mobile.wp-block-uagb-container.uagb-block-${ block_id } > .uagb-container-inner-blocks-wrap`] = {
-			'--inner-content-custom-width' : `min(${ containerFullWidth },${ innerContentCustomWidthMobile || innerContentCustomWidthTablet || innerContentCustomWidthDesktopFallback }${ innerContentCustomWidthTypeMobile })`,
-			'max-width' : 'var(--inner-content-custom-width)',
-			'width' : '100%',
-			'margin-left': 'auto',
-			'margin-right': 'auto'
-		};
-	}
 
 	const backgroundAttributesTablet = {
         'backgroundType': backgroundType,
@@ -376,7 +217,6 @@ function styling( props ) {
 			'margin-bottom': generateCSSUnit( bottomMarginTablet, marginTypeTablet )  + ' !important',
 			'margin-left': generateCSSUnit( leftMarginTablet, marginTypeTablet ),
 			'margin-right': generateCSSUnit( rightMarginTablet, marginTypeTablet ),
-			'min-height' : generateCSSUnit( minHeightTablet, minHeightTypeTablet ),
 			...containerBackgroundCSSTablet,
 			...borderCSSTablet
 		},
@@ -416,25 +256,14 @@ function styling( props ) {
 			'margin-bottom': generateCSSUnit( bottomMarginMobile, marginTypeMobile )  + ' !important',
 			'margin-left': generateCSSUnit( leftMarginMobile, marginTypeMobile ),
 			'margin-right': generateCSSUnit( rightMarginMobile, marginTypeMobile ),
-			'min-height' : generateCSSUnit( minHeightMobile, minHeightTypeMobile ),
 			...containerBackgroundCSSMobile,
 			...borderCSSMobile
 		},
 	};
 
-	if ( 'default' === contentWidth ) {
-		selectors['.block-editor-block-list__block']['max-width'] = generateCSSUnit( widthDesktopFallback, widthType );
-
-		tablet_selectors['.block-editor-block-list__block']['max-width'] = generateCSSUnit( widthTablet, widthTypeTablet );
-
-		mobile_selectors['.block-editor-block-list__block']['max-width'] = generateCSSUnit( widthMobile, widthTypeMobile );
-	}
-
 	const base_selector = `.editor-styles-wrapper #block-${ props.clientId }`;
 
 	let styling_css = generateCSS( selectors, base_selector );
-
-	styling_css += generateCSS( widthSelectorsDesktop, '.editor-styles-wrapper ' );
 
 	styling_css += generateCSS(
 		tablet_selectors,
@@ -444,22 +273,8 @@ function styling( props ) {
 	);
 
 	styling_css += generateCSS(
-		widthSelectorsTablet,
-		'.editor-styles-wrapper ',
-		true,
-		'tablet'
-	);
-
-	styling_css += generateCSS(
 		mobile_selectors,
 		`${ base_selector }.uagb-editor-preview-mode-mobile`,
-		true,
-		'mobile'
-	);
-
-	styling_css += generateCSS(
-		widthSelectorsMobile,
-		'.editor-styles-wrapper ',
 		true,
 		'mobile'
 	);

@@ -5,6 +5,7 @@ import InspectorTab, {
 	UAGTabs,
 } from '@Components/inspector-tabs/InspectorTab.js';
 import Range from '@Components/range/Range.js';
+import UAGSelectControl from '@Components/select-control';
 import { __ } from '@wordpress/i18n';
 
 import {
@@ -30,16 +31,18 @@ import { createBlock } from '@wordpress/blocks';
 const Settings = ( props ) => {
 
 	props = props.parentProps;
-	const { attributes, setAttributes, deviceType, insertBlock, block } = props;
+	const { attributes, setAttributes, deviceType, insertBlock, block, clientId } = props;
+	const swiperSelector = '#block-' + clientId + ' .uagb-swiper';
 	const {
 		block_id,
 		
-		pauseOnHover,
+		pauseOn,
 		infiniteLoop,
 		transitionSpeed,
 		arrowDots,
 		autoplay,
 		autoplaySpeed,
+		transitionEffect,
 
 		backgroundType,
 		backgroundImageDesktop,
@@ -166,12 +169,12 @@ const Settings = ( props ) => {
 
 							setTimeout( function()  {
 
-								const swiper = document.querySelector( '.uagb-swiper' ).swiper;
+								const swiper = document.querySelector( swiperSelector ).swiper;
 
 								if( swiper ) {
 									swiper.update();
 									swiper.updateSlidesClasses();
-									swiper.slideTo( attributes.slideItem, transitionSpeed, false );
+									swiper.slideTo( attributes.slideItem, false, false );
 								}
 
 							}, 100 );
@@ -184,10 +187,6 @@ const Settings = ( props ) => {
 	};
 
 	const generalSettings = () => {
-
-		const togglePauseOnHover = () => {
-			setAttributes( { pauseOnHover: ! pauseOnHover } );
-		};
 	
 		const toggleInfiniteLoop = () => {
 			setAttributes( { infiniteLoop: ! infiniteLoop } );
@@ -203,13 +202,39 @@ const Settings = ( props ) => {
 					title={ __( 'Slider', 'ultimate-addons-for-gutenberg' ) }
 					initialOpen={ false }
 				>
-					<ToggleControl
+					<MultiButtonsControl
+						setAttributes={ setAttributes }
 						label={ __(
-							'Pause On Hover',
+							'Pause On',
 							'ultimate-addons-for-gutenberg'
 						) }
-						checked={ pauseOnHover }
-						onChange={ togglePauseOnHover }
+						data={ {
+							value: pauseOn,
+							label: 'pauseOn',
+						} }
+						options={ [
+							{
+								value: 'hover',
+								label: __(
+									'Hover',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+							{
+								value: 'click',
+								label: __(
+									'Click',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+							{
+								value: 'none',
+								label: __(
+									'None',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+						] }
 					/>
 					<ToggleControl
 						label={ __( 'Autoplay' ) }
@@ -241,6 +266,43 @@ const Settings = ( props ) => {
 						checked={ infiniteLoop }
 						onChange={ toggleInfiniteLoop }
 					/>
+					<UAGSelectControl
+						label={ __(
+							'Transition Effect',
+							'ultimate-addons-for-gutenberg'
+						) }
+						data={ {
+							value: transitionEffect,
+							label: 'transitionEffect',
+						} }
+						onChange={ ( value ) =>
+							setAttributes( { transitionEffect: value } )
+						}
+						setAttributes={ setAttributes }
+						options={ [
+							{
+								value: 'slide',
+								label: __(
+									'Slide',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+							{
+								value: 'fade',
+								label: __(
+									'Fade',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+							{
+								value: 'flip',
+								label: __(
+									'Flip',
+									'ultimate-addons-for-gutenberg'
+								),
+							}
+						] }
+					/>
 					<Range
 						label={ __(
 							'Transition Speed (ms)',
@@ -252,6 +314,9 @@ const Settings = ( props ) => {
 							value: transitionSpeed,
 							label: 'transitionSpeed',
 						} }
+						onChange={ ( value ) =>
+							setAttributes( { transitionSpeed: value } )
+						}
 						min={ 100 }
 						max={ 5000 }
 						displayUnit={ false }
