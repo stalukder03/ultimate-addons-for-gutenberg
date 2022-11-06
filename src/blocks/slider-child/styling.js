@@ -172,7 +172,7 @@ function styling( props ) {
 	const containerBackgroundCSSTablet = generateBackgroundCSS( backgroundAttributesTablet );
 
 	const tablet_selectors = {
-		'.wp-block' : {
+		'.swiper-content' : {
 			'padding-top': generateCSSUnit( topPaddingTablet, paddingTypeTablet ),
 			'padding-bottom': generateCSSUnit( bottomPaddingTablet, paddingTypeTablet ),
 			'padding-left': generateCSSUnit( leftPaddingTablet, paddingTypeTablet ),
@@ -209,7 +209,7 @@ function styling( props ) {
 	const containerBackgroundCSSMobile = generateBackgroundCSS( backgroundAttributesMobile );
 
 	const mobile_selectors = {
-		'.wp-block' : {
+		'.swiper-content' : {
 			'padding-top': generateCSSUnit( topPaddingMobile, paddingTypeMobile ),
 			'padding-bottom': generateCSSUnit( bottomPaddingMobile, paddingTypeMobile ),
 			'padding-left': generateCSSUnit( leftPaddingMobile, paddingTypeMobile ),

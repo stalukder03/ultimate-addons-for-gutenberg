@@ -2,6 +2,7 @@
  * BLOCK: Container - Save Block
  */
 
+import classnames from 'classnames';
 import { InnerBlocks } from '@wordpress/block-editor';
 
 export default function save( props ) {
@@ -12,7 +13,11 @@ export default function save( props ) {
 	return (
 		<>
 			<div
-				className='uagb-slider-child-wrap swiper-slide'
+				className={ classnames(
+					'uagb-slider-child-wrap',
+					'swiper-slide',
+					`uagb-block-${ block_id }`
+				) }
 				key = { block_id }
 			>
 				<div className='swiper-content' >

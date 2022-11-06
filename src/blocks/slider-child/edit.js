@@ -14,6 +14,11 @@ import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 const UAGBSlide = ( props ) => {
 
 	useEffect( () => {
+		//Store client id.
+		props.setAttributes( { block_id: props.clientId } );
+	}, [] );
+
+	useEffect( () => {
 		// Replacement for componentDidUpdate.
 		const blockStyling = styling( props );
 
