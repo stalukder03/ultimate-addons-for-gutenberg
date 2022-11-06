@@ -27,8 +27,6 @@ const Render = ( props ) => {
 		infiniteLoop
 	} = attributes;
 
-	const deviceType = useDeviceType();
-
 	const getSliderTemplate = useMemo( () => {
 		const childSlide = [];
 
