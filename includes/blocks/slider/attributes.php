@@ -15,6 +15,6 @@ return array(
 	'transitionSpeed'    => 800,
 	'transitionEffect'   => 'slide',
 	'autoplay' 			 => true,
-	'autoplaySpeed' 	 => 800,
+	'autoplaySpeed' 	 => 2000,
 	'arrowDots'          => 'arrows_dots'
 );
