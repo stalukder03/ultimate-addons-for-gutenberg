@@ -1,11 +1,12 @@
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
-import React, { useMemo, useEffect } from 'react';
+import React, { useMemo } from 'react';
 import { select } from '@wordpress/data';
 const ALLOWED_BLOCKS = [ 'uagb/slider-child' ];
 import { useDeviceType } from '@Controls/getPreviewType';
 
-import Swiper, { Navigation, Pagination, Scrollbar, Autoplay, EffectFade, Manipulation, Virtual, EffectFlip } from 'swiper';
+import { Navigation, Pagination, Scrollbar, Autoplay, EffectFade, Manipulation, EffectFlip } from 'swiper';
 
+import { Swiper } from 'swiper/react';
 const Render = ( props ) => {
 
 	props = props.parentProps;
@@ -16,8 +17,6 @@ const Render = ( props ) => {
 	} = props;
 
 	const deviceType = useDeviceType();
-
-	const swiperSelector = '#block-' + clientId + ' .uagb-swiper';
 
 	const {
 		isPreview,
@@ -50,7 +49,8 @@ const Render = ( props ) => {
 	} );
 
 	const swiperProps = useBlockProps( {
-		className: `swiper-wrapper`
+		className: `swiper-wrapper`,
+		slot: 'container-start'
 	} );
 
     const innerBlocksProps = useInnerBlocksProps(
@@ -62,95 +62,9 @@ const Render = ( props ) => {
 		}
     );
 
-	const settings = {
-		slidesPerView: 1,
-		autoplay: autoplay ? {
-			delay: autoplaySpeed,
-			disableOnInteraction: true,
-			pauseOnMouseEnter: true
-		} : false,
-		spaceBetween: 30,
-		fadeEffect: {
-			crossFade: true
-		},
-		flipEffect: {
-			slideShadows: false,
-		},
-		observer: true,
-		effect: transitionEffect,
-		speed: transitionSpeed,
-		loop: false,
-		pagination: 'arrows' === arrowDots ? false : {
-			el: '.swiper-pagination',
-			clickable: true,
-			hideOnClick: false
-		},
-		navigation: 'dots' === arrowDots ? false : {
-			nextEl: '.swiper-button-next',
-			prevEl: '.swiper-button-prev',
-		}
+	const setSwiperInstance = ( swiper ) => {
+		props.setAttributes( { swiperInstance: swiper } );
 	}
-
-	useEffect( () => {
-
-		setTimeout( function()  {
-
-			new Swiper( swiperSelector, {
-				...settings,
-				modules: [Navigation, Pagination, Scrollbar,Autoplay,EffectFade, EffectFlip, Manipulation, Virtual],
-			} );
-		
-		}, 200 );
-		
-	}, [ deviceType ] );
-
-	useEffect( () => {
-
-		const swaperWrapper = document.querySelector( swiperSelector );
-
-		if( swaperWrapper ) {
-
-			const swiperInstance = document.querySelector( swiperSelector ).swiper;
-
-			setTimeout( function()  {
-			
-				if( swiperInstance ) {
-					swiperInstance.updateSlidesClasses();
-				}
-
-			}, 500 );
-		}
-
-	}, [ props, deviceType ] );
-	
-	
-	useEffect( () => {
-
-		const swaperWrapper = document.querySelector( swiperSelector );
-		
-		if( swaperWrapper ) {
-
-			const swiperInstance = document.querySelector( swiperSelector ).swiper;
-			
-			if( swiperInstance ) {
-
-				swiperInstance.destroy();
-
-				new Swiper( swiperSelector, {
-					...settings,
-					modules: [Navigation, Pagination, Scrollbar,Autoplay,EffectFade, EffectFlip, Manipulation, Virtual],
-				} );
-			}
-		}
-
-	}, [ transitionSpeed,
-		autoplay,
-		autoplaySpeed,
-		arrowDots,
-		transitionEffect,
-		infiniteLoop 
-	] );
-	
 
 	return (
 		isPreview ? '' :
@@ -160,21 +74,37 @@ const Render = ( props ) => {
 			key = { block_id }
 		>
 				<div className='uagb-slides uagb-swiper'>
-					<div
-
+					<Swiper
+						onSwiper={setSwiperInstance}
+						modules={[Navigation, Pagination, Scrollbar,Autoplay,EffectFade, EffectFlip, Manipulation]}
+						autoplay={
+							autoplay ? {
+								delay: autoplaySpeed,
+								disableOnInteraction: true,
+								pauseOnMouseEnter: true
+							}
+							: false 
+						}
+						speed={transitionSpeed}
+						pagination={ 
+							'arrows' === arrowDots ? {
+								clickable: true,
+							} : false 
+						}
+						loop={false}
+						effect={transitionEffect}
+						navigation={true}
+						fadeEffect={{
+							crossFade: true
+						}}
+						flipEffect={{
+							slideShadows: false,
+						}}
+					>
+					<div 
 						{ ...innerBlocksProps }
 					/>
-
-					{  'arrows' !== arrowDots && 
-						<div className="swiper-pagination"></div>
-					}	
-
-					{ 'dots' !== arrowDots && 
-						<>
-						<div className="swiper-button-prev"></div>
-						<div className="swiper-button-next"></div>
-						</>
-					}
+					</Swiper>
 				</div>
 		</div>
 	);

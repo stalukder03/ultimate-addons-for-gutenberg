@@ -35,7 +35,8 @@ const Settings = ( props ) => {
 	const swiperSelector = '#block-' + clientId + ' .uagb-swiper';
 	const {
 		block_id,
-		
+		swiperInstance,
+	
 		pauseOn,
 		infiniteLoop,
 		transitionSpeed,
@@ -169,12 +170,10 @@ const Settings = ( props ) => {
 
 							setTimeout( function()  {
 
-								const swiper = document.querySelector( swiperSelector ).swiper;
-
-								if( swiper ) {
-									swiper.update();
-									swiper.updateSlidesClasses();
-									swiper.slideTo( attributes.slideItem, false, false );
+								if( swiperInstance ) {
+									swiperInstance.update();
+									swiperInstance.updateSlidesClasses();
+									swiperInstance.slideTo( attributes.slideItem, false, false );
 								}
 
 							}, 100 );

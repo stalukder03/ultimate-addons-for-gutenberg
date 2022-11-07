@@ -1,7 +1,7 @@
 /**
  * BLOCK: Slider
  */
-import React, {    useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { withSelect, useDispatch } from '@wordpress/data';
 import styling from './styling';
 import Settings from './settings';
@@ -12,9 +12,11 @@ import './style.scss';
 import { compose } from '@wordpress/compose';
 import { useDeviceType } from '@Controls/getPreviewType';
 import styles from './editor.lazy.scss';
+import { SwiperSlide } from 'swiper/react';
 
 const UAGBSlider = ( props ) => {
 	const deviceType = useDeviceType();
+
 	// Add and remove the CSS on the drop and remove of the component.
 	useLayoutEffect( () => {
 		styles.use();
@@ -73,13 +75,12 @@ const uagbSlideClass = createHigherOrderComponent( ( BlockListBlock ) => {
 		if( 'uagb/slider-child' === props.name ) {
 
 			const wrapperProps = {
-				...props.wrapperProps,
-				className : 'swiper-slide'
+				...props.wrapperProps
 			};
 
-			return <BlockListBlock
+			return <SwiperSlide><BlockListBlock
 			{ ...props }
-			wrapperProps={ wrapperProps } />;
+			wrapperProps={ wrapperProps } /></SwiperSlide>;
 		}
 
 		return <BlockListBlock
