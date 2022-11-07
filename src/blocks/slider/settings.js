@@ -127,8 +127,6 @@ const Settings = ( props ) => {
 		yPositionType,
 		yPositionTypeTablet,
 		yPositionTypeMobile,
-		backgroundVideoColor,
-		backgroundVideo,
 
 		textColor,
 		linkColor,
@@ -625,7 +623,7 @@ const Settings = ( props ) => {
 			>
 				<ResponsiveBorder
 					setAttributes={ setAttributes }
-					prefix={ 'container' }
+					prefix={ 'slider' }
 					attributes={ attributes }
 					deviceType={ deviceType }
 					disableBottomSeparator={ true }

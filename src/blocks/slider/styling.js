@@ -29,6 +29,7 @@ function styling( props ) {
 		backgroundSizeTablet,
 		backgroundSizeMobile,
 		gradientValue,
+		sliderBorderHColor,
 
 		boxShadowColor,
 		boxShadowHOffset,
@@ -96,9 +97,9 @@ function styling( props ) {
 		textColor,
 	} = attributes;
 
-	const borderCSSTablet = generateBorderCSS( props.attributes, 'container', 'tablet' );
-	const borderCSSMobile = generateBorderCSS( props.attributes, 'container', 'mobile' );
-
+	const borderCSS = generateBorderCSS( props.attributes, 'slider' );
+	const borderCSSTablet = generateBorderCSS( props.attributes, 'slider', 'tablet' );
+	const borderCSSMobile = generateBorderCSS( props.attributes, 'slider', 'mobile' );
 
 	topPaddingTablet = 'undefined' !== typeof topPaddingTablet ? topPaddingTablet : topPaddingDesktop;
 	topPaddingMobile = 'undefined' !== typeof topPaddingMobile ? topPaddingMobile : topPaddingTablet;
@@ -178,9 +179,14 @@ function styling( props ) {
 		generateCSSUnit( boxShadowHOffset, 'px' ) + ' ' + generateCSSUnit( boxShadowVOffset, 'px' ) +	' ' +
 		generateCSSUnit( boxShadowBlur, 'px' ) + ' ' +	generateCSSUnit( boxShadowSpread, 'px' ) + ' ' +
 		boxShadowColor + ' ' +	boxShadowPositionCSS,
+		...borderCSS
 	}
 
 	selectors['.wp-block'] = containerCSS;
+	selectors['.wp-block:hover'] = {
+		'border-color': sliderBorderHColor,
+		'box-shadow': '',
+	};
 
 	boxShadowBlurHover = isNaN( boxShadowBlurHover ) ? '' : boxShadowBlurHover;
 	boxShadowColorHover = boxShadowColorHover ? boxShadowColorHover : '';
