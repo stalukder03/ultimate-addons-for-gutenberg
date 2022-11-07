@@ -31,8 +31,7 @@ import { createBlock } from '@wordpress/blocks';
 const Settings = ( props ) => {
 
 	props = props.parentProps;
-	const { attributes, setAttributes, deviceType, insertBlock, block, clientId } = props;
-	const swiperSelector = '#block-' + clientId + ' .uagb-swiper';
+	const { attributes, setAttributes, deviceType, insertBlock, block } = props;
 	const {
 		block_id,
 		swiperInstance,
@@ -172,8 +171,7 @@ const Settings = ( props ) => {
 
 								if( swiperInstance ) {
 									swiperInstance.update();
-									swiperInstance.updateSlidesClasses();
-									swiperInstance.slideTo( attributes.slideItem, false, false );
+									swiperInstance.slideTo( attributes.slideItem, transitionSpeed, false );
 								}
 
 							}, 100 );

@@ -87,13 +87,15 @@ const Render = ( props ) => {
 						}
 						speed={transitionSpeed}
 						pagination={ 
-							'arrows' === arrowDots ? {
+							'arrows' === arrowDots ? false : {
 								clickable: true,
-							} : false 
+							}
 						}
 						loop={false}
 						effect={transitionEffect}
-						navigation={true}
+						navigation={ 
+							'dots' === arrowDots ? false : true 
+						}
 						fadeEffect={{
 							crossFade: true
 						}}
