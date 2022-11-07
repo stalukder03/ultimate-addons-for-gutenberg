@@ -43,16 +43,16 @@ const InstagramUsers = () => {
 	const instaLinkedAccounts = useSelector( ( state ) => state.instaLinkedAccounts );
 	
 	const svgDelete = (
-		<div className='flex w-4 justify-center content-center'>
-			<svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 512 512" className='fill-white'>
+		<div className="flex w-4 justify-center content-center">
+			<svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 512 512" className="fill-white">
 				<path d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM64 256c0-41.4 13.3-79.68 35.68-111.1l267.4 267.4C335.7 434.7 297.4 448 256 448C150.1 448 64 361.9 64 256zM412.3 367.1L144.9 99.68C176.3 77.3 214.6 64 256 64c105.9 0 192 86.13 192 192C448 297.4 434.7 335.7 412.3 367.1z"/>
 			</svg>
 		</div>
 	);
 
 	const svgRefresh = (
-		<div className='flex w-4 justify-center content-center'>
-			<svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 512 512" className='fill-white'>
+		<div className="flex w-4 justify-center content-center">
+			<svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 512 512" className="fill-white">
 				<path d="M464 16c-17.67 0-32 14.31-32 32v74.09C392.1 66.52 327.4 32 256 32C161.5 32 78.59 92.34 49.58 182.2c-5.438 16.81 3.797 34.88 20.61 40.28c16.89 5.5 34.88-3.812 40.3-20.59C130.9 138.5 189.4 96 256 96c50.5 0 96.26 24.55 124.4 64H336c-17.67 0-32 14.31-32 32s14.33 32 32 32h128c17.67 0 32-14.31 32-32V48C496 30.31 481.7 16 464 16zM441.8 289.6c-16.92-5.438-34.88 3.812-40.3 20.59C381.1 373.5 322.6 416 256 416c-50.5 0-96.25-24.55-124.4-64H176c17.67 0 32-14.31 32-32s-14.33-32-32-32h-128c-17.67 0-32 14.31-32 32v144c0 17.69 14.33 32 32 32s32-14.31 32-32v-74.09C119.9 445.5 184.6 480 255.1 480c94.45 0 177.4-60.34 206.4-150.2C467.9 313 458.6 294.1 441.8 289.6z"/>
 			</svg>
 		</div>
@@ -327,69 +327,97 @@ const InstagramUsers = () => {
 		popupAuth !== 'nope.' && popupAuth.postMessage( { message: "fetchInstagramAccount" }, "*" );
 	};
 
+	const generateDP = ( user ) => (
+		( 'business' === user.userType.toLowerCase() ) ? (
+			// Render Profile Picture from ( profile_picture_url )
+			<div className="h-12 w-12 aspect-square rounded-full bg-spectra"></div>
+		) : (
+			<div className="h-12 w-12 aspect-square rounded-full bg-spectra text-white flex justify-center items-center text-xl">{ user.userName[0].toUpperCase() }</div>
+		)
+	);
+
+	const getAccountType = ( userType ) => {
+		switch ( userType ) {
+			case 'personal':
+				return __( 'Personal Account', 'ultimate-addons-for-gutenberg' );
+			case 'business':
+				return __( 'Business Account', 'ultimate-addons-for-gutenberg' );
+			default:
+				return __( 'Instagram Account', 'ultimate-addons-for-gutenberg' );
+		}
+	};
 	
 	const renderAllLinkedAccounts = () => {
 		if ( 0 === Object.keys( instaLinkedAccounts ).length ){
 			return (
 				<>
-					<p className='text-sm text-slate-400'>
+					<p className="text-sm text-slate-400">
 						{ __( 'No linked accounts.', 'ultimate-addons-for-gutenberg' ) }
 					</p>
-					<p className='text-sm text-slate-400'>
+					<p className="text-sm text-slate-400">
 						{ __( 'Please link an Instagram Account to start using it with Spectra!', 'ultimate-addons-for-gutenberg' ) }
 					</p>
 				</>
 			);
 		}
 		const userMatrix = instaLinkedAccounts.map( ( user ) => (
-			<tr className={ ! user.isCurrentlyActive ? 'opacity-50 transition duration-500' : 'transition duration-500' } key={ user.userID } id={ `Spectra-IG-User-${ user.userID }` }>
-				<td className='text-center p-2'>{ `@${ user.userName }` }</td>
-				<td className='text-center p-2'>
-					{ user.userType ? user.userType.toUpperCase() : 'UNLINKED' }
-				</td>
-				<td className='flex justify-center p-2'>
-					{/* <button
-						type='button'
-						className={ classNames(
-							! user.isCurrentlyActive ? 'cursor-not-allowed opacity-10' : '',
-							'flex items-center mb-2 mr-1 px-4 py-2 border border-transparent text-sm font-medium rounded-[0.2rem] shadow-sm bg-wpcolor hover:bg-wphovercolor focus:outline-none transition'
-						) }
-						aria-label={ __( 'Reconnect', 'ultimate-addons-for-gutenberg' ) }
-						onClick={ ( event ) => refreshToken( event, user ) }
-						disabled={ ! user.isCurrentlyActive }
-					>
-						{ svgRefresh }
-					</button> */}
+			<>
+				{/* <tr className={ ! user.isCurrentlyActive ? 'opacity-50 transition duration-500' : 'transition duration-500' } key={ user.userID } id={ `Spectra-IG-User-${ user.userID }` }>
+					<td className="text-center p-2">{ `@${ user.userName }` }</td>
+					<td className="text-center p-2">
+						{ user.userType ? user.userType.toUpperCase() : 'UNLINKED' }
+					</td>
+					<td className="flex justify-center p-2">
+						<button
+							type='button'
+							className= 'flex items-center mb-2 ml-1 px-4 py-2 border border-transparent text-sm font-medium rounded-[0.2rem] shadow-sm bg-rose-600 hover:bg-rose-800 focus:outline-none transition'
+							aria-label={ __( 'Unlink', 'ultimate-addons-for-gutenberg' ) }
+							onClick={ () => unlinkUser( user.userName ) }
+						>
+							{ svgDelete }
+						</button>
+					</td>
+				</tr> */}
+				<div
+					className="relative h-16 px-3 py-2 rounded-md flex border border-slate-200"
+					key={ user.userID }
+					id={ `Spectra-IG-User-${ user.userID }` }
+				>
 					<button
-						type='button'
-						className= 'flex items-center mb-2 ml-1 px-4 py-2 border border-transparent text-sm font-medium rounded-[0.2rem] shadow-sm bg-rose-600 hover:bg-rose-800 focus:outline-none transition'
+						className="absolute top-0 right-0 w-4 h-4 -mt-2 -mr-2 rounded-full bg-slate-500"
 						aria-label={ __( 'Unlink', 'ultimate-addons-for-gutenberg' ) }
 						onClick={ () => unlinkUser( user.userName ) }
+						// style={ {
+						// 	top: 0,
+						// 	marginTop: '-0.5em',
+						// 	marginRight: '-0.5em',
+						// 	backgroundColor: 'rgb(100 116 139)', // Same Color Used for Slate 500.
+						// } }
 					>
-						{ svgDelete }
+						<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path style={{ fill: 'white' }} fill-rule="evenodd" clip-rule="evenodd" d="M7.9998 15.2008C11.9763 15.2008 15.1998 11.9772 15.1998 8.00078C15.1998 4.02433 11.9763 0.800781 7.9998 0.800781C4.02335 0.800781 0.799805 4.02433 0.799805 8.00078C0.799805 11.9772 4.02335 15.2008 7.9998 15.2008ZM6.8362 5.56439C6.48473 5.21291 5.91488 5.21291 5.56341 5.56439C5.21194 5.91586 5.21194 6.48571 5.56341 6.83718L6.72701 8.00078L5.56341 9.16438C5.21194 9.51586 5.21194 10.0857 5.56341 10.4372C5.91488 10.7886 6.48473 10.7886 6.8362 10.4372L7.9998 9.27357L9.16341 10.4372C9.51488 10.7886 10.0847 10.7886 10.4362 10.4372C10.7877 10.0857 10.7877 9.51586 10.4362 9.16439L9.2726 8.00078L10.4362 6.83718C10.7877 6.48571 10.7877 5.91586 10.4362 5.56439C10.0847 5.21291 9.51488 5.21291 9.16341 5.56439L7.9998 6.72799L6.8362 5.56439Z"/>
+						</svg>
 					</button>
-				</td>
-			</tr>
+					{ generateDP( user ) }
+					<div className="ml-3 flex-1 flex flex-col justify-center overflow-hidden">
+						<div className="text-base text-slate-800">{ `@${ user.userName }` }</div>
+						{/* <p className="w-full text-base text-slate-800 text-ellipsis overflow-hidden">{ `@${ user.userName }_has_something_up_his_sleeve` }</p> */}
+						<div className="text-xs text-slate-400">{ getAccountType( user.userType ) }</div>
+					</div>
+				</div>
+			</>
 		) );
+
 		const renderedUsers = (
-			<table className='border-collapse table-fixed w-full mt-4'>
-				<thead>
-					<tr>
-						<th className='w-1/3 text-center font-normal text-white bg-slate-700 p-2 rounded-l-[0.2rem]'>
-							{ __( 'Username', 'ultimate-addons-for-gutenberg' ) }
-						</th>
-						<th className='w-1/3 text-center font-normal text-white bg-slate-700 p-2'>
-							{ __( 'Account Type', 'ultimate-addons-for-gutenberg' ) }
-						</th>
-						<th className='w-1/3 text-center font-normal text-white bg-slate-700  p-2 rounded-r-[0.2rem]'>
-							{ __( 'Unlink', 'ultimate-addons-for-gutenberg' ) }
-						</th>
-					</tr>
-				</thead>
-				<tbody>
+			<>
+				<p className="text-sm text-slate-800">
+					{ __( 'Linked Users', 'ultimate-addons-for-gutenberg' ) }
+				</p>
+				{/* THIS CLASS ( grid-cols-4 ) DOES NOT BUILD. HOWEVER, THIS CLASS ( grid-rows-4 ) WORKS AS REQUIRED. */}
+				<div className="mt-5 w-full grid gap-5" style={ { 'grid-template-columns': 'repeat(4, minmax(0, 1fr))' } }>
 					{ userMatrix }
-				</tbody>
-			</table>
+				</div>
+			</>
 		);
 		return renderedUsers;
 	};
@@ -403,7 +431,7 @@ const InstagramUsers = () => {
 				&nbsp;
 				{ __( 'with your client and ask them to share their token with you.', 'ultimate-addons-for-gutenberg' ) }
 			</p>
-			<div className='mt-4 grid grid-cols-[1fr_auto] w-full'>
+			<div className="mt-4 grid grid-cols-[1fr_auto] w-full">
 				<input
 					className="mr-5 h-10 text-sm placeholder-slate-400 transition spectra-admin__input-field"
 					type='text'
@@ -430,8 +458,8 @@ const InstagramUsers = () => {
 
 	return (
 		<>
-			<section className='block border-b border-solid border-slate-200 px-12 py-8 justify-between'>  
-				<div className='mr-16 w-full flex items-center'>
+			<section className="block border-b border-solid border-slate-200 px-12 py-8 justify-between">  
+				<div className="mr-16 w-full flex items-center">
 					<h3 className="p-0 flex-1 justify-right inline-flex text-lg leading-8 font-medium text-gray-900">
 						{ __( 'Instagram Accounts', 'ultimate-addons-for-gutenberg' ) }
 					</h3>
@@ -474,7 +502,7 @@ const InstagramUsers = () => {
 				</div>
 				<div className="mr-16 mt-9 pt-5 w-full border-t border-t-slate-200">
 					{ renderAllLinkedAccounts() }
-				</div>			
+				</div>
 			</section>
 	 		<InstagramUnlinkPopup
 	 			openPopup={ openPopup }
@@ -487,12 +515,12 @@ const InstagramUsers = () => {
 
 	// return (
 	// 	<>
-	// 		<section className='flex border-b border-solid border-slate-200'>
-	// 			<div className='pr-16 pb-8 w-[78%]'>
-	// 				<h3 className='text-lg leading-6 font-medium text-gray-900'>
+	// 		<section className="flex border-b border-solid border-slate-200">
+	// 			<div className="pr-16 pb-8 w-[78%]">
+	// 				<h3 className="text-lg leading-6 font-medium text-gray-900">
 	// 					{ __( '', 'ultimate-addons-for-gutenberg' ) }
 	// 				</h3>
-	// 				<p className='mt-[0.6rem] text-sm'>
+	// 				<p className="mt-[0.6rem] text-sm">
 	// 					{ __( 'Link your Instagram Account(s), or enable Developer Mode to link your client\'s account(s) ', 'ultimate-addons-for-gutenberg' ) }
 	// 				</p>
 	// 				{ instagramDevMode && renderDevSettings() }
@@ -501,7 +529,7 @@ const InstagramUsers = () => {
 	// 			<div>
 	// 				<button
 	// 					type='button'
-	// 					className='flex items-center mb-2 px-4 py-2 border border-transparent text-sm font-medium rounded-[0.2rem] shadow-sm text-white bg-wpcolor hover:bg-wphovercolor focus:outline-none transition'
+	// 					className="flex items-center mb-2 px-4 py-2 border border-transparent text-sm font-medium rounded-[0.2rem] shadow-sm text-white bg-wpcolor hover:bg-wphovercolor focus:outline-none transition'
 	// 					onClick={ () => displayAuthWindow( 'personal' ) }
 	// 				>
 	// 					{ authLinkingUser && svgSpinner }
@@ -509,13 +537,13 @@ const InstagramUsers = () => {
 	// 				</button>
 	// 				<button
 	// 					type='button'
-	// 					className='flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-[0.2rem] shadow-sm text-white bg-wpcolor hover:bg-wphovercolor focus:outline-none transition cursor-not-allowed opacity-10'
+	// 					className="flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-[0.2rem] shadow-sm text-white bg-wpcolor hover:bg-wphovercolor focus:outline-none transition cursor-not-allowed opacity-10'
 	// 					onClick={ () => displayAuthWindow( 'business' ) }
 	// 					disabled={ true }
 	// 				>
 	// 					{ __( 'Business Account', 'ultimate-addons-for-gutenberg' ) }
 	// 				</button>
-	// 				<p className='mt-[0.6rem] text-sm'>                    
+	// 				<p className="mt-[0.6rem] text-sm">                    
 	// 					<Switch
 	// 						checked={ instagramDevMode }
 	// 						onChange={ () => setInstagramDevMode( ! instagramDevMode ) }
