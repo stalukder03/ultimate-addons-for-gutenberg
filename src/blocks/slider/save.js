@@ -19,6 +19,7 @@ export default function save( props ) {
 			className={ classnames(
 				props.className,
 				`uagb-block-${ block_id }`,
+				'uagb-slider-container'
 			) }
 		>			
 			<div className='uagb-slides uagb-swiper'>	
