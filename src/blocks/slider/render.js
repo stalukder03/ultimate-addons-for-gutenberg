@@ -48,13 +48,11 @@ const Render = ( props ) => {
 		className: `uagb-block-${ block_id } ${hasChildrenClass} uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
 	} );
 
-	const swiperProps = useBlockProps( {
-		className: `swiper-wrapper`,
-		slot: 'container-start'
-	} );
-
     const innerBlocksProps = useInnerBlocksProps(
-        swiperProps,
+        {
+			className: `swiper-wrapper`,
+			slot: 'container-start'
+		},
         {
 			allowedBlocks: ALLOWED_BLOCKS,
 			template : getSliderTemplate,

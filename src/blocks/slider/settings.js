@@ -536,17 +536,8 @@ const Settings = ( props ) => {
 						label: 'yPositionTypeMobile'
 					}}
 					backgroundVideoType={ {
-						value: true,
+						value: false,
 					} }
-					backgroundVideo={ {
-						value: backgroundVideo,
-						label: 'backgroundVideo',
-					} }
-					backgroundVideoColor={ {
-						value: backgroundVideoColor,
-						label: 'backgroundVideoColor',
-					} }
-					onOpacityChange = { ( opacity ) => setAttributes( { backgroundVideoOpacity: opacity } ) }
 					{ ...props }
 				/>
 			</UAGAdvancedPanelBody>
