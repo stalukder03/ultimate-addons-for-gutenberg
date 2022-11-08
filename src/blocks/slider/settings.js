@@ -131,6 +131,8 @@ const Settings = ( props ) => {
 		textColor,
 		linkColor,
 		linkHoverColor,
+		arrowSize,
+		arrowColor
 
 	} = attributes;
 
@@ -925,6 +927,45 @@ const Settings = ( props ) => {
 		);
 	}
 
+	const navigationSettings = () => {
+
+		return (
+			<UAGAdvancedPanelBody
+				title={ __( 'Arrows and Dots', 'ultimate-addons-for-gutenberg' ) }
+				initialOpen={ false }
+			>
+				<AdvancedPopColorControl
+					label={ __(
+						'Color',
+						'ultimate-addons-for-gutenberg'
+					) }
+					colorValue={ arrowColor }
+					data={ {
+						value: arrowColor,
+						label: 'arrowColor',
+					} }
+					setAttributes={ setAttributes }
+				/>
+				{ 'dots' !== arrowDots &&
+					<>
+					<Range
+						label={ __( 'Size', 'ultimate-addons-for-gutenberg' ) }
+						value={ arrowSize }
+						data={ {
+							value: arrowSize,
+							label: 'arrowSize',
+						} }
+						min={ 0 }
+						max={ 50 }
+						setAttributes={ setAttributes }
+						displayUnit={ false }
+					/>
+					</>
+				}
+			</UAGAdvancedPanelBody>
+		)
+	}
+
 	return (
 		<>
 		{ getBlockControls() }
@@ -939,6 +980,7 @@ const Settings = ( props ) => {
 						{ borderSettings() }
 						{ boxShadowSettings() }
 						{ spacingSettings() }
+						{ navigationSettings() }
 					</InspectorTab>
 					<InspectorTab
 						{ ...UAGTabs.advance }

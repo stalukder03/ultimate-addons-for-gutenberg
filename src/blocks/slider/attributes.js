@@ -12,6 +12,10 @@ for ( let i = 1; i <= slideCount; i++ ) {
 }
 
 const attributes = {
+	blockName               : {
+		type    : 'string',
+		default : 'slider',
+	},
 	block_id: {
 		type: 'string',
 	},
@@ -65,17 +69,12 @@ const attributes = {
 			styleType: 'arrow-size'
 		},
 	},
-	columns: {
-		type: 'number',
-		default: 1,
-	},
-	tcolumns: {
-		type: 'number',
-		default: 1,
-	},
-	mcolumns: {
-		type: 'number',
-		default: 1,
+	arrowColor: {
+		type    : 'string',
+		default : '#000',
+		UAGCopyPaste: {
+			styleType: 'arrow-color'
+		},
 	},
 	arrowBorderSize: {
 		type: 'number',

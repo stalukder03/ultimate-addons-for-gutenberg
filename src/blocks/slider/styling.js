@@ -6,11 +6,13 @@ import generateCSS from '@Controls/generateCSS';
 import generateCSSUnit from '@Controls/generateCSSUnit';
 import generateBackgroundCSS from '@Controls/generateBackgroundCSS';
 import generateBorderCSS from '@Controls/generateBorderCSS';
+import { getFallbackNumber } from '@Controls/getAttributeFallback';
 
 function styling( props ) {
 
 	const { attributes } = props;
 	let {
+		blockName,
 		backgroundType,
 		backgroundImageDesktop,
 		backgroundImageTablet,
@@ -94,12 +96,17 @@ function styling( props ) {
 		yPositionTypeTablet,
 		yPositionTypeMobile,
 
+		arrowColor,
+		arrowSize,
+
 		textColor,
 	} = attributes;
 
 	const borderCSS = generateBorderCSS( props.attributes, 'slider' );
 	const borderCSSTablet = generateBorderCSS( props.attributes, 'slider', 'tablet' );
 	const borderCSSMobile = generateBorderCSS( props.attributes, 'slider', 'mobile' );
+
+	const arrowSizeFallback = undefined !== arrowSize ? getFallbackNumber( arrowSize, 'arrowSize', blockName ) : '';
 
 	topPaddingTablet = 'undefined' !== typeof topPaddingTablet ? topPaddingTablet : topPaddingDesktop;
 	topPaddingMobile = 'undefined' !== typeof topPaddingMobile ? topPaddingMobile : topPaddingTablet;
@@ -186,6 +193,12 @@ function styling( props ) {
 	selectors['.wp-block:hover'] = {
 		'border-color': sliderBorderHColor,
 		'box-shadow': '',
+	};
+
+	selectors[ ' .swiper-navigation-icons svg' ] = {
+		'fill': arrowColor,
+		'height': generateCSSUnit( arrowSizeFallback, 'px' ),
+		'width': generateCSSUnit( arrowSizeFallback, 'px' ),
 	};
 
 	boxShadowBlurHover = isNaN( boxShadowBlurHover ) ? '' : boxShadowBlurHover;

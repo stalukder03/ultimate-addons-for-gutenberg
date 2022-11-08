@@ -1,8 +1,9 @@
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
-import React, { useMemo, useEffect } from 'react';
+import React, { useMemo, useEffect, useRef } from 'react';
 import { select } from '@wordpress/data';
 const ALLOWED_BLOCKS = [ 'uagb/slider-child' ];
 import { useDeviceType } from '@Controls/getPreviewType';
+import UAGB_Block_Icons from '@Controls/block-icons';
 
 import { Navigation, Pagination, Scrollbar, Autoplay, EffectFade, Manipulation, EffectFlip } from 'swiper';
 
@@ -17,6 +18,7 @@ const Render = ( props ) => {
 	} = props;
 
 	const deviceType = useDeviceType();
+	const swiperRef = useRef();
 
 	const {
 		isPreview,
@@ -27,7 +29,8 @@ const Render = ( props ) => {
 		block_id,
 		arrowDots,
 		transitionEffect,
-		swiperInstance
+		swiperInstance,
+		arrowColor
 	} = attributes;
 
 	const getSliderTemplate = useMemo( () => {
@@ -108,20 +111,47 @@ const Render = ( props ) => {
 						}
 						loop={false}
 						effect={transitionEffect}
-						navigation={ 
-							'dots' === arrowDots ? false : true 
-						}
+						navigation={false}
 						fadeEffect={{
 							crossFade: true
 						}}
 						flipEffect={{
 							slideShadows: false,
 						}}
+						onBeforeInit={( swiper ) => {
+							swiperRef.current = swiper;
+						}}
 					>
 					<div 
 						{ ...innerBlocksProps }
 					/>
 					</Swiper>
+					<button
+						type="button"
+						data-role="none"
+						aria-label="Next"
+						tabIndex="0"
+						className='swiper-navigation-icons swiper-button-next'
+						style={ {
+							borderColor: arrowColor,
+						} }
+						onClick={() => swiperRef.current?.slideNext()}
+					>
+						{ UAGB_Block_Icons.carousel_right }
+					</button>
+					<button
+						type="button"
+						data-role="none"
+						aria-label="Previous"
+						className="swiper-navigation-icons swiper-button-prev"
+						onClick={() => swiperRef.current?.slidePrev()}
+						tabIndex="0"
+						style={ {
+							borderColor: arrowColor,
+						} }
+					>
+						{ UAGB_Block_Icons.carousel_left }
+					</button>
 				</div>
 		</div>
 	);
