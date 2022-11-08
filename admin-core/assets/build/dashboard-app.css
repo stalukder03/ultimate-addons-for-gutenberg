@@ -1043,6 +1043,8 @@ select {
   padding: 2rem;
 }.p-12 {
   padding: 3rem;
+}.p-2 {
+  padding: 0.5rem;
 }.px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -1082,9 +1084,6 @@ select {
 }.py-\[2\.43rem\] {
   padding-top: 2.43rem;
   padding-bottom: 2.43rem;
-}.px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
 }.pl-10 {
   padding-left: 2.5rem;
 }.pr-2 {
@@ -1115,6 +1114,8 @@ select {
   padding-right: 2.5rem;
 }.pb-2 {
   padding-bottom: 0.5rem;
+}.pr-4 {
+  padding-right: 1rem;
 }.text-left {
   text-align: left;
 }.text-center {

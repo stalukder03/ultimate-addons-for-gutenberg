@@ -315,7 +315,7 @@ const InstagramUsers = () => {
 
 		const userMatrix = instaLinkedAccounts.map( ( user ) => (
 			<div
-				className="relative h-16 px-3 py-2 m-2.5 rounded-md flex border border-slate-200 hover:border-slate-400 transition-colors"
+				className="relative h-16 p-2 pr-4 m-2.5 rounded-md flex border border-slate-200 hover:border-slate-400 transition-colors"
 				key={ user.userID }
 				id={ `Spectra-IG-User-${ user.userID }` }
 			>
@@ -329,7 +329,7 @@ const InstagramUsers = () => {
 					</svg>
 				</button>
 				{ generateDP( user ) }
-				<div className="ml-3 flex-1 flex flex-col justify-center">
+				<div className="ml-4 flex-1 flex flex-col justify-center">
 					<div className="text-base text-slate-800">{ `@${ user.userName }` }</div>
 					<div className="text-xs text-slate-400">{ getAccountType( user.userType ) }</div>
 				</div>
