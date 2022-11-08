@@ -738,6 +738,8 @@ select {
   margin-top: 2.25rem;
 }.box-border {
   box-sizing: border-box;
+}.box-content {
+  box-sizing: content-box;
 }.block {
   display: block;
 }.inline-block {

@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useState  } from 'react';
+import { useEffect, useState  } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Switch } from '@headlessui/react'
 import apiFetch from '@wordpress/api-fetch';
@@ -16,8 +16,9 @@ const InstagramUsers = () => {
 	const SPECTRA_IG_BASIC_APP_ID = 432767105395971;
 	const SPECTRA_IG_BASIC_REDIRECT = `${ SPECTRA_AUTH_ROOT }/auth/instagram/basic/`;
 	
-	// Listening for a Message from the Popup Window.
-	window.addEventListener( 'message', ( event ) => {
+	// Listen for a Message from the Popup Window.
+	const messageListener = ( event ) => {
+		window.removeEventListener( 'message', messageListener );
 		if ( ! event.origin.startsWith( SPECTRA_AUTH_ROOT ) ){
 			return;
 		}
@@ -30,18 +31,19 @@ const InstagramUsers = () => {
 			default:
 				return;
 		}
-	}, false );
+	};
 
 	// Decleration of all the states needed
 	const dispatch = useDispatch();
 	const [ instagramDevMode, setInstagramDevMode ] = useState( false );
-	const [ tempToken, setTempToken] = useState( '' );
+	const [ tempToken, setTempToken ] = useState( '' );
 	const [ instaLinkUserLabel, setInstaLinkUserLabel] = useState( __( 'Link User', 'ultimate-addons-for-gutenberg' ) );
 	const [ authLinkingUser, setAuthLinkingUser ] = useState( false );
 	const [ linkingUser, setLinkingUser ] = useState( false );
 	const [ openPopup, setOpenPopup ] = useState( false );
 	const [ poppedUser, setPoppedUser ] = useState( '' );
 	const instaLinkedAccounts = useSelector( ( state ) => state.instaLinkedAccounts );
+
 
 	// SVG For Right Hand Side Spinner.
 	const svgSpinner = (
@@ -85,13 +87,13 @@ const InstagramUsers = () => {
 	// Highlight the User if they are already linked.
 	const highlightLinkedUser = ( theID ) => {
 		const heWhoExists = document.getElementById( `Spectra-IG-User-${ theID }` );
-		heWhoExists.classList.toggle( 'bg-slate-200' );
+		heWhoExists.classList.toggle( 'border-spectra' );
 		setTimeout( () => {
-			heWhoExists.classList.toggle( 'bg-slate-200' );
-		}, 500 );
+			heWhoExists.classList.toggle( 'border-spectra' );
+		}, 1000 );
 	};
 
-	// Check the Authenticity of the Token.
+	// Check the Authorized User Request.
 	const checkAuthUser = ( authData ) => {
 		if( authData.token !== '...' ){
 			const checkUser = `https://graph.instagram.com/me?fields=id,username&access_token=${ authData.token }`;
@@ -104,14 +106,14 @@ const InstagramUsers = () => {
 		}
 	};
 
-	// Add the Auth Token user to the list of linked accounts.
+	// Add the Authhorized User to the list of linked accounts.
 	const linkAuthUser = ( userID, userName, authData ) => {
 		let tempID;
 		let tempUserMatrix = [];
 		let isFound = false;
 		let expiryDate = new Date();
 		const refreshLink = `https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${ escapeHTML( authData.token ) }`;
-		// Check if user has already been linked
+		// Check if user has already been linked.
 		if ( 0 !== instaLinkedAccounts.length ){
 			tempUserMatrix =  instaLinkedAccounts ;	
 			tempUserMatrix.forEach( ( user ) => {
@@ -163,7 +165,7 @@ const InstagramUsers = () => {
 		setOpenPopup( true );
 	};
 
-	// Handle Linking the account from the One-Click Button.
+	// Handle Linking the account from the Token Button.
 	const handleInstaLinkAccount = ( clickedButton ) => {
 		setTempToken( escapeHTML( tempToken ) );
 		const theButton = clickedButton.target;
@@ -183,23 +185,26 @@ const InstagramUsers = () => {
 		} );
 	};
 
-	// Add the One Click Button user to the list of linked accounts.
+	// Add the Token Button user to the list of linked accounts.
 	const handleNewUserCreation = ( userID, userName, theButton ) => {
+		let tempID;
 		let tempUserMatrix = [];
 		let isFound = false;
 		let expiryDate = new Date();
 		const refreshLink = `https://graph.instagram.com/refresh_access_token
 		?grant_type=ig_refresh_token
 		&access_token=${ escapeHTML( tempToken ) }`;
-		//Check if user has already been linked.
+		// Check if user has already been linked.
 		if ( 0 !== instaLinkedAccounts.length ){
-			tempUserMatrix =  instaLinkedAccounts ;	
+			tempUserMatrix = instaLinkedAccounts ;
 			tempUserMatrix.forEach( ( user ) => {
 				if ( user.userName === userName ){
 					isFound = true;
+					tempID = user.userID;
 				}
 			} );
 			if ( isFound ){
+				highlightLinkedUser( tempID );
 				setLinkingUser( false );
 				handleInstaLinkUserLable( 'exists' );
 				setTimeout( () => {
@@ -261,6 +266,7 @@ const InstagramUsers = () => {
 			left: ( screen.width - 480 ) / 2,
 			top: ( screen.height - 720 ) / 2,
 		};
+		window.addEventListener( 'message', messageListener, false );
 		switch ( theUserType ) {
 			case 'personal':
 				popupAuth = window.open(
@@ -335,12 +341,12 @@ const InstagramUsers = () => {
 				id={ `Spectra-IG-User-${ user.userID }` }
 			>
 				<button
-					className="absolute top-0 right-0 w-4 h-4 -mt-2 -mr-2 flex items-center justify-center rounded-full bg-slate-500 hover:bg-red-600 transition-colors"
+					className="absolute top-0 right-0 w-4 h-4 -mt-2 -mr-2 box-content flex items-center justify-center rounded-full border border-white bg-slate-500 hover:bg-red-600 transition-colors"
 					aria-label={ __( 'Unlink', 'ultimate-addons-for-gutenberg' ) }
 					onClick={ () => unlinkUser( user.userName ) }
 				>
-					<svg width="10" height="10" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path fill-rule="evenodd" clip-rule="evenodd" d="M4.29289 4.29289C4.68342 3.90237 5.31658 3.90237 5.70711 4.29289L10 8.58579L14.2929 4.29289C14.6834 3.90237 15.3166 3.90237 15.7071 4.29289C16.0976 4.68342 16.0976 5.31658 15.7071 5.70711L11.4142 10L15.7071 14.2929C16.0976 14.6834 16.0976 15.3166 15.7071 15.7071C15.3166 16.0976 14.6834 16.0976 14.2929 15.7071L10 11.4142L5.70711 15.7071C5.31658 16.0976 4.68342 16.0976 4.29289 15.7071C3.90237 15.3166 3.90237 14.6834 4.29289 14.2929L8.58579 10L4.29289 5.70711C3.90237 5.31658 3.90237 4.68342 4.29289 4.29289Z" fill="#fff"/>
+					<svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M2 6L6 2M2 2L6 6" stroke="#F9FAFB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 					</svg>
 				</button>
 				{ generateDP( user ) }
