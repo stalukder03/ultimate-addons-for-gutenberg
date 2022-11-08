@@ -36,7 +36,7 @@ const InstagramUsers = () => {
 	const dispatch = useDispatch();
 	const [ instagramDevMode, setInstagramDevMode ] = useState( false );
 	const [ tempToken, setTempToken] = useState( '' );
-	const [ instaLinkUserLabel, setInstaLinkUserLabel] = useState( 'Link User' );
+	const [ instaLinkUserLabel, setInstaLinkUserLabel] = useState( __( 'Link User', 'ultimate-addons-for-gutenberg' ) );
 	const [ authLinkingUser, setAuthLinkingUser ] = useState( false );
 	const [ linkingUser, setLinkingUser ] = useState( false );
 	const [ openPopup, setOpenPopup ] = useState( false );
@@ -60,11 +60,26 @@ const InstagramUsers = () => {
 	};
 
 	// Update the Label of the Dev Mode Button. 
-	const handleInstaLinkUserLable = ( newButtonLabel ) => {
-		newButtonLabel = escapeHTML( newButtonLabel );
-		( "" === newButtonLabel )
-		? setInstaLinkUserLabel( 'Link User' )
-		: setInstaLinkUserLabel( newButtonLabel );
+	const handleInstaLinkUserLable = ( type = null ) => {
+		switch ( type ) {
+			case 'saving':
+				setInstaLinkUserLabel( __( 'Linking', 'ultimate-addons-for-gutenberg' ) );
+				break;
+			case 'invalid':
+				setInstaLinkUserLabel( __( 'Inavalid Token' , 'ultimate-addons-for-gutenberg' ) );
+				break;
+			case 'exists':
+				setInstaLinkUserLabel( __( 'Account Exists!', 'ultimate-addons-for-gutenberg' ) );
+				break;
+			case 'success':
+				setInstaLinkUserLabel( __( 'Account Linked!', 'ultimate-addons-for-gutenberg' ) );
+				break;
+			case 'failed':
+				setInstaLinkUserLabel( __( 'Failed to Add Account', 'ultimate-addons-for-gutenberg' ) );
+				break;
+			default:
+				setInstaLinkUserLabel( __( 'Link User', 'ultimate-addons-for-gutenberg' ) );
+		}
 	};
 
 	// Highlight the User if they are already linked.
@@ -155,14 +170,14 @@ const InstagramUsers = () => {
 		const checkUser = `https://graph.instagram.com/me?fields=id,username&access_token=${ escapeHTML( tempToken ) }`;
 		setLinkingUser( true );
 		theButton.disabled = true;
-		handleInstaLinkUserLable( 'Saving' );
+		handleInstaLinkUserLable( 'saving' );
 		fetch( checkUser ).then( ( response ) => response.json() ).then( ( data ) => {
 			handleNewUserCreation( data.id, data.username, theButton );
 		} ).catch( () => {
 			setLinkingUser( false );
-			handleInstaLinkUserLable( 'Invalid Token' );
+			handleInstaLinkUserLable( 'invalid' );
 			setTimeout( () => {
-				handleInstaLinkUserLable( '' );
+				handleInstaLinkUserLable();
 				theButton.disabled = false;
 			}, 1000 );
 		} );
@@ -186,9 +201,9 @@ const InstagramUsers = () => {
 			} );
 			if ( isFound ){
 				setLinkingUser( false );
-				handleInstaLinkUserLable( 'Account Exists!' );
+				handleInstaLinkUserLable( 'exists' );
 				setTimeout( () => {
-					handleInstaLinkUserLable( '' );
+					handleInstaLinkUserLable();
 					theButton.disabled = false;
 				}, 1000 );
 				return;
@@ -219,17 +234,17 @@ const InstagramUsers = () => {
 			} ).then( ( data ) => {
 				if ( data.success ) {
 					setLinkingUser( false );
-					handleInstaLinkUserLable( 'Account Linked!' );
+					handleInstaLinkUserLable( 'success' );
 					setTimeout( () => {
-						handleInstaLinkUserLable( '' );
+						handleInstaLinkUserLable();
 						theButton.disabled = false;
 					}, 1000 );
 				}
 				else{
 					setLinkingUser( false );
-					handleInstaLinkUserLable( 'Failed to add account' );
+					handleInstaLinkUserLable( 'failed' );
 					setTimeout( () => {
-						handleInstaLinkUserLable( '' );
+						handleInstaLinkUserLable();
 						theButton.disabled = false;
 					}, 1000 );
 				}
@@ -378,7 +393,7 @@ const InstagramUsers = () => {
 					disabled={ ( '' === tempToken ) ? true : false }
 					onClick={ ( event ) => handleInstaLinkAccount( event ) }
 				>
-					{ __( instaLinkUserLabel, 'ultimate-addons-for-gutenberg' ) }
+					{ instaLinkUserLabel }
 					{ linkingUser && svgSpinner }
 				</button>
 			</div>
