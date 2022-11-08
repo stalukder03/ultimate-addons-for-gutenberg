@@ -7,7 +7,7 @@
  * @package uagb
  */
 
-$block_name  = 'slider';
+$block_name = 'slider';
 
 $box_shadow_position_css = $attr['boxShadowPosition'];
 
@@ -68,7 +68,7 @@ $right_margin_mobile  = '' !== $attr['rightMarginMobile'] ? $attr['rightMarginMo
 $top_margin_mobile    = '' !== $attr['topMarginMobile'] ? $attr['topMarginMobile'] : $top_margin_tablet;
 $bottom_margin_mobile = '' !== $attr['bottomMarginMobile'] ? $attr['bottomMarginMobile'] : $bottom_margin_tablet;
 
-$container_css       = array_merge(
+$container_css = array_merge(
 	array(
 		'box-shadow'     =>
 				UAGB_Helper::get_css_value( $attr['boxShadowHOffset'], 'px' ) .
@@ -93,21 +93,21 @@ $container_css       = array_merge(
 	),
 	$border
 );
-$container_css       = array_merge( $container_css, $container_bg_css_desktop );
+$container_css = array_merge( $container_css, $container_bg_css_desktop );
 
 $selectors = array(
-	'.uagb-block-' . $id                                  => $container_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-	'.uagb-block-' . $id . ':hover' => array(
+	'.uagb-block-' . $id                            => $container_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+	'.uagb-block-' . $id . ':hover'                 => array(
 		'border-color' => $attr['sliderBorderHColor'],
 	),
-	'.uagb-block-' . $id . '.uagb-slider-container'     => array(
+	'.uagb-block-' . $id . '.uagb-slider-container' => array(
 		'color'        => $attr['textColor'],
 		'border-color' => $border['border-color'] ? $border['border-color'] : '#4B4F58',
 	),
-	'.uagb-block-' . $id . ' a'                           => array(
+	'.uagb-block-' . $id . ' a'                     => array(
 		'color' => $attr['linkColor'],
 	),
-	'.uagb-block-' . $id . ' a:hover'                     => array(
+	'.uagb-block-' . $id . ' a:hover'               => array(
 		'color' => $attr['linkHoverColor'],
 	),
 );
@@ -129,7 +129,7 @@ if ( ( ( '' !== $attr['boxShadowBlurHover'] ) && ( null !== $attr['boxShadowBlur
 
 }
 
-$bg_obj_tablet              = array(
+$bg_obj_tablet           = array(
 	'backgroundType'           => $attr['backgroundType'],
 	'backgroundImage'          => $attr['backgroundImageTablet'],
 	'backgroundColor'          => $attr['backgroundColor'],
@@ -148,8 +148,8 @@ $bg_obj_tablet              = array(
 	'yPosition'                => $attr['yPositionTablet'],
 	'yPositionType'            => $attr['yPositionTypeTablet'],
 );
-$container_bg_css_tablet    = UAGB_Block_Helper::uag_get_background_obj( $bg_obj_tablet );
-$container_tablet_css       = array_merge(
+$container_bg_css_tablet = UAGB_Block_Helper::uag_get_background_obj( $bg_obj_tablet );
+$container_tablet_css    = array_merge(
 	array(
 		'padding-top'    => UAGB_Helper::get_css_value( $top_padding_tablet, $attr['paddingTypeTablet'] ),
 		'padding-bottom' => UAGB_Helper::get_css_value( $bottom_padding_tablet, $attr['paddingTypeTablet'] ),
@@ -162,13 +162,13 @@ $container_tablet_css       = array_merge(
 	),
 	$border_tablet
 );
-$container_tablet_css       = array_merge( $container_tablet_css, $container_bg_css_tablet );
+$container_tablet_css    = array_merge( $container_tablet_css, $container_bg_css_tablet );
 
 $t_selectors = array(
-	'.uagb-block-' . $id                         => $container_tablet_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+	'.uagb-block-' . $id => $container_tablet_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 );
 
-$bg_obj_mobile              = array(
+$bg_obj_mobile           = array(
 	'backgroundType'           => $attr['backgroundType'],
 	'backgroundImage'          => $attr['backgroundImageMobile'],
 	'backgroundColor'          => $attr['backgroundColor'],
@@ -187,8 +187,8 @@ $bg_obj_mobile              = array(
 	'yPosition'                => $attr['yPositionMobile'],
 	'yPositionType'            => $attr['yPositionTypeMobile'],
 );
-$container_bg_css_mobile    = UAGB_Block_Helper::uag_get_background_obj( $bg_obj_mobile );
-$container_mobile_css       = array_merge(
+$container_bg_css_mobile = UAGB_Block_Helper::uag_get_background_obj( $bg_obj_mobile );
+$container_mobile_css    = array_merge(
 	array(
 		'padding-top'    => UAGB_Helper::get_css_value( $top_padding_mobile, $attr['paddingTypeMobile'] ),
 		'padding-bottom' => UAGB_Helper::get_css_value( $bottom_padding_mobile, $attr['paddingTypeMobile'] ),
@@ -201,10 +201,10 @@ $container_mobile_css       = array_merge(
 	),
 	$border_mobile
 );
-$container_mobile_css       = array_merge( $container_mobile_css, $container_bg_css_mobile );
+$container_mobile_css    = array_merge( $container_mobile_css, $container_bg_css_mobile );
 
 $m_selectors = array(
-	'.uagb-block-' . $id                         => $container_mobile_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+	'.uagb-block-' . $id => $container_mobile_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 );
 
 $combined_selectors = array(

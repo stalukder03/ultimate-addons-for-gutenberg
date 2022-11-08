@@ -1,5 +1,5 @@
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { select } from '@wordpress/data';
 const ALLOWED_BLOCKS = [ 'uagb/slider-child' ];
 import { useDeviceType } from '@Controls/getPreviewType';
@@ -27,7 +27,7 @@ const Render = ( props ) => {
 		block_id,
 		arrowDots,
 		transitionEffect,
-		infiniteLoop
+		swiperInstance
 	} = attributes;
 
 	const getSliderTemplate = useMemo( () => {
@@ -63,6 +63,23 @@ const Render = ( props ) => {
 	const setSwiperInstance = ( swiper ) => {
 		props.setAttributes( { swiperInstance: swiper } );
 	}
+
+	useEffect( () => {
+		
+		const { getSelectedBlock } = select( 'core/block-editor' );
+        const selectedBlockData = getSelectedBlock();
+
+		if( selectedBlockData && 'uagb/slider-child' === selectedBlockData.name ) {
+			const {getBlockIndex} = select( 'core/block-editor' );
+			
+			const slideIndex = getBlockIndex( selectedBlockData.clientId ); 
+
+			if( swiperInstance ) {
+				swiperInstance.slideTo( slideIndex, transitionSpeed, false );
+			}
+		}
+		
+	}, [ props ] );
 
 	return (
 		isPreview ? '' :

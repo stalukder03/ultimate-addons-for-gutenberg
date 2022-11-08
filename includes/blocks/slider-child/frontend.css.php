@@ -7,9 +7,9 @@
  * @package uagb
  */
 
-$block_name  = 'slider';
+$block_name = 'slider';
 
-$bg_obj_desktop           = array(
+$bg_obj_desktop        = array(
 	'backgroundType'           => $attr['backgroundType'],
 	'backgroundImage'          => $attr['backgroundImageDesktop'],
 	'backgroundColor'          => $attr['backgroundColor'],
@@ -52,7 +52,7 @@ $right_margin_mobile  = '' !== $attr['rightMarginMobile'] ? $attr['rightMarginMo
 $top_margin_mobile    = '' !== $attr['topMarginMobile'] ? $attr['topMarginMobile'] : $top_margin_tablet;
 $bottom_margin_mobile = '' !== $attr['bottomMarginMobile'] ? $attr['bottomMarginMobile'] : $bottom_margin_tablet;
 
-$slider_css  = array_merge(
+$slider_css = array_merge(
 	array(
 		'padding-top'    => UAGB_Helper::get_css_value( $attr['topPaddingDesktop'], $attr['paddingType'] ),
 		'padding-bottom' => UAGB_Helper::get_css_value( $attr['bottomPaddingDesktop'], $attr['paddingType'] ),
@@ -64,13 +64,13 @@ $slider_css  = array_merge(
 		'margin-right'   => UAGB_Helper::get_css_value( $attr['rightMarginDesktop'], $attr['marginType'] ),
 	)
 );
-$slider_css       = array_merge( $slider_css, $slider_bg_css_desktop );
+$slider_css = array_merge( $slider_css, $slider_bg_css_desktop );
 
 $selectors = array(
-	' .swiper-content'  => $slider_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+	' .swiper-content' => $slider_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 );
 
-$bg_obj_tablet              = array(
+$bg_obj_tablet        = array(
 	'backgroundType'           => $attr['backgroundType'],
 	'backgroundImage'          => $attr['backgroundImageTablet'],
 	'backgroundColor'          => $attr['backgroundColor'],
@@ -89,8 +89,8 @@ $bg_obj_tablet              = array(
 	'yPosition'                => $attr['yPositionTablet'],
 	'yPositionType'            => $attr['yPositionTypeTablet'],
 );
-$slider_bg_css_tablet    = UAGB_Block_Helper::uag_get_background_obj( $bg_obj_tablet );
-$slider_tablet_css       = array_merge(
+$slider_bg_css_tablet = UAGB_Block_Helper::uag_get_background_obj( $bg_obj_tablet );
+$slider_tablet_css    = array_merge(
 	array(
 		'padding-top'    => UAGB_Helper::get_css_value( $top_padding_tablet, $attr['paddingTypeTablet'] ),
 		'padding-bottom' => UAGB_Helper::get_css_value( $bottom_padding_tablet, $attr['paddingTypeTablet'] ),
@@ -102,13 +102,13 @@ $slider_tablet_css       = array_merge(
 		'margin-right'   => UAGB_Helper::get_css_value( $right_margin_tablet, $attr['marginTypeTablet'] ),
 	)
 );
-$slider_tablet_css       = array_merge( $slider_tablet_css, $slider_bg_css_tablet );
+$slider_tablet_css    = array_merge( $slider_tablet_css, $slider_bg_css_tablet );
 
 $t_selectors = array(
 	' .swiper-content' => $slider_tablet_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 );
 
-$bg_obj_mobile              = array(
+$bg_obj_mobile        = array(
 	'backgroundType'           => $attr['backgroundType'],
 	'backgroundImage'          => $attr['backgroundImageMobile'],
 	'backgroundColor'          => $attr['backgroundColor'],
@@ -127,8 +127,8 @@ $bg_obj_mobile              = array(
 	'yPosition'                => $attr['yPositionMobile'],
 	'yPositionType'            => $attr['yPositionTypeMobile'],
 );
-$slider_bg_css_mobile    = UAGB_Block_Helper::uag_get_background_obj( $bg_obj_mobile );
-$slider_mobile_css       = array_merge(
+$slider_bg_css_mobile = UAGB_Block_Helper::uag_get_background_obj( $bg_obj_mobile );
+$slider_mobile_css    = array_merge(
 	array(
 		'padding-top'    => UAGB_Helper::get_css_value( $top_padding_mobile, $attr['paddingTypeMobile'] ),
 		'padding-bottom' => UAGB_Helper::get_css_value( $bottom_padding_mobile, $attr['paddingTypeMobile'] ),
@@ -140,9 +140,9 @@ $slider_mobile_css       = array_merge(
 		'margin-right'   => UAGB_Helper::get_css_value( $right_margin_mobile, $attr['marginTypeMobile'] ),
 	)
 );
-$slider_mobile_css       = array_merge( $slider_mobile_css, $slider_bg_css_mobile );
-$m_selectors = array(
-	' .swiper-content'    => $slider_mobile_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+$slider_mobile_css    = array_merge( $slider_mobile_css, $slider_bg_css_mobile );
+$m_selectors          = array(
+	' .swiper-content' => $slider_mobile_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 );
 
 $combined_selectors = array(

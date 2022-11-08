@@ -1,7 +1,7 @@
 /**
  * BLOCK: Slider
  */
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { withSelect, useDispatch } from '@wordpress/data';
 import styling from './styling';
 import Settings from './settings';
