@@ -205,10 +205,16 @@ function styling( props ) {
 		'width': generateCSSUnit( arrowSizeFallback, 'px' ),
 	};
 
+	selectors[ ' .swiper-pagination-bullet-active' ] = {
+		'background-color': arrowColor,
+	};
+
 	selectors[ ' .swiper-navigation-icons'] = {
 		'background-color': arrowBgColor,
 		...arrowBorderCSS
 	};
+
+
 
 	boxShadowBlurHover = isNaN( boxShadowBlurHover ) ? '' : boxShadowBlurHover;
 	boxShadowColorHover = boxShadowColorHover ? boxShadowColorHover : '';

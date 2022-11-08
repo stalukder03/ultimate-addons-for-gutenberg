@@ -9,6 +9,8 @@
 
 $default_padding  = 20;
 $border_attribute = UAGB_Block_Helper::uag_generate_border_attribute( 'slider' );
+$arrow_border_attribute = UAGB_Block_Helper::uag_generate_border_attribute( 'slider-arrow' );
+
 
 return array_merge(
 	array(
@@ -104,6 +106,10 @@ return array_merge(
 		'boxShadowBlurHover'          => '',
 		'boxShadowSpreadHover'        => '',
 		'boxShadowPositionHover'      => 'outset',
+		'arrowSize'                   => 20,
+		'arrowColor'                  => '#000',
+		'arrowBgColor'                => '#FFF',
 	),
-	$border_attribute
+	$border_attribute,
+	$arrow_border_attribute
 );

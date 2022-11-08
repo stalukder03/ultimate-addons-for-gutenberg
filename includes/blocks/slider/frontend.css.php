@@ -25,6 +25,10 @@ $border        = UAGB_Block_Helper::uag_generate_border_css( $attr, 'slider' );
 $border_tablet = UAGB_Block_Helper::uag_generate_border_css( $attr, 'slider', 'tablet' );
 $border_mobile = UAGB_Block_Helper::uag_generate_border_css( $attr, 'slider', 'mobile' );
 
+$arrow_border        = UAGB_Block_Helper::uag_generate_border_css( $attr, 'slider-arrow' );
+$arrow_border_tablet = UAGB_Block_Helper::uag_generate_border_css( $attr, 'slider-arrow', 'tablet' );
+$arrow_border_mobile = UAGB_Block_Helper::uag_generate_border_css( $attr, 'slider-arrow', 'mobile' );
+
 $bg_obj_desktop           = array(
 	'backgroundType'           => $attr['backgroundType'],
 	'backgroundImage'          => $attr['backgroundImageDesktop'],
@@ -110,6 +114,18 @@ $selectors = array(
 	'.uagb-block-' . $id . ' a:hover'               => array(
 		'color' => $attr['linkHoverColor'],
 	),
+	'.uagb-block-' . $id . ' .swiper-navigation-icons' => array(
+		'background-color' => esc_attr( $attr['arrowBgColor'] ),
+		$arrow_border
+	),
+	'.uagb-block-' . $id . ' .swiper-navigation-icons svg' => array(
+		'fill'   => esc_attr( $attr['arrowColor'] ),
+		'height' => UAGB_Helper::get_css_value( $attr['arrowSize'], 'px' ),
+		'width'  => UAGB_Helper::get_css_value( $attr['arrowSize'], 'px' )
+	),
+	'.uagb-block-' . $id . ' .swiper-pagination-bullet-active' => array(
+		'background-color' => esc_attr( $attr['arrowColor'] )
+	)
 );
 
 // If hover blur or hover color are set, show the hover shadow.
@@ -166,6 +182,7 @@ $container_tablet_css    = array_merge( $container_tablet_css, $container_bg_css
 
 $t_selectors = array(
 	'.uagb-block-' . $id => $container_tablet_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+	'.uagb-block-' . $id . ' .swiper-navigation-icons' => $arrow_border_mobile
 );
 
 $bg_obj_mobile           = array(
@@ -205,6 +222,7 @@ $container_mobile_css    = array_merge( $container_mobile_css, $container_bg_css
 
 $m_selectors = array(
 	'.uagb-block-' . $id => $container_mobile_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+	'.uagb-block-' . $id . ' .swiper-navigation-icons' => $arrow_border_mobile
 );
 
 $combined_selectors = array(

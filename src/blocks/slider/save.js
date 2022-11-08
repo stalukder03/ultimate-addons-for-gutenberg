@@ -1,6 +1,7 @@
 import { InnerBlocks } from '@wordpress/block-editor';
 
 import classnames from 'classnames';
+import UAGB_Block_Icons from '@Controls/block-icons';
 
 export default function save( props ) {
 
@@ -35,8 +36,8 @@ export default function save( props ) {
 
 					{ 'dots' !== arrowDots && 
 						<>
-						<div className="swiper-button-prev"></div>
-						<div className="swiper-button-next"></div>
+						<div className="swiper-button-prev swiper-navigation-icons">{ UAGB_Block_Icons.carousel_left }</div>
+						<div className="swiper-button-next swiper-navigation-icons">{ UAGB_Block_Icons.carousel_right }</div>
 						</>
 					}
 			</div>
