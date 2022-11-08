@@ -282,7 +282,7 @@ const InstagramUsers = () => {
 			// Render Profile Picture from ( profile_picture_url )
 			<div className="h-12 w-12 aspect-square rounded-full bg-spectra"></div>
 		) : (
-			<div className="h-12 w-12 aspect-square rounded-full bg-spectra text-white flex justify-center items-center text-xl">{ user.userName[0].toUpperCase() }</div>
+			<div className="h-12 w-12 aspect-square rounded-full bg-violet-100 text-spectra flex justify-center items-center text-xl">{ user.userName[0].toUpperCase() }</div>
 		)
 	);
 
@@ -312,9 +312,10 @@ const InstagramUsers = () => {
 				</>
 			);
 		}
+
 		const userMatrix = instaLinkedAccounts.map( ( user ) => (
 			<div
-				className="relative h-16 px-3 py-2 rounded-md flex border border-slate-200 hover:border-slate-400 transition-colors"
+				className="relative h-16 px-3 py-2 m-2.5 rounded-md flex border border-slate-200 hover:border-slate-400 transition-colors"
 				key={ user.userID }
 				id={ `Spectra-IG-User-${ user.userID }` }
 			>
@@ -328,9 +329,8 @@ const InstagramUsers = () => {
 					</svg>
 				</button>
 				{ generateDP( user ) }
-				<div className="ml-3 flex-1 flex flex-col justify-center overflow-hidden">
+				<div className="ml-3 flex-1 flex flex-col justify-center">
 					<div className="text-base text-slate-800">{ `@${ user.userName }` }</div>
-					{/* <p className="w-full text-base text-slate-800 text-ellipsis overflow-hidden">{ `@${ user.userName }_has_something_up_his_sleeve` }</p> */}
 					<div className="text-xs text-slate-400">{ getAccountType( user.userType ) }</div>
 				</div>
 			</div>
@@ -341,12 +341,12 @@ const InstagramUsers = () => {
 				<p className="text-sm text-slate-800">
 					{ __( 'Linked Users', 'ultimate-addons-for-gutenberg' ) }
 				</p>
-				{/* THIS CLASS ( grid-cols-4 ) DOES NOT BUILD. HOWEVER, THIS CLASS ( grid-rows-4 ) WORKS AS REQUIRED. */}
-				<div className="mt-5 w-full grid gap-5" style={ { 'grid-template-columns': 'repeat(4, minmax(0, 1fr))' } }>
+				<div className="-m-2.5 mt-2.5 w-full flex flex-wrap">
 					{ userMatrix }
 				</div>
 			</>
 		);
+
 		return renderedUsers;
 	};
 
