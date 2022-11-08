@@ -1,8 +1,7 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useRef } from 'react'
+import { Fragment, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Dialog, Transition } from '@headlessui/react'
-import { ExclamationIcon } from '@heroicons/react/outline'
+import { Dialog, Transition } from '@headlessui/react';
 import { __ } from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
 
@@ -24,7 +23,7 @@ const InstagramUnlinkPopup = ( props ) => {
 		};
 
 		const onContinueClick = () => {
-			let updatedUserMatrix = [] ;	
+			const updatedUserMatrix = [] ;	
 			instaLinkedAccounts.forEach( ( user ) => {
 				if ( user.userName !== poppedUser ){
 					updatedUserMatrix.push( user );

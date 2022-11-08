@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useEffect, useState  } from 'react';
+import { useState  } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Switch } from '@headlessui/react'
 import apiFetch from '@wordpress/api-fetch';
@@ -28,8 +28,6 @@ const InstagramUsers = () => {
 				checkAuthUser( event.data );
 				event.source.close();
 				break;
-			default:
-				return;
 		}
 	};
 
@@ -97,10 +95,9 @@ const InstagramUsers = () => {
 	const checkAuthUser = ( authData ) => {
 		if( authData.token !== '...' ){
 			const checkUser = `https://graph.instagram.com/me?fields=id,username&access_token=${ authData.token }`;
-			fetch( checkUser ).then( ( response ) => response.json() ).then( ( data ) => {
+			window.fetch( checkUser ).then( ( response ) => response.json() ).then( ( data ) => {
 				linkAuthUser( data.id, data.username, authData );
-			} ).catch( ( err ) => {
-				console.warn ( err );
+			} ).catch( () => {
 				setAuthLinkingUser( false );
 			} );
 		}
@@ -111,7 +108,7 @@ const InstagramUsers = () => {
 		let tempID;
 		let tempUserMatrix = [];
 		let isFound = false;
-		let expiryDate = new Date();
+		const expiryDate = new Date();
 		const refreshLink = `https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${ escapeHTML( authData.token ) }`;
 		// Check if user has already been linked.
 		if ( 0 !== instaLinkedAccounts.length ){
@@ -128,11 +125,11 @@ const InstagramUsers = () => {
 				return;
 			}
 		}
-		fetch( refreshLink ).then( ( response ) => response.json() ).then( ( data ) => {
+		window.fetch( refreshLink ).then( ( response ) => response.json() ).then( ( data ) => {
 			expiryDate.setSeconds( data.expires_in );			
 			tempUserMatrix.push( {
-				userName: userName,
-				userID: userID,
+				userName,
+				userID,
 				userType: authData.type.replace( 'instagram', '' ).toLowerCase(),
 				token: authData.token,
 				postRefreshRate: 'H-1',
@@ -153,8 +150,7 @@ const InstagramUsers = () => {
 			} ).then( () => {
 				setAuthLinkingUser( false );
 			} );
-		} ).catch( ( err ) => {
-			console.error( `Well, this wasn't supposed to happen...\n${ err }` );
+		} ).catch( () => {
 			setAuthLinkingUser( false );
 		} );
 	};
@@ -173,7 +169,7 @@ const InstagramUsers = () => {
 		setLinkingUser( true );
 		theButton.disabled = true;
 		handleInstaLinkUserLable( 'saving' );
-		fetch( checkUser ).then( ( response ) => response.json() ).then( ( data ) => {
+		window.fetch( checkUser ).then( ( response ) => response.json() ).then( ( data ) => {
 			handleNewUserCreation( data.id, data.username, theButton );
 		} ).catch( () => {
 			setLinkingUser( false );
@@ -190,7 +186,7 @@ const InstagramUsers = () => {
 		let tempID;
 		let tempUserMatrix = [];
 		let isFound = false;
-		let expiryDate = new Date();
+		const expiryDate = new Date();
 		const refreshLink = `https://graph.instagram.com/refresh_access_token
 		?grant_type=ig_refresh_token
 		&access_token=${ escapeHTML( tempToken ) }`;
@@ -214,11 +210,11 @@ const InstagramUsers = () => {
 				return;
 			}
 		}
-		fetch( refreshLink ).then( ( response ) => response.json() ).then( ( data ) => {
+		window.fetch( refreshLink ).then( ( response ) => response.json() ).then( ( data ) => {
 			expiryDate.setSeconds( data.expires_in );			
 			tempUserMatrix.push( {
-				userName: userName,
-				userID: userID,
+				userName,
+				userID,
 				userType: 'personal',
 				token: tempToken,
 				postRefreshRate: 'H-1',
@@ -236,8 +232,8 @@ const InstagramUsers = () => {
 				url: uag_react.ajax_url,
 				method: 'POST',
 				body: formData,
-			} ).then( ( data ) => {
-				if ( data.success ) {
+			} ).then( ( responseData ) => {
+				if ( responseData.success ) {
 					setLinkingUser( false );
 					handleInstaLinkUserLable( 'success' );
 					setTimeout( () => {
@@ -254,17 +250,15 @@ const InstagramUsers = () => {
 					}, 1000 );
 				}
 			} );
-		} ).catch( ( err ) => {
-			console.error( `Well, this wasn't supposed to happen...\n${ err }`);
-		} );
+		} ).catch( () => {} );
 	};
 
 	// Display the Popup Window.
 	const displayAuthWindow = ( theUserType ) => {
 		let popupAuth;
 		const positioning = {
-			left: ( screen.width - 480 ) / 2,
-			top: ( screen.height - 720 ) / 2,
+			left: ( screen.width - 480 ) / 2, // eslint-disable-line no-undef
+			top: ( screen.height - 720 ) / 2, // eslint-disable-line no-undef
 		};
 		window.addEventListener( 'message', messageListener, false );
 		switch ( theUserType ) {
@@ -294,7 +288,9 @@ const InstagramUsers = () => {
 				popupAuth = 'nope.';
 				break;
 		}
-		popupAuth !== 'nope.' && popupAuth.postMessage( { message: "fetchInstagramAccount" }, "*" );
+		if ( popupAuth !== 'nope.' ) {
+			popupAuth.postMessage( { message: 'fetchInstagramAccount' }, '*' );
+		}
 	};
 
 	// Generate a Display Picture based on the Account Type.
@@ -346,7 +342,7 @@ const InstagramUsers = () => {
 					onClick={ () => unlinkUser( user.userName ) }
 				>
 					<svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M2 6L6 2M2 2L6 6" stroke="#F9FAFB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+						<path d="M2 6L6 2M2 2L6 6" stroke="#F9FAFB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 					</svg>
 				</button>
 				{ generateDP( user ) }
@@ -377,7 +373,7 @@ const InstagramUsers = () => {
 			<p className="mt-5 text-sm text-slate-500">
 				{ __( 'No need to share passwords. Share our', 'ultimate-addons-for-gutenberg' ) }
 				&nbsp;
-				<a className="text-spectra focus:text-spectra-hover active:text-spectra-hover hover:text-spectra-hover" href={ SPECTRA_IG_TOKEN_GENERATOR } target="_blank">{ __( 'Access Token Generator', 'ultimate-addons-for-gutenberg' ) }</a>
+				<a className="text-spectra focus:text-spectra-hover active:text-spectra-hover hover:text-spectra-hover" href={ SPECTRA_IG_TOKEN_GENERATOR } target="_blank" rel="noreferrer">{ __( 'Access Token Generator', 'ultimate-addons-for-gutenberg' ) }</a>
 				&nbsp;
 				{ __( 'with your client and ask them to share their token with you.', 'ultimate-addons-for-gutenberg' ) }
 			</p>
