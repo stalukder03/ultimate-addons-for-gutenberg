@@ -132,7 +132,8 @@ const Settings = ( props ) => {
 		linkColor,
 		linkHoverColor,
 		arrowSize,
-		arrowColor
+		arrowColor,
+		arrowBgColor
 
 	} = attributes;
 
@@ -930,6 +931,7 @@ const Settings = ( props ) => {
 	const navigationSettings = () => {
 
 		return (
+			<>
 			<UAGAdvancedPanelBody
 				title={ __( 'Arrows and Dots', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
@@ -943,6 +945,18 @@ const Settings = ( props ) => {
 					data={ {
 						value: arrowColor,
 						label: 'arrowColor',
+					} }
+					setAttributes={ setAttributes }
+				/>
+				<AdvancedPopColorControl
+					label={ __(
+						'Background Color',
+						'ultimate-addons-for-gutenberg'
+					) }
+					colorValue={ arrowBgColor }
+					data={ {
+						value: arrowBgColor,
+						label: 'arrowBgColor',
 					} }
 					setAttributes={ setAttributes }
 				/>
@@ -962,7 +976,15 @@ const Settings = ( props ) => {
 					/>
 					</>
 				}
+				<ResponsiveBorder
+					setAttributes={ setAttributes }
+					prefix={ 'slider-arrow' }
+					attributes={ attributes }
+					deviceType={ deviceType }
+					disableBottomSeparator={ true }
+				/>
 			</UAGAdvancedPanelBody>
+			</>
 		)
 	}
 

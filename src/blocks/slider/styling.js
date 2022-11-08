@@ -98,13 +98,17 @@ function styling( props ) {
 
 		arrowColor,
 		arrowSize,
-
 		textColor,
+		arrowBgColor
 	} = attributes;
 
 	const borderCSS = generateBorderCSS( props.attributes, 'slider' );
 	const borderCSSTablet = generateBorderCSS( props.attributes, 'slider', 'tablet' );
 	const borderCSSMobile = generateBorderCSS( props.attributes, 'slider', 'mobile' );
+
+	const arrowBorderCSS = generateBorderCSS( props.attributes, 'slider-arrow' );
+	const arrowBorderCSSTablet = generateBorderCSS( props.attributes, 'slider-arrow', 'tablet' );
+	const arrowBorderCSSMobile = generateBorderCSS( props.attributes, 'slider-arrow', 'mobile' );
 
 	const arrowSizeFallback = undefined !== arrowSize ? getFallbackNumber( arrowSize, 'arrowSize', blockName ) : '';
 
@@ -201,6 +205,11 @@ function styling( props ) {
 		'width': generateCSSUnit( arrowSizeFallback, 'px' ),
 	};
 
+	selectors[ ' .swiper-navigation-icons'] = {
+		'background-color': arrowBgColor,
+		...arrowBorderCSS
+	};
+
 	boxShadowBlurHover = isNaN( boxShadowBlurHover ) ? '' : boxShadowBlurHover;
 	boxShadowColorHover = boxShadowColorHover ? boxShadowColorHover : '';
 
@@ -248,6 +257,9 @@ function styling( props ) {
 			...sliderBackgroundCSSTablet,
 			...borderCSSTablet
 		},
+		' .swiper-navigation-icons': {
+			...arrowBorderCSSTablet
+		}
 	};
 
 	const backgroundAttributesMobile = {
@@ -285,6 +297,9 @@ function styling( props ) {
 			...containerBackgroundCSSMobile,
 			...borderCSSMobile
 		},
+		' .swiper-navigation-icons': {
+			...arrowBorderCSSMobile
+		}
 	};
 
 	const base_selector = `.editor-styles-wrapper #block-${ props.clientId }`;

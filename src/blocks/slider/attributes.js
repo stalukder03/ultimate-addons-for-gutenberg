@@ -1,6 +1,8 @@
 import { getBorderAttributes } from '@Controls/generateAttributes';
 
-const inputBorderAttributes = getBorderAttributes( 'slider' )
+const inputBorderAttributes = getBorderAttributes( 'slider' );
+const arrowBorderAttributes = getBorderAttributes( 'slider-arrow' );
+
 
 const slideCount = 2;
 const slideContent = []; 
@@ -74,6 +76,13 @@ const attributes = {
 		default : '#000',
 		UAGCopyPaste: {
 			styleType: 'arrow-color'
+		},
+	},
+	arrowBgColor: {
+		type    : 'string',
+		default : '#FFF',
+		UAGCopyPaste: {
+			styleType: 'arrow-bg-color'
 		},
 	},
 	arrowBorderSize: {
@@ -1138,7 +1147,8 @@ const attributes = {
 		type: 'string',
 		default: 'visible'
 	},
-	...inputBorderAttributes
+	...inputBorderAttributes,
+	...arrowBorderAttributes
 };
 
 export default attributes;

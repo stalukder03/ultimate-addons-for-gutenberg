@@ -132,9 +132,6 @@ const Render = ( props ) => {
 						aria-label="Next"
 						tabIndex="0"
 						className='swiper-navigation-icons swiper-button-next'
-						style={ {
-							borderColor: arrowColor,
-						} }
 						onClick={() => swiperRef.current?.slideNext()}
 					>
 						{ UAGB_Block_Icons.carousel_right }
@@ -146,9 +143,6 @@ const Render = ( props ) => {
 						className="swiper-navigation-icons swiper-button-prev"
 						onClick={() => swiperRef.current?.slidePrev()}
 						tabIndex="0"
-						style={ {
-							borderColor: arrowColor,
-						} }
 					>
 						{ UAGB_Block_Icons.carousel_left }
 					</button>
