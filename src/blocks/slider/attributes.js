@@ -67,6 +67,25 @@ const attributes = {
 			styleType: 'arrow-size'
 		},
 	},
+	arrowSizeTablet: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'arrow-size-tablet'
+		},
+	},
+	arrowSizeMobile: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'arrow-size-mobile'
+		},
+	},
+	arrowSizeUnit: {
+		type: 'string',
+		default: 'px',
+		UAGCopyPaste: {
+			styleType: 'arrow-size-unit'
+		}
+	},
 	arrowColor: {
 		type    : 'string',
 		default : '#000',

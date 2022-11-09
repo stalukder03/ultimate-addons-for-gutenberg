@@ -107,6 +107,8 @@ return array_merge(
 		'boxShadowSpreadHover'        => '',
 		'boxShadowPositionHover'      => 'outset',
 		'arrowSize'                   => 20,
+		'arrowSizeTablet'             => '',
+		'arrowSizeMobile'             => '',
 		'arrowColor'                  => '#000',
 		'arrowBgColor'                => '#FFF',
 	),

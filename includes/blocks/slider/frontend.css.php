@@ -72,6 +72,9 @@ $right_margin_mobile  = '' !== $attr['rightMarginMobile'] ? $attr['rightMarginMo
 $top_margin_mobile    = '' !== $attr['topMarginMobile'] ? $attr['topMarginMobile'] : $top_margin_tablet;
 $bottom_margin_mobile = '' !== $attr['bottomMarginMobile'] ? $attr['bottomMarginMobile'] : $bottom_margin_tablet;
 
+$arrow_size_tablet = '' !== $attr['arrowSizeTablet'] ? $attr['arrowSizeTablet'] : $attr['arrowSize'];
+$arrow_size_mobile = '' !== $attr['arrowSizeMobile'] ? $attr['arrowSizeMobile'] : $arrow_size_tablet; 
+
 $container_css = array_merge(
 	array(
 		'box-shadow'     =>
@@ -187,7 +190,11 @@ $container_tablet_css    = array_merge( $container_tablet_css, $container_bg_css
 
 $t_selectors = array(
 	'.uagb-block-' . $id => $container_tablet_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-	'.uagb-block-' . $id . ' .swiper-navigation-icons' => $arrow_border_mobile
+	'.uagb-block-' . $id . ' .swiper-navigation-icons' => $arrow_border_mobile,
+	'.uagb-block-' . $id . ' .swiper-navigation-icons svg' => array(
+		'height' => UAGB_Helper::get_css_value( $arrow_size_tablet, 'px' ),
+		'width'  => UAGB_Helper::get_css_value( $arrow_size_tablet, 'px' )
+	),
 );
 
 $bg_obj_mobile           = array(
@@ -227,7 +234,11 @@ $container_mobile_css    = array_merge( $container_mobile_css, $container_bg_css
 
 $m_selectors = array(
 	'.uagb-block-' . $id => $container_mobile_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-	'.uagb-block-' . $id . ' .swiper-navigation-icons' => $arrow_border_mobile
+	'.uagb-block-' . $id . ' .swiper-navigation-icons' => $arrow_border_mobile,
+	'.uagb-block-' . $id . ' .swiper-navigation-icons svg' => array(
+		'height' => UAGB_Helper::get_css_value( $arrow_size_mobile, 'px' ),
+		'width'  => UAGB_Helper::get_css_value( $arrow_size_mobile, 'px' )
+	),
 );
 
 $combined_selectors = array(

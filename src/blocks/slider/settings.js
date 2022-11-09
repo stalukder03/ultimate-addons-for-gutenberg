@@ -5,6 +5,7 @@ import InspectorTab, {
 	UAGTabs,
 } from '@Components/inspector-tabs/InspectorTab.js';
 import Range from '@Components/range/Range.js';
+import ResponsiveSlider from '@Components/responsive-slider';
 import UAGSelectControl from '@Components/select-control';
 import { __ } from '@wordpress/i18n';
 
@@ -132,6 +133,9 @@ const Settings = ( props ) => {
 		linkColor,
 		linkHoverColor,
 		arrowSize,
+		arrowSizeTablet,
+		arrowSizeMobile,
+		arrowSizeUnit,
 		arrowColor,
 		arrowBgColor
 
@@ -962,19 +966,33 @@ const Settings = ( props ) => {
 				/>
 				{ 'dots' !== arrowDots &&
 					<>
-					<Range
-						label={ __( 'Size', 'ultimate-addons-for-gutenberg' ) }
-						value={ arrowSize }
-						data={ {
-							value: arrowSize,
-							label: 'arrowSize',
-						} }
-						min={ 0 }
-						max={ 50 }
-						responsive={true}
-						setAttributes={ setAttributes }
-						displayUnit={ false }
-					/>
+					<ResponsiveSlider
+							label={ __(
+								'Size',
+								'ultimate-addons-for-gutenberg'
+							) }
+							data={ {
+								desktop: {
+									value: arrowSize,
+									label: 'arrowSize',
+								},
+								tablet: {
+									value: arrowSizeTablet,
+									label: 'arrowSizeTablet',
+								},
+								mobile: {
+									value: arrowSizeMobile,
+									label: 'arrowSizeMobile',
+								},
+							} }
+							min={ 0 }
+							max={ 100 }
+							unit={ {
+								value: arrowSizeUnit,
+								label: 'arrowSizeUnit',
+							} }
+							setAttributes={ setAttributes }
+						/>
 					</>
 				}
 				<ResponsiveBorder

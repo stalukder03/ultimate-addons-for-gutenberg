@@ -98,6 +98,9 @@ function styling( props ) {
 
 		arrowColor,
 		arrowSize,
+		arrowSizeTablet,
+		arrowSizeMobile,
+		arrowSizeUnit,
 		textColor,
 		arrowBgColor
 	} = attributes;
@@ -110,7 +113,8 @@ function styling( props ) {
 	const arrowBorderCSSTablet = generateBorderCSS( props.attributes, 'slider-arrow', 'tablet' );
 	const arrowBorderCSSMobile = generateBorderCSS( props.attributes, 'slider-arrow', 'mobile' );
 
-	const arrowSizeFallback = undefined !== arrowSize ? getFallbackNumber( arrowSize, 'arrowSize', blockName ) : '';
+	arrowSizeTablet = 'undefined' !== typeof arrowSizeTablet ? arrowSizeTablet : arrowSize;
+	arrowSizeMobile = 'undefined' !== typeof arrowSizeMobile ? arrowSizeMobile : arrowSizeTablet;
 
 	topPaddingTablet = 'undefined' !== typeof topPaddingTablet ? topPaddingTablet : topPaddingDesktop;
 	topPaddingMobile = 'undefined' !== typeof topPaddingMobile ? topPaddingMobile : topPaddingTablet;
@@ -201,8 +205,8 @@ function styling( props ) {
 
 	selectors[ ' .swiper-navigation-icons svg' ] = {
 		'fill': arrowColor,
-		'height': generateCSSUnit( arrowSizeFallback, 'px' ),
-		'width': generateCSSUnit( arrowSizeFallback, 'px' ),
+		'height': generateCSSUnit( arrowSize, 'px' ),
+		'width': generateCSSUnit( arrowSize, 'px' ),
 	};
 
 	selectors['.wp-block-uagb-slider .swiper-navigation-icons'] = {
@@ -267,6 +271,10 @@ function styling( props ) {
 		},
 		' .swiper-navigation-icons': {
 			...arrowBorderCSSTablet
+		},
+		' .swiper-navigation-icons svg': {
+			'width': generateCSSUnit( arrowSizeTablet, 'px' ),
+			'height': generateCSSUnit( arrowSizeTablet, 'px' )
 		}
 	};
 
@@ -307,6 +315,10 @@ function styling( props ) {
 		},
 		' .swiper-navigation-icons': {
 			...arrowBorderCSSMobile
+		},
+		' .swiper-navigation-icons svg': {
+			'width': generateCSSUnit( arrowSizeMobile, 'px' ),
+			'height': generateCSSUnit( arrowSizeMobile, 'px' )
 		}
 	};
 
