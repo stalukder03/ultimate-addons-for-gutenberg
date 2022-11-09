@@ -429,7 +429,7 @@ const InstagramUsers = () => {
 				<div className="mr-16 mt-2 w-full flex items-start">
 					<div className="w-9/12">
 						<p className="text-sm text-slate-500">
-							{ __( 'Link your Instagram account(s), or enable Developer Mode to link your someone else\'s account(s).', 'ultimate-addons-for-gutenberg' ) }
+							{ __( 'Link your Instagram account(s), or enable Developer Mode to link someone else\'s account(s).', 'ultimate-addons-for-gutenberg' ) }
 						</p>
 						{ instagramDevMode ? renderDevSettings() : (
 							<button
