@@ -437,7 +437,10 @@ const Settings = ( props ) => {
 	return (
 
 			<InspectorControls>
-				<InspectorTabs>
+				<InspectorTabs
+				defaultTab='style'
+				tabs={[ 'style', 'advance' ]}
+				>
 					<InspectorTab { ...UAGTabs.style }>
 						{ backgroundSettings() }
 						{ spacingSettings() }
