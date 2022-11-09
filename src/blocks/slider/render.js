@@ -125,7 +125,6 @@ const Render = ( props ) => {
 					<div 
 						{ ...innerBlocksProps }
 					/>
-					</Swiper>
 					<button
 						type="button"
 						data-role="none"
@@ -146,6 +145,8 @@ const Render = ( props ) => {
 					>
 						{ UAGB_Block_Icons.carousel_left }
 					</button>
+					</Swiper>
+					
 				</div>
 		</div>
 	);
