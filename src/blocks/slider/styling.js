@@ -102,9 +102,11 @@ function styling( props ) {
 		arrowDistance,
 		arrowDistanceTablet,
 		arrowDistanceMobile,
-		textColor,
 		arrowBgColor,
-		verticalAlign
+		verticalAlign,
+		dotsMarginTop,
+		dotsMarginTopTablet,
+		dotsMarginTopMobile
 	} = attributes;
 
 	const borderCSS = generateBorderCSS( props.attributes, 'slider' );
@@ -142,11 +144,7 @@ function styling( props ) {
 	rightMarginTablet = 'undefined' !== typeof rightMarginTablet ? rightMarginTablet : rightMarginDesktop;
 	rightMarginMobile = 'undefined' !== typeof rightMarginMobile ? rightMarginMobile : rightMarginTablet;
 
-	const selectors = {
-		'.wp-block-uagb-container .block-editor-block-list__block' : {
-			'color': textColor,
-		},
-	};
+	const selectors = {};
 
 	const backgroundAttributesDesktop = {
         'backgroundType': backgroundType,
@@ -235,6 +233,10 @@ function styling( props ) {
 		'align-items': verticalAlign,
 	};
 
+	selectors[' .swiper-pagination'] = {
+		'margin-top': generateCSSUnit( dotsMarginTop, 'px' )
+	};
+
 	boxShadowBlurHover = isNaN( boxShadowBlurHover ) ? '' : boxShadowBlurHover;
 	boxShadowColorHover = boxShadowColorHover ? boxShadowColorHover : '';
 
@@ -295,6 +297,9 @@ function styling( props ) {
 		' .swiper-button-next': {
 			'right': generateCSSUnit( arrowDistanceTablet, 'px' ),
 		},
+		' .swiper-pagination': {
+			'margin-top': generateCSSUnit( dotsMarginTopTablet, 'px' )
+		}
 	};
 
 	const backgroundAttributesMobile = {
@@ -345,6 +350,9 @@ function styling( props ) {
 		' .swiper-button-next': {
 			'right': generateCSSUnit( arrowDistanceMobile, 'px' ),
 		},
+		' .swiper-pagination': {
+			'margin-top': generateCSSUnit( dotsMarginTopMobile, 'px' )
+		}
 	};
 
 	const base_selector = `.editor-styles-wrapper #block-${ props.clientId }`;

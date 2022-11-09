@@ -144,10 +144,11 @@ const Settings = ( props ) => {
 		arrowDistance,
 		arrowDistanceTablet,
 		arrowDistanceMobile,
-		verticalAlign
+		verticalAlign,
+		dotsMarginTop,
+		dotsMarginTopTablet,
+		dotsMarginTopMobile
 	} = attributes;
-
-	const verticalAlignOption = verticalAlign?.split( '-' )?.[0];
 
 	// This useEffect ensures that background size is set to cover, so as to ensure color takes up entire width and height,
 	// in case bg type was set to Image before and given a custom width and height.
@@ -1063,6 +1064,27 @@ const Settings = ( props ) => {
 						mobile: {
 							value: arrowDistanceMobile,
 							label: 'arrowDistanceMobile',
+						},
+					} }
+					min={ -50 }
+					max={ 50 }
+					displayUnit={ false }
+					setAttributes={ setAttributes }
+				/>
+				<ResponsiveSlider
+					label={ __( 'Top Margin for Dots', 'ultimate-addons-for-gutenberg' ) }
+					data={ {
+						desktop: {
+							value: dotsMarginTop,
+							label: 'dotsMarginTop',
+						},
+						tablet: {
+							value: dotsMarginTopTablet,
+							label: 'dotsMarginTopTablet',
+						},
+						mobile: {
+							value: dotsMarginTopMobile,
+							label: 'dotsMarginTopMobile',
 						},
 					} }
 					min={ -50 }

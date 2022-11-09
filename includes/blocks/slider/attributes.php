@@ -114,7 +114,10 @@ return array_merge(
 		'arrowDistanceMobile'         => '',
 		'arrowColor'                  => '#000',
 		'arrowBgColor'                => '#FFF',
-		'verticalAlign'               => 'center'
+		'verticalAlign'               => 'center',
+		'dotsMarginTop'               => '10',
+		'dotsMarginTopTablet'         => '',
+		'dotsMarginTopMobile'         => '',
 	),
 	$border_attribute,
 	$arrow_border_attribute

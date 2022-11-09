@@ -106,21 +106,21 @@ const attributes = {
 	},
 	dotsMarginTop                  : {
 		type    : 'number',
-		default : 20,
+		default : 10,
 		UAGCopyPaste: {
 			styleType: 'dots-margin-top'
 		},
 	},
 	dotsMarginTopTablet                  : {
 		type    : 'number',
-		default : 20,
+		default : 10,
 		UAGCopyPaste: {
 			styleType: 'dots-margin-top'
 		},
 	},
 	dotsMarginTopMobile: {
 		type    : 'number',
-		default : 20,
+		default : 10,
 		UAGCopyPaste: {
 			styleType: 'dots-margin-top'
 		},

@@ -16,7 +16,7 @@ const Render = ( props ) => {
 	} );
 
 	// Hide slider block.
-	const ALLOWED_BLOCKS = parentBlocks.map( block => block.name ).filter( blockName => [ 'uagb/slider' ].indexOf( blockName ) === -1 );
+	const ALLOWED_BLOCKS = parentBlocks.map( block => block.name ).filter( blockName => [ 'uagb/slider', 'uagb/post-carousel', 'uagb/testimonial' ].indexOf( blockName ) === -1 );
 
 	return (
 		<div className='swiper-content'>

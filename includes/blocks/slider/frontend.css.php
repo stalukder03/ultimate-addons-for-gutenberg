@@ -138,6 +138,9 @@ $selectors = array(
 	),
 	'.uagb-block-' . $id . ' .swiper-wrapper' => array(
 		'align-items' => $attr['verticalAlign']
+	),
+	'.uagb-block-' . $id . ' .swiper-pagination' => array(
+		'margin-top' => UAGB_Helper::get_css_value( $attr['dotsMarginTop'], 'px' )
 	)
 );
 
@@ -205,6 +208,9 @@ $t_selectors = array(
 	),
 	'.uagb-block-' . $id . ' .swiper-button-next' => array(
 		'right' => UAGB_Helper::get_css_value( $arrow_distance_tablet, 'px' )
+	),
+	'.uagb-block-' . $id . ' .swiper-pagination' => array(
+		'margin-top' => UAGB_Helper::get_css_value( $attr['dotsMarginTopTablet'], 'px' )
 	)
 );
 
@@ -255,6 +261,9 @@ $m_selectors = array(
 	),
 	'.uagb-block-' . $id . ' .swiper-button-next' => array(
 		'right' => UAGB_Helper::get_css_value( $arrow_distance_mobile, 'px' )
+	),
+	'.uagb-block-' . $id . ' .swiper-pagination' => array(
+		'margin-top' => UAGB_Helper::get_css_value( $attr['dotsMarginTopMobile'], 'px' )
 	)
 );
 
