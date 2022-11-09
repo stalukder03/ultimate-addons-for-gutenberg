@@ -137,8 +137,14 @@ const Settings = ( props ) => {
 		arrowSizeMobile,
 		arrowSizeUnit,
 		arrowColor,
-		arrowBgColor
-
+		arrowBgColor,
+		arrowDistance,
+		arrowDistanceTablet,
+		arrowDistanceMobile,
+		dotsMarginTop,
+		dotsMarginTopTablet,
+		dotsMarginTopMobile,
+		dotsMarginTopUnit
 	} = attributes;
 
 
@@ -180,7 +186,6 @@ const Settings = ( props ) => {
 								}
 
 							}, 100 );
-
 						} }
 					/>
 				</ToolbarGroup>
@@ -995,6 +1000,54 @@ const Settings = ( props ) => {
 						/>
 					</>
 				}
+				<ResponsiveSlider
+					label={ __( 'Arrow Distance from Edges', 'ultimate-addons-for-gutenberg' ) }
+					data={ {
+						desktop: {
+							value: arrowDistance,
+							label: 'arrowDistance',
+						},
+						tablet: {
+							value: arrowDistanceTablet,
+							label: 'arrowDistanceTablet',
+						},
+						mobile: {
+							value: arrowDistanceMobile,
+							label: 'arrowDistanceMobile',
+						},
+					} }
+					min={ -50 }
+					max={ 50 }
+					displayUnit={ false }
+					setAttributes={ setAttributes }
+				/>
+				<ResponsiveSlider
+					label={ __(
+						'Top Margin for Dots',
+						'ultimate-addons-for-gutenberg'
+					) }
+					data={ {
+						desktop: {
+							value: dotsMarginTop,
+							label: 'dotsMarginTop',
+						},
+						tablet: {
+							value: dotsMarginTopTablet,
+							label: 'dotsMarginTopTablet',
+						},
+						mobile: {
+							value: dotsMarginTopMobile,
+							label: 'dotsMarginTopMobile',
+						},
+					} }
+					min={ 1 }
+					max={ 50 }
+					unit={ {
+						value: dotsMarginTopUnit,
+						label: 'dotsMarginTopUnit',
+					} }
+					setAttributes={ setAttributes }
+				/>
 				<ResponsiveBorder
 					setAttributes={ setAttributes }
 					prefix={ 'slider-arrow' }

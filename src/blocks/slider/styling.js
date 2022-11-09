@@ -101,6 +101,9 @@ function styling( props ) {
 		arrowSizeTablet,
 		arrowSizeMobile,
 		arrowSizeUnit,
+		arrowDistance,
+		arrowDistanceTablet,
+		arrowDistanceMobile,
 		textColor,
 		arrowBgColor
 	} = attributes;
@@ -222,6 +225,13 @@ function styling( props ) {
 		...arrowBorderCSS
 	};
 
+	selectors[' .swiper-button-prev'] = {
+		'left': generateCSSUnit( arrowDistance, 'px' ),
+	};
+	selectors[' .swiper-button-next'] = {
+		'right': generateCSSUnit( arrowDistance, 'px' ),
+	};
+
 	boxShadowBlurHover = isNaN( boxShadowBlurHover ) ? '' : boxShadowBlurHover;
 	boxShadowColorHover = boxShadowColorHover ? boxShadowColorHover : '';
 
@@ -275,7 +285,13 @@ function styling( props ) {
 		' .swiper-navigation-icons svg': {
 			'width': generateCSSUnit( arrowSizeTablet, 'px' ),
 			'height': generateCSSUnit( arrowSizeTablet, 'px' )
-		}
+		},
+		' .swiper-button-prev': {
+			'left': generateCSSUnit( arrowDistanceTablet, 'px' ),
+		},
+		' .swiper-button-next': {
+			'right': generateCSSUnit( arrowDistanceTablet, 'px' ),
+		},
 	};
 
 	const backgroundAttributesMobile = {
@@ -319,7 +335,13 @@ function styling( props ) {
 		' .swiper-navigation-icons svg': {
 			'width': generateCSSUnit( arrowSizeMobile, 'px' ),
 			'height': generateCSSUnit( arrowSizeMobile, 'px' )
-		}
+		},
+		' .swiper-button-prev': {
+			'left': generateCSSUnit( arrowDistanceMobile, 'px' ),
+		},
+		' .swiper-button-next': {
+			'right': generateCSSUnit( arrowDistanceMobile, 'px' ),
+		},
 	};
 
 	const base_selector = `.editor-styles-wrapper #block-${ props.clientId }`;

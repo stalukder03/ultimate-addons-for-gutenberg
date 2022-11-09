@@ -86,6 +86,52 @@ const attributes = {
 			styleType: 'arrow-size-unit'
 		}
 	},
+	arrowDistance: {
+		type    : 'number',
+		UAGCopyPaste: {
+			styleType: 'arrow-distance'
+		},
+	},
+	arrowDistanceTablet: {
+		type    : 'number',
+		UAGCopyPaste: {
+			styleType: 'arrow-distance-tablet'
+		},
+	},
+	arrowDistanceMobile: {
+		type    : 'number',
+		UAGCopyPaste: {
+			styleType: 'arrow-distance-mobile'
+		},
+	},
+	dotsMarginTop                  : {
+		type    : 'number',
+		default : 20,
+		UAGCopyPaste: {
+			styleType: 'dots-margin-top'
+		},
+	},
+	dotsMarginTopTablet                  : {
+		type    : 'number',
+		default : 20,
+		UAGCopyPaste: {
+			styleType: 'dots-margin-top'
+		},
+	},
+	dotsMarginTopMobile: {
+		type    : 'number',
+		default : 20,
+		UAGCopyPaste: {
+			styleType: 'dots-margin-top'
+		},
+	},
+	dotsMarginTopUnit: {
+		type    : 'string',
+		default : 'px',
+		UAGCopyPaste: {
+			styleType: 'dots-margin-top-unit'
+		},
+	},
 	arrowColor: {
 		type    : 'string',
 		default : '#000',
