@@ -75,6 +75,9 @@ $bottom_margin_mobile = '' !== $attr['bottomMarginMobile'] ? $attr['bottomMargin
 $arrow_size_tablet = '' !== $attr['arrowSizeTablet'] ? $attr['arrowSizeTablet'] : $attr['arrowSize'];
 $arrow_size_mobile = '' !== $attr['arrowSizeMobile'] ? $attr['arrowSizeMobile'] : $arrow_size_tablet; 
 
+$arrow_distance_tablet    = '' !== $attr['arrowDistanceTablet'] ? $attr['arrowDistanceTablet'] : $attr['arrowDistance'];
+$arrow_distance_mobile    = '' !== $attr['arrowDistanceMobile'] ? $attr['arrowDistanceMobile'] : $arrow_distance_tablet;
+
 $container_css = array_merge(
 	array(
 		'box-shadow'     =>
@@ -133,6 +136,12 @@ $selectors = array(
 	),
 	'.uagb-block-' . $id . ' .swiper-pagination-bullet-active' => array(
 		'background-color' => esc_attr( $attr['arrowColor'] )
+	),
+	'.uagb-block-' . $id . ' .swiper-button-prev' => array(
+		'left' => UAGB_Helper::get_css_value( $attr['arrowDistance'], 'px' )
+	),
+	'.uagb-block-' . $id . ' .swiper-button-next' => array(
+		'right' => UAGB_Helper::get_css_value( $attr['arrowDistance'], 'px' )
 	)
 );
 
@@ -195,6 +204,12 @@ $t_selectors = array(
 		'height' => UAGB_Helper::get_css_value( $arrow_size_tablet, 'px' ),
 		'width'  => UAGB_Helper::get_css_value( $arrow_size_tablet, 'px' )
 	),
+	'.uagb-block-' . $id . ' .swiper-button-prev' => array(
+		'left' => UAGB_Helper::get_css_value( $arrow_distance_tablet, 'px' )
+	),
+	'.uagb-block-' . $id . ' .swiper-button-next' => array(
+		'right' => UAGB_Helper::get_css_value( $arrow_distance_tablet, 'px' )
+	)
 );
 
 $bg_obj_mobile           = array(
@@ -239,6 +254,12 @@ $m_selectors = array(
 		'height' => UAGB_Helper::get_css_value( $arrow_size_mobile, 'px' ),
 		'width'  => UAGB_Helper::get_css_value( $arrow_size_mobile, 'px' )
 	),
+	'.uagb-block-' . $id . ' .swiper-button-prev' => array(
+		'left' => UAGB_Helper::get_css_value( $arrow_distance_mobile, 'px' )
+	),
+	'.uagb-block-' . $id . ' .swiper-button-next' => array(
+		'right' => UAGB_Helper::get_css_value( $arrow_distance_mobile, 'px' )
+	)
 );
 
 $combined_selectors = array(

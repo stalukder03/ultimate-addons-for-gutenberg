@@ -100,7 +100,6 @@ function styling( props ) {
 		arrowSize,
 		arrowSizeTablet,
 		arrowSizeMobile,
-		arrowSizeUnit,
 		arrowDistance,
 		arrowDistanceTablet,
 		arrowDistanceMobile,
