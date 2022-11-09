@@ -205,6 +205,10 @@ function styling( props ) {
 		'width': generateCSSUnit( arrowSizeFallback, 'px' ),
 	};
 
+	selectors['.wp-block-uagb-slider .swiper-navigation-icons'] = {
+		'border-color': arrowBorderCSS['border-color'] ? arrowBorderCSS['border-color'] : '#4B4F58'
+	}
+
 	selectors[ ' .swiper-pagination-bullet-active' ] = {
 		'background-color': arrowColor,
 	};
@@ -213,8 +217,6 @@ function styling( props ) {
 		'background-color': arrowBgColor,
 		...arrowBorderCSS
 	};
-
-
 
 	boxShadowBlurHover = isNaN( boxShadowBlurHover ) ? '' : boxShadowBlurHover;
 	boxShadowColorHover = boxShadowColorHover ? boxShadowColorHover : '';

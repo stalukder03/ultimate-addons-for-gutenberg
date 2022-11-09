@@ -120,6 +120,9 @@ $selectors = array(
 		),
 		$arrow_border
 	),
+	'.uagb-block-' . $id . '.uagb-slider-container .swiper-navigation-icons' => array(
+		'border-color'     => $arrow_border['border-color'] ? $arrow_border['border-color'] : '#4B4F58'
+	),
 	'.uagb-block-' . $id . ' .swiper-navigation-icons svg' => array(
 		'fill'   => esc_attr( $attr['arrowColor'] ),
 		'height' => UAGB_Helper::get_css_value( $attr['arrowSize'], 'px' ),

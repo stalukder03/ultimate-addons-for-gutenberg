@@ -7,7 +7,7 @@
 		align-items: center;
 		justify-content: center;
 	}
-	
+
 	.swiper-button-next:after, 
 	.swiper-rtl .swiper-button-prev:after,
 	.swiper-button-prev:after, 
@@ -18,5 +18,7 @@
 	.swiper-navigation-icons{
 		width: auto;
 		height: auto;
+		border-width: 0;
+		padding: 0;
 	}
 }

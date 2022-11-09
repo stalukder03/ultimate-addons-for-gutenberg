@@ -971,6 +971,7 @@ const Settings = ( props ) => {
 						} }
 						min={ 0 }
 						max={ 50 }
+						responsive={true}
 						setAttributes={ setAttributes }
 						displayUnit={ false }
 					/>
