@@ -114,8 +114,10 @@ $selectors = array(
 	'.uagb-block-' . $id . ' a:hover'               => array(
 		'color' => $attr['linkHoverColor'],
 	),
-	'.uagb-block-' . $id . ' .swiper-navigation-icons' => array(
-		'background-color' => esc_attr( $attr['arrowBgColor'] ),
+	'.uagb-block-' . $id . ' .swiper-navigation-icons' => array_merge(
+		array(
+			'background-color' => esc_attr( $attr['arrowBgColor'] ),
+		),
 		$arrow_border
 	),
 	'.uagb-block-' . $id . ' .swiper-navigation-icons svg' => array(
