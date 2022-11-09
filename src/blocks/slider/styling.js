@@ -6,7 +6,6 @@ import generateCSS from '@Controls/generateCSS';
 import generateCSSUnit from '@Controls/generateCSSUnit';
 import generateBackgroundCSS from '@Controls/generateBackgroundCSS';
 import generateBorderCSS from '@Controls/generateBorderCSS';
-import { getFallbackNumber } from '@Controls/getAttributeFallback';
 
 function styling( props ) {
 
@@ -104,7 +103,8 @@ function styling( props ) {
 		arrowDistanceTablet,
 		arrowDistanceMobile,
 		textColor,
-		arrowBgColor
+		arrowBgColor,
+		verticalAlign
 	} = attributes;
 
 	const borderCSS = generateBorderCSS( props.attributes, 'slider' );
@@ -229,6 +229,10 @@ function styling( props ) {
 	};
 	selectors[' .swiper-button-next'] = {
 		'right': generateCSSUnit( arrowDistance, 'px' ),
+	};
+
+	selectors[' .swiper-wrapper'] = {
+		'align-items': verticalAlign,
 	};
 
 	boxShadowBlurHover = isNaN( boxShadowBlurHover ) ? '' : boxShadowBlurHover;

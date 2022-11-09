@@ -132,6 +132,13 @@ const attributes = {
 			styleType: 'dots-margin-top-unit'
 		},
 	},
+	verticalAlign: {
+		type: 'string',
+		default: 'center',
+		UAGCopyPaste: {
+			styleType: 'slider-vertical-align'
+		},
+	},
 	arrowColor: {
 		type    : 'string',
 		default : '#000',

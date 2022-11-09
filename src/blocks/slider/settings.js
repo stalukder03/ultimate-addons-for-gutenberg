@@ -19,10 +19,13 @@ import Background from '@Components/background';
 import ResponsiveBorder from '@Components/responsive-border';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import MultiButtonsControl from '@Components/multi-buttons-control';
-import { ToggleControl, 
+import { 
+	Icon,
+	ToggleControl, 
 	ToolbarGroup,
 	ToolbarButton,
 } from '@wordpress/components';
+import renderCustomIcon from '@Controls/renderCustomIcon';
 import UAGTabsControl from '@Components/tabs';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control';
 import { boxShadowPresets, boxShadowHoverPresets } from './presets';
@@ -141,8 +144,10 @@ const Settings = ( props ) => {
 		arrowDistance,
 		arrowDistanceTablet,
 		arrowDistanceMobile,
+		verticalAlign
 	} = attributes;
 
+	const verticalAlignOption = verticalAlign?.split( '-' )?.[0];
 
 	// This useEffect ensures that background size is set to cover, so as to ensure color takes up entire width and height,
 	// in case bg type was set to Image before and given a custom width and height.
@@ -189,6 +194,36 @@ const Settings = ( props ) => {
 		);
 	};
 
+	const verticalAlignOptions = [
+		{
+			value: 'start',
+			tooltip: __( 'Top', 'ultimate-addons-for-gutenberg' ),
+			icon: (
+				<Icon
+					icon={ renderCustomIcon( `flex-column-start` ) }
+				/>
+			),
+		},
+		{
+			value: 'center',
+			tooltip: __( 'Center', 'ultimate-addons-for-gutenberg' ),
+			icon: (
+				<Icon
+					icon={ renderCustomIcon( `flex-column-center` ) }
+				/>
+			),
+		},
+		{
+			value: 'end',
+			tooltip: __( 'Bottom', 'ultimate-addons-for-gutenberg' ),
+			icon: (
+				<Icon
+					icon={ renderCustomIcon( `flex-column-end` ) }
+				/>
+			),
+		},
+	];
+
 	const generalSettings = () => {
 	
 		const toggleInfiniteLoop = () => {
@@ -201,6 +236,7 @@ const Settings = ( props ) => {
 
 		const sliderSettings = () => {
 			return (
+				<>
 				<UAGAdvancedPanelBody
 					title={ __( 'Slider', 'ultimate-addons-for-gutenberg' ) }
 					initialOpen={ false }
@@ -359,6 +395,23 @@ const Settings = ( props ) => {
 						] }
 					/>
 				</UAGAdvancedPanelBody>
+				<UAGAdvancedPanelBody
+					title={ __( 'Content', 'ultimate-addons-for-gutenberg' ) }
+					initialOpen={ false }
+				>
+					<MultiButtonsControl
+						setAttributes={ setAttributes }
+						label={ __( 'Vertical Alignment', 'ultimate-addons-for-gutenberg' ) }
+						data={ {
+							value: verticalAlign,
+							label: 'verticalAlign',
+						} }
+						options={ verticalAlignOptions }
+						showIcons={ true }
+						responsive={ false }
+					/>
+				</UAGAdvancedPanelBody>
+				</>
 			);
 		};
 
