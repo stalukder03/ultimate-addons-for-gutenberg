@@ -54,7 +54,7 @@ const attributes = {
 	},
 	autoplaySpeed: {
 		type: 'number',
-		default: 2000,
+		default: 1200,
 	},
 	arrowDots: {
 		type: 'string',
@@ -62,7 +62,7 @@ const attributes = {
 	},
 	arrowSize: {
 		type: 'number',
-		default: 20,
+		default: 35,
 		UAGCopyPaste: {
 			styleType: 'arrow-size'
 		},

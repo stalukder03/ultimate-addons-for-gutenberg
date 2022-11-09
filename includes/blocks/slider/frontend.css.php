@@ -111,14 +111,7 @@ $selectors = array(
 		'border-color' => $attr['sliderBorderHColor'],
 	),
 	'.uagb-block-' . $id . '.uagb-slider-container' => array(
-		'color'        => $attr['textColor'],
 		'border-color' => $border['border-color'] ? $border['border-color'] : '#4B4F58',
-	),
-	'.uagb-block-' . $id . ' a'                     => array(
-		'color' => $attr['linkColor'],
-	),
-	'.uagb-block-' . $id . ' a:hover'               => array(
-		'color' => $attr['linkHoverColor'],
 	),
 	'.uagb-block-' . $id . ' .swiper-navigation-icons' => array_merge(
 		array(

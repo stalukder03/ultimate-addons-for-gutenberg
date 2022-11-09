@@ -19,7 +19,7 @@ $slider_options = apply_filters(
 	array(
 		'autoplay'   => $attr['autoplay'] ? array(
 			'delay'                => (int) $attr['autoplaySpeed'],
-			'disableOnInteraction' => false,
+			'disableOnInteraction' => 'click' === $attr['pauseOn'] ? true : false,
 			'pauseOnMouseEnter'    => 'hover' === $attr['pauseOn'] ? true : false,
 			'stopOnLastSlide'      => $attr['infiniteLoop'] ? false : true,
 		) : false,
@@ -40,7 +40,7 @@ $slider_options = apply_filters(
 		'navigation' => ( 'dots' === $attr['arrowDots'] ) ? false : array(
 			'nextEl' => '.swiper-button-next',
 			'prevEl' => '.swiper-button-prev',
-		),
+		)
 	),
 	$id
 );
@@ -54,38 +54,6 @@ window.addEventListener("DOMContentLoaded", function(){
 		<?php echo $settings; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	);
 });
-
-var swiperWrapper = document.querySelector( "<?php echo esc_attr( $selector ); ?>" );
-var autoPlay = <?php echo (int) $attr['autoplay']; ?>;
-var pauseOnHover = <?php echo 'hover' === $attr['pauseOn'] ? 1 : 0; ?>;
-var pauseOnInteraction = <?php echo 'click' === $attr['pauseOn'] ? 1 : 0; ?>;
-
-swiperWrapper.addEventListener( "onscroll", UagbPauseOnInteraction );
-swiperWrapper.addEventListener( "onkeydown", UagbPauseOnInteraction );
-swiperWrapper.addEventListener( "click", UagbPauseOnInteraction );
-
-function UagbPauseOnInteraction() {
-	var swiperInstance = document.querySelector( "<?php echo esc_attr( $selector ); ?>" ).swiper;
-	if( pauseOnInteraction && swiperInstance ) {
-		swiperInstance.autoplay.stop();
-	}
-}
-
-swiperWrapper.onmouseout = function() {	
-	var swiperInstance = document.querySelector( "<?php echo esc_attr( $selector ); ?>" ).swiper;
-	if( swiperInstance && autoPlay ) {
-		swiperInstance.autoplay.start();
-	}
-};
-
-swiperWrapper.onmouseover = function() {
-	var swiperInstance = document.querySelector( "<?php echo esc_attr( $selector ); ?>" ).swiper;
-	if( pauseOnHover ) {
-		if( swiperInstance ) {
-			swiperInstance.autoplay.stop();
-		}
-	}
-};
 
 <?php
 return ob_get_clean();
