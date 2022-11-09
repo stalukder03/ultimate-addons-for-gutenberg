@@ -24,6 +24,7 @@ const Render = ( props ) => {
 		attributes: { isPreview, tm_content, timelineItem },
 	} = props;
 
+
 	const getContentTimelineTemplate = useMemo( () => {
 		const childTimeline = [];
 
@@ -33,7 +34,6 @@ const Render = ( props ) => {
 				tm_content[ i ],
 			] );
 		}
-
 		return childTimeline;
 	}, [ timelineItem, tm_content ] );
 	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/content-timeline.png`;
