@@ -275,6 +275,7 @@ const Settings = ( props ) => {
 								),
 							},
 						] }
+						help={ __( 'The Preview for This Option Will Work on Front End Only', 'ultimate-addons-for-gutenberg' ) }
 					/>
 					<ToggleControl
 						label={ __( 'Autoplay' ) }
@@ -342,6 +343,7 @@ const Settings = ( props ) => {
 								),
 							}
 						] }
+						help={ __( 'The Preview for This Option Will Work on Front End Only', 'ultimate-addons-for-gutenberg' ) }
 					/>
 					<Range
 						label={ __(
