@@ -1,4 +1,4 @@
-import { InnerBlocks } from '@wordpress/block-editor';
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 
 import classnames from 'classnames';
 import UAGB_Block_Icons from '@Controls/block-icons';
@@ -12,14 +12,15 @@ export default function save( props ) {
 	const {
 		block_id,
 		arrowDots,
-		className
 	} = attributes;
+
+	const blockProps = useBlockProps.save();
 	
     return (
 		<div
 			key = { block_id }
 			className={ classnames(
-				 className,
+				blockProps.className,
 				`uagb-block-${ block_id }`,
 				'uagb-slider-container'
 			) }

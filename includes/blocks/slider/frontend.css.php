@@ -267,6 +267,16 @@ $m_selectors = array(
 	),
 );
 
+$z_index        = isset( $attr['zIndex'] ) ? $attr['zIndex'] : '';
+$z_index_tablet = isset( $attr['zIndexTablet'] ) ? $attr['zIndexTablet'] : '';
+$z_index_mobile = isset( $attr['zIndexMobile'] ) ? $attr['zIndexMobile'] : '';
+
+$selectors[ '.uagb-block-' . $id . '.uag-blocks-common-selector' ] = array(
+	'--z-index-desktop' => $z_index,
+	'--z-index-tablet'  => $z_index_tablet,
+	'--z-index-mobile'  => $z_index_mobile,
+);
+
 $combined_selectors = array(
 	'desktop' => $selectors,
 	'tablet'  => $t_selectors,
