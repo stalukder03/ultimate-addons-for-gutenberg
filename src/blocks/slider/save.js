@@ -11,14 +11,15 @@ export default function save( props ) {
 
 	const {
 		block_id,
-		arrowDots
+		arrowDots,
+		className
 	} = attributes;
 	
     return (
 		<div
 			key = { block_id }
 			className={ classnames(
-				props.className,
+				 className,
 				`uagb-block-${ block_id }`,
 				'uagb-slider-container'
 			) }
