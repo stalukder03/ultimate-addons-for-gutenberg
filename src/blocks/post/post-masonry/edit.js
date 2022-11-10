@@ -28,6 +28,7 @@ import UAGPresets from '@Components/presets';
 import { getFallbackNumber } from '@Controls/getAttributeFallback';
 import { decodeEntities } from '@wordpress/html-entities';
 import UAGNumberControl from '@Components/number-control';
+import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 import apiFetch from '@wordpress/api-fetch';
 
 import Settings from './settings';
@@ -245,6 +246,7 @@ const UAGBPostMasonry = ( props ) => {
 				} );
 			}
 		}
+		
 		props.setAttributes( { allTaxonomyStore : undefined} );
 	}, [] );
 
@@ -323,7 +325,7 @@ const UAGBPostMasonry = ( props ) => {
 		const blockStyling = styling( props );
 
 		addBlockEditorDynamicStyles( 'uagb-post-masonry-style-' + props.clientId.substr( 0, 8 ), blockStyling );
-
+		
 	}, [ props ] );
 
 	useEffect( () => {
@@ -335,6 +337,13 @@ const UAGBPostMasonry = ( props ) => {
 		scrollBlockToView();
 
 	}, [ props.deviceType ] );
+
+	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
+	useEffect( () => {
+
+		responsiveConditionPreview( props );
+
+	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, props.deviceType ] );
 
 	const togglePreview = () => {
 		setState( { isEditing: ! state.isEditing } );
@@ -385,7 +394,6 @@ const UAGBPostMasonry = ( props ) => {
 		imgPosition,
 		displayPostLink,
 		newTab,
-		ctaText,
 		columns,
 		tcolumns,
 		mcolumns,
@@ -1561,16 +1569,6 @@ const UAGBPostMasonry = ( props ) => {
 							checked={ newTab }
 							onChange={ () =>
 								setAttributes( { newTab: ! newTab } )
-							}
-						/>
-						<TextControl
-							label={ __(
-								'Text',
-								'ultimate-addons-for-gutenberg'
-							) }
-							value={ ctaText }
-							onChange={ ( value ) =>
-								setAttributes( { ctaText: value } )
 							}
 						/>
 						<UAGPresets

@@ -29,6 +29,7 @@ import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
 import { getFallbackNumber } from '@Controls/getAttributeFallback';
 import UAGNumberControl from '@Components/number-control';
+import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 import apiFetch from '@wordpress/api-fetch';
 
 const MAX_POSTS_COLUMNS = 8;
@@ -231,6 +232,7 @@ const UAGBPostCarousel = ( props ) => {
 				props.setAttributes( { btnBorderStyle : borderStyle} );
 			}
 		}
+		
 
 		if( columnGap && columnGap !== 20 ){
 			props.setAttributes( { dotsMarginTop : columnGap} );
@@ -267,7 +269,7 @@ const UAGBPostCarousel = ( props ) => {
 				'; }';
 
 		addBlockEditorDynamicStyles( 'uagb-post-carousel-style-' + props.clientId.substr( 0, 8 ), blockStyling );
-
+		
 	}, [ props ] );
 
 	useEffect( () => {
@@ -287,6 +289,13 @@ const UAGBPostCarousel = ( props ) => {
 		scrollBlockToView();
 
 	}, [ props.deviceType ] );
+
+	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
+	useEffect( () => {
+
+		responsiveConditionPreview( props );
+
+	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, props.deviceType ] );
 
 	const onSelectPostType = ( value ) => {
 		const { setAttributes } = props;
@@ -329,7 +338,6 @@ const UAGBPostCarousel = ( props ) => {
 		imgPosition,
 		displayPostLink,
 		newTab,
-		ctaText,
 		columns,
 		tcolumns,
 		mcolumns,
@@ -1269,16 +1277,6 @@ const UAGBPostCarousel = ( props ) => {
 							checked={ newTab }
 							onChange={ () =>
 								setAttributes( { newTab: ! newTab } )
-							}
-						/>
-						<TextControl
-							label={ __(
-								'Text',
-								'ultimate-addons-for-gutenberg'
-							) }
-							value={ ctaText }
-							onChange={ ( value ) =>
-								setAttributes( { ctaText: value } )
 							}
 						/>
 						<UAGPresets
