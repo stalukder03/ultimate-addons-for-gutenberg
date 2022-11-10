@@ -29,8 +29,7 @@ const Render = ( props ) => {
 		block_id,
 		arrowDots,
 		transitionEffect,
-		swiperInstance,
-		arrowColor
+		swiperInstance
 	} = attributes;
 
 	const getSliderTemplate = useMemo( () => {

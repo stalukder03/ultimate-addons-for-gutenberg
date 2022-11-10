@@ -11,7 +11,6 @@ function styling( props ) {
 
 	const { attributes } = props;
 	let {
-		blockName,
 		backgroundType,
 		backgroundImageDesktop,
 		backgroundImageTablet,

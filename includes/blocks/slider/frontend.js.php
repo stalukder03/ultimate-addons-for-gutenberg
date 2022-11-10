@@ -40,7 +40,7 @@ $slider_options = apply_filters(
 		'navigation' => ( 'dots' === $attr['arrowDots'] ) ? false : array(
 			'nextEl' => '.swiper-button-next',
 			'prevEl' => '.swiper-button-prev',
-		)
+		),
 	),
 	$id
 );

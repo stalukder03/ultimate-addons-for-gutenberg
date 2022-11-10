@@ -2,14 +2,14 @@
 	overflow: hidden;
 	position: relative;
 
-	.swiper-button-next:after, 
-	.swiper-rtl .swiper-button-prev:after,
-	.swiper-button-prev:after, 
-	.swiper-rtl .swiper-button-next:after{
+	.swiper-button-next::after,
+	.swiper-rtl .swiper-button-prev::after,
+	.swiper-button-prev::after,
+	.swiper-rtl .swiper-button-next::after {
 		content: none;
 	}
 
-	.swiper-navigation-icons{
+	.swiper-navigation-icons {
 		width: auto;
 		height: auto;
 		border-width: 0;
@@ -17,7 +17,8 @@
 		margin: 0;
 		transform: translateY(-50%);
 	}
-	.swiper-pagination{
+
+	.swiper-pagination {
 		position: relative;
 	}
 }
