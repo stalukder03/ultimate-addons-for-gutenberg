@@ -41,9 +41,9 @@ const InstagramUnlinkPopup = ( props ) => {
 				method: 'POST',
 				body: formData,
 			} ).then( () => {
+				setPoppedUser( '' );
 			} );
 			setOpenPopup( false );
-			setPoppedUser( '' );
 		};
 
 		return (

@@ -176,6 +176,7 @@ const InstagramUsers = () => {
 			handleInstaLinkUserLable( 'invalid' );
 			setTimeout( () => {
 				handleInstaLinkUserLable();
+				setTempToken( '' );
 				theButton.disabled = false;
 			}, 1000 );
 		} );
@@ -205,6 +206,7 @@ const InstagramUsers = () => {
 				handleInstaLinkUserLable( 'exists' );
 				setTimeout( () => {
 					handleInstaLinkUserLable();
+					setTempToken( '' );
 					theButton.disabled = false;
 				}, 1000 );
 				return;
@@ -238,6 +240,7 @@ const InstagramUsers = () => {
 					handleInstaLinkUserLable( 'success' );
 					setTimeout( () => {
 						handleInstaLinkUserLable();
+						setTempToken( '' );
 						theButton.disabled = false;
 					}, 1000 );
 				}
@@ -246,6 +249,7 @@ const InstagramUsers = () => {
 					handleInstaLinkUserLable( 'failed' );
 					setTimeout( () => {
 						handleInstaLinkUserLable();
+						setTempToken( '' );
 						theButton.disabled = false;
 					}, 1000 );
 				}
