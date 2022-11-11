@@ -242,47 +242,13 @@ const Settings = ( props ) => {
 					title={ __( 'Slider', 'ultimate-addons-for-gutenberg' ) }
 					initialOpen={ false }
 				>
-					<MultiButtonsControl
-						setAttributes={ setAttributes }
-						label={ __(
-							'Pause On',
-							'ultimate-addons-for-gutenberg'
-						) }
-						data={ {
-							value: pauseOn,
-							label: 'pauseOn',
-						} }
-						options={ [
-							{
-								value: 'hover',
-								label: __(
-									'Hover',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-							{
-								value: 'click',
-								label: __(
-									'Click',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-							{
-								value: 'none',
-								label: __(
-									'None',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-						] }
-						help={ __( 'The Preview for This Option Will Work on Front End Only', 'ultimate-addons-for-gutenberg' ) }
-					/>
 					<ToggleControl
 						label={ __( 'Autoplay' ) }
 						checked={ autoplay }
 						onChange={ toggleAutoplay }
 					/>
 					{ autoplay === true && (
+						<>
 						<Range
 							label={ __(
 								'Autoplay Speed (ms)',
@@ -298,6 +264,42 @@ const Settings = ( props ) => {
 							max={ 15000 }
 							displayUnit={ false }
 						/>
+						<MultiButtonsControl
+							setAttributes={ setAttributes }
+							label={ __(
+								'Pause On',
+								'ultimate-addons-for-gutenberg'
+							) }
+							data={ {
+								value: pauseOn,
+								label: 'pauseOn',
+							} }
+							options={ [
+								{
+									value: 'hover',
+									label: __(
+										'Hover',
+										'ultimate-addons-for-gutenberg'
+									),
+								},
+								{
+									value: 'click',
+									label: __(
+										'Click',
+										'ultimate-addons-for-gutenberg'
+									),
+								},
+								{
+									value: 'none',
+									label: __(
+										'None',
+										'ultimate-addons-for-gutenberg'
+									),
+								},
+							] }
+							help={ __( 'The Preview for This Option Will Work on Front End Only', 'ultimate-addons-for-gutenberg' ) }
+						/>
+						</>
 					) }
 					<ToggleControl
 						label={ __(
@@ -1050,50 +1052,52 @@ const Settings = ( props ) => {
 							} }
 							setAttributes={ setAttributes }
 						/>
+						<ResponsiveSlider
+							label={ __( 'Arrow Distance from Edges', 'ultimate-addons-for-gutenberg' ) }
+							data={ {
+								desktop: {
+									value: arrowDistance,
+									label: 'arrowDistance',
+								},
+								tablet: {
+									value: arrowDistanceTablet,
+									label: 'arrowDistanceTablet',
+								},
+								mobile: {
+									value: arrowDistanceMobile,
+									label: 'arrowDistanceMobile',
+								},
+							} }
+							min={ -50 }
+							max={ 50 }
+							displayUnit={ false }
+							setAttributes={ setAttributes }
+						/>
 					</>
 				}
-				<ResponsiveSlider
-					label={ __( 'Arrow Distance from Edges', 'ultimate-addons-for-gutenberg' ) }
-					data={ {
-						desktop: {
-							value: arrowDistance,
-							label: 'arrowDistance',
-						},
-						tablet: {
-							value: arrowDistanceTablet,
-							label: 'arrowDistanceTablet',
-						},
-						mobile: {
-							value: arrowDistanceMobile,
-							label: 'arrowDistanceMobile',
-						},
-					} }
-					min={ -50 }
-					max={ 50 }
-					displayUnit={ false }
-					setAttributes={ setAttributes }
-				/>
-				<ResponsiveSlider
-					label={ __( 'Top Margin for Dots', 'ultimate-addons-for-gutenberg' ) }
-					data={ {
-						desktop: {
-							value: dotsMarginTop,
-							label: 'dotsMarginTop',
-						},
-						tablet: {
-							value: dotsMarginTopTablet,
-							label: 'dotsMarginTopTablet',
-						},
-						mobile: {
-							value: dotsMarginTopMobile,
-							label: 'dotsMarginTopMobile',
-						},
-					} }
-					min={ -50 }
-					max={ 50 }
-					displayUnit={ false }
-					setAttributes={ setAttributes }
-				/>
+				{ 'arrows' !== arrowDots &&
+					<ResponsiveSlider
+						label={ __( 'Top Margin for Dots', 'ultimate-addons-for-gutenberg' ) }
+						data={ {
+							desktop: {
+								value: dotsMarginTop,
+								label: 'dotsMarginTop',
+							},
+							tablet: {
+								value: dotsMarginTopTablet,
+								label: 'dotsMarginTopTablet',
+							},
+							mobile: {
+								value: dotsMarginTopMobile,
+								label: 'dotsMarginTopMobile',
+							},
+						} }
+						min={ -50 }
+						max={ 50 }
+						displayUnit={ false }
+						setAttributes={ setAttributes }
+					/>
+				}
 				<ResponsiveBorder
 					setAttributes={ setAttributes }
 					prefix={ 'slider-arrow' }
