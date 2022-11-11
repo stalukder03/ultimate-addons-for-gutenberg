@@ -355,9 +355,9 @@ const InstagramUsers = () => {
 
 		const renderedUsers = (
 			<>
-				<p className="text-sm text-slate-800">
+				<h4 className="text-sm text-slate-800 font-medium">
 					{ __( 'Linked Users', 'ultimate-addons-for-gutenberg' ) }
-				</p>
+				</h4>
 				<div className="-m-2.5 mt-2.5 w-full flex flex-wrap">
 					{ userMatrix }
 				</div>
