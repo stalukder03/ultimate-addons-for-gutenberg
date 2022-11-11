@@ -1,4 +1,4 @@
-import { InnerBlocks } from '@wordpress/block-editor';
+import { InnerBlocks, useInnerBlocksProps } from '@wordpress/block-editor';
 import React from 'react';
 
 
@@ -18,16 +18,24 @@ const Render = ( props ) => {
 	// Hide slider block.
 	const ALLOWED_BLOCKS = parentBlocks.map( block => block.name ).filter( blockName => [ 'uagb/slider', 'uagb/post-carousel', 'uagb/testimonial' ].indexOf( blockName ) === -1 );
 
+	const innerBlocksProps = useInnerBlocksProps(
+        {
+			className: `swiper-content`,
+			slot: 'container-start'
+		},
+        {
+			allowedBlocks: ALLOWED_BLOCKS,
+			renderAppender: innerBlocks.length > 0
+				? undefined
+				: InnerBlocks.ButtonBlockAppender,
+			templateLock: false
+		}
+    );
+
 	return (
-		<div className='swiper-content'>
-			<InnerBlocks
-				templateLock ={false}
-				allowedBlocks = { ALLOWED_BLOCKS }
-				renderAppender = { innerBlocks.length > 0
-					? undefined
-					: InnerBlocks.ButtonBlockAppender }
-			/>
-		</div>
+		<div
+			{ ...innerBlocksProps }
+		/>
 	);
 };
 

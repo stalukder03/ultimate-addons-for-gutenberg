@@ -72,9 +72,12 @@ const { createHigherOrderComponent } = wp.compose;
 const uagbSlideClass = createHigherOrderComponent( ( BlockListBlock ) => {
     return ( props ) => {
 
+		const deviceType = useDeviceType();
+
 		if( 'uagb/slider-child' === props.name ) {
 
 			const wrapperProps = {
+				className: `uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
 				...props.wrapperProps
 			};
 
