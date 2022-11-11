@@ -148,6 +148,7 @@ const InstagramUsers = () => {
 				method: 'POST',
 				body: formData,
 			} ).then( () => {
+				highlightLinkedUser( userID );
 				setAuthLinkingUser( false );
 			} );
 		} ).catch( () => {
@@ -238,6 +239,7 @@ const InstagramUsers = () => {
 				if ( responseData.success ) {
 					setLinkingUser( false );
 					handleInstaLinkUserLable( 'success' );
+					highlightLinkedUser( userID );
 					setTimeout( () => {
 						handleInstaLinkUserLable();
 						setTempToken( '' );
