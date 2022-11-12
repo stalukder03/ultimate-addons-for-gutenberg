@@ -107,7 +107,7 @@ $container_css = array_merge( $container_css, $container_bg_css_desktop );
 
 $selectors = array(
 	'.uagb-block-' . $id                                   => $container_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-	'.uagb-block-' . $id . '.uagb-slider-container:hover'                        => array(
+	'.uagb-block-' . $id . '.uagb-slider-container:hover'  => array(
 		'border-color' => $attr['sliderBorderHColor'],
 	),
 	'.uagb-block-' . $id . '.uagb-slider-container'        => array(

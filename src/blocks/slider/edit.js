@@ -74,6 +74,19 @@ const uagbSlideClass = createHigherOrderComponent( ( BlockListBlock ) => {
 
 		const deviceType = useDeviceType();
 
+		const onSwiperChildClick = ( e ) => {
+			
+			const closestBlock = e.target.closest( '.block-editor-block-list__block' );
+
+			if( closestBlock && closestBlock.hasAttribute( 'data-block' ) ) {
+				const closestBlockClientId = closestBlock.dataset.block;
+				const isBlockSelected = wp.data.select( 'core/block-editor' ).isBlockSelected( closestBlockClientId );
+				if( ! isBlockSelected ) {
+					wp.data.dispatch( 'core/block-editor' ).selectBlock( closestBlockClientId );
+				}
+			}
+		};
+
 		if( 'uagb/slider-child' === props.name ) {
 
 			const wrapperProps = {
@@ -81,7 +94,9 @@ const uagbSlideClass = createHigherOrderComponent( ( BlockListBlock ) => {
 				...props.wrapperProps
 			};
 
-			return <SwiperSlide><BlockListBlock
+			return <SwiperSlide
+			onClick={( e ) => onSwiperChildClick( e )}
+			><BlockListBlock
 			{ ...props }
 			wrapperProps={ wrapperProps } /></SwiperSlide>;
 		}
