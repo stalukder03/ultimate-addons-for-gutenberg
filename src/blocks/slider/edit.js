@@ -75,10 +75,11 @@ const uagbSlideClass = createHigherOrderComponent( ( BlockListBlock ) => {
 		const deviceType = useDeviceType();
 
 		const onSwiperChildClick = ( e ) => {
-			
+
+			const isBlockAppender = e.target.closest( 'div' ).classList.contains( 'block-editor-inserter' );
 			const closestBlock = e.target.closest( '.block-editor-block-list__block' );
 
-			if( closestBlock && closestBlock.hasAttribute( 'data-block' ) ) {
+			if( !isBlockAppender && closestBlock && closestBlock.hasAttribute( 'data-block' ) ) {
 				const closestBlockClientId = closestBlock.dataset.block;
 				const isBlockSelected = wp.data.select( 'core/block-editor' ).isBlockSelected( closestBlockClientId );
 				if( ! isBlockSelected ) {
