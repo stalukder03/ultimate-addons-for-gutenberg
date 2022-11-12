@@ -737,25 +737,6 @@ const attributes = {
 		type: 'string',
 		default: 'px',
 	},
-	textColor: {
-		type: 'string',
-		UAGCopyPaste: {
-			styleType: 'desc-color'
-		},
-		default: 'inherit',
-	},
-	linkColor: {
-		type: 'string',
-		UAGCopyPaste: {
-			styleType: 'btn-color'
-		},
-	},
-	linkHoverColor: {
-		type: 'string',
-		UAGCopyPaste: {
-			styleType: 'btn-hover-color'
-		},
-	},
 	...inputBorderAttributes,
 	...arrowBorderAttributes
 };

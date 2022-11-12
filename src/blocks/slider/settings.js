@@ -131,10 +131,6 @@ const Settings = ( props ) => {
 		yPositionType,
 		yPositionTypeTablet,
 		yPositionTypeMobile,
-
-		textColor,
-		linkColor,
-		linkHoverColor,
 		arrowSize,
 		arrowSizeTablet,
 		arrowSizeMobile,
@@ -608,79 +604,6 @@ const Settings = ( props ) => {
 		);
 	};
 
-	const linkColorMarkup = (
-		<AdvancedPopColorControl
-			label={ __(
-				'Link Color',
-				'ultimate-addons-for-gutenberg'
-			) }
-			colorValue={ linkColor }
-			data={ {
-				value: linkColor,
-				label: 'linkColor',
-			} }
-			setAttributes={ setAttributes }
-		/>
-	);
-
-	const linkHoverColorMarkup = (
-		<AdvancedPopColorControl
-			label={ __(
-				'Link Hover Color',
-				'ultimate-addons-for-gutenberg'
-			) }
-			colorValue={ linkHoverColor }
-			data={ {
-				value: linkHoverColor,
-				label: 'linkHoverColor',
-			} }
-			setAttributes={ setAttributes }
-		/>
-	);
-
-	const colorSettings = () => {
-		return (
-			<UAGAdvancedPanelBody
-				title={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
-				initialOpen={ false }
-			>
-				<AdvancedPopColorControl
-					label={ __(
-						'Text Color',
-						'ultimate-addons-for-gutenberg'
-					) }
-					colorValue={ textColor }
-					data={ {
-						value: textColor,
-						label: 'textColor',
-					} }
-					setAttributes={ setAttributes }
-				/>
-				<UAGTabsControl
-						tabs={ [
-							{
-								name: 'normal',
-								title: __(
-									'Normal',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-							{
-								name: 'hover',
-								title: __(
-									'Hover',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-						] }
-						normal={ linkColorMarkup }
-						hover={ linkHoverColorMarkup }
-						disableBottomSeparator={ true }
-					/>
-			</UAGAdvancedPanelBody>
-		);
-	}
-
 	const borderSettings = () => {
 		return(
 			<UAGAdvancedPanelBody
@@ -1120,7 +1043,6 @@ const Settings = ( props ) => {
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
 						{ backgroundSettings() }
-						{ colorSettings() }
 						{ borderSettings() }
 						{ boxShadowSettings() }
 						{ spacingSettings() }
