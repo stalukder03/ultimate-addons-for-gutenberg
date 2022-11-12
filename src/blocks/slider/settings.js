@@ -281,7 +281,7 @@ const Settings = ( props ) => {
 								{
 									value: 'click',
 									label: __(
-										'Click',
+										'Interaction',
 										'ultimate-addons-for-gutenberg'
 									),
 								},
