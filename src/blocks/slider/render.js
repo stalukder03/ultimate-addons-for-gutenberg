@@ -94,14 +94,7 @@ const Render = ( props ) => {
 					<Swiper
 						onSwiper={setSwiperInstance}
 						modules={[Navigation, Pagination, Scrollbar,Autoplay,EffectFade, EffectFlip, Manipulation]}
-						autoplay={
-							autoplay ? {
-								delay: autoplaySpeed,
-								disableOnInteraction: true,
-								pauseOnMouseEnter: true
-							}
-							: false 
-						}
+						autoplay={false}
 						speed={transitionSpeed}
 						pagination={ 
 							'arrows' === arrowDots ? false : {
