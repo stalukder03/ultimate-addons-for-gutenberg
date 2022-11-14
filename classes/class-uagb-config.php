@@ -111,8 +111,9 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 					),
 
 					'uagb-slider-js'         => array(
-						'src' => UAGB_URL . 'assets/js/swiper-bundle.min.js',
-						'dep' => array( 'jquery' ),
+						'src'        => UAGB_URL . 'assets/js/swiper-bundle.min.js',
+						'dep'        => array(),
+						'skipEditor' => true,
 					),
 					'uagb-slider-css'        => array(
 						'src' => UAGB_URL . 'assets/css/swiper-bundle.min.css',

@@ -1,17 +1,28 @@
-import { InnerBlocks } from '@wordpress/block-editor';
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 
 import classnames from 'classnames';
+import UAGB_Block_Icons from '@Controls/block-icons';
 
 export default function save( props ) {
 
-	const { block_id } = props.attributes;
+	const {
+		attributes,
+	} = props;
+
+	const {
+		block_id,
+		arrowDots,
+	} = attributes;
+
+	const blockProps = useBlockProps.save();
 	
     return (
 		<div
 			key = { block_id }
 			className={ classnames(
-				props.className,
+				blockProps.className,
 				`uagb-block-${ block_id }`,
+				'uagb-slider-container'
 			) }
 		>			
 			<div className='uagb-slides uagb-swiper'>	
@@ -21,10 +32,28 @@ export default function save( props ) {
 					<InnerBlocks.Content />
 				</div>
 				
-				<div className="swiper-pagination"></div>
+				{  'arrows' !== arrowDots && 
+						<div className="swiper-pagination"></div>
+					}	
 
-				<div className="swiper-button-prev"></div>
-				<div className="swiper-button-next"></div>
+					{ 'dots' !== arrowDots && 
+						<>
+						<button 
+							aria-label="Previous" 
+							data-role="none" 
+							className="swiper-button-prev swiper-navigation-icons"
+						>
+							{ UAGB_Block_Icons.carousel_left }
+						</button>
+						<button 
+							aria-label="Next" 
+							data-role="none" 
+							className="swiper-button-next swiper-navigation-icons"
+						>
+							{ UAGB_Block_Icons.carousel_right }
+						</button>
+						</>
+					}
 			</div>
 		</div>
 	);    

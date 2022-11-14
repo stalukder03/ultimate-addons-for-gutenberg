@@ -5,6 +5,8 @@ import InspectorTab, {
 	UAGTabs,
 } from '@Components/inspector-tabs/InspectorTab.js';
 import Range from '@Components/range/Range.js';
+import ResponsiveSlider from '@Components/responsive-slider';
+import UAGSelectControl from '@Components/select-control';
 import { __ } from '@wordpress/i18n';
 
 import {
@@ -17,10 +19,13 @@ import Background from '@Components/background';
 import ResponsiveBorder from '@Components/responsive-border';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import MultiButtonsControl from '@Components/multi-buttons-control';
-import { ToggleControl, 
+import { 
+	Icon,
+	ToggleControl, 
 	ToolbarGroup,
 	ToolbarButton,
 } from '@wordpress/components';
+import renderCustomIcon from '@Controls/renderCustomIcon';
 import UAGTabsControl from '@Components/tabs';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control';
 import { boxShadowPresets, boxShadowHoverPresets } from './presets';
@@ -33,13 +38,15 @@ const Settings = ( props ) => {
 	const { attributes, setAttributes, deviceType, insertBlock, block } = props;
 	const {
 		block_id,
-		
-		pauseOnHover,
+		swiperInstance,
+	
+		pauseOn,
 		infiniteLoop,
 		transitionSpeed,
 		arrowDots,
 		autoplay,
 		autoplaySpeed,
+		transitionEffect,
 
 		backgroundType,
 		backgroundImageDesktop,
@@ -124,15 +131,20 @@ const Settings = ( props ) => {
 		yPositionType,
 		yPositionTypeTablet,
 		yPositionTypeMobile,
-		backgroundVideoColor,
-		backgroundVideo,
-
-		textColor,
-		linkColor,
-		linkHoverColor,
-
+		arrowSize,
+		arrowSizeTablet,
+		arrowSizeMobile,
+		arrowSizeUnit,
+		arrowColor,
+		arrowBgColor,
+		arrowDistance,
+		arrowDistanceTablet,
+		arrowDistanceMobile,
+		verticalAlign,
+		dotsMarginTop,
+		dotsMarginTopTablet,
+		dotsMarginTopMobile
 	} = attributes;
-
 
 	// This useEffect ensures that background size is set to cover, so as to ensure color takes up entire width and height,
 	// in case bg type was set to Image before and given a custom width and height.
@@ -166,16 +178,12 @@ const Settings = ( props ) => {
 
 							setTimeout( function()  {
 
-								const swiper = document.querySelector( '.uagb-swiper' ).swiper;
-
-								if( swiper ) {
-									swiper.update();
-									swiper.updateSlidesClasses();
-									swiper.slideTo( attributes.slideItem, false, false );
+								if( swiperInstance ) {
+									swiperInstance.update();
+									swiperInstance.slideTo( attributes.slideItem, transitionSpeed, false );
 								}
 
 							}, 100 );
-
 						} }
 					/>
 				</ToolbarGroup>
@@ -183,11 +191,37 @@ const Settings = ( props ) => {
 		);
 	};
 
-	const generalSettings = () => {
+	const verticalAlignOptions = [
+		{
+			value: 'start',
+			tooltip: __( 'Top', 'ultimate-addons-for-gutenberg' ),
+			icon: (
+				<Icon
+					icon={ renderCustomIcon( `flex-column-start` ) }
+				/>
+			),
+		},
+		{
+			value: 'center',
+			tooltip: __( 'Center', 'ultimate-addons-for-gutenberg' ),
+			icon: (
+				<Icon
+					icon={ renderCustomIcon( `flex-column-center` ) }
+				/>
+			),
+		},
+		{
+			value: 'end',
+			tooltip: __( 'Bottom', 'ultimate-addons-for-gutenberg' ),
+			icon: (
+				<Icon
+					icon={ renderCustomIcon( `flex-column-end` ) }
+				/>
+			),
+		},
+	];
 
-		const togglePauseOnHover = () => {
-			setAttributes( { pauseOnHover: ! pauseOnHover } );
-		};
+	const generalSettings = () => {
 	
 		const toggleInfiniteLoop = () => {
 			setAttributes( { infiniteLoop: ! infiniteLoop } );
@@ -199,24 +233,18 @@ const Settings = ( props ) => {
 
 		const sliderSettings = () => {
 			return (
+				<>
 				<UAGAdvancedPanelBody
 					title={ __( 'Slider', 'ultimate-addons-for-gutenberg' ) }
 					initialOpen={ false }
 				>
-					<ToggleControl
-						label={ __(
-							'Pause On Hover',
-							'ultimate-addons-for-gutenberg'
-						) }
-						checked={ pauseOnHover }
-						onChange={ togglePauseOnHover }
-					/>
 					<ToggleControl
 						label={ __( 'Autoplay' ) }
 						checked={ autoplay }
 						onChange={ toggleAutoplay }
 					/>
 					{ autoplay === true && (
+						<>
 						<Range
 							label={ __(
 								'Autoplay Speed (ms)',
@@ -232,6 +260,42 @@ const Settings = ( props ) => {
 							max={ 15000 }
 							displayUnit={ false }
 						/>
+						<MultiButtonsControl
+							setAttributes={ setAttributes }
+							label={ __(
+								'Pause On',
+								'ultimate-addons-for-gutenberg'
+							) }
+							data={ {
+								value: pauseOn,
+								label: 'pauseOn',
+							} }
+							options={ [
+								{
+									value: 'hover',
+									label: __(
+										'Hover',
+										'ultimate-addons-for-gutenberg'
+									),
+								},
+								{
+									value: 'click',
+									label: __(
+										'Interaction',
+										'ultimate-addons-for-gutenberg'
+									),
+								},
+								{
+									value: 'none',
+									label: __(
+										'None',
+										'ultimate-addons-for-gutenberg'
+									),
+								},
+							] }
+							help={ __( "Above setting will only take effect once you are on the live page, and not while you're editing.", 'ultimate-addons-for-gutenberg' ) }
+						/>
+						</>
 					) }
 					<ToggleControl
 						label={ __(
@@ -240,6 +304,44 @@ const Settings = ( props ) => {
 						) }
 						checked={ infiniteLoop }
 						onChange={ toggleInfiniteLoop }
+					/>
+					<UAGSelectControl
+						label={ __(
+							'Transition Effect',
+							'ultimate-addons-for-gutenberg'
+						) }
+						data={ {
+							value: transitionEffect,
+							label: 'transitionEffect',
+						} }
+						onChange={ ( value ) =>
+							setAttributes( { transitionEffect: value } )
+						}
+						setAttributes={ setAttributes }
+						options={ [
+							{
+								value: 'slide',
+								label: __(
+									'Slide',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+							{
+								value: 'fade',
+								label: __(
+									'Fade',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+							{
+								value: 'flip',
+								label: __(
+									'Flip',
+									'ultimate-addons-for-gutenberg'
+								),
+							}
+						] }
+						help={ __( "Above setting will only take effect once you are on the live page, and not while you're editing.", 'ultimate-addons-for-gutenberg' ) }
 					/>
 					<Range
 						label={ __(
@@ -252,6 +354,9 @@ const Settings = ( props ) => {
 							value: transitionSpeed,
 							label: 'transitionSpeed',
 						} }
+						onChange={ ( value ) =>
+							setAttributes( { transitionSpeed: value } )
+						}
 						min={ 100 }
 						max={ 5000 }
 						displayUnit={ false }
@@ -291,6 +396,23 @@ const Settings = ( props ) => {
 						] }
 					/>
 				</UAGAdvancedPanelBody>
+				<UAGAdvancedPanelBody
+					title={ __( 'Content', 'ultimate-addons-for-gutenberg' ) }
+					initialOpen={ false }
+				>
+					<MultiButtonsControl
+						setAttributes={ setAttributes }
+						label={ __( 'Vertical Alignment', 'ultimate-addons-for-gutenberg' ) }
+						data={ {
+							value: verticalAlign,
+							label: 'verticalAlign',
+						} }
+						options={ verticalAlignOptions }
+						showIcons={ true }
+						responsive={ false }
+					/>
+				</UAGAdvancedPanelBody>
+				</>
 			);
 		};
 
@@ -474,95 +596,13 @@ const Settings = ( props ) => {
 						label: 'yPositionTypeMobile'
 					}}
 					backgroundVideoType={ {
-						value: true,
+						value: false,
 					} }
-					backgroundVideo={ {
-						value: backgroundVideo,
-						label: 'backgroundVideo',
-					} }
-					backgroundVideoColor={ {
-						value: backgroundVideoColor,
-						label: 'backgroundVideoColor',
-					} }
-					onOpacityChange = { ( opacity ) => setAttributes( { backgroundVideoOpacity: opacity } ) }
 					{ ...props }
 				/>
 			</UAGAdvancedPanelBody>
 		);
 	};
-
-	const linkColorMarkup = (
-		<AdvancedPopColorControl
-			label={ __(
-				'Link Color',
-				'ultimate-addons-for-gutenberg'
-			) }
-			colorValue={ linkColor }
-			data={ {
-				value: linkColor,
-				label: 'linkColor',
-			} }
-			setAttributes={ setAttributes }
-		/>
-	);
-
-	const linkHoverColorMarkup = (
-		<AdvancedPopColorControl
-			label={ __(
-				'Link Hover Color',
-				'ultimate-addons-for-gutenberg'
-			) }
-			colorValue={ linkHoverColor }
-			data={ {
-				value: linkHoverColor,
-				label: 'linkHoverColor',
-			} }
-			setAttributes={ setAttributes }
-		/>
-	);
-
-	const colorSettings = () => {
-		return (
-			<UAGAdvancedPanelBody
-				title={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
-				initialOpen={ false }
-			>
-				<AdvancedPopColorControl
-					label={ __(
-						'Text Color',
-						'ultimate-addons-for-gutenberg'
-					) }
-					colorValue={ textColor }
-					data={ {
-						value: textColor,
-						label: 'textColor',
-					} }
-					setAttributes={ setAttributes }
-				/>
-				<UAGTabsControl
-						tabs={ [
-							{
-								name: 'normal',
-								title: __(
-									'Normal',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-							{
-								name: 'hover',
-								title: __(
-									'Hover',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-						] }
-						normal={ linkColorMarkup }
-						hover={ linkHoverColorMarkup }
-						disableBottomSeparator={ true }
-					/>
-			</UAGAdvancedPanelBody>
-		);
-	}
 
 	const borderSettings = () => {
 		return(
@@ -572,7 +612,7 @@ const Settings = ( props ) => {
 			>
 				<ResponsiveBorder
 					setAttributes={ setAttributes }
-					prefix={ 'container' }
+					prefix={ 'slider' }
 					attributes={ attributes }
 					deviceType={ deviceType }
 					disableBottomSeparator={ true }
@@ -874,6 +914,125 @@ const Settings = ( props ) => {
 		);
 	}
 
+	const navigationSettings = () => {
+
+		return (
+			<>
+			<UAGAdvancedPanelBody
+				title={ __( 'Arrows and Dots', 'ultimate-addons-for-gutenberg' ) }
+				initialOpen={ false }
+			>
+				<AdvancedPopColorControl
+					label={ __(
+						'Color',
+						'ultimate-addons-for-gutenberg'
+					) }
+					colorValue={ arrowColor }
+					data={ {
+						value: arrowColor,
+						label: 'arrowColor',
+					} }
+					setAttributes={ setAttributes }
+				/>
+				<AdvancedPopColorControl
+					label={ __(
+						'Background Color',
+						'ultimate-addons-for-gutenberg'
+					) }
+					colorValue={ arrowBgColor }
+					data={ {
+						value: arrowBgColor,
+						label: 'arrowBgColor',
+					} }
+					setAttributes={ setAttributes }
+				/>
+				{ 'dots' !== arrowDots &&
+					<>
+					<ResponsiveSlider
+							label={ __(
+								'Size',
+								'ultimate-addons-for-gutenberg'
+							) }
+							data={ {
+								desktop: {
+									value: arrowSize,
+									label: 'arrowSize',
+								},
+								tablet: {
+									value: arrowSizeTablet,
+									label: 'arrowSizeTablet',
+								},
+								mobile: {
+									value: arrowSizeMobile,
+									label: 'arrowSizeMobile',
+								},
+							} }
+							min={ 0 }
+							max={ 100 }
+							unit={ {
+								value: arrowSizeUnit,
+								label: 'arrowSizeUnit',
+							} }
+							setAttributes={ setAttributes }
+						/>
+						<ResponsiveSlider
+							label={ __( 'Arrow Distance from Edges', 'ultimate-addons-for-gutenberg' ) }
+							data={ {
+								desktop: {
+									value: arrowDistance,
+									label: 'arrowDistance',
+								},
+								tablet: {
+									value: arrowDistanceTablet,
+									label: 'arrowDistanceTablet',
+								},
+								mobile: {
+									value: arrowDistanceMobile,
+									label: 'arrowDistanceMobile',
+								},
+							} }
+							min={ -50 }
+							max={ 50 }
+							displayUnit={ false }
+							setAttributes={ setAttributes }
+						/>
+					</>
+				}
+				{ 'arrows' !== arrowDots &&
+					<ResponsiveSlider
+						label={ __( 'Top Margin for Dots', 'ultimate-addons-for-gutenberg' ) }
+						data={ {
+							desktop: {
+								value: dotsMarginTop,
+								label: 'dotsMarginTop',
+							},
+							tablet: {
+								value: dotsMarginTopTablet,
+								label: 'dotsMarginTopTablet',
+							},
+							mobile: {
+								value: dotsMarginTopMobile,
+								label: 'dotsMarginTopMobile',
+							},
+						} }
+						min={ -50 }
+						max={ 50 }
+						displayUnit={ false }
+						setAttributes={ setAttributes }
+					/>
+				}
+				<ResponsiveBorder
+					setAttributes={ setAttributes }
+					prefix={ 'slider-arrow' }
+					attributes={ attributes }
+					deviceType={ deviceType }
+					disableBottomSeparator={ true }
+				/>
+			</UAGAdvancedPanelBody>
+			</>
+		)
+	}
+
 	return (
 		<>
 		{ getBlockControls() }
@@ -884,10 +1043,10 @@ const Settings = ( props ) => {
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
 						{ backgroundSettings() }
-						{ colorSettings() }
 						{ borderSettings() }
 						{ boxShadowSettings() }
 						{ spacingSettings() }
+						{ navigationSettings() }
 					</InspectorTab>
 					<InspectorTab
 						{ ...UAGTabs.advance }

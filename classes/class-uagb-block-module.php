@@ -143,6 +143,9 @@ class UAGB_Block_Module {
 		'slider'             => array(
 			'dir' => 'slider',
 		),
+		'slider-child'       => array(
+			'dir' => 'slider-child',
+		),
 	);
 
 	/**

@@ -4,7 +4,6 @@ import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
 import InspectorTab, {
 	UAGTabs,
 } from '@Components/inspector-tabs/InspectorTab.js';
-import ResponsiveSlider from '@Components/responsive-slider';
 import { __ } from '@wordpress/i18n';
 
 import {
@@ -12,15 +11,12 @@ import {
 } from '@wordpress/block-editor';
 import SpacingControl from '@Components/spacing-control';
 import Background from '@Components/background';
-import ResponsiveBorder from '@Components/responsive-border';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
-import UAGTabsControl from '@Components/tabs';
-import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control';
 
 const Settings = ( props ) => {
 
 	props = props.parentProps;
-	const { attributes, setAttributes, deviceType } = props;
+	const { attributes, setAttributes } = props;
 	const {
 
 		backgroundType,
@@ -75,18 +71,6 @@ const Settings = ( props ) => {
 		marginTypeTablet,
 		marginTypeMobile,
 		marginLink,
-		rowGapDesktop,
-		rowGapTablet,
-		rowGapMobile,
-		rowGapType,
-		rowGapTypeTablet,
-		rowGapTypeMobile,
-		columnGapDesktop,
-		columnGapTablet,
-		columnGapMobile,
-		columnGapType,
-		columnGapTypeTablet,
-		columnGapTypeMobile,
 		backgroundCustomSizeDesktop,
 		backgroundCustomSizeTablet,
 		backgroundCustomSizeMobile,
@@ -105,11 +89,6 @@ const Settings = ( props ) => {
 		yPositionType,
 		yPositionTypeTablet,
 		yPositionTypeMobile,
-		backgroundVideoColor,
-		backgroundVideo,
-		textColor,
-		linkColor,
-		linkHoverColor,
 	} = attributes;
 
 	// This useEffect ensures that background size is set to cover, so as to ensure color takes up entire width and height,
@@ -297,113 +276,13 @@ const Settings = ( props ) => {
 						label: 'yPositionTypeMobile'
 					}}
 					backgroundVideoType={ {
-						value: true,
+						value: false,
 					} }
-					backgroundVideo={ {
-						value: backgroundVideo,
-						label: 'backgroundVideo',
-					} }
-					backgroundVideoColor={ {
-						value: backgroundVideoColor,
-						label: 'backgroundVideoColor',
-					} }
-					onOpacityChange = { ( opacity ) => setAttributes( { backgroundVideoOpacity: opacity } ) }
 					{ ...props }
 				/>
 			</UAGAdvancedPanelBody>
 		);
 	};
-
-	const linkColorMarkup = (
-		<AdvancedPopColorControl
-			label={ __(
-				'Link Color',
-				'ultimate-addons-for-gutenberg'
-			) }
-			colorValue={ linkColor }
-			data={ {
-				value: linkColor,
-				label: 'linkColor',
-			} }
-			setAttributes={ setAttributes }
-		/>
-	);
-
-	const linkHoverColorMarkup = (
-		<AdvancedPopColorControl
-			label={ __(
-				'Link Hover Color',
-				'ultimate-addons-for-gutenberg'
-			) }
-			colorValue={ linkHoverColor }
-			data={ {
-				value: linkHoverColor,
-				label: 'linkHoverColor',
-			} }
-			setAttributes={ setAttributes }
-		/>
-	);
-
-	const colorSettings = () => {
-		return (
-			<UAGAdvancedPanelBody
-				title={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
-				initialOpen={ false }
-			>
-				<AdvancedPopColorControl
-					label={ __(
-						'Text Color',
-						'ultimate-addons-for-gutenberg'
-					) }
-					colorValue={ textColor }
-					data={ {
-						value: textColor,
-						label: 'textColor',
-					} }
-					setAttributes={ setAttributes }
-				/>
-				<UAGTabsControl
-						tabs={ [
-							{
-								name: 'normal',
-								title: __(
-									'Normal',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-							{
-								name: 'hover',
-								title: __(
-									'Hover',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-						] }
-						normal={ linkColorMarkup }
-						hover={ linkHoverColorMarkup }
-						disableBottomSeparator={ true }
-					/>
-			</UAGAdvancedPanelBody>
-		);
-	}
-
-	const borderSettings = () => {
-		return(
-			<UAGAdvancedPanelBody
-				title={ __( 'Border', 'ultimate-addons-for-gutenberg' ) }
-				initialOpen={ false }
-			>
-				<ResponsiveBorder
-					setAttributes={ setAttributes }
-					prefix={ 'container' }
-					attributes={ attributes }
-					deviceType={ deviceType }
-					disableBottomSeparator={ true }
-					disabledBorderTitle= { true }
-				/>
-			</UAGAdvancedPanelBody>
-		);
-	}
 
 	const spacingSettings = () => {
 		return(
@@ -411,104 +290,6 @@ const Settings = ( props ) => {
 				title={ __( 'Spacing', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
-				<ResponsiveSlider
-					label={ __( 'Row Gap', 'ultimate-addons-for-gutenberg' ) }
-					data={ {
-						desktop: {
-							value: rowGapDesktop,
-							label: 'rowGapDesktop',
-							unit:  {
-								value: rowGapType,
-								label: 'rowGapType',
-							}
-						},
-						tablet: {
-							value: rowGapTablet,
-							label: 'rowGapTablet',
-							unit:  {
-								value: rowGapTypeTablet,
-								label: 'rowGapTypeTablet',
-							}
-						},
-						mobile: {
-							value: rowGapMobile,
-							label: 'rowGapMobile',
-							unit: {
-								value: rowGapTypeMobile,
-								label: 'rowGapTypeMobile',
-							},
-						},
-					} }
-					min={ 0 }
-					max={ 200 }
-					units={ [
-						{
-							name: __(
-								'PX',
-								'ultimate-addons-for-gutenberg'
-							),
-							unitValue: 'px',
-						},
-						{
-							name: __( '%', 'ultimate-addons-for-gutenberg' ),
-							unitValue: '%',
-						},
-						{
-							name: __( 'VW', 'ultimate-addons-for-gutenberg' ),
-							unitValue: 'vw',
-						},
-					] }
-					setAttributes={ setAttributes }
-				/>
-				<ResponsiveSlider
-					label={ __( 'Column Gap', 'ultimate	-addons-for-gutenberg' ) }
-					data={ {
-						desktop: {
-							value: columnGapDesktop,
-							label: 'columnGapDesktop',
-							unit:  {
-								value: columnGapType,
-								label: 'columnGapType',
-							}
-						},
-						tablet: {
-							value: columnGapTablet,
-							label: 'columnGapTablet',
-							unit:  {
-								value: columnGapTypeTablet,
-								label: 'columnGapTypeTablet',
-							}
-						},
-						mobile: {
-							value: columnGapMobile,
-							label: 'columnGapMobile',
-							unit:  {
-								value: columnGapTypeMobile,
-								label: 'columnGapTypeMobile',
-							}
-						},
-					} }
-					min={ 0 }
-					max={ 200 }
-					units={ [
-						{
-							name: __(
-								'PX',
-								'ultimate-addons-for-gutenberg'
-							),
-							unitValue: 'px',
-						},
-						{
-							name: __( '%', 'ultimate-addons-for-gutenberg' ),
-							unitValue: '%',
-						},
-						{
-							name: __( 'VW', 'ultimate-addons-for-gutenberg' ),
-							unitValue: 'vw',
-						},
-					] }
-					setAttributes={ setAttributes }
-				/>
 				<SpacingControl
 					{ ...props }
 					label={ __( 'Padding', 'ultimate-addons-for-gutenberg' ) }
@@ -656,11 +437,12 @@ const Settings = ( props ) => {
 	return (
 
 			<InspectorControls>
-				<InspectorTabs>
+				<InspectorTabs
+				defaultTab='style'
+				tabs={[ 'style', 'advance' ]}
+				>
 					<InspectorTab { ...UAGTabs.style }>
 						{ backgroundSettings() }
-						{ colorSettings() }
-						{ borderSettings() }
 						{ spacingSettings() }
 					</InspectorTab>
 					<InspectorTab

@@ -5,26 +5,12 @@
 import generateCSS from '@Controls/generateCSS';
 import generateCSSUnit from '@Controls/generateCSSUnit';
 import generateBackgroundCSS from '@Controls/generateBackgroundCSS';
-import { getFallbackNumber } from '@Controls/getAttributeFallback';
 import generateBorderCSS from '@Controls/generateBorderCSS';
 
 function styling( props ) {
 
-	const blockName = props.name.replace( 'uagb/', '' );
-
 	const { attributes } = props;
 	let {
-		block_id,
-		widthDesktop,
-		widthTablet,
-		widthMobile,
-		widthType,
-		minHeightDesktop,
-		minHeightTablet,
-		minHeightMobile,
-		minHeightType,
-		minHeightTypeTablet,
-		minHeightTypeMobile,
 		backgroundType,
 		backgroundImageDesktop,
 		backgroundImageTablet,
@@ -43,7 +29,8 @@ function styling( props ) {
 		backgroundSizeTablet,
 		backgroundSizeMobile,
 		gradientValue,
-		containerBorderHColor,
+		sliderBorderHColor,
+
 		boxShadowColor,
 		boxShadowHOffset,
 		boxShadowVOffset,
@@ -87,16 +74,6 @@ function styling( props ) {
 		marginType,
 		marginTypeTablet,
 		marginTypeMobile,
-		contentWidth,
-		innerContentWidth,
-		bottomColor,
-		bottomHeight,
-		bottomHeightTablet,
-		bottomWidth,
-		topColor,
-		topHeight,
-		topHeightTablet,
-		topWidth,
 		backgroundCustomSizeDesktop,
 		backgroundCustomSizeTablet,
 		backgroundCustomSizeMobile,
@@ -116,33 +93,31 @@ function styling( props ) {
 		yPositionType,
 		yPositionTypeTablet,
 		yPositionTypeMobile,
-		backgroundVideoOpacity,
-		backgroundVideoColor,
-		innerContentCustomWidthType,
-		backgroundVideo,
 
-		textColor,
-		linkColor,
-		linkHoverColor,
-
-		innerContentCustomWidthDesktop,
-		innerContentCustomWidthTablet,
-		innerContentCustomWidthMobile,
-		innerContentCustomWidthTypeMobile,
-		innerContentCustomWidthTypeTablet,
-
-		overflow,
-
-		widthTypeTablet,
-		widthTypeMobile
+		arrowColor,
+		arrowSize,
+		arrowSizeTablet,
+		arrowSizeMobile,
+		arrowDistance,
+		arrowDistanceTablet,
+		arrowDistanceMobile,
+		arrowBgColor,
+		verticalAlign,
+		dotsMarginTop,
+		dotsMarginTopTablet,
+		dotsMarginTopMobile
 	} = attributes;
 
-	const innerContentCustomWidthDesktopFallback = getFallbackNumber( innerContentCustomWidthDesktop, 'innerContentCustomWidthDesktop', blockName );
-	const widthDesktopFallback = getFallbackNumber( widthDesktop, 'widthDesktop', blockName );
+	const borderCSS = generateBorderCSS( props.attributes, 'slider' );
+	const borderCSSTablet = generateBorderCSS( props.attributes, 'slider', 'tablet' );
+	const borderCSSMobile = generateBorderCSS( props.attributes, 'slider', 'mobile' );
 
-	const borderCSS = generateBorderCSS( props.attributes, 'container' );
-	const borderCSSTablet = generateBorderCSS( props.attributes, 'container', 'tablet' );
-	const borderCSSMobile = generateBorderCSS( props.attributes, 'container', 'mobile' );
+	const arrowBorderCSS = generateBorderCSS( props.attributes, 'slider-arrow' );
+	const arrowBorderCSSTablet = generateBorderCSS( props.attributes, 'slider-arrow', 'tablet' );
+	const arrowBorderCSSMobile = generateBorderCSS( props.attributes, 'slider-arrow', 'mobile' );
+
+	arrowSizeTablet = 'undefined' !== typeof arrowSizeTablet ? arrowSizeTablet : arrowSize;
+	arrowSizeMobile = 'undefined' !== typeof arrowSizeMobile ? arrowSizeMobile : arrowSizeTablet;
 
 	topPaddingTablet = 'undefined' !== typeof topPaddingTablet ? topPaddingTablet : topPaddingDesktop;
 	topPaddingMobile = 'undefined' !== typeof topPaddingMobile ? topPaddingMobile : topPaddingTablet;
@@ -168,60 +143,7 @@ function styling( props ) {
 	rightMarginTablet = 'undefined' !== typeof rightMarginTablet ? rightMarginTablet : rightMarginDesktop;
 	rightMarginMobile = 'undefined' !== typeof rightMarginMobile ? rightMarginMobile : rightMarginTablet;
 
-	const containerFullWidth = '100vw';
-
-	const backgroundVideoOpacityValue = ( backgroundVideoOpacity && 'none' !== overlayType && ( ( 'color' === overlayType &&backgroundVideoColor ) || ( 'gradient' === overlayType && gradientValue ) ) ) ? 1 - backgroundVideoOpacity : 1;
-
-	const videoBackgroundAttributes = {
-        'backgroundType': backgroundType,
-        'backgroundImage': backgroundImageDesktop,
-        'backgroundColor': backgroundColor,
-        'gradientValue': gradientValue,
-        'backgroundRepeat': backgroundRepeatDesktop,
-        'backgroundPosition': backgroundPositionDesktop,
-        'backgroundSize': backgroundSizeDesktop,
-        'backgroundAttachment': backgroundAttachmentDesktop,
-		'backgroundCustomSize' : backgroundCustomSizeDesktop,
-		'backgroundCustomSizeType' : backgroundCustomSizeType,
-		'backgroundImageColor' : backgroundImageColor,
-		'overlayType' : overlayType,
-		'backgroundVideo' : backgroundVideo,
-		'backgroundVideoColor' : backgroundVideoColor,
-    };
-
-	const videoBackgroundCSS = generateBackgroundCSS( videoBackgroundAttributes );
-
-	const selectors = {
-		'.wp-block-uagb-container .block-editor-block-list__block' : {
-			'color': textColor,
-		},
-		'.wp-block-uagb-container .block-editor-block-list__block a' : {
-			'color': linkColor,
-		},
-		'.wp-block-uagb-container .block-editor-block-list__block a:hover' : {
-			'color': linkHoverColor,
-		},
-		' > .uagb-container__shape-top svg' : {
-			'width': 'calc( ' + topWidth + '% + 1.3px )',
-			'height': generateCSSUnit( topHeight, 'px' )
-		},
-		' > .uagb-container__shape-top .uagb-container__shape-fill' : {
-			'fill': topColor,
-		},
-		' > .uagb-container__shape-bottom svg' : {
-			'width': 'calc( ' + bottomWidth + '% + 1.3px )',
-			'height': generateCSSUnit( bottomHeight, 'px' )
-		},
-		' > .uagb-container__shape-bottom .uagb-container__shape-fill' : {
-			'fill': bottomColor,
-		},
-		' .uagb-container__video-wrap' : {
-			...videoBackgroundCSS
-		},
-		' .uagb-container__video-wrap video' : {
-			'opacity': backgroundVideoOpacityValue
-		}
-	};
+	const selectors = {};
 
 	const backgroundAttributesDesktop = {
         'backgroundType': backgroundType,
@@ -236,8 +158,6 @@ function styling( props ) {
 		'backgroundCustomSizeType' : backgroundCustomSizeType,
 		'backgroundImageColor' : backgroundImageColor,
 		'overlayType' : overlayType,
-		'backgroundVideo' : backgroundVideo,
-		'backgroundVideoColor' : backgroundVideoColor,
 		'customPosition': customPosition,
 		'xPosition': xPositionDesktop,
 		'xPositionType': xPositionType,
@@ -273,15 +193,47 @@ function styling( props ) {
 		generateCSSUnit( boxShadowHOffset, 'px' ) + ' ' + generateCSSUnit( boxShadowVOffset, 'px' ) +	' ' +
 		generateCSSUnit( boxShadowBlur, 'px' ) + ' ' +	generateCSSUnit( boxShadowSpread, 'px' ) + ' ' +
 		boxShadowColor + ' ' +	boxShadowPositionCSS,
-		'min-height' : generateCSSUnit( minHeightDesktop, minHeightType ),
-		...borderCSS,
-		'overflow' : overflow
+		...borderCSS
 	}
 
 	selectors['.wp-block'] = containerCSS;
 	selectors['.wp-block:hover'] = {
-		'border-color': containerBorderHColor,
+		'border-color': sliderBorderHColor,
 		'box-shadow': '',
+	};
+
+	selectors[ ' .swiper-navigation-icons svg' ] = {
+		'fill': arrowColor,
+		'height': generateCSSUnit( arrowSize, 'px' ),
+		'width': generateCSSUnit( arrowSize, 'px' ),
+	};
+
+	selectors['.wp-block-uagb-slider .swiper-navigation-icons'] = {
+		'border-color': arrowBorderCSS['border-color'] ? arrowBorderCSS['border-color'] : '#4B4F58'
+	}
+
+	selectors[ ' .swiper-pagination-bullet-active' ] = {
+		'background-color': arrowColor,
+	};
+
+	selectors[ ' .swiper-navigation-icons'] = {
+		'background-color': arrowBgColor,
+		...arrowBorderCSS
+	};
+
+	selectors[' .swiper-button-prev'] = {
+		'left': generateCSSUnit( arrowDistance, 'px' ),
+	};
+	selectors[' .swiper-button-next'] = {
+		'right': generateCSSUnit( arrowDistance, 'px' ),
+	};
+
+	selectors[' .swiper-wrapper'] = {
+		'align-items': verticalAlign,
+	};
+
+	selectors[' .swiper-pagination'] = {
+		'margin-top': generateCSSUnit( dotsMarginTop, 'px' )
 	};
 
 	boxShadowBlurHover = isNaN( boxShadowBlurHover ) ? '' : boxShadowBlurHover;
@@ -294,54 +246,6 @@ function styling( props ) {
 		selectors['.wp-block:hover']['box-shadow'] = generateCSSUnit( boxShadowHOffsetHover, 'px' ) + ' ' + generateCSSUnit( boxShadowVOffsetHover, 'px' ) +	' ' +
 													boxShadowBlurHoverCSSUnit + ' ' +	generateCSSUnit( boxShadowSpreadHover, 'px' ) + ' ' +
 													boxShadowColorHover + ' ' +	boxShadowPositionCSSHover;
-	}
-
-	const widthSelectorsDesktop = {
-		[`.is-root-container > .block-editor-block-list__block .block-editor-block-list__block#block-${ props.clientId } `] : {
-			'max-width' : generateCSSUnit( widthDesktopFallback, widthType ),
-			'width' :'100%'
-		}
-	};
-
-	const widthSelectorsTablet = {
-		[`.is-root-container > .block-editor-block-list__block .uagb-editor-preview-mode-tablet.block-editor-block-list__block#block-${ props.clientId } `] : {
-			'max-width' : generateCSSUnit( widthTablet, widthTypeTablet ),
-			'width' :'100%'
-		},
-	};
-
-	const widthSelectorsMobile = {
-		[`.is-root-container > .block-editor-block-list__block .uagb-editor-preview-mode-mobile.block-editor-block-list__block#block-${ props.clientId } `] : {
-			'max-width' : generateCSSUnit( widthMobile, widthTypeMobile ),
-			'width' :'100%'
-		},
-	};
-
-	if ( 'alignfull' === contentWidth && 'alignwide' === innerContentWidth ) {
-
-		widthSelectorsDesktop[`.is-root-container > .block-editor-block-list__block.wp-block-uagb-container.uagb-block-${ block_id } > .uagb-container-inner-blocks-wrap`] = {
-			'--inner-content-custom-width' : `min(${ containerFullWidth },${ innerContentCustomWidthDesktopFallback }${ innerContentCustomWidthType })`,
-			'max-width' : 'var(--inner-content-custom-width)',
-			'width' : '100%',
-			'margin-left': 'auto',
-			'margin-right': 'auto'
-		};
-
-		widthSelectorsTablet[`.is-root-container > .block-editor-block-list__block.uagb-editor-preview-mode-table.wp-block-uagb-container.uagb-block-${ block_id } > .uagb-container-inner-blocks-wrap`] = {
-			'--inner-content-custom-width' : `min(${ containerFullWidth },${ innerContentCustomWidthTablet || innerContentCustomWidthDesktopFallback }${ innerContentCustomWidthTypeTablet })`,
-			'max-width' : 'var(--inner-content-custom-width)',
-			'width' :'100%',
-			'margin-left': 'auto',
-			'margin-right': 'auto'
-		};
-
-		widthSelectorsMobile[`.is-root-container > .block-editor-block-list__block.uagb-editor-preview-mode-mobile.wp-block-uagb-container.uagb-block-${ block_id } > .uagb-container-inner-blocks-wrap`] = {
-			'--inner-content-custom-width' : `min(${ containerFullWidth },${ innerContentCustomWidthMobile || innerContentCustomWidthTablet || innerContentCustomWidthDesktopFallback }${ innerContentCustomWidthTypeMobile })`,
-			'max-width' : 'var(--inner-content-custom-width)',
-			'width' : '100%',
-			'margin-left': 'auto',
-			'margin-right': 'auto'
-		};
 	}
 
 	const backgroundAttributesTablet = {
@@ -357,8 +261,6 @@ function styling( props ) {
 		'backgroundCustomSizeType' : backgroundCustomSizeType,
 		'backgroundImageColor' : backgroundImageColor,
 		'overlayType' : overlayType,
-		'backgroundVideo' : backgroundVideo,
-		'backgroundVideoColor' : backgroundVideoColor,
 		'customPosition': customPosition,
 		'xPosition': xPositionTablet,
 		'xPositionType': xPositionTypeTablet,
@@ -366,7 +268,7 @@ function styling( props ) {
 		'yPositionType': yPositionTypeTablet,
     };
 
-	const containerBackgroundCSSTablet = generateBackgroundCSS( backgroundAttributesTablet );
+	const sliderBackgroundCSSTablet = generateBackgroundCSS( backgroundAttributesTablet );
 
 	const tablet_selectors = {
 		'.wp-block' : {
@@ -378,16 +280,25 @@ function styling( props ) {
 			'margin-bottom': generateCSSUnit( bottomMarginTablet, marginTypeTablet )  + ' !important',
 			'margin-left': generateCSSUnit( leftMarginTablet, marginTypeTablet ),
 			'margin-right': generateCSSUnit( rightMarginTablet, marginTypeTablet ),
-			'min-height' : generateCSSUnit( minHeightTablet, minHeightTypeTablet ),
-			...containerBackgroundCSSTablet,
+			...sliderBackgroundCSSTablet,
 			...borderCSSTablet
 		},
-		' > .uagb-container__shape-top svg' : {
-			'height': generateCSSUnit( topHeightTablet, 'px' )
+		' .swiper-navigation-icons': {
+			...arrowBorderCSSTablet
 		},
-		' > .uagb-container__shape-bottom svg' : {
-			'height': generateCSSUnit( bottomHeightTablet, 'px' )
+		' .swiper-navigation-icons svg': {
+			'width': generateCSSUnit( arrowSizeTablet, 'px' ),
+			'height': generateCSSUnit( arrowSizeTablet, 'px' )
 		},
+		' .swiper-button-prev': {
+			'left': generateCSSUnit( arrowDistanceTablet, 'px' ),
+		},
+		' .swiper-button-next': {
+			'right': generateCSSUnit( arrowDistanceTablet, 'px' ),
+		},
+		' .swiper-pagination': {
+			'margin-top': generateCSSUnit( dotsMarginTopTablet, 'px' )
+		}
 	};
 
 	const backgroundAttributesMobile = {
@@ -403,8 +314,6 @@ function styling( props ) {
 		'backgroundCustomSizeType' : backgroundCustomSizeType,
 		'backgroundImageColor' : backgroundImageColor,
 		'overlayType' : overlayType,
-		'backgroundVideo' : backgroundVideo,
-		'backgroundVideoColor' : backgroundVideoColor,
 		'customPosition': customPosition,
 		'xPosition': xPositionMobile,
 		'xPositionType': xPositionTypeMobile,
@@ -424,25 +333,30 @@ function styling( props ) {
 			'margin-bottom': generateCSSUnit( bottomMarginMobile, marginTypeMobile )  + ' !important',
 			'margin-left': generateCSSUnit( leftMarginMobile, marginTypeMobile ),
 			'margin-right': generateCSSUnit( rightMarginMobile, marginTypeMobile ),
-			'min-height' : generateCSSUnit( minHeightMobile, minHeightTypeMobile ),
 			...containerBackgroundCSSMobile,
 			...borderCSSMobile
 		},
+		' .swiper-navigation-icons': {
+			...arrowBorderCSSMobile
+		},
+		' .swiper-navigation-icons svg': {
+			'width': generateCSSUnit( arrowSizeMobile, 'px' ),
+			'height': generateCSSUnit( arrowSizeMobile, 'px' )
+		},
+		' .swiper-button-prev': {
+			'left': generateCSSUnit( arrowDistanceMobile, 'px' ),
+		},
+		' .swiper-button-next': {
+			'right': generateCSSUnit( arrowDistanceMobile, 'px' ),
+		},
+		' .swiper-pagination': {
+			'margin-top': generateCSSUnit( dotsMarginTopMobile, 'px' )
+		}
 	};
-
-	if ( 'default' === contentWidth ) {
-		selectors['.block-editor-block-list__block']['max-width'] = generateCSSUnit( widthDesktopFallback, widthType );
-
-		tablet_selectors['.block-editor-block-list__block']['max-width'] = generateCSSUnit( widthTablet, widthTypeTablet );
-
-		mobile_selectors['.block-editor-block-list__block']['max-width'] = generateCSSUnit( widthMobile, widthTypeMobile );
-	}
 
 	const base_selector = `.editor-styles-wrapper #block-${ props.clientId }`;
 
 	let styling_css = generateCSS( selectors, base_selector );
-
-	styling_css += generateCSS( widthSelectorsDesktop, '.editor-styles-wrapper ' );
 
 	styling_css += generateCSS(
 		tablet_selectors,
@@ -452,22 +366,8 @@ function styling( props ) {
 	);
 
 	styling_css += generateCSS(
-		widthSelectorsTablet,
-		'.editor-styles-wrapper ',
-		true,
-		'tablet'
-	);
-
-	styling_css += generateCSS(
 		mobile_selectors,
 		`${ base_selector }.uagb-editor-preview-mode-mobile`,
-		true,
-		'mobile'
-	);
-
-	styling_css += generateCSS(
-		widthSelectorsMobile,
-		'.editor-styles-wrapper ',
 		true,
 		'mobile'
 	);
