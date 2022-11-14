@@ -293,7 +293,7 @@ const Settings = ( props ) => {
 									),
 								},
 							] }
-							help={ __( 'The Preview for This Option Will Work on Front End Only', 'ultimate-addons-for-gutenberg' ) }
+							help={ __( "Above setting will only take effect once you are on the live page, and not while you're editing.", 'ultimate-addons-for-gutenberg' ) }
 						/>
 						</>
 					) }
@@ -341,7 +341,7 @@ const Settings = ( props ) => {
 								),
 							}
 						] }
-						help={ __( 'The Preview for This Option Will Work on Front End Only', 'ultimate-addons-for-gutenberg' ) }
+						help={ __( "Above setting will only take effect once you are on the live page, and not while you're editing.", 'ultimate-addons-for-gutenberg' ) }
 					/>
 					<Range
 						label={ __(

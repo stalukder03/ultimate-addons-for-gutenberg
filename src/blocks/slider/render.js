@@ -23,8 +23,6 @@ const Render = ( props ) => {
 	const {
 		isPreview,
 		transitionSpeed,
-		autoplay,
-		autoplaySpeed,
 		slideItem,
 		block_id,
 		arrowDots,
