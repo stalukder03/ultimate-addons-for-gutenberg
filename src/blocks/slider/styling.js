@@ -143,8 +143,6 @@ function styling( props ) {
 	rightMarginTablet = 'undefined' !== typeof rightMarginTablet ? rightMarginTablet : rightMarginDesktop;
 	rightMarginMobile = 'undefined' !== typeof rightMarginMobile ? rightMarginMobile : rightMarginTablet;
 
-	const selectors = {};
-
 	const backgroundAttributesDesktop = {
         'backgroundType': backgroundType,
         'backgroundImage': backgroundImageDesktop,
@@ -196,44 +194,44 @@ function styling( props ) {
 		...borderCSS
 	}
 
-	selectors['.wp-block'] = containerCSS;
-	selectors['.wp-block:hover'] = {
-		'border-color': sliderBorderHColor,
-		'box-shadow': '',
-	};
-
-	selectors[ ' .swiper-navigation-icons svg' ] = {
-		'fill': arrowColor,
-		'height': generateCSSUnit( arrowSize, 'px' ),
-		'width': generateCSSUnit( arrowSize, 'px' ),
-	};
-
-	selectors['.wp-block-uagb-slider .swiper-navigation-icons'] = {
-		'border-color': arrowBorderCSS['border-color'] ? arrowBorderCSS['border-color'] : '#4B4F58'
-	}
-
-	selectors[ ' .swiper-pagination-bullet-active' ] = {
-		'background-color': arrowColor,
-	};
-
-	selectors[ ' .swiper-navigation-icons'] = {
-		'background-color': arrowBgColor,
-		...arrowBorderCSS
-	};
-
-	selectors[' .swiper-button-prev'] = {
-		'left': generateCSSUnit( arrowDistance, 'px' ),
-	};
-	selectors[' .swiper-button-next'] = {
-		'right': generateCSSUnit( arrowDistance, 'px' ),
-	};
-
-	selectors[' .swiper-wrapper'] = {
-		'align-items': verticalAlign,
-	};
-
-	selectors[' .swiper-pagination'] = {
-		'margin-top': generateCSSUnit( dotsMarginTop, 'px' )
+	const selectors = {
+		'.wp-block' :{
+			...containerCSS,
+		}, 
+		'.wp-block:hover' : {
+			'border-color': sliderBorderHColor,
+			'box-shadow': '',
+		},
+		' .swiper-button-next:after': {
+			'font-size': generateCSSUnit( arrowSize, 'px' )	
+		},
+		' .swiper-button-next': {
+			'color': arrowColor,
+			'right': generateCSSUnit( arrowDistance, 'px' ),
+		},
+		' .swiper-button-prev': {
+			'color': arrowColor,
+			'left': generateCSSUnit( arrowDistance, 'px' ),
+		},
+		' .swiper-button-prev:after' : {
+			'font-size': generateCSSUnit( arrowSize, 'px' ),
+		},
+		'.wp-block-uagb-slider .swiper-navigation-icons': {
+			'border-color': arrowBorderCSS['border-color'] ? arrowBorderCSS['border-color'] : '#4B4F58'
+		},
+		' .swiper-pagination-bullet-active': {
+			'background-color': arrowColor,
+		},
+		' .swiper-navigation-icons': {
+			'background-color': arrowBgColor,
+			...arrowBorderCSS
+		},
+		' .swiper-wrapper':{
+			'align-items': verticalAlign,
+		},
+		' .swiper-pagination':{
+			'margin-top': generateCSSUnit( dotsMarginTop, 'px' )
+		}
 	};
 
 	boxShadowBlurHover = isNaN( boxShadowBlurHover ) ? '' : boxShadowBlurHover;
@@ -286,9 +284,11 @@ function styling( props ) {
 		' .swiper-navigation-icons': {
 			...arrowBorderCSSTablet
 		},
-		' .swiper-navigation-icons svg': {
-			'width': generateCSSUnit( arrowSizeTablet, 'px' ),
-			'height': generateCSSUnit( arrowSizeTablet, 'px' )
+		' .swiper-button-next:after': {
+			'font-size': generateCSSUnit( arrowSizeTablet, 'px' ),
+		},
+		' .swiper-button-prev:after': {
+			'font-size': generateCSSUnit( arrowSizeTablet, 'px' ),
 		},
 		' .swiper-button-prev': {
 			'left': generateCSSUnit( arrowDistanceTablet, 'px' ),
@@ -339,9 +339,11 @@ function styling( props ) {
 		' .swiper-navigation-icons': {
 			...arrowBorderCSSMobile
 		},
-		' .swiper-navigation-icons svg': {
-			'width': generateCSSUnit( arrowSizeMobile, 'px' ),
-			'height': generateCSSUnit( arrowSizeMobile, 'px' )
+		' .swiper-button-next:after': {
+			'font-size': generateCSSUnit( arrowSizeMobile, 'px' ),
+		},
+		' .swiper-button-prev:after': {
+			'font-size': generateCSSUnit( arrowSizeMobile, 'px' ),
 		},
 		' .swiper-button-prev': {
 			'left': generateCSSUnit( arrowDistanceMobile, 'px' ),

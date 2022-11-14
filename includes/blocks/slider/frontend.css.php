@@ -122,19 +122,22 @@ $selectors = array(
 	'.uagb-block-' . $id . '.uagb-slider-container .swiper-navigation-icons' => array(
 		'border-color' => $arrow_border['border-color'] ? $arrow_border['border-color'] : '#4B4F58',
 	),
-	'.uagb-block-' . $id . ' .swiper-navigation-icons svg' => array(
-		'fill'   => esc_attr( $attr['arrowColor'] ),
-		'height' => UAGB_Helper::get_css_value( $attr['arrowSize'], 'px' ),
-		'width'  => UAGB_Helper::get_css_value( $attr['arrowSize'], 'px' ),
+	'.uagb-block-' . $id . ' .swiper-button-next:after' => array(
+		'font-size' => UAGB_Helper::get_css_value( $attr['arrowSize'], 'px' ),
+	),
+	'.uagb-block-' . $id . ' .swiper-button-prev:after' => array(
+		'font-size' => UAGB_Helper::get_css_value( $attr['arrowSize'], 'px' ),
 	),
 	'.uagb-block-' . $id . ' .swiper-pagination-bullet-active' => array(
 		'background-color' => esc_attr( $attr['arrowColor'] ),
 	),
 	'.uagb-block-' . $id . ' .swiper-button-prev'          => array(
-		'left' => UAGB_Helper::get_css_value( $attr['arrowDistance'], 'px' ),
+		'left'  => UAGB_Helper::get_css_value( $attr['arrowDistance'], 'px' ),
+		'color' => esc_attr( $attr['arrowColor'] ), 
 	),
 	'.uagb-block-' . $id . ' .swiper-button-next'          => array(
 		'right' => UAGB_Helper::get_css_value( $attr['arrowDistance'], 'px' ),
+		'color' => esc_attr( $attr['arrowColor'] ),
 	),
 	'.uagb-block-' . $id . ' .swiper-wrapper'              => array(
 		'align-items' => $attr['verticalAlign'],
@@ -199,9 +202,11 @@ $container_tablet_css    = array_merge( $container_tablet_css, $container_bg_css
 $t_selectors = array(
 	'.uagb-block-' . $id                                   => $container_tablet_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 	'.uagb-block-' . $id . ' .swiper-navigation-icons'     => $arrow_border_mobile,
-	'.uagb-block-' . $id . ' .swiper-navigation-icons svg' => array(
-		'height' => UAGB_Helper::get_css_value( $arrow_size_tablet, 'px' ),
-		'width'  => UAGB_Helper::get_css_value( $arrow_size_tablet, 'px' ),
+	'.uagb-block-' . $id . ' .swiper-button-prev:after' => array(
+		'font-size' => UAGB_Helper::get_css_value( $arrow_size_tablet, 'px' )
+	),
+	'.uagb-block-' . $id . ' .swiper-button-next:after' => array(
+		'font-size' => UAGB_Helper::get_css_value( $arrow_size_tablet, 'px' )
 	),
 	'.uagb-block-' . $id . ' .swiper-button-prev'          => array(
 		'left' => UAGB_Helper::get_css_value( $arrow_distance_tablet, 'px' ),
@@ -252,9 +257,11 @@ $container_mobile_css    = array_merge( $container_mobile_css, $container_bg_css
 $m_selectors = array(
 	'.uagb-block-' . $id                                   => $container_mobile_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 	'.uagb-block-' . $id . ' .swiper-navigation-icons'     => $arrow_border_mobile,
-	'.uagb-block-' . $id . ' .swiper-navigation-icons svg' => array(
-		'height' => UAGB_Helper::get_css_value( $arrow_size_mobile, 'px' ),
-		'width'  => UAGB_Helper::get_css_value( $arrow_size_mobile, 'px' ),
+	'.uagb-block-' . $id . ' .swiper-button-prev:after' => array(
+		'font-size' => UAGB_Helper::get_css_value( $arrow_size_mobile, 'px' )
+	),
+	'.uagb-block-' . $id . ' .swiper-button-next:after' => array(
+		'font-size' => UAGB_Helper::get_css_value( $arrow_size_mobile, 'px' )
 	),
 	'.uagb-block-' . $id . ' .swiper-button-prev'          => array(
 		'left' => UAGB_Helper::get_css_value( $arrow_distance_mobile, 'px' ),

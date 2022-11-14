@@ -38,20 +38,8 @@ export default function save( props ) {
 
 					{ 'dots' !== arrowDots && 
 						<>
-						<button 
-							aria-label="Previous" 
-							data-role="none" 
-							className="swiper-button-prev swiper-navigation-icons"
-						>
-							{ UAGB_Block_Icons.carousel_left }
-						</button>
-						<button 
-							aria-label="Next" 
-							data-role="none" 
-							className="swiper-button-next swiper-navigation-icons"
-						>
-							{ UAGB_Block_Icons.carousel_right }
-						</button>
+						<div className="swiper-button-prev"></div>
+						<div className="swiper-button-next"></div>
 						</>
 					}
 			</div>

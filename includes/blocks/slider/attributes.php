@@ -106,7 +106,7 @@ return array_merge(
 		'boxShadowBlurHover'          => '',
 		'boxShadowSpreadHover'        => '',
 		'boxShadowPositionHover'      => 'outset',
-		'arrowSize'                   => 35,
+		'arrowSize'                   => 30,
 		'arrowSizeTablet'             => '',
 		'arrowSizeMobile'             => '',
 		'arrowDistance'               => '',

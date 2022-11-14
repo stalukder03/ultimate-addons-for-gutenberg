@@ -2,13 +2,6 @@
 	overflow: hidden;
 	position: relative;
 
-	.swiper-button-next::after,
-	.swiper-rtl .swiper-button-prev::after,
-	.swiper-button-prev::after,
-	.swiper-rtl .swiper-button-next::after {
-		content: none;
-	}
-
 	.swiper-navigation-icons {
 		width: auto;
 		height: auto;

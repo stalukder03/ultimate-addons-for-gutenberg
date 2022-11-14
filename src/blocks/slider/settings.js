@@ -969,10 +969,7 @@ const Settings = ( props ) => {
 							} }
 							min={ 0 }
 							max={ 100 }
-							unit={ {
-								value: arrowSizeUnit,
-								label: 'arrowSizeUnit',
-							} }
+							displayUnit={ false }
 							setAttributes={ setAttributes }
 						/>
 						<ResponsiveSlider

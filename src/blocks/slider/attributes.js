@@ -62,7 +62,7 @@ const attributes = {
 	},
 	arrowSize: {
 		type: 'number',
-		default: 35,
+		default: 30,
 		UAGCopyPaste: {
 			styleType: 'arrow-size'
 		},

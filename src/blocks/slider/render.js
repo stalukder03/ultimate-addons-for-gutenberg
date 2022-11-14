@@ -101,7 +101,12 @@ const Render = ( props ) => {
 						}
 						loop={false}
 						effect={transitionEffect}
-						navigation={false}
+						navigation={ 
+							'dots' !== arrowDots ? {
+								nextEl: '.swiper-button-next',
+								prevEl: '.swiper-button-prev',
+							} : false 
+						}
 						fadeEffect={{
 							crossFade: true
 						}}
@@ -116,31 +121,12 @@ const Render = ( props ) => {
 						{ ...innerBlocksProps }
 					/>
 					{ 'dots' !== arrowDots &&
-						<>
-						<button
-							type="button"
-							data-role="none"
-							aria-label="Next"
-							tabIndex="0"
-							className='swiper-navigation-icons swiper-button-next'
-							onClick={() => swiperRef.current?.slideNext()}
-						>
-							{ UAGB_Block_Icons.carousel_right }
-						</button>
-						<button
-							type="button"
-							data-role="none"
-							aria-label="Previous"
-							className="swiper-navigation-icons swiper-button-prev"
-							onClick={() => swiperRef.current?.slidePrev()}
-							tabIndex="0"
-						>
-							{ UAGB_Block_Icons.carousel_left }
-						</button>
-						</>
+					<>
+						<div className="swiper-button-prev"></div>
+						<div className="swiper-button-next"></div>
+					</>
 					}
 					</Swiper>
-					
 				</div>
 		</div>
 	);
