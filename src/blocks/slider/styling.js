@@ -216,34 +216,35 @@ function styling( props ) {
 			'right'            : generateCSSUnit( arrowDistance, 'px' ),
 			'width'            : generateCSSUnit( arrowPadding * 2 + arrowSize, 'px' ),
 			'height'           : generateCSSUnit( arrowPadding * 2 + arrowSize, 'px' ),
-			'background-color' : arrowBgColor 
+			'background-color' : arrowBgColor,
+			...arrowBorderCSS 
 		},
 		' .swiper-button-prev': {
 			'color'            : arrowColor,
 			'left'             : generateCSSUnit( arrowDistance, 'px' ),
 			'width'            : generateCSSUnit( arrowPadding * 2 + arrowSize, 'px' ),
 			'height'           : generateCSSUnit( arrowPadding * 2 + arrowSize, 'px' ),
-			'background-color' : arrowBgColor  
+			'background-color' : arrowBgColor,
+			...arrowBorderCSS 
 		},
 		' .swiper-button-prev:after' : {
 			'font-size': generateCSSUnit( arrowSize, 'px' ),
 		},
-		'.wp-block-uagb-slider .swiper-navigation-icons': {
+		'.wp-block-uagb-slider .swiper-pagination': {
 			'border-color': arrowBorderCSS['border-color'] ? arrowBorderCSS['border-color'] : '#4B4F58'
 		},
 		' .swiper-pagination-bullet-active': {
 			'background-color': arrowColor,
 		},
-		' .swiper-navigation-icons': {
+		' .swiper-pagination': {
+			'margin-top': generateCSSUnit( dotsMarginTop, 'px' ),
+		},
+		' .swiper-pagination-bullet': {
 			'background-color': arrowBgColor,
-			...arrowBorderCSS
 		},
 		' .swiper-wrapper':{
 			'align-items': verticalAlign,
 		},
-		' .swiper-pagination':{
-			'margin-top': generateCSSUnit( dotsMarginTop, 'px' )
-		}
 	};
 
 	boxShadowBlurHover = isNaN( boxShadowBlurHover ) ? '' : boxShadowBlurHover;
@@ -293,9 +294,6 @@ function styling( props ) {
 			...sliderBackgroundCSSTablet,
 			...borderCSSTablet
 		},
-		' .swiper-navigation-icons': {
-			...arrowBorderCSSTablet
-		},
 		' .swiper-button-next:after': {
 			'font-size': generateCSSUnit( arrowSizeTablet, 'px' ),
 		},
@@ -306,14 +304,16 @@ function styling( props ) {
 			'left': generateCSSUnit( arrowDistanceTablet, 'px' ),
 			'width'            : generateCSSUnit( arrowPaddingTablet * 2 + arrowSizeTablet, 'px' ),
 			'height'           : generateCSSUnit( arrowPaddingTablet * 2 + arrowSizeTablet, 'px' ),
+			...arrowBorderCSSTablet
 		},
 		' .swiper-button-next': {
 			'right': generateCSSUnit( arrowDistanceTablet, 'px' ),
 			'width'            : generateCSSUnit( arrowPaddingTablet * 2 + arrowSizeTablet, 'px' ),
 			'height'           : generateCSSUnit( arrowPaddingTablet * 2 + arrowSizeTablet, 'px' ),
+			...arrowBorderCSSTablet
 		},
 		' .swiper-pagination': {
-			'margin-top': generateCSSUnit( dotsMarginTopTablet, 'px' )
+			'margin-top': generateCSSUnit( dotsMarginTopTablet, 'px' ),
 		}
 	};
 
@@ -352,9 +352,6 @@ function styling( props ) {
 			...containerBackgroundCSSMobile,
 			...borderCSSMobile
 		},
-		' .swiper-navigation-icons': {
-			...arrowBorderCSSMobile
-		},
 		' .swiper-button-next:after': {
 			'font-size': generateCSSUnit( arrowSizeMobile, 'px' ),
 		},
@@ -364,15 +361,17 @@ function styling( props ) {
 		' .swiper-button-prev': {
 			'left': generateCSSUnit( arrowDistanceMobile, 'px' ),
 			'width'            : generateCSSUnit( arrowPaddingMobile * 2 + arrowSizeMobile, 'px' ),
-			'height'           : generateCSSUnit( arrowPaddingMobile * 2 + arrowSizeMobile, 'px' )
+			'height'           : generateCSSUnit( arrowPaddingMobile * 2 + arrowSizeMobile, 'px' ),
+			...arrowBorderCSSMobile
 		},
 		' .swiper-button-next': {
 			'right': generateCSSUnit( arrowDistanceMobile, 'px' ),
 			'width'            : generateCSSUnit( arrowPaddingMobile * 2 + arrowSizeMobile, 'px' ),
-			'height'           : generateCSSUnit( arrowPaddingMobile * 2 + arrowSizeMobile, 'px' )
+			'height'           : generateCSSUnit( arrowPaddingMobile * 2 + arrowSizeMobile, 'px' ),
+			...arrowBorderCSSMobile
 		},
 		' .swiper-pagination': {
-			'margin-top': generateCSSUnit( dotsMarginTopMobile, 'px' )
+			'margin-top': generateCSSUnit( dotsMarginTopMobile, 'px' ),
 		}
 	};
 
