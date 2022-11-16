@@ -105,6 +105,8 @@ $container_css = array_merge(
 );
 $container_css = array_merge( $container_css, $container_bg_css_desktop );
 
+error_log( print_r( $arrow_border, true ) );
+
 $selectors = array(
 	'.uagb-block-' . $id                                   => $container_css, // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 	'.uagb-block-' . $id . '.uagb-slider-container:hover'  => array(
@@ -112,12 +114,6 @@ $selectors = array(
 	),
 	'.uagb-block-' . $id . '.uagb-slider-container'        => array(
 		'border-color' => $border['border-color'] ? $border['border-color'] : '#4B4F58',
-	),
-	'.uagb-block-' . $id . ' .swiper-navigation-icons'     => array_merge(
-		array(
-			'background-color' => esc_attr( $attr['arrowBgColor'] ),
-		),
-		$arrow_border
 	),
 	'.uagb-block-' . $id . '.uagb-slider-container .swiper-navigation-icons' => array(
 		'border-color' => $arrow_border['border-color'] ? $arrow_border['border-color'] : '#4B4F58',
@@ -134,10 +130,14 @@ $selectors = array(
 	'.uagb-block-' . $id . ' .swiper-button-prev'          => array(
 		'left'  => UAGB_Helper::get_css_value( $attr['arrowDistance'], 'px' ),
 		'color' => esc_attr( $attr['arrowColor'] ), 
+		'background-color' => esc_attr( $attr['arrowBgColor'] ),
+		$arrow_border
 	),
 	'.uagb-block-' . $id . ' .swiper-button-next'          => array(
 		'right' => UAGB_Helper::get_css_value( $attr['arrowDistance'], 'px' ),
 		'color' => esc_attr( $attr['arrowColor'] ),
+		'background-color' => esc_attr( $attr['arrowBgColor'] ),
+		$arrow_border
 	),
 	'.uagb-block-' . $id . ' .swiper-wrapper'              => array(
 		'align-items' => $attr['verticalAlign'],
