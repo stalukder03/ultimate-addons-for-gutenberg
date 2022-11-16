@@ -86,6 +86,25 @@ const attributes = {
 			styleType: 'arrow-size-unit'
 		}
 	},
+	arrowPadding: {
+		type: 'number',
+		default: 20,
+		UAGCopyPaste: {
+			styleType: 'arrow-Padding'
+		},
+	},
+	arrowPaddingTablet: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'arrow-Padding-tablet'
+		},
+	},
+	arrowPaddingMobile: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'arrow-Padding-mobile'
+		},
+	},
 	arrowDistance: {
 		type    : 'number',
 		UAGCopyPaste: {

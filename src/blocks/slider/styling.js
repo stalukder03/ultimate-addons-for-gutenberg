@@ -101,6 +101,9 @@ function styling( props ) {
 		arrowDistance,
 		arrowDistanceTablet,
 		arrowDistanceMobile,
+		arrowPadding,
+		arrowPaddingTablet,
+		arrowPaddingMobile,
 		arrowBgColor,
 		verticalAlign,
 		dotsMarginTop,
@@ -142,6 +145,9 @@ function styling( props ) {
 
 	rightMarginTablet = 'undefined' !== typeof rightMarginTablet ? rightMarginTablet : rightMarginDesktop;
 	rightMarginMobile = 'undefined' !== typeof rightMarginMobile ? rightMarginMobile : rightMarginTablet;
+
+	arrowPaddingTablet = 'undefined' !== typeof arrowPaddingTablet ? arrowPaddingTablet : arrowPadding;
+	arrowPaddingMobile = 'undefined' !== typeof arrowPaddingMobile ? arrowPaddingMobile : arrowPaddingTablet;
 
 	const backgroundAttributesDesktop = {
         'backgroundType': backgroundType,
@@ -206,12 +212,18 @@ function styling( props ) {
 			'font-size': generateCSSUnit( arrowSize, 'px' )	
 		},
 		' .swiper-button-next': {
-			'color': arrowColor,
-			'right': generateCSSUnit( arrowDistance, 'px' ),
+			'color'            : arrowColor,
+			'right'            : generateCSSUnit( arrowDistance, 'px' ),
+			'width'            : generateCSSUnit( arrowPadding * 2 + arrowSize, 'px' ),
+			'height'           : generateCSSUnit( arrowPadding * 2 + arrowSize, 'px' ),
+			'background-color' : arrowBgColor 
 		},
 		' .swiper-button-prev': {
-			'color': arrowColor,
-			'left': generateCSSUnit( arrowDistance, 'px' ),
+			'color'            : arrowColor,
+			'right'            : generateCSSUnit( arrowDistance, 'px' ),
+			'width'            : generateCSSUnit( arrowPadding * 2 + arrowSize, 'px' ),
+			'height'           : generateCSSUnit( arrowPadding * 2 + arrowSize, 'px' ),
+			'background-color' : arrowBgColor  
 		},
 		' .swiper-button-prev:after' : {
 			'font-size': generateCSSUnit( arrowSize, 'px' ),
@@ -292,9 +304,13 @@ function styling( props ) {
 		},
 		' .swiper-button-prev': {
 			'left': generateCSSUnit( arrowDistanceTablet, 'px' ),
+			'width'            : generateCSSUnit( arrowPaddingTablet * 2 + arrowSizeTablet, 'px' ),
+			'height'           : generateCSSUnit( arrowPaddingTablet * 2 + arrowSizeTablet, 'px' ),
 		},
 		' .swiper-button-next': {
 			'right': generateCSSUnit( arrowDistanceTablet, 'px' ),
+			'width'            : generateCSSUnit( arrowPaddingTablet * 2 + arrowSizeTablet, 'px' ),
+			'height'           : generateCSSUnit( arrowPaddingTablet * 2 + arrowSizeTablet, 'px' ),
 		},
 		' .swiper-pagination': {
 			'margin-top': generateCSSUnit( dotsMarginTopTablet, 'px' )
@@ -347,9 +363,13 @@ function styling( props ) {
 		},
 		' .swiper-button-prev': {
 			'left': generateCSSUnit( arrowDistanceMobile, 'px' ),
+			'width'            : generateCSSUnit( arrowPaddingMobile * 2 + arrowSizeMobile, 'px' ),
+			'height'           : generateCSSUnit( arrowPaddingMobile * 2 + arrowSizeMobile, 'px' )
 		},
 		' .swiper-button-next': {
 			'right': generateCSSUnit( arrowDistanceMobile, 'px' ),
+			'width'            : generateCSSUnit( arrowPaddingMobile * 2 + arrowSizeMobile, 'px' ),
+			'height'           : generateCSSUnit( arrowPaddingMobile * 2 + arrowSizeMobile, 'px' )
 		},
 		' .swiper-pagination': {
 			'margin-top': generateCSSUnit( dotsMarginTopMobile, 'px' )

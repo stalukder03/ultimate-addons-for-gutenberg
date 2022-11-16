@@ -99,6 +99,7 @@ const Render = ( props ) => {
 								clickable: true,
 							}
 						}
+						allowTouchMove={false}
 						loop={false}
 						effect={transitionEffect}
 						navigation={ 
