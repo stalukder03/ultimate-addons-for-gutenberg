@@ -56,10 +56,6 @@ const attributes = {
 		type: 'number',
 		default: 1200,
 	},
-	arrowDots: {
-		type: 'string',
-		default: 'arrows_dots',
-	},
 	displayArrows: {
 		type: 'boolean',
 		default: true,
