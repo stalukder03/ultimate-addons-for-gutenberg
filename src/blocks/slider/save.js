@@ -1,7 +1,6 @@
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 
 import classnames from 'classnames';
-import UAGB_Block_Icons from '@Controls/block-icons';
 
 export default function save( props ) {
 
