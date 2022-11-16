@@ -167,7 +167,7 @@ const attributes = {
 	},
 	arrowBgColor: {
 		type    : 'string',
-		default : '#FFF',
+		default : '',
 		UAGCopyPaste: {
 			styleType: 'arrow-bg-color'
 		},

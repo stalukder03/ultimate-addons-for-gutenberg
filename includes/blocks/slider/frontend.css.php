@@ -132,7 +132,7 @@ $selectors = array(
 		'font-size' => UAGB_Helper::get_css_value( $attr['arrowSize'], 'px' ),
 	),
 	'.uagb-block-' . $id . ' .swiper-pagination-bullet'   => array(
-		'background-color' => esc_attr( $attr['arrowBgColor'] ),
+		'background-color' => esc_attr( '' !== $attr['arrowBgColor'] ? $attr['arrowBgColor'] : $attr['arrowColor'] ),
 	),
 	'.uagb-block-' . $id . ' .swiper-button-prev'         => array(
 		'left' => UAGB_Helper::get_css_value( $attr['arrowDistance'], 'px' ),

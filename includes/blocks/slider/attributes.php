@@ -116,7 +116,7 @@ return array_merge(
 		'arrowPaddingTablet'          => '',
 		'arrowPaddingMobile'          => '',
 		'arrowColor'                  => '#000',
-		'arrowBgColor'                => '#FFF',
+		'arrowBgColor'                => '',
 		'verticalAlign'               => 'center',
 		'dotsMarginTop'               => '10',
 		'dotsMarginTopTablet'         => '',

@@ -234,7 +234,7 @@ function styling( props ) {
 			'margin-top': generateCSSUnit( dotsMarginTop, 'px' ),
 		},
 		' .swiper-pagination-bullet': {
-			'background-color': arrowBgColor,
+			'background-color': ( '' === arrowBgColor || 'undefined' === typeof arrowBgColor ) ? arrowColor : arrowBgColor,
 		},
 		' .swiper-wrapper':{
 			'align-items': verticalAlign,
