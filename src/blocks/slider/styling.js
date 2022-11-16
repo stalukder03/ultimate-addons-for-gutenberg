@@ -216,6 +216,7 @@ function styling( props ) {
 			'right'            : generateCSSUnit( arrowDistance, 'px' ),
 			'width'            : generateCSSUnit( arrowPadding * 2 + arrowSize, 'px' ),
 			'height'           : generateCSSUnit( arrowPadding * 2 + arrowSize, 'px' ),
+			'line-height'      : generateCSSUnit( arrowPadding * 2 + arrowSize, 'px' ),
 			'background-color' : arrowBgColor,
 			...arrowBorderCSS 
 		},
@@ -224,6 +225,7 @@ function styling( props ) {
 			'left'             : generateCSSUnit( arrowDistance, 'px' ),
 			'width'            : generateCSSUnit( arrowPadding * 2 + arrowSize, 'px' ),
 			'height'           : generateCSSUnit( arrowPadding * 2 + arrowSize, 'px' ),
+			'line-height'      : generateCSSUnit( arrowPadding * 2 + arrowSize, 'px' ),
 			'background-color' : arrowBgColor,
 			...arrowBorderCSS 
 		},
@@ -298,12 +300,14 @@ function styling( props ) {
 			'left': generateCSSUnit( arrowDistanceTablet, 'px' ),
 			'width'            : generateCSSUnit( arrowPaddingTablet * 2 + arrowSizeTablet, 'px' ),
 			'height'           : generateCSSUnit( arrowPaddingTablet * 2 + arrowSizeTablet, 'px' ),
+			'line-height'      : generateCSSUnit( arrowPaddingTablet * 2 + arrowSizeTablet, 'px' ),
 			...arrowBorderCSSTablet
 		},
 		' .swiper-button-next': {
 			'right': generateCSSUnit( arrowDistanceTablet, 'px' ),
 			'width'            : generateCSSUnit( arrowPaddingTablet * 2 + arrowSizeTablet, 'px' ),
 			'height'           : generateCSSUnit( arrowPaddingTablet * 2 + arrowSizeTablet, 'px' ),
+			'line-height'      : generateCSSUnit( arrowPaddingTablet * 2 + arrowSizeTablet, 'px' ),
 			...arrowBorderCSSTablet
 		},
 		' .swiper-pagination': {
@@ -356,12 +360,14 @@ function styling( props ) {
 			'left': generateCSSUnit( arrowDistanceMobile, 'px' ),
 			'width'            : generateCSSUnit( arrowPaddingMobile * 2 + arrowSizeMobile, 'px' ),
 			'height'           : generateCSSUnit( arrowPaddingMobile * 2 + arrowSizeMobile, 'px' ),
+			'line-height'      : generateCSSUnit( arrowPaddingMobile * 2 + arrowSizeMobile, 'px' ),
 			...arrowBorderCSSMobile
 		},
 		' .swiper-button-next': {
 			'right': generateCSSUnit( arrowDistanceMobile, 'px' ),
 			'width'            : generateCSSUnit( arrowPaddingMobile * 2 + arrowSizeMobile, 'px' ),
 			'height'           : generateCSSUnit( arrowPaddingMobile * 2 + arrowSizeMobile, 'px' ),
+			'line-height'      : generateCSSUnit( arrowPaddingMobile * 2 + arrowSizeMobile, 'px' ),
 			...arrowBorderCSSMobile
 		},
 		' .swiper-pagination': {

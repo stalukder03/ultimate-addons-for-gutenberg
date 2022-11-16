@@ -113,6 +113,7 @@ $arrow_style = array(
 	'background-color' => esc_attr( $attr['arrowBgColor'] ),
 	'width'            => UAGB_Helper::get_css_value( ( $attr['arrowPadding'] * 2 ) + $attr['arrowSize'], 'px' ),
 	'height'           => UAGB_Helper::get_css_value( ( $attr['arrowPadding'] * 2 ) + $attr['arrowSize'], 'px' ),
+	'line-height'      => UAGB_Helper::get_css_value( ( $attr['arrowPadding'] * 2 ) + $attr['arrowSize'], 'px' ),
 );
 
 $arrow_style = array_merge( $arrow_border, $arrow_style );
@@ -203,8 +204,9 @@ $container_tablet_css    = array_merge(
 $container_tablet_css    = array_merge( $container_tablet_css, $container_bg_css_tablet );
 
 $arrow_style_tablet = array(
-	'width'  => UAGB_Helper::get_css_value( ( $arrow_padding_tablet * 2 ) + $arrow_size_tablet, 'px' ),
-	'height' => UAGB_Helper::get_css_value( ( $arrow_padding_tablet * 2 ) + $arrow_size_tablet, 'px' ),
+	'width'       => UAGB_Helper::get_css_value( ( $arrow_padding_tablet * 2 ) + $arrow_size_tablet, 'px' ),
+	'height'      => UAGB_Helper::get_css_value( ( $arrow_padding_tablet * 2 ) + $arrow_size_tablet, 'px' ),
+	'line-height' => UAGB_Helper::get_css_value( ( $arrow_padding_tablet * 2 ) + $arrow_size_tablet, 'px' ),
 );
 
 $arrow_style_tablet = array_merge( $arrow_border_tablet, $arrow_style_tablet );
@@ -266,8 +268,9 @@ $container_mobile_css    = array_merge(
 $container_mobile_css    = array_merge( $container_mobile_css, $container_bg_css_mobile );
 
 $arrow_style_mobile = array(
-	'width'  => UAGB_Helper::get_css_value( ( $arrow_padding_mobile * 2 ) + $arrow_size_mobile, 'px' ),
-	'height' => UAGB_Helper::get_css_value( ( $arrow_padding_mobile * 2 ) + $arrow_size_mobile, 'px' ),
+	'width'       => UAGB_Helper::get_css_value( ( $arrow_padding_mobile * 2 ) + $arrow_size_mobile, 'px' ),
+	'height'      => UAGB_Helper::get_css_value( ( $arrow_padding_mobile * 2 ) + $arrow_size_mobile, 'px' ),
+	'line-height' => UAGB_Helper::get_css_value( ( $arrow_padding_mobile * 2 ) + $arrow_size_mobile, 'px' ),
 );
 
 $arrow_style_mobile = array_merge( $arrow_border_mobile, $arrow_style_mobile );
