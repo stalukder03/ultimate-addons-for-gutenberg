@@ -32,20 +32,22 @@ $slider_options = apply_filters(
 		'fadeEffect' => array(
 			'crossFade' => true,
 		),
-		'pagination' => ( 'arrows' === $attr['arrowDots'] ) ? false : array(
+		'pagination' => (bool) $attr['displayDots'] ? array(
 			'el'          => '.swiper-pagination',
 			'clickable'   => true,
 			'hideOnClick' => false,
-		),
-		'navigation' => ( 'dots' === $attr['arrowDots'] ) ? false : array(
+		) : false,
+		'navigation' => (bool) $attr['displayArrows'] ? array(
 			'nextEl' => '.swiper-button-next',
 			'prevEl' => '.swiper-button-prev',
-		),
+		) : false,
 	),
 	$id
 );
 
 $settings = wp_json_encode( $slider_options );
+
+error_log( $settings );
 
 ob_start();
 ?>

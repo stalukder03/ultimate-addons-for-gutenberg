@@ -3,7 +3,6 @@ import React, { useMemo, useEffect, useRef } from 'react';
 import { select } from '@wordpress/data';
 const ALLOWED_BLOCKS = [ 'uagb/slider-child' ];
 import { useDeviceType } from '@Controls/getPreviewType';
-import UAGB_Block_Icons from '@Controls/block-icons';
 
 import { Navigation, Pagination, Scrollbar, Autoplay, EffectFade, Manipulation, EffectFlip } from 'swiper';
 
@@ -25,9 +24,10 @@ const Render = ( props ) => {
 		transitionSpeed,
 		slideItem,
 		block_id,
-		arrowDots,
 		transitionEffect,
-		swiperInstance
+		swiperInstance,
+		displayArrows,
+		displayDots
 	} = attributes;
 
 	const getSliderTemplate = useMemo( () => {
@@ -95,14 +95,14 @@ const Render = ( props ) => {
 						autoplay={false}
 						speed={transitionSpeed}
 						pagination={ 
-							'arrows' === arrowDots ? false : {
+							! displayDots ? false : {
 								clickable: true,
 							}
 						}
 						loop={false}
 						effect={transitionEffect}
 						navigation={ 
-							'dots' !== arrowDots ? {
+							displayArrows ? {
 								nextEl: '.swiper-button-next',
 								prevEl: '.swiper-button-prev',
 							} : false 
@@ -120,7 +120,7 @@ const Render = ( props ) => {
 					<div 
 						{ ...innerBlocksProps }
 					/>
-					{ 'dots' !== arrowDots &&
+					{ displayArrows &&
 					<>
 						<div className="swiper-button-prev"></div>
 						<div className="swiper-button-next"></div>
