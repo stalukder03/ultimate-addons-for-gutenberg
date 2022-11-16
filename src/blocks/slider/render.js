@@ -3,7 +3,6 @@ import React, { useMemo, useEffect, useRef } from 'react';
 import { select } from '@wordpress/data';
 const ALLOWED_BLOCKS = [ 'uagb/slider-child' ];
 import { useDeviceType } from '@Controls/getPreviewType';
-import UAGB_Block_Icons from '@Controls/block-icons';
 
 import { Navigation, Pagination, Scrollbar, Autoplay, EffectFade, Manipulation, EffectFlip } from 'swiper';
 

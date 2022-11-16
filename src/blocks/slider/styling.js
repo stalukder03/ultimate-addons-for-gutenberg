@@ -230,12 +230,6 @@ function styling( props ) {
 		' .swiper-button-prev:after' : {
 			'font-size': generateCSSUnit( arrowSize, 'px' ),
 		},
-		'.wp-block-uagb-slider .swiper-pagination': {
-			'border-color': arrowBorderCSS['border-color'] ? arrowBorderCSS['border-color'] : '#4B4F58'
-		},
-		' .swiper-pagination-bullet-active': {
-			'background-color': arrowColor,
-		},
 		' .swiper-pagination': {
 			'margin-top': generateCSSUnit( dotsMarginTop, 'px' ),
 		},
