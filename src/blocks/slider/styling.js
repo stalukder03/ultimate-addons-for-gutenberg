@@ -220,7 +220,7 @@ function styling( props ) {
 		},
 		' .swiper-button-prev': {
 			'color'            : arrowColor,
-			'right'            : generateCSSUnit( arrowDistance, 'px' ),
+			'left'             : generateCSSUnit( arrowDistance, 'px' ),
 			'width'            : generateCSSUnit( arrowPadding * 2 + arrowSize, 'px' ),
 			'height'           : generateCSSUnit( arrowPadding * 2 + arrowSize, 'px' ),
 			'background-color' : arrowBgColor  
