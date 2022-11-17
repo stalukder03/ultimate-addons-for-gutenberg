@@ -3,7 +3,6 @@ import React, { useMemo, useEffect, useRef } from 'react';
 import { select } from '@wordpress/data';
 const ALLOWED_BLOCKS = [ 'uagb/slider-child' ];
 import { useDeviceType } from '@Controls/getPreviewType';
-import UAGB_Block_Icons from '@Controls/block-icons';
 
 import { Navigation, Pagination, Scrollbar, Autoplay, EffectFade, Manipulation, EffectFlip } from 'swiper';
 
@@ -45,7 +44,7 @@ const Render = ( props ) => {
 	const hasChildren = 0 !== select( 'core/block-editor' ).getBlocks( clientId ).length;
 	const hasChildrenClass = hasChildren ? 'uagb-slider-has-children' : '';
 	const blockProps = useBlockProps( {
-		className: `uagb-block-${ block_id } ${hasChildrenClass} uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
+		className: `uagb-block-${ block_id } ${hasChildrenClass} uagb-slider-editor-wrap uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
 	} );
 
     const innerBlocksProps = useInnerBlocksProps(
@@ -88,46 +87,45 @@ const Render = ( props ) => {
 			{ ...blockProps }
 			key = { block_id }
 		>
-				<div className='uagb-slides uagb-swiper'>
-					<Swiper
-						onSwiper={setSwiperInstance}
-						modules={[Navigation, Pagination, Scrollbar,Autoplay,EffectFade, EffectFlip, Manipulation]}
-						autoplay={false}
-						speed={transitionSpeed}
-						pagination={ 
-							'arrows' === arrowDots ? false : {
-								clickable: true,
-							}
-						}
-						loop={false}
-						effect={transitionEffect}
-						navigation={ 
-							'dots' !== arrowDots ? {
-								nextEl: '.swiper-button-next',
-								prevEl: '.swiper-button-prev',
-							} : false 
-						}
-						fadeEffect={{
-							crossFade: true
-						}}
-						flipEffect={{
-							slideShadows: false,
-						}}
-						onBeforeInit={( swiper ) => {
-							swiperRef.current = swiper;
-						}}
-					>
-					<div 
-						{ ...innerBlocksProps }
-					/>
-					{ 'dots' !== arrowDots &&
-					<>
-						<div className="swiper-button-prev"></div>
-						<div className="swiper-button-next"></div>
-					</>
+			<Swiper
+				onSwiper={setSwiperInstance}
+				modules={[Navigation, Pagination, Scrollbar,Autoplay,EffectFade, EffectFlip, Manipulation]}
+				autoplay={false}
+				speed={transitionSpeed}
+				pagination={ 
+					'arrows' === arrowDots ? false : {
+						clickable: true,
 					}
-					</Swiper>
-				</div>
+				}
+				allowTouchMove={false}
+				loop={false}
+				effect={transitionEffect}
+				navigation={ 
+					'dots' !== arrowDots ? {
+						nextEl: '.swiper-button-next',
+						prevEl: '.swiper-button-prev',
+					} : false 
+				}
+				fadeEffect={{
+					crossFade: true
+				}}
+				flipEffect={{
+					slideShadows: false,
+				}}
+				onBeforeInit={( swiper ) => {
+					swiperRef.current = swiper;
+				}}
+			>
+			<div 
+				{ ...innerBlocksProps }
+			/>
+			</Swiper>
+			{ 'dots' !== arrowDots &&
+			<>
+				<div className="swiper-button-prev"></div>
+				<div className="swiper-button-next"></div>
+			</>
+			}
 		</div>
 	);
 };

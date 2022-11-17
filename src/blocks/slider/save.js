@@ -1,7 +1,6 @@
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 
 import classnames from 'classnames';
-import UAGB_Block_Icons from '@Controls/block-icons';
 
 export default function save( props ) {
 
@@ -31,8 +30,8 @@ export default function save( props ) {
 				>
 					<InnerBlocks.Content />
 				</div>
-				
-				{  'arrows' !== arrowDots && 
+			</div>
+			{  'arrows' !== arrowDots && 
 						<div className="swiper-pagination"></div>
 					}	
 
@@ -42,7 +41,6 @@ export default function save( props ) {
 						<div className="swiper-button-next"></div>
 						</>
 					}
-			</div>
 		</div>
 	);    
 }
