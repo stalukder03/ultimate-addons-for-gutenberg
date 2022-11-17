@@ -135,6 +135,9 @@ const Settings = ( props ) => {
 		arrowSize,
 		arrowSizeTablet,
 		arrowSizeMobile,
+		arrowPadding,
+		arrowPaddingTablet,
+		arrowPaddingMobile,
 		arrowColor,
 		arrowBgColor,
 		arrowDistance,
@@ -938,7 +941,7 @@ const Settings = ( props ) => {
 				/>
 				{ displayArrows &&
 					<>
-					<ResponsiveSlider
+						<ResponsiveSlider
 							label={ __(
 								'Size',
 								'ultimate-addons-for-gutenberg'
@@ -959,6 +962,30 @@ const Settings = ( props ) => {
 							} }
 							min={ 0 }
 							max={ 100 }
+							displayUnit={ false }
+							setAttributes={ setAttributes }
+						/>
+						<ResponsiveSlider
+							label={ __(
+								'Padding',
+								'ultimate-addons-for-gutenberg'
+							) }
+							data={ {
+								desktop: {
+									value: arrowPadding,
+									label: 'arrowPadding',
+								},
+								tablet: {
+									value: arrowPaddingTablet,
+									label: 'arrowPaddingTablet',
+								},
+								mobile: {
+									value: arrowPaddingMobile,
+									label: 'arrowPaddingMobile',
+								},
+							} }
+							min={ 0 }
+							max={ 80 }
 							displayUnit={ false }
 							setAttributes={ setAttributes }
 						/>

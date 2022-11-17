@@ -31,18 +31,17 @@ export default function save( props ) {
 				>
 					<InnerBlocks.Content />
 				</div>
-				
-				{  displayDots && 
-						<div className="swiper-pagination"></div>
-					}	
-
-					{ displayArrows && 
-						<>
-						<div className="swiper-button-prev"></div>
-						<div className="swiper-button-next"></div>
-						</>
-					}
 			</div>
+			{  displayDots && 
+				<div className="swiper-pagination"></div>
+			}	
+
+			{ displayArrows && 
+				<>
+				<div className="swiper-button-prev"></div>
+				<div className="swiper-button-next"></div>
+				</>
+			}
 		</div>
 	);    
 }
