@@ -1008,13 +1008,15 @@ const Settings = ( props ) => {
 						setAttributes={ setAttributes }
 					/>
 				}
-				<ResponsiveBorder
-					setAttributes={ setAttributes }
-					prefix={ 'slider-arrow' }
-					attributes={ attributes }
-					deviceType={ deviceType }
-					disableBottomSeparator={ true }
-				/>
+				{ displayArrows && 
+					<ResponsiveBorder
+						setAttributes={ setAttributes }
+						prefix={ 'slider-arrow' }
+						attributes={ attributes }
+						deviceType={ deviceType }
+						disableBottomSeparator={ true }
+					/>
+				}
 			</UAGAdvancedPanelBody>
 			</>
 		)
@@ -1033,7 +1035,7 @@ const Settings = ( props ) => {
 						{ borderSettings() }
 						{ boxShadowSettings() }
 						{ spacingSettings() }
-						{ navigationSettings() }
+						{ ( displayArrows || displayDots ) && navigationSettings() }
 					</InspectorTab>
 					<InspectorTab
 						{ ...UAGTabs.advance }
