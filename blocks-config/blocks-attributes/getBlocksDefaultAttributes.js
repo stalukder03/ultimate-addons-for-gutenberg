@@ -49,6 +49,7 @@ import containerAttribute from '@Blocks/container/attributes';
 import imageAttribute from '@Blocks/image/attributes';
 import counterAttribute from '@Blocks/counter/attributes';
 import imageGalleryAttribute from '@Blocks/image-gallery/attributes';
+import countdownAttribute from '@Blocks/countdown/attributes';
 
 export const blocksAttributes = {
 	'advanced-heading' : advancedHeadingAttribute,
@@ -102,4 +103,5 @@ export const blocksAttributes = {
 	'image': imageAttribute,
 	'counter': counterAttribute,
 	'image-gallery': imageGalleryAttribute,
+	'countdown': countdownAttribute,
 };
