@@ -315,6 +315,9 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 					'uagb/image-gallery'          => array(
 						'name' => 'image-gallery',
 					),
+					'uagb/countdown'              => array(
+						'name' => 'countdown',
+					),
 				);
 			}
 			return self::$block_assets_css;

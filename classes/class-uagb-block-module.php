@@ -146,6 +146,9 @@ class UAGB_Block_Module {
 		'image-gallery'      => array(
 			'dir' => 'image-gallery',
 		),
+		'countdown'          => array(
+			'dir' => 'countdown',
+		),
 	);
 
 	/**
