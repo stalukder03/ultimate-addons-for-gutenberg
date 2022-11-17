@@ -993,7 +993,7 @@ const Settings = ( props ) => {
 									label: 'arrowPaddingMobile',
 								},
 							} }
-							min={ 5 }
+							min={ 0 }
 							max={ 80 }
 							displayUnit={ false }
 							setAttributes={ setAttributes }

@@ -30,8 +30,8 @@ export default function save( props ) {
 				>
 					<InnerBlocks.Content />
 				</div>
-				
-				{  'arrows' !== arrowDots && 
+			</div>
+			{  'arrows' !== arrowDots && 
 						<div className="swiper-pagination"></div>
 					}	
 
@@ -41,7 +41,6 @@ export default function save( props ) {
 						<div className="swiper-button-next"></div>
 						</>
 					}
-			</div>
 		</div>
 	);    
 }

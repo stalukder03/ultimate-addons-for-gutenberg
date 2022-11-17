@@ -1,8 +1,12 @@
 .uagb-swiper {
-	overflow: hidden;
 	position: relative;
+	overflow: hidden;
 
 	.swiper-pagination {
 		position: relative;
 	}
+}
+
+.uagb-slider-container{
+	position: relative;
 }
