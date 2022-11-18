@@ -59,8 +59,11 @@ const attributes = {
 	timerEndAction: {
 		type: 'string',
 		default: 'zero',
-	}
-
+	},
+	redirectURL: {
+		type: 'string',
+		default: '',
+	},
 };
 
 export default attributes;
