@@ -16,9 +16,9 @@ const attributes = {
 		type: 'string',
 		default: 'date',  // date, evergreen, recurring.
 	},
-	dateTime: {
+	endDateTime: {
 		type: 'string',
-		default: '2030-01-01T00:00:00',
+		default: '2023-01-01T00:00:00',
 	},
 	// Labels.
 	showLabels: {

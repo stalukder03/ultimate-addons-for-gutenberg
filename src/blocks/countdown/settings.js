@@ -1,3 +1,4 @@
+import { __ } from '@wordpress/i18n';
 import UAGTextControl from '@Components/text-control';
 import UAGSelectControl from '@Components/select-control';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
@@ -21,13 +22,38 @@ export default function Settings( props ) {
 
     const {
         block_id,
+        timerType,
+        endDateTime,
     } = attributes;
+
+    const generalPanel = (
+        <UAGAdvancedPanelBody
+			title={ __( 'General', 'ultimate-addons-for-gutenberg' ) }
+			initialOpen={ true }
+		>
+            { timerType && 
+                <>
+                    <h2>Timer End Date &amp; Time</h2>
+                    <DateTimePicker
+						className="uagb-date-picker"
+						currentDate={ endDateTime }
+						onChange={ ( value ) =>
+							setAttributes( { endDateTime: value } )
+						}
+						is12Hour={ true }
+					/>
+                </>
+            }
+            {console.log( endDateTime )}
+        </UAGAdvancedPanelBody>
+    );
 
     return (
         <>
             <InspectorControls>
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>
+                        { generalPanel }
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
 					</InspectorTab>
