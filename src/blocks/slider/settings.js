@@ -43,7 +43,8 @@ const Settings = ( props ) => {
 		pauseOn,
 		infiniteLoop,
 		transitionSpeed,
-		arrowDots,
+		displayArrows,
+		displayDots,
 		autoplay,
 		autoplaySpeed,
 		transitionEffect,
@@ -233,6 +234,14 @@ const Settings = ( props ) => {
 			setAttributes( { autoplay: ! autoplay } );
 		};
 
+		const toggleDisplayArrows = () => {
+			setAttributes( { displayArrows: ! displayArrows } );
+		};
+
+		const toggleDisplayDots = () => {
+			setAttributes( { displayDots: ! displayDots } );
+		};
+
 		const sliderSettings = () => {
 			return (
 				<>
@@ -363,39 +372,21 @@ const Settings = ( props ) => {
 						max={ 5000 }
 						displayUnit={ false }
 					/>
-					<MultiButtonsControl
-						setAttributes={ setAttributes }
+					<ToggleControl
 						label={ __(
-							'Show Arrows & Dots',
+							'Arrows',
 							'ultimate-addons-for-gutenberg'
 						) }
-						data={ {
-							value: arrowDots,
-							label: 'arrowDots',
-						} }
-						options={ [
-							{
-								value: 'arrows',
-								label: __(
-									'Arrows',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-							{
-								value: 'dots',
-								label: __(
-									'Dots',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-							{
-								value: 'arrows_dots',
-								label: __(
-									'Both',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-						] }
+						checked={ displayArrows }
+						onChange={ toggleDisplayArrows }
+					/>
+					<ToggleControl
+						label={ __(
+							'Dots',
+							'ultimate-addons-for-gutenberg'
+						) }
+						checked={ displayDots }
+						onChange={ toggleDisplayDots }
 					/>
 				</UAGAdvancedPanelBody>
 				<UAGAdvancedPanelBody
@@ -948,7 +939,7 @@ const Settings = ( props ) => {
 					} }
 					setAttributes={ setAttributes }
 				/>
-				{ 'dots' !== arrowDots &&
+				{ displayArrows &&
 					<>
 						<ResponsiveSlider
 							label={ __(
@@ -1021,7 +1012,7 @@ const Settings = ( props ) => {
 						/>
 					</>
 				}
-				{ 'arrows' !== arrowDots &&
+				{ displayDots &&
 					<ResponsiveSlider
 						label={ __( 'Top Margin for Dots', 'ultimate-addons-for-gutenberg' ) }
 						data={ {
@@ -1044,13 +1035,15 @@ const Settings = ( props ) => {
 						setAttributes={ setAttributes }
 					/>
 				}
-				<ResponsiveBorder
-					setAttributes={ setAttributes }
-					prefix={ 'slider-arrow' }
-					attributes={ attributes }
-					deviceType={ deviceType }
-					disableBottomSeparator={ true }
-				/>
+				{ displayArrows && 
+					<ResponsiveBorder
+						setAttributes={ setAttributes }
+						prefix={ 'slider-arrow' }
+						attributes={ attributes }
+						deviceType={ deviceType }
+						disableBottomSeparator={ true }
+					/>
+				}
 			</UAGAdvancedPanelBody>
 			</>
 		)
@@ -1069,7 +1062,7 @@ const Settings = ( props ) => {
 						{ borderSettings() }
 						{ boxShadowSettings() }
 						{ spacingSettings() }
-						{ navigationSettings() }
+						{ ( displayArrows || displayDots ) && navigationSettings() }
 					</InspectorTab>
 					<InspectorTab
 						{ ...UAGTabs.advance }

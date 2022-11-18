@@ -24,9 +24,10 @@ const Render = ( props ) => {
 		transitionSpeed,
 		slideItem,
 		block_id,
-		arrowDots,
 		transitionEffect,
-		swiperInstance
+		swiperInstance,
+		displayArrows,
+		displayDots
 	} = attributes;
 
 	const getSliderTemplate = useMemo( () => {
@@ -93,7 +94,7 @@ const Render = ( props ) => {
 				autoplay={false}
 				speed={transitionSpeed}
 				pagination={ 
-					'arrows' === arrowDots ? false : {
+					! displayDots ? false : {
 						clickable: true,
 					}
 				}
@@ -101,7 +102,7 @@ const Render = ( props ) => {
 				loop={false}
 				effect={transitionEffect}
 				navigation={ 
-					'dots' !== arrowDots ? {
+					displayArrows ? {
 						nextEl: '.swiper-button-next',
 						prevEl: '.swiper-button-prev',
 					} : false 
@@ -116,11 +117,11 @@ const Render = ( props ) => {
 					swiperRef.current = swiper;
 				}}
 			>
-			<div 
-				{ ...innerBlocksProps }
-			/>
+				<div 
+					{ ...innerBlocksProps }
+				/>
 			</Swiper>
-			{ 'dots' !== arrowDots &&
+			{ displayArrows &&
 			<>
 				<div className="swiper-button-prev"></div>
 				<div className="swiper-button-next"></div>

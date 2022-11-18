@@ -10,7 +10,8 @@ export default function save( props ) {
 
 	const {
 		block_id,
-		arrowDots,
+		displayArrows,
+		displayDots,
 	} = attributes;
 
 	const blockProps = useBlockProps.save();
@@ -31,16 +32,16 @@ export default function save( props ) {
 					<InnerBlocks.Content />
 				</div>
 			</div>
-			{  'arrows' !== arrowDots && 
-						<div className="swiper-pagination"></div>
-					}	
+			{  displayDots && 
+				<div className="swiper-pagination"></div>
+			}	
 
-					{ 'dots' !== arrowDots && 
-						<>
-						<div className="swiper-button-prev"></div>
-						<div className="swiper-button-next"></div>
-						</>
-					}
+			{ displayArrows && 
+				<>
+				<div className="swiper-button-prev"></div>
+				<div className="swiper-button-next"></div>
+				</>
+			}
 		</div>
 	);    
 }
