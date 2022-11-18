@@ -2,6 +2,7 @@ import { __ } from '@wordpress/i18n';
 import UAGTextControl from '@Components/text-control';
 import UAGSelectControl from '@Components/select-control';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
+import MultiButtonsControl from '@Components/multi-buttons-control';
 import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
 import InspectorTab, {
 	UAGTabs,
@@ -21,7 +22,6 @@ export default function Settings( props ) {
 	const { setAttributes, attributes } = props;
 
     const {
-        block_id,
         timerType,
         endDateTime,
         showLabels,
@@ -29,6 +29,8 @@ export default function Settings( props ) {
         labelHours,
         labelMinutes,
         labelSeconds,
+        showSeparator,
+        separatorType,
     } = attributes;
 
     const generalPanel = (
@@ -111,6 +113,43 @@ export default function Settings( props ) {
         </UAGAdvancedPanelBody>
     );
 
+    const separatorGeneralPanel = (
+        <UAGAdvancedPanelBody
+			title={ __( 'Separator', 'ultimate-addons-for-gutenberg' ) }
+			initialOpen={ false }
+		>
+            <ToggleControl
+                label={ __( 'Show Separator', 'ultimate-addons-for-gutenberg' ) }
+                checked={ showLabels }
+                onChange={ () =>
+                    setAttributes( { showSeparator: ! showSeparator } )
+                }
+            />
+            { showSeparator && 
+                <>
+                    <MultiButtonsControl
+                        setAttributes={ setAttributes }
+                        label={ __( 'Separator Type', 'ultimate-addons-for-gutenberg' ) }
+                        data={ {
+                            value: separatorType,
+                            label: 'separatorType',
+                        } }
+                        options={ [
+                            {
+                                value: 'colon',
+                                label: __( 'Colon', 'ultimate-addons-for-gutenberg' ),
+                            },
+                            {
+                                value: 'line',
+                                label: __( 'Line', 'ultimate-addons-for-gutenberg' ),
+                            },
+                        ] }
+                    />
+                </>
+            }
+        </UAGAdvancedPanelBody>
+    );
+
     return (
         <>
             <InspectorControls>
@@ -118,6 +157,7 @@ export default function Settings( props ) {
 					<InspectorTab { ...UAGTabs.general }>
                         { generalPanel }
                         { labelGeneralPanel }
+                        { separatorGeneralPanel }
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
 					</InspectorTab>

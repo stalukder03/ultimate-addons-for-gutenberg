@@ -48,7 +48,7 @@ const attributes = {
 	},
 	separatorType: {
 		type: 'string',
-		default: 'colon',
+		default: 'colon',  // colon, line
 	},
 
 	// Countdown Expiry Settings.
