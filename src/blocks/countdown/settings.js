@@ -44,7 +44,6 @@ export default function Settings( props ) {
 					/>
                 </>
             }
-            {console.log( endDateTime )}
         </UAGAdvancedPanelBody>
     );
 
