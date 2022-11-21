@@ -5,15 +5,17 @@ UAGBCountdown = { // eslint-disable-line no-undef
         this.elements = this.getDefaultElements( mainSelector );
 
         if( typeof this.elements.countdownWrapper !== 'undefined' && this.elements.countdownWrapper ){
-            // Do something.
+            this.updateCountdown( data );
 		}
 	},
+
 	getDefaultElements( mainSelector ) {
 		const countdownWrapper = this.getElement( mainSelector );
 		return {
 			countdownWrapper
 		};
 	},
+
 	getElement( selector, childSelector = null ) {
 		let domElement = document.querySelector( selector );
 		if ( domElement ) {
@@ -37,5 +39,16 @@ UAGBCountdown = { // eslint-disable-line no-undef
 		}
 		return domElement;
 	},
+
+    updateCountdown( data ) {
+
+        const currentTime = new Date();
+        const endDateTime = new Date( data.endDateTime );
+        
+        const diff = endDateTime - currentTime;
+
+        const isOvertime = diff < 0
+
+    }
 
 };
