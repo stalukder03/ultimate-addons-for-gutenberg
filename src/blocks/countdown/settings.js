@@ -44,8 +44,10 @@ export default function Settings( props ) {
                     <DateTimePicker
 						className="uagb-date-picker"
 						currentDate={ endDateTime }
-						onChange={ ( value ) =>
-							setAttributes( { endDateTime: value } )
+						onChange={ ( value ) => {
+                                const UTCValue = value + 'Z';
+                                setAttributes( { endDateTime: UTCValue } )
+                            }
 						}
 						is12Hour={ true }
 					/>
