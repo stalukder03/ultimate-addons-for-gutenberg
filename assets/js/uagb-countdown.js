@@ -5,7 +5,9 @@ UAGBCountdown = { // eslint-disable-line no-undef
         this.elements = this.getDefaultElements( mainSelector );
 
         if( typeof this.elements.countdownWrapper !== 'undefined' && this.elements.countdownWrapper ){
-            this.updateCountdown( data );
+            setInterval( () => {
+                this.updateCountdown( data );
+            }, 1000 );
 		}
 	},
 
