@@ -18,7 +18,7 @@ const attributes = {
 	},
 	endDateTime: {
 		type: 'string',
-		default: '2023-01-01T00:00:00',
+		default: '2023-01-01T00:00:00Z',
 	},
 	// Labels.
 	showLabels: {
