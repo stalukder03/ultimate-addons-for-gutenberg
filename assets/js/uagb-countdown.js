@@ -1,13 +1,11 @@
 UAGBCountdown = { // eslint-disable-line no-undef
 	elements: {},
 	init( mainSelector, data = {} ) {
-		this.elements = this.getDefaultElements( mainSelector );
-		if( !data.isFrontend ){
-			this.elements.countdownWrapper.removeAttribute( 'played' );
-		}
-		if( typeof this.elements.countdownWrapper !== 'undefined' && this.elements.countdownWrapper ){
-			const numberCount = this._numberCount( data );
-			this._inViewInit( numberCount, data );
+
+        this.elements = this.getDefaultElements( mainSelector );
+
+        if( typeof this.elements.countdownWrapper !== 'undefined' && this.elements.countdownWrapper ){
+            // Do something.
 		}
 	},
 	getDefaultElements( mainSelector ) {
