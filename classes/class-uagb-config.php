@@ -167,6 +167,10 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 						'src' => UAGB_Scripts_Utils::get_js_url( 'image-gallery' ),
 						'dep' => array(),
 					),
+					'uagb-countdown-js'      => array(
+						'src' => UAGB_Scripts_Utils::get_js_url( 'uagb-countdown' ),
+						'dep' => array(),
+					),
 				);
 			}
 			return self::$block_assets;

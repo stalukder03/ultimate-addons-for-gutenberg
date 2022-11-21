@@ -17,7 +17,6 @@ $block_data = array(
 	'description'      => __( 'This block allows you to add countdown timers.', 'ultimate-addons-for-gutenberg' ),
 	'default'          => true,
 	'extension'        => false,
-    // phpcs:ignore
-	// 'js_assets'        => array( 'uagb-countUp-js', 'uagb-counter-js' ),
+	'js_assets'        => array( 'uagb-countdown-js' ),
 	'priority'         => Spectra_Block_Prioritization::get_block_priority( 'countdown' ),
 );
