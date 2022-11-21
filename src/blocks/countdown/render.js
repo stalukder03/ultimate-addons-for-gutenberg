@@ -38,10 +38,10 @@ const Render = ( props ) => {
                 'wp-block-uagb-countdown',
             ) }
         >
-            <CountdownBox unitType='days' showLabels={showLabels} label={ labelDays } />
-            <CountdownBox unitType='hours' showLabels={showLabels} label={ labelHours } />
-            <CountdownBox unitType='minutes' showLabels={showLabels} label={ labelMinutes } />
-            <CountdownBox unitType='seconds' showLabels={showLabels} label={ labelSeconds } />
+            <CountdownBox unitType='days' showLabels={ showLabels } label={ labelDays } />
+            <CountdownBox unitType='hours' showLabels={ showLabels } label={ labelHours } />
+            <CountdownBox unitType='minutes' showLabels={ showLabels } label={ labelMinutes } />
+            <CountdownBox unitType='seconds' showLabels={ showLabels } label={ labelSeconds } />
         </div>
     );
 };
