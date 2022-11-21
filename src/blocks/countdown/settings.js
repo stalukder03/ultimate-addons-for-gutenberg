@@ -43,7 +43,7 @@ export default function Settings( props ) {
                     <h2>Timer End Date &amp; Time</h2>
                     <DateTimePicker
 						className="uagb-date-picker"
-						currentDate={ endDateTime }
+						currentDate={ endDateTime.slice( 0, -1 ) }
 						onChange={ ( value ) => {
                                 const UTCValue = value + 'Z';
                                 setAttributes( { endDateTime: UTCValue } )
