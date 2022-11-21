@@ -29,6 +29,10 @@ const Render = ( props ) => {
         labelSeconds,
     } = attributes;
 
+    useEffect( () => {
+		UAGBCountdown.init( '.uagb-block-' + block_id, attributes ) // eslint-disable-line no-undef
+	}, [ block_id ] )
+
     return(
         <div
             className={ classnames(
