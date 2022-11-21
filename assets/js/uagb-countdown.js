@@ -54,12 +54,13 @@ UAGBCountdown = { // eslint-disable-line no-undef
         const diff = endDateTime - currentTime;
         const isOvertime = diff < 0;
 
+        // Calculations for each unit.
         const days = Math.floor( diff / 1000 / 60 / 60 / 24 );
         const hours = Math.floor( diff / 1000 / 60 / 60 ) % 24;
         const minutes = Math.floor( diff / 1000 / 60 ) % 60;
         const seconds = Math.floor( diff / 1000 ) % 60;
 
-        // Set the values.
+        // Update the markup.
         daysWrap.innerHTML = ( ! isOvertime ) ? days : 0;
         hoursWrap.innerHTML = ( ! isOvertime ) ? hours : 0;
         minutesWrap.innerHTML = ( ! isOvertime ) ? minutes : 0;
