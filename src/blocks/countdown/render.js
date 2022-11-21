@@ -3,6 +3,8 @@ import React, { useLayoutEffect, useEffect } from 'react';
 import { useDeviceType } from '@Controls/getPreviewType';
 import styles from './editor.lazy.scss';
 
+import CountdownBox from './components/CountdownBox';
+
 const Render = ( props ) => {
 
     // Add and remove the CSS on the drop and remove of the component.
@@ -20,16 +22,26 @@ const Render = ( props ) => {
 
     const {
         block_id,
+        showLabels,
+        labelDays,
+        labelHours,
+        labelMinutes,
+        labelSeconds,
     } = attributes;
 
     return(
         <div
             className={ classnames(
+                props.className,
                 `uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
-                `uagb-block-${ block_id }`
+                `uagb-block-${ block_id }`,
+                'wp-block-uagb-countdown',
             ) }
         >
-            Yo
+            <CountdownBox unitType='days' showLabels={showLabels} label={ labelDays } />
+            <CountdownBox unitType='hours' showLabels={showLabels} label={ labelHours } />
+            <CountdownBox unitType='minutes' showLabels={showLabels} label={ labelMinutes } />
+            <CountdownBox unitType='seconds' showLabels={showLabels} label={ labelSeconds } />
         </div>
     );
 };
