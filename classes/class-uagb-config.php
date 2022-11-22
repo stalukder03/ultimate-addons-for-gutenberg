@@ -109,7 +109,10 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 						'dep'        => array(),
 						'skipEditor' => true,
 					),
-
+					'uagb-countUp-js'        => array(
+						'src' => UAGB_URL . 'assets/js/countUp.min.js',
+						'dep' => array(),
+					),
 					'uagb-slider-js'         => array(
 						'src'        => UAGB_URL . 'assets/js/swiper-bundle.min.js',
 						'dep'        => array(),
@@ -119,7 +122,6 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 						'src' => UAGB_URL . 'assets/css/swiper-bundle.min.css',
 						'dep' => array(),
 					),
-
 					// Blocks.
 					'uagb-timeline-js'       => array(
 						'src' => UAGB_Scripts_Utils::get_js_url( 'timeline' ),
@@ -160,13 +162,17 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 						'dep'        => array( 'uagb-bodymovin-js' ),
 						'skipEditor' => true,
 					),
+					'uagb-counter-js'        => array(
+						'src' => UAGB_Scripts_Utils::get_js_url( 'uagb-counter' ),
+						'dep' => array( 'uagb-countUp-js' ),
+					),
 					'uagb-container-js'      => array(
 						'src'        => UAGB_Scripts_Utils::get_js_url( 'container' ),
 						'skipEditor' => true,
 						'dep'        => array(),
 					),
-					'uagb-slider'            => array(
-						'src' => UAGB_Scripts_Utils::get_js_url( 'timeline' ),
+					'uagb-image-gallery-js'  => array(
+						'src' => UAGB_Scripts_Utils::get_js_url( 'image-gallery' ),
 						'dep' => array(),
 					),
 				);
@@ -313,6 +319,12 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 					),
 					'uagb/slider'                 => array(
 						'name' => 'slider',
+					),
+					'uagb/counter'                => array(
+						'name' => 'counter',
+					),
+					'uagb/image-gallery'          => array(
+						'name' => 'image-gallery',
 					),
 				);
 			}
