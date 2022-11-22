@@ -64,6 +64,364 @@ const attributes = {
 		type: 'string',
 		default: '',
 	},
+
+	// <------------------ STYLE TAB ------------------>
+
+	// Digit.
+	digitLoadGoogleFonts: {
+		type: 'boolean',
+		default: false,
+		isUAGStyle: true,
+	},
+	digitColor: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'digit-color'
+		},
+	},
+	digitFontFamily: {
+		type: 'string',
+		default: 'Default',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'digit-font-family'
+		},
+	},
+	digitFontWeight: {
+		type: 'string',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'digit-font-weight'
+		},
+	},
+	digitFontStyle: {
+		type: 'string',
+		default: 'normal',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'digit-font-style'
+		},
+	},
+	digitTransform: {
+		type: 'string',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'digit-transform'
+		}
+	},
+	digitDecoration: {
+		type: 'string',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'digit-decoration'
+		}
+	},
+	digitFontSizeType: {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'digit-font-size-type'
+		},
+	},
+	digitLineHeightType: {
+		type: 'string',
+		default: 'em',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'digit-line-height-type'
+		},
+	},
+	digitFontSize: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'digit-font-size'
+		},
+	},
+	digitFontSizeTablet: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'digit-font-tablet'
+		},
+	},
+	digitFontSizeMobile: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'digit-font-size-mobile'
+		},
+	},
+	digitLineHeight: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'digit-line-height'
+		},
+	},
+	digitLineHeightTablet: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'digit-line-height-tablet'
+		},
+	},
+	digitLineHeightMobile: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'digit-line-height-mobile'
+		},
+	},
+
+	// Digit Margin.
+	digitTopMargin : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	digitRightMargin : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	digitLeftMargin : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	digitBottomMargin : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	digitTopMarginTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	digitRightMarginTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	digitLeftMarginTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	digitBottomMarginTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	digitTopMarginMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	digitRightMarginMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	digitLeftMarginMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	digitBottomMarginMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	digitMarginUnit : {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+	},
+	digitMarginUnitTablet: {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+	},
+	digitMarginUnitMobile : {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+	},
+	digitMarginLink: {
+		type: 'boolean',
+		default: false,
+		isUAGStyle: true,
+	},
+
+	// Label.
+	labelLoadGoogleFonts: {
+		type: 'boolean',
+		default: false,
+		isUAGStyle: true,
+	},
+	labelColor: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'label-color'
+		},
+	},
+	labelFontFamily: {
+		type: 'string',
+		default: 'Default',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'label-font-family'
+		},
+	},
+	labelFontWeight: {
+		type: 'string',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'label-font-weight'
+		},
+	},
+	labelFontStyle: {
+		type: 'string',
+		default: 'normal',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'label-font-style'
+		},
+	},
+	labelTransform: {
+		type: 'string',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'label-transform'
+		}
+	},
+	labelDecoration: {
+		type: 'string',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'label-decoration'
+		}
+	},
+	labelFontSizeType: {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'label-font-size-type'
+		},
+	},
+	labelLineHeightType: {
+		type: 'string',
+		default: 'em',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'label-line-height-type'
+		},
+	},
+	labelFontSize: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'label-font-size'
+		},
+	},
+	labelFontSizeTablet: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'label-font-tablet'
+		},
+	},
+	labelFontSizeMobile: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'label-font-size-mobile'
+		},
+	},
+	labelLineHeight: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'label-line-height'
+		},
+	},
+	labelLineHeightTablet: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'label-line-height-tablet'
+		},
+	},
+	labelLineHeightMobile: {
+		type: 'number',
+		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'label-line-height-mobile'
+		},
+	},
+
+	// Label Margin.
+	labelTopMargin : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	labelRightMargin : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	labelLeftMargin : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	labelBottomMargin : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	labelTopMarginTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	labelRightMarginTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	labelLeftMarginTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	labelBottomMarginTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	labelTopMarginMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	labelRightMarginMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	labelLeftMarginMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	labelBottomMarginMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	labelMarginUnit : {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+	},
+	labelMarginUnitTablet: {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+	},
+	labelMarginUnitMobile : {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+	},
+	labelMarginLink: {
+		type: 'boolean',
+		default: false,
+		isUAGStyle: true,
+	},
 };
 
 export default attributes;
