@@ -15,7 +15,6 @@ $t_selectors = array();
 $selectors = array(
 
 	'.wp-block-uagb-countdown' => array(
-		'text-align'     => $attr['align'],
 		'margin-top'     => UAGB_Helper::get_css_value( $attr['blockTopMargin'], $attr['blockMarginUnit'] ),
 		'margin-right'   => UAGB_Helper::get_css_value( $attr['blockRightMargin'], $attr['blockMarginUnit'] ),
 		'margin-bottom'  => UAGB_Helper::get_css_value( $attr['blockBottomMargin'], $attr['blockMarginUnit'] ),
