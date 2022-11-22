@@ -72,6 +72,38 @@ export default function styling( props ) {
 		labelMarginUnit,
 		labelMarginUnitTablet,
 		labelMarginUnitMobile,
+        // Block Margin
+		blockTopMargin,
+		blockRightMargin,
+		blockLeftMargin,
+		blockBottomMargin,
+		blockTopMarginTablet,
+		blockRightMarginTablet,
+		blockLeftMarginTablet,
+		blockBottomMarginTablet,
+		blockTopMarginMobile,
+		blockRightMarginMobile,
+		blockLeftMarginMobile,
+		blockBottomMarginMobile,
+		blockMarginUnit,
+		blockMarginUnitTablet,
+		blockMarginUnitMobile,
+		// Block Padding
+		blockTopPadding,
+		blockRightPadding,
+		blockLeftPadding,
+		blockBottomPadding,
+		blockTopPaddingTablet,
+		blockRightPaddingTablet,
+		blockLeftPaddingTablet,
+		blockBottomPaddingTablet,
+		blockTopPaddingMobile,
+		blockRightPaddingMobile,
+		blockLeftPaddingMobile,
+		blockBottomPaddingMobile,
+		blockPaddingUnit,
+		blockPaddingUnitTablet,
+		blockPaddingUnitMobile,
     } = attributes;
 
     const blockName = props.name.replace( 'uagb/', '' );
@@ -81,6 +113,16 @@ export default function styling( props ) {
 
     const selectors = {
 
+        '.wp-block-uagb-countdown':{
+            'margin-top': generateCSSUnit( blockTopMargin, blockMarginUnit ),
+			'margin-right': generateCSSUnit( blockRightMargin, blockMarginUnit ),
+			'margin-bottom': generateCSSUnit( blockBottomMargin, blockMarginUnit ),
+			'margin-left': generateCSSUnit( blockLeftMargin, blockMarginUnit ),
+			'padding-top': generateCSSUnit( blockTopPadding, blockPaddingUnit ),
+			'padding-right': generateCSSUnit( blockRightPadding, blockPaddingUnit ),
+			'padding-bottom': generateCSSUnit( blockBottomPadding, blockPaddingUnit ),
+			'padding-left': generateCSSUnit( blockLeftPadding, blockPaddingUnit ),
+        },
         '.wp-block-uagb-countdown .wp-block-uagb-countdown__time':{
 			'font-family': digitFontFamily,
 			'font-style' : digitFontStyle,
@@ -113,6 +155,17 @@ export default function styling( props ) {
 
     };
 
+    tabletSelectors['.wp-block-uagb-countdown'] = {
+        'margin-top': generateCSSUnit( blockTopMarginTablet, blockMarginUnitTablet ),
+        'margin-right': generateCSSUnit( blockRightMarginTablet, blockMarginUnitTablet ),
+        'margin-bottom': generateCSSUnit( blockBottomMarginTablet, blockMarginUnitTablet ),
+        'margin-left': generateCSSUnit( blockLeftMarginTablet, blockMarginUnitTablet ),
+        'padding-top': generateCSSUnit( blockTopPaddingTablet, blockPaddingUnitTablet ),
+        'padding-right': generateCSSUnit( blockRightPaddingTablet, blockPaddingUnitTablet ),
+        'padding-bottom': generateCSSUnit( blockBottomPaddingTablet, blockPaddingUnitTablet ),
+        'padding-left': generateCSSUnit( blockLeftPaddingTablet, blockPaddingUnitTablet ),
+    };
+
     tabletSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__time'] = {
         'font-size': generateCSSUnit( digitFontSizeTablet, digitFontSizeType ),
         'line-height': generateCSSUnit( digitLineHeightTablet, digitLineHeightType ),
@@ -129,6 +182,17 @@ export default function styling( props ) {
         'margin-right': generateCSSUnit( labelRightMarginTablet, labelMarginUnitTablet ),
         'margin-bottom': generateCSSUnit( labelBottomMarginTablet, labelMarginUnitTablet ),
         'margin-left': generateCSSUnit( labelLeftMarginTablet, labelMarginUnitTablet ),
+    };
+
+    mobileSelectors['.wp-block-uagb-countdown'] = {
+        'margin-top': generateCSSUnit( blockTopMarginMobile, blockMarginUnitMobile ),
+        'margin-right': generateCSSUnit( blockRightMarginMobile, blockMarginUnitMobile ),
+        'margin-bottom': generateCSSUnit( blockBottomMarginMobile, blockMarginUnitMobile ),
+        'margin-left': generateCSSUnit( blockLeftMarginMobile, blockMarginUnitMobile ),
+        'padding-top': generateCSSUnit( blockTopPaddingMobile, blockPaddingUnitMobile ),
+        'padding-right': generateCSSUnit( blockRightPaddingMobile, blockPaddingUnitMobile ),
+        'padding-bottom': generateCSSUnit( blockBottomPaddingMobile, blockPaddingUnitMobile ),
+        'padding-left': generateCSSUnit( blockLeftPaddingMobile, blockPaddingUnitMobile ),
     };
 
     mobileSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__time'] = {
