@@ -41,6 +41,9 @@ return array_merge(
 		'digitRightMarginMobile'  => '',
 		'digitBottomMarginMobile' => '',
 		'digitLeftMarginMobile'   => '',
+		'digitMarginUnit'         => 'px',
+		'digitMarginUnitTablet'   => 'px',
+		'digitMarginUnitMobile'   => 'px',
 		// Label.
 		'labelColor'              => '',
 		'labelFontFamily'         => 'Default',
@@ -68,5 +71,8 @@ return array_merge(
 		'labelRightMarginMobile'  => '',
 		'labelBottomMarginMobile' => '',
 		'labelLeftMarginMobile'   => '',
+		'labelMarginUnit'         => 'px',
+		'labelMarginUnitTablet'   => 'px',
+		'labelMarginUnitMobile'   => 'px',
 	)
 );
