@@ -4,6 +4,10 @@ import UAGSelectControl from '@Components/select-control';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import MultiButtonsControl from '@Components/multi-buttons-control';
 import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
+import TypographyControl from '@Components/typography';
+import SpacingControl from '@Components/spacing-control';
+import { useDeviceType } from '@Controls/getPreviewType';
+import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
 import InspectorTab, {
 	UAGTabs,
 } from '@Components/inspector-tabs/InspectorTab.js';
@@ -21,6 +25,8 @@ export default function Settings( props ) {
     props = props.parentProps;
 	const { setAttributes, attributes } = props;
 
+	const deviceType = useDeviceType();
+
     const {
         timerType,
         endDateTime,
@@ -31,8 +37,73 @@ export default function Settings( props ) {
         labelSeconds,
         showSeparator,
         separatorType,
+        // digit.
+		digitLoadGoogleFonts,
+		digitFontFamily,
+		digitFontWeight,
+		digitFontStyle,
+		digitFontSize,
+		digitColor,
+		digitTransform,
+		digitDecoration,
+		digitFontSizeType,
+		digitFontSizeMobile,
+		digitFontSizeTablet,
+		digitLineHeight,
+		digitLineHeightType,
+		digitLineHeightMobile,
+		digitLineHeightTablet,
+		digitTopMargin,
+		digitRightMargin,
+		digitLeftMargin,
+		digitBottomMargin,
+		digitTopMarginTablet,
+		digitRightMarginTablet,
+		digitLeftMarginTablet,
+		digitBottomMarginTablet,
+		digitTopMarginMobile,
+		digitRightMarginMobile,
+		digitLeftMarginMobile,
+		digitBottomMarginMobile,
+		digitMarginUnit,
+		digitMarginUnitTablet,
+		digitMarginUnitMobile,
+		digitMarginLink,
+        // label.
+		labelLoadGoogleFonts,
+		labelFontFamily,
+		labelFontWeight,
+		labelFontStyle,
+		labelFontSize,
+		labelColor,
+		labelTransform,
+		labelDecoration,
+		labelFontSizeType,
+		labelFontSizeMobile,
+		labelFontSizeTablet,
+		labelLineHeight,
+		labelLineHeightType,
+		labelLineHeightMobile,
+		labelLineHeightTablet,
+		labelTopMargin,
+		labelRightMargin,
+		labelLeftMargin,
+		labelBottomMargin,
+		labelTopMarginTablet,
+		labelRightMarginTablet,
+		labelLeftMarginTablet,
+		labelBottomMarginTablet,
+		labelTopMarginMobile,
+		labelRightMarginMobile,
+		labelLeftMarginMobile,
+		labelBottomMarginMobile,
+		labelMarginUnit,
+		labelMarginUnitTablet,
+		labelMarginUnitMobile,
+		labelMarginLink,
     } = attributes;
 
+    // <------------------ GENERAL TAB ------------------>
     const generalPanel = (
         <UAGAdvancedPanelBody
 			title={ __( 'General', 'ultimate-addons-for-gutenberg' ) }
@@ -152,6 +223,323 @@ export default function Settings( props ) {
         </UAGAdvancedPanelBody>
     );
 
+    // <------------------ STYLE TAB ------------------>
+    const digitStylePanel = (
+        <UAGAdvancedPanelBody
+			title={ __( 'Digit', 'ultimate-addons-for-gutenberg' ) }
+			initialOpen={ false }
+		>
+            <AdvancedPopColorControl
+                label={ __(
+                    'Color',
+                    'ultimate-addons-for-gutenberg'
+                ) }
+                colorValue={
+                    digitColor ? digitColor : ''
+                }
+                data={ {
+                    value: digitColor,
+                    label: 'digitColor',
+                } }
+                setAttributes={ setAttributes }
+            />
+            <TypographyControl
+				label={ __(
+					'Typography',
+					'ultimate-addons-for-gutenberg'
+				) }
+				setAttributes={ setAttributes }
+				loadGoogleFonts={ {
+					value: digitLoadGoogleFonts,
+					label: 'digitLoadGoogleFonts',
+				} }
+				fontFamily={ {
+					value: digitFontFamily,
+					label: 'digitFontFamily',
+				} }
+				fontWeight={ {
+					value: digitFontWeight,
+					label: 'digitFontWeight',
+				} }
+				fontStyle={ {
+					value: digitFontStyle,
+					label: 'digitFontStyle',
+				} }
+				transform={ {
+					value: digitTransform,
+					label: 'digitTransform',
+				} }
+				decoration={ {
+					value: digitDecoration,
+					label: 'digitDecoration',
+				} }
+				fontSizeType={ {
+					value: digitFontSizeType,
+					label: 'digitFontSizeType',
+				} }
+				fontSize={ {
+					value: digitFontSize,
+					label: 'digitFontSize',
+				} }
+				fontSizeMobile={ {
+					value: digitFontSizeMobile,
+					label: 'digitFontSizeMobile',
+				} }
+				fontSizeTablet={ {
+					value: digitFontSizeTablet,
+					label: 'digitFontSizeTablet',
+				} }
+				lineHeightType={ {
+					value: digitLineHeightType,
+					label: 'digitLineHeightType',
+				} }
+				lineHeight={ {
+					value: digitLineHeight,
+					label: 'digitLineHeight',
+				} }
+				lineHeightMobile={ {
+					value: digitLineHeightMobile,
+					label: 'digitLineHeightMobile',
+				} }
+				lineHeightTablet={ {
+					value: digitLineHeightTablet,
+					label: 'digitLineHeightTablet',
+				} }
+			/>
+            <SpacingControl
+				label={ __(
+					'Margin',
+					'ultimate-addons-for-gutenberg'
+				) }
+				valueTop={ {
+					value: digitTopMargin,
+					label: 'digitTopMargin',
+				} }
+				valueRight={ {
+					value: digitRightMargin,
+					label: 'digitRightMargin',
+				} }
+				valueBottom={ {
+					value: digitBottomMargin,
+					label: 'digitBottomMargin',
+				} }
+				valueLeft={ {
+					value: digitLeftMargin,
+					label: 'digitLeftMargin',
+				} }
+				valueTopTablet={ {
+					value: digitTopMarginTablet,
+					label: 'digitTopMarginTablet',
+				} }
+				valueRightTablet={ {
+					value: digitRightMarginTablet,
+					label: 'digitRightMarginTablet',
+				} }
+				valueBottomTablet={ {
+					value: digitBottomMarginTablet,
+					label: 'digitBottomMarginTablet',
+				} }
+				valueLeftTablet={ {
+					value: digitLeftMarginTablet,
+					label: 'digitLeftMarginTablet',
+				} }
+				valueTopMobile={ {
+					value: digitTopMarginMobile,
+					label: 'digitTopMarginMobile',
+				} }
+				valueRightMobile={ {
+					value: digitRightMarginMobile,
+					label: 'digitRightMarginMobile',
+				} }
+				valueBottomMobile={ {
+					value: digitBottomMarginMobile,
+					label: 'digitBottomMarginMobile',
+				} }
+				valueLeftMobile={ {
+					value: digitLeftMarginMobile,
+					label: 'digitLeftMarginMobile',
+				} }
+				unit={ {
+					value: digitMarginUnit,
+					label: 'digitMarginUnit',
+				} }
+				mUnit={ {
+					value: digitMarginUnitMobile,
+					label: 'digitMarginUnitMobile',
+				} }
+				tUnit={ {
+					value: digitMarginUnitTablet,
+					label: 'digitMarginUnitTablet',
+				} }
+				deviceType={ deviceType }
+				attributes={ attributes }
+				setAttributes={ setAttributes }
+				link={ {
+					value: digitMarginLink,
+					label: 'digitMarginLink',
+				} }
+			/>
+        </UAGAdvancedPanelBody>
+    );
+
+    const labelStylePanel = (
+        <UAGAdvancedPanelBody
+			title={ __( 'Label', 'ultimate-addons-for-gutenberg' ) }
+			initialOpen={ false }
+		>
+            <AdvancedPopColorControl
+                label={ __(
+                    'Color',
+                    'ultimate-addons-for-gutenberg'
+                ) }
+                colorValue={
+                    labelColor ? labelColor : ''
+                }
+                data={ {
+                    value: labelColor,
+                    label: 'labelColor',
+                } }
+                setAttributes={ setAttributes }
+            />
+            <TypographyControl
+				label={ __(
+					'Typography',
+					'ultimate-addons-for-gutenberg'
+				) }
+				setAttributes={ setAttributes }
+				loadGoogleFonts={ {
+					value: labelLoadGoogleFonts,
+					label: 'labelLoadGoogleFonts',
+				} }
+				fontFamily={ {
+					value: labelFontFamily,
+					label: 'labelFontFamily',
+				} }
+				fontWeight={ {
+					value: labelFontWeight,
+					label: 'labelFontWeight',
+				} }
+				fontStyle={ {
+					value: labelFontStyle,
+					label: 'labelFontStyle',
+				} }
+				transform={ {
+					value: labelTransform,
+					label: 'labelTransform',
+				} }
+				decoration={ {
+					value: labelDecoration,
+					label: 'labelDecoration',
+				} }
+				fontSizeType={ {
+					value: labelFontSizeType,
+					label: 'labelFontSizeType',
+				} }
+				fontSize={ {
+					value: labelFontSize,
+					label: 'labelFontSize',
+				} }
+				fontSizeMobile={ {
+					value: labelFontSizeMobile,
+					label: 'labelFontSizeMobile',
+				} }
+				fontSizeTablet={ {
+					value: labelFontSizeTablet,
+					label: 'labelFontSizeTablet',
+				} }
+				lineHeightType={ {
+					value: labelLineHeightType,
+					label: 'labelLineHeightType',
+				} }
+				lineHeight={ {
+					value: labelLineHeight,
+					label: 'labelLineHeight',
+				} }
+				lineHeightMobile={ {
+					value: labelLineHeightMobile,
+					label: 'labelLineHeightMobile',
+				} }
+				lineHeightTablet={ {
+					value: labelLineHeightTablet,
+					label: 'labelLineHeightTablet',
+				} }
+			/>
+            <SpacingControl
+				label={ __(
+					'Margin',
+					'ultimate-addons-for-gutenberg'
+				) }
+				valueTop={ {
+					value: labelTopMargin,
+					label: 'labelTopMargin',
+				} }
+				valueRight={ {
+					value: labelRightMargin,
+					label: 'labelRightMargin',
+				} }
+				valueBottom={ {
+					value: labelBottomMargin,
+					label: 'labelBottomMargin',
+				} }
+				valueLeft={ {
+					value: labelLeftMargin,
+					label: 'labelLeftMargin',
+				} }
+				valueTopTablet={ {
+					value: labelTopMarginTablet,
+					label: 'labelTopMarginTablet',
+				} }
+				valueRightTablet={ {
+					value: labelRightMarginTablet,
+					label: 'labelRightMarginTablet',
+				} }
+				valueBottomTablet={ {
+					value: labelBottomMarginTablet,
+					label: 'labelBottomMarginTablet',
+				} }
+				valueLeftTablet={ {
+					value: labelLeftMarginTablet,
+					label: 'labelLeftMarginTablet',
+				} }
+				valueTopMobile={ {
+					value: labelTopMarginMobile,
+					label: 'labelTopMarginMobile',
+				} }
+				valueRightMobile={ {
+					value: labelRightMarginMobile,
+					label: 'labelRightMarginMobile',
+				} }
+				valueBottomMobile={ {
+					value: labelBottomMarginMobile,
+					label: 'labelBottomMarginMobile',
+				} }
+				valueLeftMobile={ {
+					value: labelLeftMarginMobile,
+					label: 'labelLeftMarginMobile',
+				} }
+				unit={ {
+					value: labelMarginUnit,
+					label: 'labelMarginUnit',
+				} }
+				mUnit={ {
+					value: labelMarginUnitMobile,
+					label: 'labelMarginUnitMobile',
+				} }
+				tUnit={ {
+					value: labelMarginUnitTablet,
+					label: 'labelMarginUnitTablet',
+				} }
+				deviceType={ deviceType }
+				attributes={ attributes }
+				setAttributes={ setAttributes }
+				link={ {
+					value: labelMarginLink,
+					label: 'labelMarginLink',
+				} }
+			/>
+        </UAGAdvancedPanelBody>
+    );
+
     return (
         <>
             <InspectorControls>
@@ -162,6 +550,8 @@ export default function Settings( props ) {
                         { separatorGeneralPanel }
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
+                        { digitStylePanel }
+                        { labelStylePanel }
 					</InspectorTab>
 					<InspectorTab
 						{ ...UAGTabs.advance }
