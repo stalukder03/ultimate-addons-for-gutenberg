@@ -422,6 +422,144 @@ const attributes = {
 		default: false,
 		isUAGStyle: true,
 	},
+	// Block Margin.
+	blockTopMargin : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	blockRightMargin : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	blockLeftMargin : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	blockBottomMargin : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	blockTopMarginTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	blockRightMarginTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	blockLeftMarginTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	blockBottomMarginTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	blockTopMarginMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	blockRightMarginMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	blockLeftMarginMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	blockBottomMarginMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	blockMarginUnit : {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+	},
+	blockMarginUnitTablet: {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+	},
+	blockMarginUnitMobile : {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+	},
+	blockMarginLink: {
+		type: 'boolean',
+		default: false,
+		isUAGStyle: true,
+	},
+	// Block Padding.
+	blockTopPadding : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	blockRightPadding : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	blockLeftPadding : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	blockBottomPadding : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	blockTopPaddingTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	blockRightPaddingTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	blockLeftPaddingTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	blockBottomPaddingTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	blockTopPaddingMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	blockRightPaddingMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	blockLeftPaddingMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	blockBottomPaddingMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	blockPaddingUnit : {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+	},
+	blockPaddingUnitTablet: {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+	},
+	blockPaddingUnitMobile : {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+	},
+	blockPaddingLink: {
+		type: 'boolean',
+		default: false,
+		isUAGStyle: true,
+	},
 };
 
 export default attributes;
