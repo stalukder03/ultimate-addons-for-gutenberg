@@ -1,0 +1,17 @@
+.wp-block-uagb-countdown {
+
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+    &__box {
+        width: fit-content;
+        display: flex;
+        flex-direction: column;
+
+        &:not(:last-child) {
+            margin-right: 20px;
+        }
+    }
+
+}
