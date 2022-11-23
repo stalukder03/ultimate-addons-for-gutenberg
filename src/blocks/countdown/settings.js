@@ -135,6 +135,23 @@ export default function Settings( props ) {
 		blockPaddingUnitTablet,
 		blockPaddingUnitMobile,
 		blockPaddingLink,
+		// Box Padding.
+		boxTopPadding,
+		boxRightPadding,
+		boxLeftPadding,
+		boxBottomPadding,
+		boxTopPaddingTablet,
+		boxRightPaddingTablet,
+		boxLeftPaddingTablet,
+		boxBottomPaddingTablet,
+		boxTopPaddingMobile,
+		boxRightPaddingMobile,
+		boxLeftPaddingMobile,
+		boxBottomPaddingMobile,
+		boxPaddingUnit,
+		boxPaddingUnitTablet,
+		boxPaddingUnitMobile,
+		boxPaddingLink,
     } = attributes;
 
     // <------------------ GENERAL TAB ------------------>
@@ -258,6 +275,87 @@ export default function Settings( props ) {
     );
 
     // <------------------ STYLE TAB ------------------>
+	const boxStylePanel = (
+		<UAGAdvancedPanelBody
+			title={ __( 'Box', 'ultimate-addons-for-gutenberg' ) }
+			initialOpen={ true }
+		>
+			<SpacingControl
+				label={ __(
+					'Padding',
+					'ultimate-addons-for-gutenberg'
+				) }
+				valueTop={ {
+					value: boxTopPadding,
+					label: 'boxTopPadding',
+				} }
+				valueRight={ {
+					value: boxRightPadding,
+					label: 'boxRightPadding',
+				} }
+				valueBottom={ {
+					value: boxBottomPadding,
+					label: 'boxBottomPadding',
+				} }
+				valueLeft={ {
+					value: boxLeftPadding,
+					label: 'boxLeftPadding',
+				} }
+				valueTopTablet={ {
+					value: boxTopPaddingTablet,
+					label: 'boxTopPaddingTablet',
+				} }
+				valueRightTablet={ {
+					value: boxRightPaddingTablet,
+					label: 'boxRightPaddingTablet',
+				} }
+				valueBottomTablet={ {
+					value: boxBottomPaddingTablet,
+					label: 'boxBottomPaddingTablet',
+				} }
+				valueLeftTablet={ {
+					value: boxLeftPaddingTablet,
+					label: 'boxLeftPaddingTablet',
+				} }
+				valueTopMobile={ {
+					value: boxTopPaddingMobile,
+					label: 'boxTopPaddingMobile',
+				} }
+				valueRightMobile={ {
+					value: boxRightPaddingMobile,
+					label: 'boxRightPaddingMobile',
+				} }
+				valueBottomMobile={ {
+					value: boxBottomPaddingMobile,
+					label: 'boxBottomPaddingMobile',
+				} }
+				valueLeftMobile={ {
+					value: boxLeftPaddingMobile,
+					label: 'boxLeftPaddingMobile',
+				} }
+				unit={ {
+					value: boxPaddingUnit,
+					label: 'boxPaddingUnit',
+				} }
+				mUnit={ {
+					value: boxPaddingUnitMobile,
+					label: 'boxPaddingUnitMobile',
+				} }
+				tUnit={ {
+					value: boxPaddingUnitTablet,
+					label: 'boxPaddingUnitTablet',
+				} }
+				deviceType={ deviceType }
+				attributes={ attributes }
+				setAttributes={ setAttributes }
+				link={ {
+					value: boxPaddingLink,
+					label: 'boxPaddingLink',
+				} }
+			/>
+		</UAGAdvancedPanelBody>
+	);
+
     const digitStylePanel = (
         <UAGAdvancedPanelBody
 			title={ __( 'Digit', 'ultimate-addons-for-gutenberg' ) }
@@ -738,6 +836,7 @@ export default function Settings( props ) {
                         { separatorGeneralPanel }
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
+						{ boxStylePanel }
                         { digitStylePanel }
                         { labelStylePanel }
 						{ spacingStylePanel }
