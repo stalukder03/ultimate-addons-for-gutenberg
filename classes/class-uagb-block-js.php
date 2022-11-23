@@ -663,5 +663,25 @@ if ( ! class_exists( 'UAGB_Block_JS' ) ) {
 			UAGB_Helper::blocks_google_font( $caption_load_google_font, $caption_font_family, $caption_font_weight );
 			UAGB_Helper::blocks_google_font( $load_more_load_google_font, $load_more_font_family, $load_more_font_weight );
 		}
+
+		/**
+		 * Adds Google fonts for Countdown block.
+		 *
+		 * @since 2.0.0
+		 * @param array $attr the blocks attr.
+		 */
+		public static function blocks_countdown_gfont( $attr ) {
+
+			$digit_load_google_font = isset( $attr['digitLoadGoogleFonts'] ) ? $attr['digitLoadGoogleFonts'] : '';
+			$digit_font_family      = isset( $attr['digitFontFamily'] ) ? $attr['digitFontFamily'] : '';
+			$digit_font_weight      = isset( $attr['digitFontWeight'] ) ? $attr['digitFontWeight'] : '';
+
+			$label_load_google_font = isset( $attr['labelLoadGoogleFonts'] ) ? $attr['labelLoadGoogleFonts'] : '';
+			$label_font_family      = isset( $attr['labelFontFamily'] ) ? $attr['labelFontFamily'] : '';
+			$label_font_weight      = isset( $attr['labelFontWeight'] ) ? $attr['labelFontWeight'] : '';
+
+			UAGB_Helper::blocks_google_font( $digit_load_google_font, $digit_font_family, $digit_font_weight );
+			UAGB_Helper::blocks_google_font( $label_load_google_font, $label_font_family, $label_font_weight );
+		}
 	}
 }
