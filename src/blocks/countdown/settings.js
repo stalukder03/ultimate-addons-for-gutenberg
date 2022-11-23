@@ -7,12 +7,15 @@ import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
 import TypographyControl from '@Components/typography';
 import SpacingControl from '@Components/spacing-control';
 import { useDeviceType } from '@Controls/getPreviewType';
+import ResponsiveBorder from '@Components/responsive-border';
 import WebfontLoader from '@Components/typography/fontloader';
+import renderSVG from '@Controls/renderIcon';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
 import InspectorTab, {
 	UAGTabs,
 } from '@Components/inspector-tabs/InspectorTab.js';
 import {
+	Icon,
     ToggleControl,
 	DateTimePicker,
 } from '@wordpress/components';
@@ -153,6 +156,10 @@ export default function Settings( props ) {
 		boxPaddingUnitTablet,
 		boxPaddingUnitMobile,
 		boxPaddingLink,
+		// Box Align.
+		boxAlign,
+		boxAlignTablet,
+		boxAlignMobile,
     } = attributes;
 
 	// <------------------ GOOGLE FONTS ------------------>
@@ -315,6 +322,80 @@ export default function Settings( props ) {
 			title={ __( 'Box', 'ultimate-addons-for-gutenberg' ) }
 			initialOpen={ true }
 		>
+			<MultiButtonsControl
+				setAttributes={ setAttributes }
+				label={ __(
+					'Alignment',
+					'ultimate-addons-for-gutenberg'
+				) }
+				responsive={ true }
+				data={ {
+						desktop: {
+							value: boxAlign,
+							label: 'boxAlign',
+						},
+						tablet: {
+							value: boxAlignTablet,
+							label: 'boxAlignTablet',
+						},
+						mobile: {
+							value: boxAlignMobile,
+							label: 'boxAlignMobile',
+						},
+				} }
+				className="uagb-multi-button-alignment-control"
+				options={ [
+					{
+						value: 'left',
+						icon: (
+							<Icon
+								icon={ renderSVG( 'fa fa-align-left' ) }
+							/>
+						),
+						tooltip: __(
+							'Left',
+							'ultimate-addons-for-gutenberg'
+						),
+					},
+					{
+						value: 'center',
+						icon: (
+							<Icon
+								icon={ renderSVG(
+									'fa fa-align-center'
+								) }
+							/>
+						),
+						tooltip: __(
+							'Center',
+							'ultimate-addons-for-gutenberg'
+						),
+					},
+					{
+						value: 'right',
+						icon: (
+							<Icon
+								icon={ renderSVG(
+									'fa fa-align-right'
+								) }
+							/>
+						),
+						tooltip: __(
+							'Right',
+							'ultimate-addons-for-gutenberg'
+						),
+					},
+				] }
+				showIcons={ true }
+			/>
+			<ResponsiveBorder
+				disabledBorderTitle= {false}
+				setAttributes={ setAttributes }
+				prefix={'box'}
+				attributes={ attributes }
+				deviceType={deviceType}
+				disableBottomSeparator={ false }
+			/>
 			<SpacingControl
 				label={ __(
 					'Padding',
