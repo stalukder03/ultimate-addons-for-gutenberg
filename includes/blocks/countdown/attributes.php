@@ -15,6 +15,7 @@ return array_merge(
 		'labelMinutes'             => __( 'MINUTES', 'ultimate-addons-for-gutenberg' ),
 		'labelSeconds'             => __( 'SECONDS', 'ultimate-addons-for-gutenberg' ),
 		// Digit.
+		'digitLoadGoogleFonts'     => false,
 		'digitColor'               => '',
 		'digitFontFamily'          => 'Default',
 		'digitFontWeight'          => '',
@@ -45,6 +46,7 @@ return array_merge(
 		'digitMarginUnitTablet'    => 'px',
 		'digitMarginUnitMobile'    => 'px',
 		// Label.
+		'labelLoadGoogleFonts'     => false,
 		'labelColor'               => '',
 		'labelFontFamily'          => 'Default',
 		'labelFontWeight'          => '',
