@@ -106,5 +106,21 @@ return array_merge(
 		'blockPaddingUnit'         => 'px',
 		'blockPaddingUnitTablet'   => 'px',
 		'blockPaddingUnitMobile'   => 'px',
+		// Box Padding.
+		'boxTopPadding'            => '',
+		'boxRightPadding'          => '',
+		'boxLeftPadding'           => '',
+		'boxBottomPadding'         => '',
+		'boxTopPaddingTablet'      => '',
+		'boxRightPaddingTablet'    => '',
+		'boxLeftPaddingTablet'     => '',
+		'boxBottomPaddingTablet'   => '',
+		'boxTopPaddingMobile'      => '',
+		'boxRightPaddingMobile'    => '',
+		'boxLeftPaddingMobile'     => '',
+		'boxBottomPaddingMobile'   => '',
+		'boxPaddingUnit'           => 'px',
+		'boxPaddingUnitTablet'     => 'px',
+		'boxPaddingUnitMobile'     => 'px',
 	)
 );
