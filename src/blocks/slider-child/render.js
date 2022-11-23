@@ -1,19 +1,17 @@
-import { InnerBlocks, useInnerBlocksProps } from '@wordpress/block-editor';
+import { useInnerBlocksProps } from '@wordpress/block-editor';
 import React from 'react';
 
 
-const Render = ( props ) => {
-
-	props = props.parentProps;
-
-	const {
-		innerBlocks,
-	} = props;
+const Render = () => {
 
 	// Only parent blocks.
 	const parentBlocks = wp.blocks.getBlockTypes().filter( function( item ) { 
 		return ! item.parent
 	} );
+
+	const TEMPLATE = [
+		[ 'uagb/container', { variationSelected: true }] 
+	];
 
 	// Hide slider block.
 	const ALLOWED_BLOCKS = parentBlocks.map( block => block.name ).filter( blockName => [ 'uagb/slider', 'uagb/post-carousel', 'uagb/testimonial' ].indexOf( blockName ) === -1 );
@@ -25,10 +23,7 @@ const Render = ( props ) => {
 		},
         {
 			allowedBlocks: ALLOWED_BLOCKS,
-			renderAppender: innerBlocks.length > 0
-				? undefined
-				: InnerBlocks.ButtonBlockAppender,
-			templateLock: false
+			template: TEMPLATE 
 		}
     );
 
