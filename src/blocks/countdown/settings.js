@@ -7,6 +7,7 @@ import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
 import TypographyControl from '@Components/typography';
 import SpacingControl from '@Components/spacing-control';
 import { useDeviceType } from '@Controls/getPreviewType';
+import WebfontLoader from '@Components/typography/fontloader';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
 import InspectorTab, {
 	UAGTabs,
@@ -153,6 +154,40 @@ export default function Settings( props ) {
 		boxPaddingUnitMobile,
 		boxPaddingLink,
     } = attributes;
+
+	// <------------------ GOOGLE FONTS ------------------>
+	// Loading Google Fonts.
+	let loadDigitGoogleFonts;
+	let loadLabelGoogleFonts;
+
+	if ( digitLoadGoogleFonts === true ) {
+		const digitConfig = {
+			google: {
+				families: [
+					digitFontFamily +
+						( digitFontWeight ? ':' + digitFontWeight : '' ),
+				],
+			},
+		};
+
+		loadDigitGoogleFonts = (
+			<WebfontLoader config={ digitConfig }></WebfontLoader>
+		);
+	}
+
+	if ( labelLoadGoogleFonts === true ) {
+		const labelConfig = {
+			google: {
+				families: [
+					labelFontFamily + ( labelFontWeight ? ':' + labelFontWeight : '' ),
+				],
+			},
+		};
+
+		loadLabelGoogleFonts = (
+			<WebfontLoader config={ labelConfig }></WebfontLoader>
+		);
+	}
 
     // <------------------ GENERAL TAB ------------------>
     const generalPanel = (
@@ -848,6 +883,8 @@ export default function Settings( props ) {
 					</InspectorTab>
 				</InspectorTabs>
 			</InspectorControls>
+			{ loadDigitGoogleFonts }
+			{ loadLabelGoogleFonts }
         </>
     );
 };
