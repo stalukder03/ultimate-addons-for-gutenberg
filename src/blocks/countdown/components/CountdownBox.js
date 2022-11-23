@@ -10,7 +10,9 @@ const CountdownBox = ( props ) => {
             <div className={ classnames(
             'wp-block-uagb-countdown__time',
             'wp-block-uagb-countdown__time-' + props.unitType,
-        ) }></div>
+            ) }>
+                -
+            </div>
             { props.showLabels &&
                 <div className='wp-block-uagb-countdown__label'>{ props.label }</div>
             }
