@@ -560,6 +560,75 @@ const attributes = {
 		default: false,
 		isUAGStyle: true,
 	},
+	// Box Padding.
+	boxTopPadding : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	boxRightPadding : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	boxLeftPadding : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	boxBottomPadding : {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	boxTopPaddingTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	boxRightPaddingTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	boxLeftPaddingTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	boxBottomPaddingTablet: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	boxTopPaddingMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	boxRightPaddingMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	boxLeftPaddingMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	boxBottomPaddingMobile: {
+		type: 'number',
+		isUAGStyle: true,
+	},
+	boxPaddingUnit : {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+	},
+	boxPaddingUnitTablet: {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+	},
+	boxPaddingUnitMobile : {
+		type: 'string',
+		default: 'px',
+		isUAGStyle: true,
+	},
+	boxPaddingLink: {
+		type: 'boolean',
+		default: false,
+		isUAGStyle: true,
+	},
 };
 
 export default attributes;
