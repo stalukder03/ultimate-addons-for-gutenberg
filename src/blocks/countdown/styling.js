@@ -104,6 +104,22 @@ export default function styling( props ) {
 		blockPaddingUnit,
 		blockPaddingUnitTablet,
 		blockPaddingUnitMobile,
+		// Box Padding.
+		boxTopPadding,
+		boxRightPadding,
+		boxLeftPadding,
+		boxBottomPadding,
+		boxTopPaddingTablet,
+		boxRightPaddingTablet,
+		boxLeftPaddingTablet,
+		boxBottomPaddingTablet,
+		boxTopPaddingMobile,
+		boxRightPaddingMobile,
+		boxLeftPaddingMobile,
+		boxBottomPaddingMobile,
+		boxPaddingUnit,
+		boxPaddingUnitTablet,
+		boxPaddingUnitMobile,
     } = attributes;
 
     const blockName = props.name.replace( 'uagb/', '' );
@@ -123,6 +139,12 @@ export default function styling( props ) {
 			'padding-bottom': generateCSSUnit( blockBottomPadding, blockPaddingUnit ),
 			'padding-left': generateCSSUnit( blockLeftPadding, blockPaddingUnit ),
         },
+		'.wp-block-uagb-countdown .wp-block-uagb-countdown__box':{
+			'padding-top': generateCSSUnit( boxTopPadding, boxPaddingUnit ),
+			'padding-right': generateCSSUnit( boxRightPadding, boxPaddingUnit ),
+			'padding-bottom': generateCSSUnit( boxBottomPadding, boxPaddingUnit ),
+			'padding-left': generateCSSUnit( boxLeftPadding, boxPaddingUnit ),
+		},
         '.wp-block-uagb-countdown .wp-block-uagb-countdown__time':{
 			'font-family': digitFontFamily,
 			'font-style' : digitFontStyle,
@@ -166,6 +188,13 @@ export default function styling( props ) {
         'padding-left': generateCSSUnit( blockLeftPaddingTablet, blockPaddingUnitTablet ),
     };
 
+	tabletSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box'] = {
+        'padding-top': generateCSSUnit( boxTopPaddingTablet, boxPaddingUnitTablet ),
+        'padding-right': generateCSSUnit( boxRightPaddingTablet, boxPaddingUnitTablet ),
+        'padding-bottom': generateCSSUnit( boxBottomPaddingTablet, boxPaddingUnitTablet ),
+        'padding-left': generateCSSUnit( boxLeftPaddingTablet, boxPaddingUnitTablet ),
+    };
+
     tabletSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__time'] = {
         'font-size': generateCSSUnit( digitFontSizeTablet, digitFontSizeType ),
         'line-height': generateCSSUnit( digitLineHeightTablet, digitLineHeightType ),
@@ -193,6 +222,13 @@ export default function styling( props ) {
         'padding-right': generateCSSUnit( blockRightPaddingMobile, blockPaddingUnitMobile ),
         'padding-bottom': generateCSSUnit( blockBottomPaddingMobile, blockPaddingUnitMobile ),
         'padding-left': generateCSSUnit( blockLeftPaddingMobile, blockPaddingUnitMobile ),
+    };
+
+	mobileSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box'] = {
+        'padding-top': generateCSSUnit( boxTopPaddingMobile, boxPaddingUnitMobile ),
+        'padding-right': generateCSSUnit( boxRightPaddingMobile, boxPaddingUnitMobile ),
+        'padding-bottom': generateCSSUnit( boxBottomPaddingMobile, boxPaddingUnitMobile ),
+        'padding-left': generateCSSUnit( boxLeftPaddingMobile, boxPaddingUnitMobile ),
     };
 
     mobileSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__time'] = {
