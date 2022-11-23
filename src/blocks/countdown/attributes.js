@@ -4,6 +4,8 @@
 import { getBorderAttributes } from '@Controls/generateAttributes';
 import { __ } from '@wordpress/i18n';
 
+const boxBorderAttributes = getBorderAttributes( 'box' );
+
 const attributes = {
 	block_id: {
 		type: 'string',
@@ -628,6 +630,17 @@ const attributes = {
 		type: 'boolean',
 		default: false,
 		isUAGStyle: true,
+	},
+	// Box Align.
+	boxAlign: {
+		type: 'string',
+		default: 'center',
+	},
+	boxAlignTablet: {
+		type: 'string',
+	},
+	boxAlignMobile: {
+		type: 'string',
 	},
 };
 

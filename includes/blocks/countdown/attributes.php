@@ -7,6 +7,8 @@
  * @package uagb
  */
 
+$box_border_attribute = UAGB_Block_Helper::uag_generate_border_attribute( 'box' );
+
 return array_merge(
 	array(
 		'showLabels'               => true,
@@ -124,5 +126,10 @@ return array_merge(
 		'boxPaddingUnit'           => 'px',
 		'boxPaddingUnitTablet'     => 'px',
 		'boxPaddingUnitMobile'     => 'px',
-	)
+		// Box Align.
+		'boxAlign'                 => 'center',
+		'boxAlignTablet'           => '',
+		'boxAlignMobile'           => '',
+	),
+	$box_border_attribute
 );
