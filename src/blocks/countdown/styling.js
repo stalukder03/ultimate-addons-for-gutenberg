@@ -120,9 +120,18 @@ export default function styling( props ) {
 		boxPaddingUnit,
 		boxPaddingUnitTablet,
 		boxPaddingUnitMobile,
+		// Box Align.
+		boxAlign,
+		boxAlignTablet,
+		boxAlignMobile,
     } = attributes;
 
     const blockName = props.name.replace( 'uagb/', '' );
+
+	// Border.
+	const boxBorderCSS = generateBorderCSS( props.attributes, 'box' );
+	const boxBorderCSSTablet = generateBorderCSS( props.attributes, 'box', 'tablet' );
+	const boxBorderCSSMobile = generateBorderCSS( props.attributes, 'box', 'mobile' );
 
 	const tabletSelectors = {};
 	const mobileSelectors = {};
@@ -140,10 +149,12 @@ export default function styling( props ) {
 			'padding-left': generateCSSUnit( blockLeftPadding, blockPaddingUnit ),
         },
 		'.wp-block-uagb-countdown .wp-block-uagb-countdown__box':{
+			'text-align': boxAlign,
 			'padding-top': generateCSSUnit( boxTopPadding, boxPaddingUnit ),
 			'padding-right': generateCSSUnit( boxRightPadding, boxPaddingUnit ),
 			'padding-bottom': generateCSSUnit( boxBottomPadding, boxPaddingUnit ),
 			'padding-left': generateCSSUnit( boxLeftPadding, boxPaddingUnit ),
+			...boxBorderCSS,
 		},
         '.wp-block-uagb-countdown .wp-block-uagb-countdown__time':{
 			'font-family': digitFontFamily,
@@ -189,10 +200,12 @@ export default function styling( props ) {
     };
 
 	tabletSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box'] = {
+		'text-align': boxAlignTablet,
         'padding-top': generateCSSUnit( boxTopPaddingTablet, boxPaddingUnitTablet ),
         'padding-right': generateCSSUnit( boxRightPaddingTablet, boxPaddingUnitTablet ),
         'padding-bottom': generateCSSUnit( boxBottomPaddingTablet, boxPaddingUnitTablet ),
         'padding-left': generateCSSUnit( boxLeftPaddingTablet, boxPaddingUnitTablet ),
+		...boxBorderCSSTablet,
     };
 
     tabletSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__time'] = {
@@ -225,10 +238,12 @@ export default function styling( props ) {
     };
 
 	mobileSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box'] = {
+		'text-align': boxAlignMobile,
         'padding-top': generateCSSUnit( boxTopPaddingMobile, boxPaddingUnitMobile ),
         'padding-right': generateCSSUnit( boxRightPaddingMobile, boxPaddingUnitMobile ),
         'padding-bottom': generateCSSUnit( boxBottomPaddingMobile, boxPaddingUnitMobile ),
         'padding-left': generateCSSUnit( boxLeftPaddingMobile, boxPaddingUnitMobile ),
+		...boxBorderCSSMobile,
     };
 
     mobileSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__time'] = {

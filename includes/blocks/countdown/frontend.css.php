@@ -11,6 +11,11 @@ UAGB_Block_JS::blocks_countdown_gfont( $attr );
 
 $block_name = 'countdown';
 
+// Box Border CSS.
+$box_border_css        = UAGB_Block_Helper::uag_generate_border_css( $attr, 'box' );
+$box_border_css_tablet = UAGB_Block_Helper::uag_generate_border_css( $attr, 'box', 'tablet' );
+$box_border_css_mobile = UAGB_Block_Helper::uag_generate_border_css( $attr, 'box', 'mobile' );
+
 $m_selectors = array();
 $t_selectors = array();
 
@@ -27,11 +32,15 @@ $selectors = array(
 		'padding-left'   => UAGB_Helper::get_css_value( $attr['blockLeftPadding'], $attr['blockPaddingUnit'] ),
 	),
 
-	'.wp-block-uagb-countdown .wp-block-uagb-countdown__box' => array(
-		'padding-top'    => UAGB_Helper::get_css_value( $attr['boxTopPadding'], $attr['boxPaddingUnit'] ),
-		'padding-right'  => UAGB_Helper::get_css_value( $attr['boxRightPadding'], $attr['boxPaddingUnit'] ),
-		'padding-bottom' => UAGB_Helper::get_css_value( $attr['boxBottomPadding'], $attr['boxPaddingUnit'] ),
-		'padding-left'   => UAGB_Helper::get_css_value( $attr['boxLeftPadding'], $attr['boxPaddingUnit'] ),
+	'.wp-block-uagb-countdown .wp-block-uagb-countdown__box' => array_merge(
+		array(
+			'text-align'     => $attr['boxAlign'],
+			'padding-top'    => UAGB_Helper::get_css_value( $attr['boxTopPadding'], $attr['boxPaddingUnit'] ),
+			'padding-right'  => UAGB_Helper::get_css_value( $attr['boxRightPadding'], $attr['boxPaddingUnit'] ),
+			'padding-bottom' => UAGB_Helper::get_css_value( $attr['boxBottomPadding'], $attr['boxPaddingUnit'] ),
+			'padding-left'   => UAGB_Helper::get_css_value( $attr['boxLeftPadding'], $attr['boxPaddingUnit'] ),
+		),
+		$box_border_css
 	),
 
 	'.wp-block-uagb-countdown .wp-block-uagb-countdown__time' => array(
@@ -79,11 +88,15 @@ $t_selectors['.wp-block-uagb-countdown'] = array(
 	'padding-left'   => UAGB_Helper::get_css_value( $attr['blockLeftPaddingTablet'], $attr['blockPaddingUnitTablet'] ),
 );
 
-$t_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box'] = array(
-	'padding-top'    => UAGB_Helper::get_css_value( $attr['boxTopPaddingTablet'], $attr['boxPaddingUnitTablet'] ),
-	'padding-right'  => UAGB_Helper::get_css_value( $attr['boxRightPaddingTablet'], $attr['boxPaddingUnitTablet'] ),
-	'padding-bottom' => UAGB_Helper::get_css_value( $attr['boxBottomPaddingTablet'], $attr['boxPaddingUnitTablet'] ),
-	'padding-left'   => UAGB_Helper::get_css_value( $attr['boxLeftPaddingTablet'], $attr['boxPaddingUnitTablet'] ),
+$t_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box'] = array_merge(
+	array(
+		'text-align'     => $attr['boxAlignTablet'],
+		'padding-top'    => UAGB_Helper::get_css_value( $attr['boxTopPaddingTablet'], $attr['boxPaddingUnitTablet'] ),
+		'padding-right'  => UAGB_Helper::get_css_value( $attr['boxRightPaddingTablet'], $attr['boxPaddingUnitTablet'] ),
+		'padding-bottom' => UAGB_Helper::get_css_value( $attr['boxBottomPaddingTablet'], $attr['boxPaddingUnitTablet'] ),
+		'padding-left'   => UAGB_Helper::get_css_value( $attr['boxLeftPaddingTablet'], $attr['boxPaddingUnitTablet'] ),
+	),
+	$box_border_css_tablet
 );
 
 $t_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__time'] = array(
@@ -117,11 +130,15 @@ $m_selectors['.wp-block-uagb-countdown'] = array(
 	'padding-left'   => UAGB_Helper::get_css_value( $attr['blockLeftPaddingMobile'], $attr['blockPaddingUnitMobile'] ),
 );
 
-$m_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box'] = array(
-	'padding-top'    => UAGB_Helper::get_css_value( $attr['boxTopPaddingMobile'], $attr['boxPaddingUnitMobile'] ),
-	'padding-right'  => UAGB_Helper::get_css_value( $attr['boxRightPaddingMobile'], $attr['boxPaddingUnitMobile'] ),
-	'padding-bottom' => UAGB_Helper::get_css_value( $attr['boxBottomPaddingMobile'], $attr['boxPaddingUnitMobile'] ),
-	'padding-left'   => UAGB_Helper::get_css_value( $attr['boxLeftPaddingMobile'], $attr['boxPaddingUnitMobile'] ),
+$m_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box'] = array_merge(
+	array(
+		'text-align'     => $attr['boxAlignMobile'],
+		'padding-top'    => UAGB_Helper::get_css_value( $attr['boxTopPaddingMobile'], $attr['boxPaddingUnitMobile'] ),
+		'padding-right'  => UAGB_Helper::get_css_value( $attr['boxRightPaddingMobile'], $attr['boxPaddingUnitMobile'] ),
+		'padding-bottom' => UAGB_Helper::get_css_value( $attr['boxBottomPaddingMobile'], $attr['boxPaddingUnitMobile'] ),
+		'padding-left'   => UAGB_Helper::get_css_value( $attr['boxLeftPaddingMobile'], $attr['boxPaddingUnitMobile'] ),
+	),
+	$box_border_css_mobile
 );
 
 $m_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__time'] = array(
