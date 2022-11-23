@@ -7,6 +7,8 @@
  * @package uagb
  */
 
+UAGB_Block_JS::blocks_countdown_gfont( $attr );
+
 $block_name = 'countdown';
 
 $m_selectors = array();
