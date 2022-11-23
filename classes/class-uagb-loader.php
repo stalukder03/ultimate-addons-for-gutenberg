@@ -125,12 +125,13 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 		public function loader() {
 
 			require_once UAGB_DIR . 'classes/utils.php';
+			require_once UAGB_DIR . 'classes/class-spectra-block-prioritization.php';
 			require_once UAGB_DIR . 'classes/class-uagb-install.php';
+			require_once UAGB_DIR . 'classes/class-uagb-filesystem.php';
 			require_once UAGB_DIR . 'classes/class-uagb-admin-helper.php';
 			require_once UAGB_DIR . 'classes/class-uagb-block-module.php';
 			require_once UAGB_DIR . 'classes/class-uagb-helper.php';
 			require_once UAGB_DIR . 'classes/class-uagb-scripts-utils.php';
-			require_once UAGB_DIR . 'classes/class-uagb-filesystem.php';
 			require_once UAGB_DIR . 'classes/class-uagb-update.php';
 
 			// BSF Analytics.
@@ -461,6 +462,19 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 			if ( 'astra' === $theme_folder ) {
 				require_once UAGB_DIR . 'compatibility/class-uagb-astra-compatibility.php';
 			}
+
+			register_meta(
+				'post',
+				'_uag_custom_page_level_css',
+				array(
+					'show_in_rest'  => true,
+					'type'          => 'string',
+					'single'        => true,
+					'auth_callback' => function() {
+						return current_user_can( 'edit_posts' );
+					},
+				)
+			);
 		}
 	}
 }
