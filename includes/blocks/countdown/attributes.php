@@ -130,6 +130,10 @@ return array_merge(
 		'boxAlign'                 => 'center',
 		'boxAlignTablet'           => '',
 		'boxAlignMobile'           => '',
+		// Box Spacing.
+		'boxSpacing'               => '',
+		'boxSpacingTablet'         => '',
+		'boxSpacingMobile'         => '',
 	),
 	$box_border_attribute
 );

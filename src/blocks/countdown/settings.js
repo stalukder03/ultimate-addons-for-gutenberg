@@ -1,6 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import UAGTextControl from '@Components/text-control';
 import UAGSelectControl from '@Components/select-control';
+import ResponsiveSlider from '@Components/responsive-slider';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import MultiButtonsControl from '@Components/multi-buttons-control';
 import InspectorTabs from '@Components/inspector-tabs/InspectorTabs.js';
@@ -160,6 +161,10 @@ export default function Settings( props ) {
 		boxAlign,
 		boxAlignTablet,
 		boxAlignMobile,
+		// Box Spacing.
+		boxSpacing,
+		boxSpacingTablet,
+		boxSpacingMobile,
     } = attributes;
 
 	// <------------------ GOOGLE FONTS ------------------>
@@ -387,6 +392,30 @@ export default function Settings( props ) {
 					},
 				] }
 				showIcons={ true }
+			/>
+			<ResponsiveSlider
+				label={ __(
+					'Gap Between Boxes',
+					'ultimate-addons-for-gutenberg'
+				) }
+				data={ {
+					desktop: {
+						value: boxSpacing,
+						label: 'boxSpacing',
+					},
+					tablet: {
+						value: boxSpacingTablet,
+						label: 'boxSpacingTablet',
+					},
+					mobile: {
+						value: boxSpacingMobile,
+						label: 'boxSpacingMobile',
+					},
+				} }
+				min={ 0 }
+				max={ 200 }
+				displayUnit={ false }
+				setAttributes={ setAttributes }
 			/>
 			<ResponsiveBorder
 				disabledBorderTitle= {false}

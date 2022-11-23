@@ -642,6 +642,16 @@ const attributes = {
 	boxAlignMobile: {
 		type: 'string',
 	},
+	// Box Spacing.
+	boxSpacing: {
+		type: 'number',
+	},
+	boxSpacingTablet: {
+		type: 'number',
+	},
+	boxSpacingMobile: {
+		type: 'number',
+	},
 };
 
 export default attributes;

@@ -43,6 +43,10 @@ $selectors = array(
 		$box_border_css
 	),
 
+	'.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child)' => array(
+		'margin-right' => UAGB_Helper::get_css_value( $attr['boxSpacing'], 'px' ),
+	),
+
 	'.wp-block-uagb-countdown .wp-block-uagb-countdown__time' => array(
 		'font-family'     => $attr['digitFontFamily'],
 		'font-style'      => $attr['digitFontStyle'],
@@ -99,6 +103,10 @@ $t_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box'] = array_m
 	$box_border_css_tablet
 );
 
+$t_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child)'] = array(
+	'margin-right' => UAGB_Helper::get_css_value( $attr['boxSpacingTablet'], 'px' ),
+);
+
 $t_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__time'] = array(
 	'font-size'     => UAGB_Helper::get_css_value( $attr['digitFontSizeTablet'], $attr['digitFontSizeType'] ),
 	'line-height'   => UAGB_Helper::get_css_value( $attr['digitLineHeightTablet'], $attr['digitLineHeightType'] ),
@@ -139,6 +147,10 @@ $m_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box'] = array_m
 		'padding-left'   => UAGB_Helper::get_css_value( $attr['boxLeftPaddingMobile'], $attr['boxPaddingUnitMobile'] ),
 	),
 	$box_border_css_mobile
+);
+
+$m_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child)'] = array(
+	'margin-right' => UAGB_Helper::get_css_value( $attr['boxSpacingMobile'], 'px' ),
 );
 
 $m_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__time'] = array(
