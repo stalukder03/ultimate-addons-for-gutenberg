@@ -139,6 +139,19 @@ export default function styling( props ) {
 		// Box Background.
 		boxBgType,
 		boxBgColor,
+		// Box - Box Shadow.
+		boxShadowColor,
+		boxShadowHOffset,
+		boxShadowVOffset,
+		boxShadowBlur,
+		boxShadowSpread,
+		boxShadowPosition,
+		boxShadowColorHover,
+		boxShadowHOffsetHover,
+		boxShadowVOffsetHover,
+		boxShadowBlurHover,
+		boxShadowSpreadHover,
+		boxShadowPositionHover,		
     } = attributes;
 
     const blockName = props.name.replace( 'uagb/', '' );
@@ -151,6 +164,20 @@ export default function styling( props ) {
 	const boxBorderCSS = generateBorderCSS( props.attributes, 'box' );
 	const boxBorderCSSTablet = generateBorderCSS( props.attributes, 'box', 'tablet' );
 	const boxBorderCSSMobile = generateBorderCSS( props.attributes, 'box', 'mobile' );
+
+	let boxShadowPositionCSS = boxShadowPosition;
+
+	// Box Shadow.
+	if ( 'outset' === boxShadowPosition ) {
+		boxShadowPositionCSS = '';
+	}
+
+	let boxShadowPositionCSSHover = boxShadowPositionHover;
+
+	if ( 'outset' === boxShadowPositionHover ) {
+		boxShadowPositionCSSHover = '';
+	}
+
 
 	const tabletSelectors = {};
 	const mobileSelectors = {};
@@ -176,8 +203,12 @@ export default function styling( props ) {
 			'padding-right': generateCSSUnit( boxRightPadding, boxPaddingUnit ),
 			'padding-bottom': generateCSSUnit( boxBottomPadding, boxPaddingUnit ),
 			'padding-left': generateCSSUnit( boxLeftPadding, boxPaddingUnit ),
+			'box-shadow': generateCSSUnit( boxShadowHOffset, 'px' ) + ' ' + generateCSSUnit( boxShadowVOffset, 'px' ) +	' ' +
+			generateCSSUnit( boxShadowBlur, 'px' ) + ' ' +	generateCSSUnit( boxShadowSpread, 'px' ) + ' ' +
+			boxShadowColor + ' ' +	boxShadowPositionCSS,
 			...boxBorderCSS,
 		},
+		'.wp-block-uagb-countdown:hover .wp-block-uagb-countdown__box':{},  // Empty ruleset to prevent undefined error.
 		'.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child)':{
 			'margin-right': generateCSSUnit( boxSpacingFallback, 'px' ),
 		},
@@ -212,6 +243,18 @@ export default function styling( props ) {
         },
 
     };
+
+	const boxShadowBlurHoverTemp = isNaN( boxShadowBlurHover ) ? '' : boxShadowBlurHover;
+	const boxShadowColorHoverTemp = boxShadowColorHover ? boxShadowColorHover : '';
+
+	if( '' !== boxShadowColorHoverTemp || '' !== boxShadowBlurHoverTemp ) {
+
+		const boxShadowBlurHoverCSSUnit = ( '' === boxShadowBlurHoverTemp ) ? '' : generateCSSUnit( boxShadowBlurHoverTemp, 'px' );
+
+		selectors['.wp-block-uagb-countdown:hover .wp-block-uagb-countdown__box']['box-shadow'] = generateCSSUnit( boxShadowHOffsetHover, 'px' ) + ' ' + generateCSSUnit( boxShadowVOffsetHover, 'px' ) +	' ' +
+													boxShadowBlurHoverCSSUnit + ' ' +	generateCSSUnit( boxShadowSpreadHover, 'px' ) + ' ' +
+													boxShadowColorHoverTemp + ' ' +	boxShadowPositionCSSHover;
+	}
 
     tabletSelectors['.wp-block-uagb-countdown'] = {
 		'justify-content': alignTablet,

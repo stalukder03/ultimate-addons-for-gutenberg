@@ -145,6 +145,20 @@ return array_merge(
 		// Box Background.
 		'boxBgType'                => 'transparent',
 		'boxBgColor'               => '',
+		// Box - Box Shadow.
+		// Box Shadow.
+		'boxShadowColor'           => '#00000070',
+		'boxShadowHOffset'         => 0,
+		'boxShadowVOffset'         => 0,
+		'boxShadowBlur'            => '',
+		'boxShadowSpread'          => '',
+		'boxShadowPosition'        => '',
+		'boxShadowColorHover'      => '',
+		'boxShadowHOffsetHover'    => 0,
+		'boxShadowVOffsetHover'    => 0,
+		'boxShadowBlurHover'       => '',
+		'boxShadowSpreadHover'     => '',
+		'boxShadowPositionHover'   => '',
 	),
 	$box_border_attribute
 );

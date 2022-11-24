@@ -682,6 +682,87 @@ const attributes = {
 	boxBgColor: {
 		type: 'string',
 	},
+	// Box Shadow for Boxes.
+	boxShadowColor: {
+		type: 'string',
+		default: '#00000070',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-shadow-color'
+		},
+	},
+	boxShadowHOffset: {
+		type: 'number',
+		default: 0,
+		UAGCopyPaste: {
+			styleType: 'countdown-box-shadow-hoffset'
+		},
+	},
+	boxShadowVOffset: {
+		type: 'number',
+		default: 0,
+		UAGCopyPaste: {
+			styleType: 'countdown-box-shadow-voffset'
+		},
+	},
+	boxShadowBlur: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-shadow-blur'
+		},
+	},
+	boxShadowSpread: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-shadow-spread'
+		},
+	},
+	boxShadowPosition: {
+		type: 'string',
+		default: 'outset',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-shadow-position'
+		},
+	},
+
+	boxShadowColorHover: {
+		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-shadow-color-hover'
+		},
+	},
+	boxShadowHOffsetHover: {
+		type: 'number',
+		default: 0,
+		UAGCopyPaste: {
+			styleType: 'countdown-box-shadow-hoffset-hover'
+		},
+	},
+	boxShadowVOffsetHover: {
+		type: 'number',
+		default: 0,
+		UAGCopyPaste: {
+			styleType: 'countdown-box-shadow-voffset-hover'
+		},
+	},
+	boxShadowBlurHover: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-shadow-blur-hover'
+		},
+	},
+	boxShadowSpreadHover: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-shadow-spread-hover'
+		},
+	},
+	boxShadowPositionHover: {
+		type: 'string',
+		default: 'outset',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-shadow-position-hover'
+		},
+	},
 	...boxBorderAttributes,
 };
 
