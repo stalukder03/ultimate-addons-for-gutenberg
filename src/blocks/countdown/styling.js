@@ -143,6 +143,10 @@ export default function styling( props ) {
 
     const blockName = props.name.replace( 'uagb/', '' );
 
+	const boxSpacingFallback = getFallbackNumber( boxSpacing, 'boxSpacing', blockName );
+	const boxSpacingFallbackTablet = isNaN( boxSpacingTablet ) ? boxSpacing : boxSpacingTablet;
+	const boxSpacingFallbackMobile = isNaN( boxSpacingMobile ) ? boxSpacingTablet : boxSpacingMobile;
+
 	// Border.
 	const boxBorderCSS = generateBorderCSS( props.attributes, 'box' );
 	const boxBorderCSSTablet = generateBorderCSS( props.attributes, 'box', 'tablet' );
@@ -175,7 +179,7 @@ export default function styling( props ) {
 			...boxBorderCSS,
 		},
 		'.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child)':{
-			'margin-right': generateCSSUnit( boxSpacing, 'px' ),
+			'margin-right': generateCSSUnit( boxSpacingFallback, 'px' ),
 		},
         '.wp-block-uagb-countdown .wp-block-uagb-countdown__time':{
 			'font-family': digitFontFamily,
@@ -232,7 +236,7 @@ export default function styling( props ) {
     };
 
 	tabletSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child)'] = {
-		'margin-right': generateCSSUnit( boxSpacingTablet, 'px' ),
+		'margin-right': generateCSSUnit( boxSpacingFallbackTablet, 'px' ),
     };
 
     tabletSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__time'] = {
@@ -276,7 +280,7 @@ export default function styling( props ) {
     };
 
 	mobileSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child)'] = {
-		'margin-right': generateCSSUnit( boxSpacingMobile, 'px' ),
+		'margin-right': generateCSSUnit( boxSpacingFallbackMobile, 'px' ),
     };
 
     mobileSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__time'] = {

@@ -11,6 +11,11 @@ UAGB_Block_JS::blocks_countdown_gfont( $attr );
 
 $block_name = 'countdown';
 
+// Fallbacks.
+$box_spacing_fallback     = UAGB_Block_Helper::get_fallback_number( $attr['boxSpacing'], 'boxSpacing', $block_name );
+$attr['boxSpacingTablet'] = is_numeric( $attr['boxSpacingTablet'] ) ? $attr['boxSpacingTablet'] : $prefix_right_distance_fallback;
+$attr['boxSpacingMobile'] = is_numeric( $attr['boxSpacingMobile'] ) ? $attr['boxSpacingMobile'] : $attr['boxSpacingTablet'];
+
 // Box Border CSS.
 $box_border_css        = UAGB_Block_Helper::uag_generate_border_css( $attr, 'box' );
 $box_border_css_tablet = UAGB_Block_Helper::uag_generate_border_css( $attr, 'box', 'tablet' );
@@ -47,7 +52,7 @@ $selectors = array(
 	),
 
 	'.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child)' => array(
-		'margin-right' => UAGB_Helper::get_css_value( $attr['boxSpacing'], 'px' ),
+		'margin-right' => UAGB_Helper::get_css_value( $box_spacing_fallback, 'px' ),
 	),
 
 	'.wp-block-uagb-countdown .wp-block-uagb-countdown__time' => array(
