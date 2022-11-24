@@ -349,7 +349,7 @@ export default function Settings( props ) {
 			<MultiButtonsControl
 				setAttributes={ setAttributes }
 				label={ __(
-					'Alignment',
+					'Inner Alignment',
 					'ultimate-addons-for-gutenberg'
 				) }
 				responsive={ true }
