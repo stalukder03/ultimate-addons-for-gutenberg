@@ -26,6 +26,8 @@ import ResponsiveSlider from '@Components/responsive-slider';
 import UAGSelectControl from '@Components/select-control';
 // Extend component
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
+import GlobalBlockStyles from '@Components/global-block-styles';
+
 
 const Settings = ( props ) => {
 	props = props.parentProps;
@@ -1260,6 +1262,10 @@ const Settings = ( props ) => {
 			<InspectorControls>
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>
+						<GlobalBlockStyles
+							blockID={ props.clientId }
+							attributes={ attributes }
+						/>
 						{ generalPanel() }
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
