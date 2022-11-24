@@ -11,6 +11,7 @@ import { useDeviceType } from '@Controls/getPreviewType';
 import ResponsiveBorder from '@Components/responsive-border';
 import WebfontLoader from '@Components/typography/fontloader';
 import renderSVG from '@Controls/renderIcon';
+import renderCustomIcon from '@Controls/renderCustomIcon';
 import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control.js';
 import InspectorTab, {
 	UAGTabs,
@@ -165,6 +166,10 @@ export default function Settings( props ) {
 		boxSpacing,
 		boxSpacingTablet,
 		boxSpacingMobile,
+		// Box Flex Direction.
+		boxFlex,
+		boxFlexTablet,
+		boxFlexMobile,
     } = attributes;
 
 	// <------------------ GOOGLE FONTS ------------------>
@@ -389,6 +394,47 @@ export default function Settings( props ) {
 							'Right',
 							'ultimate-addons-for-gutenberg'
 						),
+					},
+				] }
+				showIcons={ true }
+			/>
+			<MultiButtonsControl
+				setAttributes={ setAttributes }
+				label={ __( 'Flex Direction', 'ultimate-addons-for-gutenberg' ) }
+				responsive={ true }
+				data={ {
+						desktop: {
+							value: boxFlex,
+							label: 'boxFlex',
+						},
+						tablet: {
+							value: boxFlexTablet,
+							label: 'boxFlexTablet',
+						},
+						mobile: {
+							value: boxFlexMobile,
+							label: 'boxFlexMobile',
+						},
+				} }
+				className="uagb-multi-button-alignment-control"
+				options={ [
+					{
+						value: 'row',
+						icon: (
+							<Icon
+								icon={ renderCustomIcon( 'flex-direction-row' ) }
+							/>
+						),
+						tooltip: __( 'Row', 'ultimate-addons-for-gutenberg' ),
+					},
+					{
+						value: 'column',
+						icon: (
+							<Icon
+								icon={ renderCustomIcon( 'flex-direction-column' ) }
+							/>
+						),
+						tooltip: __( 'Column', 'ultimate-addons-for-gutenberg' ),
 					},
 				] }
 				showIcons={ true }

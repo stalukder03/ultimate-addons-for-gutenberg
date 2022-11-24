@@ -134,6 +134,10 @@ return array_merge(
 		'boxSpacing'               => '',
 		'boxSpacingTablet'         => '',
 		'boxSpacingMobile'         => '',
+		// Box Flex.
+		'boxFlex'                  => 'column',
+		'boxFlexTablet'            => '',
+		'boxFlexMobile'            => '',
 	),
 	$box_border_attribute
 );

@@ -652,6 +652,17 @@ const attributes = {
 	boxSpacingMobile: {
 		type: 'number',
 	},
+	// Box Flex.
+	boxFlex: {
+		type: 'string',
+		default: 'column',
+	},
+	boxFlexTablet: {
+		type: 'string',
+	},
+	boxFlexMobile: {
+		type: 'string',
+	},
 };
 
 export default attributes;
