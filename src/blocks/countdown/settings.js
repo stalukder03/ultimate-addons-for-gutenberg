@@ -1,6 +1,5 @@
 import { __ } from '@wordpress/i18n';
 import UAGTextControl from '@Components/text-control';
-import UAGSelectControl from '@Components/select-control';
 import ResponsiveSlider from '@Components/responsive-slider';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import MultiButtonsControl from '@Components/multi-buttons-control';
@@ -22,7 +21,6 @@ import {
 	DateTimePicker,
 } from '@wordpress/components';
 import {
-    BlockControls,
     InspectorControls
 } from '@wordpress/block-editor';
 
