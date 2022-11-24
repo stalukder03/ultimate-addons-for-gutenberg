@@ -120,6 +120,10 @@ export default function styling( props ) {
 		boxPaddingUnit,
 		boxPaddingUnitTablet,
 		boxPaddingUnitMobile,
+		// Overall Align.
+		align,
+		alignTablet,
+		alignMobile,
 		// Box Align.
 		boxAlign,
 		boxAlignTablet,
@@ -150,6 +154,7 @@ export default function styling( props ) {
     const selectors = {
 
         '.wp-block-uagb-countdown':{
+			'justify-content': align,
             'margin-top': generateCSSUnit( blockTopMargin, blockMarginUnit ),
 			'margin-right': generateCSSUnit( blockRightMargin, blockMarginUnit ),
 			'margin-bottom': generateCSSUnit( blockBottomMargin, blockMarginUnit ),
@@ -205,6 +210,7 @@ export default function styling( props ) {
     };
 
     tabletSelectors['.wp-block-uagb-countdown'] = {
+		'justify-content': alignTablet,
         'margin-top': generateCSSUnit( blockTopMarginTablet, blockMarginUnitTablet ),
         'margin-right': generateCSSUnit( blockRightMarginTablet, blockMarginUnitTablet ),
         'margin-bottom': generateCSSUnit( blockBottomMarginTablet, blockMarginUnitTablet ),
@@ -248,6 +254,7 @@ export default function styling( props ) {
     };
 
     mobileSelectors['.wp-block-uagb-countdown'] = {
+		'justify-content': alignMobile,
         'margin-top': generateCSSUnit( blockTopMarginMobile, blockMarginUnitMobile ),
         'margin-right': generateCSSUnit( blockRightMarginMobile, blockMarginUnitMobile ),
         'margin-bottom': generateCSSUnit( blockBottomMarginMobile, blockMarginUnitMobile ),
@@ -290,10 +297,7 @@ export default function styling( props ) {
         'margin-left': generateCSSUnit( labelLeftMarginMobile, labelMarginUnitMobile ),
     };
 
-    const baseSelector = `.editor-styles-wrapper .uagb-block-${ props.clientId.substr(
-		0,
-		8
-	) }`;
+	const baseSelector = `.editor-styles-wrapper .uagb-block-${ props.clientId.substr( 0, 8 ) }`;
 
     let styling_css = generateCSS( selectors, baseSelector );
 

@@ -158,6 +158,10 @@ export default function Settings( props ) {
 		boxPaddingUnitTablet,
 		boxPaddingUnitMobile,
 		boxPaddingLink,
+		// Overall Align.
+		align,
+		alignTablet,
+		alignMobile,
 		// Box Align.
 		boxAlign,
 		boxAlignTablet,
@@ -186,6 +190,50 @@ export default function Settings( props ) {
 			label: __( 'Color', 'ultimate-addons-for-gutenberg' ),
 		},
 	];
+
+	const alignmentOptions = [
+		{
+			value: 'left',
+			icon: (
+				<Icon
+					icon={ renderSVG( 'fa fa-align-left' ) }
+				/>
+			),
+			tooltip: __(
+				'Left',
+				'ultimate-addons-for-gutenberg'
+			),
+		},
+		{
+			value: 'center',
+			icon: (
+				<Icon
+					icon={ renderSVG(
+						'fa fa-align-center'
+					) }
+				/>
+			),
+			tooltip: __(
+				'Center',
+				'ultimate-addons-for-gutenberg'
+			),
+		},
+		{
+			value: 'right',
+			icon: (
+				<Icon
+					icon={ renderSVG(
+						'fa fa-align-right'
+					) }
+				/>
+			),
+			tooltip: __(
+				'Right',
+				'ultimate-addons-for-gutenberg'
+			),
+		},
+	];
+
 	// <------------------ GOOGLE FONTS ------------------>
 	// Loading Google Fonts.
 	let loadDigitGoogleFonts;
@@ -349,6 +397,31 @@ export default function Settings( props ) {
 			<MultiButtonsControl
 				setAttributes={ setAttributes }
 				label={ __(
+					'Overall Alignment',
+					'ultimate-addons-for-gutenberg'
+				) }
+				responsive={ true }
+				data={ {
+						desktop: {
+							value: align,
+							label: 'align',
+						},
+						tablet: {
+							value: alignTablet,
+							label: 'alignTablet',
+						},
+						mobile: {
+							value: alignMobile,
+							label: 'alignMobile',
+						},
+				} }
+				className="uagb-multi-button-alignment-control"
+				options={ alignmentOptions }
+				showIcons={ true }
+			/>
+			<MultiButtonsControl
+				setAttributes={ setAttributes }
+				label={ __(
 					'Inner Alignment',
 					'ultimate-addons-for-gutenberg'
 				) }
@@ -368,48 +441,7 @@ export default function Settings( props ) {
 						},
 				} }
 				className="uagb-multi-button-alignment-control"
-				options={ [
-					{
-						value: 'left',
-						icon: (
-							<Icon
-								icon={ renderSVG( 'fa fa-align-left' ) }
-							/>
-						),
-						tooltip: __(
-							'Left',
-							'ultimate-addons-for-gutenberg'
-						),
-					},
-					{
-						value: 'center',
-						icon: (
-							<Icon
-								icon={ renderSVG(
-									'fa fa-align-center'
-								) }
-							/>
-						),
-						tooltip: __(
-							'Center',
-							'ultimate-addons-for-gutenberg'
-						),
-					},
-					{
-						value: 'right',
-						icon: (
-							<Icon
-								icon={ renderSVG(
-									'fa fa-align-right'
-								) }
-							/>
-						),
-						tooltip: __(
-							'Right',
-							'ultimate-addons-for-gutenberg'
-						),
-					},
-				] }
+				options={ alignmentOptions }
 				showIcons={ true }
 			/>
 			<MultiButtonsControl

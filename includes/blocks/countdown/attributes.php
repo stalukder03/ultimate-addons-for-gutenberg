@@ -127,6 +127,10 @@ return array_merge(
 		'boxPaddingUnitTablet'     => 'px',
 		'boxPaddingUnitMobile'     => 'px',
 		// Box Align.
+		'align'                    => 'center',
+		'alignTablet'              => '',
+		'alignMobile'              => '',
+		// Box Align.
 		'boxAlign'                 => 'center',
 		'boxAlignTablet'           => '',
 		'boxAlignMobile'           => '',

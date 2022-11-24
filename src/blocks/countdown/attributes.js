@@ -631,6 +631,17 @@ const attributes = {
 		default: false,
 		isUAGStyle: true,
 	},
+	// Overall Align.
+	align: {
+		type: 'string',
+		default: 'center',
+	},
+	alignTablet: {
+		type: 'string',
+	},
+	alignMobile: {
+		type: 'string',
+	},
 	// Box Align.
 	boxAlign: {
 		type: 'string',
