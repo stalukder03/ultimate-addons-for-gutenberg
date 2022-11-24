@@ -682,6 +682,7 @@ const attributes = {
 	boxBgColor: {
 		type: 'string',
 	},
+	...boxBorderAttributes,
 };
 
 export default attributes;
