@@ -138,6 +138,9 @@ return array_merge(
 		'boxFlex'                  => 'column',
 		'boxFlexTablet'            => '',
 		'boxFlexMobile'            => '',
+		// Box Background.
+		'boxBgType'                => 'transparent',
+		'boxBgColor'               => '',
 	),
 	$box_border_attribute
 );

@@ -170,8 +170,22 @@ export default function Settings( props ) {
 		boxFlex,
 		boxFlexTablet,
 		boxFlexMobile,
+		// Box Background.
+		boxBgType,
+		boxBgColor,
     } = attributes;
 
+	// <------------------ OPTIONS/VALUES ------------------>
+	const bgTypeOptions = [
+		{
+			value: 'transparent',
+			label: __( 'Transparent', 'ultimate-addons-for-gutenberg' ),
+		},
+		{
+			value: 'color',
+			label: __( 'Color', 'ultimate-addons-for-gutenberg' ),
+		},
+	];
 	// <------------------ GOOGLE FONTS ------------------>
 	// Loading Google Fonts.
 	let loadDigitGoogleFonts;
@@ -439,6 +453,27 @@ export default function Settings( props ) {
 				] }
 				showIcons={ true }
 			/>
+			<MultiButtonsControl
+				setAttributes={ setAttributes }
+				label={ __( 'Background Type', 'ultimate-addons-for-gutenberg' ) }
+				data={ {
+					value: boxBgType,
+					label: 'boxBgType',
+				} }
+				className="uagb-multi-button-alignment-control"
+				options={ bgTypeOptions }
+			/>
+			{ boxBgType === 'color' &&
+				 <AdvancedPopColorControl
+					label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
+					colorValue={ boxBgColor ? boxBgColor : '' }
+					data={ {
+						value: boxBgColor,
+						label: 'boxBgColor',
+					} }
+					setAttributes={ setAttributes }
+				/>
+			}
 			<ResponsiveSlider
 				label={ __(
 					'Gap Between Boxes',

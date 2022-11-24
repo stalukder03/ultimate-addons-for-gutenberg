@@ -132,6 +132,9 @@ export default function styling( props ) {
 		boxFlex,
 		boxFlexTablet,
 		boxFlexMobile,
+		// Box Background.
+		boxBgType,
+		boxBgColor,
     } = attributes;
 
     const blockName = props.name.replace( 'uagb/', '' );
@@ -159,6 +162,7 @@ export default function styling( props ) {
 		'.wp-block-uagb-countdown .wp-block-uagb-countdown__box':{
 			'flex-direction': boxFlex,
 			'text-align': boxAlign,
+			'background-color': ( boxBgType !== 'transparent' ) ? boxBgColor : 'transparent', 
 			'padding-top': generateCSSUnit( boxTopPadding, boxPaddingUnit ),
 			'padding-right': generateCSSUnit( boxRightPadding, boxPaddingUnit ),
 			'padding-bottom': generateCSSUnit( boxBottomPadding, boxPaddingUnit ),

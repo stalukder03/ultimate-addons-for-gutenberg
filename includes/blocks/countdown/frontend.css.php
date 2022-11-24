@@ -34,12 +34,13 @@ $selectors = array(
 
 	'.wp-block-uagb-countdown .wp-block-uagb-countdown__box' => array_merge(
 		array(
-			'flex-direction' => $attr['boxFlex'],
-			'text-align'     => $attr['boxAlign'],
-			'padding-top'    => UAGB_Helper::get_css_value( $attr['boxTopPadding'], $attr['boxPaddingUnit'] ),
-			'padding-right'  => UAGB_Helper::get_css_value( $attr['boxRightPadding'], $attr['boxPaddingUnit'] ),
-			'padding-bottom' => UAGB_Helper::get_css_value( $attr['boxBottomPadding'], $attr['boxPaddingUnit'] ),
-			'padding-left'   => UAGB_Helper::get_css_value( $attr['boxLeftPadding'], $attr['boxPaddingUnit'] ),
+			'flex-direction'   => $attr['boxFlex'],
+			'text-align'       => $attr['boxAlign'],
+			'background-color' => ( 'transparent' !== $attr['boxBgType'] ) ? $attr['boxBgColor'] : 'transparent',
+			'padding-top'      => UAGB_Helper::get_css_value( $attr['boxTopPadding'], $attr['boxPaddingUnit'] ),
+			'padding-right'    => UAGB_Helper::get_css_value( $attr['boxRightPadding'], $attr['boxPaddingUnit'] ),
+			'padding-bottom'   => UAGB_Helper::get_css_value( $attr['boxBottomPadding'], $attr['boxPaddingUnit'] ),
+			'padding-left'     => UAGB_Helper::get_css_value( $attr['boxLeftPadding'], $attr['boxPaddingUnit'] ),
 		),
 		$box_border_css
 	),

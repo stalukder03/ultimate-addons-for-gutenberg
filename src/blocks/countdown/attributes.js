@@ -663,6 +663,14 @@ const attributes = {
 	boxFlexMobile: {
 		type: 'string',
 	},
+	// Box Background.
+	boxBgType: {
+		type: 'string',
+		default: 'transparent',
+	},
+	boxBgColor: {
+		type: 'string',
+	},
 };
 
 export default attributes;
