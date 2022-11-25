@@ -374,7 +374,7 @@ export default function Settings( props ) {
 		>
             <ToggleControl
                 label={ __( 'Show Separator', 'ultimate-addons-for-gutenberg' ) }
-                checked={ showLabels }
+                checked={ showSeparator }
                 onChange={ () =>
                     setAttributes( { showSeparator: ! showSeparator } )
                 }
