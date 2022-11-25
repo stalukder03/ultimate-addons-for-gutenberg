@@ -6,6 +6,16 @@
 
 	.swiper-pagination {
 		position: relative;
+
+		&.swiper-pagination-vertical{
+			position: absolute;
+			top: 10px !important;
+			transform: none !important;
+		}
+	}
+	
+	.swiper-vertical {
+		height: 500px;
 	}
 
 	.block-editor-block-list__layout .block-list-appender {

@@ -27,7 +27,8 @@ const Render = ( props ) => {
 		transitionEffect,
 		swiperInstance,
 		displayArrows,
-		displayDots
+		displayDots,
+		verticalMode
 	} = attributes;
 
 	const getSliderTemplate = useMemo( () => {
@@ -110,6 +111,7 @@ const Render = ( props ) => {
 				fadeEffect={{
 					crossFade: true
 				}}
+				direction={ verticalMode ? 'vertical' : 'horizontal' }
 				flipEffect={{
 					slideShadows: false,
 				}}

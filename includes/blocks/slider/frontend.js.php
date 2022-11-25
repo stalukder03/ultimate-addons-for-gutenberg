@@ -26,6 +26,7 @@ $slider_options = apply_filters(
 		'loop'       => $attr['infiniteLoop'],
 		'speed'      => (int) $attr['transitionSpeed'],
 		'effect'     => $attr['transitionEffect'],
+		'direction'  => $attr['verticalMode'] ? 'vertical' : 'horizontal',
 		'flipEffect' => array(
 			'slideShadows' => false,
 		),
@@ -46,6 +47,9 @@ $slider_options = apply_filters(
 );
 
 $settings = wp_json_encode( $slider_options );
+
+error_log( $attr['verticalMode'] );
+error_log( $settings );
 
 ob_start();
 ?>
