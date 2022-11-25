@@ -18,6 +18,14 @@ $box_spacing_fallback     = UAGB_Block_Helper::get_fallback_number( $attr['boxSp
 $attr['boxSpacingTablet'] = is_numeric( $attr['boxSpacingTablet'] ) ? $attr['boxSpacingTablet'] : $box_spacing_fallback;
 $attr['boxSpacingMobile'] = is_numeric( $attr['boxSpacingMobile'] ) ? $attr['boxSpacingMobile'] : $attr['boxSpacingTablet'];
 
+$separator_right_spacing_fallback    = UAGB_Block_Helper::get_fallback_number( $attr['separatorRightSpacing'], 'separatorRightSpacing', $block_name );
+$attr['separatorRightSpacingTablet'] = is_numeric( $attr['separatorRightSpacingTablet'] ) ? $attr['separatorRightSpacingTablet'] : $separator_right_spacing_fallback;
+$attr['separatorRightSpacingMobile'] = is_numeric( $attr['separatorRightSpacingMobile'] ) ? $attr['separatorRightSpacingMobile'] : $attr['separatorRightSpacingTablet'];
+
+$separator_top_spacing_fallback    = UAGB_Block_Helper::get_fallback_number( $attr['separatorTopSpacing'], 'separatorTopSpacing', $block_name );
+$attr['separatorTopSpacingTablet'] = is_numeric( $attr['separatorTopSpacingTablet'] ) ? $attr['separatorTopSpacingTablet'] : $separator_top_spacing_fallback;
+$attr['separatorTopSpacingMobile'] = is_numeric( $attr['separatorTopSpacingMobile'] ) ? $attr['separatorTopSpacingMobile'] : $attr['separatorTopSpacingTablet'];
+
 // Box Border CSS.
 $box_border_css        = UAGB_Block_Helper::uag_generate_border_css( $attr, 'box' );
 $box_border_css_tablet = UAGB_Block_Helper::uag_generate_border_css( $attr, 'box', 'tablet' );

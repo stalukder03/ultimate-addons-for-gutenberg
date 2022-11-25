@@ -181,9 +181,19 @@ export default function styling( props ) {
 
 	const separatorSelector = '.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child) .wp-block-uagb-countdown__time::after';
 
+	// Fallbacks.
+
 	const boxSpacingFallback = getFallbackNumber( boxSpacing, 'boxSpacing', blockName );
 	const boxSpacingFallbackTablet = isNaN( boxSpacingTablet ) ? boxSpacing : boxSpacingTablet;
 	const boxSpacingFallbackMobile = isNaN( boxSpacingMobile ) ? boxSpacingTablet : boxSpacingMobile;
+
+	const separatorRightSpacingFallback = getFallbackNumber( separatorRightSpacing, 'separatorRightSpacing', blockName );
+	const separatorRightSpacingTabletFallback = isNaN( separatorRightSpacingTablet ) ? separatorRightSpacing : separatorRightSpacingTablet;
+	const separatorRightSpacingMobileFallback = isNaN( separatorRightSpacingMobile ) ? separatorRightSpacingTablet : separatorRightSpacingMobile;
+
+	const separatorTopSpacingFallback = getFallbackNumber( separatorTopSpacing, 'separatorTopSpacing', blockName );
+	const separatorTopSpacingTabletFallback = isNaN( separatorTopSpacingTablet ) ? separatorTopSpacing : separatorTopSpacingTablet;
+	const separatorTopSpacingMobileFallback = isNaN( separatorTopSpacingMobile ) ? separatorTopSpacingTablet : separatorTopSpacingMobile;
 
 	// Border.
 	const boxBorderCSS = generateBorderCSS( props.attributes, 'box' );
@@ -384,22 +394,22 @@ export default function styling( props ) {
 			'line-height': generateCSSUnit( separatorLineHeight, separatorLineHeightType ),
 			'color': separatorColor,
 
-			'right': generateCSSUnit( -separatorRightSpacing, 'px' ),
-			'top': generateCSSUnit( separatorTopSpacing, 'px' ),
+			'right': generateCSSUnit( -separatorRightSpacingFallback, 'px' ),
+			'top': generateCSSUnit( separatorTopSpacingFallback, 'px' ),
 		};
 
 		tabletSelectors[ separatorSelector ] = {
 			'font-size': generateCSSUnit( separatorFontSizeTablet, separatorFontSizeType ),
 			'line-height': generateCSSUnit( separatorLineHeightTablet, separatorLineHeightType ),
-			'right': generateCSSUnit( -separatorRightSpacingTablet, 'px' ),
-			'top': generateCSSUnit( separatorTopSpacingTablet, 'px' ),
+			'right': generateCSSUnit( -separatorRightSpacingTabletFallback, 'px' ),
+			'top': generateCSSUnit( separatorTopSpacingTabletFallback, 'px' ),
 		};
 
 		mobileSelectors[ separatorSelector ] = {
 			'font-size': generateCSSUnit( separatorFontSizeMobile, separatorFontSizeType ),
 			'line-height': generateCSSUnit( separatorLineHeightMobile, separatorLineHeightType ),
-			'right': generateCSSUnit( -separatorRightSpacingMobile, 'px' ),
-			'top': generateCSSUnit( separatorTopSpacingMobile, 'px' ),
+			'right': generateCSSUnit( -separatorRightSpacingMobileFallback, 'px' ),
+			'top': generateCSSUnit( separatorTopSpacingMobileFallback, 'px' ),
 		};
 	}
 
