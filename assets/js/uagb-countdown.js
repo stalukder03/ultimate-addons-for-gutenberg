@@ -1,11 +1,20 @@
 UAGBCountdown = { // eslint-disable-line no-undef
 	elements: {},
+	countdownInterval: {},
 	init( mainSelector, data = {} ) {
 
         this.elements = this.getDefaultElements( mainSelector );
 
+		// this.countdownInterval[ mainSelector ] = ''; // Edit here.
+
+		if( this.countdownInterval[ mainSelector ] ){
+			clearInterval( this.countdownInterval[ mainSelector ] );
+			console.log('fired')
+			console.log( mainSelector )
+		}
+
         if( typeof this.elements.countdownWrapper !== 'undefined' && this.elements.countdownWrapper ){
-            setInterval( () => {
+            this.countdownInterval[ mainSelector ] = setInterval( () => {
                 this.updateCountdown( data );
             }, 1000 );
 		}
