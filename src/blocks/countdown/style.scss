@@ -15,3 +15,11 @@
     }
 
 }
+
+// These fixes are specific to the Astra theme.
+body[class*="astra"] {
+
+	.wp-block-uagb-countdown {
+		line-height: normal;
+	}
+}
