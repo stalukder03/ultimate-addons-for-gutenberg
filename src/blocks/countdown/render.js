@@ -18,7 +18,7 @@ const Render = ( props ) => {
 	props = props.parentProps;
 
     const deviceType = useDeviceType();
-	const { attributes, setAttributes } = props;
+	const { attributes } = props;
 
     const {
         block_id,
