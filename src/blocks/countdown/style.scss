@@ -5,6 +5,7 @@
     text-align: center;
 
     &__box {
+        position: relative;  // Helps to position separators.
         width: fit-content;
         display: flex;
         flex-direction: column;
