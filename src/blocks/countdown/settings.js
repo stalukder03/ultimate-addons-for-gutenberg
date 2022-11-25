@@ -276,6 +276,7 @@ export default function Settings( props ) {
 	// Loading Google Fonts.
 	let loadDigitGoogleFonts;
 	let loadLabelGoogleFonts;
+	let loadSeparatorGoogleFonts;
 
 	if ( digitLoadGoogleFonts === true ) {
 		const digitConfig = {
@@ -303,6 +304,21 @@ export default function Settings( props ) {
 
 		loadLabelGoogleFonts = (
 			<WebfontLoader config={ labelConfig }></WebfontLoader>
+		);
+	}
+
+	if ( separatorLoadGoogleFonts === true ) {
+		const separatorConfig = {
+			google: {
+				families: [
+					separatorFontFamily +
+						( separatorFontWeight ? ':' + separatorFontWeight : '' ),
+				],
+			},
+		};
+
+		loadSeparatorGoogleFonts = (
+			<WebfontLoader config={ separatorConfig }></WebfontLoader>
 		);
 	}
 
@@ -1409,6 +1425,7 @@ export default function Settings( props ) {
 			</InspectorControls>
 			{ loadDigitGoogleFonts }
 			{ loadLabelGoogleFonts }
+			{ loadSeparatorGoogleFonts }
         </>
     );
 };
