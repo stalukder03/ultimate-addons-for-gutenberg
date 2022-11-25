@@ -15,6 +15,5 @@ $block_data = array(
 	'description' => __( 'Add and customize displaying content of this timeline.', 'ultimate-addons-for-gutenberg' ),
 	'default'     => true,
 	'is_child'    => true,
-	'static_css'  => 'timeline',
 	'deprecated'  => false,
 );

@@ -1252,14 +1252,6 @@ const attributes = {
 		type    : 'string',
 		default : ' , ',
 	},
-	equalHeightInlineButtons        : {
-		type    : 'boolean',
-		default : false,
-	},
-	imageRatio: {
-		type: 'string',
-		default: 'inherit'
-	},
 	...btnBorderAttributes,
 	...overallBorderAttributes
 }

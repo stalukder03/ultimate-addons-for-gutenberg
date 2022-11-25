@@ -14,8 +14,6 @@ import LoadFontsLocally from '@DashboardApp/pages/settings/LoadFontsLocally';
 import PreloadLocalFonts from '@DashboardApp/pages/settings/PreloadLocalFonts';
 import CollapsePanels from '@DashboardApp/pages/settings/CollapsePanels';
 import CopyPasteStyles from '@DashboardApp/pages/settings/CopyPasteStyles';
-import Login from '@DashboardApp/pages/settings/block-settings/Login';
-import DynamicContent from './dynamic-content';
 import ContentWidth from '@DashboardApp/pages/settings/ContentWidth';
 import BlocksEditorSpacing from '@DashboardApp/pages/settings/BlocksEditorSpacing';
 import ComingSoon from '@DashboardApp/pages/settings/ComingSoon';
@@ -25,10 +23,8 @@ import LoadFontAwesome5 from '@DashboardApp/pages/settings/LoadFontAwesome5';
 import AutoBlockRecovery from '@DashboardApp/pages/settings/AutoBlockRecovery';
 import ContainerGlobalPadding from '@DashboardApp/pages/settings/ContainerGlobalPadding';
 import ContainerGlobalElementsGap from '@DashboardApp/pages/settings/ContainerGlobalElementsGap';
-import MyAccount from '@DashboardApp/pages/settings/MyAccount';
-import { Link, useLocation, useHistory } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import{ useEffect } from 'react';
-
 
 function classNames( ...classes ) {
     return classes.filter( Boolean ).join( ' ' )
@@ -36,14 +32,10 @@ function classNames( ...classes ) {
 
 const Settings = () => {
 
-
 	const query = new URLSearchParams( useLocation()?.search );
 	const dispatch = useDispatch();
-	const history = useHistory();
-
 	const activeSettingsNavigationTab = useSelector( ( state ) => state.activeSettingsNavigationTab );
     const initialStateSetFlag = useSelector( ( state ) => state.initialStateSetFlag );
-
 	const navigation = [
 		{ name: __( 'Editor Options', 'ultimate-addons-for-gutenberg' ), slug: 'global-settings', icon: SettingsIcons['global-settings'] },
         { name: __( 'Asset Generation', 'ultimate-addons-for-gutenberg' ), slug: 'asset-generation', icon: SettingsIcons['asset-generation'] },
@@ -54,22 +46,11 @@ const Settings = () => {
 		{ name: __( 'Coming Soon', 'ultimate-addons-for-gutenberg' ), slug: 'coming-soon', icon: SettingsIcons['coming-soon'] },
     ];
 
-	if( uag_react.spectra_pro_status ){
-		navigation.push( { name: __( 'My Account', 'ultimate-addons-for-gutenberg' ), slug: 'my-account', icon: SettingsIcons.account } );
-	}
-
 	useEffect( () => {
 		// Activate Setting Active Tab from "settingsTab" Hash in the URl is present.
 		const activePath = query.get( 'path' );
 		const activeHash = query.get( 'settings' );
-		let activeSettingsTabFromHash = ( activeHash && 'settings' === activePath ) ? activeHash : 'global-settings';
-		if( uag_react.spectra_pro_status && !uag_react.license_status ){
-			activeSettingsTabFromHash = ( activeHash && 'settings' === activePath ) ? activeHash : 'my-account';
-			history.push( {
-				pathname: 'options-general.php',
-				search: `?page=spectra&path=settings&settings=${activeSettingsTabFromHash}`,
-			} )
-		}
+		const activeSettingsTabFromHash = ( activeHash && 'settings' === activePath ) ? activeHash : 'global-settings';
 		dispatch( {type:'UPDATE_SETTINGS_ACTIVE_NAVIGATION_TAB', payload: activeSettingsTabFromHash} )
 	}, [initialStateSetFlag] );
 
@@ -114,11 +95,6 @@ const Settings = () => {
                                 <ContentWidth/>
 								<ContainerGlobalPadding/>
 								<ContainerGlobalElementsGap/>
-								{
-									uag_react.spectra_pro_status && (
-										<DynamicContent />
-									)
-								}
                                 <BlocksEditorSpacing/>
                                 <CollapsePanels/>
                                 <CopyPasteStyles/>
@@ -154,25 +130,14 @@ const Settings = () => {
                             </>
                         }
                         { 'block-settings' === activeSettingsNavigationTab &&
-							<>
-								{
-									uag_react.spectra_pro_status && (
-										<Login />
-									)
-								}
-								<BlockSettings/>
-							</>
+                            <>
+                                <BlockSettings/>
+                            </>
                         }
                         {
                             'coming-soon' === activeSettingsNavigationTab &&
                             <>
                                 <ComingSoon/>
-                            </>
-                        }
-                        {
-                        	uag_react.spectra_pro_status &&  'my-account' === activeSettingsNavigationTab &&
-                            <>
-                                <MyAccount />
                             </>
                         }
                     </div>

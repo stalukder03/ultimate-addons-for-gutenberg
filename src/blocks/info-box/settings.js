@@ -27,7 +27,6 @@ import {
 	ToggleControl,
 	Icon
 } from '@wordpress/components';
-import UAGTextControl from '@Components/text-control';
 import renderSVG from '@Controls/renderIcon';
 let imageSizeOptions = [
 	{
@@ -41,6 +40,7 @@ let imageSizeOptions = [
 
 
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
+import UAGTextControl from '@Components/text-control';
 
 const Settings = ( props ) => {
 	props = props.parentProps;
@@ -924,14 +924,15 @@ const Settings = ( props ) => {
 								'Link',
 								'ultimate-addons-for-gutenberg'
 							) }
-							enableDynamicContent={true}
-							name="ctaLink"
 							value={ ctaLink }
-							setAttributes={setAttributes}
 							data={{
 								value: ctaLink,
 								label: 'ctaLink',
 							}}
+							setAttributes={ setAttributes }
+							onChange={ ( value ) =>
+								setAttributes( { ctaLink: value } )
+							}
 						/>
 					</>
 				) }

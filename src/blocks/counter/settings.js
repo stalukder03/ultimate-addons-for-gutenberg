@@ -27,7 +27,6 @@ import { getImageSize } from '@Utils/Helpers';
 import UAGPresets from '@Components/presets';
 import { getFallbackNumber } from '@Controls/getAttributeFallback';
 import defaultAttributes from './attributes';
-import WebfontLoader from '@Components/typography/fontloader';
 
 let imageSizeOptions = [
 	{
@@ -244,39 +243,6 @@ export default function Settings( props ) {
 		iconMarginUnitMobile,
 		iconMarginLink,
 	} = attributes;
-
-	// Loading Google Fonts.
-	let loadNumberGoogleFonts;
-	let loadHeadingGoogleFonts;
-
-	if ( numberLoadGoogleFonts === true ) {
-		const numberConfig = {
-			google: {
-				families: [
-					numberFontFamily +
-						( numberFontWeight ? ':' + numberFontWeight : '' ),
-				],
-			},
-		};
-
-		loadNumberGoogleFonts = (
-			<WebfontLoader config={ numberConfig }></WebfontLoader>
-		);
-	}
-
-	if ( headingLoadGoogleFonts === true ) {
-		const headingConfig = {
-			google: {
-				families: [
-					headingFontFamily + ( headingFontWeight ? ':' + headingFontWeight : '' ),
-				],
-			},
-		};
-
-		loadHeadingGoogleFonts = (
-			<WebfontLoader config={ headingConfig }></WebfontLoader>
-		);
-	}
 
 	useEffect( () => {
 		// Since circle layout doesn't support other image positions.
@@ -1889,8 +1855,6 @@ export default function Settings( props ) {
 					</InspectorTab>
 				</InspectorTabs>
 			</InspectorControls>
-			{ loadHeadingGoogleFonts }
-			{ loadNumberGoogleFonts }
 		</>
 	);
 }

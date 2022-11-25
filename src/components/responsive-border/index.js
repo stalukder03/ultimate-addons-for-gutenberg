@@ -34,7 +34,7 @@ const ResponsiveBorder = ( props ) => {
 		attributes,
 		setAttributes,
 		disabledBorderTitle,
-		disableBottomSeparator,
+		disableBottomSeparator = false,
 		deviceType,
 
 		prefix,
@@ -98,7 +98,7 @@ const ResponsiveBorder = ( props ) => {
 	const advancedControls = (
 		<>
 			{ ! disabledBorderTitle && (
-				<p className='spectra-panel__body-sub-heading'>{ label }</p>
+				<h2>{ label }</h2>
 			) }
 			<UAGSelectControl
 				label={ borderStyleLabel }

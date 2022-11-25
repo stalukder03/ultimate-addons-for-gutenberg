@@ -611,6 +611,15 @@ const Settings = ( props ) => {
 									}
 								</>
 							}
+							<ToggleControl
+								label={ __(
+									'Equal Height',
+									'ultimate-addons-for-gutenberg'
+								) }
+								checked={ equalHeight }
+								onChange={ ( value ) => onChangeHeight( value )	}
+								help={ __( 'Enabling this will change the Align Items value to Stretch.', 'ultimate-addons-for-gutenberg' ) }
+							/>
 						</>
 					}
 					{ ( ( isBlockRootParent && 'default' === contentWidth ) || ( ! isBlockRootParent ) ) &&
@@ -719,15 +728,6 @@ const Settings = ( props ) => {
 							},
 						] }
 						setAttributes={ setAttributes }
-					/>
-					<ToggleControl
-						label={ __(
-							'Equal Height',
-							'ultimate-addons-for-gutenberg'
-						) }
-						checked={ equalHeight }
-						onChange={ ( value ) => onChangeHeight( value )	}
-						help={ __( 'Enabling this will change the Align Items value to Stretch.', 'ultimate-addons-for-gutenberg' ) }
 					/>
 					<UAGSelectControl
 						label={ __(

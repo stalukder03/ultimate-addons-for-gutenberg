@@ -27,26 +27,23 @@ export const PostImage = ( props ) => {
 		const src = post.uagb_featured_image_src[ attributes.imgSize ];
 
 		return (
-			<div className='uagb-post__image'>
+			<div className="uagb-post__image">
 				{
 					undefined !== post.uagb_featured_image_src && undefined !== src[ 0 ] &&
 					(
-						( attributes.blockName === 'post-grid' && (
-							<a
-								href={ post.link }
-								target={ target }
-								rel='noopener noreferrer'
-								className={`uagb-image-ratio-${attributes.imageRatio}`}
-							>
-								<img
-									src={ src[ 0 ] }
-									alt={
-										decodeEntities( post.title.rendered.trim() ) ||
-										__( '(Untitled)' )
-									}
-								/>
-							</a>
-						) )
+						<a
+							href={ post.link }
+							target={ target }
+							rel="noopener noreferrer"
+						>
+							<img
+								src={ src[ 0 ] }
+								alt={
+									decodeEntities( post.title.rendered.trim() ) ||
+									__( '(Untitled)' )
+								}
+							/>
+						</a>
 					)
 				}
 			</div>

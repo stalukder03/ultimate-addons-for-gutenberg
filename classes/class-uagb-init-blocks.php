@@ -502,14 +502,13 @@ class UAGB_Init_Blocks {
 		if ( is_array( $saved_blocks ) ) {
 			foreach ( $saved_blocks as $slug => $data ) {
 
-				$_slug       = 'uagb/' . $slug;
-				$blocks_info = UAGB_Block_Module::get_blocks_info();
+				$_slug = 'uagb/' . $slug;
 
-				if ( ! isset( $blocks_info[ $_slug ] ) ) {
+				if ( ! isset( UAGB_Config::$block_attributes[ $_slug ] ) ) {
 					continue;
 				}
 
-				$current_block = $blocks_info[ $_slug ];
+				$current_block = UAGB_Config::$block_attributes[ $_slug ];
 
 				if ( isset( $current_block['is_child'] ) && $current_block['is_child'] ) {
 					continue;
@@ -629,7 +628,6 @@ class UAGB_Init_Blocks {
 				'auto_block_recovery'                => UAGB_Admin_Helper::get_admin_settings_option( 'uag_auto_block_recovery', ( 'yes' === get_option( 'uagb-old-user-less-than-2' ) ) ? 'enabled' : 'disabled' ),
 				'font_awesome_5_polyfill'            => array(),
 				'spectra_custom_fonts'               => apply_filters( 'spectra_system_fonts', array() ),
-				'spectra_pro_status'                 => is_plugin_active( 'spectra-pro/spectra-pro.php' ),
 				'spectra_custom_css_example'         => __(
 					'Use custom class added in block\'s advanced settings to target your desired block. Examples:
 				.my-class {text-align: center;} // my-class is a custom selector'

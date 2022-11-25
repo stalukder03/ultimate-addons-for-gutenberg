@@ -1,13 +1,10 @@
 import { __ } from '@wordpress/i18n';
 import { BaseControl } from '@wordpress/components';
 import { MediaUpload } from '@wordpress/block-editor';
-import { useSelect } from '@wordpress/data';
+import React from 'react';
 import UAGB_Block_Icons from '@Controls/block-icons';
 
 const UAGMediaPicker = ( props ) => {
-	const selectedBlock = useSelect( ( select ) => {
-		return select( 'core/block-editor' ).getSelectedBlock();
-	}, [] );
 
 	const {
 		onSelectImage,
@@ -18,7 +15,6 @@ const UAGMediaPicker = ( props ) => {
 		disableLabel = false,
 		disableRemove = false,
 		allow = [ 'image' ],
-		disableDynamicContent = false
 	} = props;
 
 	// This is used to render an icon in place of the background image when needed.
@@ -61,45 +57,19 @@ const UAGMediaPicker = ( props ) => {
 			);
 	}
 
-	const registerImageExtender = disableDynamicContent ? null : wp.hooks.applyFilters( 'uagb.registerImageExtender', '', selectedBlock?.name, onSelectImage )
-
-	const isShowImageUploader = () => {
-		if( disableDynamicContent ){
-			return true;
-		}
-		const dynamicContent = selectedBlock?.attributes?.dynamicContent
-		if( dynamicContent && dynamicContent?.bgImage?.enable === true ) {
-			return false
-		}
-		return true;
-	}
-
 	const renderMediaUploader = ( open ) => {
 		const uploadType = backgroundImage?.url ? 'replace' : 'add';
 		return(
-			<>
-				{ 'add' === uploadType  && (
-					<button
-						className={ `spectra-media-control__clickable spectra-media-control__clickable--${ uploadType }` }
-						onClick={ open }
-					>
-						{
-							renderButton( uploadType )
-						}
-					</button>
-				)}
-				<div className='spectra-media-control__footer'>
-					<button
-						className="uag-control-label"
-						onClick={ open }
-					>
-						{ replaceMediaLabel }
-					</button>
-					{
-						registerImageExtender
-					}
-				</div>
-			</>
+			<button
+				className={ `spectra-media-control__clickable spectra-media-control__clickable--${ uploadType }` }
+				onClick={ open }
+			>
+				{ ( 'add' === uploadType ) ? (
+					renderButton( uploadType )
+				) : (
+					<div className='uag-control-label'>{ replaceMediaLabel }</div>
+				) }
+			</button>
 		)
 	};
 
@@ -142,46 +112,38 @@ const UAGMediaPicker = ( props ) => {
 			label={ label }
 			hideLabelFromVision={ disableLabel }
 		>
-			{
-				isShowImageUploader() ? (
-					<>
-						<div
-							className="spectra-media-control__wrapper"
-							style={ {
-								backgroundImage: ( ! placeholderIcon && backgroundImage?.url ) && (
-									`url("${ generateBackground( backgroundImage?.url ) }")`
-								),
-							} }
-						>
-							{ ( placeholderIcon && backgroundImage?.url ) && (
-								<div className="spectra-media-control__icon spectra-media-control__icon--stroke">
-									{ placeholderIcon }
-								</div>
-							) }
-							<MediaUpload
-								title={ selectMediaLabel }
-								onSelect={ onSelectImage }
-								allowedTypes={ allow }
-								value={ backgroundImage }
-								render={ ( { open } ) => renderMediaUploader( open ) }
-							/>
-							{ ( ! disableRemove && backgroundImage?.url ) && (
-								<button
-									className='spectra-media-control__clickable spectra-media-control__clickable--close'
-									onClick={ onRemoveImage }
-								>
-									{ renderButton( 'close' ) }
-								</button>
-							) }
-						</div>
-						{ props.help && (
-							<p className="uag-control-help-notice">{ props.help }</p>
-						) }
-					</>
-				) : (
-					registerImageExtender
-				)
-			}
+			<div
+				className="spectra-media-control__wrapper"
+				style={ {
+					backgroundImage: ( ! placeholderIcon && backgroundImage?.url ) && (
+						`url("${ generateBackground( backgroundImage?.url ) }")`
+					),
+				} }
+			>
+				{ ( placeholderIcon && backgroundImage?.url ) && (
+					<div className="spectra-media-control__icon spectra-media-control__icon--stroke">
+						{ placeholderIcon }
+					</div>
+				) }
+				<MediaUpload
+					title={ selectMediaLabel }
+					onSelect={ onSelectImage }
+					allowedTypes={ allow }
+					value={ backgroundImage }
+					render={ ( { open } ) => renderMediaUploader( open ) }
+				/>
+	 			{ ( ! disableRemove && backgroundImage?.url ) && (
+					<button
+						className='spectra-media-control__clickable spectra-media-control__clickable--close'
+						onClick={ onRemoveImage }
+					>
+	 					{ renderButton( 'close' ) }
+	 				</button>
+	 			) }
+			</div>
+			{ props.help && (
+				<p className="uag-control-help-notice">{ props.help }</p>
+			) }
 		</BaseControl>
 	);
 };

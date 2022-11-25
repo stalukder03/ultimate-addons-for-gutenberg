@@ -21,8 +21,6 @@ const UAGCopyPasteStyles = () => {
     // Registering the shortcuts
 	const { registerShortcut } = useDispatch( keyboardShortcutsStore );
 
-	const allBlocksAttributes = wp.hooks.applyFilters( 'uagb.blocksAttributes', blocksAttributes )
-
     const [ showPopup, setshowPopup ] = useState( false );
     const [ disablePaste, setdisablePaste ] = useState( false );
     const { hasMultiSelection } = select( 'core/block-editor' );
@@ -156,7 +154,7 @@ const UAGCopyPasteStyles = () => {
 		if ( name.includes( 'uagb/' ) ) {
 
 			const blockName = name.replace( 'uagb/', '' );
-			const blockAttributes = allBlocksAttributes[blockName];
+			const blockAttributes = blocksAttributes[blockName];
 
 			spectraCopyPasteStyles[`${blockName}-styles`] = {};
 			spectraCopyPasteStyles[`global-style`] = {};
@@ -227,7 +225,7 @@ const UAGCopyPasteStyles = () => {
 			styles = spectraCopyPasteStyles[`global-style`];
 
 			const blockName = name.replace( 'uagb/', '' );
-			const blockAttributes = allBlocksAttributes[blockName];
+			const blockAttributes = blocksAttributes[blockName];
 
 			pasteStyle = spectraCopyPasteStyles[`${blockName}-styles`];
 
@@ -242,7 +240,7 @@ const UAGCopyPasteStyles = () => {
 					innerBlocks.map( ( childBlock , index ) => {
 
 						const childName = childBlock.name.replace( 'uagb/', '' );
-						const blockAttributes = allBlocksAttributes[childName];
+						const blockAttributes = blocksAttributes[childName];
 
 						if( pasteStyle.innerblocks[index].name === 'uagb/' + childName ) {
 							Object.keys( blockAttributes ).map( ( attribute ) => {

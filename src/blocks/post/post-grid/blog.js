@@ -22,7 +22,6 @@ const Blog = ( props ) => {
 		paginationMarkup,
 		postPagination,
 		layoutConfig,
-		equalHeightInlineButtons
 	} = attributes;
 
 	const postsToShowFallback = getFallbackNumber( postsToShow, 'postsToShow', blockName );
@@ -37,7 +36,7 @@ const Blog = ( props ) => {
 			? latestPosts.slice( 0, postsToShowFallback )
 			: latestPosts;
 	const isImageEnabled = ( attributes.displayPostImage === true ) ? 'uagb-post__image-enabled' : 'uagb-post__image-disabled';
-	const equalHeightInlineReadMoreButtonsClass = equalHeightInlineButtons ? `uagb-equal_height_inline-read-more-buttons-in-editor` : '';
+
 	return (
 		<div
 			className={ classnames(
@@ -52,8 +51,7 @@ const Blog = ( props ) => {
 				'uagb-post-grid',
 				`uagb-post__image-position-${ imgPosition }`,
 				`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
-				`uagb-block-${ block_id }`,
-				`${ equalHeightInlineReadMoreButtonsClass }`
+				`uagb-block-${ block_id }`
 			) }
 		>
 			<InnerBlockLayoutContextProvider
