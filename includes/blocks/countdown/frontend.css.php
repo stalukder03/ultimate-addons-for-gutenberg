@@ -13,7 +13,7 @@ $block_name = 'countdown';
 
 // Fallbacks.
 $box_spacing_fallback     = UAGB_Block_Helper::get_fallback_number( $attr['boxSpacing'], 'boxSpacing', $block_name );
-$attr['boxSpacingTablet'] = is_numeric( $attr['boxSpacingTablet'] ) ? $attr['boxSpacingTablet'] : $prefix_right_distance_fallback;
+$attr['boxSpacingTablet'] = is_numeric( $attr['boxSpacingTablet'] ) ? $attr['boxSpacingTablet'] : $box_spacing_fallback;
 $attr['boxSpacingMobile'] = is_numeric( $attr['boxSpacingMobile'] ) ? $attr['boxSpacingMobile'] : $attr['boxSpacingTablet'];
 
 // Box Border CSS.
