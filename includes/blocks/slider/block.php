@@ -21,4 +21,7 @@ $block_data = array(
 	'css_assets'       => array( 'uagb-slider-css' ),
 	'priority'         => 11,
 	'deprecated'       => false,
+	'dynamic_assets'   => array(
+		'dir' => 'slider',
+	),
 );
