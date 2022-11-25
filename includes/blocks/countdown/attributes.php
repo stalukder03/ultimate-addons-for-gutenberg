@@ -12,6 +12,8 @@ $box_border_attribute = UAGB_Block_Helper::uag_generate_border_attribute( 'box' 
 return array_merge(
 	array(
 		'endDateTime'              => '2023-01-01T00:00:00Z',
+		'showSeparator'            => true,
+		'separatorType'            => 'colon',
 		'showLabels'               => true,
 		'labelDays'                => __( 'DAYS', 'ultimate-addons-for-gutenberg' ),
 		'labelHours'               => __( 'HOURS', 'ultimate-addons-for-gutenberg' ),

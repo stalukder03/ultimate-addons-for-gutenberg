@@ -224,6 +224,12 @@ $m_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__label'] = array
 	'margin-left'   => UAGB_Helper::get_css_value( $attr['labelLeftMarginMobile'], $attr['labelMarginUnitMobile'] ),
 );
 
+if ( true === $attr['showSeparator'] ) {
+	$selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child) .wp-block-uagb-countdown__time::after'] = array(
+		'content' => ( 'line' === $attr['separatorType'] ) ? '"|"' : '":"',
+	);
+}
+
 $combined_selectors = array(
 	'desktop' => $selectors,
 	'tablet'  => $t_selectors,
