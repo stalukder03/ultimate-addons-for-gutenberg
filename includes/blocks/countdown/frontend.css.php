@@ -11,6 +11,8 @@ UAGB_Block_JS::blocks_countdown_gfont( $attr );
 
 $block_name = 'countdown';
 
+$separator_selector = '.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child) .wp-block-uagb-countdown__time::after';
+
 // Fallbacks.
 $box_spacing_fallback     = UAGB_Block_Helper::get_fallback_number( $attr['boxSpacing'], 'boxSpacing', $block_name );
 $attr['boxSpacingTablet'] = is_numeric( $attr['boxSpacingTablet'] ) ? $attr['boxSpacingTablet'] : $box_spacing_fallback;
@@ -225,8 +227,33 @@ $m_selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__label'] = array
 );
 
 if ( true === $attr['showSeparator'] ) {
-	$selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child) .wp-block-uagb-countdown__time::after'] = array(
-		'content' => ( 'line' === $attr['separatorType'] ) ? '"|"' : '":"',
+
+	$selectors[ $separator_selector ] = array(
+		'content'         => ( 'line' === $attr['separatorType'] ) ? '"|"' : '":"',
+		'font-family'     => $attr['separatorFontFamily'],
+		'font-style'      => $attr['separatorFontStyle'],
+		'text-decoration' => $attr['separatorDecoration'],
+		'text-transform'  => $attr['separatorTransform'],
+		'font-weight'     => $attr['separatorFontWeight'],
+		'font-size'       => UAGB_Helper::get_css_value( $attr['separatorFontSize'], $attr['separatorFontSizeType'] ),
+		'line-height'     => UAGB_Helper::get_css_value( $attr['separatorLineHeight'], $attr['separatorLineHeightType'] ),
+		'color'           => $attr['separatorColor'],
+		'right'           => UAGB_Helper::get_css_value( -$attr['separatorRightSpacing'], 'px' ),
+		'top'             => UAGB_Helper::get_css_value( $attr['separatorTopSpacing'], 'px' ),
+	);
+
+	$t_selectors[ $separator_selector ] = array(
+		'font-size'   => UAGB_Helper::get_css_value( $attr['separatorFontSizeTablet'], $attr['separatorFontSizeType'] ),
+		'line-height' => UAGB_Helper::get_css_value( $attr['separatorLineHeightTablet'], $attr['separatorLineHeightType'] ),
+		'right'       => UAGB_Helper::get_css_value( -$attr['separatorRightSpacingTablet'], 'px' ),
+		'top'         => UAGB_Helper::get_css_value( $attr['separatorTopSpacingTablet'], 'px' ),
+	);
+
+	$m_selectors[ $separator_selector ] = array(
+		'font-size'   => UAGB_Helper::get_css_value( $attr['separatorFontSizeMobile'], $attr['separatorFontSizeType'] ),
+		'line-height' => UAGB_Helper::get_css_value( $attr['separatorLineHeightMobile'], $attr['separatorLineHeightType'] ),
+		'right'       => UAGB_Helper::get_css_value( -$attr['separatorRightSpacingMobile'], 'px' ),
+		'top'         => UAGB_Helper::get_css_value( $attr['separatorTopSpacingMobile'], 'px' ),
 	);
 }
 

@@ -110,6 +110,28 @@ export default function Settings( props ) {
 		labelMarginUnitTablet,
 		labelMarginUnitMobile,
 		labelMarginLink,
+		// Separator styling.
+		separatorLoadGoogleFonts,
+		separatorFontFamily,
+		separatorFontWeight,
+		separatorFontStyle,
+		separatorFontSize,
+		separatorColor,
+		separatorTransform,
+		separatorDecoration,
+		separatorFontSizeType,
+		separatorFontSizeMobile,
+		separatorFontSizeTablet,
+		separatorLineHeight,
+		separatorLineHeightType,
+		separatorLineHeightMobile,
+		separatorLineHeightTablet,
+		separatorRightSpacing,
+		separatorRightSpacingTablet,
+		separatorRightSpacingMobile,
+		separatorTopSpacing,
+		separatorTopSpacingTablet,
+		separatorTopSpacingMobile,
 		// Block Margin.
 		blockTopMargin,
 		blockRightMargin,
@@ -946,6 +968,127 @@ export default function Settings( props ) {
         </UAGAdvancedPanelBody>
     );
 
+	const separatorStylePanel = (
+		<UAGAdvancedPanelBody
+			title={ __( 'Separator', 'ultimate-addons-for-gutenberg' ) }
+			initialOpen={ false }
+		>
+			<AdvancedPopColorControl
+				label={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
+				colorValue={
+					separatorColor ? separatorColor : ''
+				}
+				data={ {
+					value: separatorColor,
+					label: 'separatorColor',
+				} }
+				setAttributes={ setAttributes }
+			/>
+			<TypographyControl
+				label={ __( 'Typography', 'ultimate-addons-for-gutenberg' ) }
+				setAttributes={ setAttributes }
+				loadGoogleFonts={ {
+					value: separatorLoadGoogleFonts,
+					label: 'separatorLoadGoogleFonts',
+				} }
+				fontFamily={ {
+					value: separatorFontFamily,
+					label: 'separatorFontFamily',
+				} }
+				fontWeight={ {
+					value: separatorFontWeight,
+					label: 'separatorFontWeight',
+				} }
+				fontStyle={ {
+					value: separatorFontStyle,
+					label: 'separatorFontStyle',
+				} }
+				transform={ {
+					value: separatorTransform,
+					label: 'separatorTransform',
+				} }
+				decoration={ {
+					value: separatorDecoration,
+					label: 'separatorDecoration',
+				} }
+				fontSizeType={ {
+					value: separatorFontSizeType,
+					label: 'separatorFontSizeType',
+				} }
+				fontSize={ {
+					value: separatorFontSize,
+					label: 'separatorFontSize',
+				} }
+				fontSizeMobile={ {
+					value: separatorFontSizeMobile,
+					label: 'separatorFontSizeMobile',
+				} }
+				fontSizeTablet={ {
+					value: separatorFontSizeTablet,
+					label: 'separatorFontSizeTablet',
+				} }
+				lineHeightType={ {
+					value: separatorLineHeightType,
+					label: 'separatorLineHeightType',
+				} }
+				lineHeight={ {
+					value: separatorLineHeight,
+					label: 'separatorLineHeight',
+				} }
+				lineHeightMobile={ {
+					value: separatorLineHeightMobile,
+					label: 'separatorLineHeightMobile',
+				} }
+				lineHeightTablet={ {
+					value: separatorLineHeightTablet,
+					label: 'separatorLineHeightTablet',
+				} }
+			/>
+			<ResponsiveSlider
+				label={ __( 'Separator Right Spacing', 'ultimate-addons-for-gutenberg' ) }
+				data={ {
+					desktop: {
+						value: separatorRightSpacing,
+						label: 'separatorRightSpacing',
+					},
+					tablet: {
+						value: separatorRightSpacingTablet,
+						label: 'separatorRightSpacingTablet',
+					},
+					mobile: {
+						value: separatorRightSpacingMobile,
+						label: 'separatorRightSpacingMobile',
+					},
+				} }
+				min={ 0 }
+				max={ 300 }
+				displayUnit={ false }
+				setAttributes={ setAttributes }
+			/>
+			<ResponsiveSlider
+				label={ __( 'Separator Top Spacing', 'ultimate-addons-for-gutenberg' ) }
+				data={ {
+					desktop: {
+						value: separatorTopSpacing,
+						label: 'separatorTopSpacing',
+					},
+					tablet: {
+						value: separatorTopSpacingTablet,
+						label: 'separatorTopSpacingTablet',
+					},
+					mobile: {
+						value: separatorTopSpacingMobile,
+						label: 'separatorTopSpacingMobile',
+					},
+				} }
+				min={ 0 }
+				max={ 300 }
+				displayUnit={ false }
+				setAttributes={ setAttributes }
+			/>
+		</UAGAdvancedPanelBody>
+	);
+
 	const boxShadowSettings = (
 		<UAGAdvancedPanelBody
 			title={ __( 'Box Shadow', 'ultimate-addons-for-gutenberg' ) }
@@ -1253,6 +1396,7 @@ export default function Settings( props ) {
 						{ boxStylePanel }
                         { digitStylePanel }
                         { labelStylePanel }
+						{ showSeparator && separatorStylePanel }
 						{ boxShadowSettings }
 						{ spacingStylePanel }
 					</InspectorTab>

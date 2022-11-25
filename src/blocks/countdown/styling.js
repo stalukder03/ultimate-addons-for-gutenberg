@@ -72,6 +72,27 @@ export default function styling( props ) {
 		labelMarginUnit,
 		labelMarginUnitTablet,
 		labelMarginUnitMobile,
+		// Separator styling.
+		separatorFontFamily,
+		separatorFontWeight,
+		separatorFontStyle,
+		separatorFontSize,
+		separatorColor,
+		separatorTransform,
+		separatorDecoration,
+		separatorFontSizeType,
+		separatorFontSizeMobile,
+		separatorFontSizeTablet,
+		separatorLineHeight,
+		separatorLineHeightType,
+		separatorLineHeightMobile,
+		separatorLineHeightTablet,
+		separatorRightSpacing,
+		separatorRightSpacingTablet,
+		separatorRightSpacingMobile,
+		separatorTopSpacing,
+		separatorTopSpacingTablet,
+		separatorTopSpacingMobile,
         // Block Margin
 		blockTopMargin,
 		blockRightMargin,
@@ -157,6 +178,8 @@ export default function styling( props ) {
     } = attributes;
 
     const blockName = props.name.replace( 'uagb/', '' );
+
+	const separatorSelector = '.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child) .wp-block-uagb-countdown__time::after';
 
 	const boxSpacingFallback = getFallbackNumber( boxSpacing, 'boxSpacing', blockName );
 	const boxSpacingFallbackTablet = isNaN( boxSpacingTablet ) ? boxSpacing : boxSpacingTablet;
@@ -259,14 +282,6 @@ export default function styling( props ) {
 													boxShadowColorHoverTemp + ' ' +	boxShadowPositionCSSHover;
 	}
 
-	// Separator.
-	if( showSeparator ) {
-		selectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child) .wp-block-uagb-countdown__time::after'] = {
-			'content': ( separatorType === 'line' ) ? '"|"' : '":"',
-
-		};
-	}
-
 	// TABLET SELECTORS.
     tabletSelectors['.wp-block-uagb-countdown'] = {
 		'justify-content': alignTablet,
@@ -355,6 +370,38 @@ export default function styling( props ) {
         'margin-bottom': generateCSSUnit( labelBottomMarginMobile, labelMarginUnitMobile ),
         'margin-left': generateCSSUnit( labelLeftMarginMobile, labelMarginUnitMobile ),
     };
+
+	// Separator.
+	if( showSeparator ) {
+		selectors[ separatorSelector ] = {
+			'content': ( separatorType === 'line' ) ? '"|"' : '":"',
+			'font-family': separatorFontFamily,
+			'font-style' : separatorFontStyle,
+			'text-decoration': separatorDecoration,
+			'text-transform': separatorTransform,
+			'font-weight': separatorFontWeight,
+			'font-size': generateCSSUnit( separatorFontSize, separatorFontSizeType ),
+			'line-height': generateCSSUnit( separatorLineHeight, separatorLineHeightType ),
+			'color': separatorColor,
+
+			'right': generateCSSUnit( -separatorRightSpacing, 'px' ),
+			'top': generateCSSUnit( separatorTopSpacing, 'px' ),
+		};
+
+		tabletSelectors[ separatorSelector ] = {
+			'font-size': generateCSSUnit( separatorFontSizeTablet, separatorFontSizeType ),
+			'line-height': generateCSSUnit( separatorLineHeightTablet, separatorLineHeightType ),
+			'right': generateCSSUnit( -separatorRightSpacingTablet, 'px' ),
+			'top': generateCSSUnit( separatorTopSpacingTablet, 'px' ),
+		};
+
+		mobileSelectors[ separatorSelector ] = {
+			'font-size': generateCSSUnit( separatorFontSizeMobile, separatorFontSizeType ),
+			'line-height': generateCSSUnit( separatorLineHeightMobile, separatorLineHeightType ),
+			'right': generateCSSUnit( -separatorRightSpacingMobile, 'px' ),
+			'top': generateCSSUnit( separatorTopSpacingMobile, 'px' ),
+		};
+	}
 
 	const baseSelector = `.editor-styles-wrapper .uagb-block-${ props.clientId.substr( 0, 8 ) }`;
 
