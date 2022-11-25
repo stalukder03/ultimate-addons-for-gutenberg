@@ -231,6 +231,28 @@ if ( ! class_exists( 'UAGB_Rest_API' ) ) {
 					),
 				)
 			);
+			register_rest_route(
+				'spectra/v1',
+				'svg_icons',
+				array(
+					array(
+						'methods'             => 'GET',
+						'callback'            => array( $this, 'spectra_get_svg_icons' ),
+						'permission_callback' => array( $this, 'get_items_permissions_check' ),
+						'args'                => array(),
+					),
+				)
+			);
+		}
+
+		/**
+		 * Get all SVG Icons.
+		 *
+		 * @since x.x.x
+		 * @access public
+		 */
+		public function spectra_get_svg_icons() {
+			return UAGB_Helper::backend_load_font_awesome_icons();
 		}
 
 		/**

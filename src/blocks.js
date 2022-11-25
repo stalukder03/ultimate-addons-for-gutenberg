@@ -20,6 +20,15 @@ if ( uagLocalStorage ) {
 
 }
 
+if ( ! uagb_blocks_info.uagb_svg_icons ) {
+	apiFetch( {
+		path: '/spectra/v1/svg_icons',
+	} ).then( ( data ) => {
+		uagb_blocks_info.uagb_svg_icons = data;
+		wp.UAGBSvgIcons = Object.keys( data );
+	} );
+}
+
 import blocksEditorSpacing from './blocks/extensions/blocks-editor-spacing';
 blocksEditorSpacing();
 
@@ -112,7 +121,7 @@ import './blocks/wp-search/block.js'; // P95.
 // Responsive Device Icons on Editor
 import './components/responsive-icons/index.js';
 
-wp.UAGBSvgIcons = Object.keys( uagb_blocks_info.uagb_svg_icons );
+
 
 import UAGB_Block_Icons from '@Controls/block-icons';
 import autoBlockRecovery from '@Controls/autoBlockRecovery';
