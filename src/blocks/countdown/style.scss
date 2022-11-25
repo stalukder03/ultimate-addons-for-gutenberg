@@ -12,9 +12,13 @@
 
         &:not(:last-child) {
             margin-right: 20px;
+
+            .wp-block-uagb-countdown__time::after {
+                position: absolute;
+                right: 0;
+            }
         }
     }
-
 }
 
 // These fixes are specific to the Astra theme.
