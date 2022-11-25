@@ -17,7 +17,7 @@ const uagLocalStorage = getUAGEditorStateLocalStorage();
 if ( uagLocalStorage ) {
 	uagLocalStorage.removeItem( 'uagSettingState' );
 	uagLocalStorage.removeItem( 'isSpectraFontAwesomeAPILoading' );
-
+	uagLocalStorage.removeItem('isSpectraSVGIconsAPILoading')
 }
 
 import blocksEditorSpacing from './blocks/extensions/blocks-editor-spacing';
@@ -43,6 +43,26 @@ if( 0 === uagb_blocks_info.font_awesome_5_polyfill.length && ! isSpectraFontAwes
 	} ).then( ( data ) => {
 		uagLocalStorage?.setItem( 'isSpectraFontAwesomeAPILoading', false );
 		uagb_blocks_info.font_awesome_5_polyfill = data;
+	} );
+}
+
+const isSpectraSVGIconsAPILoading = uagLocalStorage?.getItem( 'isSpectraSVGIconsAPILoading' ) || false;
+
+if( 0 === uagb_blocks_info.uagb_svg_icons.length && ! isSpectraSVGIconsAPILoading ) {
+	uagLocalStorage?.setItem( 'isSpectraSVGIconsAPILoading', true );
+	const formData = new window.FormData();
+	formData.append( 'action', 'uagb_spectra_svg_icons' );
+	formData.append(
+		'nonce',
+		uagb_blocks_info.uagb_ajax_nonce
+		);
+	apiFetch( {
+		url: uagb_blocks_info.ajax_url,
+		method: 'POST',
+		body: formData,
+	} ).then( ( data ) => {
+		uagLocalStorage?.setItem( 'isSpectraSVGIconsAPILoading', false );
+		uagb_blocks_info.uagb_svg_icons = data;
 	} );
 }
 
@@ -111,8 +131,6 @@ import './blocks/wp-search/block.js'; // P95.
 
 // Responsive Device Icons on Editor
 import './components/responsive-icons/index.js';
-
-wp.UAGBSvgIcons = Object.keys( uagb_blocks_info.uagb_svg_icons );
 
 import UAGB_Block_Icons from '@Controls/block-icons';
 import autoBlockRecovery from '@Controls/autoBlockRecovery';

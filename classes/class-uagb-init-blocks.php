@@ -70,6 +70,8 @@ class UAGB_Init_Blocks {
 
 		add_action( 'wp_ajax_uagb_spectra_font_awesome_polyfiller', array( $this, 'spectra_font_awesome_polyfiller' ) );
 
+		add_action( 'wp_ajax_uagb_spectra_svg_icons', array( $this, 'spectra_svg_icons' ) );
+
 		if ( ! is_admin() ) {
 			add_action( 'render_block', array( $this, 'render_block' ), 5, 2 );
 		}
@@ -88,6 +90,20 @@ class UAGB_Init_Blocks {
 		check_ajax_referer( 'uagb_ajax_nonce', 'nonce' );
 
 		$data = get_spectra_font_awesome_polyfiller();
+
+		wp_send_json_success( $data );
+	}
+
+	/**
+	 * Function to get Spectra SVG Icons data.
+	 *
+	 * @since x.x.x
+	 */
+	public function spectra_svg_icons() {
+
+		check_ajax_referer( 'uagb_ajax_nonce', 'nonce' );
+
+		$data = UAGB_Helper::backend_load_font_awesome_icons();
 
 		wp_send_json_success( $data );
 	}
@@ -603,7 +619,7 @@ class UAGB_Init_Blocks {
 				'enableConditionsForCoreBlocks'      => apply_filters( 'enable_block_condition_for_core', true ),
 				'enableMasonryGallery'               => apply_filters( 'uag_enable_masonry_gallery', UAGB_Admin_Helper::get_admin_settings_option( 'uag_enable_masonry_gallery', 'enabled' ) ),
 				'enableResponsiveConditions'         => apply_filters( 'enable_block_responsive', UAGB_Admin_Helper::get_admin_settings_option( 'uag_enable_block_responsive', 'enabled' ) ),
-				'uagb_svg_icons'                     => UAGB_Helper::backend_load_font_awesome_icons(),
+				'uagb_svg_icons'                     => array(),
 				'uagb_enable_extensions_for_blocks'  => apply_filters( 'uagb_enable_extensions_for_blocks', array() ),
 				'uagb_exclude_blocks_from_extension' => $uagb_exclude_blocks_from_extension,
 				'uag_load_select_font_globally'      => $enable_selected_fonts,

@@ -13,6 +13,8 @@ const UAGIconPicker = ( props ) => {
 		};
 	}, [] );
 
+	wp.UAGBSvgIcons = Object.keys(uagb_blocks_info.uagb_svg_icons?.data);
+
 	return (
 		<div className="components-base-control uag-icon-picker">
 			<span className="uag-control-label">
