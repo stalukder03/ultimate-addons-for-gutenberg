@@ -183,10 +183,10 @@ const Settings = ( props ) => {
 
 								if( swiperInstance ) {
 									swiperInstance.update();
-									// swiperInstance.slideTo( attributes.slideItem, transitionSpeed, false );
+									swiperInstance.slideTo( attributes.slideItem, transitionSpeed, false );
 								}
 
-							}, 100 );
+							}, 400 );
 						} }
 					/>
 				</ToolbarGroup>
