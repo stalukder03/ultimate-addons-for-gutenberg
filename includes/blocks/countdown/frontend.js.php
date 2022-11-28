@@ -14,6 +14,7 @@ $block_name = 'countdown';
 $countdown_options = apply_filters(
 	'uagb_countdown_options',
 	array(
+		'block_id'    => $attr['block_id'],
 		'endDateTime' => $attr['endDateTime'],
 		'isFrontend'  => true,
 	),
