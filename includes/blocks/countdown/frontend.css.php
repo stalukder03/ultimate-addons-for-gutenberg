@@ -246,7 +246,7 @@ if ( true === $attr['showSeparator'] ) {
 		'font-size'       => UAGB_Helper::get_css_value( $attr['separatorFontSize'], $attr['separatorFontSizeType'] ),
 		'line-height'     => UAGB_Helper::get_css_value( $attr['separatorLineHeight'], $attr['separatorLineHeightType'] ),
 		'color'           => $attr['separatorColor'],
-		'right'           => UAGB_Helper::get_css_value( -$attr['separatorRightSpacing'], 'px' ),
+		'right'           => UAGB_Helper::get_css_value( -$separator_right_spacing_fallback, 'px' ),
 		'top'             => UAGB_Helper::get_css_value( $attr['separatorTopSpacing'], 'px' ),
 	);
 

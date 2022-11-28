@@ -97,7 +97,7 @@ return array_merge(
 		'separatorLineHeightType'     => 'px',
 		'separatorLineHeightMobile'   => '',
 		'separatorLineHeightTablet'   => '',
-		'separatorRightSpacing'       => '',
+		'separatorRightSpacing'       => 0,
 		'separatorRightSpacingTablet' => '',
 		'separatorRightSpacingMobile' => '',
 		'separatorTopSpacing'         => '',

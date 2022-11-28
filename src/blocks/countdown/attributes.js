@@ -533,6 +533,7 @@ const attributes = {
 	},
 	separatorRightSpacing: {
 		type: 'number',
+		default: 0,
 		isUAGStyle: true,
 		UAGCopyPaste: {
 			styleType: 'separator-right-spacing'
