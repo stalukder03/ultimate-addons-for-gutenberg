@@ -78,17 +78,21 @@ const Render = ( props ) => {
 				swiperInstance.slideTo( slideIndex, transitionSpeed, false );
 			}
 		}
+
+		if( swiperInstance ) {
+			swiperInstance.update();
+		}
 		
 	}, [ props ] );
 
 	const switchToNextSlide = () => {
-		if( swiperInstance ) {
+		if( swiperInstance && 'Desktop' !== deviceType ) {
 			swiperInstance.slideNext( transitionSpeed );
 		}
 	}
 
 	const switchToPrevSlide = () => {
-		if( swiperInstance ) {
+		if( swiperInstance && 'Desktop' !== deviceType ) {
 			swiperInstance.slidePrev( transitionSpeed );
 		}
 	}
