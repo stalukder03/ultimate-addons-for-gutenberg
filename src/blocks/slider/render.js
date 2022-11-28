@@ -81,6 +81,19 @@ const Render = ( props ) => {
 		
 	}, [ props ] );
 
+	const switchToNextSlide = () => {
+		if( swiperInstance ) {
+			swiperInstance.slideNext( transitionSpeed );
+		}
+	}
+
+	const switchToPrevSlide = () => {
+		if( swiperInstance ) {
+			swiperInstance.slidePrev( transitionSpeed );
+		}
+	}
+	
+
 	return (
 		isPreview ? '' :
 
@@ -123,8 +136,8 @@ const Render = ( props ) => {
 			</Swiper>
 			{ displayArrows &&
 			<>
-				<div className="swiper-button-prev"></div>
-				<div className="swiper-button-next"></div>
+				<button onClick={() => switchToPrevSlide()} className="swiper-button-prev"></button>
+				<button onClick={() => switchToNextSlide()} className="swiper-button-next"></button>
 			</>
 			}
 		</div>
