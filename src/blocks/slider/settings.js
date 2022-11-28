@@ -253,6 +253,7 @@ const Settings = ( props ) => {
 						label={ __( 'Autoplay' ) }
 						checked={ autoplay }
 						onChange={ toggleAutoplay }
+						help={ __( "Above setting will only take effect once you are on the live page, and not while you're editing.", 'ultimate-addons-for-gutenberg' ) }
 					/>
 					{ autoplay === true && (
 						<>
@@ -315,6 +316,7 @@ const Settings = ( props ) => {
 						) }
 						checked={ infiniteLoop }
 						onChange={ toggleInfiniteLoop }
+						help={ __( "Above setting will only take effect once you are on the live page, and not while you're editing.", 'ultimate-addons-for-gutenberg' ) }
 					/>
 					<UAGSelectControl
 						label={ __(
