@@ -8,15 +8,10 @@
 
 	.swiper-pagination {
 		position: relative;
-
-		&.swiper-pagination-vertical{
-			position: absolute;
-			top: 10px !important;
-			transform: none !important;
-		}
 	}
 
-	.swiper-vertical {
-		height: 500px;
+	.swiper-button-next.swiper-button-disabled, 
+	.swiper-button-prev.swiper-button-disabled{
+		pointer-events: all;
 	}
 }

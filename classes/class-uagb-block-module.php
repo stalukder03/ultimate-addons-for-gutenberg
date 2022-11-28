@@ -244,7 +244,7 @@ if ( ! class_exists( 'UAGB_Block_Module' ) ) {
 					'uagb-slider-css'   => array(
 						'src'  => UAGB_URL . 'assets/css/swiper-bundle.min.css',
 						'dep'  => array(),
-						'type' => 'js',
+						'type' => 'css',
 					),
 				);
 			}

@@ -27,8 +27,7 @@ const Render = ( props ) => {
 		transitionEffect,
 		swiperInstance,
 		displayArrows,
-		displayDots,
-		verticalMode
+		displayDots
 	} = attributes;
 
 	const getSliderTemplate = useMemo( () => {
@@ -46,7 +45,7 @@ const Render = ( props ) => {
 	const hasChildren = 0 !== select( 'core/block-editor' ).getBlocks( clientId ).length;
 	const hasChildrenClass = hasChildren ? 'uagb-slider-has-children' : '';
 	const blockProps = useBlockProps( {
-		className: `uagb-block-${ block_id } ${hasChildrenClass} uagb-slider-editor-wrap uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
+		className: `uagb-block-${ block_id } ${hasChildrenClass} uagb-slider-container uagb-slider-editor-wrap uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
 	} );
 
     const innerBlocksProps = useInnerBlocksProps(
@@ -111,7 +110,6 @@ const Render = ( props ) => {
 				fadeEffect={{
 					crossFade: true
 				}}
-				direction={ verticalMode ? 'vertical' : 'horizontal' }
 				flipEffect={{
 					slideShadows: false,
 				}}

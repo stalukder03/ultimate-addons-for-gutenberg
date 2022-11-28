@@ -48,10 +48,6 @@ const attributes = {
 		type: 'string',
 		default: 'slide'
 	},
-	verticalMode: {
-		type: 'boolean',
-		default: false,
-	},
 	autoplay: {
 		type: 'boolean',
 		default: true,

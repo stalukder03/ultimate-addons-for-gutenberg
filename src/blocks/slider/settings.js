@@ -48,7 +48,6 @@ const Settings = ( props ) => {
 		autoplay,
 		autoplaySpeed,
 		transitionEffect,
-		verticalMode,
 
 		backgroundType,
 		backgroundImageDesktop,
@@ -243,10 +242,6 @@ const Settings = ( props ) => {
 			setAttributes( { displayDots: ! displayDots } );
 		};
 
-		const toggleVerticalMode = () => {
-			setAttributes( { verticalMode: ! verticalMode } );
-		};
-
 		const sliderSettings = () => {
 			return (
 				<>
@@ -376,14 +371,6 @@ const Settings = ( props ) => {
 						min={ 100 }
 						max={ 5000 }
 						displayUnit={ false }
-					/>
-					<ToggleControl
-						label={ __(
-							'Vertical Mode',
-							'ultimate-addons-for-gutenberg'
-						) }
-						checked={ verticalMode }
-						onChange={ toggleVerticalMode }
 					/>
 					<ToggleControl
 						label={ __(

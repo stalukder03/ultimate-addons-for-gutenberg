@@ -21,6 +21,14 @@ $block_data = array(
 	'css_assets'       => array( 'uagb-slider-css' ),
 	'priority'         => 11,
 	'deprecated'       => false,
+	'static_dependencies' => array(
+		'uagb-slider-js'         => array(
+			'type' => 'js',
+		),
+		'uagb-slider-css'        => array(
+			'type' => 'css',
+		),
+	),
 	'dynamic_assets'   => array(
 		'dir' => 'slider',
 	),

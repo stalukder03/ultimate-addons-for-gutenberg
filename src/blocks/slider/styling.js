@@ -229,6 +229,12 @@ function styling( props ) {
 			'background-color' : arrowBgColor,
 			...arrowBorderCSS 
 		},
+		' .swiper-button-next:hover': {
+			'border-color': attributes['slider-arrowBorderHColor']
+		},
+		' .swiper-button-prev:hover': {
+			'border-color': attributes['slider-arrowBorderHColor']
+		},
 		' .swiper-button-prev:after' : {
 			'font-size': generateCSSUnit( arrowSize, 'px' ),
 		},
