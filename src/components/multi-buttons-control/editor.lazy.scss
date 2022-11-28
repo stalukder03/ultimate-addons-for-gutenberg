@@ -66,10 +66,17 @@
 	}
 }
 
-.uagb-multi-buttons-control {
+.interface-complementary-area {
+	.uagb-multi-buttons-control {
 
-	&.uag-multibutton-icons .uagb-multi-button {
-		padding: 3px;
+		&.uag-multibutton-icons .uagb-multi-button {
+			padding: 3px;
+		}
+
+		p.uag-control-help-notice{
+			margin-top: 8px;
+		}
+		
 	}
 }
 
