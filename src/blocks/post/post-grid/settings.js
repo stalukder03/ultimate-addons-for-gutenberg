@@ -547,6 +547,7 @@ const Settings = ( props ) => {
 					min={ 1 }
 					max={ 50 }
 					displayUnit={ false }
+					showControlHeader={ false }
 				/>
 				<ToggleControl
 					label={ __(
@@ -1237,7 +1238,17 @@ const Settings = ( props ) => {
 					<>
 						<ToggleControl
 							label={ __(
-								'Open links in New Tab',
+								'Buttons on Equal Height',
+								'ultimate-addons-for-gutenberg'
+							) }
+							checked={ equalHeightInlineButtons }
+							onChange={ () =>
+								setAttributes( { equalHeightInlineButtons: ! equalHeightInlineButtons } )
+							}
+						/>
+						<ToggleControl
+							label={ __(
+								'Open Links in New Tab',
 								'ultimate-addons-for-gutenberg'
 							) }
 							checked={ newTab }

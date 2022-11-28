@@ -800,6 +800,7 @@ let categoriesList = [];
 					min={ 1 }
 					max={ 100 }
 					displayUnit={ false }
+					showControlHeader={ false }
 				/>
 				<ToggleControl
 					label={ __(
@@ -1378,7 +1379,7 @@ let categoriesList = [];
 					<>
 						<ToggleControl
 							label={ __(
-								'Open links in New Tab',
+								'Open Links in New Tab',
 								'ultimate-addons-for-gutenberg'
 							) }
 							checked={ newTab }

@@ -19,6 +19,23 @@ const UAGTextControl = ( props ) => {
 		};
 	}, [] );
 
+	const selectedBlock = useSelect( ( select ) => {
+		return select( 'core/block-editor' ).getSelectedBlock();
+	}, [] );
+
+	const registerTextExtender = props.enableDynamicContent && props.name ? wp.hooks.applyFilters( 'uagb.registerTextExtender', '', selectedBlock?.name, props.name, props.dynamicContentType ) : null;
+
+	const isEnableDynamicContent = () => {
+		if( !props.enableDynamicContent || ! props.name ){
+			return false;
+		}
+		const dynamicContent = selectedBlock?.attributes?.dynamicContent
+		if( dynamicContent && dynamicContent?.[props.name]?.enable === true ) {
+			return true
+		}
+		return false;
+	}
+
     const handleOnChange = ( newValue ) => {
 
 		if ( props?.setAttributes ) {
@@ -103,6 +120,8 @@ UAGTextControl.defaultProps = {
     variant: 'full-width',
     autoComplete: 'off',
     showHeaderControls: true,
+	dynamicContentType: 'url', // url | text
+	enableDynamicContent: false,
 };
 
 export default UAGTextControl;
