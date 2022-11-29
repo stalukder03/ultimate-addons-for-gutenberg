@@ -213,7 +213,7 @@ const UAGBTableOfContentsEdit = ( props ) => {
 			props.attributes
 			);
 		}
-		
+
 	}, [] );
 
 	useEffect( () => {
@@ -221,7 +221,7 @@ const UAGBTableOfContentsEdit = ( props ) => {
 		const blockStyling = styling( props );
 
 		addBlockEditorDynamicStyles( 'uagb-style-toc-' + props.clientId.substr( 0, 8 ), blockStyling );
-		
+
 	}, [ props ] );
 
 	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
@@ -241,6 +241,7 @@ const UAGBTableOfContentsEdit = ( props ) => {
 
 	}, [ deviceType ] );
 	const headers = [];
+	let arrayAfterRemovingDuplicateEntries = [];
 	useSelect(
 		( select ) => { // eslint-disable-line  no-unused-vars
 			const parseTocSlug = ( slug ) => {
@@ -319,12 +320,23 @@ const UAGBTableOfContentsEdit = ( props ) => {
 				);
 			}
 
-			if ( headers !== undefined ) {
-				headers.forEach( function ( heading, index ) {
+			arrayAfterRemovingDuplicateEntries = headers.reduce( ( temporaryArray, currentVal ) => { // Remove duplicate heading with same HTML tag.
+				if (
+				  !temporaryArray.some(
+					( item ) => item.tag === currentVal.tag && item.text === currentVal.text && item.link === currentVal.link && item.content === currentVal.content
+				  )
+				) {
+				  temporaryArray.push( currentVal );
+				}
+				return temporaryArray;
+			  }, [] );
+
+			if ( arrayAfterRemovingDuplicateEntries !== undefined ) {
+				arrayAfterRemovingDuplicateEntries.forEach( function ( heading, index ) {
 					heading.level = 0;
 
 					for ( let i = index - 1; i >= 0; i-- ) {
-						const currentOrderedItem = headers[ i ];
+						const currentOrderedItem = arrayAfterRemovingDuplicateEntries[ i ];
 
 						if ( currentOrderedItem.tag <= heading.tag ) {
 							heading.level = currentOrderedItem.level;
@@ -339,7 +351,7 @@ const UAGBTableOfContentsEdit = ( props ) => {
 			}
 
 			return {
-				headers,
+				arrayAfterRemovingDuplicateEntries,
 			};
 		},
 	);
@@ -361,7 +373,7 @@ const UAGBTableOfContentsEdit = ( props ) => {
 
 					<>
 			<Settings parentProps={ props } />
-			<Render parentProps={ props } headers={ headers } />
+			<Render parentProps={ props } headers={ arrayAfterRemovingDuplicateEntries } />
 			</>
 
 	);

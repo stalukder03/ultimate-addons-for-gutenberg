@@ -450,12 +450,18 @@ if ( ! class_exists( 'UAGB_Table_Of_Content' ) ) {
 			$uagb_toc_heading_content = ! empty( $uagb_toc_options['_uagb_toc_headings'] ) ? $uagb_toc_options['_uagb_toc_headings'] : '';
 
 			if ( empty( $uagb_toc_heading_content ) || UAGB_ASSET_VER !== $uagb_toc_version ) {
-				$uagb_toc_heading_content          = $this->table_of_contents_get_headings_from_content( get_post( $post->ID )->post_content );
-				$blocks                            = parse_blocks( get_post( $post->ID )->post_content );
-				$uagb_toc_reusable_heading_content = $this->toc_recursive_reusable_heading( $blocks );
-				$uagb_toc_heading_content          = array_merge( $uagb_toc_heading_content, $uagb_toc_reusable_heading_content );
-
-				$meta_array = array(
+				$uagb_toc_heading_content                = $this->table_of_contents_get_headings_from_content( get_post( $post->ID )->post_content );
+				$blocks                                  = parse_blocks( get_post( $post->ID )->post_content );
+				$uagb_toc_reusable_heading_content       = $this->toc_recursive_reusable_heading( $blocks );
+				$uagb_toc_heading_content                = array_merge( $uagb_toc_heading_content, $uagb_toc_reusable_heading_content );
+				$heading_array_after_removing_duplicates = array();
+				foreach ( $uagb_toc_heading_content as $key => $arrVal ) { // Remove duplicate heading with same HTML tag.
+					if ( ! in_array( $arrVal, $heading_array_after_removing_duplicates, true ) ) {
+						array_push( $heading_array_after_removing_duplicates, $arrVal );
+					}
+				}
+				$uagb_toc_heading_content = $heading_array_after_removing_duplicates;
+				$meta_array               = array(
 					'_uagb_toc_version'  => UAGB_ASSET_VER,
 					'_uagb_toc_headings' => $uagb_toc_heading_content,
 				);
