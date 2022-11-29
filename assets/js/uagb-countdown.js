@@ -9,8 +9,6 @@ UAGBCountdown = { // eslint-disable-line no-undef
 
 		if( this.countdownInterval[ mainSelector ] ){
 			clearInterval( this.countdownInterval[ mainSelector ] );
-			console.log('fired')
-			console.log( mainSelector )
 		}
 
         if( typeof this.elements.countdownWrapper !== 'undefined' && this.elements.countdownWrapper ){
