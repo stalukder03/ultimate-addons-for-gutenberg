@@ -96,7 +96,6 @@ const Render = ( props ) => {
 			swiperInstance.slidePrev( transitionSpeed );
 		}
 	}
-	
 
 	return (
 		isPreview ? '' :
@@ -120,9 +119,9 @@ const Render = ( props ) => {
 				effect={transitionEffect}
 				navigation={ 
 					displayArrows ? {
-						nextEl: '.swiper-button-next',
-						prevEl: '.swiper-button-prev',
-					} : false 
+						nextEl: '.uagb-block-' + block_id + ' .swiper-button-next',
+						prevEl: '.uagb-block-' + block_id + ' .swiper-button-prev',
+					} : false  
 				}
 				fadeEffect={{
 					crossFade: true
