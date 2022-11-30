@@ -34,22 +34,19 @@ $slider_options = apply_filters(
 			'crossFade' => true,
 		),
 		'pagination' => (bool) $attr['displayDots'] ? array(
-			'el'          => '.swiper-pagination',
+			'el'          => '.uagb-block-' . $id . ' .swiper-pagination',
 			'clickable'   => true,
 			'hideOnClick' => false,
 		) : false,
 		'navigation' => (bool) $attr['displayArrows'] ? array(
-			'nextEl' => '.swiper-button-next',
-			'prevEl' => '.swiper-button-prev',
+			'nextEl' => '.uagb-block-' . $id . ' .swiper-button-next',
+			'prevEl' => '.uagb-block-' . $id . ' .swiper-button-prev',
 		) : false,
 	),
 	$id
 );
 
 $settings = wp_json_encode( $slider_options );
-
-error_log( $attr['verticalMode'] );
-error_log( $settings );
 
 ob_start();
 ?>
