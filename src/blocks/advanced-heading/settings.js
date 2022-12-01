@@ -1263,8 +1263,8 @@ const Settings = ( props ) => {
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>
 						<GlobalBlockStyles
-							blockID={ props.clientId }
 							attributes={ attributes }
+							setAttributes={setAttributes}
 						/>
 						{ generalPanel() }
 					</InspectorTab>
