@@ -318,6 +318,22 @@ const Settings = ( props ) => {
 						onChange={ toggleInfiniteLoop }
 						help={ __( "Above setting will only take effect once you are on the live page, and not while you're editing.", 'ultimate-addons-for-gutenberg' ) }
 					/>
+					<ToggleControl
+						label={ __(
+							'Arrows',
+							'ultimate-addons-for-gutenberg'
+						) }
+						checked={ displayArrows }
+						onChange={ toggleDisplayArrows }
+					/>
+					<ToggleControl
+						label={ __(
+							'Dots',
+							'ultimate-addons-for-gutenberg'
+						) }
+						checked={ displayDots }
+						onChange={ toggleDisplayDots }
+					/>
 					<UAGSelectControl
 						label={ __(
 							'Transition Effect',
@@ -373,22 +389,6 @@ const Settings = ( props ) => {
 						min={ 100 }
 						max={ 5000 }
 						displayUnit={ false }
-					/>
-					<ToggleControl
-						label={ __(
-							'Arrows',
-							'ultimate-addons-for-gutenberg'
-						) }
-						checked={ displayArrows }
-						onChange={ toggleDisplayArrows }
-					/>
-					<ToggleControl
-						label={ __(
-							'Dots',
-							'ultimate-addons-for-gutenberg'
-						) }
-						checked={ displayDots }
-						onChange={ toggleDisplayDots }
 					/>
 				</UAGAdvancedPanelBody>
 				<UAGAdvancedPanelBody
