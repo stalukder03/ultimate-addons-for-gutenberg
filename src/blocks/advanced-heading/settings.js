@@ -26,7 +26,7 @@ import ResponsiveSlider from '@Components/responsive-slider';
 import UAGSelectControl from '@Components/select-control';
 // Extend component
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
-import GlobalBlockStyles from '@Components/global-block-styles';
+import GlobalBlockStyles from '@Components/global-block-link';
 
 
 const Settings = ( props ) => {

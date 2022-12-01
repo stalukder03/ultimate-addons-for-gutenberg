@@ -1,3 +1,4 @@
+import { addFilter } from '@wordpress/hooks';
 
 /**
  * Add custom attribute.
@@ -9,6 +10,10 @@
 	if ( block?.attributes && block?.name?.includes( 'uagb/' ) ) {
 		block.attributes = Object.assign( block.attributes, {
 			globalBlockStyleName: {
+				type: 'string',
+				default: '',
+			},
+			globalBlockStyleId: {
 				type: 'string',
 				default: '',
 			},

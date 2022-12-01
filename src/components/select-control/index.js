@@ -29,6 +29,7 @@ export default function UAGSelectControl( { layout, label, options, data, setAtt
 			styles.unuse();
 		};
 	}, [] );
+	console.log(data);
 	return (
 		children ? (
 			<div className={ `uagb-select-control uagb-select-control--layout-${ layout }` }>
