@@ -1248,7 +1248,7 @@ const attributes = {
 	},
 	btncontentWidth: {
 		type: 'number',
-		default: 26,
+		default: 30,
 		UAGCopyPaste: {
 			styleType: 'desc-width'
 		},
