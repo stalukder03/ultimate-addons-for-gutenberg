@@ -220,8 +220,8 @@ const Background = ( props ) => {
 				'ultimate-addons-for-gutenberg'
 			),
 		} );
-	} 
-	const setImage = ( imageResponsive && backgroundImage.desktop?.value || backgroundImage.tablet?.value || backgroundImage.mobile?.value ) ? true : false;
+	}
+
 	const advancedControls = (
 		<>
 			<MultiButtonsControl
@@ -488,7 +488,7 @@ const Background = ( props ) => {
 							setAttributes={setAttributes}
 						/>
 					}
-					{ imageResponsive && backgroundImage && setImage && (
+					{ imageResponsive && backgroundImage[deviceType] && backgroundImage[deviceType]?.value && (
 						<>
 							<div className="uag-background-image-position">
 								<MultiButtonsControl
@@ -762,7 +762,7 @@ const Background = ( props ) => {
 							</div>
 						</>
 					) }
-					{ overlayType && backgroundImage && ( ( imageResponsive && setImage ) || ( ! imageResponsive && backgroundImage?.value ) ) &&
+					{ overlayType && backgroundImage && ( ( imageResponsive && backgroundImage[deviceType]?.value ) || ( ! imageResponsive && backgroundImage?.value ) ) &&
 						<>
 							<div className="uag-background-image-overlay-type">
 								<MultiButtonsControl
