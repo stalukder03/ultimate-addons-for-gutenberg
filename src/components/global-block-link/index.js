@@ -23,7 +23,7 @@ const GlobalBlockStyles = (props) => {
 	}, [] );
 
     const [ isOpen, setOpen ] = useState( false );
-    const [ blockStyleName, setBlockStyleName ] = useState( '' );
+    const [ uniqueID, setUniqueID ] = useState( '' );
 
 	const openModal = () => setOpen( true );
 	const closeModal = () => setOpen( false );
@@ -55,19 +55,20 @@ const GlobalBlockStyles = (props) => {
     ]
     const uagLocalStorage = getUAGEditorStateLocalStorage();
     if ( uagLocalStorage ) {
-        spectraGlobalStyles = JSON.parse(uagLocalStorage.getItem( 'spectraGlobalStyles' )) || [];
-        spectraGlobalStyles = [
-            ...spectraGlobalStyles,
-            {
-                value: '',
-                label: 'None'
-            }
-        ]
-    }
-    
-    const uniqueKey = new Date().getTime();
+        const spectraGlobalStylesObject = JSON.parse(uagLocalStorage.getItem( 'spectraGlobalStyles' )) || [];
+        if ( spectraGlobalStylesObject.length === 0 ) {
 
-    console.log(spectraGlobalStyles);
+            spectraGlobalStyles = [
+                ...spectraGlobalStyles,
+                ...spectraGlobalStylesObject
+            ]
+        } else {
+            spectraGlobalStyles = [
+                ...spectraGlobalStylesObject
+            ]
+        }
+    }
+
     return (
         <UAGAdvancedPanelBody
             title={ __( 'Global Block Styles', 'ultimate-addons-for-gutenberg' ) }
@@ -79,8 +80,8 @@ const GlobalBlockStyles = (props) => {
                         <Button
                             className="spectra-save-block-styles-button components-base-control"
                             onClick={ () => {
-                                console.log("Button Clicked");
                                 openModal();
+                                setUniqueID(new Date().getTime().toString());
                             } }
                             variant="primary"
                         >
@@ -97,16 +98,20 @@ const GlobalBlockStyles = (props) => {
                             } }
                             onChange = {
                                 (value) => {
-                                    console.log(value);
-                                    setAttributes( { globalBlockStyleId: value } )
+                                    let label = '';
                                     for (var i = 0; i < spectraGlobalStyles.length; i++) {
-                                        console.log(spectraGlobalStyles[i]?.value);
-                                        console.log(value);
                                         if ( spectraGlobalStyles[i]?.value == value ) {
-                                            setAttributes( { globalBlockStyleName: spectraGlobalStyles[i]?.label } )
-                                          break;
+                                            label = spectraGlobalStyles[i]?.label;
+                                            break;
                                         }
                                     }
+                                    setAttributes( 
+                                        { 
+                                            globalBlockStyleId: value,
+                                            globalBlockStyleName: label 
+                                        } 
+                                    );
+
                                 }
                             }
                             layout="stack"
@@ -129,19 +134,21 @@ const GlobalBlockStyles = (props) => {
                             ) }
                             value={ globalBlockStyleName }
                             onChange={ ( value ) => {
-                                console.log(value);
-                                setAttributes( { globalBlockStyleName: value } )
+                                setAttributes( 
+                                    { 
+                                        globalBlockStyleName: value,
+                                        globalBlockStyleId: uniqueID 
+                                    } 
+                                )
                             } }
                             showHeaderControls={false}
                         />
                         <button 
                             onClick={ () => {
-                                console.log("Button Clicked");
-                                console.log(globalBlockStyleName);
                                 spectraGlobalStyles = [
                                     ...spectraGlobalStyles,
                                     {
-                                        value: uniqueKey,
+                                        value: uniqueID,
                                         label: globalBlockStyleName
                                     }
                                 ]
@@ -173,7 +180,19 @@ const GlobalBlockStyles = (props) => {
 							} }
                             onChange = {
                                 (value) => {
-                                    console.log(value);
+                                    let label = '';
+                                    for (var i = 0; i < spectraGlobalStyles.length; i++) {
+                                        if ( spectraGlobalStyles[i]?.value == value ) {
+                                            label = spectraGlobalStyles[i]?.label;
+                                            break;
+                                        }
+                                    }
+                                    setAttributes( 
+                                        { 
+                                            globalBlockStyleId: value,
+                                            globalBlockStyleName: label 
+                                        } 
+                                    );
                                 }
                             }
 							options={ spectraGlobalStyles }
