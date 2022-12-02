@@ -12,6 +12,7 @@ import getUAGEditorStateLocalStorage from '@Controls/getUAGEditorStateLocalStora
 import UAGSelectControl from '@Components/select-control';
 
 import './attributes';
+import './filters';
 
 const GlobalBlockStyles = (props) => {
    // Add and remove the CSS on the drop and remove of the component.

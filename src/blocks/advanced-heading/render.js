@@ -3,9 +3,11 @@ import { RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import React from 'react';
 import { useDeviceType } from '@Controls/getPreviewType';
+import { applyFilters } from '@wordpress/hooks';
 
 const Render = ( props ) => {
 	props = props.parentProps;
+	
 	const {
 		attributes: {
 			isPreview,
@@ -19,6 +21,7 @@ const Render = ( props ) => {
 		},
 		setAttributes,
 		className,
+		attributes
 	} = props;
 
 	const deviceType = useDeviceType();
@@ -57,14 +60,26 @@ const Render = ( props ) => {
 		/>
 	);
 	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/creative-heading.png`;
+	
+	let htmlAttributes = {
+		className: classnames( {
+			[className]: true,
+			[`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`] : true,
+			[`uagb-block-${ block_id }`] : true
+		} ),
+	};
+
+	htmlAttributes = applyFilters( 
+		`spectra.block.htmlAttributes`, 
+		htmlAttributes, 
+		attributes
+	);
+	
+	
 	return (
 		isPreview ? <img width='100%' src={previewImageData} alt=''/> :
 		<div
-			className={ classnames(
-				className,
-				`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
-				`uagb-block-${ block_id }`
-			) }
+			{...htmlAttributes}
 		>
 			{ headingTitleToggle && headingText }
 			{ separator }
