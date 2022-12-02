@@ -46,7 +46,11 @@ UAGBForms = { // eslint-disable-line no-undef
 
 				if ( checkboxes.length > 0 ) {
 					for ( let l = 0; l < checkboxes.length; l++ ) {
-						checkboxes[l].addEventListener( 'change', window.UAGBForms._checkValidity );
+						
+						let flag = false;
+						checkboxes[l].addEventListener( 'change', function ( e ) {
+							 flag = true;
+						});
 					}
 
 					window.UAGBForms._checkValidity();
