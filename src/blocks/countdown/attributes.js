@@ -1019,23 +1019,41 @@ const attributes = {
 	align: {
 		type: 'string',
 		default: 'center',
+		UAGCopyPaste: {
+			styleType: 'overall-alignment'
+		},
 	},
 	alignTablet: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'overall-alignment-tablet'
+		},
 	},
 	alignMobile: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'overall-alignment-mobile'
+		},
 	},
 	// Box Align.
 	boxAlign: {
 		type: 'string',
 		default: 'center',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-alignment'
+		},
 	},
 	boxAlignTablet: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-alignmen-tablet'
+		},
 	},
 	boxAlignMobile: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-alignment-mobile'
+		},
 	},
 	// Box Spacing.
 	boxSpacing: {
