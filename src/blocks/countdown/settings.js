@@ -330,7 +330,7 @@ export default function Settings( props ) {
 		>
             { timerType && 
                 <>
-                    <h2>Timer End Date &amp; Time</h2>
+                    <h2>Timer End Date &amp; Time (UTC)</h2>
                     <DateTimePicker
 						className="uagb-date-picker"
 						currentDate={ endDateTime.slice( 0, -1 ) }
