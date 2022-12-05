@@ -329,7 +329,7 @@ export default function Settings( props ) {
 			initialOpen={ true }
 		>
             { timerType && 
-                <>
+                <div className='uagb-countdown__datetime-picker'>
                     <h2>Timer End Date &amp; Time (UTC)</h2>
                     <DateTimePicker
 						className="uagb-date-picker"
@@ -341,7 +341,7 @@ export default function Settings( props ) {
 						}
 						is12Hour={ true }
 					/>
-                </>
+                </div>
             }
         </UAGAdvancedPanelBody>
     );
