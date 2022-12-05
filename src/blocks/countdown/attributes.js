@@ -26,6 +26,9 @@ const attributes = {
 	showLabels: {
 		type: 'boolean',
 		default: true,
+		UAGCopyPaste: {
+			styleType: 'countdown-show-labels'
+		},
 	},
 	labelDays: {
 		type: 'string',
@@ -47,10 +50,16 @@ const attributes = {
 	showSeparator: {
 		type: 'boolean',
 		default: true,
+		UAGCopyPaste: {
+			styleType: 'countdown-show-separator'
+		},
 	},
 	separatorType: {
 		type: 'string',
 		default: 'colon',  // colon, line
+		UAGCopyPaste: {
+			styleType: 'countdown-separator-type'
+		},
 	},
 
 	// Countdown Expiry Settings.
