@@ -85,6 +85,10 @@ $selectors = array(
 		$box_border_css
 	),
 
+	'.wp-block-uagb-countdown:hover .wp-block-uagb-countdown__box' => array(
+		'border-color' => $attr['boxBorderHColor'],
+	),
+
 	'.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child)' => array(
 		'margin-right' => UAGB_Helper::get_css_value( $box_spacing_fallback, 'px' ),
 	),

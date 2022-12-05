@@ -175,6 +175,7 @@ export default function styling( props ) {
 		boxShadowPositionHover,
 		showSeparator,
         separatorType,
+		boxBorderHColor,
     } = attributes;
 
     const blockName = props.name.replace( 'uagb/', '' );
@@ -243,7 +244,9 @@ export default function styling( props ) {
 			boxShadowColor + ' ' +	boxShadowPositionCSS,
 			...boxBorderCSS,
 		},
-		'.wp-block-uagb-countdown:hover .wp-block-uagb-countdown__box':{},  // Empty ruleset to prevent undefined error.
+		'.wp-block-uagb-countdown:hover .wp-block-uagb-countdown__box':{
+			'border-color': boxBorderHColor,
+		},
 		'.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child)':{
 			'margin-right': generateCSSUnit( boxSpacingFallback, 'px' ),
 		},
