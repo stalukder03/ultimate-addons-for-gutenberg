@@ -701,65 +701,110 @@ const attributes = {
 	blockTopPadding : {
 		type: 'number',
 		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'countdown-top-padding-desktop'
+		},
 	},
 	blockRightPadding : {
 		type: 'number',
 		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'countdown-right-padding-desktop'
+		},
 	},
 	blockLeftPadding : {
 		type: 'number',
 		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'countdown-left-padding-desktop'
+		},
 	},
 	blockBottomPadding : {
 		type: 'number',
 		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'countdown-bottom-padding-desktop'
+		},
 	},
 	blockTopPaddingTablet: {
 		type: 'number',
 		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'countdown-top-padding-tablet'
+		},
 	},
 	blockRightPaddingTablet: {
 		type: 'number',
 		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'countdown-right-padding-tablet'
+		},
 	},
 	blockLeftPaddingTablet: {
 		type: 'number',
 		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'countdown-left-padding-tablet'
+		},
 	},
 	blockBottomPaddingTablet: {
 		type: 'number',
 		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'countdown-bottom-padding-tablet'
+		},
 	},
 	blockTopPaddingMobile: {
 		type: 'number',
 		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'countdown-top-padding-mobile'
+		},
 	},
 	blockRightPaddingMobile: {
 		type: 'number',
 		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'countdown-right-padding-mobile'
+		},
 	},
 	blockLeftPaddingMobile: {
 		type: 'number',
 		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'countdown-left-padding-mobile'
+		},
 	},
 	blockBottomPaddingMobile: {
 		type: 'number',
 		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'countdown-bottom-padding-mobile'
+		},
 	},
 	blockPaddingUnit : {
 		type: 'string',
 		default: 'px',
 		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'countdown-padding-type'
+		},
 	},
 	blockPaddingUnitTablet: {
 		type: 'string',
 		default: 'px',
 		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'countdown-padding-type-tablet'
+		},
 	},
 	blockPaddingUnitMobile : {
 		type: 'string',
 		default: 'px',
 		isUAGStyle: true,
+		UAGCopyPaste: {
+			styleType: 'countdown-padding-type-mobile'
+		},
 	},
 	blockPaddingLink: {
 		type: 'boolean',
