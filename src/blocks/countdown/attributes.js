@@ -1058,31 +1058,55 @@ const attributes = {
 	// Box Spacing.
 	boxSpacing: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-gap'
+		},
 	},
 	boxSpacingTablet: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-gap-tablet'
+		},
 	},
 	boxSpacingMobile: {
 		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-gap-mobile'
+		},
 	},
 	// Box Flex.
 	boxFlex: {
 		type: 'string',
 		default: 'column',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-flex-direction'
+		},
 	},
 	boxFlexTablet: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-flex-direction-tablet'
+		},
 	},
 	boxFlexMobile: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-flex-direction-mobile'
+		},
 	},
 	// Box Background.
 	boxBgType: {
 		type: 'string',
 		default: 'transparent',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-bg-type'
+		},
 	},
 	boxBgColor: {
 		type: 'string',
+		UAGCopyPaste: {
+			styleType: 'countdown-box-bg-color'
+		},
 	},
 	// Box Shadow for Boxes.
 	boxShadowColor: {
