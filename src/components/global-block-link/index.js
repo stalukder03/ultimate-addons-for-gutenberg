@@ -31,7 +31,8 @@ const GlobalBlockStyles = (props) => {
 
     const {
         attributes,
-        setAttributes
+        setAttributes,
+        innerBlocks
     } = props;
 
     const {
@@ -46,8 +47,6 @@ const GlobalBlockStyles = (props) => {
         clientId
     } = selectedBlockData;
     
-
-	const allBlocksAttributes = wp.hooks.applyFilters( 'uagb.blocksAttributes', blocksAttributes )
     let spectraGlobalStyles = [
         {
             value: '',
@@ -55,6 +54,7 @@ const GlobalBlockStyles = (props) => {
         }
     ]
     const uagLocalStorage = getUAGEditorStateLocalStorage();
+
     if ( uagLocalStorage ) {
         const spectraGlobalStylesObject = JSON.parse(uagLocalStorage.getItem( 'spectraGlobalStyles' )) || [];
         if ( spectraGlobalStylesObject.length === 0 ) {
@@ -69,6 +69,48 @@ const GlobalBlockStyles = (props) => {
             ]
         }
     }
+
+    const getBlockStyles = () => {
+        let styles = {};
+        const blockName = name.replace( 'uagb/', '' );
+        const allBlocksAttributes = wp.hooks.applyFilters( 'uagb.blocksAttributes', blocksAttributes );
+        const blockAttributes = allBlocksAttributes[blockName];
+
+        Object.keys( blockAttributes ).map( ( attribute ) => {
+
+            if ( blockAttributes[attribute].UAGCopyPaste ) {
+
+                const key = blockAttributes[attribute].UAGCopyPaste.styleType;
+
+                if ( undefined !== attributes[attribute] && null !== attributes[attribute] ) {
+
+                    styles[key] = attributes[attribute];
+
+                }
+            }
+
+            return attribute;
+
+        } );
+
+        let spectraGlobalStylesStoreObject = JSON.parse(uagLocalStorage.getItem( 'spectraGlobalStyles' )) || [];
+
+        spectraGlobalStylesStoreObject.map( ( style ) => {
+
+            if ( style.value == uniqueID ) {
+                style['styles'] = styles;
+            }
+
+            return style;
+
+        } );
+
+        uagLocalStorage.setItem(
+            'spectraGlobalStyles',
+            JSON.stringify(spectraGlobalStylesStoreObject)
+        )
+        
+    };
 
     return (
         <UAGAdvancedPanelBody
@@ -158,6 +200,7 @@ const GlobalBlockStyles = (props) => {
                                     JSON.stringify(spectraGlobalStyles)
                                 )
                                 closeModal();
+                                getBlockStyles();
 
                             } }
                         >
