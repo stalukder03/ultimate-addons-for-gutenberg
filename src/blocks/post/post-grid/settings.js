@@ -44,14 +44,12 @@ import {
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 
 const Settings = ( props ) => {
+	const { categoriesList, latestPosts, taxonomyList } = props;
 	// Caching all Props
 	const {
 		attributes,
 		setAttributes,
-		latestPosts,
-		categoriesList,
 		deviceType,
-		taxonomyList,
 	} = props.parentProps;
 
 	// Caching all attributes.
@@ -266,8 +264,20 @@ const Settings = ( props ) => {
 		boxShadowBlurHover,
 		boxShadowSpreadHover,
 		boxShadowPositionHover,
-		enableOffset
+		enableOffset,
+		equalHeightInlineButtons,
+		imageRatio,
+		imgEqualHeight
 	} = attributes;
+
+	const setImgEqualheight = ( value ) => {
+		setAttributes( { imgEqualHeight: value } );
+		if( value ) {
+			setAttributes( { imageRatio: '2-3' } );
+		} else {
+			setAttributes( { imageRatio: 'inherit' } );
+		}
+	}; 
 
 	const onSelectPostType = ( value ) => {
 		setAttributes( { postType: value } );
@@ -430,6 +440,7 @@ const Settings = ( props ) => {
 			<WebfontLoader config={ ctaconfig }></WebfontLoader>
 		);
 	}
+
 	const generalSettings = () => {
 		return (
 			<UAGAdvancedPanelBody
@@ -548,6 +559,7 @@ const Settings = ( props ) => {
 					min={ 1 }
 					max={ 50 }
 					displayUnit={ false }
+					showControlHeader={ false }
 				/>
 				<ToggleControl
 					label={ __(
@@ -873,6 +885,50 @@ const Settings = ( props ) => {
 						} )
 					}
 				/>
+				{ displayPostImage === true && imgPosition !== 'background' && (
+					<>
+					<ToggleControl
+						label={ __(
+							'Equal Height',
+							'ultimate-addons-for-gutenberg'
+						) }
+						checked={ imgEqualHeight }
+						onChange={ setImgEqualheight }
+					/>
+					{ ! imgEqualHeight && (
+						<UAGSelectControl
+							label={__( 'Image Ratio', 'ultimate-addons-for-gutenberg' )}
+							options={[
+								{
+									label: __( 'Inherit', 'ultimate-addons-for-gutenberg' ),
+									value: 'inherit',
+								},
+								{
+									label: __( '1:1', 'ultimate-addons-for-gutenberg' ),
+									value: '1-1',
+								},
+								{
+									label: __( '3:2', 'ultimate-addons-for-gutenberg' ),
+									value: '2-3',
+								},
+								{
+									label: __( '16:9', 'ultimate-addons-for-gutenberg' ),
+									value: '9-16',
+								},
+								{
+									label: __( '2:1', 'ultimate-addons-for-gutenberg' ),
+									value: '1-2',
+								},
+							]}
+							data={ {
+								value: imageRatio,
+								label: 'imageRatio',
+							} }
+							setAttributes={ setAttributes }
+						/>
+					)}
+				</>
+				) }
 				{ displayPostImage === true && (
 					<UAGSelectControl
 						label={ __(
@@ -1238,7 +1294,17 @@ const Settings = ( props ) => {
 					<>
 						<ToggleControl
 							label={ __(
-								'Open links in New Tab',
+								'Buttons on Equal Height',
+								'ultimate-addons-for-gutenberg'
+							) }
+							checked={ equalHeightInlineButtons }
+							onChange={ () =>
+								setAttributes( { equalHeightInlineButtons: ! equalHeightInlineButtons } )
+							}
+						/>
+						<ToggleControl
+							label={ __(
+								'Open Links in New Tab',
 								'ultimate-addons-for-gutenberg'
 							) }
 							checked={ newTab }

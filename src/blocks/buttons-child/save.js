@@ -19,7 +19,7 @@ export default function save( props ) {
 		removeText,
 		noFollow,
 		backgroundType,
-		borderStyle,
+		btnBorderStyle,
 		background,
 		color,
 		showIcon,
@@ -61,7 +61,7 @@ export default function save( props ) {
 				'uagb-buttons__outer-wrap',
 				`uagb-block-${ block_id }`,
 				'wp-block-button',
-				borderStyle !== 'none' ? 'is-style-outline' : '',
+				btnBorderStyle !== 'none' && btnBorderStyle !== 'default' ? 'is-style-outline' : '',
 			) }
 		>
 			<div className="uagb-button__wrapper">
@@ -73,7 +73,7 @@ export default function save( props ) {
 						color !== '' ? 'has-text-color' : '',
 					) }
 					href={ link }
-					rel= { noFollow ? 'nofollow noopener ' : 'follow noopener' }
+					rel= { noFollow ? 'nofollow noopener' : 'follow noopener' }
 					target={ openNewWindow }
 				>
 					{ iconHtml( 'before' ) }
