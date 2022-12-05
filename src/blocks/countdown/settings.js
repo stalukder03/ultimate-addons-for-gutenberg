@@ -1411,7 +1411,7 @@ export default function Settings( props ) {
 					<InspectorTab { ...UAGTabs.style }>
 						{ boxStylePanel }
                         { digitStylePanel }
-                        { labelStylePanel }
+                        { showLabels && labelStylePanel }
 						{ showSeparator && separatorStylePanel }
 						{ boxShadowSettings }
 						{ spacingStylePanel }
