@@ -1058,6 +1058,7 @@ const attributes = {
 	// Box Spacing.
 	boxSpacing: {
 		type: 'number',
+		default: 38,
 		UAGCopyPaste: {
 			styleType: 'countdown-box-gap'
 		},

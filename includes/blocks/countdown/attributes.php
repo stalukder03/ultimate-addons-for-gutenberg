@@ -160,7 +160,7 @@ return array_merge(
 		'boxAlignTablet'              => '',
 		'boxAlignMobile'              => '',
 		// Box Spacing.
-		'boxSpacing'                  => '',
+		'boxSpacing'                  => 38,
 		'boxSpacingTablet'            => '',
 		'boxSpacingMobile'            => '',
 		// Box Flex.
