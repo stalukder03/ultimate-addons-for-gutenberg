@@ -186,6 +186,7 @@ The awesome React FontIconPicker is developed by [Alessandro Benoit](http://code
 * Fix: Button Hover stylings are not working in the editor.
 * Fix: Border - Misaligned reset control button issue with all border settings.
 * Fix: Marketing Button - Resolved an issue where setting the background type as transparent or gradient results in the block encountering an issue.
+* Fix: Border - Border stylings not working as expected on Responsive devices.
 
 = 2.0.16 - TUESDAY, 22th NOVEMBER 2022 =
 * Improvement: Admin Dashboard - Updated Spectra Core Blocks to prevent them from being disabled.
