@@ -632,7 +632,7 @@ const attributes = {
 	},
 	separatorRightSpacing: {
 		type: 'number',
-		default: 0,
+		default: 26,
 		isUAGStyle: true,
 		UAGCopyPaste: {
 			styleType: 'separator-right-spacing'
