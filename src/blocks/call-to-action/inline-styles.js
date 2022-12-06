@@ -459,7 +459,7 @@ function CtaStyle( props ) {
 			'letter-spacing': generateCSSUnit( secondCtaLetterSpacingTablet, secondCtaLetterSpacingType ),
 		},
 	};
-
+	tabletSelectors['.uagb-cta__outer-wrap.wp-block-button:not(.is-style-outline) a.uagb-cta__button-link-wrapper.wp-block-button__link:not(.has-background)'] = ctaBorderCSSTablet;
 	if ( ctaPosition === 'right' ) {
 		tabletSelectors[ '.uagb-cta__outer-wrap.uagb-cta__content-stacked-tablet ' ] = {
 			'display' : 'inherit',
@@ -575,7 +575,8 @@ function CtaStyle( props ) {
 			'letter-spacing': generateCSSUnit( secondCtaLetterSpacingMobile, secondCtaLetterSpacingType ),
 		},
 	};
-
+	mobileSelectors['.uagb-cta__outer-wrap.wp-block-button:not(.is-style-outline) a.uagb-cta__button-link-wrapper.wp-block-button__link:not(.has-background)'] = ctaBorderCSSMobile;
+	
 	if ( ctaType === 'text' ) {
 		selectors[' a.uagb-cta__button-link-wrapper']        = {
 			'color' : ctaBtnLinkColor,

@@ -887,6 +887,7 @@ function styling( props ) {
 		':not(.wp-block-uagb-post-grid) .uagb-post__inner-wrap .uagb-post__text:last-child': {
 			'margin-bottom': generateCSSUnit( paddingBottomMobile, mobilePaddingUnit ),
 		},
+		
 	};
 
 	const boxShadowBlurHoverValue = isNaN( boxShadowBlurHover ) ? '' : boxShadowBlurHover;
@@ -1201,6 +1202,8 @@ function styling( props ) {
 			'margin-right': generateCSSUnit( - paddingRightTablet, tabletPaddingUnit ),
 		}
 	}
+	tabletSelectors[ ' .uagb-post__inner-wrap .uagb-post__text .wp-block-button.uagb-post__cta:not(.is-style-outline) .uagb-text-link.wp-block-button__link:not(.has-background) ' ] = borderCSSTablet;
+	mobileSelectors[ ' .uagb-post__inner-wrap .uagb-post__text .wp-block-button.uagb-post__cta:not(.is-style-outline) .uagb-text-link.wp-block-button__link:not(.has-background) ' ] = borderCSSMobile;
 
 	// post carousal margin top for dots
 	selectors[ ' .slick-dots'] = {
