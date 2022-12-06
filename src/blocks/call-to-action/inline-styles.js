@@ -639,15 +639,6 @@ function CtaStyle( props ) {
 	}
 
 	if ( ctaPosition === 'right' && ( ctaType === 'text' || ctaType === 'button' ) ) {
-		// selectors[ ' .uagb-cta__buttons' ] = {
-		// 	'width': generateCSSUnit( btncontentWidthFallback, btncontentWidthType ),
-		// };
-		// tabletSelectors[ ' .uagb-cta__buttons' ] = {
-		// 	'width': generateCSSUnit( btncontentWidthTablet, btncontentWidthType ),
-		// };
-		// mobileSelectors[ ' .uagb-cta__buttons' ] = {
-		// 	'width': generateCSSUnit( btncontentWidthMobile, btncontentWidthType ),
-		// };
 		selectors[ ' .uagb-cta__wrap' ] = {
 			'width': generateCSSUnit( contentWidthFallback, btncontentWidthType ),
 		};
