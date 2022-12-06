@@ -24,12 +24,12 @@
 html:not([dir="rtl"]) {
 
 	.wp-block-uagb-countdown {
-	
+
 		&__box {
 
 			&:not(:last-child) {
 				margin-right: 38px;
-	
+
 				.wp-block-uagb-countdown__time::after {
 					position: absolute;
 					right: 0;
@@ -42,12 +42,12 @@ html:not([dir="rtl"]) {
 html[dir="rtl"] {
 
 	.wp-block-uagb-countdown {
-	
+
 		&__box {
-	
+
 			&:not(:first-child) {
 				margin-right: 38px;
-	
+
 				.wp-block-uagb-countdown__time::before {
 					position: absolute;
 					right: 0;
