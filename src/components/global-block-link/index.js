@@ -11,6 +11,7 @@ import UAGTextControl from '@Components/text-control';
 import getUAGEditorStateLocalStorage from '@Controls/getUAGEditorStateLocalStorage';
 import UAGSelectControl from '@Components/select-control';
 import generateCSS from '@Controls/generateCSS';
+import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 
 import './attributes';
 import './filters';
@@ -61,6 +62,7 @@ const GlobalBlockStyles = (props) => {
 
             // if ( style.value == globalBlockStyleId && style.label === globalBlockStyleName ) {
                 const blockStyling = styling( props, true );
+                addBlockEditorDynamicStyles( 'uagb-global-block-style-' + props.clientId.substr( 0, 8 ), blockStyling );
                 console.log(blockStyling);
             // }
 
@@ -96,34 +98,16 @@ const GlobalBlockStyles = (props) => {
     }
 
     const getBlockStyles = () => {
-        let styles = {};
-        const blockName = name.replace( 'uagb/', '' );
-        const allBlocksAttributes = wp.hooks.applyFilters( 'uagb.blocksAttributes', blocksAttributes );
-        const blockAttributes = allBlocksAttributes[blockName];
-
-        Object.keys( blockAttributes ).map( ( attribute ) => {
-
-            if ( blockAttributes[attribute].UAGCopyPaste ) {
-
-                const key = blockAttributes[attribute].UAGCopyPaste.styleType;
-
-                if ( undefined !== attributes[attribute] && null !== attributes[attribute] ) {
-
-                    styles[attribute] = attributes[attribute];
-
-                }
-            }
-
-            return attribute;
-
-        } );
+        
 
         let spectraGlobalStylesStoreObject = JSON.parse(uagLocalStorage.getItem( 'spectraGlobalStyles' )) || [];
+
+        const blockStyling = styling( props, true );
 
         spectraGlobalStylesStoreObject.map( ( style ) => {
 
             if ( style.value == uniqueID ) {
-                style['styles'] = styles;
+                style['styles'] = blockStyling;
             }
 
             return style;
