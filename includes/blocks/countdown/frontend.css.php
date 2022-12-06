@@ -274,6 +274,20 @@ if ( true === $attr['showSeparator'] ) {
 	);
 }
 
+// RTL support for box gap.
+if ( $is_rtl ) {
+	$boxGapSelectorLTR = '.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child)';
+	$boxGapSelectorRTL = '.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:first-child)';
+
+	$selectors[ $boxGapSelectorLTR ]['margin-right']   = 'unset';
+	$t_selectors[ $boxGapSelectorLTR ]['margin-right'] = 'unset';
+	$m_selectors[ $boxGapSelectorLTR ]['margin-right'] = 'unset';
+
+	$selectors[ $boxGapSelectorRTL ]['margin-right']   = UAGB_Helper::get_css_value( $box_spacing_fallback, 'px' );
+	$t_selectors[ $boxGapSelectorRTL ]['margin-right'] = UAGB_Helper::get_css_value( $attr['boxSpacingTablet'], 'px' );
+	$m_selectors[ $boxGapSelectorRTL ]['margin-right'] = UAGB_Helper::get_css_value( $attr['boxSpacingMobile'], 'px' );
+}
+
 $combined_selectors = array(
 	'desktop' => $selectors,
 	'tablet'  => $t_selectors,

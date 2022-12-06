@@ -270,6 +270,7 @@ export default function styling( props ) {
 			'margin-left': generateCSSUnit( digitLeftMargin, digitMarginUnit ),
 		},
 		'.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child) .wp-block-uagb-countdown__time::after': {}, // Empty ruleset to prevent undefined error.
+		'.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:first-child)':{},  // Empty ruleset to prevent undefined error (for RTL Box Gap).
         '.wp-block-uagb-countdown .wp-block-uagb-countdown__label': {
             'font-family': labelFontFamily,
 			'font-style' : labelFontStyle,
@@ -327,6 +328,8 @@ export default function styling( props ) {
 		'margin-right': generateCSSUnit( boxSpacingFallbackTablet, 'px' ),
     };
 
+	tabletSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:first-child)'] = {}; // Empty ruleset to prevent undefined error (for RTL Box Gap).
+
     tabletSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__time'] = {
         'font-size': generateCSSUnit( digitFontSizeTablet, digitFontSizeType ),
         'line-height': generateCSSUnit( digitLineHeightTablet, digitLineHeightType ),
@@ -370,6 +373,8 @@ export default function styling( props ) {
 	mobileSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child)'] = {
 		'margin-right': generateCSSUnit( boxSpacingFallbackMobile, 'px' ),
     };
+
+	mobileSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:first-child)'] = {}; // Empty ruleset to prevent undefined error (for RTL Box Gap).
 
     mobileSelectors['.wp-block-uagb-countdown .wp-block-uagb-countdown__time'] = {
         'font-size': generateCSSUnit( digitFontSizeMobile, digitFontSizeType ),
@@ -419,6 +424,22 @@ export default function styling( props ) {
 			'right': generateCSSUnit( -separatorRightSpacingMobileFallback, 'px' ),
 			'top': generateCSSUnit( separatorTopSpacingMobileFallback, 'px' ),
 		};
+	}
+
+	// If RTL is enabled, we use the following selectors and CSS properties for box gap.
+	if ( isRTL ) {
+
+		const boxGapSelectorLTR = '.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child)';
+		const boxGapSelectorRTL = '.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:first-child)';
+
+		selectors[boxGapSelectorLTR]['margin-right'] = 'unset';
+		tabletSelectors[boxGapSelectorLTR]['margin-right'] = 'unset';
+		mobileSelectors[boxGapSelectorLTR]['margin-right'] = 'unset';
+
+		selectors[boxGapSelectorRTL]['margin-right'] = generateCSSUnit( boxSpacingFallback, 'px' );
+		tabletSelectors[boxGapSelectorRTL]['margin-right'] = generateCSSUnit( boxSpacingFallbackTablet, 'px' );
+		mobileSelectors[boxGapSelectorRTL]['margin-right'] = generateCSSUnit( boxSpacingFallbackMobile, 'px' );
+
 	}
 
 	const baseSelector = `.editor-styles-wrapper .uagb-block-${ props.clientId.substr( 0, 8 ) }`;
