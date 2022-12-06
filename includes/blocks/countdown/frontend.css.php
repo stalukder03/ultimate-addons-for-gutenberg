@@ -11,7 +11,12 @@ UAGB_Block_JS::blocks_countdown_gfont( $attr );
 
 $block_name = 'countdown';
 
-$separator_selector = '.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child) .wp-block-uagb-countdown__time::after';
+$is_rtl = is_rtl();
+
+$child_selector_type          = $is_rtl ? 'first' : 'last';
+$pseudo_element_selector_type = $is_rtl ? 'before' : 'after';
+
+$separator_selector = '.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:' . $child_selector_type . '-child) .wp-block-uagb-countdown__time::' . $pseudo_element_selector_type;
 
 // Fallbacks.
 $box_spacing_fallback     = UAGB_Block_Helper::get_fallback_number( $attr['boxSpacing'], 'boxSpacing', $block_name );

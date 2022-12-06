@@ -180,7 +180,12 @@ export default function styling( props ) {
 
     const blockName = props.name.replace( 'uagb/', '' );
 
-	const separatorSelector = '.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:last-child) .wp-block-uagb-countdown__time::after';
+	const isRTL = ( '1' === uagb_blocks_info.is_rtl ) ? true : false;
+
+	const childSelectorType = isRTL ? 'first' : 'last';
+	const pseudoElementSelectorType = isRTL ? 'before' : 'after';
+
+	const separatorSelector = '.wp-block-uagb-countdown .wp-block-uagb-countdown__box:not(:' + childSelectorType + '-child) .wp-block-uagb-countdown__time::' + pseudoElementSelectorType;
 
 	// Fallbacks.
 
