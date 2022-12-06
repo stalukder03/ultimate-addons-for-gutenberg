@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useEffect } from 'react';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
@@ -10,6 +10,7 @@ import { ButtonGroup, Button, Tooltip, Modal  } from '@wordpress/components';
 import UAGTextControl from '@Components/text-control';
 import getUAGEditorStateLocalStorage from '@Controls/getUAGEditorStateLocalStorage';
 import UAGSelectControl from '@Components/select-control';
+import generateCSS from '@Controls/generateCSS';
 
 import './attributes';
 import './filters';
@@ -29,10 +30,12 @@ const GlobalBlockStyles = (props) => {
 	const openModal = () => setOpen( true );
 	const closeModal = () => setOpen( false );
 
+    const styling = props.styling;
+	props = props.parentProps;
+
     const {
         attributes,
         setAttributes,
-        innerBlocks
     } = props;
 
     const {
@@ -44,9 +47,31 @@ const GlobalBlockStyles = (props) => {
 
     const {
         name,
-        clientId
+        clientId,
+        innerBlocks
     } = selectedBlockData;
     
+    useEffect( () => {
+        // let styles = {};
+		// console.log(globalBlockStyleId);
+		// console.log(globalBlockStyleName);
+        // let spectraGlobalStylesStoreObject = JSON.parse(uagLocalStorage.getItem( 'spectraGlobalStyles' )) || [];
+
+        // spectraGlobalStylesStoreObject.map( ( style ) => {
+
+            // if ( style.value == globalBlockStyleId && style.label === globalBlockStyleName ) {
+                const blockStyling = styling( props, true );
+                console.log(blockStyling);
+            // }
+
+        //     return style;
+
+        // } );
+
+        // setAttributes(styles);
+
+	}, [globalBlockStyleId, globalBlockStyleName] );
+
     let spectraGlobalStyles = [
         {
             value: '',
@@ -84,7 +109,7 @@ const GlobalBlockStyles = (props) => {
 
                 if ( undefined !== attributes[attribute] && null !== attributes[attribute] ) {
 
-                    styles[key] = attributes[attribute];
+                    styles[attribute] = attributes[attribute];
 
                 }
             }

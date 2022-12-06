@@ -7,7 +7,7 @@ import generateCSS from '@Controls/generateCSS';
 import generateCSSUnit from '@Controls/generateCSSUnit';
 import { getFallbackNumber } from '@Controls/getAttributeFallback';
 
-function styling( props ) {
+function styling( props, isForGlobalStyles = false ) {
 
 	const blockName = props.name.replace( 'uagb/', '' );
 
@@ -534,6 +534,15 @@ function styling( props ) {
 			separatorSpaceType
 		),
 	};
+
+	// For Global Styles.
+	if ( isForGlobalStyles ) {
+		return {
+			selectors,
+			tablet_selectors,
+			mobile_selectors
+		}
+	}
 
 	const base_selector = `.editor-styles-wrapper .uagb-block-${ props.clientId.substr(
 		0,

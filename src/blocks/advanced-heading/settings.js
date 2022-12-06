@@ -30,6 +30,7 @@ import GlobalBlockStyles from '@Components/global-block-link';
 
 
 const Settings = ( props ) => {
+	const styling = props.styling;
 	props = props.parentProps;
 	const { attributes, deviceType, setAttributes } = props;
 	const {
@@ -1263,8 +1264,8 @@ const Settings = ( props ) => {
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>
 						<GlobalBlockStyles
-							attributes={ attributes }
-							setAttributes={setAttributes}
+							parentProps={props}
+							styling={styling}
 						/>
 						{ generalPanel() }
 					</InspectorTab>

@@ -52,8 +52,8 @@ const UAGBAdvancedHeading = ( props ) => {
 		<>
 
 						<>
-			<Settings parentProps={ props } />
-				<Render parentProps={ props } />
+			<Settings parentProps={ props } styling={styling} />
+			<Render parentProps={ props } />
 			</>
 
 		</>
