@@ -576,7 +576,7 @@ function CtaStyle( props ) {
 		},
 	};
 	mobileSelectors['.uagb-cta__outer-wrap.wp-block-button:not(.is-style-outline) a.uagb-cta__button-link-wrapper.wp-block-button__link:not(.has-background)'] = ctaBorderCSSMobile;
-	
+
 	if ( ctaType === 'text' ) {
 		selectors[' a.uagb-cta__button-link-wrapper']        = {
 			'color' : ctaBtnLinkColor,
@@ -725,7 +725,7 @@ function CtaStyle( props ) {
 			'column-gap': generateCSSUnit( gapBtnMobile, 'px' ),
 		};
 	}
-	if( enabledSecondCtaButton ){
+	if( ctaType === 'button' && enabledSecondCtaButton ){
 		selectors[ '.uagb-cta__outer-wrap .uagb-cta__buttons' ] = {
 			'width': generateCSSUnit( btncontentWidthFallback, btncontentWidthType ),
 		};

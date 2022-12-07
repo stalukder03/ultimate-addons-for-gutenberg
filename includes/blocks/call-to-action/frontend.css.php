@@ -400,7 +400,7 @@ if ( 'desktop' === $attr['stackBtn'] ) {
 
 	);
 }
-if ( $attr['enabledSecondCtaButton'] ) {
+if ( $attr['ctaType'] === 'button' && $attr['enabledSecondCtaButton'] ) {
 	$selectors['.wp-block-button .uagb-cta__buttons']   = array(
 		'width' => UAGB_Helper::get_css_value( $btn_content_width_fallback, $attr['btncontentWidthType'] ),
 	);
