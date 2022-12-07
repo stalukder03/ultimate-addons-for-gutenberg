@@ -11,7 +11,7 @@ const classNames = ( ...classes ) => classes.filter( Boolean ).join( ' ' );
 const InstagramUsers = () => {
 
 	// Constants Required for the API Fetch.
-	const SPECTRA_AUTH_ROOT = 'https://dev.ultimategutenberg.com';
+	const SPECTRA_AUTH_ROOT = 'https://wpspectra.com';
 	const SPECTRA_IG_TOKEN_GENERATOR = `${ SPECTRA_AUTH_ROOT }/auth/instagram/`;
 	const SPECTRA_IG_BASIC_APP_ID = 432767105395971;
 	const SPECTRA_IG_BASIC_REDIRECT = `${ SPECTRA_AUTH_ROOT }/auth/instagram/basic/`;
@@ -85,10 +85,12 @@ const InstagramUsers = () => {
 	// Highlight the User if they are already linked.
 	const highlightLinkedUser = ( theID ) => {
 		const heWhoExists = document.getElementById( `Spectra-IG-User-${ theID }` );
-		heWhoExists.classList.toggle( 'border-spectra' );
-		setTimeout( () => {
+		if ( heWhoExists ) {
 			heWhoExists.classList.toggle( 'border-spectra' );
-		}, 1000 );
+			setTimeout( () => {
+				heWhoExists.classList.toggle( 'border-spectra' );
+			}, 1000 );
+		}
 	};
 
 	// Check the Authorized User Request.
