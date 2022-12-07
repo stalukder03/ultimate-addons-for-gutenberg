@@ -18,12 +18,12 @@ const Render = ( props ) => {
 			headingDescToggle,
 			headingTag,
 			seperatorStyle,
-			globalBlockStyleName
+			globalBlockStyleName,
+			spectraBlockName
 		},
 		setAttributes,
 		className,
-		attributes,
-		name
+		attributes
 	} = props;
 
 	const deviceType = useDeviceType();
@@ -63,7 +63,7 @@ const Render = ( props ) => {
 	);
 	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/creative-heading.png`;
 	
-	let blockNameClass = name?.split( '/' )?.pop();
+	let blockNameClass = spectraBlockName?.split( '/' )?.pop();
 	let htmlAttributes = {
 		className: classnames( {
 			[className]: true,
@@ -72,13 +72,6 @@ const Render = ( props ) => {
 			[`spectra-gbs-${blockNameClass}-${globalBlockStyleName}`] : true
 		} ),
 	};
-
-	htmlAttributes = applyFilters( 
-		`spectra.block.htmlAttributes`, 
-		htmlAttributes, 
-		attributes
-	);
-	
 	
 	return (
 		isPreview ? <img width='100%' src={previewImageData} alt=''/> :

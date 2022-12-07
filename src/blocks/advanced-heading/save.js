@@ -8,6 +8,7 @@ import { RichText } from '@wordpress/block-editor';
 import { applyFilters } from '@wordpress/hooks';
 
 export default function save( props ) {
+
 	const {
 		block_id,
 		headingTitleToggle,
@@ -17,6 +18,8 @@ export default function save( props ) {
 		headingTag,
 		seperatorStyle,
 		headingId,
+		globalBlockStyleName,
+		spectraBlockName
 	} = props.attributes;
 
 	let seprator = '';
@@ -46,18 +49,14 @@ export default function save( props ) {
 		);
 	}
 
+	let blockNameClass = spectraBlockName?.split( '/' )?.pop();
 	let htmlAttributes = {
 		className: classnames( {
 			[props.className]: true,
-			[`uagb-block-${ block_id }`] : true
+			[`uagb-block-${ block_id }`] : true,
+			[`spectra-gbs-${blockNameClass}-${globalBlockStyleName}`] : true
 		} ),
 	};
-
-	htmlAttributes = applyFilters( 
-		`spectra.block.htmlAttributes`, 
-		htmlAttributes,
-		props.attributes
-	);
 
 	return (
 		<div

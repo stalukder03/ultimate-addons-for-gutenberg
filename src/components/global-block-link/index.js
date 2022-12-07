@@ -48,7 +48,12 @@ const GlobalBlockStyles = (props) => {
         clientId,
         innerBlocks
     } = selectedBlockData;
-   
+
+    useEffect( () => {
+		// Assigning block_id in the attribute.
+		setAttributes( { spectraBlockName: name } );
+	}, [] );
+
     let blockNameClass = name?.split( '/' )?.pop();
 
     let spectraGlobalStyles = [

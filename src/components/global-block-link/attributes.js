@@ -17,7 +17,10 @@ import { addFilter } from '@wordpress/hooks';
 				type: 'string',
 				default: '',
 			},
-			
+			spectraBlockName: {
+				type: 'string',
+				default: '',
+			}
 		} );
 	}
 
