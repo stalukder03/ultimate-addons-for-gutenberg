@@ -101,7 +101,6 @@ import './blocks/testimonial/block.js'; // P31.
 import './blocks/extensions/attributes.js';
 import './blocks/extensions/block.js';
 import './components/global-block-link/attributes';
-import './components/global-block-link/filters';
 
 // Deprecated Blocks: P90+.
 import './blocks/columns/block.js'; // P90.

@@ -18,10 +18,12 @@ const Render = ( props ) => {
 			headingDescToggle,
 			headingTag,
 			seperatorStyle,
+			globalBlockStyleName
 		},
 		setAttributes,
 		className,
-		attributes
+		attributes,
+		name
 	} = props;
 
 	const deviceType = useDeviceType();
@@ -61,11 +63,13 @@ const Render = ( props ) => {
 	);
 	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/creative-heading.png`;
 	
+	let blockNameClass = name?.split( '/' )?.pop();
 	let htmlAttributes = {
 		className: classnames( {
 			[className]: true,
 			[`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`] : true,
-			[`uagb-block-${ block_id }`] : true
+			[`uagb-block-${ block_id }`] : true,
+			[`spectra-gbs-${blockNameClass}-${globalBlockStyleName}`] : true
 		} ),
 	};
 
