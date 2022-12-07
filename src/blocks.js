@@ -100,6 +100,9 @@ import './blocks/testimonial/block.js'; // P31.
 // Extensions.
 import './blocks/extensions/attributes.js';
 import './blocks/extensions/block.js';
+import './components/global-block-link/attributes';
+import './components/global-block-link/filters';
+
 // Deprecated Blocks: P90+.
 import './blocks/columns/block.js'; // P90.
 import './blocks/section/block.js'; // P91.

@@ -13,9 +13,6 @@ import UAGSelectControl from '@Components/select-control';
 import generateCSS from '@Controls/generateCSS';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 
-import './attributes';
-import './filters';
-
 const GlobalBlockStyles = (props) => {
    // Add and remove the CSS on the drop and remove of the component.
 	useLayoutEffect( () => {
@@ -51,28 +48,8 @@ const GlobalBlockStyles = (props) => {
         clientId,
         innerBlocks
     } = selectedBlockData;
-    
-    useEffect( () => {
-        // let styles = {};
-		// console.log(globalBlockStyleId);
-		// console.log(globalBlockStyleName);
-        // let spectraGlobalStylesStoreObject = JSON.parse(uagLocalStorage.getItem( 'spectraGlobalStyles' )) || [];
-
-        // spectraGlobalStylesStoreObject.map( ( style ) => {
-
-            // if ( style.value == globalBlockStyleId && style.label === globalBlockStyleName ) {
-                const blockStyling = styling( props, true );
-                addBlockEditorDynamicStyles( 'uagb-global-block-style-' + props.clientId.substr( 0, 8 ), blockStyling );
-                console.log(blockStyling);
-            // }
-
-        //     return style;
-
-        // } );
-
-        // setAttributes(styles);
-
-	}, [globalBlockStyleId, globalBlockStyleName] );
+   
+    let blockNameClass = name?.split( '/' )?.pop();
 
     let spectraGlobalStyles = [
         {
@@ -102,11 +79,12 @@ const GlobalBlockStyles = (props) => {
 
         let spectraGlobalStylesStoreObject = JSON.parse(uagLocalStorage.getItem( 'spectraGlobalStyles' )) || [];
 
-        const blockStyling = styling( props, true );
-
+        
         spectraGlobalStylesStoreObject.map( ( style ) => {
-
-            if ( style.value == uniqueID ) {
+            
+            if ( style?.value == uniqueID ) {
+                const baseSelector = `.spectra-gbs-${blockNameClass}-${style?.label}`;
+                const blockStyling = styling( props, baseSelector );
                 style['styles'] = blockStyling;
             }
 

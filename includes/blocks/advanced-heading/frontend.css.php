@@ -11,6 +11,7 @@
 UAGB_Block_JS::blocks_advanced_heading_gfont( $attr );
 
 $block_name = 'advanced-heading';
+$is_global_style = false;
 
 $m_selectors = array();
 $t_selectors = array();
@@ -263,5 +264,10 @@ $combined_selectors = UAGB_Helper::get_typography_css( $attr, 'subHead', ' .uagb
 $combined_selectors = UAGB_Helper::get_typography_css( $attr, 'highLight', '.wp-block-uagb-advanced-heading .uagb-highlight', $combined_selectors );
 
 $base_selector = ( $attr['classMigrate'] ) ? '.uagb-block-' : '#uagb-adv-heading-';
+$base_selector = $base_selector . $id;
 
-return UAGB_Helper::generate_all_css( $combined_selectors, $base_selector . $id );
+if ( '' !== $attr['globalBlockStyleName'] && '' !== $attr['globalBlockStyleId'] ) {
+	$is_global_style = true;
+	$base_selector = '.spectra-gbs-' . $block_name . '-' . $attr['globalBlockStyleName'];
+}
+return UAGB_Helper::generate_all_css( $combined_selectors, $base_selector );

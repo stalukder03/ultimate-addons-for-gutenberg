@@ -158,5 +158,7 @@ return array_merge(
 		'highLightPaddingUnitTablet'   => 'px',
 		'highLightPaddingUnitMobile'   => 'px',
 		'highLightPaddingLink'         => '',
+		'globalBlockStyleName' => '',
+		'globalBlockStyleId' => ''
 	)
 );
