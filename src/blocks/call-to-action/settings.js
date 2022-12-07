@@ -307,42 +307,6 @@ const Settings = ( props ) => {
 				/>
 				{ enabledSecondCtaButton && (
 				<>
-				<ResponsiveSlider
-					label={ __(
-						'Button Wrap Width',
-						'ultimate-addons-for-gutenberg'
-					) }
-					data={ {
-						desktop: {
-							value: btncontentWidth,
-							label: 'btncontentWidth',
-						},
-						tablet: {
-							value: btncontentWidthTablet,
-							label: 'btncontentWidthTablet',
-						},
-						mobile: {
-							value: btncontentWidthMobile,
-							label: 'btncontentWidthMobile',
-						},
-					} }
-					min={ 20 }
-					max={ 100 }
-					unit={ {
-						value: btncontentWidthType,
-						label: 'btncontentWidthType',
-					} }
-					units={ [
-						{
-							name: __(
-								'%',
-								'ultimate-addons-for-gutenberg'
-							),
-							unitValue: '%',
-						},
-					] }
-					setAttributes={ setAttributes }
-				/>
 				<UAGPresets
 					setAttributes = { setAttributes }
 					presets = { buttonsPresetsAdditionalButton }
@@ -2044,6 +2008,46 @@ const Settings = ( props ) => {
 						) }
 					</>
 				) }
+				{ enabledSecondCtaButton && (
+				<>
+				<ResponsiveSlider
+					label={ __(
+						'Buttons Width',
+						'ultimate-addons-for-gutenberg'
+					) }
+					data={ {
+						desktop: {
+							value: btncontentWidth,
+							label: 'btncontentWidth',
+						},
+						tablet: {
+							value: btncontentWidthTablet,
+							label: 'btncontentWidthTablet',
+						},
+						mobile: {
+							value: btncontentWidthMobile,
+							label: 'btncontentWidthMobile',
+						},
+					} }
+					min={ 20 }
+					max={ 100 }
+					unit={ {
+						value: btncontentWidthType,
+						label: 'btncontentWidthType',
+					} }
+					units={ [
+						{
+							name: __(
+								'%',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: '%',
+						},
+					] }
+					setAttributes={ setAttributes }
+				/>
+				</>
+				)}
 			</UAGAdvancedPanelBody>
 		);
 	};
