@@ -3,19 +3,21 @@ UAGBCountdown = { // eslint-disable-line no-undef
 	countdownInterval: {},
 	init( mainSelector, data = {} ) {
 
-        this.elements = this.getDefaultElements( mainSelector );
+        this.elements[mainSelector] = this.getDefaultElements( mainSelector );
 
 		// this.countdownInterval[ mainSelector ] = ''; // Edit here.
 
-		if( this.countdownInterval[ mainSelector ] ){
-			clearInterval( this.countdownInterval[ mainSelector ] );
-		}
+		// if( this.countdownInterval[ mainSelector ] ){
+		// 	clearInterval( this.countdownInterval[ mainSelector ] );
+		// }
 
-        if( typeof this.elements.countdownWrapper !== 'undefined' && this.elements.countdownWrapper ){
+        if( typeof this.elements[ mainSelector ] !== 'undefined' ){
             this.countdownInterval[ mainSelector ] = setInterval( () => {
-                this.updateCountdown( data );
+                this.updateCountdown( mainSelector, data );
             }, 1000 );
 		}
+		// console.log( this.elements )
+		// console.log( this.countdownInterval )
 	},
 
 	getDefaultElements( mainSelector ) {
@@ -49,13 +51,13 @@ UAGBCountdown = { // eslint-disable-line no-undef
 		return domElement;
 	},
 
-    updateCountdown( data ) {
+    updateCountdown( mainSelector, data ) {
 
         // Wrappers.
-		const daysWrap = this.elements.countdownWrapper.querySelector( '.wp-block-uagb-countdown__time-days' );
-		const hoursWrap = this.elements.countdownWrapper.querySelector( '.wp-block-uagb-countdown__time-hours' );
-		const minutesWrap = this.elements.countdownWrapper.querySelector( '.wp-block-uagb-countdown__time-minutes' );
-		const secondsWrap = this.elements.countdownWrapper.querySelector( '.wp-block-uagb-countdown__time-seconds' );
+		const daysWrap = this.elements[ mainSelector ].countdownWrapper.querySelector( '.wp-block-uagb-countdown__time-days' );
+		const hoursWrap = this.elements[ mainSelector ].countdownWrapper.querySelector( '.wp-block-uagb-countdown__time-hours' );
+		const minutesWrap = this.elements[ mainSelector ].countdownWrapper.querySelector( '.wp-block-uagb-countdown__time-minutes' );
+		const secondsWrap = this.elements[ mainSelector ].countdownWrapper.querySelector( '.wp-block-uagb-countdown__time-seconds' );
 
         // Calculations.
         const currentTime = new Date();
