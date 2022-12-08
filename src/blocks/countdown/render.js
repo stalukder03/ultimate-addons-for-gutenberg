@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import React, { useLayoutEffect, useEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import { useDeviceType } from '@Controls/getPreviewType';
 import styles from './editor.lazy.scss';
 
@@ -22,17 +22,12 @@ const Render = ( props ) => {
 
     const {
         block_id,
-        endDateTime,
         showLabels,
         labelDays,
         labelHours,
         labelMinutes,
         labelSeconds,
     } = attributes;
-
-    useEffect( () => {
-		UAGBCountdown.init( '.uagb-block-' + block_id, attributes ) // eslint-disable-line no-undef
-	}, [ block_id, endDateTime ] )
 
     return(
         <div

@@ -5,19 +5,24 @@ UAGBCountdown = { // eslint-disable-line no-undef
 
         this.elements[mainSelector] = this.getDefaultElements( mainSelector );
 
-		// this.countdownInterval[ mainSelector ] = ''; // Edit here.
+        if( typeof this.elements[ mainSelector ] !== 'undefined' ){
+            this.countdownInterval[ mainSelector ] = setInterval( () => {
+                this.updateCountdown( mainSelector, data );
+            }, 1000 );
 
-		// if( this.countdownInterval[ mainSelector ] ){
-		// 	clearInterval( this.countdownInterval[ mainSelector ] );
-		// }
+		}
+
+	},
+
+	changeEndTime( mainSelector, data = {} ) {
+
+		clearInterval( this.countdownInterval[ mainSelector ] );
 
         if( typeof this.elements[ mainSelector ] !== 'undefined' ){
             this.countdownInterval[ mainSelector ] = setInterval( () => {
                 this.updateCountdown( mainSelector, data );
             }, 1000 );
 		}
-		// console.log( this.elements )
-		// console.log( this.countdownInterval )
 	},
 
 	getDefaultElements( mainSelector ) {
@@ -52,7 +57,6 @@ UAGBCountdown = { // eslint-disable-line no-undef
 	},
 
     updateCountdown( mainSelector, data ) {
-
         // Wrappers.
 		const daysWrap = this.elements[ mainSelector ].countdownWrapper.querySelector( '.wp-block-uagb-countdown__time-days' );
 		const hoursWrap = this.elements[ mainSelector ].countdownWrapper.querySelector( '.wp-block-uagb-countdown__time-hours' );

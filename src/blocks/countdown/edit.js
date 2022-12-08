@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import styling from './styling';
 import Settings from './settings';
@@ -9,12 +9,18 @@ import './style.scss';
 
 
 const UAGBCountdownEdit = ( props ) => {
+
+    const [ timeChanged, setTimeChanged ] = useState( 0 );
+
 	useEffect( () => {
 
 		const { setAttributes } = props;
 
 		// Assigning block_id in the attribute.
 		setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
+		setTimeout( () => {
+			UAGBCountdown.init( '.uagb-block-' + props.clientId.substr( 0, 8 ), props.attributes ); // eslint-disable-line no-undef
+		} )
 	}, [] );
 
 	useEffect( () => {
@@ -23,6 +29,13 @@ const UAGBCountdownEdit = ( props ) => {
 
         addBlockEditorDynamicStyles( 'uagb-countdown-style-' + props.clientId.substr( 0, 8 ), blockStyling );
 	}, [ props ] );
+
+	useEffect( () => {
+        if( props.attributes.block_id && timeChanged === 1 ) {
+		    UAGBCountdown.changeEndTime( '.uagb-block-' + props.attributes.block_id, props.attributes ) // eslint-disable-line no-undef
+        }
+		setTimeChanged( 1 );
+	}, [ props.attributes.endDateTime ] )
 
 	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/countdown.svg`;
 
