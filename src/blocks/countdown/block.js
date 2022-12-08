@@ -17,7 +17,7 @@ registerBlockType( 'uagb/countdown', {
         'This block allows you to add countdown timers.',
         'ultimate-addons-for-gutenberg'
     ),
-    icon: UAGB_Block_Icons.counter,
+    icon: UAGB_Block_Icons.countdown,
     keywords: [
         __( 'countdown', 'ultimate-addons-for-gutenberg' ),
         __( 'timer', 'ultimate-addons-for-gutenberg' ),

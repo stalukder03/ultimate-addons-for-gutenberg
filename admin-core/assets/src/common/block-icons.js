@@ -521,6 +521,56 @@ const UAGB_Block_Icons = {
 			strokeWidth: 1.4,
 		} ),
 	),
+	'countdown': el(
+		'svg',
+		{ width: 40, height: 40, viewBox: '0 0 18 21', fill: 'none' },
+		el( 'circle', {
+			cx: '9.16029',
+			cy: '11.5192',
+			r: '7.82191',
+			stroke: iconColor,
+			strokeWidth: 1.4,
+			strokeLinecap: 'round',
+			strokeLinejoin: 'round',
+		} ),
+		el( 'path', {
+			d: 'M6.84277 0.735718H11.478',
+			stroke: iconColor,
+			strokeWidth: 1.4,
+			strokeLinecap: 'round',
+			strokeLinejoin: 'round',
+		} ),
+		el( 'path', {
+			d: 'M9.16016 3.33401L9.16016 1.07462',
+			stroke: iconColor,
+			strokeWidth: 1.2,
+			strokeLinecap: 'round',
+			strokeLinejoin: 'round',
+		} ),
+		el( 'path', {
+			d: 'M14.394 11.5193H9.28958',
+			stroke: iconColor,
+			strokeWidth: 1.2,
+			strokeLinecap: 'round',
+			strokeLinejoin: 'round',
+		} ),
+		el( 'path', {
+			d: 'M15.6152 3.69733L13.897 5.06821',
+			stroke: iconColor,
+			strokeWidth: 1.2,
+			strokeLinecap: 'round',
+			strokeLinejoin: 'round',
+		} ),
+		el( 'circle', {
+			cx: '9.16029',
+			cy: '11.5192',
+			r: '1.11461',
+			stroke: iconColor,
+			strokeWidth: 1.4,
+			strokeLinecap: 'round',
+			strokeLinejoin: 'round',
+		} ),
+	),
 
 	// ---------------------------------.
 	// Spectra Pro Blocks and Extensions.

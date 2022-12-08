@@ -695,9 +695,10 @@ button.components-button.uagb-review-select-btn.is-secondary {
 .block-editor-block-icon.has-colors svg.uagb-editor-icons {
 	stroke: $spectra-color-secondary;
 
-	path {
+	path, circle {
 		stroke: $spectra-color-secondary;
 	}
+
 }
 
 /* Breadcrumbs css */
