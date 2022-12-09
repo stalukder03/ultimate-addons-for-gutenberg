@@ -768,6 +768,8 @@ select {
   height: 1.5rem;
 }.h-\[2\.6rem\] {
   height: 2.6rem;
+}.h-14 {
+  height: 3.5rem;
 }.h-5 {
   height: 1.25rem;
 }.h-20 {
@@ -1184,6 +1186,12 @@ select {
 }.text-green-400 {
   --tw-text-opacity: 1;
   color: rgb(74 222 128 / var(--tw-text-opacity));
+}.text-amber-400 {
+  --tw-text-opacity: 1;
+  color: rgb(251 191 36 / var(--tw-text-opacity));
+}.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }.text-slate-400 {
   --tw-text-opacity: 1;
   color: rgb(148 163 184 / var(--tw-text-opacity));

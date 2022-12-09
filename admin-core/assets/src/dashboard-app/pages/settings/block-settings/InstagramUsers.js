@@ -100,6 +100,7 @@ const InstagramUsers = () => {
 			window.fetch( checkUser ).then( ( response ) => response.json() ).then( ( data ) => {
 				linkAuthUser( data.id, data.username, authData );
 			} ).catch( () => {
+				dispatch( { type: 'UPDATE_SETTINGS_SAVED_NOTIFICATION', payload: 'Failed to Add Account' } );
 				setAuthLinkingUser( false );
 			} );
 		}
@@ -122,6 +123,7 @@ const InstagramUsers = () => {
 				}
 			} );
 			if ( isFound ){
+				dispatch( { type: 'UPDATE_SETTINGS_SAVED_NOTIFICATION', payload: 'Account Exists!' } );
 				highlightLinkedUser( tempID );
 				setAuthLinkingUser( false );
 				return;
@@ -150,10 +152,12 @@ const InstagramUsers = () => {
 				method: 'POST',
 				body: formData,
 			} ).then( () => {
+				dispatch( { type: 'UPDATE_SETTINGS_SAVED_NOTIFICATION', payload: 'Account Linked!' } );
 				highlightLinkedUser( userID );
 				setAuthLinkingUser( false );
 			} );
 		} ).catch( () => {
+			dispatch( { type: 'UPDATE_SETTINGS_SAVED_NOTIFICATION', payload: 'Failed to Add Account' } );
 			setAuthLinkingUser( false );
 		} );
 	};
@@ -204,6 +208,7 @@ const InstagramUsers = () => {
 				}
 			} );
 			if ( isFound ){
+				dispatch( { type: 'UPDATE_SETTINGS_SAVED_NOTIFICATION', payload: 'Account Exists!' } );
 				highlightLinkedUser( tempID );
 				setLinkingUser( false );
 				handleInstaLinkUserLable( 'exists' );
@@ -241,6 +246,7 @@ const InstagramUsers = () => {
 				if ( responseData.success ) {
 					setLinkingUser( false );
 					handleInstaLinkUserLable( 'success' );
+					dispatch( { type: 'UPDATE_SETTINGS_SAVED_NOTIFICATION', payload: 'Account Linked!' } );
 					highlightLinkedUser( userID );
 					setTimeout( () => {
 						handleInstaLinkUserLable();
@@ -251,6 +257,7 @@ const InstagramUsers = () => {
 				else{
 					setLinkingUser( false );
 					handleInstaLinkUserLable( 'failed' );
+					dispatch( { type: 'UPDATE_SETTINGS_SAVED_NOTIFICATION', payload: 'Failed to Add Account' } );
 					setTimeout( () => {
 						handleInstaLinkUserLable();
 						setTempToken( '' );
@@ -258,7 +265,9 @@ const InstagramUsers = () => {
 					}, 1000 );
 				}
 			} );
-		} ).catch( () => {} );
+		} ).catch( () => {
+			dispatch( { type: 'UPDATE_SETTINGS_SAVED_NOTIFICATION', payload: 'Failed to Add Account' } );
+		} );
 	};
 
 	// Display the Popup Window.
