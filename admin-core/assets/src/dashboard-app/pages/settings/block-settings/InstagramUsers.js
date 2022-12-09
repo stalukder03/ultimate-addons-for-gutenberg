@@ -1,6 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useState  } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import UAGB_Block_Icons from '@Common/block-icons';
 import { Switch } from '@headlessui/react'
 import apiFetch from '@wordpress/api-fetch';
 import { escapeHTML } from '@wordpress/escape-html';
@@ -316,7 +317,7 @@ const InstagramUsers = () => {
 			// Render Profile Picture from ( profile_picture_url )
 			<div className="h-12 w-12 aspect-square rounded-full bg-spectra"></div>
 		) : (
-			<div className="h-12 w-12 aspect-square rounded-full bg-violet-100 text-spectra flex justify-center items-center text-xl">{ user.userName[0].toUpperCase() }</div>
+			<div className="h-12 w-12 aspect-square rounded-full bg-violet-100 text-spectra flex justify-center items-center text-xl">{ user.userName[0] ? user.userName[0].toUpperCase() : UAGB_Block_Icons[ 'instagram-feed' ] }</div>
 		)
 	);
 
