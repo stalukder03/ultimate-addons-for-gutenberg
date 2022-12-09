@@ -139,6 +139,14 @@ class UAGB_Init_Blocks {
 						$block_content = $this->os_visibility( $block_attributes, $block_content );
 						break;
 
+					case 'day':
+						$block_content = $this->day_visibility( $block_attributes, $block_content );
+						break;
+
+					case 'dateRange':
+						$block_content = $this->date_visibility( $block_attributes, $block_content );
+						break;
+
 					default:
 						// code...
 						break;
@@ -168,6 +176,68 @@ class UAGB_Init_Blocks {
 				return '';
 			}
 		}
+		return $block_content;
+	}
+
+	function date_visibility( $format = '', $before = '', $after = '', $echo = true ) {
+		global $currentday, $previousday;
+	
+		$the_date = '';
+	
+		if ( is_new_day() ) {
+			$the_date    = $before . get_the_date( $format ) . $after;
+			$previousday = $currentday;
+		}
+	
+		/**
+		 * Filters the date a post was published for display.
+		 *
+		 * @since 0.71
+		 *
+		 * @param string $the_date The formatted date string.
+		 * @param string $format   PHP date format.
+		 * @param string $before   HTML output before the date.
+		 * @param string $after    HTML output after the date.
+		 */
+		$the_date = apply_filters( 'the_date', $the_date, $format, $before, $after );
+	
+		if ( $echo ) {
+			echo $the_date;
+		} else {
+			return $the_date;
+		}
+	}
+	
+	/**
+	 * Day Visibility.
+	 *
+	 * @param array $block_attributes The block data.
+	 * @param mixed $block_content The block content.
+	 * @since 1.21.0
+	 * @return mixed Returns the new block content.
+	 */
+	public function day_visibility( $block_attributes, $block_content ) {
+
+		if ( ! array_key_exists( 'UAGSystem', $block_attributes ) ) {
+			return $block_content;
+		}
+
+		$value = $block_attributes['UAGSystem'];
+
+		$os = array(
+			'iphone'   => '(iPhone)',
+			'android'  => '(Android)',
+			'windows'  => 'Win16|(Windows 95)|(Win95)|(Windows_95)|(Windows 98)|(Win98)|(Windows NT 5.0)|(Windows 2000)|(Windows NT 5.1)|(Windows XP)|(Windows NT 5.2)|(Windows NT 6.0)|(Windows Vista)|(Windows NT 6.1)|(Windows 7)|(Windows NT 4.0)|(WinNT4.0)|(WinNT)|(Windows NT)|Windows ME',
+			'open_bsd' => 'OpenBSD',
+			'sun_os'   => 'SunOS',
+			'linux'    => '(Linux)|(X11)',
+			'mac_os'   => '(Mac_PowerPC)|(Macintosh)',
+		);
+
+		if ( preg_match( '@' . $os[ $value ] . '@', $_SERVER['HTTP_USER_AGENT'] ) ) {
+			return '';
+		}
+
 		return $block_content;
 	}
 	/**

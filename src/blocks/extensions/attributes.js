@@ -53,6 +53,15 @@ function addAttributes( settings ) {
 					type: 'boolean',
 					default: false,
 				},
+				UAGToDate: {
+					type: 'date'
+				},
+				UAGFromDate: {
+					type: 'date'
+				},
+				UAGDay: {
+					type: 'string'
+				}
 			} );
 		}
 	}

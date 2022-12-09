@@ -374,6 +374,13 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 					unset( $attributes['UAGResponsiveConditions'] );
 				}
 
+				if ( isset( $attributes['UAGDay'] ) ) {
+					unset( $attributes['UAGDay'] );
+				}
+
+				if ( isset( $attributes['UAGDatePublish'] ) ) {
+					unset( $attributes['UAGDatePublish'] );
+				}
 					$request['attributes'] = $attributes;
 
 			}
