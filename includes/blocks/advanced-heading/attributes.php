@@ -164,5 +164,13 @@ return array_merge(
 		'subHeadSpaceMobile'           => '',
 		'subHeadSpaceTablet'           => '',
 		'subHeadSpaceType'             => 'px',
+		// animation
+		'animateType'                  => 'highlighted',
+		'highlightedShape'             => 'circle',
+		'rotatingAnimation'            => 'typing',
+		'rotatingText'                 => 'Better\nBigger\nFaster',
+		'infiniteLoop'            		=> true,
+		'animationDuration'            => 1200,
+		'animationDelay'               => 8000,
 	)
 );
