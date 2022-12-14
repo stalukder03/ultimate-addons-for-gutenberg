@@ -19,6 +19,13 @@ $block_data = array(
 	'extension'        => false,
 	'priority'         => Spectra_Block_Prioritization::get_block_priority( 'advanced-heading' ),
 	'deprecated'       => false,
+	'static_dependencies' => array(
+		'uagb-animated-headline-js'  => array(
+			'src'  => UAGB_Scripts_Utils::get_js_url( 'animated-headline' ),
+			'dep'  => array( 'jquery' ),
+			'type' => 'js',
+		),
+	),
 	'dynamic_assets'   => array(
 		'dir' => 'advanced-heading',
 	),

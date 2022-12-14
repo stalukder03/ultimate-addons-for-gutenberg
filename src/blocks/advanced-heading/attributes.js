@@ -1003,7 +1003,48 @@ const attributes = {
 			styleType: 'highlight-padding-link'
 		}
 	},
-	...highLightBorderAttributes
+	...highLightBorderAttributes,
+	// animation
+	animateType: {
+		type: 'string',
+		default: 'highlighted'
+	},
+	rotatingAnimation: {
+		type: 'string',
+		default: 'typing'
+	},
+	highlightedShape: {
+		type: 'string',
+		default: 'circle'
+	},
+	beforeText: {
+		type: 'string',
+		default: __( 'This Page is', 'uag-pro' )
+	},
+	highlightedText: {
+		type: 'string',
+		default: __( 'Amazing', 'uag-pro' )
+	},
+	rotatingText: {
+		type: 'string',
+		default: 'Better\nBigger\nFaster'
+	},
+	afterText: {
+		type: 'string',
+		default: ''
+	},
+	infiniteLoop: {
+		type: 'boolean',
+		default: true,
+	},
+	animationDuration: {
+		type: 'number',
+		default: 1200,
+	},
+	animationDelay: {
+		type: 'number',
+		default: 8000,
+	},
 };
 
 export default attributes;

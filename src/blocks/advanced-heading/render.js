@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import { RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
-import React , { useLayoutEffect } from 'react';
+import React , { useLayoutEffect, useEffect } from 'react';
 import { useDeviceType } from '@Controls/getPreviewType';
 import styles from './editor.lazy.scss';
 
@@ -33,15 +33,22 @@ const Render = ( props ) => {
 
 	const deviceType = useDeviceType();
 
+	useEffect( () => {
+		console.log('init js', UAGBAnimatedHeading)
+		UAGBAnimatedHeading.init( '.uagb-block-' + props.attributes.block_id, props.attributes ) // eslint-disable-line no-undef
+	}, [props.attributes, deviceType] )
+
+
+
 	const separator = seperatorStyle !== 'none' && (
 		<div className="uagb-separator-wrap">
 			<div className="uagb-separator"></div>
 		</div>
 	);
-	
+
 	const headingText = (
 		<>
-			
+
 			{ seperatorPosition === 'above-heading' ? separator : '' }
 			<RichText
 				tagName={ headingTag }
