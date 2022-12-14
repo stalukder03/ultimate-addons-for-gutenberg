@@ -33,7 +33,6 @@ UAGBAnimatedHeading = { // eslint-disable-line no-undef
 	init( mainSelector, data = {} ) {
 		this.settings = this.getDefaultSettings( mainSelector, data );
 		this.elements = this.getDefaultElements( mainSelector );
-		console.log('Headling block')
 		if ( this.elements ) {
 			this._resetClearInterval();
 			if ( this.elements.dynamicTextWrapper ) {
