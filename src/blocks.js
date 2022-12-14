@@ -94,6 +94,7 @@ import './blocks/review/block.js';
 import './blocks/social-share/block.js';
 import './blocks/social-share-child/block.js'; // Child Block.
 import './blocks/star-rating/block.js';
+import './blocks/separator/block.js';
 import './blocks/table-of-contents/block.js';
 import './blocks/tabs/block.js';
 import './blocks/tabs-child/block.js'; // Child Block.
