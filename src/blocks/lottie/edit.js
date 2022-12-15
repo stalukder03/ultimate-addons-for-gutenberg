@@ -10,6 +10,7 @@ import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
 import Settings from './settings';
 import Render from './render';
+import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 
 const UAGBLottie = ( props ) => {
 	const deviceType = useDeviceType();
@@ -20,14 +21,22 @@ const UAGBLottie = ( props ) => {
 		// Assigning block_id in the attribute.
 		props.setAttributes( { block_id: props.clientId.substr( 0, 8 ) } );
 		props.setAttributes( { classMigrate: true } );
-
+		
 	}, [] );
 
 	useEffect( () => {
 		const blockStyling = styling( props );
 
 		addBlockEditorDynamicStyles( 'uagb-lottie-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+		
 	}, [ props ] );
+
+	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
+	useEffect( () => {
+
+		responsiveConditionPreview( props );
+
+	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
 
 	useEffect( () => {
 		// Replacement for componentDidUpdate.
@@ -56,17 +65,19 @@ const UAGBLottie = ( props ) => {
 		setState( { direction: direction * -1 } );
 	};
 
-	return (
-		<>
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/lottie.svg`;
 
+	return (
+		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
+			<>
 				<Render lottieplayer={ lottieplayer } parentProps={ props } />
 				<Settings
 					parentProps={ props }
 					loopLottie={ loopLottie }
 					reverseDirection={ reverseDirection }
 				/>
-
-		</>
+			</>
+		)
 	);
 };
 

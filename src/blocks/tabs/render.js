@@ -30,7 +30,6 @@ const Render = ( props ) => {
 		clientId,
 	} = props;
 	const {
-		isPreview,
 		tabsStyleD,
 		tabsStyleM,
 		tabsStyleT,
@@ -130,11 +129,10 @@ const Render = ( props ) => {
 			updateBlockAttributes( childBlockId, attrs )
 		);
 	};
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/tabs.png`;
+
 
 	return (
 		<>
-		{ isPreview ? <img width='100%' src={previewImageData} alt=''/> :
 			<div
 				className={ classnames(
 					`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
@@ -282,7 +280,7 @@ const Render = ( props ) => {
 						</li>
 					) ) }
 					<li className="uagb-tab uagb-tabs__add-tab" // eslint-disable-line jsx-a11y/click-events-have-key-events
-						role='button' // eslint-disable-line jsx-a11y/no-noninteractive-element-to-interactive-role
+						role='presentation'
 						tabIndex='0'
 						onClick={ () => addTab() }>
 						<Tooltip
@@ -307,7 +305,6 @@ const Render = ( props ) => {
 					/>
 				</div>
 			</div>
-}
 		</>
 	);
 };

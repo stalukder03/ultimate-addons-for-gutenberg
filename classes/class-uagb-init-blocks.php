@@ -115,31 +115,34 @@ class UAGB_Init_Blocks {
 	 */
 	public function render_block( $block_content, $block ) {
 
-		$block_attributes = $block['attrs'];
+		if ( isset( $block['attrs'] ) ) {
 
-		if ( isset( $block_attributes['UAGDisplayConditions'] ) && array_key_exists( 'UAGDisplayConditions', $block_attributes ) ) {
+			$block_attributes = $block['attrs'];
 
-			switch ( $block_attributes['UAGDisplayConditions'] ) {
+			if ( isset( $block_attributes['UAGDisplayConditions'] ) && array_key_exists( 'UAGDisplayConditions', $block_attributes ) ) {
 
-				case 'userstate':
-					$block_content = $this->user_state_visibility( $block_attributes, $block_content );
-					break;
+				switch ( $block_attributes['UAGDisplayConditions'] ) {
 
-				case 'userRole':
-					$block_content = $this->user_role_visibility( $block_attributes, $block_content );
-					break;
+					case 'userstate':
+						$block_content = $this->user_state_visibility( $block_attributes, $block_content );
+						break;
 
-				case 'browser':
-					$block_content = $this->browser_visibility( $block_attributes, $block_content );
-					break;
+					case 'userRole':
+						$block_content = $this->user_role_visibility( $block_attributes, $block_content );
+						break;
 
-				case 'os':
-					$block_content = $this->os_visibility( $block_attributes, $block_content );
-					break;
+					case 'browser':
+						$block_content = $this->browser_visibility( $block_attributes, $block_content );
+						break;
 
-				default:
-					// code...
-					break;
+					case 'os':
+						$block_content = $this->os_visibility( $block_attributes, $block_content );
+						break;
+
+					default:
+						// code...
+						break;
+				}
 			}
 		}
 		return $block_content;
@@ -468,6 +471,10 @@ class UAGB_Init_Blocks {
 
 		$js_ext = ( SCRIPT_DEBUG ) ? '.js' : '.min.js';
 
+		wp_enqueue_code_editor( array( 'type' => 'text/css' ) );
+		wp_enqueue_script( 'wp-theme-plugin-editor' );
+		wp_enqueue_style( 'wp-codemirror' );
+
 		// Scripts.
 		wp_enqueue_script(
 			'uagb-block-editor-js', // Handle.
@@ -622,7 +629,11 @@ class UAGB_Init_Blocks {
 				'auto_block_recovery'                => UAGB_Admin_Helper::get_admin_settings_option( 'uag_auto_block_recovery', ( 'yes' === get_option( 'uagb-old-user-less-than-2' ) ) ? 'enabled' : 'disabled' ),
 				'font_awesome_5_polyfill'            => array(),
 				'spectra_custom_fonts'               => apply_filters( 'spectra_system_fonts', array() ),
-				'spectra_pro_status'                 => is_plugin_active( 'uag-pro/uag-pro.php' ),
+				'spectra_pro_status'                 => is_plugin_active( 'spectra-pro/spectra-pro.php' ),
+				'spectra_custom_css_example'         => __(
+					'Use custom class added in block\'s advanced settings to target your desired block. Examples:
+				.my-class {text-align: center;} // my-class is a custom selector'
+				),
 				'insta_linked_accounts'              => UAGB_Admin_Helper::get_admin_settings_option( 'uag_insta_linked_accounts', array() ),
 				'insta_all_users_media'              => UAGB_Admin_Helper::get_insta_media_transients(),
 			)

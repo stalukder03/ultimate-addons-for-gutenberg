@@ -302,9 +302,23 @@ const attributes = {
 		type: 'boolean',
 		default: false,
 	},
+	showIcon: {
+		type: 'boolean',
+		default: true,
+		UAGCopyPaste: {
+			styleType: 'btn-show-icon'
+		},
+	},
+	showSecondIcon: {
+		type: 'boolean',
+		default: true,
+		UAGCopyPaste: {
+			styleType: 'btn-second-show-icon'
+		},
+	},
 	ctaIcon: {
 		type: 'string',
-		default: '',
+		default: 'right-long',
 	},
 	ctaIconPosition: {
 		type: 'string',
@@ -312,7 +326,7 @@ const attributes = {
 	},
 	ctaIconSpace: {
 		type: 'number',
-		default: 5,
+		default: 10,
 		UAGCopyPaste: {
 			styleType: 'btn-icon-space'
 		},
@@ -444,6 +458,34 @@ const attributes = {
 		UAGCopyPaste: {
 			styleType: 'btn-hover-color'
 		},
+	},
+	ctaBgType: {
+		type: 'string',
+		default: 'color',
+		UAGCopyPaste: {
+			styleType: 'btn-bg-type'
+		},
+	},
+	ctaBgHoverType: {
+		type: 'string',
+		default: 'color',
+		UAGCopyPaste: {
+			styleType: 'btn-bg-hover-type'
+		},
+	},
+	secondCtaBgType: {
+		type: 'string',
+		default: 'color',
+		UAGCopyPaste: {
+			styleType: 'second-btn-bg-type'
+		}
+	},
+	secondCtaBgHoverType: {
+		type: 'string',
+		default: 'color',
+		UAGCopyPaste: {
+			styleType: 'second-btn-bg-type'
+		}
 	},
 	ctaBgColor: {
 		type: 'string',
@@ -811,7 +853,7 @@ const attributes = {
 	},
 	secondCtaIcon: {
 		type: 'string',
-		default: '',
+		default: 'right-long',
 	},
 	secondCtaIconPosition: {
 		type: 'string',
@@ -1203,6 +1245,32 @@ const attributes = {
 		UAGCopyPaste: {
 			styleType: 'secondCta-letter-spacing-type'
 		}
+	},
+	btncontentWidth: {
+		type: 'number',
+		default: 30,
+		UAGCopyPaste: {
+			styleType: 'desc-width'
+		},
+	},
+	btncontentWidthTablet: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'desc-width'
+		},
+	},
+	btncontentWidthMobile: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'desc-width'
+		},
+	},
+	btncontentWidthType: {
+		type: 'string',
+		default: '%',
+		UAGCopyPaste: {
+			styleType: 'desc-width-type'
+		},
 	},
 };
 

@@ -14,11 +14,10 @@ import Slider from 'react-slick';
 function Blog( props ) {
 	const blockName = props.name.replace( 'uagb/', '' );
 	const article = useRef();
-	const { attributes, className, latestPosts, block_id } = props;
+	const { attributes, className, latestPosts, block_id, setAttributes } = props;
 	const deviceType = useDeviceType();
 
 	const {
-		isPreview,
 		columns,
 		tcolumns,
 		mcolumns,
@@ -77,7 +76,7 @@ function Blog( props ) {
 	useEffect( () => {
 		updateImageBgWidth();
     }, [ ] );
-	
+
 	useEffect( () => {
 		updateImageBgWidth();
     }, [ props ] );
@@ -186,7 +185,8 @@ function Blog( props ) {
 				post,
 				layoutConfig,
 				props.attributes,
-				props.categoriesList
+				props.categoriesList,
+				setAttributes
 			) }
 		</article>
 	) );
@@ -220,35 +220,29 @@ function Blog( props ) {
 			</div>
 		);
 	}
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/post-carousel.png`;
+
 	return (
-			<>
-			{ isPreview ? <img width='100%' src={previewImageData} alt=''/> :
-			<>
-			<Slider
-				className={ classnames(
-					'is-carousel',
-					`uagb-post__columns-${ columnsFallback }`,
-					'uagb-post__items',
-					className,
-					'uagb-post-grid',
-					'uagb-post__arrow-outside',
-					'uagb-slick-carousel',
-					`uagb-post__image-position-${ imgPosition }`,
-					`${ equalHeightClass }`,
-					isImageEnabled,
-					`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
-					`uagb-block-${ block_id }`
-				) }
-				data-blog-id={ block_id }
-				style={ 'dots' === arrowDots ? { padding: '0 0 35px 0' } : {} }
-				{ ...settings }
-			>
-				{ all_posts }
-			</Slider>
-			</>
-			}
-</>
+		<Slider
+			className={ classnames(
+				'is-carousel',
+				`uagb-post__columns-${ columnsFallback }`,
+				'uagb-post__items',
+				className,
+				'uagb-post-grid',
+				'uagb-post__arrow-outside',
+				'uagb-slick-carousel',
+				`uagb-post__image-position-${ imgPosition }`,
+				`${ equalHeightClass }`,
+				isImageEnabled,
+				`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
+				`uagb-block-${ block_id }`
+			) }
+			data-blog-id={ block_id }
+			style={ 'dots' === arrowDots ? { padding: '0 0 35px 0' } : {} }
+			{ ...settings }
+		>
+			{ all_posts }
+		</Slider>
 	);
 }
 

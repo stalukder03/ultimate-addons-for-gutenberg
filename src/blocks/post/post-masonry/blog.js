@@ -13,10 +13,9 @@ import {
 function Blog( props ) {
 	const blockName = props.name.replace( 'uagb/', '' );
 	const article = useRef();
-	const { attributes, className, latestPosts, block_id } = props;
+	const { attributes, className, latestPosts, block_id, setAttributes } = props;
 	const deviceType = useDeviceType();
 	const {
-		isPreview,
 		columns,
 		tcolumns,
 		mcolumns,
@@ -68,7 +67,7 @@ function Blog( props ) {
 	useEffect( () => {
 		updateImageBgWidth();
     }, [ props ] );
-	
+
 	useEffect( () => {
 		updateImageBgWidth();
     }, [article] );
@@ -108,9 +107,8 @@ function Blog( props ) {
 			}
 		}
 	};
-	const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/post-masonry.png`;
+
 	return (
-		isPreview ? <img width='100%' src={previewImageData} alt=''/> :
 		<div
 			className={ classnames(
 				className,
@@ -151,7 +149,8 @@ function Blog( props ) {
 									post,
 									layoutConfig,
 									props.attributes,
-									props.categoriesList
+									props.categoriesList,
+									setAttributes
 								) }
 							</article>
 						) ) }

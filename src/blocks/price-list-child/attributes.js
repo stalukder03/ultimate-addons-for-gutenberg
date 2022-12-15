@@ -1,6 +1,10 @@
 import { __ } from '@wordpress/i18n';
 
 const attributes = {
+	isPreview: {
+		type: 'boolean',
+		default: false,
+	},
 	block_id: {
 		type: 'string',
 	},
@@ -70,6 +74,10 @@ const attributes = {
 		type: 'string',
 		default: 'tablet',
 	},
+	imageWidth:{
+		type: 'number',
+		default: 100,
+	},
 	imgAlign: {
 		type: 'string',
 		UAGCopyPaste: {
@@ -80,6 +88,14 @@ const attributes = {
 	showImage: {
 		type: 'boolean',
 		default: true,
+	},
+	imgTagHeight: {
+		type: 'number',
+		default: 0,
+	},
+	imgTagWidth: {
+		type: 'number',
+		default: 0,
 	},
 };
 

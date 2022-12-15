@@ -23,10 +23,10 @@ import {
 	ToggleControl,
 	ToolbarGroup,
 	Icon,
-	TextControl,
 } from '@wordpress/components';
 
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
+import UAGTextControl from '@Components/text-control';
 
 const Settings = ( props ) => {
 	const { loopLottie, reverseDirection } = props;
@@ -52,7 +52,6 @@ const Settings = ( props ) => {
 		lottieURl,
 		playOn,
 		backgroundHColor,
-		isPreview,
 	} = attributes;
 
 	const onSelectLottieJSON = ( media ) => {
@@ -119,12 +118,17 @@ const Settings = ( props ) => {
 					/>
 				) }
 				{ lottieSource === 'url' && (
-					<TextControl
+					<UAGTextControl
 						label={ __(
 							'Lottie Animation URL',
 							'ultimate-addons-for-gutenberg'
 						) }
 						value={ lottieURl }
+						data={{
+							value: lottieURl,
+							label: 'lottieURl',
+						}}
+						setAttributes={ setAttributes }
 						onChange={ ( value ) => setAttributes( { lottieURl: value } ) }
 					/>
 				) }
@@ -371,10 +375,7 @@ const Settings = ( props ) => {
 				{ __( 'website.' ) }
 			</span>
 		);
-		const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/lottie-animation.png`;
 		return (
-			isPreview ? <img width='100%' src={previewImageData} alt=''/> :
-			<>
 			<div className="uagb-lottie_upload_wrap">
 				<MediaPlaceholder
 					labels={ {
@@ -388,7 +389,6 @@ const Settings = ( props ) => {
 					onSelect={ onSelectLottieJSON }
 				/>
 			</div>
-			</>
 		);
 	}
 

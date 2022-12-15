@@ -13,6 +13,7 @@ import { useDeviceType } from '@Controls/getPreviewType';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
 import hexToRGBA from '@Controls/hexToRgba';
+import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 
 import maybeGetColorForVariable from '@Controls/maybeGetColorForVariable';
 
@@ -126,6 +127,7 @@ const UAGBtestimonial = ( props ) => {
 			props.attributes
 			);
 		}
+		
 
 	}, [] );
 
@@ -140,8 +142,14 @@ const UAGBtestimonial = ( props ) => {
 		const blockStyling = TestimonialStyle( props );
 
 		addBlockEditorDynamicStyles( 'uagb-testinomial-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+		
 	}, [ props ] );
+	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
+	useEffect( () => {
 
+		responsiveConditionPreview( props );
+
+	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
 
 	useEffect( () => {
 		// Replacement for componentDidUpdate.
@@ -151,13 +159,16 @@ const UAGBtestimonial = ( props ) => {
 
 		scrollBlockToView();
 	}, [deviceType] );
+
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/testimonial.svg`;
+
 	return (
-
-					<>
-			<Settings parentProps={ props } />
-			<Render parentProps={ props } />
+		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
+			<>
+				<Settings parentProps={ props } />
+				<Render parentProps={ props } />
 			</>
-
+		)
 	);
 };
 

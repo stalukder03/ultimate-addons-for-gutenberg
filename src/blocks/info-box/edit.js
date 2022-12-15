@@ -8,6 +8,7 @@ import { useDeviceType } from '@Controls/getPreviewType';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
 import { migrateBorderAttributes } from '@Controls/generateAttributes';
+import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 
 import Settings from './settings';
 import Render from './render';
@@ -34,7 +35,10 @@ const UAGBInfoBox = ( props ) => {
 			ctaBorderWidth,
 			ctaBorderRadius,
 			ctaBorderColor,
-			ctaBorderhoverColor
+			ctaBorderhoverColor,
+			ctaBgType,
+			ctaBgHoverType,
+			showCtaIcon,
 		} = props.attributes;
 
 		if ( ctaBtnVertPadding ) {
@@ -76,6 +80,18 @@ const UAGBInfoBox = ( props ) => {
 			props.attributes
 		);
 		}
+
+		if( ctaBgType === undefined ) {
+			props.setAttributes( { ctaBgType: 'color' } );
+		}
+
+		if( ctaBgHoverType === undefined ) {
+			props.setAttributes( { ctaBgHoverType: 'color' } );
+		}
+
+		if( showCtaIcon === undefined ) {
+			props.setAttributes( { showCtaIcon: true } );
+		}
 	}, [] );
 
 	useEffect( () => {
@@ -84,9 +100,15 @@ const UAGBInfoBox = ( props ) => {
 		const blockStyling = styling( props );
 
 		addBlockEditorDynamicStyles( 'uagb-info-box-style-' + props.clientId.substr( 0, 8 ), blockStyling );
-
+		
 	}, [ props ] );
 
+	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
+	useEffect( () => {
+
+		responsiveConditionPreview( props );
+
+	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
 
 	useEffect( () => {
 
@@ -99,15 +121,15 @@ const UAGBInfoBox = ( props ) => {
 
 	}, [ deviceType ] );
 
-	return (
-		<>
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/info-box.svg`;
 
-						<>
-			<Settings parentProps={ props } />
+	return (
+		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
+			<>
+				<Settings parentProps={ props } />
 				<Render parentProps={ props } />
 			</>
-
-		</>
+		)
 	);
 };
 

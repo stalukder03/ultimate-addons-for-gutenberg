@@ -10,6 +10,10 @@ const vPaddingDefault = ( 'yes' === uagb_blocks_info.uagb_old_user_less_than_2 |
 const hPaddingDefault = ( 'yes' === uagb_blocks_info.uagb_old_user_less_than_2 || 'yes' === uagb_blocks_info.enable_legacy_blocks ) ? 14 : '';
 
 const attributes = {
+	isPreview: {
+		type: 'boolean',
+		default: false,
+	},
 	inheritFromTheme: {
 		type: 'boolean',
 		default: false,
@@ -423,7 +427,7 @@ const attributes = {
 	},
 	boxShadowColor:{
 		type:'string',
-		default: '#000',
+		default: '#00000026',
 		UAGCopyPaste: {
 			styleType: 'btn-box-shadow-color'
 		}

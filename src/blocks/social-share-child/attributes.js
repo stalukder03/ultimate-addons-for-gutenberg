@@ -3,6 +3,10 @@
  */
 
 const attributes = {
+	isPreview: {
+		type: 'boolean',
+		default: false,
+	},
 	block_id: {
 		type: 'string',
 	},
@@ -52,6 +56,26 @@ const attributes = {
 			styleType: 'icon-bg-hover-color'
 		},
 		default: '',
+	},
+	parentSize: {
+		type: 'number',
+		default: 30,
+	},
+	parentSizeMobile: {
+		type: 'number',
+		default: '',
+	},
+	parentSizeTablet: {
+		type: 'number',
+		default: '',
+	},
+	imgTagHeight: {
+		type: 'number',
+		default: 0,
+	},
+	imgTagWidth: {
+		type: 'number',
+		default: 0,
 	},
 };
 

@@ -1,5 +1,4 @@
 import classnames from 'classnames';
-
 import ContentTmClasses from '.././classes';
 import AlignClass from '.././align-classes';
 import DayAlignClass from '.././day-align-classes';
@@ -25,14 +24,13 @@ const Render = ( props ) => {
 			styles.unuse();
 		};
 	}, [] );
-
+	const { latestPosts } = props;
 	props = props.parentProps;
 	const blockName = props.name.replace( 'uagb/', '' );
 	const deviceType = useDeviceType();
-	const { attributes, className, latestPosts } = props;
+	const { attributes, className, setAttributes } = props;
 
 	const {
-		isPreview,
 		displayPostLink,
 		postsToShow,
 	} = attributes;
@@ -71,9 +69,8 @@ const Render = ( props ) => {
 		let dayAlignClass = DayAlignClass( props.attributes, 0, deviceType ); // Get classname for day alignment.
 
 		let displayInnerDate = false;
-		const previewImageData = `${ uagb_blocks_info.uagb_url }/admin/assets/preview-images/post-timeline.png`;
+
 		return (
-			isPreview ? <img width='100%' src={previewImageData} alt=''/> :
 			<>
 				{ displayPosts.map( ( post, index ) => {
 					if ( timelinAlignment === 'center' ) {
@@ -131,6 +128,7 @@ const Render = ( props ) => {
 											<CtaLink
 												post={ post }
 												attributes={ attributes }
+												setAttributes ={ setAttributes }
 											/>
 										}
 

@@ -21,7 +21,9 @@ export default function save( props ) {
 		target,
 		disableLink,
 		hideLabel,
-		fromParentIcon
+		fromParentIcon,
+		imageSizeChild,
+		imgTagHeight
 	} = attributes;
 
 	const defaultedAlt = ( image && image?.alt ) ? image?.alt : '';
@@ -37,6 +39,9 @@ export default function save( props ) {
 			<img
 				className="uagb-icon-list__source-image"
 				src={ image.url }
+				width={imageSizeChild}
+				height={imgTagHeight}
+				loading="lazy"
 				alt={ defaultedAlt }
 			/>
 		);
@@ -44,11 +49,6 @@ export default function save( props ) {
 
 	const targetVal = target ? '_blank' : '_self';
 	const linkUrl = disableLink ? link : '/';
-	let disableLinks = disableLink;
-
-	if ( 'yes' === uagb_blocks_info.uagb_old_user_less_than_2 ) {
-		disableLinks = disableLink ? false : true;
-	}
 
 	return (
 		<div
@@ -57,7 +57,7 @@ export default function save( props ) {
 				`uagb-block-${ block_id }`
 			) }
 		>
-			{ disableLinks && (
+			{ disableLink && (
 				<a
 					target={ targetVal }
 					aria-label={ label.replace( /(<([^>]+)>)/ig, '' ) }

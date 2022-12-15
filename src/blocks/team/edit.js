@@ -11,14 +11,22 @@ import scrollBlockToView from '@Controls/scrollBlockToView';
 
 import Settings from './settings';
 import Render from './render';
+import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 
 const UAGBTeam = ( props ) => {
 	const deviceType = useDeviceType();
+	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
+	useEffect( () => {
+
+		responsiveConditionPreview( props );
+
+	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
 	useEffect( () => {
 
 		const blockStyling = styling( props );
 
 		addBlockEditorDynamicStyles( 'uagb-team-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+		
 	}, [ props ] );
 	useEffect( () => {
 
@@ -69,13 +77,15 @@ const UAGBTeam = ( props ) => {
 
 	}, [] );
 
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/team.svg`;
+
 	return (
-
-					<>
-			<Settings parentProps={ props } />
-			<Render parentProps={ props } />
+		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
+			<>
+				<Settings parentProps={ props } />
+				<Render parentProps={ props } />
 			</>
-
+		)
 	);
 };
 

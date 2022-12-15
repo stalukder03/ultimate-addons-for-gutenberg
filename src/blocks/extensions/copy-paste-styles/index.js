@@ -20,8 +20,8 @@ const UAGCopyPasteStyles = () => {
 
     // Registering the shortcuts
 	const { registerShortcut } = useDispatch( keyboardShortcutsStore );
-	
-	let allBlocksAttributes = wp.hooks.applyFilters( 'uagb.blocksAttributes', blocksAttributes );
+
+	const allBlocksAttributes = wp.hooks.applyFilters( 'uagb.blocksAttributes', blocksAttributes );
 
     const [ showPopup, setshowPopup ] = useState( false );
     const [ disablePaste, setdisablePaste ] = useState( false );

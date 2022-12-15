@@ -5,6 +5,7 @@ import React, {   useEffect,  } from 'react';
 import { useDeviceType } from '@Controls/getPreviewType';
 import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
+import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 
 import Settings from './settings';
 import Render from './render';
@@ -56,6 +57,7 @@ const UAGBBlockQuote = ( props ) => {
 	}, [] );
 
 	useEffect( () => {
+
 		// Replacement for componentDidUpdate.
 		const blockStyling = styling( props );
 
@@ -72,13 +74,22 @@ const UAGBBlockQuote = ( props ) => {
 		scrollBlockToView();
 	}, [ deviceType ] );
 
+	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
+	useEffect( () => {
+
+		responsiveConditionPreview( props );
+
+	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
+
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/blockquote.svg`;
+
 	return (
-
-					<>
-			<Settings parentProps={ props } />
-			<Render parentProps={ props } />
+		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
+				<>
+				<Settings parentProps={ props } />
+				<Render parentProps={ props } />
 			</>
-
+		)
 	);
 };
 

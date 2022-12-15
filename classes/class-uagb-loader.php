@@ -44,6 +44,15 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 		public static function get_instance() {
 			if ( ! isset( self::$instance ) ) {
 				self::$instance = new self();
+
+				/**
+				 * Spectra loaded.
+				 *
+				 * Fires when Spectra was fully loaded and instantiated.
+				 *
+				 * @since 2.1.0
+				 */
+				do_action( 'spectra_core_loaded' );
 			}
 			return self::$instance;
 		}
@@ -83,7 +92,7 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 			define( 'UAGB_BASE', plugin_basename( UAGB_FILE ) );
 			define( 'UAGB_DIR', plugin_dir_path( UAGB_FILE ) );
 			define( 'UAGB_URL', plugins_url( '/', UAGB_FILE ) );
-			define( 'UAGB_VER', '2.0.14' );
+			define( 'UAGB_VER', '2.1.1' );
 			define( 'UAGB_MODULES_DIR', UAGB_DIR . 'modules/' );
 			define( 'UAGB_MODULES_URL', UAGB_URL . 'modules/' );
 			define( 'UAGB_SLUG', 'spectra' );
@@ -125,6 +134,7 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 		public function loader() {
 
 			require_once UAGB_DIR . 'classes/utils.php';
+			require_once UAGB_DIR . 'classes/class-spectra-block-prioritization.php';
 			require_once UAGB_DIR . 'classes/class-uagb-install.php';
 			require_once UAGB_DIR . 'classes/class-uagb-filesystem.php';
 			require_once UAGB_DIR . 'classes/class-uagb-update.php';
@@ -201,7 +211,7 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 			} else {
 				add_filter( 'ast_block_templates_disable', '__return_true' );
 			}
-			
+
 			// Load background processing class.
 			if ( ! class_exists( 'UAGB_Background_Process' ) ) {
 				require_once UAGB_DIR . 'lib/wp-background-processing/class-uagb-wp-async-request.php';
@@ -466,6 +476,19 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 			if ( 'astra' === $theme_folder ) {
 				require_once UAGB_DIR . 'compatibility/class-uagb-astra-compatibility.php';
 			}
+
+			register_meta(
+				'post',
+				'_uag_custom_page_level_css',
+				array(
+					'show_in_rest'  => true,
+					'type'          => 'string',
+					'single'        => true,
+					'auth_callback' => function() {
+						return current_user_can( 'edit_posts' );
+					},
+				)
+			);
 		}
 	}
 }

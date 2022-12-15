@@ -35,12 +35,20 @@ import taxonomyListAttribute from '@Blocks/taxonomy-list/attributes';
 import reviewAttribute from '@Blocks/review/attributes';
 import wpSearchAttribute from '@Blocks/wp-search/attributes';
 import formsAttribute from '@Blocks/forms/attributes';
+import formsAcceptAttribute from '@Blocks/forms/child-blocks/accept/attributes';
+import formsEmailAttribute from '@Blocks/forms/child-blocks/email/attributes';
+import formsHiddenAttribute from '@Blocks/forms/child-blocks/hidden/attributes';
+import formsNameAttribute from '@Blocks/forms/child-blocks/name/attributes';
+import formsToggleAttribute from '@Blocks/forms/child-blocks/toggle/attributes';
+import formsUrlAttribute from '@Blocks/forms/child-blocks/url/attributes';
 import formsTextareaAttribute from '@Blocks/forms/child-blocks/textarea/attributes';
 import tabsAttribute from '@Blocks/tabs/attributes';
 import lottieAttribute from '@Blocks/lottie/attributes';
 import starRatingAttribute from '@Blocks/star-rating/attributes';
 import containerAttribute from '@Blocks/container/attributes';
 import imageAttribute from '@Blocks/image/attributes';
+import counterAttribute from '@Blocks/counter/attributes';
+import imageGalleryAttribute from '@Blocks/image-gallery/attributes';
 
 export const blocksAttributes = {
 	'advanced-heading' : advancedHeadingAttribute,
@@ -76,6 +84,12 @@ export const blocksAttributes = {
 	'review' : reviewAttribute,
 	'wp-search' : wpSearchAttribute,
 	'forms' : formsAttribute,
+	'forms-accept' : formsAcceptAttribute,
+	'forms-email' : formsEmailAttribute,
+	'forms-hidden' : formsHiddenAttribute,
+	'forms-name' : formsNameAttribute,
+	'forms-toggle' : formsToggleAttribute,
+	'forms-url' : formsUrlAttribute,
 	'forms-textarea' : formsTextareaAttribute, 
 	'tabs' : tabsAttribute,
 	'lottie' : lottieAttribute,
@@ -86,4 +100,6 @@ export const blocksAttributes = {
     'how-to-step' : howToStepAttribute,
 	'container' : containerAttribute,
 	'image': imageAttribute,
+	'counter': counterAttribute,
+	'image-gallery': imageGalleryAttribute,
 };

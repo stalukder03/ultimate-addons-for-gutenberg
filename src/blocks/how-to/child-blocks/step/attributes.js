@@ -4,6 +4,10 @@
 import { __ } from '@wordpress/i18n';
 
 const attributes = {
+	isPreview: {
+		type: 'boolean',
+		default: false,
+	},
 	block_id: {
 		type: 'string',
 	},
@@ -411,6 +415,15 @@ const attributes = {
 		UAGCopyPaste: {
 			styleType: 'desc-line-height-mobile'
 		},
+	},
+	imgTagHeight: {
+		type: 'number',
+		default: 0,
+	},
+	imgTagWidth: {
+		type: 'number',
+		default: 0,
+
 	},
 };
 export default attributes;

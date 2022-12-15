@@ -15,8 +15,8 @@ const UAGReset = ( props ) => {
 	const [ refreshPresets, toggleRefreshPresets ] = useState( false );
 
 	const { getSelectedBlock } = select( 'core/block-editor' );
-	
-	let allBlocksAttributes = wp.hooks.applyFilters( 'uagb.blocksAttributes', blocksAttributes );
+
+	const allBlocksAttributes = wp.hooks.applyFilters( 'uagb.blocksAttributes', blocksAttributes );
 
 	const getBlockResetValue = () => {
 		const selectedBlockName = getSelectedBlock()?.name.split( '/' ).pop();

@@ -10,6 +10,7 @@ import addBlockEditorDynamicStyles from '@Controls/addBlockEditorDynamicStyles';
 import scrollBlockToView from '@Controls/scrollBlockToView';
 import Settings from './settings';
 import Render from './render';
+import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 
 import { migrateBorderAttributes } from '@Controls/generateAttributes';
 const UAGBCallToAction = ( props ) => {
@@ -95,6 +96,7 @@ const UAGBCallToAction = ( props ) => {
 			props.attributes
 			);
 		}
+		
 	}, [] );
 
 	useEffect( () => {
@@ -103,6 +105,7 @@ const UAGBCallToAction = ( props ) => {
 		const blockStyling = CtaStyle( props );
 
 		addBlockEditorDynamicStyles( 'uagb-cta-style-' + props.clientId.substr( 0, 8 ), blockStyling );
+		
 	}, [ props ] );
 
 	useEffect( () => {
@@ -114,13 +117,22 @@ const UAGBCallToAction = ( props ) => {
 		scrollBlockToView();
 	}, [deviceType] );
 
+	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
+	useEffect( () => {
+
+		responsiveConditionPreview( props );
+
+	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
+
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/call-to-action.svg`;
+
 	return (
-
-					<>
-			<Settings parentProps={ props } />
-			<Render parentProps={ props } />
+		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
+			<>
+				<Settings parentProps={ props } />
+				<Render parentProps={ props } />
 			</>
-
+		)
 	);
 };
 

@@ -16,6 +16,7 @@ import Render from './render';
 import { compose } from '@wordpress/compose';
 
 import { withDispatch, dispatch, select } from '@wordpress/data';
+import responsiveConditionPreview from '@Controls/responsiveConditionPreview';
 
 const UAGBTabsEdit = ( props ) => {
 
@@ -96,6 +97,7 @@ const UAGBTabsEdit = ( props ) => {
 			props.attributes
 			);
 		}
+		
 	}, [] );
 
 	const updateTabTitle = () => {
@@ -122,6 +124,7 @@ const UAGBTabsEdit = ( props ) => {
 
 		updateTabTitle();
 		props.resetTabOrder();
+		
 
 	}, [ props ] );
 
@@ -135,12 +138,22 @@ const UAGBTabsEdit = ( props ) => {
 
 	}, [ deviceType ] );
 
-	return (
-			<>
-			<Settings parentProps={ props } deviceType = {deviceType} />
-			<Render parentProps={ props } />
-			</>
+	const { UAGHideDesktop, UAGHideTab, UAGHideMob  } = props.attributes;
+	useEffect( () => {
 
+		responsiveConditionPreview( props );
+
+	}, [ UAGHideDesktop, UAGHideTab, UAGHideMob, deviceType ] );
+
+	const previewImageData = `${ uagb_blocks_info.uagb_url }/assets/images/block-previews/tabs.svg`;
+
+	return (
+		props.attributes.isPreview ? <img width='100%' src={ previewImageData } alt=''/> : (
+			<>
+				<Settings parentProps={ props } deviceType = {deviceType} />
+				<Render parentProps={ props } />
+			</>
+		)
 	);
 };
 

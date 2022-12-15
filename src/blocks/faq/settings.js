@@ -50,6 +50,8 @@ const Settings = ( props ) => {
 		columnsGapUnit,
 		align,
 		enableSeparator,
+		boxBgType,
+		boxBgHoverType,
 		boxBgColor,
 		questionTextColor,
 		questionTextBgColor,
@@ -144,6 +146,11 @@ const Settings = ( props ) => {
 		answerLetterSpacingMobile,
 		answerLetterSpacingType,
 		boxBgHoverColor,
+		iconBgColor,
+		iconBgSize,
+		iconBgSizeTablet,
+		iconBgSizeMobile,
+		iconBgSizeType,
 	} = attributes;
 
 	const onchangeIcon = ( value ) => {
@@ -975,34 +982,88 @@ const Settings = ( props ) => {
 					] }
 					normal={
 						<>
-							<AdvancedPopColorControl
-								label={ __(
-									'Background Color',
-									'ultimate-addons-for-gutenberg'
-								) }
-								colorValue={ boxBgColor }
-								data={ {
-									value: boxBgColor,
-									label: 'boxBgColor',
-								} }
+							<MultiButtonsControl
 								setAttributes={ setAttributes }
+								label={ __( 'Background Type', 'ultimate-addons-for-gutenberg' ) }
+								data={ {
+									value: boxBgType,
+									label: 'boxBgType',
+								} }
+								className="uagb-multi-button-alignment-control"
+								options={ [
+									{
+										value: 'transparent',
+										label: __(
+											'Transparent',
+											'ultimate-addons-for-gutenberg'
+										),
+									},
+									{
+										value: 'color',
+										label: __(
+											'Color',
+											'ultimate-addons-for-gutenberg'
+										),
+									},
+								] }
 							/>
+							{ boxBgType === 'color' &&
+								<AdvancedPopColorControl
+									label={ __(
+										'Background Color',
+										'ultimate-addons-for-gutenberg'
+									) }
+									colorValue={ boxBgColor }
+									data={ {
+										value: boxBgColor,
+										label: 'boxBgColor',
+									} }
+									setAttributes={ setAttributes }
+								/>
+							}
 						</>
 					}
 					hover={
 						<>
-							<AdvancedPopColorControl
-								label={ __(
-									'Background Color',
-									'ultimate-addons-for-gutenberg'
-								) }
-								colorValue={ boxBgHoverColor }
-								data={ {
-									value: boxBgHoverColor,
-									label: 'boxBgHoverColor',
-								} }
+							<MultiButtonsControl
 								setAttributes={ setAttributes }
+								label={ __( 'Background Type', 'ultimate-addons-for-gutenberg' ) }
+								data={ {
+									value: boxBgHoverType,
+									label: 'boxBgHoverType',
+								} }
+								className="uagb-multi-button-alignment-control"
+								options={ [
+									{
+										value: 'transparent',
+										label: __(
+											'Transparent',
+											'ultimate-addons-for-gutenberg'
+										),
+									},
+									{
+										value: 'color',
+										label: __(
+											'Color',
+											'ultimate-addons-for-gutenberg'
+										),
+									},
+								] }
 							/>
+							{ boxBgHoverType === 'color' &&
+								<AdvancedPopColorControl
+									label={ __(
+										'Background Color',
+										'ultimate-addons-for-gutenberg'
+									) }
+									colorValue={ boxBgHoverColor }
+									data={ {
+										value: boxBgHoverColor,
+										label: 'boxBgHoverColor',
+									} }
+									setAttributes={ setAttributes }
+								/>
+							}
 						</>
 					}
 				/>
@@ -1154,6 +1215,43 @@ const Settings = ( props ) => {
 					setAttributes={ setAttributes }
 				/>
 				<ResponsiveSlider
+					label={ __( 'Background Size', 'ultimate-addons-for-gutenberg' ) }
+					data={ {
+						desktop: {
+							value: iconBgSize,
+							label: 'iconBgSize',
+						},
+						tablet: {
+							value: iconBgSizeTablet,
+							label: 'iconBgSizeTablet',
+						},
+						mobile: {
+							value: iconBgSizeMobile,
+							label: 'iconBgSizeMobile',
+						},
+					} }
+					min={ 0 }
+					max={ 100 }
+					unit={ {
+						value: iconBgSizeType,
+						label: 'iconBgSizeType',
+					} }
+					units={ [
+						{
+							name: __(
+								'Pixel',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'px',
+						},
+						{
+							name: __( '%', 'ultimate-addons-for-gutenberg' ),
+							unitValue: '%',
+						},
+					] }
+					setAttributes={ setAttributes }
+				/>
+				<ResponsiveSlider
 					label={ __(
 						'Gap between Icon and Question', 'ultimate-addons-for-gutenberg' ) }
 					data={ {
@@ -1198,6 +1296,26 @@ const Settings = ( props ) => {
 						label: 'iconActiveColor',
 					} }
 					setAttributes={ setAttributes }
+				/>
+				<AdvancedPopColorControl
+					label={ __(
+						'Background Color',
+						'ultimate-addons-for-gutenberg'
+					) }
+					colorValue={ iconBgColor }
+					data={ {
+						value: iconBgColor,
+						label: 'iconBgColor',
+					} }
+					setAttributes={ setAttributes }
+				/>
+				<ResponsiveBorder
+					setAttributes={ setAttributes }
+					prefix={ 'icon' }
+					disabledBorderTitle= { false }
+					attributes={ attributes }
+					deviceType={ deviceType }
+					disableBottomSeparator={ true }
 				/>
 			</UAGAdvancedPanelBody>
 		);

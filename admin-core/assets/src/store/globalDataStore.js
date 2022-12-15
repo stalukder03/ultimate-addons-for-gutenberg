@@ -17,6 +17,18 @@ const initialState = {
     enableCopyPasteStyles : '',
     enableDisplayConditions : '',
     enableMasonryExtension : '',
+	socialLogin: {
+		recaptchaVersion: 'v2',
+		recaptchaSiteKey: '',
+		recaptchaSecretKey: '',
+		recaptchaBadgeHide: false,
+		socialRegister: false,
+		googleClientId: '',
+		facebookAppId: '',
+		facebookAppSecret: ''
+	},
+	enableDynamicContentExtension: '',
+	dynamicContentMode: 'popup',
 	enableResponsiveConditions : '',
 	contentWidth: '',
 	siteKeyV2: '',
@@ -31,8 +43,16 @@ const initialState = {
 	containerGlobalElementsGap: 20,
     enableFontAwesome5: ( 'yes' === uag_react.global_data.uagb_old_user_less_than_2 ) ? 'enabled' : 'disabled',
     enableAutoBlockRecovery: ( 'yes' === uag_react.global_data.uagb_old_user_less_than_2 ) ? 'enabled' : 'disabled',
-    enableLegacyBlocks: ( 'yes' === uag_react.global_data.uagb_old_user_less_than_2 ) ? 'yes' : 'no',
-    instaLinkedAccounts: '',
+	enableLegacyBlocks: ( 'yes' === uag_react.global_data.uagb_old_user_less_than_2 ) ? 'yes' : 'no',
+	instaLinkedAccounts: '',
+    coreBlocks: [
+        'container',
+        'advanced-heading',
+        'image',
+        'buttons',
+        'info-box',
+        'call-to-action',
+    ]
 };
 
 const globalDataStore = createStore(

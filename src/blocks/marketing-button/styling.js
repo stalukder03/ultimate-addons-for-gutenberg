@@ -170,7 +170,7 @@ function styling( props ) {
 		' .uagb-marketing-btn__link:focus svg': {
 			'fill': setIconHoverColor,
 		},
-		' .uagb-marketing-btn__link': {
+		' .uagb-marketing-btn__link:not(.has-background)': {
 			'padding-left': generateCSSUnit( paddingBtnLeft, paddingBtnUnit ),
 			'padding-right': generateCSSUnit( paddingBtnRight, paddingBtnUnit ),
 			'padding-top': generateCSSUnit( paddingBtnTop, paddingBtnUnit ),
@@ -189,22 +189,29 @@ function styling( props ) {
 	};
 
 	if ( 'transparent' === backgroundType ) {
-		selectors[ ' .uagb-marketing-btn__link' ].background = 'transparent';
+		selectors[ ':not(.is-style-outline) .uagb-marketing-btn__link:not(.has-background)' ]  = {
+			'background-color' : 'transparent'
+		}
 	} else if ( 'color' === backgroundType ) {
-		selectors[ ' .uagb-marketing-btn__link' ].background = backgroundColor;
+		selectors[ ':not(.is-style-outline) .uagb-marketing-btn__link:not(.has-background)' ]  = {
+			'background-color' : backgroundColor
+		}
 
 		// Hover Background
-		selectors[ ' .uagb-marketing-btn__link:hover' ].background = backgroundHoverColor;
+		selectors[ ':not(.is-style-outline) .uagb-marketing-btn__link:not(.has-background):hover' ]  = {
+			'background-color' : backgroundHoverColor
+		}
 	} else if ( 'gradient' === backgroundType ) {
-		selectors[ ' .uagb-marketing-btn__link' ][ 'background-color' ] =
-			'transparent';
+		selectors[ ':not(.is-style-outline) .uagb-marketing-btn__link:not(.has-background)' ]  = {
+			'background-color' : 'transparent'
+		}
 
 		if ( 'linear' === gradientType ) {
-			selectors[ ' .uagb-marketing-btn__link' ][
+			selectors[ ':not(.is-style-outline) .uagb-marketing-btn__link:not(.has-background)' ][
 				'background-image'
 			] = `linear-gradient(${ gradientAngleFallback }deg, ${ gradientColor1 } ${ gradientLocation1Fallback }%, ${	gradientColor2 } ${ gradientLocation2Fallback }%)`;
 		} else {
-			selectors[ ' .uagb-marketing-btn__link' ][
+			selectors[ ':not(.is-style-outline) .uagb-marketing-btn__link:not(.has-background)' ][
 				'background-image'
 			] = `radial-gradient( at center center, ${ gradientColor1} ${ gradientLocation1Fallback }%, ${ gradientColor2 } ${ gradientLocation2Fallback }%)`;
 		}

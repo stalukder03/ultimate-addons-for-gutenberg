@@ -25,6 +25,8 @@ function styling( props ) {
 		columnsGapMobile,
 		align,
 		enableSeparator,
+		boxBgType,
+		boxBgHoverType,
 		boxBgColor,
 		boxBgHoverColor,
 		overallBorderHColor,
@@ -113,13 +115,22 @@ function styling( props ) {
 		answerLetterSpacingTablet,
 		answerLetterSpacingMobile,
 		answerLetterSpacingType,
-		borderStyle, borderWidth, borderRadius, borderColor
+		iconBgColor,
+		iconBgSize,
+		iconBgSizeTablet,
+		iconBgSizeMobile,
+		iconBgSizeType,
+		iconBorderHColor
 	} = props.attributes;
 
 
-	const borderCSS = generateBorderCSS( props.attributes, 'overall', '', borderStyle, borderWidth, borderRadius, borderColor );
+	const borderCSS = generateBorderCSS( props.attributes, 'overall', '' );
 	const borderCSSTablet = generateBorderCSS( props.attributes,'overall', 'tablet' );
 	const borderCSSMobile = generateBorderCSS( props.attributes,'overall', 'mobile' );
+
+	const iconBorderCSS = generateBorderCSS( props.attributes, 'icon', '' );
+	const iconBorderCSSTablet = generateBorderCSS( props.attributes,'icon', 'tablet' );
+	const iconBorderCSSMobile = generateBorderCSS( props.attributes,'icon', 'mobile' );
 
 	let selectors = {};
 	let tabletSelectors = {};
@@ -155,11 +166,11 @@ function styling( props ) {
 			'grid-row-gap': generateCSSUnit( getFallbackNumber( rowsGap, 'rowsGap', blockName ), rowsGapUnit ),
 		},
 		' .uagb-faq-item': {
-			'background-color': boxBgColor,
+			'background-color': ( boxBgType === 'color' ) ? boxBgColor : 'transparent',
 			...borderCSS
 		},
 		' .uagb-faq-item:hover': {
-			'background-color': boxBgHoverColor,
+			'background-color': ( boxBgHoverType === 'color' ) ? boxBgHoverColor : 'transparent',
 			'border-color': overallBorderHColor,
 		},
 		' .uagb-faq-item .uagb-question': {
@@ -220,6 +231,17 @@ function styling( props ) {
 		'.uagb-faq-icon-row-reverse .uagb-faq-item .uagb-faq-icon-wrap': {
 			'margin-left': generateCSSUnit( getFallbackNumber( gapBtwIconQUestion, 'gapBtwIconQUestion', blockName ), 'px' ),
 		},
+		' .uagb-faq-item .uagb-faq-icon-wrap': {
+			'background-color': iconBgColor,
+			'padding': generateCSSUnit(
+				iconBgSize,
+				iconBgSizeType
+			),
+			...iconBorderCSS
+		},
+		' .uagb-faq-item .uagb-faq-icon-wrap:hover': {
+			'border-color': iconBorderHColor,
+		},
 		' .uagb-faq-item:hover .uagb-icon svg': {
 			'fill': iconActiveColorTemp,
 		},
@@ -276,6 +298,13 @@ function styling( props ) {
 				questionLeftPaddingTablet,
 				questionPaddingTypeTablet
 			),
+		},
+		' .uagb-faq-item .uagb-faq-icon-wrap': {
+			'padding': generateCSSUnit(
+				iconBgSizeTablet,
+				iconBgSizeType
+			),
+			...iconBorderCSSTablet,
 		},
 		' .uagb-faq-item': {
 			...borderCSSTablet
@@ -348,6 +377,13 @@ function styling( props ) {
 	mobileSelectors = {
 		' .uagb-faq-item': {
 			...borderCSSMobile
+		},
+		' .uagb-faq-item .uagb-faq-icon-wrap': {
+			'padding': generateCSSUnit(
+				iconBgSizeMobile,
+				iconBgSizeType
+			),
+			...iconBorderCSSMobile,
 		},
 		'.uagb-faq-icon-row .uagb-faq-item .uagb-faq-icon-wrap': {
 			'margin-right': generateCSSUnit( gapBtwIconQUestionMobile, 'px' ),
