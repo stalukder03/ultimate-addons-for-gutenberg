@@ -13,10 +13,11 @@ export default function save( props ) {
 		<div
 			className={ classnames(
 				props.className,
-				`uagb-block-${ block_id }`
+				`uagb-block-${ block_id }`,
+				'wp-block-uagb-separator'
 			) }
 		>
-			Separator Saved
+			<div className='wp-block-uagb-separator__inner'></div>
 		</div>
 	);
 }

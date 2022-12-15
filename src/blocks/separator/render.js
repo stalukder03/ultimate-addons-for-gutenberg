@@ -32,10 +32,11 @@ const Render = ( props ) => {
 			className={ classnames(
 				className,
 				`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
-				`uagb-block-${ block_id }`
+				`uagb-block-${ block_id }`,
+				'wp-block-uagb-separator'
 			) }
 		>
-			Render Seperator
+			<div className='wp-block-uagb-separator__inner'></div>
 		</div>
 	);
 };
