@@ -19,7 +19,7 @@ $highLight_border_css        = UAGB_Block_Helper::uag_generate_border_css( $attr
 $highLight_border_css_tablet = UAGB_Block_Helper::uag_generate_border_css( $attr, 'highLight', 'tablet' );
 $highLight_border_css_mobile = UAGB_Block_Helper::uag_generate_border_css( $attr, 'highLight', 'mobile' );
 
-$heading_alignment_default = $attr['headingAlign'] ? $attr['headingAlign'] : ( ( 'yes' === get_option( 'uagb-old-user-less-than-2' ) ) ? 'center' : 'left' ) ;
+$heading_alignment_default = $attr['headingAlign'] ? $attr['headingAlign'] : ( ( 'yes' === get_option( 'uagb-old-user-less-than-2' ) ) ? 'center' : 'left' );
 
 $selectors = array(
 	'.wp-block-uagb-advanced-heading .uagb-heading-text' => array(
