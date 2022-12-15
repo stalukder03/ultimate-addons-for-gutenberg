@@ -32,7 +32,7 @@ const attributes = {
 	},
 	seperatorStyle: {
 		type: 'string',
-		default: 'none',
+		default: 'solid',
 		UAGCopyPaste: {
 			styleType: 'separator-style'
 		}
@@ -46,14 +46,16 @@ const attributes = {
 	},
 	seperatorWidthTablet: {
 		type: 'number',
+		default: 30,
 		UAGCopyPaste: {
-			styleType: 'separator-width'
+			styleType: 'separator-width-tablet'
 		},
 	},
 	seperatorWidthMobile: {
 		type: 'number',
+		default: 30,
 		UAGCopyPaste: {
-			styleType: 'separator-width'
+			styleType: 'separator-width-mobile'
 		},
 	},
 	separatorWidthType: {
@@ -107,7 +109,7 @@ const attributes = {
 			styleType: 'separator-right-margin-tablet'
 		}
 	},
-	seperatorTabletSpace : {
+	separatorPaddingBottomTablet : {
 		type: 'number',
 		UAGCopyPaste: {
 			styleType: 'separator-bottom-margin-tablet'
@@ -131,7 +133,7 @@ const attributes = {
 			styleType: 'separator-right-margin-mobile'
 		}
 	},
-	seperatorMobileSpace : {
+	separatorPaddingBottomMobile : {
 		type: 'number',
 		UAGCopyPaste: {
 			styleType: 'separator-bottom-margin-mobile'

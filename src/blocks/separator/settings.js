@@ -47,13 +47,13 @@ const Settings = ( props ) => {
 		separatorLeftPadding,
 		separatorPaddingTopTablet,
 		separatorPaddingRightTablet,
-		seperatorTabletPadding,
+		separatorPaddingBottomTablet,
 		separatorPaddingLeftTablet,
 		separatorPaddingTopMobile,
 		separatorPaddingRightMobile,
-		seperatorMobilePadding,
+		separatorPaddingBottomMobile,
 		separatorPaddingLeftMobile,
-		seperatorBottomPaddingUnit,
+		seperatorPaddingUnit,
 		separatorMobilePaddingUnit,
 		separatorTabletPaddingUnit,
 		separatorPaddingLink,
@@ -77,13 +77,6 @@ const Settings = ( props ) => {
 					} }
 					setAttributes={ setAttributes }
 					options={ [
-						{
-							value: 'none',
-							label: __(
-								'None',
-								'ultimate-addons-for-gutenberg'
-							),
-						},
 						{
 							value: 'solid',
 							label: __(
@@ -296,8 +289,8 @@ const Settings = ( props ) => {
 						label: 'separatorPaddingRightTablet',
 					} }
 					valueBottomTablet={ {
-						value: seperatorTabletPadding,
-						label: 'seperatorTabletPadding',
+						value: separatorPaddingBottomTablet,
+						label: 'separatorPaddingBottomTablet',
 					} }
 					valueLeftTablet={ {
 						value: separatorPaddingLeftTablet,
@@ -312,16 +305,16 @@ const Settings = ( props ) => {
 						label: 'separatorPaddingRightMobile',
 					} }
 					valueBottomMobile={ {
-						value: seperatorMobilePadding,
-						label: 'seperatorMobilePadding',
+						value: separatorPaddingBottomMobile,
+						label: 'separatorPaddingBottomMobile',
 					} }
 					valueLeftMobile={ {
 						value: separatorPaddingLeftMobile,
 						label: 'separatorPaddingLeftMobile',
 					} }
 					unit={ {
-						value: seperatorBottomPaddingUnit,
-						label: 'seperatorBottomPaddingUnit',
+						value: seperatorPaddingUnit,
+						label: 'seperatorPaddingUnit',
 					} }
 					mUnit={ {
 						value: separatorMobilePaddingUnit,
