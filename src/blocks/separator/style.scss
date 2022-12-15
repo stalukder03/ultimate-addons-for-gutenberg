@@ -1,5 +1,9 @@
 .wp-block-uagb-separator {
+	padding-top: 30px;
+	padding-bottom: 30px;
+	text-align: center;
 	&__inner {
+		display: inline-block;
 		width: 30%;
 		border-top-width: 2px;
 		border-top-color: #333;
