@@ -30,20 +30,20 @@ const Settings = ( props ) => {
 	const { attributes, deviceType, setAttributes } = props;
 	const {
 		block_id,
-		seperatorStyle,
+		separatorStyle,
 		separatorAlign,
 		separatorAlignTablet,
 		separatorAlignMobile,
-		seperatorWidth,
-		seperatorWidthTablet,
-		seperatorWidthMobile,
+		separatorWidth,
+		separatorWidthTablet,
+		separatorWidthMobile,
 		separatorWidthType,
-		seperatorColor,
-		seperatorThickness,
+		separatorColor,
+		separatorThickness,
 		thicknessUnit,
 		separatorTopPadding,
 		separatorRightPadding,
-		seperatorBottomPadding,
+		separatorBottomPadding,
 		separatorLeftPadding,
 		separatorPaddingTopTablet,
 		separatorPaddingRightTablet,
@@ -53,14 +53,14 @@ const Settings = ( props ) => {
 		separatorPaddingRightMobile,
 		separatorPaddingBottomMobile,
 		separatorPaddingLeftMobile,
-		seperatorPaddingUnit,
+		separatorPaddingUnit,
 		separatorMobilePaddingUnit,
 		separatorTabletPaddingUnit,
 		separatorPaddingLink,
 	} = attributes;
 
 	// Separator settings.
-	const seperatorGeneralSettings = () => {
+	const separatorGeneralSettings = () => {
 		return (
 			<UAGAdvancedPanelBody
 				title={ __( 'Separator', 'ultimate-addons-for-gutenberg' ) }
@@ -72,8 +72,8 @@ const Settings = ( props ) => {
 						'ultimate-addons-for-gutenberg'
 					) }
 					data={ {
-						value: seperatorStyle,
-						label: 'seperatorStyle',
+						value: separatorStyle,
+						label: 'separatorStyle',
 					} }
 					setAttributes={ setAttributes }
 					options={ [
@@ -177,7 +177,7 @@ const Settings = ( props ) => {
 		);
 	};
 
-	const seperatorStyleSettings = () => {
+	const separatorStyleSettings = () => {
 		return (
 			<UAGAdvancedPanelBody
 				title="Separator"
@@ -190,16 +190,16 @@ const Settings = ( props ) => {
 					) }
 					data={ {
 						desktop: {
-							value: seperatorWidth,
-							label: 'seperatorWidth',
+							value: separatorWidth,
+							label: 'separatorWidth',
 						},
 						tablet: {
-							value: seperatorWidthTablet,
-							label: 'seperatorWidthTablet',
+							value: separatorWidthTablet,
+							label: 'separatorWidthTablet',
 						},
 						mobile: {
-							value: seperatorWidthMobile,
-							label: 'seperatorWidthMobile',
+							value: separatorWidthMobile,
+							label: 'separatorWidthMobile',
 						},
 					} }
 					min={ 0 }
@@ -232,10 +232,10 @@ const Settings = ( props ) => {
 						'ultimate-addons-for-gutenberg'
 					) }
 					setAttributes={ setAttributes }
-					value={ seperatorThickness }
+					value={ separatorThickness }
 					data={ {
-						value: seperatorThickness,
-						label: 'seperatorThickness',
+						value: separatorThickness,
+						label: 'separatorThickness',
 					} }
 					min={ 0 }
 					max={ 10 }
@@ -250,11 +250,11 @@ const Settings = ( props ) => {
 						'ultimate-addons-for-gutenberg'
 					) }
 					colorValue={
-						seperatorColor ? seperatorColor : ''
+						separatorColor ? separatorColor : ''
 					}
 					data={ {
-						value: seperatorColor,
-						label: 'seperatorColor',
+						value: separatorColor,
+						label: 'separatorColor',
 					} }
 					setAttributes={ setAttributes }
 				/>
@@ -273,8 +273,8 @@ const Settings = ( props ) => {
 						label: 'separatorRightPadding',
 					} }
 					valueBottom={ {
-						value: seperatorBottomPadding,
-						label: 'seperatorBottomPadding',
+						value: separatorBottomPadding,
+						label: 'separatorBottomPadding',
 					} }
 					valueLeft={ {
 						value: separatorLeftPadding,
@@ -313,8 +313,8 @@ const Settings = ( props ) => {
 						label: 'separatorPaddingLeftMobile',
 					} }
 					unit={ {
-						value: seperatorPaddingUnit,
-						label: 'seperatorPaddingUnit',
+						value: separatorPaddingUnit,
+						label: 'separatorPaddingUnit',
 					} }
 					mUnit={ {
 						value: separatorMobilePaddingUnit,
@@ -341,10 +341,10 @@ const Settings = ( props ) => {
 			<InspectorControls>
 				<InspectorTabs>
 					<InspectorTab { ...UAGTabs.general }>
-						{seperatorGeneralSettings()}
+						{separatorGeneralSettings()}
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
-						{seperatorStyleSettings()}
+						{separatorStyleSettings()}
 					</InspectorTab>
 					<InspectorTab
 						{ ...UAGTabs.advance }

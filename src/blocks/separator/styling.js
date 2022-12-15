@@ -12,20 +12,20 @@ function styling( props ) {
 	const blockName = props.name.replace( 'uagb/', '' );
 
 	const {
-		seperatorStyle,
+		separatorStyle,
 		separatorAlign,
 		separatorAlignTablet,
 		separatorAlignMobile,
-		seperatorWidth,
-		seperatorWidthTablet,
-		seperatorWidthMobile,
+		separatorWidth,
+		separatorWidthTablet,
+		separatorWidthMobile,
 		separatorWidthType,
-		seperatorColor,
-		seperatorThickness,
+		separatorColor,
+		separatorThickness,
 		thicknessUnit,
 		separatorTopPadding,
 		separatorRightPadding,
-		seperatorBottomPadding,
+		separatorBottomPadding,
 		separatorLeftPadding,
 		separatorPaddingTopTablet,
 		separatorPaddingRightTablet,
@@ -35,36 +35,36 @@ function styling( props ) {
 		separatorPaddingRightMobile,
 		separatorPaddingBottomMobile,
 		separatorPaddingLeftMobile,
-		seperatorPaddingUnit,
+		separatorPaddingUnit,
 		separatorMobilePaddingUnit,
 		separatorTabletPaddingUnit,
 		separatorPaddingLink,
 	} = props.attributes;
 
 	// Responsive Slider
-	const seperatorWidthFallback = getFallbackNumber( seperatorWidth, 'seperatorWidth', blockName );
-	const seperatorWidthFallbackTablet = getFallbackNumber( seperatorWidthTablet, 'seperatorWidthTablet', blockName );
-	const seperatorWidthFallbackMobile = getFallbackNumber( seperatorWidthMobile, 'seperatorWidthMobile', blockName );
+	const separatorWidthFallback = getFallbackNumber( separatorWidth, 'separatorWidth', blockName );
+	const separatorWidthFallbackTablet = getFallbackNumber( separatorWidthTablet, 'separatorWidthTablet', blockName );
+	const separatorWidthFallbackMobile = getFallbackNumber( separatorWidthMobile, 'separatorWidthMobile', blockName );
 	// Thikness
-	const seperatorThicknessFallback = getFallbackNumber( seperatorThickness, 'seperatorThickness', blockName );
+	const separatorThicknessFallback = getFallbackNumber( separatorThickness, 'separatorThickness', blockName );
 
 
 	const selectors = {
 		'.wp-block-uagb-separator': {
-			'padding-bottom': generateCSSUnit( seperatorBottomPadding, seperatorPaddingUnit ),
-			'padding-top': generateCSSUnit( separatorTopPadding, seperatorPaddingUnit ),
-			'padding-left': generateCSSUnit( separatorLeftPadding, seperatorPaddingUnit ),
-			'padding-right': generateCSSUnit( separatorRightPadding, seperatorPaddingUnit ),
+			'padding-bottom': generateCSSUnit( separatorBottomPadding, separatorPaddingUnit ),
+			'padding-top': generateCSSUnit( separatorTopPadding, separatorPaddingUnit ),
+			'padding-left': generateCSSUnit( separatorLeftPadding, separatorPaddingUnit ),
+			'padding-right': generateCSSUnit( separatorRightPadding, separatorPaddingUnit ),
 			'text-align': separatorAlign,
 		},
 		'.wp-block-uagb-separator .wp-block-uagb-separator__inner': {
-			'width': generateCSSUnit( seperatorWidthFallback, separatorWidthType ),
+			'width': generateCSSUnit( separatorWidthFallback, separatorWidthType ),
 			'border-top-width': generateCSSUnit(
-				seperatorThicknessFallback,
+				separatorThicknessFallback,
 				thicknessUnit
 			),
-			'border-top-color': seperatorColor,
-			'border-top-style': seperatorStyle,
+			'border-top-color': separatorColor,
+			'border-top-style': separatorStyle,
 		},
 	}
 	const tablet_selectors = {
@@ -76,7 +76,7 @@ function styling( props ) {
 			'text-align': separatorAlignTablet,
 		},
 		'.wp-block-uagb-separator .wp-block-uagb-separator__inner': {
-			'width': generateCSSUnit( seperatorWidthFallbackTablet, separatorWidthType ),
+			'width': generateCSSUnit( separatorWidthFallbackTablet, separatorWidthType ),
 		},
 	};
 	const mobile_selectors = {
@@ -88,7 +88,7 @@ function styling( props ) {
 			'text-align': separatorAlignMobile,
 		},
 		'.wp-block-uagb-separator .wp-block-uagb-separator__inner': {
-			'width': generateCSSUnit( seperatorWidthFallbackMobile, separatorWidthType ),
+			'width': generateCSSUnit( separatorWidthFallbackMobile, separatorWidthType ),
 		},
 	};
 
