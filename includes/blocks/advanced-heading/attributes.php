@@ -11,8 +11,6 @@ $highLight_border_attribute = UAGB_Block_Helper::uag_generate_border_attribute( 
 
 $enable_legacy_blocks = UAGB_Admin_Helper::get_admin_settings_option( 'uag_enable_legacy_blocks', ( 'yes' === get_option( 'uagb-old-user-less-than-2' ) ) ? 'yes' : 'no' );
 
-$heading_alignment_default = ( 'yes' === get_option( 'uagb-old-user-less-than-2' ) ) ? 'center' : '';
-
 return array_merge(
 	$highLight_border_attribute,
 	array(
@@ -20,7 +18,7 @@ return array_merge(
 		'blockBackground'              => '',
 		'blockBackgroundType'          => 'classic',
 		'blockGradientBackground'      => 'linear-gradient(90deg, rgb(6, 147, 227) 0%, rgb(155, 81, 224) 100%)',
-		'headingAlign'                 => $heading_alignment_default,
+		'headingAlign'                 => '',
 		'headingAlignTablet'           => '',
 		'headingDescPosition'          => 'below-heading',
 		'seperatorPosition'            => 'below-heading',
