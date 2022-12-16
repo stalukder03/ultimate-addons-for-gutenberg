@@ -26,6 +26,9 @@ const Render = ( props ) => {
 			seperatorStyle,
 			seperatorPosition,
 			headingDescPosition,
+			isEnableAnimation,
+			beforeText,
+			afterText,
 			animateType,
 			rotatingAnimation,
 			highlightedText,
@@ -47,44 +50,6 @@ const Render = ( props ) => {
 		<div className="uagb-separator-wrap">
 			<div className="uagb-separator"></div>
 		</div>
-	);
-
-	const headingText = (
-		<>
-
-			{ seperatorPosition === 'above-heading' ? separator : '' }
-			<RichText
-				tagName={ headingTag }
-				placeholder={ __(
-					'Write a Heading',
-					'ultimate-addons-for-gutenberg'
-				) }
-				value={ headingTitle }
-				className="uagb-heading-text"
-				multiline={ false }
-				onChange={ ( value ) => {
-					setAttributes( { headingTitle: value } );
-				} }
-			/>
-			{ seperatorPosition === 'below-heading' ? separator : '' }
-		</>
-	);
-
-	const descText = (
-		<>
-			{ seperatorPosition === 'above-sub-heading' ? separator : '' }
-			<RichText
-				tagName="p"
-				placeholder={ __(
-					'Write a Description',
-					'ultimate-addons-for-gutenberg'
-				) }
-				value={ headingDesc }
-				className="uagb-desc-text"
-				onChange={ ( value ) => setAttributes( { headingDesc: value } ) }
-			/>
-			{ seperatorPosition === 'below-sub-heading' ? separator : '' }
-		</>
 	);
 
 	const getRotatingContent = () => {
@@ -130,8 +95,58 @@ const Render = ( props ) => {
 		)
 	}
 
+	const beforeConent = beforeText && ( <span className="uagb-animated-headline__before-text">{beforeText}</span> )
+	const afterContent = afterText && ( <span className="uagb-animated-headline__after-text">{afterText}</span> )
 	const animatedContent = animateType === 'highlighted' ? getHightLightedContent() : getRotatingContent()
+	const CustomTag = `${headingTag}`;
 
+	const headingText = (
+		<>
+
+			{ seperatorPosition === 'above-heading' ? separator : '' }
+			{
+				isEnableAnimation
+				?
+					<CustomTag className="uagb-heading-text">
+						{beforeConent}
+						{' '}{animatedContent}{' '}
+						{afterContent}
+					</CustomTag>
+				: <RichText
+					tagName={ headingTag }
+					placeholder={ __(
+						'Write a Heading',
+						'ultimate-addons-for-gutenberg'
+					) }
+					value={ headingTitle }
+					className="uagb-heading-text"
+					multiline={ false }
+					onChange={ ( value ) => {
+						setAttributes( { headingTitle: value } );
+					} }
+				/>
+			}
+
+			{ seperatorPosition === 'below-heading' ? separator : '' }
+		</>
+	);
+
+	const descText = (
+		<>
+			{ seperatorPosition === 'above-sub-heading' ? separator : '' }
+			<RichText
+				tagName="p"
+				placeholder={ __(
+					'Write a Description',
+					'ultimate-addons-for-gutenberg'
+				) }
+				value={ headingDesc }
+				className="uagb-desc-text"
+				onChange={ ( value ) => setAttributes( { headingDesc: value } ) }
+			/>
+			{ seperatorPosition === 'below-sub-heading' ? separator : '' }
+		</>
+	);
 
 	return (
 		<div
@@ -143,9 +158,6 @@ const Render = ( props ) => {
 		>
 			{ headingDescToggle && 'above-heading' === headingDescPosition ? descText : '' }
 			{ headingTitleToggle && headingText }
-			{
-				animatedContent
-			}
 			{ headingDescToggle && 'below-heading' === headingDescPosition ? descText : '' }
 		</div>
 	);

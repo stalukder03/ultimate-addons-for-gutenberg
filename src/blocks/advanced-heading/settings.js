@@ -183,6 +183,7 @@ const Settings = ( props ) => {
 		highLightPaddingUnitMobile,
 		highLightPaddingLink,
 		// animation
+		isEnableAnimation,
 		animateType,
 		beforeText,
 		highlightedText,
@@ -596,158 +597,171 @@ const Settings = ( props ) => {
 				title={ __( 'Animation', 'ultimate-addons-for-gutenberg' ) }
 				initialOpen={ false }
 			>
-				<UAGSelectControl
-					label={ __(
-						'Style',
-						'ultimate-addons-for-gutenberg'
-					) }
-					data={ {
-						value: animateType,
-						label: 'animateType',
-					} }
-					setAttributes={ setAttributes }
-					options={[
-						{
-							label: __( 'Highlighted', 'ultimate-addons-for-gutenberg' ),
-							value: 'highlighted',
-						},
-						{ label: __( 'Rotating', 'ultimate-addons-for-gutenberg' ), value: 'rotating' },
-					]}
-				/>
-				{animateType === 'highlighted' ? (
-					<>
-						<UAGSelectControl
-							label={ __(
-								'Shape',
-								'ultimate-addons-for-gutenberg'
-							) }
-							data={ {
-								value: highlightedShape,
-								label: 'highlightedShape',
-							} }
-							setAttributes={ setAttributes }
-							options={[
-								{ label: __( 'Circle', 'ultimate-addons-for-gutenberg' ), value: 'circle' },
-								{ label: __( 'Curly', 'ultimate-addons-for-gutenberg' ), value: 'curly' },
-								{
-									label: __( 'Underline', 'ultimate-addons-for-gutenberg' ),
-									value: 'underline',
-								},
-								{ label: __( 'Double', 'ultimate-addons-for-gutenberg' ), value: 'double' },
-								{
-									label: __( 'Double Underline', 'ultimate-addons-for-gutenberg' ),
-									value: 'double_underline',
-								},
-								{
-									label: __( 'Underline Zigzag', 'ultimate-addons-for-gutenberg' ),
-									value: 'underline_zigzag',
-								},
-								{
-									label: __( 'Diagonal', 'ultimate-addons-for-gutenberg' ),
-									value: 'diagonal',
-								},
-								{
-									label: __( 'Strikethrough', 'ultimate-addons-for-gutenberg' ),
-									value: 'strikethrough',
-								},
-								{ label: __( 'X', 'ultimate-addons-for-gutenberg' ), value: 'x' },
-							]}
-						/>
-					</>
-
-				) : (
-					<UAGSelectControl
-						label={ __(
-							'Animation',
-							'ultimate-addons-for-gutenberg'
-						) }
-						data={ {
-							value: rotatingAnimation,
-							label: 'rotatingAnimation',
-						} }
-						setAttributes={ setAttributes }
-						options={[
-							{ label: __( 'Typing', 'ultimate-addons-for-gutenberg' ), value: 'typing' },
-							{ label: __( 'Clip', 'ultimate-addons-for-gutenberg' ), value: 'clip' },
-							{ label: __( 'Flip', 'ultimate-addons-for-gutenberg' ), value: 'flip' },
-							{ label: __( 'Swirl', 'ultimate-addons-for-gutenberg' ), value: 'swirl' },
-							{ label: __( 'Blinds', 'ultimate-addons-for-gutenberg' ), value: 'blinds' },
-							{
-								label: __( 'Drop-In', 'ultimate-addons-for-gutenberg' ),
-								value: 'dropIn',
-							},
-							{ label: __( 'Wave', 'ultimate-addons-for-gutenberg' ), value: 'wave' },
-							{ label: __( 'Slide', 'ultimate-addons-for-gutenberg' ), value: 'slide' },
-							{
-								label: __( 'Slide Down', 'ultimate-addons-for-gutenberg' ),
-								value: 'slideDown',
-							},
-						]}
-					/>
-				)}
-				<UAGTextControl
-					label={__( 'Before Text', 'ultimate-addons-for-gutenberg' )}
-					placeholder={__( 'Enter Your Headline', 'ultimate-addons-for-gutenberg' )}
-					value={beforeText}
-					onChange={( value ) => setAttributes( { beforeText: value } )}
-				/>
-				{animateType === 'highlighted' ? (
-					<UAGTextControl
-						label={__( 'Highlighted Text', 'ultimate-addons-for-gutenberg' )}
-						value={highlightedText}
-						onChange={( value ) =>
-							setAttributes( { highlightedText: value } )
-						}
-					/>
-				) : (
-					<UAGTextControl
-						label={__( 'Rotating Text', 'ultimate-addons-for-gutenberg' )}
-						placeholder={__(
-							'Enter each word in a separate line',
-							'ultimate-addons-for-gutenberg'
-						)}
-						variant="textarea"
-						value={rotatingText}
-						onChange={( value ) =>
-							setAttributes( { rotatingText: value } )
-						}
-					/>
-				)}
-				<UAGTextControl
-					label={__( 'After Text', 'ultimate-addons-for-gutenberg' )}
-					placeholder={__( 'Enter Your Headline', 'ultimate-addons-for-gutenberg' )}
-					value={afterText}
-					onChange={( value ) => setAttributes( { afterText: value } )}
-				/>
 				<ToggleControl
-					label={__( 'Infinite Loop', 'ultimate-addons-for-gutenberg' )}
-					checked={infiniteLoop}
+					label={__( 'Enable Animation', 'ultimate-addons-for-gutenberg' )}
+					checked={isEnableAnimation}
 					onChange={() =>
-						setAttributes( { infiniteLoop: !infiniteLoop } )
+						setAttributes( { isEnableAnimation: !isEnableAnimation } )
 					}
 				/>
-				<UAGNumberControl
-					label={__( 'Duration (ms)', 'ultimate-addons-for-gutenberg' )}
-					isShiftStepEnabled={true}
-					data={ {
-						value: animationDuration,
-						label: 'animationDuration',
-					} }
-					step={100}
-					setAttributes={ setAttributes }
-				/>
-				{infiniteLoop && animateType === 'highlighted' && (
-					<UAGNumberControl
-						label={__( 'Delay (ms)', 'ultimate-addons-for-gutenberg' )}
-						isShiftStepEnabled={true}
-						data={ {
-							value: animationDelay,
-							label: 'animationDelay',
-						} }
-						setAttributes={ setAttributes }
-						step={100}
-					/>
-				)}
+				{
+					isEnableAnimation && (
+						<>
+							<UAGSelectControl
+								label={ __(
+									'Style',
+									'ultimate-addons-for-gutenberg'
+								) }
+								data={ {
+									value: animateType,
+									label: 'animateType',
+								} }
+								setAttributes={ setAttributes }
+								options={[
+									{
+										label: __( 'Highlighted', 'ultimate-addons-for-gutenberg' ),
+										value: 'highlighted',
+									},
+									{ label: __( 'Rotating', 'ultimate-addons-for-gutenberg' ), value: 'rotating' },
+								]}
+							/>
+							{animateType === 'highlighted' ? (
+								<>
+									<UAGSelectControl
+										label={ __(
+											'Shape',
+											'ultimate-addons-for-gutenberg'
+										) }
+										data={ {
+											value: highlightedShape,
+											label: 'highlightedShape',
+										} }
+										setAttributes={ setAttributes }
+										options={[
+											{ label: __( 'Circle', 'ultimate-addons-for-gutenberg' ), value: 'circle' },
+											{ label: __( 'Curly', 'ultimate-addons-for-gutenberg' ), value: 'curly' },
+											{
+												label: __( 'Underline', 'ultimate-addons-for-gutenberg' ),
+												value: 'underline',
+											},
+											{ label: __( 'Double', 'ultimate-addons-for-gutenberg' ), value: 'double' },
+											{
+												label: __( 'Double Underline', 'ultimate-addons-for-gutenberg' ),
+												value: 'double_underline',
+											},
+											{
+												label: __( 'Underline Zigzag', 'ultimate-addons-for-gutenberg' ),
+												value: 'underline_zigzag',
+											},
+											{
+												label: __( 'Diagonal', 'ultimate-addons-for-gutenberg' ),
+												value: 'diagonal',
+											},
+											{
+												label: __( 'Strikethrough', 'ultimate-addons-for-gutenberg' ),
+												value: 'strikethrough',
+											},
+											{ label: __( 'X', 'ultimate-addons-for-gutenberg' ), value: 'x' },
+										]}
+									/>
+								</>
+
+							) : (
+								<UAGSelectControl
+									label={ __(
+										'Animation',
+										'ultimate-addons-for-gutenberg'
+									) }
+									data={ {
+										value: rotatingAnimation,
+										label: 'rotatingAnimation',
+									} }
+									setAttributes={ setAttributes }
+									options={[
+										{ label: __( 'Typing', 'ultimate-addons-for-gutenberg' ), value: 'typing' },
+										{ label: __( 'Clip', 'ultimate-addons-for-gutenberg' ), value: 'clip' },
+										{ label: __( 'Flip', 'ultimate-addons-for-gutenberg' ), value: 'flip' },
+										{ label: __( 'Swirl', 'ultimate-addons-for-gutenberg' ), value: 'swirl' },
+										{ label: __( 'Blinds', 'ultimate-addons-for-gutenberg' ), value: 'blinds' },
+										{
+											label: __( 'Drop-In', 'ultimate-addons-for-gutenberg' ),
+											value: 'dropIn',
+										},
+										{ label: __( 'Wave', 'ultimate-addons-for-gutenberg' ), value: 'wave' },
+										{ label: __( 'Slide', 'ultimate-addons-for-gutenberg' ), value: 'slide' },
+										{
+											label: __( 'Slide Down', 'ultimate-addons-for-gutenberg' ),
+											value: 'slideDown',
+										},
+									]}
+								/>
+							)}
+							<UAGTextControl
+								label={__( 'Before Text', 'ultimate-addons-for-gutenberg' )}
+								placeholder={__( 'Enter Your Headline', 'ultimate-addons-for-gutenberg' )}
+								value={beforeText}
+								onChange={( value ) => setAttributes( { beforeText: value } )}
+							/>
+							{animateType === 'highlighted' ? (
+								<UAGTextControl
+									label={__( 'Highlighted Text', 'ultimate-addons-for-gutenberg' )}
+									value={highlightedText}
+									onChange={( value ) =>
+										setAttributes( { highlightedText: value } )
+									}
+								/>
+							) : (
+								<UAGTextControl
+									label={__( 'Rotating Text', 'ultimate-addons-for-gutenberg' )}
+									placeholder={__(
+										'Enter each word in a separate line',
+										'ultimate-addons-for-gutenberg'
+									)}
+									variant="textarea"
+									value={rotatingText}
+									onChange={( value ) =>
+										setAttributes( { rotatingText: value } )
+									}
+								/>
+							)}
+							<UAGTextControl
+								label={__( 'After Text', 'ultimate-addons-for-gutenberg' )}
+								placeholder={__( 'Enter Your Headline', 'ultimate-addons-for-gutenberg' )}
+								value={afterText}
+								onChange={( value ) => setAttributes( { afterText: value } )}
+							/>
+							<ToggleControl
+								label={__( 'Infinite Loop', 'ultimate-addons-for-gutenberg' )}
+								checked={infiniteLoop}
+								onChange={() =>
+									setAttributes( { infiniteLoop: !infiniteLoop } )
+								}
+							/>
+							<UAGNumberControl
+								label={__( 'Duration (ms)', 'ultimate-addons-for-gutenberg' )}
+								isShiftStepEnabled={true}
+								data={ {
+									value: animationDuration,
+									label: 'animationDuration',
+								} }
+								step={100}
+								setAttributes={ setAttributes }
+							/>
+							{infiniteLoop && animateType === 'highlighted' && (
+								<UAGNumberControl
+									label={__( 'Delay (ms)', 'ultimate-addons-for-gutenberg' )}
+									isShiftStepEnabled={true}
+									data={ {
+										value: animationDelay,
+										label: 'animationDelay',
+									} }
+									setAttributes={ setAttributes }
+									step={100}
+								/>
+							)}
+						</>
+					)
+				}
 			</UAGAdvancedPanelBody>
 		);
 	};

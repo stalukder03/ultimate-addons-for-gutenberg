@@ -18,6 +18,9 @@ export default function save( props ) {
 		headingId,
 		seperatorPosition,
 		headingDescPosition,
+		isEnableAnimation,
+		beforeText,
+		afterText,
 		animateType,
 		rotatingAnimation,
 		highlightedText,
@@ -27,36 +30,6 @@ export default function save( props ) {
 	let seprator = '';
 	if ( seperatorStyle !== 'none' ) {
 		seprator = <div className="uagb-separator"></div>
-	}
-	let headingText = '';
-	if ( headingTitle ) {
-		headingText = (
-			<>
-				{ seperatorPosition === 'above-heading' ? seprator : '' }
-				<RichText.Content
-					tagName={ headingTag }
-					value={ headingTitle }
-					className="uagb-heading-text"
-					id={ headingId }
-				/>
-				{ seperatorPosition === 'below-heading' ? seprator : '' }
-			</>
-		);
-	}
-	let descText = '';
-
-	if ( headingDesc ) {
-		descText = (
-			<>
-				{ seperatorPosition === 'above-sub-heading' ? seprator : '' }
-				<RichText.Content
-					tagName="p"
-					value={ headingDesc }
-					className="uagb-desc-text"
-				/>
-				{ seperatorPosition === 'below-sub-heading' ? seprator : '' }
-			</>
-		);
 	}
 
 	const getRotatingContent = () => {
@@ -99,7 +72,51 @@ export default function save( props ) {
 		)
 	}
 
+	const beforeConent = beforeText && ( <span className="uagb-animated-headline__before-text">{beforeText}</span> )
+	const afterContent = afterText && ( <span className="uagb-animated-headline__after-text">{afterText}</span> )
 	const animatedContent = animateType === 'highlighted' ? getHightLightedContent() : getRotatingContent()
+	const CustomTag = `${headingTag}`;
+
+	let headingText = '';
+	if ( headingTitle ) {
+		headingText = (
+			<>
+				{ seperatorPosition === 'above-heading' ? seprator : '' }
+				{
+				isEnableAnimation
+				?
+					<CustomTag className="uagb-heading-text">
+						{beforeConent}
+						{' '}{animatedContent}{' '}
+						{afterContent}
+					</CustomTag>
+				:
+					<RichText.Content
+						tagName={ headingTag }
+						value={ headingTitle }
+						className="uagb-heading-text"
+						id={ headingId }
+					/>
+				}
+				{ seperatorPosition === 'below-heading' ? seprator : '' }
+			</>
+		);
+	}
+	let descText = '';
+
+	if ( headingDesc ) {
+		descText = (
+			<>
+				{ seperatorPosition === 'above-sub-heading' ? seprator : '' }
+				<RichText.Content
+					tagName="p"
+					value={ headingDesc }
+					className="uagb-desc-text"
+				/>
+				{ seperatorPosition === 'below-sub-heading' ? seprator : '' }
+			</>
+		);
+	}
 
 	return (
 		<div
@@ -110,7 +127,6 @@ export default function save( props ) {
 		>
 			{ headingDescToggle && 'above-heading' === headingDescPosition ? descText : '' }
 			{ headingTitleToggle && headingText }
-			{animatedContent}
 			{ headingDescToggle && 'below-heading' === headingDescPosition ? descText : '' }
 		</div>
 	);

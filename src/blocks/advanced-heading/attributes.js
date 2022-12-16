@@ -1005,6 +1005,10 @@ const attributes = {
 	},
 	...highLightBorderAttributes,
 	// animation
+	isEnableAnimation: {
+		type: 'boolean',
+		default: false,
+	},
 	animateType: {
 		type: 'string',
 		default: 'highlighted'
