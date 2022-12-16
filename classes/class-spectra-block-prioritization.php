@@ -40,6 +40,7 @@ class Spectra_Block_Prioritization {
 		'icon-list',
 		'image-gallery',
 		'inline-notice',
+		'instagram-feed',
 		'login',
 		'lottie',
 		'marketing-button',
