@@ -14,7 +14,7 @@ return array(
 	'separatorAlignTablet'             => 'center',
 	'separatorAlignMobile'                 => 'center',
 	'separatorStyle'               => 'solid',
-	'separatorThickness'              => 2,
+	'separatorThickness'              => 4,
 	'thicknessUnit'              	=> 'px',
 	'separatorWidth'               => 30,
 	'separatorWidthTablet'         => 30,

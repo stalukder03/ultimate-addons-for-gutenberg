@@ -67,7 +67,7 @@ const attributes = {
 	},
 	separatorThickness: {
 		type: 'number',
-		default: 2,
+		default: 4,
 		UAGCopyPaste: {
 			styleType: 'separator-thickness'
 		}
@@ -101,6 +101,12 @@ const attributes = {
 		type: 'number',
 		UAGCopyPaste: {
 			styleType: 'separator-left-padding'
+		}
+	},
+	separatorBottomPadding : {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'separator-bottom-padding'
 		}
 	},
 	separatorPaddingTopTablet : {
@@ -174,7 +180,7 @@ const attributes = {
 	},
 	separatorPaddingLink: {
 		type: 'boolean',
-		default: false,
+		default: true,
 		isUAGStyle: true,
 		UAGCopyPaste: {
 			styleType: 'separator-padding-link'
