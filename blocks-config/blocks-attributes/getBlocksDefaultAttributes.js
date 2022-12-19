@@ -49,6 +49,7 @@ import containerAttribute from '@Blocks/container/attributes';
 import imageAttribute from '@Blocks/image/attributes';
 import counterAttribute from '@Blocks/counter/attributes';
 import imageGalleryAttribute from '@Blocks/image-gallery/attributes';
+import separatorAttribute from '@Blocks/separator/attributes';
 
 export const blocksAttributes = {
 	'advanced-heading' : advancedHeadingAttribute,
@@ -90,7 +91,7 @@ export const blocksAttributes = {
 	'forms-name' : formsNameAttribute,
 	'forms-toggle' : formsToggleAttribute,
 	'forms-url' : formsUrlAttribute,
-	'forms-textarea' : formsTextareaAttribute, 
+	'forms-textarea' : formsTextareaAttribute,
 	'tabs' : tabsAttribute,
 	'lottie' : lottieAttribute,
 	'star-rating' : starRatingAttribute,
@@ -102,4 +103,5 @@ export const blocksAttributes = {
 	'image': imageAttribute,
 	'counter': counterAttribute,
 	'image-gallery': imageGalleryAttribute,
+	'separator': separatorAttribute,
 };
