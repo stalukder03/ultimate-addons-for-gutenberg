@@ -366,6 +366,18 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 					unset( $attributes['UAGLoggedOut'] );
 				}
 
+				if ( isset( $attributes['UAGDay'] ) ) {
+					unset( $attributes['UAGDay'] );
+				}
+
+				if ( isset( $attributes['UAGToDate'] ) ) {
+					unset( $attributes['UAGToDate'] );
+				}
+
+				if ( isset( $attributes['UAGFromdate'] ) ) {
+					unset( $attributes['UAGFromdate'] );
+				}
+
 				if ( isset( $attributes['zIndex'] ) ) {
 					unset( $attributes['zIndex'] );
 				}

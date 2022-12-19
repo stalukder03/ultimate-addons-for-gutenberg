@@ -1,4 +1,4 @@
-import { ToggleControl, SelectControl } from '@wordpress/components';
+import { ToggleControl, SelectControl, DateTimePicker } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { addFilter, applyFilters } from '@wordpress/hooks';
 import ResponsiveSlider from '@Components/responsive-slider';
@@ -17,6 +17,9 @@ const UserConditionOptions = ( props ) => {
 		UAGSystem,
 		UAGBrowser,
 		UAGUserRole,
+		UAGDay,
+        UAGToDate,
+        UAGFromDate
 	} = attributes;
 
 	return (
@@ -33,6 +36,8 @@ const UserConditionOptions = ( props ) => {
 					{ value: 'userRole', label: __( 'User Role' ) },
 					{ value: 'browser', label: __( 'Browser' ) },
 					{ value: 'os', label: __( 'Operating System' ) },
+					{ value: 'day', label: __( 'Day' ) },
+                    { value: 'dateRange', label: __( 'Date Range' ) },
 				] }
 			/>
 			{ UAGDisplayConditions === 'userstate' && (
@@ -113,6 +118,49 @@ const UserConditionOptions = ( props ) => {
 					/>
 				</>
 			) }
+			{ UAGDisplayConditions === 'day' && (
+				<>
+					<SelectControl
+						label={ __( 'Day' ) }
+						value={ UAGDay }
+						onChange={ ( value ) =>
+							setAttributes( { UAGDay: value } )
+						}
+						options={ [
+							{ value: 'none', label: __( 'None' ) },
+							{ value: 'monday', label: __( 'Monday' ) },
+							{ value: 'tuesday', label: __( 'Tuesday' ) },
+							{ value: 'wednesday', label: __( 'Wednesday' ) },
+							{ value: 'thursday', label: __( 'Thursday' ) },
+							{ value: 'friday', label: __( 'Friday' ) },
+							{ value: 'saturday', label: __( 'Saturday' ) },
+							{ value: 'sunday', label: __( 'Sunday' ) },
+						]}
+					/>
+				</>
+			) }
+			{ UAGDisplayConditions === 'dateRange' && (
+                <>
+				<p><b>From:</b></p>
+                    <DateTimePicker
+                        className="uagb-date-picker"
+                        currentDate={ UAGFromDate }
+                        onChange={ ( value ) =>
+                            setAttributes( { UAGFromDate: value } )
+                        }
+                        is12Hour={ true }
+                    />
+					<p><b>To:</b></p>
+                    <DateTimePicker
+                        className="uagb-date-picker"
+                        currentDate={ UAGToDate }
+                        onChange={ ( value ) =>
+                            setAttributes( { UAGToDate: value } )
+                        }
+                        is12Hour={ true }
+                    />
+                </>
+            )}
 		</>
 	);
 };
