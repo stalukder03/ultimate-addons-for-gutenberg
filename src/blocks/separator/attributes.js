@@ -202,6 +202,43 @@ const attributes = {
 		type: 'string',
 		default: 'circle-check',
 	},
+	elementPosition: {
+		type: 'string',
+		default: 'center',
+	},
+	elementPositionTablet: {
+		type: 'string',
+		default: 'center',
+	},
+	elementPositionMobile: {
+		type: 'string',
+		default: 'center',
+	},
+	elementSpacing: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'element-spacing'
+		},
+		default: 15,
+	},
+	elementSpacingTablet: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'element-spacing-tablet'
+		},
+		default: 15,
+	},
+	elementSpacingMobile: {
+		type: 'number',
+		UAGCopyPaste: {
+			styleType: 'element-spacing-mobile'
+		},
+		default: 15,
+	},
+	elementSpacingUnit: {
+		type: 'string',
+		default: 'px',
+	},
 };
 
 export default attributes;

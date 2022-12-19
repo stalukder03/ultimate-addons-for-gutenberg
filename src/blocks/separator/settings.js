@@ -62,7 +62,14 @@ const Settings = ( props ) => {
 		elementType,
 		separatorText,
 		separatorTextTag,
-		separatorIcon
+		separatorIcon,
+		elementPosition,
+		elementPositionTablet,
+		elementPositionMobile,
+		elementSpacing,
+		elementSpacingTablet,
+		elementSpacingMobile,
+		elementSpacingUnit,
 	} = attributes;
 
 	// Separator settings.
@@ -456,6 +463,118 @@ const Settings = ( props ) => {
 		);
 	}
 
+	const iconAndTextStyleSettings = () => {
+		return (
+			<UAGAdvancedPanelBody
+				title={elementType === 'text' ? __('Text', 'ultimate-addons-for-gutenberg') : __('Icon', 'ultimate-addons-for-gutenberg')}
+				initialOpen={ true }
+			>
+				<MultiButtonsControl
+					setAttributes={ setAttributes }
+					label={ __(
+						'Alignment',
+						'ultimate-addons-for-gutenberg'
+					) }
+					responsive={true}
+					data={ {
+						desktop: {
+							value: elementPosition,
+							label: 'elementPosition',
+						},
+						tablet: {
+							value: elementPositionTablet,
+							label: 'elementPositionTablet',
+						},
+						mobile: {
+							value: elementPositionMobile,
+							label: 'elementPositionMobile',
+						},
+					} }
+					className="uagb-multi-button-alignment-control"
+					options={ [
+						{
+							value: 'left',
+							icon: (
+								<Icon
+									icon={ renderSVG( 'fa fa-align-left' ) }
+								/>
+							),
+							tooltip: __(
+								'Left',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'center',
+							icon: (
+								<Icon
+									icon={ renderSVG(
+										'fa fa-align-center'
+									) }
+								/>
+							),
+							tooltip: __(
+								'Center',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+						{
+							value: 'right',
+							icon: (
+								<Icon
+									icon={ renderSVG(
+										'fa fa-align-right'
+									) }
+								/>
+							),
+							tooltip: __(
+								'Right',
+								'ultimate-addons-for-gutenberg'
+							),
+						},
+					] }
+					showIcons={ true }
+				/>
+				<ResponsiveSlider
+					label={ __(
+						'Spacing',
+						'ultimate-addons-for-gutenberg'
+					) }
+					data={ {
+						desktop: {
+							value: elementSpacing,
+							label: 'elementSpacing',
+						},
+						tablet: {
+							value: elementSpacingTablet,
+							label: 'elementSpacingTablet',
+						},
+						mobile: {
+							value: elementSpacingMobile,
+							label: 'elementSpacingMobile',
+						},
+					} }
+					min={ 0 }
+					max={ 500 }
+					unit={ {
+						value: elementSpacingUnit,
+						label: 'elementSpacingUnit',
+					} }
+					units={ [
+						{
+							name: __(
+								'Pixel',
+								'ultimate-addons-for-gutenberg'
+							),
+							unitValue: 'px',
+						},
+					] }
+					setAttributes={ setAttributes }
+				/>
+			</UAGAdvancedPanelBody>
+		)
+	}
+
 	return (
 		<div>
 			<InspectorControls>
@@ -465,6 +584,9 @@ const Settings = ( props ) => {
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
 						{separatorStyleSettings()}
+						{
+							elementType !== 'none' && iconAndTextStyleSettings()
+						}
 					</InspectorTab>
 					<InspectorTab
 						{ ...UAGTabs.advance }

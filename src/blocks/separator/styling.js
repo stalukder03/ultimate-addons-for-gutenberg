@@ -39,7 +39,14 @@ function styling( props ) {
 		separatorMobilePaddingUnit,
 		separatorTabletPaddingUnit,
 		separatorPaddingLink,
-		elementType
+		elementType,
+		elementPosition,
+		elementPositionTablet,
+		elementPositionMobile,
+		elementSpacing,
+		elementSpacingTablet,
+		elementSpacingMobile,
+		elementSpacingUnit,
 	} = props.attributes;
 
 	// Responsive Slider
@@ -59,6 +66,7 @@ function styling( props ) {
 		'border-top-style': separatorStyle,
 	}
 	let borderStyle = {}
+	let iconSpacingStyle = {}
 	if(elementType === 'none'){
 		borderStyle = {
 			'.wp-block-uagb-separator .wp-block-uagb-separator__inner': {
@@ -88,7 +96,30 @@ function styling( props ) {
 			'.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::after': borderCSS,
 			'.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::after': borderCSS
 		}
+		if(elementPosition === 'left'){
+			iconSpacingStyle['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
+				'margin-right': generateCSSUnit( elementSpacing, elementSpacingUnit )
+			}
+			borderStyle['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::before'] = {
+				'display': 'none'
+			}
+		}
+		if(elementPosition === 'right'){
+			iconSpacingStyle['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
+				'margin-left': generateCSSUnit( elementSpacing, elementSpacingUnit )
+			}
+			borderStyle['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::after'] = {
+				'display': 'none'
+			}
+		}
+		if(elementPosition === 'center'){
+			iconSpacingStyle['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
+				'margin-right': generateCSSUnit( elementSpacing, elementSpacingUnit ),
+				'margin-left': generateCSSUnit( elementSpacing, elementSpacingUnit )
+			}
+		}
 	}
+
 
 
 	const selectors = {
@@ -99,7 +130,41 @@ function styling( props ) {
 			'padding-right': generateCSSUnit( separatorRightPadding, separatorPaddingUnit ),
 			'text-align': separatorAlign,
 		},
-		...borderStyle
+		...borderStyle,
+		...iconSpacingStyle
+	}
+
+	let borderStyleTablet = {}
+	let iconSpacingStyleTablet = {}
+	if(elementType !== 'none') {
+		if(elementPositionTablet === 'left'){
+			iconSpacingStyleTablet['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
+				'margin-right': generateCSSUnit( elementSpacingTablet, elementSpacingUnit )
+			}
+			borderStyleTablet['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::before'] = {
+				'display': 'none'
+			}
+		}
+		if(elementPositionTablet === 'center'){
+			iconSpacingStyleTablet['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
+				'margin-left': generateCSSUnit( elementSpacingTablet, elementSpacingUnit ),
+				'margin-right': generateCSSUnit( elementSpacingTablet, elementSpacingUnit )
+			}
+			borderStyleTablet['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::before'] = {
+				'display': 'block'
+			}
+			borderStyleTablet['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::after'] = {
+				'display': 'block'
+			}
+		}
+		if(elementPositionTablet === 'right'){
+			iconSpacingStyleTablet['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
+				'margin-left': generateCSSUnit( elementSpacingTablet, elementSpacingUnit ),
+			}
+			borderStyleTablet['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::after'] = {
+				'display': 'none'
+			}
+		}
 	}
 
 	const tablet_selectors = {
@@ -113,7 +178,42 @@ function styling( props ) {
 		'.wp-block-uagb-separator .wp-block-uagb-separator__inner': {
 			'width': generateCSSUnit( separatorWidthFallbackTablet, separatorWidthType ),
 		},
+		...borderStyleTablet,
+		...iconSpacingStyleTablet
 	};
+
+	let borderStyleMobile = {}
+	let iconSpacingStyleMobile = {}
+	if(elementType !== 'none') {
+		if(elementPositionMobile === 'left'){
+			iconSpacingStyleMobile['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
+				'margin-right': generateCSSUnit( elementSpacingMobile, elementSpacingUnit )
+			}
+			borderStyleMobile['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::before'] = {
+				'display': 'none'
+			}
+		}
+		if(elementPositionMobile === 'center'){
+			iconSpacingStyleMobile['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
+				'margin-left': generateCSSUnit( elementSpacingMobile, elementSpacingUnit ),
+				'margin-right': generateCSSUnit( elementSpacingMobile, elementSpacingUnit )
+			}
+			borderStyleMobile['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::before'] = {
+				'display': 'block'
+			}
+			borderStyleMobile['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::after'] = {
+				'display': 'block'
+			}
+		}
+		if(elementPositionMobile === 'right'){
+			iconSpacingStyleMobile['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
+				'margin-left': generateCSSUnit( elementSpacingMobile, elementSpacingUnit )
+			}
+			borderStyleMobile['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::after'] = {
+				'display': 'none'
+			}
+		}
+	}
 	const mobile_selectors = {
 		'.wp-block-uagb-separator': {
 			'padding-bottom': generateCSSUnit( separatorPaddingBottomMobile, separatorMobilePaddingUnit ),
@@ -125,6 +225,8 @@ function styling( props ) {
 		'.wp-block-uagb-separator .wp-block-uagb-separator__inner': {
 			'width': generateCSSUnit( separatorWidthFallbackMobile, separatorWidthType ),
 		},
+		...borderStyleMobile,
+		...iconSpacingStyleMobile
 	};
 
 
