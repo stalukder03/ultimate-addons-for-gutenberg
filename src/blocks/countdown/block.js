@@ -14,7 +14,7 @@ import { registerBlockType } from '@wordpress/blocks';
 registerBlockType( 'uagb/countdown', {
     title: __( 'Countdown', 'ultimate-addons-for-gutenberg' ),
     description: __(
-        'This block allows you to add countdown timers.',
+        'Create a sense of urgency around your product or offer and drive customers to take advantage of a time-sensitive offer with a countdown timer.',
         'ultimate-addons-for-gutenberg'
     ),
     icon: UAGB_Block_Icons.countdown,
