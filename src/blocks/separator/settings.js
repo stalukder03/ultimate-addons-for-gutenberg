@@ -274,10 +274,6 @@ const Settings = ( props ) => {
 										label: __( 'P', 'ultimate-addons-for-gutenberg' ),
 									},
 									{
-										value: 'span',
-										label: __( 'SPAN', 'ultimate-addons-for-gutenberg' ),
-									},
-									{
 										value: 'div',
 										label: __( 'Div', 'ultimate-addons-for-gutenberg' ),
 									},
