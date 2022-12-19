@@ -100,6 +100,9 @@ function styling( props ) {
 			iconSpacingStyle['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
 				'margin-right': generateCSSUnit( elementSpacing, elementSpacingUnit )
 			}
+			borderStyle['.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::before'] = {
+				'display': 'none'
+			}
 			borderStyle['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::before'] = {
 				'display': 'none'
 			}
@@ -107,6 +110,9 @@ function styling( props ) {
 		if(elementPosition === 'right'){
 			iconSpacingStyle['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
 				'margin-left': generateCSSUnit( elementSpacing, elementSpacingUnit )
+			}
+			borderStyle['.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::after'] = {
+				'display': 'none'
 			}
 			borderStyle['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::after'] = {
 				'display': 'none'
@@ -141,6 +147,9 @@ function styling( props ) {
 			iconSpacingStyleTablet['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
 				'margin-right': generateCSSUnit( elementSpacingTablet, elementSpacingUnit )
 			}
+			borderStyleTablet['.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::before'] = {
+				'display': 'none'
+			}
 			borderStyleTablet['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::before'] = {
 				'display': 'none'
 			}
@@ -149,6 +158,12 @@ function styling( props ) {
 			iconSpacingStyleTablet['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
 				'margin-left': generateCSSUnit( elementSpacingTablet, elementSpacingUnit ),
 				'margin-right': generateCSSUnit( elementSpacingTablet, elementSpacingUnit )
+			}
+			borderStyleTablet['.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::before'] = {
+				'display': 'block'
+			}
+			borderStyleTablet['.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::after'] = {
+				'display': 'block'
 			}
 			borderStyleTablet['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::before'] = {
 				'display': 'block'
@@ -160,6 +175,9 @@ function styling( props ) {
 		if(elementPositionTablet === 'right'){
 			iconSpacingStyleTablet['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
 				'margin-left': generateCSSUnit( elementSpacingTablet, elementSpacingUnit ),
+			}
+			borderStyleTablet['.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::after'] = {
+				'display': 'none'
 			}
 			borderStyleTablet['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::after'] = {
 				'display': 'none'
@@ -189,6 +207,9 @@ function styling( props ) {
 			iconSpacingStyleMobile['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
 				'margin-right': generateCSSUnit( elementSpacingMobile, elementSpacingUnit )
 			}
+			borderStyleMobile['.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::before'] = {
+				'display': 'none'
+			}
 			borderStyleMobile['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::before'] = {
 				'display': 'none'
 			}
@@ -197,6 +218,12 @@ function styling( props ) {
 			iconSpacingStyleMobile['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
 				'margin-left': generateCSSUnit( elementSpacingMobile, elementSpacingUnit ),
 				'margin-right': generateCSSUnit( elementSpacingMobile, elementSpacingUnit )
+			}
+			borderStyleMobile['.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::before'] = {
+				'display': 'block'
+			}
+			borderStyleMobile['.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::after'] = {
+				'display': 'block'
 			}
 			borderStyleMobile['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::before'] = {
 				'display': 'block'
@@ -208,6 +235,9 @@ function styling( props ) {
 		if(elementPositionMobile === 'right'){
 			iconSpacingStyleMobile['.wp-block-uagb-separator .wp-block-uagb-separator__inner .wp-block-uagb-separator-element'] = {
 				'margin-left': generateCSSUnit( elementSpacingMobile, elementSpacingUnit )
+			}
+			borderStyleMobile['.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::after'] = {
+				'display': 'none'
 			}
 			borderStyleMobile['.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::after'] = {
 				'display': 'none'
