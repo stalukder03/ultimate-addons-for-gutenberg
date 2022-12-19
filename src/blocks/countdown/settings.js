@@ -1,5 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import UAGTextControl from '@Components/text-control';
+import UAGSelectControl from '@Components/select-control';
 import ResponsiveSlider from '@Components/responsive-slider';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import MultiButtonsControl from '@Components/multi-buttons-control';
@@ -39,6 +40,8 @@ export default function Settings( props ) {
 		block_id,
         timerType,
         endDateTime,
+		timerEndAction,
+		redirectURL,
         showLabels,
         labelDays,
         labelHours,
@@ -272,6 +275,13 @@ export default function Settings( props ) {
 		},
 	];
 
+	const expiryOptions = [
+		{
+			value: 'zero',
+			label: __( 'Keep at Zero', 'ultimate-addons-for-gutenberg' ),
+		},
+	];
+
 	// <------------------ GOOGLE FONTS ------------------>
 	// Loading Google Fonts.
 	let loadDigitGoogleFonts;
@@ -440,6 +450,23 @@ export default function Settings( props ) {
                     />
                 </>
             }
+        </UAGAdvancedPanelBody>
+    );
+
+	const expirySettingsGeneralPanel = (
+        <UAGAdvancedPanelBody
+			title={ __( 'Countdown Expiry Settings', 'ultimate-addons-for-gutenberg' ) }
+			initialOpen={ false }
+		>
+			<UAGSelectControl
+				label={ __( 'Expiry Action', 'ultimate-addons-for-gutenberg' ) }
+				data={ {
+					value: timerEndAction,
+					label: 'timerEndAction',
+				} }
+				setAttributes={ setAttributes }
+				options={ expiryOptions }
+			/> 
         </UAGAdvancedPanelBody>
     );
 
@@ -1408,6 +1435,7 @@ export default function Settings( props ) {
                         { generalPanel }
                         { labelGeneralPanel }
                         { separatorGeneralPanel }
+						{ expirySettingsGeneralPanel }
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
 						{ boxStylePanel }
