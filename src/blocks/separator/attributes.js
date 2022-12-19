@@ -186,6 +186,22 @@ const attributes = {
 			styleType: 'separator-padding-link'
 		}
 	},
+	elementType: {
+		type: 'string',
+		default: 'none',
+	},
+	separatorText: {
+		type: 'string',
+		default: 'Divider',
+	},
+	separatorTextTag: {
+		type: 'string',
+		default: 'span',
+	},
+	separatorIcon: {
+		type: 'string',
+		default: 'circle-check',
+	},
 };
 
 export default attributes;
