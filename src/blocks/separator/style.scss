@@ -6,8 +6,48 @@
 	&__inner {
 		display: inline-block;
 		width: 30%;
+	}
+	&:not(.wp-block-uagb-separator--text):not(.wp-block-uagb-separator--icon) .wp-block-uagb-separator__inner {
 		border-top-width: 4px;
 		border-top-color: #333;
 		border-top-style: solid;
 	}
+	&--text,
+	&--icon {
+		.wp-block-uagb-separator__inner {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin: 0 auto;
+			&::before {
+				display: block;
+				content: "";
+				border-bottom: 0;
+				flex-grow: 1;
+				border-top-color: #333;
+				border-top-style: solid;
+			}
+			&::after {
+				display: block;
+				content: "";
+				border-bottom: 0;
+				flex-grow: 1;
+				border-top-color: #333;
+				border-top-style: solid;
+			}
+		}
+	}
+	&--icon {
+		.wp-block-uagb-separator-element {
+			svg {
+				font-size: 30px;
+				color: #333;
+				fill: #333;
+				width: 30px;
+				height: 30px;
+				line-height: 30px;
+			}
+		}
+	}
+
 }

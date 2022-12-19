@@ -39,6 +39,7 @@ function styling( props ) {
 		separatorMobilePaddingUnit,
 		separatorTabletPaddingUnit,
 		separatorPaddingLink,
+		elementType
 	} = props.attributes;
 
 	// Responsive Slider
@@ -49,6 +50,47 @@ function styling( props ) {
 	const separatorThicknessFallback = getFallbackNumber( separatorThickness, 'separatorThickness', blockName );
 
 
+	const borderCSS = {
+		'border-top-width': generateCSSUnit(
+			separatorThicknessFallback,
+			thicknessUnit
+		),
+		'border-top-color': separatorColor,
+		'border-top-style': separatorStyle,
+	}
+	let borderStyle = {}
+	if(elementType === 'none'){
+		borderStyle = {
+			'.wp-block-uagb-separator .wp-block-uagb-separator__inner': {
+				'width': generateCSSUnit( separatorWidthFallback, separatorWidthType ),
+				...borderCSS
+			}
+		}
+	} else {
+		let alignCSS = {}
+		if(separatorAlign === 'left'){
+			alignCSS = {
+				'margin-left': 0
+			}
+		}
+		if(separatorAlign === 'right'){
+			alignCSS = {
+				'margin-right': 0
+			}
+		}
+		borderStyle = {
+			'.wp-block-uagb-separator .wp-block-uagb-separator__inner': {
+				'width': generateCSSUnit( separatorWidthFallback, separatorWidthType ),
+				...alignCSS
+			},
+			'.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::before': borderCSS,
+			'.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::before': borderCSS,
+			'.wp-block-uagb-separator--text .wp-block-uagb-separator__inner::after': borderCSS,
+			'.wp-block-uagb-separator--icon .wp-block-uagb-separator__inner::after': borderCSS
+		}
+	}
+
+
 	const selectors = {
 		'.wp-block-uagb-separator': {
 			'padding-bottom': generateCSSUnit( separatorBottomPadding, separatorPaddingUnit ),
@@ -57,16 +99,9 @@ function styling( props ) {
 			'padding-right': generateCSSUnit( separatorRightPadding, separatorPaddingUnit ),
 			'text-align': separatorAlign,
 		},
-		'.wp-block-uagb-separator .wp-block-uagb-separator__inner': {
-			'width': generateCSSUnit( separatorWidthFallback, separatorWidthType ),
-			'border-top-width': generateCSSUnit(
-				separatorThicknessFallback,
-				thicknessUnit
-			),
-			'border-top-color': separatorColor,
-			'border-top-style': separatorStyle,
-		},
+		...borderStyle
 	}
+
 	const tablet_selectors = {
 		'.wp-block-uagb-separator': {
 			'padding-bottom': generateCSSUnit( separatorPaddingBottomTablet, separatorTabletPaddingUnit ),

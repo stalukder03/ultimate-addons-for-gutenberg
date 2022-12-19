@@ -2,6 +2,7 @@
  * BLOCK: Separator - Save Block
  */
 
+import renderSVG from '@Controls/renderIcon';
 import classnames from 'classnames';
 
 export default function save( props ) {
@@ -25,7 +26,11 @@ export default function save( props ) {
 			<div className='wp-block-uagb-separator__inner'>
 				{
 					elementType !== 'none' && (
-						<div className='wp-block-uagb-separator-element'>{separatorText}</div>
+						<div className='wp-block-uagb-separator-element'>
+							{
+								elementType === 'icon' ? renderSVG( separatorIcon ) : separatorText
+							}
+						</div>
 					)
 				}
 			</div>

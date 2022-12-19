@@ -3,6 +3,7 @@ import { RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import React , { useLayoutEffect } from 'react';
 import { useDeviceType } from '@Controls/getPreviewType';
+import renderSVG from '@Controls/renderIcon';
 import styles from './editor.lazy.scss';
 
 const Render = ( props ) => {
@@ -44,7 +45,11 @@ const Render = ( props ) => {
 			<div className='wp-block-uagb-separator__inner'>
 				{
 					elementType !== 'none' && (
-						<div className='wp-block-uagb-separator-element'>{separatorText}</div>
+						<div className='wp-block-uagb-separator-element'>
+							{
+								elementType === 'icon' ? renderSVG( separatorIcon ) : separatorText
+							}
+						</div>
 					)
 				}
 			</div>

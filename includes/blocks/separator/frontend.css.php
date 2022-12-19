@@ -20,7 +20,7 @@ $selectors = array(
 		'padding-right' => UAGB_Helper::get_css_value( $attr['separatorRightPadding'], $attr['separatorPaddingUnit'] ),
 		'text-align' => $attr['separatorAlign'],
 	),
-	'.wp-block-uagb-separator .wp-block-uagb-separator__inner' => array(
+	'.wp-block-uagb-separator&:not(.wp-block-uagb-separator--text):not(.wp-block-uagb-separator--icon) .wp-block-uagb-separator__inner' => array(
 		'width' => UAGB_Helper::get_css_value(
 			UAGB_Block_Helper::get_fallback_number( $attr['separatorWidth'], 'separatorWidth', $block_name ),
 			$attr['separatorWidthType']
