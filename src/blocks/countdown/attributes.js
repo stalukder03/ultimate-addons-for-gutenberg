@@ -647,6 +647,7 @@ const attributes = {
 	},
 	separatorRightSpacingMobile: {
 		type: 'number',
+		default: 24,
 		isUAGStyle: true,
 		UAGCopyPaste: {
 			styleType: 'separator-right-spacing-mobile'

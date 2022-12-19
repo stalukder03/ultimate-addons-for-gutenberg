@@ -13,10 +13,18 @@
 
 	&__time {
 		font-size: 52px;
+
+		@media (max-width: 768px) {
+			font-size: 32px;
+		}
 	}
 
 	&__label {
 		font-size: 18px;
+
+		@media (max-width: 768px) {
+			font-size: 12px;
+		}
 	}
 
 }
