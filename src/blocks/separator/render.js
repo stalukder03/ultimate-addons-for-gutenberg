@@ -18,6 +18,10 @@ const Render = ( props ) => {
 	const {
 		attributes: {
 			block_id,
+			elementType,
+			separatorText,
+			separatorTextTag,
+			separatorIcon
 		},
 		setAttributes,
 		className,
@@ -33,10 +37,17 @@ const Render = ( props ) => {
 				className,
 				`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`,
 				`uagb-block-${ block_id }`,
-				'wp-block-uagb-separator'
+				'wp-block-uagb-separator',
+				`${elementType !== 'none' ? 'wp-block-uagb-separator--' + elementType : ''}`
 			) }
 		>
-			<div className='wp-block-uagb-separator__inner'></div>
+			<div className='wp-block-uagb-separator__inner'>
+				{
+					elementType !== 'none' && (
+						<div className='wp-block-uagb-separator-element'>{separatorText}</div>
+					)
+				}
+			</div>
 		</div>
 	);
 };
