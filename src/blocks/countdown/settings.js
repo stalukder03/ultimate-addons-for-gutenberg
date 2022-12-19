@@ -340,6 +340,7 @@ export default function Settings( props ) {
                             }
 						}
 						is12Hour={ true }
+						__nextRemoveResetButton={ true }
 					/>
                 </div>
             }
