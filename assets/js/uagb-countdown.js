@@ -58,10 +58,10 @@ UAGBCountdown = { // eslint-disable-line no-undef
 
     updateCountdown( mainSelector, data ) {
         // Wrappers.
-		const daysWrap = this.elements[ mainSelector ].countdownWrapper.querySelector( '.wp-block-uagb-countdown__time-days' );
-		const hoursWrap = this.elements[ mainSelector ].countdownWrapper.querySelector( '.wp-block-uagb-countdown__time-hours' );
-		const minutesWrap = this.elements[ mainSelector ].countdownWrapper.querySelector( '.wp-block-uagb-countdown__time-minutes' );
-		const secondsWrap = this.elements[ mainSelector ].countdownWrapper.querySelector( '.wp-block-uagb-countdown__time-seconds' );
+		const daysWrap = this.elements[ mainSelector ].countdownWrapper?.querySelector( '.wp-block-uagb-countdown__time-days' );
+		const hoursWrap = this.elements[ mainSelector ].countdownWrapper?.querySelector( '.wp-block-uagb-countdown__time-hours' );
+		const minutesWrap = this.elements[ mainSelector ].countdownWrapper?.querySelector( '.wp-block-uagb-countdown__time-minutes' );
+		const secondsWrap = this.elements[ mainSelector ].countdownWrapper?.querySelector( '.wp-block-uagb-countdown__time-seconds' );
 
         // Calculations.
         const currentTime = new Date();
