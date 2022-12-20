@@ -267,11 +267,11 @@ class UAGB_Init_Blocks {
 	 */
 	public function date_range_visibility( $block_attributes, $block_content ) {
 
-		echo 'to'.$block_attributes['UAGToDate'];
-		$day = current_datetime()->format('D');
+		// echo 'to'.$block_attributes['UAGToDate'];
+		// $day = current_datetime()->format('D');
 		
-		echo '<br>'.current_datetime()->format('Y-m-dDH:i:s');
-		return '';
+		// echo '<br>'.current_datetime()->format('Y-m-dDH:i:s');
+		return $block_content;
 
 	}
 
