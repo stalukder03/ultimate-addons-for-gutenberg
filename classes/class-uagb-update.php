@@ -92,6 +92,7 @@ if ( ! class_exists( 'UAGB_Update' ) ) :
 						'image',
 						'buttons',
 						'info-box',
+						'info-box-2.0',
 						'call-to-action',
 					);
 
