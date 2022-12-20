@@ -172,6 +172,9 @@ The awesome React FontIconPicker is developed by [Alessandro Benoit](http://code
 = 2.2.0 =
 * New: Introducing the Countdown block that will help you generate hype and create a sense of urgency among your audience, during product sales or releases!
 
+= 2.1.2 =
+* Improvement: Counter - Bar Layout - Added toggle to flip/swap the positions of bar and title.
+
 = 2.1.1 - WEDNESDAY, 14th DECEMBER 2022 =
 * Improvement: Call To Action - Added a width option for the CTA buttons.
 * Improvement: Forms - Added a gradient background option for the submit button.
