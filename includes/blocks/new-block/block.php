@@ -7,19 +7,19 @@
  * @package uagb
  */
 
-$block_slug = 'uagb/info-box-2.0';
+$block_slug = 'uagb/new-block';
 $block_data = array(
-	'doc'              => 'infobox 2.0',
+	'doc'              => 'new-block',
 	'slug'             => '',
 	'admin_categories' => array( 'core', 'content' ),
-	'link'             => 'info-box 2.0',
+	'link'             => 'new-block',
 	'title'            => __( 'Info Box 2.0', 'ultimate-addons-for-gutenberg' ),
-	'description'      => __( 'Add image/icon, seperator and text description using a single block.', 'ultimate-addons-for-gutenberg' ),
+	'description'      => __( 'Add Spectra blocks inside the infoBox to design multiple layouts.', 'ultimate-addons-for-gutenberg' ),
 	'default'          => true,
 	'extension'        => false,
-	'priority'         => Spectra_Block_Prioritization::get_block_priority( 'info-box-2.0' ),
+	'priority'         => Spectra_Block_Prioritization::get_block_priority( 'new-block' ),
 	'deprecated'       => false,
 	'dynamic_assets'   => array(
-		'dir' => 'info-box-2.0',
+		'dir' => 'new-block',
 	),
 );

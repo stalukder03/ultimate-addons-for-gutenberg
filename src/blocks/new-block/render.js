@@ -4,6 +4,8 @@ import { useDeviceType } from '@Controls/getPreviewType';
 
 const ALLOWED_BLOCKS = [
 	'uagb/advanced-heading',
+	'uagb/image',
+	'uagb/marketing-button',
 	'uagb/blockquote',
 	'uagb/buttons',
 	'uagb/icon-list',
@@ -29,6 +31,7 @@ const Render = ( props ) => {
 			<div
 				className={ classnames(
 					`uagb-block-${ block_id }`,
+					'uagb-info-box__wrap',
 					`uagb-editor-preview-mode-${ deviceType.toLowerCase() }`
 				) }
 			>

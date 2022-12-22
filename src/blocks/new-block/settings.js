@@ -16,7 +16,9 @@ import Background from '@Components/background';
 import ResponsiveBorder from '@Components/responsive-border';
 import UAGAdvancedPanelBody from '@Components/advanced-panel-body';
 import UAGTabsControl from '@Components/tabs';
-import AdvancedPopColorControl from '@Components/color-control/advanced-pop-color-control';
+import MultiButtonsControl from '@Components/multi-buttons-control';
+import renderSVG from '@Controls/renderIcon';
+import { Icon } from '@wordpress/components';
 
 const Settings = ( props ) => {
 
@@ -42,7 +44,6 @@ const Settings = ( props ) => {
 		backgroundSizeTablet,
 		backgroundSizeMobile,
 		backgroundImageColor,
-		backgroundVideoOpacity,
 		gradientValue,
 		boxShadowColor,
 		boxShadowHOffset,
@@ -113,12 +114,9 @@ const Settings = ( props ) => {
 		yPositionType,
 		yPositionTypeTablet,
 		yPositionTypeMobile,
-		backgroundVideoColor,
-		backgroundVideo,
-
-		textColor,
-		linkColor,
-		linkHoverColor,
+		align,
+		alignTablet,
+		alignMobile,
 
 	} = attributes;
 
@@ -130,6 +128,76 @@ const Settings = ( props ) => {
 					title={ __( 'General', 'ultimate-addons-for-gutenberg' ) }
 					initialOpen={ false }
 				>
+					<MultiButtonsControl
+						setAttributes={ setAttributes }
+						label={ __( 'Overall Alignment', 'ultimate-addons-for-gutenberg' ) }
+						data={ {
+							desktop: {
+								value: align,
+								label: 'align',
+							},
+							tablet: {
+								value: alignTablet,
+								label: 'alignTablet',
+							},
+							mobile: {
+								value: alignMobile,
+								label: 'alignMobile',
+							},
+						} }
+						options={ [
+							{
+								value: 'left',
+								icon: (
+									<Icon
+										icon={ renderSVG( 'fa fa-align-left' ) }
+									/>
+								),
+								tooltip: __(
+									'Left',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+							{
+								value: 'center',
+								icon: (
+									<Icon
+										icon={ renderSVG( 'fa fa-align-center' ) }
+									/>
+								),
+								tooltip: __(
+									'Center',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+							{
+								value: 'right',
+								icon: (
+									<Icon
+										icon={ renderSVG( 'fa fa-align-right' ) }
+									/>
+								),
+								tooltip: __(
+									'Right',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+							{
+								value: 'full',
+								icon: (
+									<Icon
+										icon={ renderSVG( 'fa fa-align-justify' ) }
+									/>
+								),
+								tooltip: __(
+									'Full Width',
+									'ultimate-addons-for-gutenberg'
+								),
+							},
+						] }
+						showIcons={ true }
+						responsive={true}
+					/>
 				</UAGAdvancedPanelBody>
 			</>
 		);
@@ -308,99 +376,13 @@ const Settings = ( props ) => {
 						label: 'yPositionTypeMobile'
 					}}
 					backgroundVideoType={ {
-						value: true,
+						value: false,
 					} }
-					backgroundVideo={ {
-						value: backgroundVideo,
-						label: 'backgroundVideo',
-					} }
-					backgroundVideoColor={ {
-						value: backgroundVideoColor,
-						label: 'backgroundVideoColor',
-					} }
-					backgroundVideoOpacity={ {
-						value: backgroundVideoOpacity,
-						label: 'backgroundVideoOpacity',
-					} }
-					onOpacityChange = { ( opacity ) => setAttributes( { backgroundVideoOpacity: opacity } ) }
 					{ ...props }
 				/>
 			</UAGAdvancedPanelBody>
 		);
 	};
-
-	const linkColorMarkup = (
-		<AdvancedPopColorControl
-			label={ __(
-				'Link Color',
-				'ultimate-addons-for-gutenberg'
-			) }
-			colorValue={ linkColor }
-			data={ {
-				value: linkColor,
-				label: 'linkColor',
-			} }
-			setAttributes={ setAttributes }
-		/>
-	);
-
-	const linkHoverColorMarkup = (
-		<AdvancedPopColorControl
-			label={ __(
-				'Link Hover Color',
-				'ultimate-addons-for-gutenberg'
-			) }
-			colorValue={ linkHoverColor }
-			data={ {
-				value: linkHoverColor,
-				label: 'linkHoverColor',
-			} }
-			setAttributes={ setAttributes }
-		/>
-	);
-
-	const colorSettings = () => {
-		return (
-			<UAGAdvancedPanelBody
-				title={ __( 'Color', 'ultimate-addons-for-gutenberg' ) }
-				initialOpen={ false }
-			>
-				<AdvancedPopColorControl
-					label={ __(
-						'Text Color',
-						'ultimate-addons-for-gutenberg'
-					) }
-					colorValue={ textColor }
-					data={ {
-						value: textColor,
-						label: 'textColor',
-					} }
-					setAttributes={ setAttributes }
-				/>
-				<UAGTabsControl
-						tabs={ [
-							{
-								name: 'normal',
-								title: __(
-									'Normal',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-							{
-								name: 'hover',
-								title: __(
-									'Hover',
-									'ultimate-addons-for-gutenberg'
-								),
-							},
-						] }
-						normal={ linkColorMarkup }
-						hover={ linkHoverColorMarkup }
-						disableBottomSeparator={ true }
-					/>
-			</UAGAdvancedPanelBody>
-		);
-	}
 
 	const borderSettings = () => {
 		return(
@@ -760,7 +742,6 @@ const Settings = ( props ) => {
 					</InspectorTab>
 					<InspectorTab { ...UAGTabs.style }>
 						{ backgroundSettings() }
-						{ colorSettings() }
 						{ borderSettings() }
 						{ boxShadowSettings() }
 						{ spacingSettings() }

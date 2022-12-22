@@ -73,12 +73,7 @@ function styling( props ) {
 		marginType,
 		marginTypeTablet,
 		marginTypeMobile,
-		bottomColor,
-		bottomHeight,
-		bottomWidth,
-		topColor,
-		topHeight,
-		topWidth,
+
 		backgroundCustomSizeDesktop,
 		backgroundCustomSizeTablet,
 		backgroundCustomSizeMobile,
@@ -98,19 +93,21 @@ function styling( props ) {
 		yPositionType,
 		yPositionTypeTablet,
 		yPositionTypeMobile,
-		backgroundVideoOpacity,
-		backgroundVideoColor,
-		backgroundVideo,
-
-		textColor,
-		linkColor,
-		linkHoverColor,
+		align,
+		alignTablet,
+		alignMobile,
+		rowGapDesktop,
+		rowGapTablet,
+		rowGapMobile,
+		rowGapTypeTablet,
+		rowGapType,
+		rowGapTypeMobile
 
 	} = attributes;
 
-	const borderCSS = generateBorderCSS( props.attributes, 'container' );
-	const borderCSSTablet = generateBorderCSS( props.attributes, 'container', 'tablet' );
-	const borderCSSMobile = generateBorderCSS( props.attributes, 'container', 'mobile' );
+	const borderCSS = generateBorderCSS( props.attributes, 'block' );
+	const borderCSSTablet = generateBorderCSS( props.attributes, 'block', 'tablet' );
+	const borderCSSMobile = generateBorderCSS( props.attributes, 'block', 'mobile' );
 
 	topPaddingTablet = 'undefined' !== typeof topPaddingTablet ? topPaddingTablet : topPaddingDesktop;
 	topPaddingMobile = 'undefined' !== typeof topPaddingMobile ? topPaddingMobile : topPaddingTablet;
@@ -136,56 +133,12 @@ function styling( props ) {
 	rightMarginTablet = 'undefined' !== typeof rightMarginTablet ? rightMarginTablet : rightMarginDesktop;
 	rightMarginMobile = 'undefined' !== typeof rightMarginMobile ? rightMarginMobile : rightMarginTablet;
 
-	const backgroundVideoOpacityValue = ( backgroundVideoOpacity && 'none' !== overlayType && ( ( 'color' === overlayType &&backgroundVideoColor ) || ( 'gradient' === overlayType && gradientValue ) ) ) ? 1 - backgroundVideoOpacity : 1;
-
-	const videoBackgroundAttributes = {
-        'backgroundType': backgroundType,
-        'backgroundImage': backgroundImageDesktop,
-        'backgroundColor': backgroundColor,
-        'gradientValue': gradientValue,
-        'backgroundRepeat': backgroundRepeatDesktop,
-        'backgroundPosition': backgroundPositionDesktop,
-        'backgroundSize': backgroundSizeDesktop,
-        'backgroundAttachment': backgroundAttachmentDesktop,
-		'backgroundCustomSize' : backgroundCustomSizeDesktop,
-		'backgroundCustomSizeType' : backgroundCustomSizeType,
-		'backgroundImageColor' : backgroundImageColor,
-		'overlayType' : overlayType,
-		'backgroundVideo' : backgroundVideo,
-		'backgroundVideoColor' : backgroundVideoColor,
-    };
-
-	const videoBackgroundCSS = generateBackgroundCSS( videoBackgroundAttributes );
-
 	const selectors = {
-		'.wp-block-uagb-container .block-editor-block-list__block' : {
-			'color': textColor,
+		' .block-editor-inner-blocks .block-editor-block-list__layout > *' : {
+			'text-align': align
 		},
-		'.wp-block-uagb-container .block-editor-block-list__block a' : {
-			'color': linkColor,
-		},
-		'.wp-block-uagb-container .block-editor-block-list__block a:hover' : {
-			'color': linkHoverColor,
-		},
-		' > .uagb-container__shape-top svg' : {
-			'width': 'calc( ' + topWidth + '% + 1.3px )',
-			'height': generateCSSUnit( topHeight, 'px' )
-		},
-		' > .uagb-container__shape-top .uagb-container__shape-fill' : {
-			'fill': topColor,
-		},
-		' > .uagb-container__shape-bottom svg' : {
-			'width': 'calc( ' + bottomWidth + '% + 1.3px )',
-			'height': generateCSSUnit( bottomHeight, 'px' )
-		},
-		' > .uagb-container__shape-bottom .uagb-container__shape-fill' : {
-			'fill': bottomColor,
-		},
-		' .uagb-container__video-wrap' : {
-			...videoBackgroundCSS
-		},
-		' .uagb-container__video-wrap video' : {
-			'opacity': backgroundVideoOpacityValue
+		' .block-editor-inner-blocks .block-editor-block-list__layout .wp-block ': {
+			'margin-bottom': generateCSSUnit( rowGapDesktop, rowGapType ),
 		}
 	};
 
@@ -202,8 +155,6 @@ function styling( props ) {
 		'backgroundCustomSizeType' : backgroundCustomSizeType,
 		'backgroundImageColor' : backgroundImageColor,
 		'overlayType' : overlayType,
-		'backgroundVideo' : backgroundVideo,
-		'backgroundVideoColor' : backgroundVideoColor,
 		'customPosition': customPosition,
 		'xPosition': xPositionDesktop,
 		'xPositionType': xPositionType,
@@ -230,10 +181,10 @@ function styling( props ) {
 		'padding-bottom': generateCSSUnit( bottomPaddingDesktop, paddingType ),
 		'padding-left': generateCSSUnit( leftPaddingDesktop, paddingType ),
 		'padding-right': generateCSSUnit( rightPaddingDesktop, paddingType ),
-		'margin-top': generateCSSUnit( topMarginDesktop, marginType ) +	' !important',
-		'margin-bottom': generateCSSUnit( bottomMarginDesktop, marginType ) + ' !important',
-		'margin-left': generateCSSUnit( leftMarginDesktop, marginType ),
-		'margin-right': generateCSSUnit( rightMarginDesktop, marginType ),
+		'margin-top': generateCSSUnit( topMarginDesktop, marginType )+	' !important',
+		'margin-bottom': generateCSSUnit( bottomMarginDesktop, marginType )+	' !important',
+		'margin-left': generateCSSUnit( leftMarginDesktop, marginType )+	' !important',
+		'margin-right': generateCSSUnit( rightMarginDesktop, marginType )+	' !important',
 		...containerBackgroundCSSDesktop,
 		'box-shadow':
 		generateCSSUnit( boxShadowHOffset, 'px' ) + ' ' + generateCSSUnit( boxShadowVOffset, 'px' ) +	' ' +
@@ -242,8 +193,8 @@ function styling( props ) {
 		...borderCSS,
 	}
 
-	selectors['.wp-block'] = containerCSS;
-	selectors['.wp-block:hover'] = {
+	selectors['.uagb-info-box__wrap'] = containerCSS;
+	selectors['.uagb-info-box__wrap:hover'] = {
 		'border-color': blockBorderHColor,
 		'box-shadow': '',
 	};
@@ -255,7 +206,7 @@ function styling( props ) {
 
 		const boxShadowBlurHoverCSSUnit = ( '' === boxShadowBlurHover ) ? '' : generateCSSUnit( boxShadowBlurHover, 'px' );
 
-		selectors['.wp-block:hover']['box-shadow'] = generateCSSUnit( boxShadowHOffsetHover, 'px' ) + ' ' + generateCSSUnit( boxShadowVOffsetHover, 'px' ) +	' ' +
+		selectors['.uagb-info-box__wrap:hover']['box-shadow'] = generateCSSUnit( boxShadowHOffsetHover, 'px' ) + ' ' + generateCSSUnit( boxShadowVOffsetHover, 'px' ) +	' ' +
 													boxShadowBlurHoverCSSUnit + ' ' +	generateCSSUnit( boxShadowSpreadHover, 'px' ) + ' ' +
 													boxShadowColorHover + ' ' +	boxShadowPositionCSSHover;
 	}
@@ -273,8 +224,6 @@ function styling( props ) {
 		'backgroundCustomSizeType' : backgroundCustomSizeType,
 		'backgroundImageColor' : backgroundImageColor,
 		'overlayType' : overlayType,
-		'backgroundVideo' : backgroundVideo,
-		'backgroundVideoColor' : backgroundVideoColor,
 		'customPosition': customPosition,
 		'xPosition': xPositionTablet,
 		'xPositionType': xPositionTypeTablet,
@@ -285,18 +234,24 @@ function styling( props ) {
 	const infoBoxBackgroundCSSTablet = generateBackgroundCSS( backgroundAttributesTablet );
 
 	const tablet_selectors = {
-		'.wp-block' : {
+		'.uagb-info-box__wrap' : {
 			'padding-top': generateCSSUnit( topPaddingTablet, paddingTypeTablet ),
 			'padding-bottom': generateCSSUnit( bottomPaddingTablet, paddingTypeTablet ),
 			'padding-left': generateCSSUnit( leftPaddingTablet, paddingTypeTablet ),
 			'padding-right': generateCSSUnit( rightPaddingTablet, paddingTypeTablet ),
-			'margin-top': generateCSSUnit( topMarginTablet, marginTypeTablet )  + ' !important',
-			'margin-bottom': generateCSSUnit( bottomMarginTablet, marginTypeTablet )  + ' !important',
-			'margin-left': generateCSSUnit( leftMarginTablet, marginTypeTablet ),
-			'margin-right': generateCSSUnit( rightMarginTablet, marginTypeTablet ),
+			'margin-top': generateCSSUnit( topMarginTablet, marginTypeTablet )+	' !important',
+			'margin-bottom': generateCSSUnit( bottomMarginTablet, marginTypeTablet )+' !important',
+			'margin-left': generateCSSUnit( leftMarginTablet, marginTypeTablet )+	' !important',
+			'margin-right': generateCSSUnit( rightMarginTablet, marginTypeTablet )+	' !important',
 			...infoBoxBackgroundCSSTablet,
 			...borderCSSTablet
 		},
+		' .block-editor-inner-blocks .block-editor-block-list__layout > *' : {
+			'text-align': alignTablet
+		},
+		' .block-editor-inner-blocks .block-editor-block-list__layout .wp-block ': {
+			'margin-bottom': generateCSSUnit( rowGapTablet, rowGapTypeTablet ),
+		}
 	};
 
 	const backgroundAttributesMobile = {
@@ -312,8 +267,6 @@ function styling( props ) {
 		'backgroundCustomSizeType' : backgroundCustomSizeType,
 		'backgroundImageColor' : backgroundImageColor,
 		'overlayType' : overlayType,
-		'backgroundVideo' : backgroundVideo,
-		'backgroundVideoColor' : backgroundVideoColor,
 		'customPosition': customPosition,
 		'xPosition': xPositionMobile,
 		'xPositionType': xPositionTypeMobile,
@@ -324,34 +277,44 @@ function styling( props ) {
 	const containerBackgroundCSSMobile = generateBackgroundCSS( backgroundAttributesMobile );
 
 	const mobile_selectors = {
-		'.wp-block' : {
+		'.uagb-info-box__wrap' : {
 			'padding-top': generateCSSUnit( topPaddingMobile, paddingTypeMobile ),
 			'padding-bottom': generateCSSUnit( bottomPaddingMobile, paddingTypeMobile ),
 			'padding-left': generateCSSUnit( leftPaddingMobile, paddingTypeMobile ),
 			'padding-right': generateCSSUnit( rightPaddingMobile, paddingTypeMobile ),
-			'margin-top': generateCSSUnit( topMarginMobile, marginTypeMobile )  + ' !important',
-			'margin-bottom': generateCSSUnit( bottomMarginMobile, marginTypeMobile )  + ' !important',
-			'margin-left': generateCSSUnit( leftMarginMobile, marginTypeMobile ),
-			'margin-right': generateCSSUnit( rightMarginMobile, marginTypeMobile ),
+			'margin-top': generateCSSUnit( topMarginMobile, marginTypeMobile )+	' !important',
+			'margin-bottom': generateCSSUnit( bottomMarginMobile, marginTypeMobile )+	' !important',
+			'margin-left': generateCSSUnit( leftMarginMobile, marginTypeMobile )+	' !important',
+			'margin-right': generateCSSUnit( rightMarginMobile, marginTypeMobile )+	' !important',
 			...containerBackgroundCSSMobile,
 			...borderCSSMobile
 		},
+		' .block-editor-inner-blocks .block-editor-block-list__layout > *' : {
+			'text-align': alignMobile
+		},
+		' .block-editor-inner-blocks .block-editor-block-list__layout .wp-block ': {
+			'margin-bottom': generateCSSUnit( rowGapMobile, rowGapTypeMobile ),
+		}
+
 	};
 
-	const base_selector = `.editor-styles-wrapper #block-${ props.clientId }`;
+	const id = `.editor-styles-wrapper .uagb-block-${ props.clientId.substr(
+		0,
+		8
+	) }`;
+	let styling_css = generateCSS( selectors, id );
 
-	let styling_css = generateCSS( selectors, base_selector );
 
 	styling_css += generateCSS(
 		tablet_selectors,
-		`${ base_selector }.uagb-editor-preview-mode-tablet`,
+		`${ id }.uagb-editor-preview-mode-tablet`,
 		true,
 		'tablet'
 	);
 
 	styling_css += generateCSS(
 		mobile_selectors,
-		`${ base_selector }.uagb-editor-preview-mode-mobile`,
+		`${ id }.uagb-editor-preview-mode-mobile`,
 		true,
 		'mobile'
 	);
